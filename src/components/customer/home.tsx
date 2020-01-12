@@ -70,7 +70,7 @@ const Home = () => {
                                 showStatus={false}
                             >
                                 {ads.map((ad) => (
-                                    <div className='h-72' key={ad.id}>
+                                    <div className='h-60 md:h-72' key={ad.id}>
                                         <img alt='ads' src={ad.big_screen_image} />
                                     </div>))}
 
@@ -85,13 +85,14 @@ const Home = () => {
                             const subCategories = category.subCategories.slice(0, 4)
                             return (
                                 <Link to={`/products/c/${category.name}`} key={category.id}>
-                                    <div className='relative my-2'>
+                                    <div className='relative my-2 group'>
                                         <div className='hover:underline'>
-                                            <p className='absolute ml-2 hover:underline'>{category.name}</p>
-                                            <img className='h-36  2xl:h-52 w-full bg-slate-200 lg:h-40 xl:h-48 hover:shadow-sm'
+                                            <p className='absolute px-2 ml-2 group-hover:underline group-hover:bg-white/40 rounded'>{category.name}</p>
+                                            <img className='h-40  2xl:h-52 w-full bg-slate-200 lg:h-44 xl:h-52 hover:shadow-sm'
                                                 src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         </div>
-                                        <div className=''>
+
+                                        {subCategories.length ?
                                             <ul>
                                                 {
                                                     subCategories.map((subCat) => (
@@ -100,9 +101,8 @@ const Home = () => {
                                                     ))
                                                 }
                                                 <p className='text-[#004896] hover:underline'>see all</p>
-                                            </ul>
+                                            </ul> : ''}
 
-                                        </div>
                                     </div>
                                 </Link>
                             )
@@ -114,13 +114,16 @@ const Home = () => {
                         <span>Recent Updates</span>
                         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3'>
                             {products.map((p) => (
-                                <div className='mt-2 hover:shadow-md' key={p.id}>
-                                    <Link to={`/products/p/${p.id}`}>
-                                        <img className='w-full h-32 2xl:h-52'
+                                <div className='mt-2 w-full group' key={p.id}>
+                                    <Link to={`/products/p/${p.id}`} className='w-full'>
+                                        <img className='w-ful max-h-32 2xl:max-h-52'
                                             src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
-                                        <p className='font-mono font-medium tracking-tighter text-md lg:text-lg'>{p.name}</p>
+
+                                        <button className='text-black bg-slate-100 hover:bg-slate-300 w-full rounded my-2'>More</button>
+                                        <p className='font-mono font-medium tracking-tighter text-md lg:text-lg group-hover:text-[#004896]'>{p.name}</p>
                                         <p className='font-normal text-xs text-slate-500'>by {p.shop.name}</p>
                                         <p className='font-semibold'>RWF {p.price}</p>
+
                                     </Link>
                                 </div>
                             ))}
