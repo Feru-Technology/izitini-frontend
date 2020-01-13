@@ -22,7 +22,7 @@ export const allProductSlice = createSlice({
         },
         retrievedProducts: (state, { payload }) => {
             state.isLoading = false;
-            state.products = [...state.products, ...payload]
+            state.products = payload
         },
         retrievedProductFailed: (state, { payload }) => {
             state.isLoading = false;

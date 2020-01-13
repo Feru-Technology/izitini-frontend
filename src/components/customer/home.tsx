@@ -8,6 +8,7 @@ import { CategoryBar } from './categoryBar'
 import { RootState } from '../../redux/store'
 import { useProducts } from '../../api/products'
 import { Carousel } from 'react-responsive-carousel'
+import shorten from '../../utils/common/shotenString'
 import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
 
     useProducts()
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
+    const newProducts = products.slice(0, 10)
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -44,8 +46,8 @@ const Home = () => {
                             lg:text-base'>
                                     Buy your products</p>
                             </div>
-                            <ul className='ml-2
-                        md:w-full md:h-52 md:overflow-y-scroll'>
+                            <ul className='ml-2 mt-2.5
+                        md:w-full md:h-64 md:overflow-y-scroll'>
                                 {categories.map((cat) => (
                                     <Link to={`/products/c/${cat.name}`} key={cat.id}>
                                         <li
@@ -113,16 +115,16 @@ const Home = () => {
                     <div className='lg:mb-8 lg:mt-3 font-normal'>
                         <span>Recent Updates</span>
                         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3'>
-                            {products.map((p) => (
+                            {newProducts.map((p) => (
                                 <div className='mt-2 w-full group' key={p.id}>
                                     <Link to={`/products/p/${p.id}`} className='w-full'>
-                                        <img className='w-ful max-h-32 2xl:max-h-52'
+                                        <img className='w-ful max-h-32 2xl:max-h-52 mx-auto'
                                             src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
 
                                         <button className='text-black bg-slate-100 hover:bg-slate-300 w-full rounded my-2'>More</button>
-                                        <p className='font-mono font-medium tracking-tighter text-md lg:text-lg group-hover:text-[#004896]'>{p.name}</p>
+                                        <p className='text-slate-800 text-md group-hover:text-[#004896]'>{shorten(p.name, 55)}</p>
                                         <p className='font-normal text-xs text-slate-500'>by {p.shop.name}</p>
-                                        <p className='font-semibold'>RWF {p.price}</p>
+                                        <p className='font-semibold mt-2'>RWF {p.price}</p>
 
                                     </Link>
                                 </div>

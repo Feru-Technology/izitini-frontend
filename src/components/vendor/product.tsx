@@ -6,11 +6,13 @@ import {
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
+import parse from 'html-react-parser'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
 import { uploadImage } from '../../api/images'
 import { Transition } from '@headlessui/react'
+import { Editor } from '@tinymce/tinymce-react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
@@ -39,8 +41,6 @@ import { updatedProduct } from '../../redux/admin/products/updateProduct.slice'
 import { createdColor } from '../../redux/admin/productColors/createColor.slice'
 import { deletedColor } from '../../redux/admin/productColors/DeleteColor.slice'
 import { updatedProductStatus } from '../../redux/products/updateProductStatus.slice'
-import { Editor } from '@tinymce/tinymce-react'
-import parse from 'html-react-parser'
 const VendorProduct = () => {
 
     useAuth('business')

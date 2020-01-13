@@ -10,6 +10,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useProduct } from '../../api/products'
 import { HeartIcon } from '@heroicons/react/outline'
+import shorten from '../../utils/common/shotenString'
 import { useDispatch, useSelector } from 'react-redux'
 import { imageZoom } from '../../utils/common/imageZoom'
 import { ChevronRightIcon } from '@heroicons/react/solid'
@@ -55,15 +56,17 @@ const Product = () => {
                         <div className='overflow-x-scroll md:overflow-hidden bg-white 
                         px-5 py-6 md:px-12 lg:px-24'>
                             <div className='flex lg:mt-8 font-semibold text-xs md:text-sm text-slate-600 w-max'>
-                                <Link to={'/products'} className=' '>All Products</Link>
+                                <Link to={'/products'} className='hover:underline hover:text-[#004896]'>All Products</Link>
                                 <ChevronRightIcon className='h-4 md:h-5 mx-1 text-slate-500' />
-                                <Link to={`/products/c/${currentProduct.subCategory[0].subCategory.category.name}`}>
+                                <Link to={`/products/c/${currentProduct.subCategory[0].subCategory.category.name}`}
+                                    className='hover:underline hover:text-[#004896]'>
                                     {currentProduct.subCategory[0].subCategory.category.name}</Link>
                                 <ChevronRightIcon className='h-4 md:h-5 mx-1 text-slate-500' />
-                                <Link to={`/products/s/${currentProduct.subCategory[0].subCategory.id}`} className=' '>
+                                <Link to={`/products/s/${currentProduct.subCategory[0].subCategory.id}`}
+                                    className='hover:underline hover:text-[#004896]'>
                                     {currentProduct.subCategory[0].subCategory.name}</Link>
                                 <ChevronRightIcon className='h-4 md:h-5 mx-1 text-slate-500 whi' />
-                                <p> {currentProduct.product.name}</p>
+                                <p> {shorten(currentProduct.product.name, 20)}</p>
                             </div>
 
                         </div>
@@ -74,7 +77,7 @@ const Product = () => {
                                 <div className=''>
                                     <div className='md:flex px-5 py-6 md:py-0 md:px-12 lg:px-24 mx-auto bg-white w-full
                                         border-b md:border-b-0 border-slate-200'>
-                                        <div className='md:w-2/3'>
+                                        <div className='md:w-7/12'>
                                             <div className='md:flex'>
 
                                                 <div className='sr-only md:not-sr-only'>
@@ -219,16 +222,15 @@ const Product = () => {
                                         </div>
 
                                         {/* product details */}
-                                        <div className='md:w-1/3 md:ml-4 relative'>
+                                        <div className='md:w-5/12 md:ml-4 relative'>
                                             <div className='text-sm md:text-base'>
-                                                <h2 className='font-medium text-lg lg:text-xl'>{currentProduct?.product.name}</h2>
-                                                <p className='text-xs lg:text-sm'>{currentProduct?.product.shop.name}</p>
-                                                <p></p>
+                                                <h2 className='font-semibold text-base text-slate-700'>{currentProduct?.product.name}</h2>
+                                                <p className='text-xs lg:text-sm font-light mt-3'>By  <span className='italic underline text-[#004896]'>{currentProduct?.product.shop.name}</span></p>
+                                                <p className='text-xs lg:text-sm font-light'>Brand:  <span className='italic'>{currentProduct.product.brand}</span></p>
 
                                                 {/* Rate */}
-                                                <div className='flex mt-2'>
-                                                    <div className='flex text-lg lg:text-2xl'
-                                                        style={{ color: '#ff9900' }}
+                                                <div className='flex'>
+                                                    <div className='flex text-lg lg:text-xl text-[#f0950c]'
                                                     >
                                                         <i>
                                                             <AiOutlineStar />
@@ -246,13 +248,10 @@ const Product = () => {
                                                             <AiOutlineStar />
                                                         </i>
                                                     </div>
-                                                    <span className='ml-1 -mt-1 text-black text-base lg:text-lg'> (0)</span>
+                                                    <span className='ml-2 -mt-0.5 text-black text-sm lg:text-base underline'> 0 Review</span>
                                                 </div>
-                                                <p className='text-base font-semibold md:text-lg'>{currentProduct?.product.brand}</p>
-                                                <p className='text-xs md:text-sm lg:text-base'>{currentProduct?.product.description}</p>
-                                                <p className='text-xs lg:text-sm capitalize italic mt-2'>read to ship in Kigali</p>
-                                                <p>{currentProduct?.product.price}</p>
-                                                <p>{currentProduct.product.description}</p>
+                                                <p className='mt-3'>RWF {currentProduct?.product.price}</p>
+                                                <p className='text-xs lg:text-sm capitalize italic'>read to ship in Kigali</p>
 
                                                 <div>
 
