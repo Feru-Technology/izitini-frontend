@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { uploadedImage } from '../../redux/image/uploadImage.slice'
 import { updateCategory, useCategories } from '../../api/categories'
 import { ISubCategory } from '../../redux/admin/subCategories/subCategory.interface'
-import { createSubCatInCat, uploadSubCatImage, useRefreshAllSubCategories, useSubCategories } from '../../api/subCategories'
+import { createSubCatInCat, updateSubCategory, uploadSubCatImage, useRefreshAllSubCategories, useSubCategories } from '../../api/subCategories'
 
 const SubCategories = () => {
 
@@ -339,7 +339,7 @@ const SubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return updateCategory(dispatch, currentSubCategory?.id, { name, image_url })
+                                                    return updateSubCategory(dispatch, currentSubCategory!.id, { name, image_url })
                                                 }}
                                             >
                                                 {!!isUpdating ? 'Updating...' : isUploading ? 'uploading ...' : 'Update'}

@@ -18,5 +18,6 @@ export interface IPSubCategory {
     createdAt: Date
     id: string | null
     product: IProduct
+    subCategory_id: string
     subCategory: ISubCategory
 }

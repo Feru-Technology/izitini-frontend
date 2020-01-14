@@ -1,15 +1,17 @@
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useState, useEffect } from 'react'
+import parse from 'html-react-parser'
 import { useParams } from 'react-router-dom'
 import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { uploadImage } from '../../api/images'
+import { Editor } from '@tinymce/tinymce-react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
+import { useState, useEffect, useRef } from 'react'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { createSize, deleteSize } from '../../api/sizes'
@@ -30,6 +32,8 @@ const AdminProduct = () => {
 
     useAuth('admin')
     const dispatch = useDispatch()
+    const desc = useRef(null)
+    const specs = useRef(null)
     const params = useParams()
     const { id } = params
 
@@ -48,6 +52,7 @@ const AdminProduct = () => {
     const [showColorDesc, setShowColorDesc] = useState(false)
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
+    const [description, setDescription] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
 
     // size states
@@ -58,9 +63,9 @@ const AdminProduct = () => {
 
     // color states
     const [addColor, setAddColor] = useState(false)
+    const [pricePerColor, setPricePerColor] = useState<string>('0')
     const [colorName, setColorName] = useState<string | null>(null)
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
-    const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
     // image states
     const [addImage, setAddImage] = useState(false)
@@ -135,7 +140,6 @@ const AdminProduct = () => {
             setAddColor(false)
             setColorName(null)
             setColorName(null)
-            setPricePerColor(null)
             setPricePerSize(null)
             setSizeQuantity(null)
         }
@@ -326,7 +330,8 @@ const AdminProduct = () => {
                                                                 id='grid-state'
                                                             // onChange={e => setSubCategory(e.target.value)}
                                                             >
-                                                                <option>Choose sub-category</option>
+                                                                {currentProduct.subCategory.map((subCat) => <option key={subCat.subCategory.id}>{subCat.subCategory.name}</option>)}
+
                                                                 {isSubCatLoading ? 'loading...'
                                                                     : subCategories.map((c) => (<option key={c.id}>{c.name}</option>))}
                                                             </select>
@@ -342,6 +347,48 @@ const AdminProduct = () => {
                                                     </div>
 
                                                 </div>
+
+                                                <Transition show={editMode}>
+
+                                                    <label className='block uppercase text-slate-600 text-xs font-bold mb-2 mt-5'
+                                                    >Description</label>
+                                                    {/* @ts-ignore */}
+                                                    <Editor
+                                                        apiKey='kymmu4dn6wwobwchlwh67nwhpe1lxtwsba433yg2az9nyk6l'
+                                                        //@ts-ignore
+                                                        onInit={(evt, editor) => desc.current = editor}
+                                                        initialValue={currentProduct.product.description}
+                                                        init={{
+                                                            height: 200, menubar: false, plugins: [
+                                                                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
+                                                                'visualblocks', 'fullscreen', 'insertdatetime', 'table', 'code', 'help',
+                                                            ],
+                                                            toolbar: 'undo redo preview blocks | bold italic forecolor link | bullist numlist outdent indent | ' +
+                                                                'alignleft aligncenter alignright alignjustify | table removeformat  help',
+                                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                                        }}
+                                                    />
+
+                                                    <label className='block uppercase text-slate-600 text-xs font-bold mb-2 mt-5'
+                                                    >Specification</label>
+                                                    {/* @ts-ignore */}
+                                                    <Editor
+                                                        apiKey='kymmu4dn6wwobwchlwh67nwhpe1lxtwsba433yg2az9nyk6l'
+                                                        //@ts-ignore
+                                                        onInit={(evt, editor) => specs.current = editor}
+                                                        initialValue={currentProduct.product.specification}
+                                                        init={{
+                                                            height: 200, menubar: false, plugins: [
+                                                                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
+                                                                'visualblocks', 'fullscreen', 'insertdatetime', 'table', 'code', 'help',
+                                                            ],
+                                                            toolbar: 'undo redo preview blocks | bold italic forecolor link | bullist numlist outdent indent | ' +
+                                                                'alignleft aligncenter alignright alignjustify | table removeformat  help',
+                                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                                        }}
+                                                    />
+
+                                                </Transition>
                                             </div>
 
                                         </form>
@@ -630,21 +677,6 @@ const AdminProduct = () => {
                                                     className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Color'
                                                     onChange={e => setColorName(e.target.value)}
-                                                />
-                                            </div>
-
-                                            <div className=' w-full mb-3'>
-                                                <label
-                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
-                                                    htmlFor='grid-text'
-                                                >
-                                                    Price
-                                                </label>
-                                                <input
-                                                    type='number'
-                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                    placeholder='Price'
-                                                    onChange={e => setPricePerColor(e.target.value)}
                                                 />
                                             </div>
 

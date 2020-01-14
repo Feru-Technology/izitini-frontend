@@ -44,8 +44,7 @@ const AdminDashboard = () => {
 
                     {/* customer dashboard */}
                     <div className='p-5 flex flex-col justify-center'>
-                        <p>recent activities</p>
-                        <p>Become a vendor</p>
+                        <p>Recent activities</p>
 
                     </div>
                 </div>

@@ -39,8 +39,8 @@ const Subcategory = () => {
                         </div>
 
                         {/* categories */}
-                        <div className='my-4 lg:my-8 font-medium
-                        grid grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
+                        <div className='my-4 lg:my-8 font-medium grid grid-cols-1
+                        md:grid-cols-3 lg:grid-cols-4 xl:gap-5 gap-2'>
                             {Products?.map((p) => (
                                 <div className='mt-2 w-full group' key={p.product.id}>
                                     <Link to={`/products/p/${p.product.id}`} className='w-full'>
@@ -48,8 +48,8 @@ const Subcategory = () => {
                                             src={p.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
 
                                         <button className='text-black bg-slate-100 group-hover:bg-slate-300 w-full rounded my-2'>More</button>
-                                        <p className='text-slate-800 text-md group-hover:text-[#004896]'>{shorten(p.product.name, 55)}</p>
-                                        <p className='font-normal text-xs text-slate-500'>by {p.product.brand}</p>
+                                        <p className='text-slate-800 text-md group-hover:text-[#004896]'>{shorten(p.product.name, 65)}</p>
+                                        <p className='font-normal text-xs text-slate-500'>by {p.product.shop.name}</p>
                                         <p className='font-semibold mt-2'>RWF {p.product.price}</p>
 
                                     </Link>
