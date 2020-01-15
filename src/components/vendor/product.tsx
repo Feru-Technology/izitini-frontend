@@ -46,8 +46,8 @@ const VendorProduct = () => {
     useAuth('business')
 
     const dispatch = useDispatch()
-    const desc = useRef(null)
-    const specs = useRef(null)
+    const desc = useRef('')
+    const specs = useRef('')
     const params = useParams()
     const { id } = params
 
@@ -67,8 +67,6 @@ const VendorProduct = () => {
     const [status, setStatus] = useState<string | null>(null)
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
-    const [description, setDescription] = useState<string | null>(null)
-    const [specification, setSpecification] = useState<string | null>(null)
 
     // size states
     const [addSize, setAddSize] = useState(false)
@@ -103,10 +101,10 @@ const VendorProduct = () => {
             setStatus(currentProduct.product.status)
             setManual(currentProduct.product.manual)
             setQuantity(currentProduct.product.quantity)
-            // setDescription(currentProduct.product.description)
-            // setSpecification(currentProduct.product.specification)
         }
     }, [currentProduct])
+
+    console.log(currentProduct)
 
     useSubCategories('/admin/subcategory')
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
@@ -157,22 +155,10 @@ const VendorProduct = () => {
             setAddColor(false)
             setColorName(null)
             setColorName(null)
-            setPricePerColor(null)
             setPricePerSize(null)
             setSizeQuantity(null)
         }
     }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
-
-    console.log(currentProduct)
-
-    const inputResult = () => {
-        //@ts-ignore
-        if (desc.current) setDescription(desc.current.getContent())
-        //@ts-ignore
-        if (specs.current) return setSpecification(desc.current.getContent())
-    }
-
-    console.log('-----------------------------', description, specification)
 
     return (
         <>
@@ -381,7 +367,17 @@ const VendorProduct = () => {
                                                         }}
                                                     />
 
-                                                    <div>{description ? parse(description) : ''}</div>
+                                                </Transition>
+
+                                                <Transition show={!editMode} className='mt-5 space-y-5'>
+                                                    <div>
+                                                        <p className='block uppercase text-slate-600 text-xs font-bold mb-2'>Description:</p>
+                                                        <p className=''>{parse(currentProduct.product.description || '')}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className='block uppercase text-slate-600 text-xs font-bold mb-2'>Specification:</p>
+                                                        <p className=''>{parse(currentProduct.product.specification || '')}</p>
+                                                    </div>
                                                 </Transition>
                                             </div>
 
@@ -535,10 +531,8 @@ const VendorProduct = () => {
                                             <button className='py-3 px-6 bg-[#004896] rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    inputResult()
-                                                    return updateProduct(dispatch, '/product', currentProduct.product.id, {
-                                                        name, unit, price, brand, status, manual, quantity, specification, description
-                                                    })
+                                                    // @ts-ignore
+                                                    return updateProduct(dispatch, '/product', currentProduct.product.id, { name, unit, price, brand, status, manual, quantity, specification: specs.current.getContent(), description: desc.current.getContent() })
                                                 }} >
                                                 {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
                                             </button>

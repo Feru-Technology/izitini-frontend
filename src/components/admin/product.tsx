@@ -32,8 +32,8 @@ const AdminProduct = () => {
 
     useAuth('admin')
     const dispatch = useDispatch()
-    const desc = useRef(null)
-    const specs = useRef(null)
+    const desc = useRef('')
+    const specs = useRef('')
     const params = useParams()
     const { id } = params
 
@@ -52,8 +52,6 @@ const AdminProduct = () => {
     const [showColorDesc, setShowColorDesc] = useState(false)
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
-    const [description, setDescription] = useState<string | null>(null)
-    const [specification, setSpecification] = useState<string | null>(null)
 
     // size states
     const [addSize, setAddSize] = useState(false)
@@ -86,7 +84,6 @@ const AdminProduct = () => {
             // setStatus(currentProduct.product.status)
             setManual(currentProduct.product.manual)
             setQuantity(currentProduct.product.quantity)
-            setSpecification(currentProduct.product.specification)
         }
     }, [currentProduct])
 
@@ -253,7 +250,7 @@ const AdminProduct = () => {
                                                             className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-first-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
+                                                            onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -262,7 +259,7 @@ const AdminProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.specification} />
+                                                            type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.specification} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -271,7 +268,7 @@ const AdminProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
+                                                            type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -280,16 +277,7 @@ const AdminProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3  text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
-                                                    </div>
-
-                                                    <div className='my-1'>
-                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
-                                                        >Specs:</label>
-                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
+                                                            type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -298,7 +286,7 @@ const AdminProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
+                                                            type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -307,7 +295,7 @@ const AdminProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
+                                                            type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -315,7 +303,7 @@ const AdminProduct = () => {
                                                         >Owner:</label>
                                                         <input className='border border-slate-300 px-3 py-3 bg-slate-100 text-slate-600 rounded text-sm
                                                         focus:outline-none w-full ease-linear transition-all duration-150 pointer-events-none'
-                                                            id='grid-last-name' type='text'
+                                                            type='text'
                                                             value={currentProduct.product.shop.name}
                                                         />
                                                     </div>
@@ -343,7 +331,7 @@ const AdminProduct = () => {
                                                         >created At:</label>
                                                         <input className='border border-slate-300 px-3 py-3 bg-slate-100 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
-                                                            id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
+                                                            type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                     </div>
 
                                                 </div>
@@ -388,6 +376,17 @@ const AdminProduct = () => {
                                                         }}
                                                     />
 
+                                                </Transition>
+
+                                                <Transition show={!editMode} className='mt-5 space-y-5'>
+                                                    <div>
+                                                        <p className='block uppercase text-slate-600 text-xs font-bold mb-2'>Description:</p>
+                                                        <p className=''>{parse(currentProduct.product.description)}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p className='block uppercase text-slate-600 text-xs font-bold mb-2'>Specification:</p>
+                                                        <p className=''>{parse(currentProduct.product.specification)}</p>
+                                                    </div>
                                                 </Transition>
                                             </div>
 
@@ -543,7 +542,8 @@ const AdminProduct = () => {
                                             shadow-md hover:shadow-lg hover:bg-[#0e87d2]'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    return updateProduct(dispatch, '/admin/product', currentProduct.product.id, { name, unit, price, brand, manual, quantity, specification })
+                                                    // @ts-ignore
+                                                    return updateProduct(dispatch, '/admin/product', currentProduct.product.id, { name, unit, price, brand, manual, quantity, specification: specs.current.getContent(), description: desc.current.getContent() })
                                                 }} >
                                                 {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
                                             </button>
