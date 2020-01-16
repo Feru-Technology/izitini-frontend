@@ -8,6 +8,7 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { createProduct } from '../../api/products'
+import shorten from '../../utils/common/shotenString'
 import { useStoreProducts } from '../../api/products'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSubCategories } from '../../api/subCategories'
@@ -147,7 +148,7 @@ const Products = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className='ml-4 font-medium w-full md:w-auto'>
-                                                                                {product.name}
+                                                                                {shorten(product.name, 110)}
                                                                             </div>
                                                                         </div>
                                                                     </td>

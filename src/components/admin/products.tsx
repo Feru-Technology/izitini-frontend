@@ -1,17 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { useStores } from '../../api/stores'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
+import shorten from '../../utils/common/shotenString'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAllProducts, getAllProducts, createProd, useRefreshProduct } from '../../api/products'
 import { useSubCategories } from '../../api/subCategories'
-import { useStores } from '../../api/stores'
+import { useAllProducts, getAllProducts, createProd, useRefreshProduct } from '../../api/products'
 
 const Products = () => {
 
@@ -178,16 +179,15 @@ const Products = () => {
                                                         <tr key={product.id}
                                                             className='text-center text-xs md:text-sm lg:text-base border-b text-slate-800 hover:bg-slate-100'>
                                                             <td className='py-1 hover:text-[#004896] hover:underline'
-                                                                onClick={e => navigate(`/admin/products/${product.id}`)}>
-                                                                <div className='md:flex items-center'>
-                                                                    <div className='md:w-1/4 mx-3'>
-                                                                        <img src={product.display_image || 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg'} alt='product'
-                                                                            className='w-auto h-10' />
+                                                                onClick={() => navigate(`/admin/products/${product.id}`)}>
+                                                                <div className='md:flex'>
+                                                                    <div className='md:w-1/4 mx-1'>
+                                                                        <img src={product.display_image || 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg'}
+                                                                            alt='product' className='w-auto h-10 mx-auto' />
                                                                     </div>
-                                                                    <div className='md:w-2/4'>
-
-                                                                        <p className='font-normal text-sm  cursor-pointer'>
-                                                                            <span className=''>{product.name}</span>
+                                                                    <div className='md:w-3/4 m-1'>
+                                                                        <p className='font-normal text-sm cursor-pointer text-left'>
+                                                                            {shorten(product.name, 110)}
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -205,9 +205,8 @@ const Products = () => {
                                                                 <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
                                                             </td>
                                                         </tr>)
-                                                }
+                                                })}
 
-                                                )}
                                             </tbody>
 
                                         </table>
