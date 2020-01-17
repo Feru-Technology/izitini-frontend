@@ -381,11 +381,11 @@ const AdminProduct = () => {
                                                 <Transition show={!editMode} className='mt-5 space-y-5'>
                                                     <div>
                                                         <p className='block uppercase text-slate-600 text-xs font-bold mb-2'>Description:</p>
-                                                        <p className=''>{parse(currentProduct.product.description)}</p>
+                                                        <p className=''>{parse(currentProduct.product.description || ' ')}</p>
                                                     </div>
                                                     <div>
                                                         <p className='block uppercase text-slate-600 text-xs font-bold mb-2'>Specification:</p>
-                                                        <p className=''>{parse(currentProduct.product.specification)}</p>
+                                                        <p className=''>{parse(currentProduct.product.specification || ' ')}</p>
                                                     </div>
                                                 </Transition>
                                             </div>

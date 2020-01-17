@@ -181,13 +181,13 @@ const Products = () => {
                                                             <td className='py-1 hover:text-[#004896] hover:underline'
                                                                 onClick={() => navigate(`/admin/products/${product.id}`)}>
                                                                 <div className='md:flex'>
-                                                                    <div className='md:w-1/4 mx-1'>
+                                                                    <div className='md:w-1/6 m-2'>
                                                                         <img src={product.display_image || 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg'}
                                                                             alt='product' className='w-auto h-10 mx-auto' />
                                                                     </div>
-                                                                    <div className='md:w-3/4 m-1'>
+                                                                    <div className='md:w-5/6 m-1'>
                                                                         <p className='font-normal text-sm cursor-pointer text-left'>
-                                                                            {shorten(product.name, 110)}
+                                                                            {shorten(product.name, 120)}
                                                                         </p>
                                                                     </div>
                                                                 </div>
