@@ -1,43 +1,29 @@
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
+import { useParams } from 'react-router-dom'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import {
-    user,
-    getUser,
-    userFailed
-} from '../../redux/admin/users/user.slice'
-import {
-    updatingUser,
-    updated,
-    updateFailed
-} from '../../redux/admin/users/updateUser.slice'
-import { updateUser, useUser } from '../../api/user'
+import { changeProfileImage, updateUser, useUser } from '../../api/user'
 
 const User = () => {
 
-    const token = localStorage.getItem('token')
     useAuth('admin')
-
     const params = useParams()
     const { id } = params
     const input = useRef(null)
     const dispatch = useDispatch()
-
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
 
     useUser(id!)
-    const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
+    const { currentUser, error } = useSelector((state: RootState) => state.user)
 
     const [isClosed, setIsClosed] = useState(true)
     const [editMode, setEditMode] = useState(false)
@@ -47,8 +33,6 @@ const User = () => {
     const [is_verified, setIs_verified] = useState<boolean>(false)
     const [full_name, setFull_name] = useState<string | null>(null)
     const [account_type, setAccount_type] = useState<string | null>(null)
-
-
 
     useEffect(() => {
         if (currentUser) {
@@ -65,26 +49,9 @@ const User = () => {
     //@ts-ignore
     const uploadImage = () => input.current.click()
 
-    const changeProfileImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        dispatch(updatingUser())
-        axiosAction('patch', dispatch, updated, updateFailed, `/admin/user/profile-image/${id}`, token, formData)
-    }
-
-    const { isUpdating, updatedUser, updateError } = useSelector((state: RootState) => state.updateUser)
-
-    useEffect(() => {
-        if (updatedUser) {
-            dispatch(getUser())
-            dispatch(updated(null))
-            axiosAction('get', dispatch, user, userFailed, `/users/${id}`)
-        }
-    })
-
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>) :
+            {
                 currentUser ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
@@ -126,7 +93,8 @@ const User = () => {
                                             <input className='absolute hidden' type="file" name="img" ref={input}
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
-                                                    if (e.target.files) changeProfileImage(e.target.files[0])
+                                                    e.preventDefault()
+                                                    if (e.target.files) changeProfileImage(dispatch, `/admin/user/profile-image/${id!}`, e.target.files[0])
                                                 }} />
 
                                             <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
@@ -323,7 +291,6 @@ const User = () => {
                         </div>
                     </div >
                 ) : <div className='mt-24 ml-24 font-bold text-base'>{error?.message}</div>
-
             }
         </>
     )

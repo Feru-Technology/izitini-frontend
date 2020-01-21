@@ -18,15 +18,10 @@ import {
 } from '../../redux/admin/users/users.slice'
 const Users = () => {
 
+    useAuth('admin')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth('admin')
-
-    // redux
     const dispatch = useDispatch()
-
-    const { isLoading } = useSelector((state: RootState) => state.profile)
-
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
@@ -46,7 +41,7 @@ const Users = () => {
         axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
     }
 
-    const { users } = useSelector((state: RootState) => state.users)
+    const { isLoading, users } = useSelector((state: RootState) => state.users)
 
     const [isClosed, setIsClosed] = useState(true)
     const [showVendor, setShowVendor] = useState(false)

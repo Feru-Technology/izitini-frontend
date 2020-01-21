@@ -72,3 +72,22 @@ export const updateUser = (dispatch: Dispatch, id: string, data: {}) => {
     dispatch(getUser())
     axiosAction('patch', dispatch, user, userFailed, `/admin/user/${id}`, token, data)
 }
+
+export const useUsers = () => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchingUsers())
+        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
+    }, [dispatch])
+}
+
+export const fetchByAccountType = (dispatch: Dispatch, accountType: string) => {
+    dispatch(fetchingUsers())
+    axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, `/users/account-type/${accountType}`, token)
+}
+
+export const all = (dispatch: Dispatch) => {
+    dispatch(fetchingUsers())
+    axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
+}
