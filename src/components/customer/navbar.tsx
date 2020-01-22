@@ -32,6 +32,8 @@ export const Navbar = () => {
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
+    console.log(profile)
+
     const { categories } = useSelector((state: RootState) => state.categories)
 
     const [open, setOpen] = useState(false)
@@ -264,7 +266,7 @@ export const Navbar = () => {
                                                                 className='w-6 h-6 mt-2 rounded-full mx-auto md:w-8 md:h-8 md:mt-0'
                                                                 alt='pImg'
                                                             />
-                                                            <p className='sr-only lg:not-sr-only text-gray-700 font-semibold'>{profile?.full_name}</p>
+                                                            <p className='sr-only lg:not-sr-only text-gray-700 font-semibold'>{(profile?.full_name || profile.user.full_name).split(/[ ]+/)[0]}</p>
                                                             <ChevronDownIcon className='sr-only lg:h-5 lg:w-5 lg:not-sr-only' />
                                                         </div>
                                                     </Menu.Button>

@@ -87,7 +87,7 @@ export const fetchByAccountType = (dispatch: Dispatch, accountType: string) => {
     axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, `/users/account-type/${accountType}`, token)
 }
 
-export const all = (dispatch: Dispatch) => {
+export const allUsers = (dispatch: Dispatch) => {
     dispatch(fetchingUsers())
     axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
 }

@@ -1,7 +1,6 @@
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useState, useEffect } from 'react'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -11,36 +10,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { user } from '../../redux/admin/users/user.slice'
 import { IUser } from '../../redux/admin/users/users.interface'
 import { XIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
-import {
-    fetchingUsers,
-    retrievedUsers,
-    retrievedUserFailed
-} from '../../redux/admin/users/users.slice'
+import { allUsers, fetchByAccountType, useUsers } from '../../api/user'
+
 const Users = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
 
-    useEffect(() => {
-        dispatch(fetchingUsers())
-        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
-    }, [dispatch, token])
-
-    const fetchByAccountType = (accountType: string) => {
-        dispatch(fetchingUsers())
-        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, `/users/account-type/${accountType}`, token)
-    }
-
-    const all = () => {
-        dispatch(fetchingUsers())
-        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
-    }
-
+    useUsers()
     const { isLoading, users } = useSelector((state: RootState) => state.users)
 
     const [isClosed, setIsClosed] = useState(true)
@@ -113,10 +94,10 @@ const Users = () => {
                                             py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
 
                                             onClick={() => {
-                                                all()
+                                                allUsers(dispatch)
+                                                setShowVendor(false)
                                                 setShowAllUsers(true)
                                                 setShowCustomer(false)
-                                                setShowVendor(false)
                                                 setShowProfessional(false)
                                             }}
                                         >All</li>
@@ -128,7 +109,7 @@ const Users = () => {
                                                 setShowAllUsers(false)
                                                 setShowVendor(false)
                                                 setShowProfessional(false)
-                                                fetchByAccountType('customer')
+                                                fetchByAccountType(dispatch, 'customer')
                                             }}
 
                                         >Customer</li>
@@ -140,7 +121,7 @@ const Users = () => {
                                                 setShowAllUsers(false)
                                                 setShowCustomer(false)
                                                 setShowVendor(false)
-                                                fetchByAccountType('business')
+                                                fetchByAccountType(dispatch, 'business')
                                             }}
                                         >Vendor</li>
                                         <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
@@ -151,7 +132,7 @@ const Users = () => {
                                                 setShowAllUsers(false)
                                                 setShowCustomer(false)
                                                 setShowProfessional(false)
-                                                fetchByAccountType('profession')
+                                                fetchByAccountType(dispatch, 'profession')
                                             }}
 
                                         >Professional</li>
