@@ -28,6 +28,7 @@
     "axios": "^0.24.0",
     "date-fns": "^2.28.0",
     "g": "^2.0.1",
+    "html-react-parser": "^2.0.0",
     "latest-version": "^6.0.0",
     "lodash": "^4.17.21",
     "postcss": "^8.4.14",

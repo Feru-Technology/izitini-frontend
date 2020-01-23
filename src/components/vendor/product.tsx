@@ -1,6 +1,7 @@
 import {
     useState,
-    useEffect
+    useEffect,
+    useRef
 } from 'react'
 import Header from './Header'
 import { format } from 'date-fns'
@@ -38,7 +39,8 @@ import { updatedProduct } from '../../redux/admin/products/updateProduct.slice'
 import { createdColor } from '../../redux/admin/productColors/createColor.slice'
 import { deletedColor } from '../../redux/admin/productColors/DeleteColor.slice'
 import { updatedProductStatus } from '../../redux/products/updateProductStatus.slice'
-
+import { Editor } from '@tinymce/tinymce-react'
+import parse from 'html-react-parser'
 const VendorProduct = () => {
 
     useAuth('business')
@@ -62,6 +64,7 @@ const VendorProduct = () => {
     const [showColorDesc, setShowColorDesc] = useState(false)
     const [status, setStatus] = useState<string | null>(null)
     const [manual, setManual] = useState<string | null>(null)
+    const [description, setDescription] = useState<string>('')
     const [quantity, setQuantity] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
 
@@ -74,8 +77,8 @@ const VendorProduct = () => {
     // color states
     const [addColor, setAddColor] = useState(false)
     const [colorName, setColorName] = useState<string | null>(null)
+    const [pricePerColor, setPricePerColor] = useState<string | null>('0')
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
-    const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
     // image states
     const [addImage, setAddImage] = useState(false)
@@ -158,6 +161,15 @@ const VendorProduct = () => {
     }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
 
     console.log(currentProduct)
+    const editorRef = useRef(null);
+    const log = () => {
+        if (editorRef.current) {
+            //@ts-ignore
+            console.log(typeof ((editorRef.current.getContent())));
+            //@ts-ignore
+            return setDescription(editorRef.current.getContent());
+        }
+    };
 
     return (
         <>
@@ -344,6 +356,49 @@ const VendorProduct = () => {
                                                     </div>
 
                                                 </div>
+
+                                                <Transition show={editMode}>
+
+                                                    <label className='block uppercase text-slate-600 text-xs font-bold mb-2 mt-5'
+                                                    >Description</label>
+                                                    {/* @ts-ignore */}
+                                                    <Editor
+                                                        apiKey='kymmu4dn6wwobwchlwh67nwhpe1lxtwsba433yg2az9nyk6l'
+                                                        //@ts-ignore
+                                                        onInit={(evt, editor) => editorRef.current = editor}
+                                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                                        init={{
+                                                            height: 200, menubar: false, plugins: [
+                                                                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
+                                                                'visualblocks', 'fullscreen', 'insertdatetime', 'table', 'code', 'help',
+                                                            ],
+                                                            toolbar: 'undo redo preview blocks | bold italic forecolor link | bullist numlist outdent indent | ' +
+                                                                'alignleft aligncenter alignright alignjustify | table removeformat  help',
+                                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                                        }}
+                                                    />
+
+                                                    <label className='block uppercase text-slate-600 text-xs font-bold mb-2 mt-5'
+                                                    >Specification</label>
+                                                    {/* @ts-ignore */}
+                                                    <Editor
+                                                        apiKey='kymmu4dn6wwobwchlwh67nwhpe1lxtwsba433yg2az9nyk6l'
+                                                        //@ts-ignore
+                                                        onInit={(evt, editor) => editorRef.current = editor}
+                                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                                        init={{
+                                                            height: 200, menubar: false, plugins: [
+                                                                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
+                                                                'visualblocks', 'fullscreen', 'insertdatetime', 'table', 'code', 'help',
+                                                            ],
+                                                            toolbar: 'undo redo preview blocks | bold italic forecolor link | bullist numlist outdent indent | ' +
+                                                                'alignleft aligncenter alignright alignjustify | table removeformat  help',
+                                                            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                                                        }}
+                                                    />
+
+                                                    <div>{parse(description)}</div>
+                                                </Transition>
                                             </div>
 
                                         </form>
@@ -374,8 +429,9 @@ const VendorProduct = () => {
                                                     {currentProduct.sizes.map((s) => {
                                                         return (
                                                             <div key={s.size.id}
-                                                                className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
-                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{s.size.size}</span> </p>
+                                                                className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base
+                                                                rounded relative overflow-hidden hover:overflow-visible hover:z-30 hover:bg-white group'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2 group-hover:bg-white'>{s.size.size}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{s.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
@@ -415,7 +471,6 @@ const VendorProduct = () => {
                                                             <div key={c.color.id}
                                                                 className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{c.color.name}</span> </p>
-                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{c.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-slate-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
@@ -632,21 +687,6 @@ const VendorProduct = () => {
                                                     className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Color'
                                                     onChange={e => setColorName(e.target.value)}
-                                                />
-                                            </div>
-
-                                            <div className=' w-full mb-3'>
-                                                <label
-                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
-                                                    htmlFor='grid-text'
-                                                >
-                                                    Price
-                                                </label>
-                                                <input
-                                                    type='number'
-                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                    placeholder='Price'
-                                                    onChange={e => setPricePerColor(e.target.value)}
                                                 />
                                             </div>
 
