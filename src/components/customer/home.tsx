@@ -31,10 +31,8 @@ const Home = () => {
                 <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
                     {/* first section */}
-                    <div className='flex flex-row h-60 mt-2'>
-                        <div className='
-                    sr-only md:not-sr-only
-                    md:w-3/12 lg:w-1/5 md:h-full'>
+                    <div className='flex flex-row h-60 md:h-72 mt-2'>
+                        <div className='sr-only md:not-sr-only md:w-3/12 lg:w-1/5 md:h-full'>
                             <div className='flex flex-row justify-center text-[#004896]
                             border-b-2 border-[#004896] mr-3 ml-2'>
                                 <FaTools className='
@@ -72,7 +70,7 @@ const Home = () => {
                                 showStatus={false}
                             >
                                 {ads.map((ad) => (
-                                    <div className='h-60' key={ad.id}>
+                                    <div className='h-72' key={ad.id}>
                                         <img alt='ads' src={ad.big_screen_image} />
                                     </div>))}
 

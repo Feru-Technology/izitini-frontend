@@ -46,6 +46,8 @@ const VendorProduct = () => {
     useAuth('business')
 
     const dispatch = useDispatch()
+    const desc = useRef(null)
+    const specs = useRef(null)
     const params = useParams()
     const { id } = params
 
@@ -64,8 +66,8 @@ const VendorProduct = () => {
     const [showColorDesc, setShowColorDesc] = useState(false)
     const [status, setStatus] = useState<string | null>(null)
     const [manual, setManual] = useState<string | null>(null)
-    const [description, setDescription] = useState<string>('')
     const [quantity, setQuantity] = useState<string | null>(null)
+    const [description, setDescription] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
 
     // size states
@@ -101,7 +103,8 @@ const VendorProduct = () => {
             setStatus(currentProduct.product.status)
             setManual(currentProduct.product.manual)
             setQuantity(currentProduct.product.quantity)
-            setSpecification(currentProduct.product.specification)
+            // setDescription(currentProduct.product.description)
+            // setSpecification(currentProduct.product.specification)
         }
     }, [currentProduct])
 
@@ -161,15 +164,15 @@ const VendorProduct = () => {
     }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
 
     console.log(currentProduct)
-    const editorRef = useRef(null);
-    const log = () => {
-        if (editorRef.current) {
-            //@ts-ignore
-            console.log(typeof ((editorRef.current.getContent())));
-            //@ts-ignore
-            return setDescription(editorRef.current.getContent());
-        }
-    };
+
+    const inputResult = () => {
+        //@ts-ignore
+        if (desc.current) setDescription(desc.current.getContent())
+        //@ts-ignore
+        if (specs.current) return setSpecification(desc.current.getContent())
+    }
+
+    console.log('-----------------------------', description, specification)
 
     return (
         <>
@@ -262,7 +265,7 @@ const VendorProduct = () => {
                                                             className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-first-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
+                                                            id='grid-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -271,7 +274,7 @@ const VendorProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.specification} />
+                                                            id='grid-unit' type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.unit} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -280,7 +283,7 @@ const VendorProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
+                                                            id='grid-price-per-unit' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -289,16 +292,7 @@ const VendorProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3  text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
-                                                    </div>
-
-                                                    <div className='my-1'>
-                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
-                                                        >Specs:</label>
-                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
+                                                            id='grid-brand' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -307,7 +301,7 @@ const VendorProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
+                                                            id='grid-manual' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -316,17 +310,7 @@ const VendorProduct = () => {
                                                         <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
-                                                    </div>
-
-                                                    <div className='my-1'>
-                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
-                                                        >Owner:</label>
-                                                        <input className='border border-slate-300 px-3 py-3 bg-slate-100 text-slate-600 rounded text-sm
-                                                        focus:outline-none w-full ease-linear transition-all duration-150 pointer-events-none'
-                                                            id='grid-last-name' type='text'
-                                                            value={currentProduct.product.shop.name}
-                                                        />
+                                                            id='grid-quantity' type='number' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                     </div>
 
                                                     <div className='my-1'>
@@ -365,8 +349,8 @@ const VendorProduct = () => {
                                                     <Editor
                                                         apiKey='kymmu4dn6wwobwchlwh67nwhpe1lxtwsba433yg2az9nyk6l'
                                                         //@ts-ignore
-                                                        onInit={(evt, editor) => editorRef.current = editor}
-                                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                                        onInit={(evt, editor) => desc.current = editor}
+                                                        initialValue={currentProduct.product.description}
                                                         init={{
                                                             height: 200, menubar: false, plugins: [
                                                                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
@@ -384,8 +368,8 @@ const VendorProduct = () => {
                                                     <Editor
                                                         apiKey='kymmu4dn6wwobwchlwh67nwhpe1lxtwsba433yg2az9nyk6l'
                                                         //@ts-ignore
-                                                        onInit={(evt, editor) => editorRef.current = editor}
-                                                        initialValue="<p>This is the initial content of the editor.</p>"
+                                                        onInit={(evt, editor) => specs.current = editor}
+                                                        initialValue={currentProduct.product.specification}
                                                         init={{
                                                             height: 200, menubar: false, plugins: [
                                                                 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace',
@@ -397,7 +381,7 @@ const VendorProduct = () => {
                                                         }}
                                                     />
 
-                                                    <div>{parse(description)}</div>
+                                                    <div>{description ? parse(description) : ''}</div>
                                                 </Transition>
                                             </div>
 
@@ -551,8 +535,9 @@ const VendorProduct = () => {
                                             <button className='py-3 px-6 bg-[#004896] rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
+                                                    inputResult()
                                                     return updateProduct(dispatch, '/product', currentProduct.product.id, {
-                                                        name, unit, price, brand, status, manual, quantity, specification
+                                                        name, unit, price, brand, status, manual, quantity, specification, description
                                                     })
                                                 }} >
                                                 {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
