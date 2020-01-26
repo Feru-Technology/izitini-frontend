@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
@@ -9,19 +9,16 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { createProd, useRefreshProduct, useShopProducts } from '../../api/products'
 import { useSubCategories } from '../../api/subCategories'
+import { createProd, useRefreshProduct, useShopProducts } from '../../api/products'
 
 const ShopProducts = () => {
 
     useAuth('admin')
     const navigate = useNavigate()
-
     const dispatch = useDispatch()
-
     const params = useParams()
     const { id } = params
-
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

@@ -1,19 +1,14 @@
 import React from 'react'
+import { logout } from '../../api/auth'
 import { BsShop } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { Transition } from '@headlessui/react'
-import { FaProductHunt, FaBuysellads } from 'react-icons/fa'
 import { MdReportProblem } from 'react-icons/md'
-import { loggedIn } from '../../redux/profile.slice'
 import { BiCategoryAlt, BiCategory } from 'react-icons/bi'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import {
-    CogIcon,
-    LogoutIcon,
-    TemplateIcon,
-    UserGroupIcon
-} from '@heroicons/react/solid'
+import { FaProductHunt, FaBuysellads } from 'react-icons/fa'
 import { ClipboardCheckIcon } from '@heroicons/react/outline'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { CogIcon, LogoutIcon, TemplateIcon, UserGroupIcon } from '@heroicons/react/solid'
 
 interface Isidebar {
     isClosed: boolean
@@ -23,21 +18,12 @@ interface Isidebar {
 const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
 
     const navigate = useNavigate()
-
-    // redux
-    const dispatch = useDispatch();
-
+    const dispatch = useDispatch()
     const location = useLocation()
     const { pathname } = location
 
     const handleClick = () => {
         setIsClosed(true)
-    }
-
-    const logout = () => {
-        dispatch(loggedIn(null))
-        localStorage.clear()
-        navigate('/')
     }
 
     return (
@@ -297,7 +283,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 }`}
                         >
                             <div className='flex items-center space-x-2'
-                                onClick={() => logout()}>
+                                onClick={() => logout(dispatch, navigate)}>
                                 <LogoutIcon className='w-5 h-5' />
                                 <p>Logout</p>
                             </div>

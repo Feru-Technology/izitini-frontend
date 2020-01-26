@@ -1,45 +1,30 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import axiosAction from '../../api/apiAction'
+import { useSelector } from 'react-redux'
+import { useStores } from '../../api/stores'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useAuth } from '../../utils/hooks/auth'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
 
 const Shops = () => {
 
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
     useAuth('admin')
-
-    // redux
-    const dispatch = useDispatch()
-
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
+    const navigate = useNavigate()
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+
     const [isClosed, setIsClosed] = useState(true)
 
-    useEffect(() => {
-        dispatch(fetchingStores())
-        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
-    }, [dispatch])
-
+    useStores()
     const { isLoading, stores } = useSelector((state: RootState) => state.stores)
 
     return (
         <>
-            {isLoggingIn || isLoading ? (<h1>loading ...</h1>)
+            {isLoading ? (<h1>loading ...</h1>)
                 : stores ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar

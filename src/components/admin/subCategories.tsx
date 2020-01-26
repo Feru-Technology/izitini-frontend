@@ -36,12 +36,13 @@ import {
     uploadedImage,
     uploadFailed
 } from '../../redux/image/uploadImage.slice'
+import { createSubCatInCat, useSubCategories } from '../../api/subCategories'
 
 const SubCategories = () => {
 
+    useAuth('admin')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth('admin')
 
     // redux
     const dispatch = useDispatch()
@@ -61,19 +62,8 @@ const SubCategories = () => {
     const [category_id, setCategory_id] = useState<string | null>(null)
     const [currentSubCategory, setCurrentSubCategory] = useState<ISubCategory | null>(null)
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
-    }, [dispatch])
-
+    useSubCategories()
     const { isLoading, subCategories } = useSelector((state: RootState) => state.adminSubCategories)
-
-    // create new subCategory 
-    const createNewSubCategory = () => {
-        dispatch(creatingSubCategory())
-        axiosAction('post', dispatch, createdSubCategory, createFailed, `/admin/subcategory/${category_id}`, token, { name, image_url })
-    }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
 
@@ -351,7 +341,7 @@ const SubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return createNewSubCategory()
+                                                    return createSubCatInCat(dispatch, category_id!, { name, image_url })
                                                 }}
                                             >
                                                 {!!isCreating ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
