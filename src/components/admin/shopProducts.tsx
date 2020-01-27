@@ -35,7 +35,7 @@ const ShopProducts = () => {
     const { isFetching, products } = useSelector((state: RootState) => state.adminShopProducts)
     const shopName = products[0]?.shop.name
 
-    useSubCategories()
+    useSubCategories('/admin/subcategory')
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
     const { isCreating, createError } = useSelector((state: RootState) => state.adminCreateProduct)

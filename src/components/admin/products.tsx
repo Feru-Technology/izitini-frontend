@@ -42,7 +42,7 @@ const Products = () => {
     useStores()
     const { isLoading, stores } = useSelector((state: RootState) => state.stores)
 
-    useSubCategories()
+    useSubCategories('/admin/subcategory')
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
 

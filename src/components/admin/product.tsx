@@ -85,7 +85,7 @@ const AdminProduct = () => {
         }
     }, [currentProduct])
 
-    useSubCategories()
+    useSubCategories('/admin/subcategory')
     const { deleted } = useSelector((state: RootState) => state.deleteSize)
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)

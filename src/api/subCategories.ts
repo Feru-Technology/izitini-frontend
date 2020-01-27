@@ -12,6 +12,7 @@ import { fetchingSubCategoryProducts, subCategoryProducts, subCategoryProductsFa
 
 const token = localStorage.getItem('token')
 
+// refresh subcategories in a category
 export const useRefreshSubCategories = (setCreateMode: SetStateAction<any>, setEditMode: SetStateAction<any>, id: string) => {
     const dispatch = useDispatch()
 
@@ -29,13 +30,32 @@ export const useRefreshSubCategories = (setCreateMode: SetStateAction<any>, setE
     }, [dispatch, id, setCreateMode, setEditMode, subCategory, updatedSubCategory])
 }
 
-export const useSubCategories = () => {
+
+// refresh subcategories in a category
+export const useRefreshAllSubCategories = (setCreateMode: SetStateAction<any>, setEditMode: SetStateAction<any>) => {
+    const dispatch = useDispatch()
+
+    const { subCategory } = useSelector((state: RootState) => state.adminCreateSubCategory)
+    const { updatedSubCategory } = useSelector((state: RootState) => state.adminUpdateSubCategory)
+
+    useEffect(() => {
+        if (subCategory || updatedSubCategory) {
+            dispatch(fetchingSubCategories())
+            axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+            dispatch(createdSubCategory(null))
+            setCreateMode(false)
+            return setEditMode(false)
+        }
+    }, [dispatch, setCreateMode, setEditMode, subCategory, updatedSubCategory])
+}
+
+export const useSubCategories = (route: String) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
-    }, [dispatch])
+        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, `${route}`)
+    }, [dispatch, route])
 
 }
 

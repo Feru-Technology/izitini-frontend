@@ -102,7 +102,7 @@ const VendorProduct = () => {
         }
     }, [currentProduct])
 
-    useSubCategories()
+    useSubCategories('/admin/subcategory')
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)

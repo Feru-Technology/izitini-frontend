@@ -25,19 +25,18 @@ import {
     createdProduct,
     createFailed
 } from '../../redux/admin/products/createProduct.slice'
+import { useSubCategories } from '../../api/subCategories'
 
 const SubCatProducts = () => {
 
+    useAuth('admin')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth('admin')
-
     const dispatch = useDispatch()
 
     const params = useParams()
     const { id } = params
 
-    const { isLoading } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -55,7 +54,7 @@ const SubCatProducts = () => {
         axiosAction('get', dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
     }, [dispatch, id])
 
-    const { isFetching, subCategory, fetchError } = useSelector((state: RootState) => state.adminSubCategory)
+    const { isFetching, subCategory } = useSelector((state: RootState) => state.adminSubCategory)
     const categoryName = subCategory[0]?.subCategory.name
 
     useEffect(() => {
@@ -83,7 +82,7 @@ const SubCatProducts = () => {
 
     return (
         <>
-            {isLoading || isFetching ? (<h1>loading ...</h1>)
+            {isFetching ? (<h1>loading ...</h1>)
                 : subCategory ?
                     (
                         <div className='flex h-screen overflow-hidden'>
@@ -232,8 +231,7 @@ const SubCatProducts = () => {
                                                         onChange={e => setShop_id(e.target.value)}
                                                     >
                                                         <option>Choose shop</option>
-                                                        {isLoading ? 'loading...'
-                                                            : stores.map((s) => (<option key={s.id} value={s.id}>{s.name}</option>))}
+                                                        {stores.map((s) => (<option key={s.id} value={s.id}>{s.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>
