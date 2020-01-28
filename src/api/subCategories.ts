@@ -8,6 +8,7 @@ import { updatingSubCategory, updated, updateFailed } from '../redux/admin/subCa
 import { fetchingCategory, fetchedCategory, fetchFailed as error } from '../redux/admin/categories/category.slice'
 import { creatingSubCategory, createdSubCategory, createFailed } from '../redux/admin/subCategories/createSubCategory.slice'
 import { fetchingSubCategories, retrievedSubCategories, fetchFailed } from '../redux/admin/subCategories/subCategories.slice'
+import { fetchingSubCategory, fetchedSubCategory, fetchFailed as fail } from '../redux/admin/subCategories/subCategory.slice'
 import { fetchingSubCategoryProducts, subCategoryProducts, subCategoryProductsFailed } from '../redux/subCategories/subCategoryProducts.slice'
 
 const token = localStorage.getItem('token')
@@ -69,6 +70,15 @@ export const useSubCategoriesInCat = (id: any) => {
 
 }
 
+export const useSubCatProducts = (id: string) => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchingSubCategory())
+        axiosAction('get', dispatch, fetchedSubCategory, fail, `/admin/subcategory/products/${id}`)
+    }, [dispatch, id])
+}
+
 export const useCatSubcategories = (id: string) => {
 
     const dispatch = useDispatch()
@@ -93,4 +103,19 @@ export const uploadSubCatImage = (dispatch: Dispatch, file: File) => {
     formData.append('image', file)
     dispatch(uploadingImage())
     axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
+}
+
+export const useRefreshSubCatProd = (createdProduct: SetStateAction<any>, setCreateMode: SetStateAction<any>, id: string) => {
+
+    const dispatch = useDispatch()
+    const { product } = useSelector((state: RootState) => state.adminCreateProduct)
+
+    useEffect(() => {
+        if (product) {
+            dispatch(fetchingSubCategory())
+            axiosAction('get', dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
+            dispatch(createdProduct(null))
+            return setCreateMode(false)
+        }
+    }, [dispatch, createdProduct, id, product, setCreateMode])
 }

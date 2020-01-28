@@ -1,42 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { useStores } from '../../api/stores'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
+import { createProd } from '../../api/products'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import {
-    fetchingSubCategory,
-    fetchedSubCategory,
-    fetchFailed
-} from '../../redux/admin/subCategories/subCategory.slice'
-import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
-import {
-    creatingProduct,
-    createdProduct,
-    createFailed
-} from '../../redux/admin/products/createProduct.slice'
-import { useSubCategories } from '../../api/subCategories'
+import { useNavigate, useParams } from 'react-router-dom'
+import { createdProduct } from '../../redux/admin/products/createProduct.slice'
+import { useRefreshSubCatProd, useSubCatProducts } from '../../api/subCategories'
 
 const SubCatProducts = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const params = useParams()
     const { id } = params
-
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -49,36 +33,15 @@ const SubCatProducts = () => {
     const [brand, setBrand] = useState<string | null>(null)
     const [shop_id, setShop_id] = useState<string | null>(null)
 
-    useEffect(() => {
-        dispatch(fetchingSubCategory())
-        axiosAction('get', dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
-    }, [dispatch, id])
-
+    useSubCatProducts(id!)
     const { isFetching, subCategory } = useSelector((state: RootState) => state.adminSubCategory)
     const categoryName = subCategory[0]?.subCategory.name
 
-    useEffect(() => {
-        dispatch(fetchingStores())
-        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
-    }, [dispatch])
-
+    useStores()
     const { stores } = useSelector((state: RootState) => state.stores)
+    const { isCreating, createError } = useSelector((state: RootState) => state.adminCreateProduct)
 
-    const createProduct = () => {
-        dispatch(creatingProduct())
-        axiosAction('post', dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, token, { subCategory: categoryName, name, brand, unit })
-    }
-
-    const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
-
-    useEffect(() => {
-        if (product) {
-            dispatch(fetchingSubCategory())
-            axiosAction('get', dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
-            dispatch(createdProduct(null))
-            setCreateMode(false)
-        }
-    }, [dispatch, id, product])
+    useRefreshSubCatProd(createdProduct, setCreateMode, id!)
 
     return (
         <>
@@ -162,10 +125,11 @@ const SubCatProducts = () => {
                                                     return (
                                                         <tr key={subCat.product.id}
                                                             className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
-                                                            <td className='py-1 '>
+                                                            <td className='py-1 cursor-pointer hover:underline hover:text-dark-blue'
+                                                                onClick={e => navigate(`/admin/products/${subCat.product.id}`)}>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
-                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='subCat'
+                                                                        <img src={subCat.product.display_image || 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg'} alt='subCat'
                                                                             className='w-auto h-10' />
                                                                     </div>
                                                                     <div className='md:w-2/4'>
@@ -288,7 +252,7 @@ const SubCatProducts = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createProduct()
+                                                        return createProd(dispatch, shop_id!, { subCategory: categoryName, name, brand, unit })
                                                     }}
                                                 >
                                                     {!!isCreating ? 'Creating...' : 'Create'}
