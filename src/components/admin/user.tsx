@@ -20,11 +20,11 @@ import {
     updated,
     updateFailed
 } from '../../redux/admin/users/updateUser.slice'
+import { useUser } from '../../api/user'
 
 const User = () => {
 
     const token = localStorage.getItem('token')
-    const navigate = useNavigate()
     useAuth('admin')
 
     const params = useParams()
@@ -36,13 +36,7 @@ const User = () => {
         query: '(min-width: 640px)',
     })
 
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
-    useEffect(() => {
-        dispatch(getUser())
-        axiosAction('get', dispatch, user, userFailed, `/users/${id}`)
-    }, [dispatch, id])
-
+    useUser(id!)
     const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
 
     const [isClosed, setIsClosed] = useState(true)
@@ -93,7 +87,7 @@ const User = () => {
 
     return (
         <>
-            {isLoggingIn || isLoading ? (<h1>loading ...</h1>) :
+            {isLoading ? (<h1>loading ...</h1>) :
                 currentUser ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar

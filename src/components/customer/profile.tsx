@@ -7,7 +7,7 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { useUser, updateUser, changeProfileImage } from '../../api/user'
+import { useProfile, updateProfile, changeProfileImage } from '../../api/user'
 
 const Profile = () => {
 
@@ -20,7 +20,7 @@ const Profile = () => {
         query: '(min-width: 640px)',
     })
 
-    useUser()
+    useProfile()
     const { currentUser, error } = useSelector((state: RootState) => state.user)
 
     const [isClosed, setIsClosed] = useState(true)
@@ -249,7 +249,7 @@ const Profile = () => {
                                             <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    return updateUser(dispatch, { tin_no, contact, email, full_name, is_verified, account_type })
+                                                    return updateProfile(dispatch, { tin_no, contact, email, full_name, is_verified, account_type })
                                                 }} >
                                                 SAVE
                                             </button>

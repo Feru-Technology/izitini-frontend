@@ -1,16 +1,16 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import axiosAction from '../api/apiAction'
 import { Dispatch } from '@reduxjs/toolkit'
+import { RootState } from '../redux/store'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { getUser, user, userFailed } from '../redux/admin/users/user.slice'
 import { postUser, getUser as u, userFailed as f } from '../redux/admin/users/createUser.slice'
 import { fetchingUsers, retrievedUsers, retrievedUserFailed } from '../redux/admin/users/users.slice'
-import { useNavigate } from 'react-router-dom'
-import { RootState } from '../redux/store'
 
 const token = localStorage.getItem('token')
 
-export const useUser = () => {
+export const useProfile = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export const useUser = () => {
     }, [dispatch])
 }
 
-export const updateUser = (dispatch: Dispatch, data: {}) => {
+export const updateProfile = (dispatch: Dispatch, data: {}) => {
     dispatch(getUser())
     axiosAction('patch', dispatch, user, userFailed, '/users/profile', token, data)
 }
@@ -57,4 +57,13 @@ export const useOpenCreatedUser = () => {
             )
         }
     }, [createdUser, dispatch, navigate])
+}
+
+export const useUser = (id: string) => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getUser())
+        axiosAction('get', dispatch, user, userFailed, `/users/${id}`)
+    }, [dispatch, id])
 }
