@@ -24,11 +24,11 @@ export const updateProfile = (dispatch: Dispatch, data: {}) => {
     axiosAction('patch', dispatch, user, userFailed, '/users/profile', token, data)
 }
 
-export const changeProfileImage = (dispatch: Dispatch, file: File) => {
+export const changeProfileImage = (dispatch: Dispatch, route: string, file: File) => {
     const formData = new FormData()
     formData.append('image', file)
     dispatch(getUser())
-    axiosAction('patch', dispatch, user, userFailed, '/users/profile-image', token, formData)
+    axiosAction('patch', dispatch, user, userFailed, `${route}`, token, formData)
 }
 
 export const useVendorsWithoutStore = () => {
@@ -66,4 +66,9 @@ export const useUser = (id: string) => {
         dispatch(getUser())
         axiosAction('get', dispatch, user, userFailed, `/users/${id}`)
     }, [dispatch, id])
+}
+
+export const updateUser = (dispatch: Dispatch, id: string, data: {}) => {
+    dispatch(getUser())
+    axiosAction('patch', dispatch, user, userFailed, `/admin/user/${id}`, token, data)
 }

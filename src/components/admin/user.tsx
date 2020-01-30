@@ -20,7 +20,7 @@ import {
     updated,
     updateFailed
 } from '../../redux/admin/users/updateUser.slice'
-import { useUser } from '../../api/user'
+import { updateUser, useUser } from '../../api/user'
 
 const User = () => {
 
@@ -48,10 +48,7 @@ const User = () => {
     const [full_name, setFull_name] = useState<string | null>(null)
     const [account_type, setAccount_type] = useState<string | null>(null)
 
-    const updateUser = () => {
-        dispatch(getUser())
-        axiosAction('patch', dispatch, user, userFailed, `/admin/user/${id}`, token, { tin_no, contact, email, full_name, is_verified, account_type })
-    }
+
 
     useEffect(() => {
         if (currentUser) {
@@ -302,7 +299,7 @@ const User = () => {
                                                     <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                         onClick={e => {
                                                             e.preventDefault()
-                                                            return updateUser()
+                                                            return updateUser(dispatch, id!, { tin_no, contact, email, full_name, is_verified, account_type })
                                                         }} >
                                                         SAVE
                                                     </button>

@@ -89,7 +89,7 @@ const Profile = () => {
                                     <input className='absolute hidden' type="file" name="img" ref={input}
                                         accept='image/x-png,image/gif,image/jpeg, image/png'
                                         onChange={e => {
-                                            if (e.target.files) changeProfileImage(dispatch, e.target.files[0])
+                                            if (e.target.files) changeProfileImage(dispatch, '/users/profile-image', e.target.files[0])
                                         }} />
 
                                     <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
