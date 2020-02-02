@@ -20,10 +20,11 @@ import {
     updated,
     updateFailed
 } from '../../redux/stores/updateStore.slice'
+import { useShop } from '../../api/stores'
 const Shop = () => {
 
-    const token = localStorage.getItem('token')
     useAuth('admin')
+    const token = localStorage.getItem('token')
 
     const input = useRef(null)
     const { id } = useParams()
@@ -33,13 +34,7 @@ const Shop = () => {
         query: '(min-width: 640px)',
     })
 
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
-    useEffect(() => {
-        dispatch(getStore())
-        axiosAction('get', dispatch, store, storeFailed, `/shop/${id}`)
-    }, [dispatch, id])
-
+    useShop(id!)
     const { isLoading, currentStore, error } = useSelector((state: RootState) => state.store)
 
 
@@ -87,7 +82,7 @@ const Shop = () => {
 
     return (
         <>
-            {isLoggingIn || isLoading ? (<h1>loading ...</h1>) :
+            {isLoading ? (<h1>loading ...</h1>) :
                 (
                     <div className='flex h-screen overflow-hidden bg-gray-100'>
                         <SiderBar

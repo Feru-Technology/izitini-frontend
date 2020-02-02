@@ -23,6 +23,16 @@ export const useStores = () => {
     }, [dispatch])
 }
 
+export const useShop = (id: string) => {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getStore())
+        axiosAction('get', dispatch, store, storeFailed, `/shop/${id}`)
+    }, [dispatch, id])
+}
+
 export const useStore = () => {
 
     const dispatch = useDispatch()

@@ -10,26 +10,14 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAllProducts, getAllProducts, createProd } from '../../api/products'
-import {
-    fetchingProducts,
-    fetchedProducts,
-    fetchFailed
-} from '../../redux/admin/products/products.slice'
-import {
-    creatingProduct,
-    createdProduct,
-    createFailed
-} from '../../redux/admin/products/createProduct.slice'
+import { useAllProducts, getAllProducts, createProd, useRefreshProduct } from '../../api/products'
 import { useSubCategories } from '../../api/subCategories'
 import { useStores } from '../../api/stores'
 
 const Products = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
     const navigate = useNavigate()
-
     const dispatch = useDispatch()
 
     const isStatic = useMediaQuery({
@@ -58,16 +46,8 @@ const Products = () => {
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
 
-    const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
-
-    useEffect(() => {
-        if (product) {
-            dispatch(fetchingProducts())
-            axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-            dispatch(createdProduct(null))
-            setCreateMode(false)
-        }
-    }, [dispatch, product, token])
+    const { isCreating, createError } = useSelector((state: RootState) => state.adminCreateProduct)
+    useRefreshProduct(setCreateMode)
 
     return (
         <>
