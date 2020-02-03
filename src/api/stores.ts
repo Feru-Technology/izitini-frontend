@@ -9,8 +9,19 @@ import { getStore, store, storeFailed } from '../redux/stores/store.slice'
 import { updatingStore, updated, updateFailed } from '../redux/stores/updateStore.slice'
 import { addStore, getStore as s, storeFailed as f } from '../redux/stores/createStore.slice'
 import { uploadingImage, uploadedImage, uploadFailed } from '../redux/image/uploadImage.slice'
+import { fetchingStores, retrievedStores, retrievedStoreFailed } from '../redux/stores/allStores.slice'
 
 const token = localStorage.getItem('token')
+
+// admin get shops
+export const useStores = () => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchingStores())
+        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+    }, [dispatch])
+}
 
 export const useStore = () => {
 

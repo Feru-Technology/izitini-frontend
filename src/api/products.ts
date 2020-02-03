@@ -34,7 +34,7 @@ export const useReloadPage = () => {
     const dispatch = useDispatch()
     const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
 
-    // refresh the page after status update
+    // reload the page after status update
     useEffect(() => {
         if (newProductStatus) {
             dispatch(updatedProductStatus(null))
@@ -94,4 +94,24 @@ export const removeImage = (dispatch: Dispatch, route: string, id: string, img_i
 export const createProduct = (dispatch: Dispatch, data: {}) => {
     dispatch(creatingProduct())
     axiosAction('post', dispatch, createdProduct, createFailed, '/product', token, data)
+}
+
+// admin create product
+export const createProd = (dispatch: Dispatch, shop_id: string, data: {}) => {
+    dispatch(creatingProduct())
+    axiosAction('post', dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, token, data)
+}
+
+export const useRefreshProduct = (setCreateMode: React.SetStateAction<any>) => {
+    const dispatch = useDispatch()
+    const { product } = useSelector((state: RootState) => state.adminCreateProduct)
+
+    useEffect(() => {
+        if (product) {
+            dispatch(fetchingProducts())
+            axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+            dispatch(createdProduct(null))
+            setCreateMode(false)
+        }
+    }, [dispatch, product, setCreateMode])
 }

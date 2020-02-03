@@ -10,27 +10,19 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAllProducts, getAllProducts } from '../../api/products'
+import { useAllProducts, getAllProducts, createProd } from '../../api/products'
 import {
     fetchingProducts,
     fetchedProducts,
     fetchFailed
 } from '../../redux/admin/products/products.slice'
 import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
-import {
-    fetchingSubCategories,
-    retrievedSubCategories,
-    fetchFailed as fetchError
-} from '../../redux/admin/subCategories/subCategories.slice'
-import {
     creatingProduct,
     createdProduct,
     createFailed
 } from '../../redux/admin/products/createProduct.slice'
+import { useSubCategories } from '../../api/subCategories'
+import { useStores } from '../../api/stores'
 
 const Products = () => {
 
@@ -59,26 +51,12 @@ const Products = () => {
     useAllProducts()
     const { isFetching, products } = useSelector((state: RootState) => state.adminProducts)
 
-    useEffect(() => {
-        dispatch(fetchingStores())
-        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
-    }, [dispatch])
-
+    useStores()
     const { isLoading, stores } = useSelector((state: RootState) => state.stores)
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchError, '/admin/subcategory')
-    }, [dispatch])
-
+    useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
-
-    const createProduct = () => {
-        dispatch(creatingProduct())
-        axiosAction('post', dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, token, { subCategory, name, brand, unit })
-    }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
 
@@ -365,7 +343,7 @@ const Products = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createProduct()
+                                                        return createProd(dispatch, shop_id!, { subCategory, name, brand, unit })
                                                     }}
                                                 >
                                                     {!!isCreating ? 'Creating...' : 'Create'}
