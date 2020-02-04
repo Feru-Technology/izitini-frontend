@@ -53,16 +53,16 @@ export const createStore = (dispatch: Dispatch, data: {}) => {
     axiosAction('get', dispatch, store, storeFailed, '/shop', token, data)
 }
 
-export const updateShop = (dispatch: Dispatch, id: string, data: {}) => {
+export const updateShop = (dispatch: Dispatch, route: string, id: string, data: {}) => {
     dispatch(getStore())
-    axiosAction('patch', dispatch, store, storeFailed, `/shop/${id}`, token, data)
+    axiosAction('patch', dispatch, store, storeFailed, `${route}/${id}`, token, data)
 }
 
-export const changeShopImage = (dispatch: Dispatch, id: string, file: File) => {
+export const changeShopImage = (dispatch: Dispatch, route: string, id: string, file: File) => {
     const formData = new FormData()
     formData.append('image', file)
     dispatch(updatingStore())
-    axiosAction('patch', dispatch, updated, updateFailed, `/shop/image/${id}`, token, formData)
+    axiosAction('patch', dispatch, updated, updateFailed, `${route}/${id}`, token, formData)
 }
 
 export const adminCreateStore = (dispatch: Dispatch, data: {}) => {
@@ -100,4 +100,18 @@ export const useOpenCreatedStore = () => {
             return navigate(`/admin/shops/${id}`)
         }
     }, [createdStore, dispatch, navigate])
+}
+
+export const useUpdatedStore = (id: string) => {
+
+    const dispatch = useDispatch()
+    const { updatedStore } = useSelector((state: RootState) => state.updateStore)
+
+    useEffect(() => {
+        if (updatedStore) {
+            dispatch(getStore())
+            dispatch(updated(null))
+            axiosAction('get', dispatch, store, storeFailed, `/shop/${id}`)
+        }
+    })
 }

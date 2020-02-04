@@ -1,31 +1,18 @@
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
+import { useParams } from 'react-router-dom'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import {
-    store,
-    getStore,
-    storeFailed
-} from '../../redux/stores/store.slice'
-import {
-    updatingStore,
-    updated,
-    updateFailed
-} from '../../redux/stores/updateStore.slice'
-import { useShop } from '../../api/stores'
+import { changeShopImage, updateShop, useShop, useUpdatedStore } from '../../api/stores'
 const Shop = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
-
     const input = useRef(null)
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -45,28 +32,6 @@ const Shop = () => {
     const [shop_email, setShop_email] = useState<string | null>(null)
     const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-    const updateShop = () => {
-        dispatch(getStore())
-        axiosAction('patch', dispatch, store, storeFailed, `/admin/shop/${id}`, token, { about_shop, shop_contact_no, shop_email, name })
-    }
-
-    const changeShopImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        dispatch(updatingStore())
-        axiosAction('patch', dispatch, updated, updateFailed, `/admin/shop/image/${id}`, token, formData)
-    }
-
-    const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
-
-    useEffect(() => {
-        if (updatedStore) {
-            dispatch(getStore())
-            dispatch(updated(null))
-            axiosAction('get', dispatch, store, storeFailed, `/shop/${id}`)
-        }
-    })
-
     useEffect(() => {
         if (currentStore) {
             setEditMode(false)
@@ -79,6 +44,7 @@ const Shop = () => {
 
     //@ts-ignore
     const uploadImage = () => input.current.click()
+    useUpdatedStore(id!)
 
     return (
         <>
@@ -126,7 +92,7 @@ const Shop = () => {
                                                 <input className='absolute hidden' type="file" name="img" ref={input}
                                                     accept='image/x-png,image/gif,image/jpeg, image/png'
                                                     onChange={e => {
-                                                        if (e.target.files) changeShopImage(e.target.files[0])
+                                                        if (e.target.files) changeShopImage(dispatch, '/admin/shop/image', currentStore.id, e.target.files[0])
                                                     }} />
 
                                                 <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
@@ -246,7 +212,7 @@ const Shop = () => {
                                                         <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                             onClick={e => {
                                                                 e.preventDefault()
-                                                                return updateShop()
+                                                                return updateShop(dispatch, '/admin/shop', currentStore.id, { about_shop, shop_contact_no, shop_email, name })
                                                             }} >
                                                             SAVE
                                                         </button>

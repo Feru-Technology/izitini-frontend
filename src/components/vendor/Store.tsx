@@ -103,7 +103,7 @@ const Store = () => {
                       <input className='absolute hidden' type="file" name="img" ref={input}
                         accept='image/x-png,image/gif,image/jpeg, image/png'
                         onChange={e => {
-                          if (e.target.files) changeShopImage(dispatch, currentStore.id, e.target.files[0])
+                          if (e.target.files) changeShopImage(dispatch, '/shop/image', currentStore.id, e.target.files[0])
                         }} />
 
                       <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
@@ -213,7 +213,7 @@ const Store = () => {
                           <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                             onClick={e => {
                               e.preventDefault()
-                              return updateShop(dispatch, currentStore.id, { about_shop, shop_contact_no, shop_email, name })
+                              return updateShop(dispatch, '/shop', currentStore.id, { about_shop, shop_contact_no, shop_email, name })
                             }} >
                             SAVE
                           </button>
