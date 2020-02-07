@@ -25,19 +25,20 @@ import {
     createdProduct,
     createFailed
 } from '../../redux/admin/products/createProduct.slice'
+import { useShopProducts } from '../../api/products'
+import { useSubCategories } from '../../api/subCategories'
 
 const ShopProducts = () => {
 
+    useAuth('admin')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth('admin')
 
     const dispatch = useDispatch()
 
     const params = useParams()
     const { id } = params
 
-    const { isLoading } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -50,20 +51,11 @@ const ShopProducts = () => {
     const [brand, setBrand] = useState<string | null>(null)
     const [subCategory, setSubCategory] = useState<string | null>(null)
 
-    useEffect(() => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`, token)
-    }, [dispatch, id, token])
-
-    const { isFetching, products, fetchError } = useSelector((state: RootState) => state.adminShopProducts)
+    useShopProducts(id!)
+    const { isFetching, products } = useSelector((state: RootState) => state.adminShopProducts)
     const shopName = products[0]?.shop.name
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchSError, '/admin/subcategory')
-    }, [dispatch])
-
+    useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
 
@@ -86,7 +78,7 @@ const ShopProducts = () => {
 
     return (
         <>
-            {isLoading || isFetching ? (<h1>loading ...</h1>)
+            {isFetching ? (<h1>loading ...</h1>)
                 : products ?
                     (
                         <div className='flex h-screen overflow-hidden'>
