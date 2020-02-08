@@ -3,35 +3,18 @@ import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useAuth } from '../../utils/hooks/auth'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import {
-    fetchingProducts,
-    fetchedProducts,
-    fetchFailed
-} from '../../redux/admin/products/productsInShop.slice'
-import {
-    fetchingSubCategories,
-    retrievedSubCategories,
-    fetchFailed as fetchSError
-} from '../../redux/admin/subCategories/subCategories.slice'
-import {
-    creatingProduct,
-    createdProduct,
-    createFailed
-} from '../../redux/admin/products/createProduct.slice'
-import { useShopProducts } from '../../api/products'
+import { useNavigate, useParams } from 'react-router-dom'
+import { createProd, useRefreshProduct, useShopProducts } from '../../api/products'
 import { useSubCategories } from '../../api/subCategories'
 
 const ShopProducts = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
@@ -58,23 +41,9 @@ const ShopProducts = () => {
     useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
+    const { isCreating, createError } = useSelector((state: RootState) => state.adminCreateProduct)
 
-    const createProduct = () => {
-        dispatch(creatingProduct())
-        axiosAction('post', dispatch, createdProduct, createFailed, `/admin/product/${id}`, token, { subCategory, name, brand, unit })
-    }
-
-    const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
-
-    useEffect(() => {
-        if (product) {
-            dispatch(fetchingProducts())
-            axiosAction('get', dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`, token)
-            dispatch(createdProduct(null))
-            setCreateMode(false)
-        }
-    }, [dispatch, id, product, token])
-
+    useRefreshProduct(setCreateMode)
 
     return (
         <>
@@ -158,10 +127,11 @@ const ShopProducts = () => {
                                                     return (
                                                         <tr key={product.id}
                                                             className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
-                                                            <td className='py-1 '>
+                                                            <td className='py-1 cursor-pointer hover:underline hover:text-dark-blue'
+                                                                onClick={e => navigate(`/admin/products/${product.id}`)}>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
-                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
+                                                                        <img src={product.display_image || 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg'} alt='product'
                                                                             className='w-auto h-10' />
                                                                     </div>
                                                                     <div className='md:w-2/4'>
@@ -285,7 +255,7 @@ const ShopProducts = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createProduct()
+                                                        return createProd(dispatch, id!, { subCategory, name, brand, unit })
                                                     }}
                                                 >
                                                     {!!isCreating ? 'Creating...' : 'Create'}
