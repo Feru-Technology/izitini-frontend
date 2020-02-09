@@ -23,7 +23,7 @@ const ShopOrder = () => {
 
     const [isClosed, setIsClosed] = useState(true)
 
-    useOrder(id, 'order/')
+    useOrder(id, '/orders/order/')
     const { fetching, order } = useSelector((state: RootState) => state.order)
 
 

@@ -71,6 +71,8 @@ import {
     removedImg,
     removeImgFailed
 } from '../../redux/image/removeImgToProd.slice'
+import { updateProduct, useProduct } from '../../api/products'
+import { useSubCategories } from '../../api/subCategories'
 
 const AdminProduct = () => {
 
@@ -114,20 +116,13 @@ const AdminProduct = () => {
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
     // image states
-    const [isActive, setIsActive] = useState(false)
     const [addImage, setAddImage] = useState(false)
     const [showImageDesc, setShowImageDesc] = useState(false)
     const [image_id, setImage_id] = useState<string | null>(null)
     const [image_url, setImage_url] = useState<string | null>(null)
 
-    useEffect(() => {
-        dispatch(getProduct())
-        axiosAction('get', dispatch, product, productFailed, `/product/${id}`)
-    }, [dispatch, id])
-
-
+    useProduct(id!)
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
-
 
     useEffect(() => {
         if (currentProduct) {
@@ -143,20 +138,9 @@ const AdminProduct = () => {
         }
     }, [currentProduct])
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
-    }, [dispatch])
-
+    useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
-
-    const updateProduct = () => {
-        dispatch(updatingProduct())
-        axiosAction('patch', dispatch, updatedProduct, updateFailed, `/admin/product/${id}`, token, { name, unit, price, brand, manual, quantity, specification })
-    }
-
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
     // create product size
@@ -640,7 +624,7 @@ const AdminProduct = () => {
                                             shadow-md hover:shadow-lg hover:bg-middle-blue'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    return updateProduct()
+                                                    return updateProduct(dispatch, '/admin/product', currentProduct.product.id, { name, unit, price, brand, manual, quantity, specification })
                                                 }} >
                                                 {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
                                             </button>

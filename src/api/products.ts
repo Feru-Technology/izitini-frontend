@@ -51,9 +51,9 @@ export const publishUnPublish = (dispatch: Dispatch, id: string, newStatus: stri
     return axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, token)
 }
 
-export const updateProduct = (dispatch: Dispatch, id: string, data: {}) => {
+export const updateProduct = (dispatch: Dispatch, route: string, id: string, data: {}) => {
     dispatch(updatingProduct())
-    return axiosAction('patch', dispatch, updatedProduct, updateFailed, `/product/${id}`, token, data)
+    return axiosAction('patch', dispatch, updatedProduct, updateFailed, `${route}/${id}`, token, data)
 }
 
 export const addProdImage = (dispatch: Dispatch, id: string, image_id: string, image_url: string) => {

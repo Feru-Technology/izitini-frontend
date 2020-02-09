@@ -495,7 +495,7 @@ const VendorProduct = () => {
                                             <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    return updateProduct(dispatch, currentProduct.product.id, {
+                                                    return updateProduct(dispatch, '/product', currentProduct.product.id, {
                                                         name, unit, price, brand, status, manual, quantity, specification
                                                     })
                                                 }} >

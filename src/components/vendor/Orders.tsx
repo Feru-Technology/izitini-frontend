@@ -29,7 +29,7 @@ const Orders = () => {
     const [showCompletedOrders, setShowCompletedOrders] = useState(false)
     const [showProcessingOrders, setShowProcessingOrders] = useState(false)
 
-    useOrders('store')
+    useOrders('/orders/store')
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
 
     return (

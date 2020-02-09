@@ -1,23 +1,17 @@
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useEffect, useState } from 'react'
-import axiosAction from '../../api/apiAction'
+import { useSelector } from 'react-redux'
+import { useOrder } from '../../api/orders'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
+import { Link, useParams } from 'react-router-dom'
 
 const SingleOrder = () => {
 
-    const token = localStorage.getItem('token')
-
     useAuth('admin')
-
-    // redux
-    const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
 
@@ -27,19 +21,12 @@ const SingleOrder = () => {
 
     const [isClosed, setIsClosed] = useState(true)
 
-
-    const { isLoading } = useSelector((state: RootState) => state.profile)
-
-    useEffect(() => {
-        dispatch(fetchingOrder())
-        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/admin/order/s/${id}`, token)
-    }, [dispatch, id, token])
-
-    const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
+    useOrder(id, '/admin/order/s/')
+    const { fetching, order } = useSelector((state: RootState) => state.order)
 
     return (
         <>
-            {isLoading ? 'Loading ...' :
+            {fetching ? 'Loading ...' :
                 <div className='flex h-screen overflow-hidden bg-gray-100'>
                     <SiderBar
                         isClosed={isClosed}

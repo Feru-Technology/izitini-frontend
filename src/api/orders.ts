@@ -52,7 +52,7 @@ export const useOrder = (id: any, route: string) => {
 
     useEffect(() => {
         dispatch(fetchingOrder())
-        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/${route}${id}`, token)
+        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `${route}${id}`, token)
     }, [dispatch, id, route])
 }
 
@@ -61,12 +61,12 @@ export const useOrders = (route: string) => {
 
     useEffect(() => {
         dispatch(getOrders())
-        axiosAction('get', dispatch, orders, ordersFailed, `/orders/${route}`, token)
+        axiosAction('get', dispatch, orders, ordersFailed, `${route}`, token)
     }, [dispatch, route])
 }
 
 export const allOrders = (dispatch: Dispatch, route: string) => {
-    return axiosAction('get', dispatch, orders, ordersFailed, `/orders/${route}`, token)
+    return axiosAction('get', dispatch, orders, ordersFailed, `${route}`, token)
 }
 
 export const updateOrderStatus = (dispatch: Dispatch, id: any, status: string) => {

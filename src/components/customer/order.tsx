@@ -22,7 +22,7 @@ const Order = () => {
 
     const [isClosed, setIsClosed] = useState(true)
 
-    useOrder(id, 'mine/')
+    useOrder(id, '/orders/mine/')
     const { order } = useSelector((state: RootState) => state.order)
 
     return (

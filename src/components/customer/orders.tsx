@@ -30,7 +30,7 @@ const MyOrders = () => {
         query: '(min-width: 640px)',
     })
 
-    useOrders('mine')
+    useOrders('/orders/mine')
     const { orders, error } = useSelector((state: RootState) => state.orders)
 
     return (
@@ -77,7 +77,7 @@ const MyOrders = () => {
                                             setShowRejectedOrders(false)
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
-                                            allOrders(dispatch, 'mine')
+                                            allOrders(dispatch, '/orders/mine')
                                         }}
                                     >All
                                     </li>
@@ -90,7 +90,7 @@ const MyOrders = () => {
                                             setShowRejectedOrders(false)
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(true)
-                                            allOrders(dispatch, 'processing')
+                                            allOrders(dispatch, '/orders/processing')
                                         }}
                                     >Processing</li>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
@@ -101,7 +101,7 @@ const MyOrders = () => {
                                             setShowRejectedOrders(false)
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
-                                            allOrders(dispatch, 'sample')
+                                            allOrders(dispatch, '/orders/sample')
                                         }}
 
                                     >Sample</li>
@@ -124,7 +124,7 @@ const MyOrders = () => {
                                             setShowRejectedOrders(true)
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
-                                            allOrders(dispatch, 'my/rejected')
+                                            allOrders(dispatch, '/orders/my/rejected')
                                         }}
 
                                     >Rejected</li>
