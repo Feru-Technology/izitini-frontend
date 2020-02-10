@@ -379,7 +379,7 @@ const VendorProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteSize(dispatch, currentProduct.product.id, s.size.id)} />
+                                                                    onClick={() => deleteSize(dispatch, '/product/size', currentProduct.product.id, s.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -418,7 +418,7 @@ const VendorProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteColor(dispatch, currentProduct.product.id, c.color.id)} />
+                                                                    onClick={() => deleteColor(dispatch, '/product/color', currentProduct.product.id, c.color.id)} />
 
                                                             </div>
                                                         )
@@ -581,7 +581,7 @@ const VendorProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createSize(dispatch, currentProduct.product.id, {
+                                                        return createSize(dispatch, '/product/size', currentProduct.product.id, {
                                                             size,
                                                             price: pricePerSize,
                                                             quantity: sizeQuantity
@@ -670,7 +670,7 @@ const VendorProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createColor(dispatch, currentProduct.product.id, {
+                                                        return createColor(dispatch, '/product/color', currentProduct.product.id, {
                                                             name: colorName,
                                                             price: pricePerColor,
                                                             quantity: colorQuantity,
