@@ -13,12 +13,12 @@ import {
 
 const token = localStorage.getItem('token')
 
-export const createColor = (dispatch: Dispatch, id: string, data: {}) => {
+export const createColor = (dispatch: Dispatch, route: string, id: string, data: {}) => {
     dispatch(creatingColor())
-    axiosAction('post', dispatch, createdColor, createColorFailed, `/product/color/${id}`, token, data)
+    axiosAction('post', dispatch, createdColor, createColorFailed, `${route}/${id}`, token, data)
 }
 
-export const deleteColor = (dispatch: Dispatch, id: string, color_id: string) => {
+export const deleteColor = (dispatch: Dispatch, route: string, id: string, color_id: string) => {
     dispatch(deletingColor())
-    axiosAction('delete', dispatch, deletedColor, deleteColorFailed, `/product/color/${id}/${color_id}`, token)
+    axiosAction('delete', dispatch, deletedColor, deleteColorFailed, `${route}/${id}/${color_id}`, token)
 }

@@ -73,6 +73,8 @@ import {
 } from '../../redux/image/removeImgToProd.slice'
 import { updateProduct, useProduct } from '../../api/products'
 import { useSubCategories } from '../../api/subCategories'
+import { createSize, deleteSize } from '../../api/sizes'
+import { createColor, deleteColor } from '../../api/colors'
 
 const AdminProduct = () => {
 
@@ -139,48 +141,13 @@ const AdminProduct = () => {
     }, [currentProduct])
 
     useSubCategories()
+    const { deleted } = useSelector((state: RootState) => state.deleteSize)
+    const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
-    const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
-
-    // create product size
-    const createSize = () => {
-        dispatch(creatingSize())
-        axiosAction('post', dispatch, createdSize, createFailed, `/admin/product/size/${id}`, token, {
-            size,
-            price: pricePerSize,
-            quantity: sizeQuantity
-        })
-    }
-
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
-
-    const createColor = () => {
-        dispatch(creatingColor())
-        axiosAction('post', dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, token, {
-            name: colorName,
-            price: pricePerColor,
-            quantity: colorQuantity,
-        })
-    }
-
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
-
-    // remove size from product
-    const deleteSize = (size_id: string) => {
-        dispatch(deletingSize())
-        axiosAction('delete', dispatch, deletedSize, deleteFailed, `/admin/product/size/${id}/${size_id}`, token)
-    }
-
-    const { deleted } = useSelector((state: RootState) => state.deleteSize)
-
-    // remove color from product
-    const deleteColor = (color_id: string) => {
-        dispatch(deletingColor())
-        axiosAction('delete', dispatch, deletedColor, deleteColorFailed, `/admin/product/color/${id}/${color_id}`, token)
-    }
-
-    const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
+    const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
     // change product status
     const updateProdStatus = (newStatus: string) => {
@@ -271,7 +238,7 @@ const AdminProduct = () => {
 
     return (
         <>
-            {isLoggingIn || isLoading ? (<h1>loading ...</h1>)
+            {isLoading ? (<h1>loading ...</h1>)
                 : currentProduct ?
                     (
                         <div className='flex h-screen overflow-hidden bg-gray-100'>
@@ -506,7 +473,7 @@ const AdminProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteSize(s.size.id)} />
+                                                                    onClick={() => deleteSize(dispatch, '/admin/product/size', currentProduct.product.id, s.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -545,7 +512,7 @@ const AdminProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteColor(c.color.id)} />
+                                                                    onClick={() => deleteColor(dispatch, '/admin/product/color', currentProduct.product.id, c.color.id)} />
 
                                                             </div>
                                                         )
@@ -708,7 +675,11 @@ const AdminProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createSize()
+                                                        return createSize(dispatch, '/admin/product/size', currentProduct.product.id, {
+                                                            size,
+                                                            price: pricePerSize,
+                                                            quantity: sizeQuantity
+                                                        })
                                                     }}
                                                 >
                                                     {!!isCreatingSize ? 'Creating...' : 'Create'}
@@ -793,7 +764,11 @@ const AdminProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createColor()
+                                                        return createColor(dispatch, '/admin/product/color', currentProduct.product.id, {
+                                                            name: colorName,
+                                                            price: pricePerColor,
+                                                            quantity: colorQuantity,
+                                                        })
                                                     }}
                                                 >
                                                     {!!isCreatingColor ? 'Creating...' : 'Create'}

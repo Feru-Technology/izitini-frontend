@@ -13,12 +13,12 @@ import {
 
 const token = localStorage.getItem('token')
 
-export const createSize = (dispatch: Dispatch, id: string, data: {}) => {
+export const createSize = (dispatch: Dispatch, route: string, id: string, data: {}) => {
     dispatch(creatingSize())
-    axiosAction('post', dispatch, createdSize, createFailed, `/product/size/${id}`, token, data)
+    axiosAction('post', dispatch, createdSize, createFailed, `${route}/${id}`, token, data)
 }
 
-export const deleteSize = (dispatch: Dispatch, id: string, size_id: string) => {
+export const deleteSize = (dispatch: Dispatch, route: string, id: string, size_id: string) => {
     dispatch(deletingSize())
-    axiosAction('delete', dispatch, deletedSize, deleteFailed, `/product/size/${id}/${size_id}`, token)
+    axiosAction('delete', dispatch, deletedSize, deleteFailed, `${route}/${id}/${size_id}`, token)
 }
