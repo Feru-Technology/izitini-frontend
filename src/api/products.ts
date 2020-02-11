@@ -11,8 +11,24 @@ import { fetchingProducts, retrievedProductFailed, retrievedProducts } from '../
 import { fetchingProducts as fetch, storeProducts, productFailed as fail } from '../redux/products/storeProducts.slice '
 import { updatingProductStatus, updatedProductStatus, failedToUpdateStatus } from '../redux/products/updateProductStatus.slice'
 import { RootState } from '../redux/store'
+import { fetchingProducts as fetchP, fetchedProducts, fetchFailed } from '../redux/admin/products/products.slice'
 
 const token = localStorage.getItem('token')
+
+// admin get products
+export const useAllProducts = () => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchP())
+        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+    }, [dispatch])
+}
+
+export const getAllProducts = (dispatch: Dispatch, status: string) => {
+    dispatch(fetchingProducts())
+    return axiosAction('get', dispatch, fetchedProducts, fetchFailed, `/admin/product/${status}`, token)
+}
 
 export const useReloadPage = () => {
     const dispatch = useDispatch()

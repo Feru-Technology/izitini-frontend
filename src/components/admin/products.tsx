@@ -5,11 +5,12 @@ import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { useAllProducts, getAllProducts } from '../../api/products'
 import {
     fetchingProducts,
     fetchedProducts,
@@ -55,32 +56,8 @@ const Products = () => {
     const [showUnpublished, setShowUnpublished] = useState(false)
     const [subCategory, setSubCategory] = useState<string | null>(null)
 
-    useEffect(() => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-    }, [dispatch, token])
-
-    const all = () => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-    }
-
-    const approved = () => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
-    }
-
-    const waiting = () => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/waiting', token)
-    }
-
-    const unPublished = () => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/drafts', token)
-    }
-
-    const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
+    useAllProducts()
+    const { isFetching, products } = useSelector((state: RootState) => state.adminProducts)
 
     useEffect(() => {
         dispatch(fetchingStores())
@@ -165,42 +142,42 @@ const Products = () => {
                                             py-3 ${showAllProducts && 'border-b-2 border-dark-blue'}`}
 
                                                 onClick={() => {
-                                                    all()
-                                                    setShowAllProducts(true)
-                                                    setShowApproved(false)
                                                     setShowWaiting(false)
+                                                    setShowApproved(false)
+                                                    setShowAllProducts(true)
                                                     setShowUnpublished(false)
+                                                    getAllProducts(dispatch, 'all')
                                                 }}
                                             >All</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showApproved && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
-                                                    approved()
                                                     setShowApproved(true)
-                                                    setShowAllProducts(false)
                                                     setShowWaiting(false)
+                                                    setShowAllProducts(false)
                                                     setShowUnpublished(false)
+                                                    getAllProducts(dispatch, 'approved')
                                                 }}
 
                                             >Approved</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showUnpublished && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
-                                                    waiting()
+                                                    setShowWaiting(false)
+                                                    setShowApproved(false)
                                                     setShowUnpublished(true)
                                                     setShowAllProducts(false)
-                                                    setShowApproved(false)
-                                                    setShowWaiting(false)
+                                                    getAllProducts(dispatch, 'waiting')
                                                 }}
                                             >Pending</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
-                                                    unPublished()
                                                     setShowWaiting(true)
-                                                    setShowAllProducts(false)
                                                     setShowApproved(false)
                                                     setShowUnpublished(false)
+                                                    setShowAllProducts(false)
+                                                    getAllProducts(dispatch, 'drafts')
                                                 }}
 
                                             >Unpublished</li>
