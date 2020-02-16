@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import axiosAction from '../api/apiAction'
 import { Dispatch } from '@reduxjs/toolkit'
 import { getUser, user, userFailed } from '../redux/admin/users/user.slice'
+import { fetchingUsers, retrievedUsers, retrievedUserFailed } from '../redux/admin/users/users.slice'
 
 const token = localStorage.getItem('token')
 
@@ -25,4 +26,14 @@ export const changeProfileImage = (dispatch: Dispatch, file: File) => {
     formData.append('image', file)
     dispatch(getUser())
     axiosAction('patch', dispatch, user, userFailed, '/users/profile-image', token, formData)
+}
+
+
+export const useVendorsWithoutStore = () => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchingUsers())
+        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/admin/user/vendor-without-shop', token)
+    }, [dispatch])
 }

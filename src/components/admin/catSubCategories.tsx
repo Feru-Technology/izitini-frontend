@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -9,34 +8,12 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import {
-    fetchingCategory,
-    fetchedCategory,
-    fetchFailed
-} from '../../redux/admin/categories/category.slice'
-import {
-    creatingSubCategory,
-    createdSubCategory,
-    createFailed
-} from '../../redux/admin/subCategories/createSubCategory.slice'
+import { uploadedImage } from '../../redux/image/uploadImage.slice'
+import { useCatSubcategories, createSubCatInCat, updateSubCategory, uploadSubCatImage, useRefreshSubCategories } from '../../api/subCategories'
 
-import {
-    updatingSubCategory,
-    updated,
-    updateFailed
-} from '../../redux/admin/subCategories/updateSubCategory.slice'
-import {
-    uploadingImage,
-    uploadedImage,
-    uploadFailed
-} from '../../redux/image/uploadImage.slice'
-import { useCatSubcategories, createSubCatInCat } from '../../api/subCategories'
-
-// all subcategory in a category
 const CatSubCategories = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -56,48 +33,13 @@ const CatSubCategories = () => {
     const [currentSubCategory, setCurrentSubCategory] = useState<{ id: string, name: string, image_url: string } | null>(null)
 
     useCatSubcategories(id!)
+    useRefreshSubCategories(setCreateMode, setEditMode, id!)
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
 
     const catName = category?.name
 
-    const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
-
-    // on create success, fetch updated categories
-    useEffect(() => {
-        if (subCategory) {
-            dispatch(fetchingCategory())
-            axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
-            dispatch(createdSubCategory(null))
-            return setCreateMode(false)
-        }
-    }, [dispatch, id, subCategory])
-
-    // update subcategory
-    const updateCategory = (id: any) => {
-        dispatch(updatingSubCategory())
-        axiosAction('patch', dispatch, updated, updateFailed, `/admin/subcategory/${id}`, token, { name, image_url })
-    }
-
-    const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
-
-    // on success update, update subcategories state
-    useEffect(() => {
-        if (updatedSubCategory.length !== 0) {
-            dispatch(fetchingCategory())
-            axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
-            dispatch(updated(''))
-            return setEditMode(false)
-        }
-    }, [dispatch, id, updatedSubCategory])
-
-    // upload category image
-    const uploadSubCatImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        dispatch(uploadingImage())
-        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
-    }
-
+    const { isCreating, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
+    const { isUpdating, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
     useEffect(() => {
@@ -300,7 +242,7 @@ const CatSubCategories = () => {
                                             <input type='file' name='filename' className=''
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
-                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                    if (e.target.files) uploadSubCatImage(dispatch, e.target.files[0])
                                                 }} />
                                         </div>
                                         <div className='text-center mt-6'>
@@ -371,7 +313,7 @@ const CatSubCategories = () => {
                                             <input type='file' name='filename' className=''
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
-                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                    if (e.target.files) uploadSubCatImage(dispatch, e.target.files[0])
                                                 }} />
                                         </div>
                                         <div className='text-center mt-6'>
@@ -381,7 +323,7 @@ const CatSubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return updateCategory(currentSubCategory?.id)
+                                                    return updateSubCategory(dispatch, currentSubCategory?.id!, { name, image_url })
                                                 }}
                                             >
                                                 {!!isUpdating ? 'Updating...' : isUploading ? 'uploading ...' : 'Update'}

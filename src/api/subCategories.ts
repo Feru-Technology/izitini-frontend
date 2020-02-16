@@ -1,7 +1,9 @@
-import { useEffect } from 'react'
+import { SetStateAction, useEffect } from 'react'
 import axiosAction from './apiAction'
-import { useDispatch } from 'react-redux'
+import { RootState } from '../redux/store'
 import { Dispatch } from '@reduxjs/toolkit'
+import { useDispatch, useSelector } from 'react-redux'
+import { uploadingImage, uploadedImage, uploadFailed } from '../redux/image/uploadImage.slice'
 import { updatingSubCategory, updated, updateFailed } from '../redux/admin/subCategories/updateSubCategory.slice'
 import { fetchingCategory, fetchedCategory, fetchFailed as error } from '../redux/admin/categories/category.slice'
 import { creatingSubCategory, createdSubCategory, createFailed } from '../redux/admin/subCategories/createSubCategory.slice'
@@ -9,6 +11,23 @@ import { fetchingSubCategories, retrievedSubCategories, fetchFailed } from '../r
 import { fetchingSubCategoryProducts, subCategoryProducts, subCategoryProductsFailed } from '../redux/subCategories/subCategoryProducts.slice'
 
 const token = localStorage.getItem('token')
+
+export const useRefreshSubCategories = (setCreateMode: SetStateAction<any>, setEditMode: SetStateAction<any>, id: string) => {
+    const dispatch = useDispatch()
+
+    const { subCategory } = useSelector((state: RootState) => state.adminCreateSubCategory)
+    const { updatedSubCategory } = useSelector((state: RootState) => state.adminUpdateSubCategory)
+
+    useEffect(() => {
+        if (subCategory || updatedSubCategory) {
+            dispatch(fetchingCategory())
+            axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
+            dispatch(createdSubCategory(null))
+            setCreateMode(false)
+            return setEditMode(false)
+        }
+    }, [dispatch, id, setCreateMode, setEditMode, subCategory, updatedSubCategory])
+}
 
 export const useSubCategories = () => {
     const dispatch = useDispatch()
@@ -47,4 +66,11 @@ export const createSubCatInCat = (dispatch: Dispatch, id: string, data: {}) => {
 export const updateSubCategory = (dispatch: Dispatch, id: string, data: {}) => {
     dispatch(updatingSubCategory())
     axiosAction('patch', dispatch, updated, updateFailed, `/admin/subcategory/${id}`, token, data)
+}
+
+export const uploadSubCatImage = (dispatch: Dispatch, file: File) => {
+    const formData = new FormData()
+    formData.append('image', file)
+    dispatch(uploadingImage())
+    axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
 }
