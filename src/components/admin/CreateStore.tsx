@@ -16,6 +16,7 @@ import {
 } from '../../redux/image/uploadImage.slice'
 import { useVendorsWithoutStore } from '../../api/user'
 import { useCategories } from '../../api/categories'
+import { adminCreateStore, uploadShopImage } from '../../api/stores'
 
 const CreateProduct = () => {
 
@@ -28,7 +29,6 @@ const CreateProduct = () => {
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
-
 
   useCategories()
   useVendorsWithoutStore()
@@ -44,29 +44,7 @@ const CreateProduct = () => {
   const [shop_specialty_1, setShop_specialty_1] = useState<string | null>(null)
   const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
-  const createStore = () => {
-    dispatch(addStore())
-    axiosAction(
-      'post',
-      dispatch,
-      getStore,
-      storeFailed, '/admin/shop',
-      token,
-      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner, shop_image_url }
-    )
-  }
-
   const { isCreating, createdStore, error } = useSelector((state: RootState) => state.createStore)
-
-
-  // upload category image
-  const uploadShopImage = (file: File) => {
-    const formData = new FormData()
-    formData.append('image', file)
-    dispatch(uploadingImage())
-    axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
-  }
-
   const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
   useEffect(() => {
     if (image) {
@@ -241,7 +219,7 @@ const CreateProduct = () => {
                     <input type='file' name='filename' className=''
                       accept='image/x-png,image/gif,image/jpeg, image/png'
                       onChange={e => {
-                        if (e.target.files) uploadShopImage(e.target.files[0])
+                        if (e.target.files) uploadShopImage(dispatch, e.target.files[0])
                       }} />
                   </div>
                   <div className='text-center mt-6'>
@@ -251,7 +229,7 @@ const CreateProduct = () => {
                       type='button'
                       onClick={(e) => {
                         e.preventDefault()
-                        createStore()
+                        adminCreateStore(dispatch, { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner, shop_image_url })
                       }}
                     >
                       {!!isCreating ? 'creating...' : isUploading ? 'uploading ...' : 'Create'}
