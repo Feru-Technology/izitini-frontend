@@ -28,7 +28,6 @@ export const changeProfileImage = (dispatch: Dispatch, file: File) => {
     axiosAction('patch', dispatch, user, userFailed, '/users/profile-image', token, formData)
 }
 
-
 export const useVendorsWithoutStore = () => {
 
     const dispatch = useDispatch()

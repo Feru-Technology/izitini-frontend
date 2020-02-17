@@ -9,55 +9,30 @@ import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { addStore, getStore, storeFailed } from '../../redux/stores/createStore.slice'
-
-import {
-  fetchingCategories,
-  retrievedCategory,
-  retrievedCategoryFailed
-} from '../../redux/categories/categories.slice'
-
-import {
-  fetchingUsers,
-  retrievedUsers,
-  retrievedUserFailed
-} from '../../redux/admin/users/users.slice'
 import {
   uploadingImage,
   uploadedImage,
   uploadFailed
 } from '../../redux/image/uploadImage.slice'
+import { useVendorsWithoutStore } from '../../api/user'
+import { useCategories } from '../../api/categories'
 
 const CreateProduct = () => {
 
-  const token = localStorage.getItem('token')
-  const navigate = useNavigate()
   useAuth('admin')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
 
   const [isClosed, setIsClosed] = useState(true)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
 
-  // redux
-  const dispatch = useDispatch()
 
-  const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
-  // get all vendors without shops
-  useEffect(() => {
-    dispatch(fetchingUsers())
-    axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/admin/user/vendor-without-shop', token)
-  }, [dispatch, token])
-
-  // get all categories
-  useEffect(() => {
-    dispatch(fetchingCategories())
-    axiosAction('get', dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
-  }, [dispatch])
-
-
+  useCategories()
+  useVendorsWithoutStore()
   const { users } = useSelector((state: RootState) => state.users)
-
   const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
   const [name, setName] = useState<string | null>(null)
@@ -110,7 +85,7 @@ const CreateProduct = () => {
 
   return (
     <>
-      {isLoggingIn ? 'Loading ...' :
+      {isLoading ? 'Loading ...' :
         <div className='flex h-screen overflow-hidden bg-gray-100 '>
           <SiderBar
             isClosed={isClosed}
