@@ -1,29 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { addStore, getStore, storeFailed } from '../../redux/stores/createStore.slice'
-import {
-  uploadingImage,
-  uploadedImage,
-  uploadFailed
-} from '../../redux/image/uploadImage.slice'
 import { useVendorsWithoutStore } from '../../api/user'
 import { useCategories } from '../../api/categories'
-import { adminCreateStore, uploadShopImage } from '../../api/stores'
+import { adminCreateStore, uploadShopImage, useImageUrl, useOpenCreatedStore } from '../../api/stores'
 
 const CreateProduct = () => {
 
   useAuth('admin')
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const token = localStorage.getItem('token')
 
   const [isClosed, setIsClosed] = useState(true)
   const isStatic = useMediaQuery({
@@ -44,22 +34,11 @@ const CreateProduct = () => {
   const [shop_specialty_1, setShop_specialty_1] = useState<string | null>(null)
   const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
-  const { isCreating, createdStore, error } = useSelector((state: RootState) => state.createStore)
   const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
-  useEffect(() => {
-    if (image) {
-      setShop_image_url(image.url)
-      dispatch(uploadedImage(null))
-    }
-  }, [dispatch, image])
+  const { isCreating, error } = useSelector((state: RootState) => state.createStore)
 
-  useEffect(() => {
-    if (createdStore) {
-      const { id } = createdStore
-      dispatch(getStore(null))
-      return navigate(`/admin/shops/${id}`)
-    }
-  }, [createdStore, dispatch, navigate])
+  useImageUrl(setShop_image_url, image!)
+  useOpenCreatedStore()
 
   return (
     <>

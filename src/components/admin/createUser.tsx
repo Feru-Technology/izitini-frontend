@@ -12,9 +12,9 @@ import { postUser, getUser, userFailed } from '../../redux/admin/users/createUse
 
 const CreateCustomer = () => {
 
-  const token = localStorage.getItem('token')
-  const navigate = useNavigate()
   useAuth('admin')
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
 
   // redux
   const dispatch = useDispatch()
@@ -45,11 +45,9 @@ const CreateCustomer = () => {
     }
   }, [createdUser, dispatch, navigate])
 
-  const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
   return (
     <>
-      {isLoggingIn ? 'Loading ...' :
+      {isLoading ? 'Loading ...' :
         <div className='flex h-screen overflow-hidden bg-gray-200'>
           <SiderBar
             isClosed={isClosed}

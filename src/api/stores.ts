@@ -1,7 +1,9 @@
-import { SetStateAction, useEffect } from 'react'
 import axiosAction from './apiAction'
-import { useDispatch } from 'react-redux'
+import { RootState } from '../redux/store'
 import { Dispatch } from '@reduxjs/toolkit'
+import { useNavigate } from 'react-router-dom'
+import { SetStateAction, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { IImage } from '../redux/image/image.interfaces'
 import { getStore, store, storeFailed } from '../redux/stores/store.slice'
 import { updatingStore, updated, updateFailed } from '../redux/stores/updateStore.slice'
@@ -63,4 +65,18 @@ export const useImageUrl = (setShop_image_url: SetStateAction<any>, image: IImag
             dispatch(uploadedImage(null))
         }
     }, [dispatch, image, setShop_image_url])
+}
+
+export const useOpenCreatedStore = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { createdStore } = useSelector((state: RootState) => state.createStore)
+    useEffect(() => {
+        if (createdStore) {
+            const { id } = createdStore
+            dispatch(s(null))
+            return navigate(`/admin/shops/${id}`)
+        }
+    }, [createdStore, dispatch, navigate])
 }
