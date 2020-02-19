@@ -1,9 +1,12 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import axiosAction from '../api/apiAction'
 import { Dispatch } from '@reduxjs/toolkit'
 import { getUser, user, userFailed } from '../redux/admin/users/user.slice'
+import { postUser, getUser as u, userFailed as f } from '../redux/admin/users/createUser.slice'
 import { fetchingUsers, retrievedUsers, retrievedUserFailed } from '../redux/admin/users/users.slice'
+import { useNavigate } from 'react-router-dom'
+import { RootState } from '../redux/store'
 
 const token = localStorage.getItem('token')
 
@@ -35,4 +38,23 @@ export const useVendorsWithoutStore = () => {
         dispatch(fetchingUsers())
         axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/admin/user/vendor-without-shop', token)
     }, [dispatch])
+}
+
+export const createNewCustomer = (dispatch: Dispatch, data: {}) => {
+    dispatch(postUser())
+    axiosAction('post', dispatch, u, f, '/admin/user', token, data)
+}
+
+export const useOpenCreatedUser = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { createdUser } = useSelector((state: RootState) => state.createUser)
+    useEffect(() => {
+        if (createdUser) {
+            const { id } = createdUser.user
+            dispatch(u(null))
+            return navigate(`/admin/users/${id}`
+            )
+        }
+    }, [createdUser, dispatch, navigate])
 }

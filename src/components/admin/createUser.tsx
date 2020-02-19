@@ -1,22 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import axiosAction from '../../api/apiAction'
+import { Link } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { postUser, getUser, userFailed } from '../../redux/admin/users/createUser.slice'
+import { createNewCustomer, useOpenCreatedUser } from '../../api/user'
 
 const CreateCustomer = () => {
 
   useAuth('admin')
-  const navigate = useNavigate()
-  const token = localStorage.getItem('token')
-
-  // redux
   const dispatch = useDispatch()
 
   const isStatic = useMediaQuery({
@@ -29,21 +24,9 @@ const CreateCustomer = () => {
   const [contact, setContact] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
 
-  const createCustomer = () => {
-    dispatch(postUser())
-    axiosAction('post', dispatch, getUser, userFailed, '/admin/user', token, { email, tin_no, contact, full_name })
-  }
+  const { isLoading, error } = useSelector((state: RootState) => state.createUser)
 
-  const { isLoading, createdUser, error } = useSelector((state: RootState) => state.createUser)
-
-  useEffect(() => {
-    if (createdUser) {
-      const { id } = createdUser.user
-      dispatch(getUser(null))
-      return navigate(`/admin/users/${id}`
-      )
-    }
-  }, [createdUser, dispatch, navigate])
+  useOpenCreatedUser()
 
   return (
     <>
@@ -166,7 +149,7 @@ const CreateCustomer = () => {
                         type='button'
                         onClick={e => {
                           e.preventDefault()
-                          return createCustomer()
+                          return createNewCustomer(dispatch, { email, tin_no, contact, full_name })
                         }}
                       >
                         {isLoading ? 'Loading...' : 'Create'}
