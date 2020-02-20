@@ -40,9 +40,9 @@ export const useVendorsWithoutStore = () => {
     }, [dispatch])
 }
 
-export const createNewCustomer = (dispatch: Dispatch, data: {}) => {
+export const createNewUser = (dispatch: Dispatch, route: string, data: {}) => {
     dispatch(postUser())
-    axiosAction('post', dispatch, u, f, '/admin/user', token, data)
+    axiosAction('post', dispatch, u, f, `/admin/${route}`, token, data)
 }
 
 export const useOpenCreatedUser = () => {
