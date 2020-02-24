@@ -2,30 +2,21 @@ import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
+import { createProduct } from '../../api/products'
+import { useStoreProducts } from '../../api/products'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-
-import {
-    fetchingProducts,
-    storeProducts,
-    productFailed
-} from '../../redux/products/storeProducts.slice '
-import { createdProduct, createFailed, creatingProduct } from '../../redux/admin/products/createProduct.slice'
-import { fetchingSubCategories, retrievedSubCategories, fetchFailed } from '../../redux/admin/subCategories/subCategories.slice'
+import { useSubCategories } from '../../api/subCategories'
+import { createdProduct } from '../../redux/admin/products/createProduct.slice'
 const Products = () => {
 
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
-
     useAuth('business')
-
-    const params = useParams()
-    const { id } = params
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [isClosed, setIsClosed] = useState(true)
     const [createMode, setCreateMode] = useState(false)
@@ -33,39 +24,16 @@ const Products = () => {
     const [unit, setUnit] = useState<string | null>(null)
     const [brand, setBrand] = useState<string | null>(null)
     const [subCategory, setSubCategory] = useState<string | null>(null)
-    const isStatic = useMediaQuery({
-        query: '(min-width: 640px)',
-    })
 
-    // redux
-    const dispatch = useDispatch()
+    const isStatic = useMediaQuery({ query: '(min-width: 640px)' })
 
-
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
+    useStoreProducts()
     const { currentStore } = useSelector((state: RootState) => state.store)
-
-    useEffect(() => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, storeProducts, productFailed, `/product/s/all`, token)
-
-    }, [dispatch, token])
-
     const { isLoading, products } = useSelector((state: RootState) => state.storeProducts)
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
-    }, [dispatch])
-
+    useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
-
-    const createProduct = () => {
-        dispatch(creatingProduct())
-        axiosAction('post', dispatch, createdProduct, createFailed, '/product', token, { subCategory, name, brand, unit })
-    }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
 
@@ -80,7 +48,7 @@ const Products = () => {
 
     return (
         <>
-            {isLoggingIn ? 'Loading ...' :
+            {isLoading ? 'Loading ...' :
                 <div className='flex h-screen overflow-hidden bg-gray-100'>
                     <SiderBar
                         isClosed={isClosed}
@@ -243,7 +211,7 @@ const Products = () => {
                                             >
                                                 <option>Choose sub-category</option>
                                                 {isSubCatLoading ? <h1>loading...</h1>
-                                                    : subCategories.map((c) => (<option>{c.name}</option>))}
+                                                    : subCategories.map((c) => (<option key={c.id}>{c.name}</option>))}
                                             </select>
                                         </div>
                                     </div>
@@ -299,7 +267,7 @@ const Products = () => {
                                             type='button'
                                             onClick={(e) => {
                                                 e.preventDefault()
-                                                return createProduct()
+                                                return createProduct(dispatch, { subCategory, name, brand, unit })
                                             }}
                                         >
                                             {!!isCreating ? 'Creating...' : 'Create'}

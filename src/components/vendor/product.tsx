@@ -5,6 +5,7 @@ import {
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
 import { uploadImage } from '../../api/images'
@@ -14,7 +15,6 @@ import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
 import { createSize, deleteSize } from '../../api/sizes'
 import { createColor, deleteColor } from '../../api/colors'
 import {
@@ -30,11 +30,16 @@ import {
     productFailed
 } from '../../redux/products/product.slice'
 import { useSubCategories } from '../../api/subCategories'
+import { removedImg } from '../../redux/image/removeImgToProd.slice'
+import { addedImage } from '../../redux/image/addImageToProduct.slice'
+import { createdSize } from '../../redux/admin/productSizes/createSize.slice'
+import { deletedSize } from '../../redux/admin/productSizes/deleteSize.slice'
+import { updatedProduct } from '../../redux/admin/products/updateProduct.slice'
+import { createdColor } from '../../redux/admin/productColors/createColor.slice'
+import { deletedColor } from '../../redux/admin/productColors/DeleteColor.slice'
+import { updatedProductStatus } from '../../redux/products/updateProductStatus.slice'
 
 const VendorProduct = () => {
-
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
 
     useAuth('business')
 
@@ -45,8 +50,6 @@ const VendorProduct = () => {
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
-
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     // product states
     const [isClosed, setIsClosed] = useState(true)
@@ -83,7 +86,7 @@ const VendorProduct = () => {
     const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
 
     useProduct(id)
-    const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
+    const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
     useEffect(() => {
         if (currentProduct) {
@@ -126,15 +129,15 @@ const VendorProduct = () => {
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
         if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage || removedImgRes) {
-            // dispatch(updatedProductStatus(null))
-            // dispatch(updatedProduct(null))
-            // dispatch(createdColor(null))
-            // dispatch(deletedColor(null))
-            // dispatch(deletedSize(null))
-            // dispatch(createdSize(null))
-            // dispatch(addedImage(null))
-            // dispatch(removedImg(null))
-            // dispatch(getProduct())
+            dispatch(updatedProductStatus(null))
+            dispatch(updatedProduct(null))
+            dispatch(createdColor(null))
+            dispatch(deletedColor(null))
+            dispatch(deletedSize(null))
+            dispatch(createdSize(null))
+            dispatch(addedImage(null))
+            dispatch(removedImg(null))
+            dispatch(getProduct())
 
             axiosAction(
                 'get',
@@ -158,7 +161,7 @@ const VendorProduct = () => {
 
     return (
         <>
-            {isLoggingIn || isLoading ? 'loading' :
+            {isLoading ? 'loading' :
                 currentProduct ?
                     (
                         <div className='flex h-screen overflow-hidden bg-gray-100'>
