@@ -9,11 +9,11 @@ import { format } from 'date-fns'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
-import { useNavigate } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
+import { useStore, updateShop, changeShopImage } from '../../api/stores'
 
 import {
   getStore, store, storeFailed
@@ -24,7 +24,6 @@ import {
 
 const Store = () => {
 
-  const navigate = useNavigate()
   const token = localStorage.getItem('token')
 
   useAuth('business')
@@ -37,14 +36,7 @@ const Store = () => {
     query: '(min-width: 640px)',
   })
 
-
-  const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
-
-  useEffect(() => {
-    dispatch(getStore())
-    axiosAction('get', dispatch, store, storeFailed, '/shop/mine/all', token)
-  }, [dispatch, token])
-
+  useStore()
   const { isLoading, currentStore, error } = useSelector((state: RootState) => state.store)
 
 
@@ -55,10 +47,7 @@ const Store = () => {
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  const updateShop = () => {
-    dispatch(getStore())
-    axiosAction('patch', dispatch, store, storeFailed, `/shop/${currentStore?.id}`, token, { about_shop, shop_contact_no, shop_email, name })
-  }
+
 
   useEffect(() => {
     if (currentStore) {
@@ -73,14 +62,7 @@ const Store = () => {
   //@ts-ignore
   const uploadImage = () => input.current.click()
 
-  const changeShopImage = (file: File) => {
-    const formData = new FormData()
-    formData.append('image', file)
-    dispatch(updatingStore())
-    axiosAction('patch', dispatch, updated, updateFailed, `/image/${currentStore?.id}`, token, formData)
-  }
-
-  const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
+  const { updatedStore } = useSelector((state: RootState) => state.updateStore)
 
   useEffect(() => {
     if (updatedStore) {
@@ -92,7 +74,7 @@ const Store = () => {
 
   return (
     <>
-      {isLoggingIn ? 'Loading' :
+      {isLoading ? 'Loading' :
         <div className='flex h-screen overflow-hidden'>
           <SiderBar
             isClosed={isClosed}
@@ -135,7 +117,7 @@ const Store = () => {
                       <input className='absolute hidden' type="file" name="img" ref={input}
                         accept='image/x-png,image/gif,image/jpeg, image/png'
                         onChange={e => {
-                          if (e.target.files) changeShopImage(e.target.files[0])
+                          if (e.target.files) changeShopImage(dispatch, currentStore.id, e.target.files[0])
                         }} />
 
                       <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
@@ -245,7 +227,7 @@ const Store = () => {
                           <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                             onClick={e => {
                               e.preventDefault()
-                              return updateShop()
+                              return updateShop(dispatch, currentStore.id, { about_shop, shop_contact_no, shop_email, name })
                             }} >
                             SAVE
                           </button>
