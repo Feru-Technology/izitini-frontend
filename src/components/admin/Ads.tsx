@@ -9,8 +9,8 @@ import { useAuth } from '../../utils/hooks/auth'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchingAds, retrievedAds, adsFailed } from '../../redux/admin/ads/ads.slice'
-import { creatingAd, createdAd, createFailed } from '../../redux/admin/ads/createAd.slice'
 import { deletingAd, deletedAd, deleteFailed } from '../../redux/admin/ads/deleteAd.slice'
+import { useAds, addImage } from '../../api/ad'
 
 const Ads = () => {
 
@@ -29,22 +29,8 @@ const Ads = () => {
     const [open_image, setOpen_image] = useState<string | null>(null)
     const [active_image, setActive_image] = useState<string | null>(null)
 
-    const { isLoading } = useSelector((state: RootState) => state.profile)
-
-    useEffect(() => {
-        dispatch(fetchingAds())
-        axiosAction('get', dispatch, retrievedAds, adsFailed, '/admin/ad')
-    }, [dispatch])
-
+    useAds()
     const { isFetching, ads } = useSelector((state: RootState) => state.ad)
-
-    const addImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('ad', file)
-        dispatch(creatingAd())
-        axiosAction('post', dispatch, retrievedAds, createFailed, '/admin/ad', token, formData)
-        dispatch(createdAd(null))
-    }
 
     const { isCreating } = useSelector((state: RootState) => state.createAd)
 
@@ -59,7 +45,7 @@ const Ads = () => {
 
     return (
         <>
-            {isLoading ? 'Loading ...' :
+            {isFetching ? 'Loading ...' :
                 <div className='flex h-screen overflow-hidden'>
                     <SiderBar
                         isClosed={isClosed}
@@ -99,7 +85,7 @@ const Ads = () => {
                                     <input className='absolute hidden' type='file' name='ad' ref={input}
                                         accept='image/x-png,image/gif,image/jpeg, image/png'
                                         onChange={e => {
-                                            if (e.target.files) addImage(e.target.files[0])
+                                            if (e.target.files) addImage(dispatch, e.target.files[0])
                                         }} />
                                 </div>
 

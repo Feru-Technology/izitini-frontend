@@ -8,27 +8,17 @@ import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { useStore, updateShop, changeShopImage } from '../../api/stores'
-
-import {
-  getStore, store, storeFailed
-} from '../../redux/stores/store.slice'
-import {
-  updatingStore, updated, updateFailed
-} from '../../redux/stores/updateStore.slice'
+import { updated } from '../../redux/stores/updateStore.slice'
+import { useStore, updateShop, changeShopImage, getShop } from '../../api/stores'
 
 const Store = () => {
 
-  const token = localStorage.getItem('token')
-
   useAuth('business')
 
-  // redux
   const input = useRef(null)
   const dispatch = useDispatch()
 
@@ -39,15 +29,12 @@ const Store = () => {
   useStore()
   const { isLoading, currentStore, error } = useSelector((state: RootState) => state.store)
 
-
   const [isClosed, setIsClosed] = useState(true)
   const [editMode, setEditMode] = useState(false)
   const [name, setName] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string>('')
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
-
-
 
   useEffect(() => {
     if (currentStore) {
@@ -66,9 +53,8 @@ const Store = () => {
 
   useEffect(() => {
     if (updatedStore) {
-      dispatch(getStore())
       dispatch(updated(null))
-      axiosAction('get', dispatch, store, storeFailed, '/shop/mine/all', token)
+      return getShop(dispatch)
     }
   })
 
@@ -175,14 +161,14 @@ const Store = () => {
                                 id='grid-last-name' type='text' onChange={e => setShop_email(e.target.value)} defaultValue={shop_email || currentStore.shop_email} />
                             </div>
 
-                            {currentStore.shopSpecialties?.map((specialties) => (
-                              <div className=''>
+                            {currentStore.shopSpecialties?.map((specialty) => (
+                              <div key={specialty.id}>
                                 <label className='block font-semibold text-sm md:text-base text-gray-500'
                                   htmlFor='Specialty type'>Specialty:</label>
                                 <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
                             border-gray-400 focus:border-dark-blue pointer-events-none'
                                   text-gray-600 id='grid-last-name' type='text'
-                                  value={specialties.category.name}
+                                  value={specialty.category.name}
                                 />
                               </div>
                             ))}

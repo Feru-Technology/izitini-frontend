@@ -212,7 +212,7 @@ const CatSubCategories = () => {
                                                             onClick={() => navigate(`/admin/subCategory/${subCategory.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={subCategoryImage} alt='product' className='w-auto h-8 md:h-12 lg:h-16' />
+                                                                    <img src={subCategoryImage} alt='img' className='w-auto h-8 md:h-12 lg:h-16' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 

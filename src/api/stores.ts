@@ -17,6 +17,11 @@ export const useStore = () => {
     }, [dispatch])
 }
 
+export const getShop = (dispatch: Dispatch) => {
+    dispatch(getStore())
+    return axiosAction('get', dispatch, store, storeFailed, '/shop/mine/all', token)
+}
+
 export const createStore = (dispatch: Dispatch, data: {}) => {
     dispatch(getStore())
     axiosAction('get', dispatch, store, storeFailed, '/shop', token, data)
@@ -31,5 +36,6 @@ export const changeShopImage = (dispatch: Dispatch, id: string, file: File) => {
     const formData = new FormData()
     formData.append('image', file)
     dispatch(updatingStore())
-    axiosAction('patch', dispatch, updated, updateFailed, `/image/${id}`, token, formData)
+    axiosAction('patch', dispatch, updated, updateFailed, `/shop/image/${id}`, token, formData)
 }
+
