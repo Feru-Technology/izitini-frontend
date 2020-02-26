@@ -7,6 +7,7 @@ import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '
 import { Dispatch } from '@reduxjs/toolkit'
 import { createCategory, createdCategory, createFailed } from '../redux/admin/categories/createCategory.slice'
 import { updatingCategory, updated, updateFailed } from '../redux/admin/categories/updateCategory.slice'
+import { uploadingImage, uploadedImage, uploadFailed } from '../redux/image/uploadImage.slice'
 
 const token = localStorage.getItem('token')
 
@@ -57,4 +58,11 @@ export const createNewCategory = (dispatch: Dispatch, data: {}) => {
 export const updateCategory = (dispatch: Dispatch, id: any, data: {}) => {
     dispatch(updatingCategory())
     axiosAction('patch', dispatch, updated, updateFailed, `/admin/category/${id}`, token, data)
+}
+
+export const uploadCatImage = (dispatch: Dispatch, file: File) => {
+    const formData = new FormData()
+    formData.append('image', file)
+    dispatch(uploadingImage())
+    axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
 }
