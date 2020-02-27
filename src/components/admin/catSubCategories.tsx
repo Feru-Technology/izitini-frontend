@@ -30,15 +30,14 @@ import {
     uploadedImage,
     uploadFailed
 } from '../../redux/image/uploadImage.slice'
+import { useCatSubcategories } from '../../api/subCategories'
 
 // all subcategory in a category
 const CatSubCategories = () => {
 
+    useAuth('admin')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth('admin')
-
-    // redux
     const dispatch = useDispatch()
 
     const params = useParams()
@@ -56,12 +55,7 @@ const CatSubCategories = () => {
     const [image_url, setImage_url] = useState<string | null>()
     const [currentSubCategory, setCurrentSubCategory] = useState<{ id: string, name: string, image_url: string } | null>(null)
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingCategory())
-        axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
-    }, [dispatch, id])
-
+    useCatSubcategories(id!)
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
 
     const catName = category?.name
@@ -110,7 +104,7 @@ const CatSubCategories = () => {
         axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
     }
 
-    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+    const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
     useEffect(() => {
         if (image) {

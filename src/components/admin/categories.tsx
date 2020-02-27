@@ -9,21 +9,14 @@ import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { uploadedImage } from '../../redux/image/uploadImage.slice'
 import { ICategory } from '../../redux/admin/categories/category.interfaces'
-import {
-    uploadingImage,
-    uploadedImage,
-    uploadFailed
-} from '../../redux/image/uploadImage.slice'
-import { useCategories, createNewCategory, updateCategory, useRefreshCategories } from '../../api/categories'
+import { useCategories, createNewCategory, updateCategory, useRefreshCategories, uploadCatImage } from '../../api/categories'
 
 const Categories = () => {
 
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
     useAuth('admin')
-
-    // redux
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
@@ -46,16 +39,7 @@ const Categories = () => {
     const { isCatLoading, error } = useSelector((state: RootState) => state.adminCreateCategory)
     const { isUpdating, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
 
-    // upload category image
-    const uploadCatImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        dispatch(uploadingImage())
-        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
-    }
-
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
-
     useEffect(() => {
         if (image) {
             setImage_url(image.url)
@@ -259,7 +243,7 @@ const Categories = () => {
                                             <input type='file' name='filename' className=''
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
-                                                    if (e.target.files) uploadCatImage(e.target.files[0])
+                                                    if (e.target.files) uploadCatImage(dispatch, e.target.files[0])
                                                 }} />
                                         </div>
                                         <div className='text-center mt-6'>
@@ -330,7 +314,7 @@ const Categories = () => {
                                             <input type='file' name='filename' className=''
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
-                                                    if (e.target.files) uploadCatImage(e.target.files[0])
+                                                    if (e.target.files) uploadCatImage(dispatch, e.target.files[0])
                                                 }} />
                                         </div>
                                         <div className='text-center mt-6'>

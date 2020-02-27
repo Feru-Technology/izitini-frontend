@@ -1,13 +1,13 @@
-import { SetStateAction, useEffect } from 'react'
 import axiosAction from './apiAction'
 import { RootState } from '../redux/store'
+import { Dispatch } from '@reduxjs/toolkit'
+import { SetStateAction, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategory, category, categoryFailed } from '../redux/categories/category.slice'
-import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../redux/categories/categories.slice'
-import { Dispatch } from '@reduxjs/toolkit'
-import { createCategory, createdCategory, createFailed } from '../redux/admin/categories/createCategory.slice'
-import { updatingCategory, updated, updateFailed } from '../redux/admin/categories/updateCategory.slice'
 import { uploadingImage, uploadedImage, uploadFailed } from '../redux/image/uploadImage.slice'
+import { updatingCategory, updated, updateFailed } from '../redux/admin/categories/updateCategory.slice'
+import { createCategory, createdCategory, createFailed } from '../redux/admin/categories/createCategory.slice'
+import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../redux/categories/categories.slice'
 
 const token = localStorage.getItem('token')
 
