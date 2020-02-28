@@ -30,7 +30,7 @@ import {
     uploadedImage,
     uploadFailed
 } from '../../redux/image/uploadImage.slice'
-import { useCatSubcategories } from '../../api/subCategories'
+import { useCatSubcategories, createSubCatInCat } from '../../api/subCategories'
 
 // all subcategory in a category
 const CatSubCategories = () => {
@@ -59,12 +59,6 @@ const CatSubCategories = () => {
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
 
     const catName = category?.name
-
-    // create new subCategory 
-    const createNewSubCategory = () => {
-        dispatch(creatingSubCategory())
-        axiosAction('post', dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, token, { name, image_url })
-    }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
 
@@ -317,7 +311,7 @@ const CatSubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return createNewSubCategory()
+                                                    return createSubCatInCat(dispatch, category.id, { name, image_url })
                                                 }}
                                             >
                                                 {!!isCreating ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
