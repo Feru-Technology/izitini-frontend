@@ -5,6 +5,7 @@ import {
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
+import { createSize } from '../../api/sizes'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
@@ -20,11 +21,6 @@ import {
     getProduct,
     productFailed
 } from '../../redux/products/product.slice'
-import {
-    creatingSize,
-    createdSize,
-    createFailed
-} from '../../redux/admin/productSizes/createSize.slice'
 import {
     creatingColor,
     createdColor,
@@ -133,14 +129,7 @@ const VendorProduct = () => {
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
     // create product size
-    const createSize = () => {
-        dispatch(creatingSize())
-        axiosAction('post', dispatch, createdSize, createFailed, `/product/size/${id}`, token, {
-            size,
-            price: pricePerSize,
-            quantity: sizeQuantity
-        })
-    }
+
 
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
 
@@ -211,7 +200,7 @@ const VendorProduct = () => {
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
             dispatch(deletedSize(null))
-            dispatch(createdSize(null))
+            // dispatch(createdSize(null))
             dispatch(addedImage(null))
             dispatch(removedImg(null))
             // dispatch(getProduct())
@@ -658,7 +647,11 @@ const VendorProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createSize()
+                                                        return createSize(dispatch, currentProduct.product.id, {
+                                                            size,
+                                                            price: pricePerSize,
+                                                            quantity: sizeQuantity
+                                                        })
                                                     }}
                                                 >
                                                     {!!isCreatingSize ? 'Creating...' : 'Create'}
