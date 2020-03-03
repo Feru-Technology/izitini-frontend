@@ -73,3 +73,8 @@ export const updateOrderStatus = (dispatch: Dispatch, id: any, status: string) =
     dispatch(updatingOrder())
     axiosAction('patch', dispatch, updatedOrder, updateFailed, `/orders/order/status/${status}/${id}`, token)
 }
+
+export const storeOrders = (dispatch: Dispatch, route?: string) => {
+    dispatch(getOrders())
+    return axiosAction('get', dispatch, orders, ordersFailed, `/orders/store/${route ? route : ''}`, token)
+}

@@ -1,25 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
-import { useOrders } from '../../api/orders'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/orders.slice'
+import { useOrders, storeOrders } from '../../api/orders'
 
 const Orders = () => {
 
     const navigate = useNavigate()
-    const token = localStorage.getItem('token')
 
     useAuth('business')
 
-    // redux
     const dispatch = useDispatch()
 
     const isStatic = useMediaQuery({
@@ -34,17 +30,6 @@ const Orders = () => {
     const [showProcessingOrders, setShowProcessingOrders] = useState(false)
 
     useOrders('store')
-    const MyOrders = (type: string, status?: string) => {
-        dispatch(getOrders())
-        let url: string
-        type === 'all' ? url = '/orders/store' :
-            type === 'processing' ? url = '/orders/processing' :
-                type === 'sample' ? url = '/orders/sample' :
-                    url = `/orders/my/${status}`
-
-        return axiosAction('get', dispatch, myOrders, ordersFailed, url, token)
-    }
-
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
 
     return (
@@ -87,7 +72,7 @@ const Orders = () => {
                                             py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
                                             onClick={() => {
-                                                MyOrders('all')
+                                                storeOrders(dispatch)
                                                 setShowAllOrders(true)
                                                 setShowSampleOrders(false)
                                                 setShowRejectedOrders(false)
@@ -100,46 +85,46 @@ const Orders = () => {
                                             py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
                                             onClick={() => {
-                                                MyOrders('processing')
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(false)
                                                 setShowRejectedOrders(false)
                                                 setShowProcessingOrders(true)
                                                 setShowCompletedOrders(false)
+                                                storeOrders(dispatch, 'processing')
                                             }}
                                         >Processing</li>
                                         <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
                                             onClick={() => {
-                                                MyOrders('sample')
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(true)
                                                 setShowRejectedOrders(false)
                                                 setShowCompletedOrders(false)
                                                 setShowProcessingOrders(false)
+                                                storeOrders(dispatch, 'sample')
                                             }}
 
                                         >Sample</li>
                                         <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
                                             onClick={() => {
-                                                MyOrders('d', 'delivered')
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(false)
                                                 setShowCompletedOrders(true)
                                                 setShowRejectedOrders(false)
                                                 setShowProcessingOrders(false)
+                                                storeOrders(dispatch, 's/delivered')
                                             }}
                                         >Completed</li>
                                         <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
                                             onClick={() => {
-                                                MyOrders('r', 'rejected')
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(false)
                                                 setShowRejectedOrders(true)
                                                 setShowCompletedOrders(false)
                                                 setShowProcessingOrders(false)
+                                                storeOrders(dispatch, 's/rejected')
                                             }}
 
                                         >Rejected</li>
