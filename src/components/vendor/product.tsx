@@ -5,32 +5,23 @@ import {
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
-import { createSize } from '../../api/sizes'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
+import { createColor } from '../../api/colors'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { createSize, deleteSize } from '../../api/sizes'
 import { publishUnPublish, updateProduct, useProduct } from '../../api/products'
 import {
     product,
     getProduct,
     productFailed
 } from '../../redux/products/product.slice'
-import {
-    creatingColor,
-    createdColor,
-    createColorFailed
-} from '../../redux/admin/productColors/createColor.slice'
-import {
-    deletingSize,
-    deletedSize,
-    deleteFailed
-} from '../../redux/admin/productSizes/deleteSize.slice'
 import {
     deletingColor,
     deletedColor,
@@ -125,34 +116,12 @@ const VendorProduct = () => {
     useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
-
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
-
-    // create product size
-
-
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
-
-    const createColor = () => {
-        dispatch(creatingColor())
-        axiosAction('post', dispatch, createdColor, createColorFailed, `/product/color/${id}`, token, {
-            name: colorName,
-            price: pricePerColor,
-            quantity: colorQuantity,
-        })
-    }
-
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
-
-    // remove size from product
-    const deleteSize = (size_id: string) => {
-        dispatch(deletingSize())
-        axiosAction('delete', dispatch, deletedSize, deleteFailed, `/product/size/${id}/${size_id}`, token)
-    }
 
     const { deleted } = useSelector((state: RootState) => state.deleteSize)
 
-    // remove color from product
     const deleteColor = (color_id: string) => {
         dispatch(deletingColor())
         axiosAction('delete', dispatch, deletedColor, deleteColorFailed, `/product/color/${id}/${color_id}`, token)
@@ -197,9 +166,9 @@ const VendorProduct = () => {
         if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage || removedImgRes) {
             // dispatch(updatedProductStatus(null))
             // dispatch(updatedProduct(null))
-            dispatch(createdColor(null))
+            // dispatch(createdColor(null))
             dispatch(deletedColor(null))
-            dispatch(deletedSize(null))
+            // dispatch(deletedSize(null))
             // dispatch(createdSize(null))
             dispatch(addedImage(null))
             dispatch(removedImg(null))
@@ -445,7 +414,7 @@ const VendorProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteSize(s.size.id)} />
+                                                                    onClick={() => deleteSize(dispatch, currentProduct.product.id, s.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -736,7 +705,11 @@ const VendorProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createColor()
+                                                        return createColor(dispatch, currentProduct.product.id, {
+                                                            name: colorName,
+                                                            price: pricePerColor,
+                                                            quantity: colorQuantity,
+                                                        })
                                                     }}
                                                 >
                                                     {!!isCreatingColor ? 'Creating...' : 'Create'}
