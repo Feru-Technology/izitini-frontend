@@ -7,8 +7,8 @@ import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
+import { uploadImage } from '../../api/images'
 import { Transition } from '@headlessui/react'
-import { createColor } from '../../api/colors'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
@@ -16,33 +16,19 @@ import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { createSize, deleteSize } from '../../api/sizes'
-import { publishUnPublish, updateProduct, useProduct } from '../../api/products'
+import { createColor, deleteColor } from '../../api/colors'
+import {
+    useProduct,
+    removeImage,
+    addProdImage,
+    updateProduct,
+    publishUnPublish
+} from '../../api/products'
 import {
     product,
     getProduct,
     productFailed
 } from '../../redux/products/product.slice'
-import {
-    deletingColor,
-    deletedColor,
-    deleteColorFailed
-} from '../../redux/admin/productColors/DeleteColor.slice'
-
-import {
-    uploadingImage,
-    uploadedImage,
-    uploadFailed
-} from '../../redux/image/uploadImage.slice'
-import {
-    addingImage,
-    addedImage,
-    addFailed
-} from '../../redux/image/addImageToProduct.slice'
-import {
-    removingImg,
-    removedImg,
-    removeImgFailed
-} from '../../redux/image/removeImgToProd.slice'
 import { useSubCategories } from '../../api/subCategories'
 
 const VendorProduct = () => {
@@ -91,8 +77,8 @@ const VendorProduct = () => {
     // image states
     const [addImage, setAddImage] = useState(false)
     const [showImageDesc, setShowImageDesc] = useState(false)
-    const [image_id, setImage_id] = useState<string | null>(null)
-    const [image_url, setImage_url] = useState<string | null>(null)
+    const [image_id, setImage_id] = useState<string>('')
+    const [image_url, setImage_url] = useState<string>('')
 
     const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
 
@@ -122,20 +108,7 @@ const VendorProduct = () => {
 
     const { deleted } = useSelector((state: RootState) => state.deleteSize)
 
-    const deleteColor = (color_id: string) => {
-        dispatch(deletingColor())
-        axiosAction('delete', dispatch, deletedColor, deleteColorFailed, `/product/color/${id}/${color_id}`, token)
-    }
-
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
-
-    // upload product image
-    const uploadProductImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        dispatch(uploadingImage())
-        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images', token, formData)
-    }
 
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
@@ -143,22 +116,11 @@ const VendorProduct = () => {
         if (image) {
             setImage_id(image.id)
             setImage_url(image.image_url)
-            dispatch(uploadedImage(null))
+            // dispatch(uploadedImage(null))
         }
     }, [dispatch, image])
 
-    const addProductImage = () => {
-        dispatch(addingImage())
-        axiosAction('post', dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, token, { image_url })
-    }
-
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
-
-    const removeImage = (img_id: string) => {
-        dispatch(removingImg())
-        axiosAction('delete', dispatch, removedImg, removeImgFailed, `/product/image/${id}/${img_id}`, token)
-    }
-
     const { removedImgRes } = useSelector((state: RootState) => state.removeImgToProd)
 
     // if created successfully clear the state and fetch updated product data
@@ -167,11 +129,11 @@ const VendorProduct = () => {
             // dispatch(updatedProductStatus(null))
             // dispatch(updatedProduct(null))
             // dispatch(createdColor(null))
-            dispatch(deletedColor(null))
+            // dispatch(deletedColor(null))
             // dispatch(deletedSize(null))
             // dispatch(createdSize(null))
-            dispatch(addedImage(null))
-            dispatch(removedImg(null))
+            // dispatch(addedImage(null))
+            // dispatch(removedImg(null))
             // dispatch(getProduct())
 
             axiosAction(
@@ -453,7 +415,7 @@ const VendorProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteColor(c.color.id)} />
+                                                                    onClick={() => deleteColor(dispatch, currentProduct.product.id, c.color.id)} />
 
                                                             </div>
                                                         )
@@ -501,7 +463,7 @@ const VendorProduct = () => {
                                                             rounded relative hover:shadow-sm group'>
                                                                 <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
-                                                                    onClick={() => removeImage(i.image.id)}
+                                                                    onClick={() => removeImage(dispatch, currentProduct.product.id, i.image.id)}
                                                                 />
 
                                                                 <img src={i.image.image_url} alt='product_image' className='h-32 rounded w-full' />
@@ -749,7 +711,7 @@ const VendorProduct = () => {
                                                 <input type='file' name='filename' className=''
                                                     accept='image/x-png,image/gif,image/jpeg, image/png'
                                                     onChange={e => {
-                                                        if (e.target.files) uploadProductImage(e.target.files[0])
+                                                        if (e.target.files) uploadImage(dispatch, e.target.files[0])
                                                     }} />
                                             </div>
                                             <div className='text-center mt-6'>
@@ -760,7 +722,7 @@ const VendorProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return addProductImage()
+                                                        return addProdImage(dispatch, currentProduct.product.id, image_id, image_url)
                                                     }}
                                                 >
                                                     {!!isUploading ? 'uploading...' : isAdding ? 'Creating...' : 'Create'}
