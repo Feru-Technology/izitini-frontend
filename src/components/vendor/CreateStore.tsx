@@ -21,7 +21,7 @@ const CreateStore = () => {
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
 
-  useAuth(navigate, token, 'business')
+  useAuth('business')
 
   const [isClosed, setIsClosed] = useState(true)
   const isStatic = useMediaQuery({

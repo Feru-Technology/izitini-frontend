@@ -16,7 +16,7 @@ const ShopOrder = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
-    useAuth(navigate, token, 'business')
+    useAuth('business')
 
     // redux
     const dispatch = useDispatch()

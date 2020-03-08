@@ -4,7 +4,6 @@ import Header from '../vendor/Header'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,10 +11,7 @@ import { useUser, updateUser, changeProfileImage } from '../../api/user'
 
 const Profile = () => {
 
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
-
-    useAuth(navigate, token)
+    useAuth()
 
     const input = useRef(null)
     const dispatch = useDispatch()

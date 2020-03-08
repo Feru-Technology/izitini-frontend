@@ -22,7 +22,7 @@ const Products = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
-    useAuth(navigate, token, 'business')
+    useAuth('business')
 
     const params = useParams()
     const { id } = params

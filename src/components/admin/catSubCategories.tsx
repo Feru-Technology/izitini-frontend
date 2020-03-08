@@ -36,15 +36,13 @@ const CatSubCategories = () => {
 
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+    useAuth('admin')
 
     // redux
     const dispatch = useDispatch()
 
     const params = useParams()
     const { id } = params
-
-    const { isLoading } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

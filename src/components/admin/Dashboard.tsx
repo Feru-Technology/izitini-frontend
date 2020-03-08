@@ -10,9 +10,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const AdminDashboard = () => {
 
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+    useAuth('admin')
 
     const { isLoading } = useSelector((state: RootState) => state.profile);
 

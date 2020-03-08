@@ -1,10 +1,8 @@
-import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
@@ -17,8 +15,7 @@ import { deletingAd, deletedAd, deleteFailed } from '../../redux/admin/ads/delet
 const Ads = () => {
 
     const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+    useAuth('admin')
 
     // redux
     const dispatch = useDispatch()

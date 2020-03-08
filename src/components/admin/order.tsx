@@ -13,8 +13,8 @@ import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/orde
 const SingleOrder = () => {
 
     const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+
+    useAuth('admin')
 
     // redux
     const dispatch = useDispatch()

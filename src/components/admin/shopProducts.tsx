@@ -30,7 +30,7 @@ const ShopProducts = () => {
 
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+    useAuth('admin')
 
     const dispatch = useDispatch()
 

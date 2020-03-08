@@ -76,7 +76,7 @@ const VendorProduct = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
-    useAuth(navigate, token, 'business')
+    useAuth('business')
 
     const dispatch = useDispatch()
     const params = useParams()

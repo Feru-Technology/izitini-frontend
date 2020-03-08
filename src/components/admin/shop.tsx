@@ -23,8 +23,7 @@ import {
 const Shop = () => {
 
     const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+    useAuth('admin')
 
     const input = useRef(null)
     const { id } = useParams()

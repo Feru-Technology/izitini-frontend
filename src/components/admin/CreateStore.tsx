@@ -31,7 +31,7 @@ const CreateProduct = () => {
 
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
-  useAuth(navigate, token, 'admin')
+  useAuth('admin')
 
   const [isClosed, setIsClosed] = useState(true)
   const isStatic = useMediaQuery({

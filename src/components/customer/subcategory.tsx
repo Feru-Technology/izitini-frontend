@@ -1,18 +1,11 @@
-import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
+import { useSelector } from 'react-redux'
 import { CategoryBar } from './categoryBar'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Link, useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 import { ChevronRightIcon } from '@heroicons/react/solid'
-
-import {
-    fetchingSubCategoryProducts,
-    subCategoryProducts,
-    subCategoryProductsFailed
-} from '../../redux/subCategories/subCategoryProducts.slice'
+import { useSubCategories } from '../../api/subCategories'
 
 const Subcategory = () => {
 
@@ -20,15 +13,9 @@ const Subcategory = () => {
     const params = useParams()
     const { id } = params
 
-    // redux
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(fetchingSubCategoryProducts())
-        axiosAction('get', dispatch, subCategoryProducts, subCategoryProductsFailed, `admin/subcategory/products/${id}`)
-    }, [id, dispatch])
-
+    useSubCategories(id)
     const { isLoading, Products } = useSelector((state: RootState) => state.subCategoryProducts)
+
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
@@ -51,13 +38,12 @@ const Subcategory = () => {
 
                         {/* categories */}
                         <div className='md:mt-4 lg:mt-8 font-medium
-                grid grid-cols-2
-                lg:grid-cols-3 xl:gap-4 gap-3'>
+                        grid grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
                             {Products?.map((prod) => (
-                                <div className='my-2'>
+                                <div className='my-2' key={prod.product.id}>
                                     <Link to={`/products/p/${prod.product.id}`}>
                                         <img className='h-36  2xl:h-52 w-full bg-gray-200
-                                lg:h-40 xl:h-48'
+                                            lg:h-40 xl:h-48'
                                             src={prod.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         <div className='mt-5'>
                                             <p className='text-base md:text-lg lg:text-xl'>{prod.product.name}</p>

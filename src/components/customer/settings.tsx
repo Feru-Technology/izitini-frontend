@@ -1,17 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { useParams } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import { useAuth } from '../../utils/hooks/auth'
 import { useMediaQuery } from 'react-responsive'
-import { useNavigate, useParams } from 'react-router-dom'
 
 const Settings = () => {
 
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
-
-    useAuth(navigate, token)
+    useAuth()
 
     const params = useParams()
     const { id } = params

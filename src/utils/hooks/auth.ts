@@ -1,8 +1,12 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 
-export const useAuth = (navigate: Function, token: string | null, permission?: string) => {
+export const useAuth = (permission?: string) => {
+
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile)
     useEffect(() => {

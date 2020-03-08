@@ -3,17 +3,14 @@ import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { useSelector } from 'react-redux'
 import { useOrder } from '../../api/orders'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { useNavigate, useParams } from 'react-router-dom'
 const Order = () => {
 
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
-
-    useAuth(navigate, token)
+    useAuth()
 
     // redux
     const params = useParams()

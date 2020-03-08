@@ -13,9 +13,8 @@ import { useSelector, useDispatch } from 'react-redux'
 const MyOrders = () => {
 
     const navigate = useNavigate()
-    const token = localStorage.getItem('token')
 
-    useAuth(navigate, token)
+    useAuth()
 
     // redux
     const dispatch = useDispatch()

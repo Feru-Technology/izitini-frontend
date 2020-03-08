@@ -13,7 +13,7 @@ const MyReports = () => {
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
 
-  useAuth(navigate, token, 'business')
+  useAuth('business')
 
 
   const { isLoading } = useSelector((state: RootState) => state.profile)

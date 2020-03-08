@@ -25,7 +25,7 @@ const User = () => {
 
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth(navigate, token, 'admin')
+    useAuth('admin')
 
     const params = useParams()
     const { id } = params
