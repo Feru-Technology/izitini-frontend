@@ -1,25 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
+import { createStore } from '../../api/stores'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
+import { useCategories } from '../../api/categories'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  fetchingCategories,
-  retrievedCategories,
-  retrievedCategoryFailed
-} from '../../redux/categories/allCategories.slice'
-
-import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
 
 const CreateStore = () => {
-
-  const navigate = useNavigate()
-  const token = localStorage.getItem('token')
 
   useAuth('business')
 
@@ -31,11 +21,7 @@ const CreateStore = () => {
   // redux
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchingCategories())
-    axiosAction('get', dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
-  }, [dispatch])
-
+  useCategories()
   const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories)
 
   const [category, setCategory] = useState<string | null>(null)
@@ -44,17 +30,7 @@ const CreateStore = () => {
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  const createStore = () => {
-    dispatch(getStore())
-    axiosAction(
-      'get',
-      dispatch,
-      store,
-      storeFailed, '/shop',
-      token,
-      { category, name, about_shop, shop_email, shop_contact_no }
-    )
-  }
+
 
   const { currentStore, error } = useSelector((state: RootState) => state.store)
 
@@ -202,7 +178,7 @@ const CreateStore = () => {
                     type="button"
                     onClick={(e) => {
                       e.preventDefault()
-                      createStore()
+                      createStore(dispatch, { category, name, about_shop, shop_email, shop_contact_no })
                     }}
                   >
                     create store

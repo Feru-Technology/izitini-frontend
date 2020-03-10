@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
-import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../utils/hooks/auth'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import { Transition } from '@headlessui/react'
+import { useAuth } from '../../utils/hooks/auth'
+import { useMediaQuery } from 'react-responsive'
 
 const Coupons = () => {
-
-  const navigate = useNavigate()
-  const token = localStorage.getItem('token')
 
   useAuth('business')
 

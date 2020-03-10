@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useParams } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import { useAuth } from '../../utils/hooks/auth'
 import { useMediaQuery } from 'react-responsive'
@@ -9,9 +8,6 @@ import { useMediaQuery } from 'react-responsive'
 const Settings = () => {
 
     useAuth()
-
-    const params = useParams()
-    const { id } = params
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
