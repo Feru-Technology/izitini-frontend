@@ -30,7 +30,7 @@ const MyOrders = () => {
         query: '(min-width: 640px)',
     })
 
-    useOrders()
+    useOrders('mine')
     const { orders, error } = useSelector((state: RootState) => state.orders)
 
     return (

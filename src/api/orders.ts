@@ -5,6 +5,7 @@ import { Dispatch } from '@reduxjs/toolkit'
 import { addingToCart, cart, cartFailed } from '../redux/order/cart'
 import { getOrders, orders, ordersFailed } from '../redux/order/orders.slice'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../redux/order/order.slice'
+import { updatingOrder, updatedOrder, updateFailed } from '../redux/order/updateOrder.slice'
 
 const token = localStorage.getItem('token')
 
@@ -46,24 +47,29 @@ export const checkOut = (dispatch: Dispatch, navigate: any, order: {}) => {
     navigate('/user/orders')
 }
 
-export const useOrder = (id: any) => {
+export const useOrder = (id: any, route: string) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchingOrder())
-        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
-    }, [dispatch, id])
+        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/${route}${id}`, token)
+    }, [dispatch, id, route])
 }
 
-export const useOrders = () => {
+export const useOrders = (route: string) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getOrders())
-        axiosAction('get', dispatch, orders, ordersFailed, '/orders/mine', token)
-    }, [dispatch])
+        axiosAction('get', dispatch, orders, ordersFailed, `/orders/${route}`, token)
+    }, [dispatch, route])
 }
 
 export const allOrders = (dispatch: Dispatch, route: string) => {
     return axiosAction('get', dispatch, orders, ordersFailed, `/orders/${route}`, token)
+}
+
+export const updateOrderStatus = (dispatch: Dispatch, id: any, status: string) => {
+    dispatch(updatingOrder())
+    axiosAction('patch', dispatch, updatedOrder, updateFailed, `/orders/order/status/${status}/${id}`, token)
 }

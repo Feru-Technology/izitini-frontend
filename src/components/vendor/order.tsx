@@ -1,24 +1,18 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
-import { updatingOrder, updatedOrder, updateFailed } from '../../redux/order/updateOrder.slice'
+import { useOrder, updateOrderStatus } from '../../api/orders'
 
 const ShopOrder = () => {
 
-    const navigate = useNavigate()
-    const token = localStorage.getItem('token')
-
     useAuth('business')
 
-    // redux
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
@@ -29,20 +23,9 @@ const ShopOrder = () => {
 
     const [isClosed, setIsClosed] = useState(true)
 
+    useOrder(id, 'order/')
+    const { fetching, order } = useSelector((state: RootState) => state.order)
 
-    const { isLoading } = useSelector((state: RootState) => state.profile)
-
-    useEffect(() => {
-        dispatch(fetchingOrder())
-        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/order/${id}`, token)
-    }, [dispatch, id, token])
-
-    const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
-
-    const updateOrderStatus = (status: string) => {
-        dispatch(updatingOrder())
-        axiosAction('patch', dispatch, updatedOrder, updateFailed, `/orders/order/status/${status}/${id}`, token)
-    }
 
     const { updated } = useSelector((state: RootState) => state.updateOrder)
 
@@ -50,10 +33,9 @@ const ShopOrder = () => {
         if (updated) return window.location.reload()
     }, [updated])
 
-
     return (
         <>
-            {isLoading ? 'Loading ...' :
+            {fetching ? 'Loading ...' :
                 <div className='flex h-screen overflow-hidden bg-gray-100'>
                     <SiderBar
                         isClosed={isClosed}
@@ -174,14 +156,14 @@ const ShopOrder = () => {
                                         </div>
                                         {order.status === 'under_review' ?
                                             <div className='flex justify-start space-x-4 mt-4'>
-                                                <button type="submit" onClick={() => updateOrderStatus('approved')}
+                                                <button type="submit" onClick={() => updateOrderStatus(dispatch, id, 'approved')}
                                                     className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Accept Order</button>
 
-                                                <button type="submit" onClick={() => updateOrderStatus('rejected')}
+                                                <button type="submit" onClick={() => updateOrderStatus(dispatch, id, 'rejected')}
                                                     className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-red-500 bg-red-900 '>Reject Order</button>
                                             </div>
                                             : order.status === 'approved' ?
-                                                <button type="submit" onClick={() => updateOrderStatus('shipped')}
+                                                <button type="submit" onClick={() => updateOrderStatus(dispatch, id, 'shipped')}
                                                     className='mt-4 px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Start Shipping Process</button>
                                                 : ''}
 
