@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
+import { useOrders } from '../../api/orders'
 import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
@@ -32,13 +33,7 @@ const Orders = () => {
     const [showCompletedOrders, setShowCompletedOrders] = useState(false)
     const [showProcessingOrders, setShowProcessingOrders] = useState(false)
 
-    const { isLoading } = useSelector((state: RootState) => state.profile)
-
-    useEffect(() => {
-        dispatch(getOrders())
-        axiosAction('get', dispatch, myOrders, ordersFailed, '/orders/store', token)
-    }, [dispatch, token])
-
+    useOrders('store')
     const MyOrders = (type: string, status?: string) => {
         dispatch(getOrders())
         let url: string
@@ -50,7 +45,7 @@ const Orders = () => {
         return axiosAction('get', dispatch, myOrders, ordersFailed, url, token)
     }
 
-    const { orders, error } = useSelector((state: RootState) => state.orders)
+    const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
 
     return (
         <>
