@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import axiosAction from '../../api/apiAction'
+import { useSelector } from 'react-redux'
+import { useOrder } from '../../api/orders'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
-
 const Order = () => {
 
     const navigate = useNavigate()
@@ -18,7 +16,6 @@ const Order = () => {
     useAuth(navigate, token)
 
     // redux
-    const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
 
@@ -28,12 +25,8 @@ const Order = () => {
 
     const [isClosed, setIsClosed] = useState(true)
 
-    useEffect(() => {
-        dispatch(fetchingOrder())
-        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
-    }, [dispatch, id, token])
-
-    const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
+    useOrder(id)
+    const { order } = useSelector((state: RootState) => state.order)
 
     return (
         <>

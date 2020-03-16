@@ -9,8 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useSelector, useDispatch } from 'react-redux'
-import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/orders.slice'
-
+import { useOrders } from '../../api/orders'
 const MyOrders = () => {
 
     const navigate = useNavigate()
@@ -32,12 +31,6 @@ const MyOrders = () => {
         query: '(min-width: 640px)',
     })
 
-    useEffect(() => {
-        dispatch(getOrders())
-        axiosAction('get', dispatch, myOrders, ordersFailed, '/orders/mine', token)
-    }, [dispatch, token])
-
-
     const Orders = (type: string, status?: string) => {
         dispatch(getOrders())
         let url: string
@@ -49,6 +42,7 @@ const MyOrders = () => {
         return axiosAction('get', dispatch, myOrders, ordersFailed, url, token)
     }
 
+    useOrders()
     const { orders, error } = useSelector((state: RootState) => state.orders)
 
     return (

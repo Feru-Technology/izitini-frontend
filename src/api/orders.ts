@@ -1,9 +1,12 @@
+import { useEffect } from 'react'
 import axiosAction from './apiAction'
+import { useDispatch } from 'react-redux'
 import { Dispatch } from '@reduxjs/toolkit'
 import { addingToCart, cart, cartFailed } from '../redux/order/cart'
 import { getOrders, orders, ordersFailed } from '../redux/order/orders.slice'
-import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { fetchingOrder, fetchedOrder, fetchFailed } from '../redux/order/order.slice'
+
+
 
 const token = localStorage.getItem('token')
 
@@ -30,11 +33,32 @@ export const checkOut = (dispatch: Dispatch, navigate: any, order: {}) => {
 }
 
 export const useCart = () => {
-
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(addingToCart())
         axiosAction('get', dispatch, cart, cartFailed, '/orders/cart', token)
     }, [dispatch])
+}
+
+export const useOrder = (id: any) => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchingOrder())
+        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
+    }, [dispatch, id])
+}
+
+export const useOrders = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getOrders())
+        axiosAction('get', dispatch, orders, ordersFailed, '/orders/mine', token)
+    }, [dispatch])
+}
+
+export const allOrders = (dispatch: Dispatch, route: string) => {
+    return axiosAction('get', dispatch, orders, ordersFailed, `/orders/${route}`, token)
 }
