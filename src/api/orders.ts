@@ -25,13 +25,13 @@ export const reduceQty = (dispatch: Dispatch, order_id: string, product_id: stri
     axiosAction('patch', dispatch, cart, cartFailed, `/orders/reduce-quantity/${order_id}/${product_id}`, token)
 }
 
-// check out handler
-export const checkOut = (dispatch: Dispatch, navigate: any, order: {}) => {
-    dispatch(getOrders())
-    axiosAction('patch', dispatch, orders, ordersFailed, '/orders/checkout', token, order)
-    navigate('/user/orders')
+// add to cart
+export const addToCart = (dispatch: Dispatch, data: {}) => {
+    dispatch(addingToCart())
+    axiosAction('post', dispatch, cart, cartFailed, '/orders/add-to-cart', token, data)
 }
 
+// get cart
 export const useCart = () => {
     const dispatch = useDispatch()
 
@@ -39,6 +39,13 @@ export const useCart = () => {
         dispatch(addingToCart())
         axiosAction('get', dispatch, cart, cartFailed, '/orders/cart', token)
     }, [dispatch])
+}
+
+// check out handler
+export const checkOut = (dispatch: Dispatch, navigate: any, order: {}) => {
+    dispatch(getOrders())
+    axiosAction('patch', dispatch, orders, ordersFailed, '/orders/checkout', token, order)
+    navigate('/user/orders')
 }
 
 export const useOrder = (id: any) => {

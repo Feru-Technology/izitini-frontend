@@ -8,17 +8,13 @@ import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
+import { useProduct } from '../../api/products'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { AiFillStar, AiOutlineStar } from 'react-icons/all'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 import { addingToCart, cart, cartFailed } from '../../redux/order/cart'
-import {
-    getProduct,
-    product,
-    productFailed
-} from '../../redux/products/product.slice'
 
 const Product = () => {
 
@@ -30,10 +26,6 @@ const Product = () => {
 
     const { id } = params
 
-    useEffect(() => {
-        dispatch(getProduct())
-        axiosAction('get', dispatch, product, productFailed, `/product/${id}`)
-    }, [dispatch, id])
 
     const token = localStorage.getItem('token')
 
@@ -48,6 +40,7 @@ const Product = () => {
         })
     }
 
+    useProduct(id)
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
     const [showReview, setShowReview] = useState(false)
