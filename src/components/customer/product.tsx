@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { CategoryBar } from './categoryBar'
 import { useParams } from 'react-router-dom'
+import { addToCart } from '../../api/orders'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useProduct } from '../../api/products'
 import { HeartIcon } from '@heroicons/react/outline'
@@ -14,36 +14,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { AiFillStar, AiOutlineStar } from 'react-icons/all'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
-import { addingToCart, cart, cartFailed } from '../../redux/order/cart'
 
 const Product = () => {
 
     // redux
     const dispatch = useDispatch()
 
-    // Get ID from URL
     const params = useParams()
-
     const { id } = params
-
-
-    const token = localStorage.getItem('token')
-
-    const [quantity, setQuantity] = useState<string>('1')
-
-    const addToCart = () => {
-        dispatch(addingToCart())
-        axiosAction('post', dispatch, cart, cartFailed, '/orders/add-to-cart', token, {
-            quantity: quantity,
-            product_id: id,
-            shop_id: currentProduct?.product.shop_id
-        })
-    }
 
     useProduct(id)
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
     const [showReview, setShowReview] = useState(false)
+    const [quantity, setQuantity] = useState<string>('1')
     const [showDescription, setShowDescription] = useState(false)
     const [showReturnPolicy, setShowReturnPolicy] = useState(false)
     const [showSpecification, setShowSpecification] = useState(false)
@@ -303,7 +287,11 @@ const Product = () => {
                                                         <div className='w-2/3 md:w-full'>
                                                             <button
                                                                 className='btn bg-color text-white w-full py-2 rounded bg-dark-blue font-medium'
-                                                                onClick={() => addToCart()}
+                                                                onClick={() => addToCart(dispatch, {
+                                                                    quantity,
+                                                                    product_id: currentProduct.product.id,
+                                                                    shop_id: currentProduct.product.shop_id
+                                                                })}
                                                             >
                                                                 Add to cart
                                                             </button>
