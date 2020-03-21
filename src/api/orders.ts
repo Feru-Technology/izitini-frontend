@@ -6,8 +6,6 @@ import { addingToCart, cart, cartFailed } from '../redux/order/cart'
 import { getOrders, orders, ordersFailed } from '../redux/order/orders.slice'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../redux/order/order.slice'
 
-
-
 const token = localStorage.getItem('token')
 
 // remove order item handler
