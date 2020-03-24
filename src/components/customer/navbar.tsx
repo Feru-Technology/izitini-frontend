@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import axiosAction from '../../api/apiAction'
+import { useCart } from '../../api/orders'
+import { Fragment, useState } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store'
 import { AiOutlineHome } from 'react-icons/ai'
@@ -8,9 +9,7 @@ import backUpPImage from '../../images/profile.png'
 import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addingToCart, cart as getCart, cartFailed } from '../../redux/order/cart'
 import { BsCart3, BsSuitHeart, BsBell, BsChevronRight, BsChevronDown } from 'react-icons/bs'
 import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
 
@@ -20,18 +19,11 @@ function classNames(...classes: string[]) {
 
 export const Navbar = () => {
 
-    const navigate = useNavigate()
-
     // redux
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const token = localStorage.getItem('token')
-
-    useEffect(() => {
-        dispatch(addingToCart())
-        axiosAction('get', dispatch, getCart, cartFailed, '/orders/cart', token)
-    }, [dispatch, token])
-
+    useCart()
     const { cart } = useSelector((state: RootState) => state.cart)
 
     let cartItems: number = 0
@@ -40,7 +32,7 @@ export const Navbar = () => {
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+    const { categories } = useSelector((state: RootState) => state.categories)
 
     const [open, setOpen] = useState(false)
     const [collapse, setCollapse] = useState<string | null>(null)

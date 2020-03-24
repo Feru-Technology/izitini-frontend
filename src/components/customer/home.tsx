@@ -1,49 +1,25 @@
-import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
+import { useAds } from '../../api/ad'
 import { Link } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 import { CategoryBar } from './categoryBar'
-import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
+import { useProducts } from '../../api/products'
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 
-import {
-    useSelector,
-    useDispatch
-} from 'react-redux'
-
-import {
-    fetchingProducts,
-    retrievedProductFailed,
-    retrievedProducts
-} from '../../redux/products/allProduct.slice'
-import { fetchingAds, retrievedAds, adsFailed } from '../../redux/admin/ads/ads.slice'
-
 const Home = () => {
 
-    // redux
-    const dispatch = useDispatch()
-
     const { categories } = useSelector((state: RootState) => state.categories)
-
     const categorySection = categories.slice(0, 9)
 
-    useEffect(() => {
-        dispatch(fetchingProducts())
-        axiosAction('get', dispatch, retrievedProducts, retrievedProductFailed, '/product')
-    }, [dispatch])
+    useAds()
+    const { ads } = useSelector((state: RootState) => state.ad)
 
+    useProducts()
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
-
-
-    useEffect(() => {
-        dispatch(fetchingAds())
-        axiosAction('get', dispatch, retrievedAds, adsFailed, '/admin/ad')
-    }, [dispatch])
-
-    const { isFetching, ads } = useSelector((state: RootState) => state.ad)
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
