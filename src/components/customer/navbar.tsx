@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { logout } from '../../api/auth'
 import { useCart } from '../../api/orders'
 import { Fragment, useState } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
@@ -6,7 +7,6 @@ import { RootState } from '../../redux/store'
 import { AiOutlineHome } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import backUpPImage from '../../images/profile.png'
-import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Menu, Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -47,12 +47,6 @@ export const Navbar = () => {
     const [customer, setCustomer] = useState(false)
     const [professional, setProfessional] = useState(false)
     const [signupLink, setSignupLink] = useState<String | null>(null)
-
-    const logout = () => {
-        dispatch(loggedIn(null))
-        localStorage.clear()
-        navigate('/')
-    }
 
     return (
         <>
@@ -307,7 +301,7 @@ export const Navbar = () => {
                                                             {({ active }) => (
                                                                 <p
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                                    onClick={() => logout()}
+                                                                    onClick={() => logout(dispatch, navigate)}
                                                                 >
                                                                     Sign out
                                                                 </p>
