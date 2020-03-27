@@ -1,8 +1,13 @@
 import axios, { Method } from 'axios'
-import { Dispatch } from '@reduxjs/toolkit'
+import { ActionCreatorWithPayload, Dispatch } from '@reduxjs/toolkit'
 
 
-const axiosAction = (method: Method, dispatch: Dispatch, retrievedData: any, failed: any, route: string, token?: any, data?: object) => {
+const axiosAction = (
+    method: Method,
+    dispatch: Dispatch,
+    retrievedData: ActionCreatorWithPayload<{}, string>,
+    failed: ActionCreatorWithPayload<{}, string>,
+    route: string, token?: any, data?: object) => {
 
     const baseURL = 'http://localhost:3002'
     axios({ method, url: `${baseURL}${route}`, headers: { 'Authorization': token }, data })
