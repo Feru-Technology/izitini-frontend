@@ -4,7 +4,7 @@ import { NavigateFunction } from 'react-router-dom'
 import { login, loggedIn, loginFailed } from '../redux/profile.slice'
 
 
-export const auth = (dispatch: Dispatch<any>, operation: string, data: {}) => {
+export const auth = (dispatch: Dispatch, operation: string, data: {}) => {
 
     dispatch(login())
     axiosAction('post', dispatch, loggedIn, loginFailed, `/auth/${operation}`, '', data)
