@@ -69,19 +69,21 @@ export const Navbar = () => {
             {/* menu breakdown */}
             <div className={open ? 'sm:sr-only absolute z-10 overflow-hidden top-0 h-screen w-screen' : 'sr-only'}>
                 <div className='bg-gray-900 h-screen opacity-50 w-screen pointer-events-none overflow-hidden'></div>
-                <div className='bg-white top-0 absolute w-10/12 font-light uppercase h-screen overflow-y-scroll'>
+                <div className='bg-white top-0 absolute w-10/12 font-light h-screen overflow-y-scroll'>
                     <ul className='mt-20 text-base'>
-                        <li className=' border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                        <li className=' border-b border-gray-400 py-3 hover:text-dark-blue'>
                             <div className='flex px-1 mt-2 w-full'>
                                 <AiOutlineHome className='h-5 w-1/6' />
-                                <p className='w-7/12 hover:underline'>Home</p>
+                                <p className='w-7/12 hover:underline'>HOME</p>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
-                            <div className='flex px-1 w-full'>
+                        <li className='border-b border-gray-400 py-3'>
+
+                            <div className='flex px-1 w-full hover:text-dark-blue hover:underline'
+                                onClick={() => collapse === 'products' ? setCollapse('null') : setCollapse('products')}>
                                 <div className='flex w-11/12'>
                                     <FaTools className='h-5 w-1/6' />
-                                    <p className='w-7/12 hover:underline'>Products</p>
+                                    <p className='w-7/12 hover:underline'>PRODUCTS</p>
                                 </div>
 
                                 <div className='justify-end'>
@@ -90,12 +92,24 @@ export const Navbar = () => {
                                         : <BsChevronRight className='w-5 h-5' />}
                                 </div>
                             </div>
+
+                            <div className={collapse === 'products' ? 'text-gray-900' : 'sr-only'}>
+                                <ul className='justify-end'>
+                                    {categories.map((category) => (
+                                        <li key={category.id} className='flex hover:underline hover:text-light-blue'>
+                                            <div className='h-1 w-1/6 rounded-full'></div>
+                                            <p>{category.name}</p></li>
+                                    ))}
+                                </ul>
+                            </div>
+
                         </li>
-                        <li className='border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                        <li className='border-b border-gray-400 py-3 hover:text-dark-blue'
+                            onClick={() => collapse === 'ideas' ? setCollapse('null') : setCollapse('ideas')}>
                             <div className='flex px-1 w-full'>
                                 <div className='flex w-11/12'>
                                     <FaBuilding className='h-5 w-1/6' />
-                                    <p className='w-7/12 hover:underline'>Get Idea</p>
+                                    <p className='w-7/12 hover:underline'>GET IDEA</p>
                                 </div>
 
                                 <div>
@@ -105,7 +119,8 @@ export const Navbar = () => {
                                 </div>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                        <li className='border-b border-gray-400 py-3 hover:text-dark-blue'
+                            onClick={() => collapse === 'pros' ? setCollapse('null') : setCollapse('pros')}>
                             <div className='flex px-1 w-full'>
                                 <div className='flex w-11/12'>
                                     <FaBuilding className='h-5 w-1/6' />
