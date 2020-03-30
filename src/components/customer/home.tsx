@@ -19,6 +19,7 @@ import {
     retrievedProductFailed,
     retrievedProducts
 } from '../../redux/products/allProduct.slice'
+import { fetchingAds, retrievedAds, adsFailed } from '../../redux/admin/ads/ads.slice'
 
 const Home = () => {
 
@@ -36,7 +37,13 @@ const Home = () => {
 
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
 
-    // const productSection = products.slice(0, 10)
+
+    useEffect(() => {
+        dispatch(fetchingAds())
+        fetch(dispatch, retrievedAds, adsFailed, '/admin/ad')
+    }, [dispatch])
+
+    const { isFetching, ads } = useSelector((state: RootState) => state.ad)
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -88,18 +95,10 @@ const Home = () => {
                                 swipeable={true}
                                 showStatus={false}
                             >
-                                <div className='h-60'>
-                                    <img alt='ads' src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' />
-                                </div>
-                                <div className='h-60'>
-                                    <img alt='ads' src='https://images.pexels.com/photos/1094767/pexels-photo-1094767.jpeg' />
-                                </div>
-                                <div className='h-60'>
-                                    <img alt='ads' src='https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg' />
-                                </div>
-                                <div className='h-60'>
-                                    <img alt='ads' src='https://images.pexels.com/photos/4792488/pexels-photo-4792488.jpeg' />
-                                </div>
+                                {ads.map((ad) => (
+                                    <div className='h-60' key={ad.id}>
+                                        <img alt='ads' src={ad.big_screen_image} />
+                                    </div>))}
 
                             </Carousel>
                         </div>

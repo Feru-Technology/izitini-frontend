@@ -30,7 +30,7 @@ const MyProducts = () => {
                             {categories.map((category) => {
                                 const subCategories = category.subCategories.slice(0, 4)
                                 return (
-                                    <Link to={`/products/c/${category.name}`}>
+                                    <Link to={`/products/c/${category.name}`} key={category.id}>
                                         <div className='relative my-2'>
                                             <p className='absolute ml-2'>{category.name}</p>
                                             <img className='h-36  2xl:h-52 w-full bg-gray-200 lg:h-40 xl:h-48'
@@ -39,7 +39,7 @@ const MyProducts = () => {
                                                 <ul>
                                                     {
                                                         subCategories.map((subCat) => (
-                                                            <li className='mt-1 font-normal'>{subCat.name}</li>
+                                                            <li className='mt-1 font-normal' key={subCat.id}>{subCat.name}</li>
                                                         ))
                                                     }
                                                     <p className='text-dark-blue'>see all</p>

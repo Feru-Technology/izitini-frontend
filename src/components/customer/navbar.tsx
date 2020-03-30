@@ -7,9 +7,9 @@ import { useNavigate } from 'react-router-dom'
 import backUpPImage from '../../images/profile.png'
 import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
+import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { addingToCart, cart as getCart, cartFailed } from '../../redux/order/cart'
 import { BsCart3, BsSuitHeart, BsBell, BsChevronRight, BsChevronDown } from 'react-icons/bs'
 import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
@@ -42,8 +42,6 @@ export const Navbar = () => {
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
-    console.log(categories)
-
     const [open, setOpen] = useState(false)
     const [collapse, setCollapse] = useState<string | null>(null)
 
@@ -72,18 +70,21 @@ export const Navbar = () => {
                 <div className='bg-white top-0 absolute w-10/12 font-light h-screen overflow-y-scroll'>
                     <ul className='mt-20 text-base'>
                         <li className=' border-b border-gray-400 py-3 hover:text-dark-blue'>
-                            <div className='flex px-1 mt-2 w-full'>
+                            <div className='flex px-1 mt-2 w-full' onClick={() => {
+                                setOpen(false)
+                                return navigate('/')
+                            }}>
                                 <AiOutlineHome className='h-5 w-1/6' />
                                 <p className='w-7/12 hover:underline'>HOME</p>
                             </div>
                         </li>
                         <li className='border-b border-gray-400 py-3'>
 
-                            <div className='flex px-1 w-full hover:text-dark-blue hover:underline'
+                            <div className='flex px-1 w-full hover:text-dark-blue'
                                 onClick={() => collapse === 'products' ? setCollapse('null') : setCollapse('products')}>
-                                <div className='flex w-11/12'>
+                                <div className={`flex w-11/12 ${collapse === 'products' && 'border-b border-dark-blue'}`}>
                                     <FaTools className='h-5 w-1/6' />
-                                    <p className='w-7/12 hover:underline'>PRODUCTS</p>
+                                    <p className='w-7/12'>PRODUCTS</p>
                                 </div>
 
                                 <div className='justify-end'>
@@ -98,7 +99,10 @@ export const Navbar = () => {
                                     {categories.map((category) => (
                                         <li key={category.id} className='flex hover:underline hover:text-light-blue'>
                                             <div className='h-1 w-1/6 rounded-full'></div>
-                                            <p>{category.name}</p></li>
+                                            <p onClick={() => {
+                                                setOpen(false)
+                                                return navigate(`/products/c/${category.name}`)
+                                            }}>{category.name}</p></li>
                                     ))}
                                 </ul>
                             </div>
@@ -396,7 +400,8 @@ export const Navbar = () => {
                                                             className='font-semibold text-dark-blue text-sm lg:text-base hover:underline'>{category.name}</Link>
                                                         {sub_categories.map((subCategory) => {
                                                             return (
-                                                                <li className='font-light hover:underline hover:text-dark-blue text-sm lg:text-base'>
+                                                                <li key={subCategory.id}
+                                                                    className='font-light hover:underline hover:text-dark-blue text-sm lg:text-base'>
                                                                     <Link to={`/products/s/${subCategory.id}`}>{subCategory.name}</Link> </li>
 
                                                             )
