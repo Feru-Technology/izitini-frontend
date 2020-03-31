@@ -93,7 +93,6 @@ const CreateProduct = () => {
   }
 
   const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
-  console.log(image?.url)
   useEffect(() => {
     if (image) {
       setShop_image_url(image.url)

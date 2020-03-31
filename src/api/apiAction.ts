@@ -10,7 +10,6 @@ export const fetch = (dispatch: any, retrievedData: any, failed: any, route: str
             const ResponseErr = error.response
             const requestErr = error.request
             const configErr = error.config
-            console.log('-----------', { Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
             return ResponseErr ? dispatch(failed(ResponseErr.data))
                 : requestErr ? dispatch(failed(requestErr))
                     : configErr ? dispatch(failed(configErr))
@@ -21,14 +20,13 @@ export const fetch = (dispatch: any, retrievedData: any, failed: any, route: str
 export const post = (dispatch: any, response: any, failed: any, route: string, body: object, token?: any) => {
     Axios.post(route, body, { headers: { 'Authorization': token } })
         .then(({ data }) => {
-            data.data.token ? localStorage.setItem('token', data.data.token) : console.log(data)
+            if (data.data.token) localStorage.setItem('token', data.data.token)
             return dispatch(response(data.data))
         })
         .catch(error => {
             const ResponseErr = error.response
             const requestErr = error.request
             const configErr = error.config
-            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
             return ResponseErr ? dispatch(failed(ResponseErr.data))
                 : requestErr ? dispatch(failed(requestErr))
                     : configErr ? dispatch(failed(configErr))
@@ -43,7 +41,6 @@ export const destroy = (dispatch: any, response: any, failed: any, route: string
             const ResponseErr = error.response
             const requestErr = error.request
             const configErr = error.config
-            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
             return ResponseErr ? dispatch(failed(ResponseErr.data))
                 : requestErr ? dispatch(failed(requestErr))
                     : configErr ? dispatch(failed(configErr))
@@ -58,7 +55,6 @@ export const update = (dispatch: any, response: any, failed: any, route: string,
             const ResponseErr = error.response
             const requestErr = error.request
             const configErr = error.config
-            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
             return ResponseErr ? dispatch(failed(ResponseErr.data))
                 : requestErr ? dispatch(failed(requestErr))
                     : configErr ? dispatch(failed(configErr))
@@ -73,7 +69,6 @@ export const upload = (dispatch: any, response: any, failed: any, route: string,
             const ResponseErr = error.response
             const requestErr = error.request
             const configErr = error.config
-            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
             return ResponseErr ? dispatch(failed(ResponseErr.data))
                 : requestErr ? dispatch(failed(requestErr))
                     : configErr ? dispatch(failed(configErr))

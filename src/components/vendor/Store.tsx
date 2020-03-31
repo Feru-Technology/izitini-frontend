@@ -57,7 +57,6 @@ const Store = () => {
 
   const updateShop = () => {
     dispatch(getStore())
-    console.log({ about_shop, shop_contact_no, shop_email, name })
     update(dispatch, store, storeFailed, `/shop/${currentStore?.id}`, { about_shop, shop_contact_no, shop_email, name }, token)
   }
 
@@ -136,7 +135,6 @@ const Store = () => {
                       <input className='absolute hidden' type="file" name="img" ref={input}
                         accept='image/x-png,image/gif,image/jpeg, image/png'
                         onChange={e => {
-                          console.log(e.target)
                           if (e.target.files) changeShopImage(e.target.files[0])
                         }} />
 

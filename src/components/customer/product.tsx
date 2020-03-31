@@ -49,9 +49,6 @@ const Product = () => {
 
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
-    console.log(currentProduct)
-
-
     const [showReview, setShowReview] = useState(false)
     const [showDescription, setShowDescription] = useState(false)
     const [showReturnPolicy, setShowReturnPolicy] = useState(false)
@@ -259,8 +256,9 @@ const Product = () => {
                                                     </div>
                                                     <span className='ml-1 -mt-1 text-black text-base lg:text-lg'> (0)</span>
                                                 </div>
-                                                <p className='text-base font-bold md:text-lg'>{currentProduct?.product.brand}</p>
-                                                <p>read to ship in Kigali</p>
+                                                <p className='text-base font-semibold md:text-lg'>{currentProduct?.product.brand}</p>
+                                                <p className='text-xs md:text-sm lg:text-base'>{currentProduct?.product.description}</p>
+                                                <p className='text-xs lg:text-sm capitalize italic mt-2'>read to ship in Kigali</p>
                                                 <p>{currentProduct?.product.price}</p>
                                                 <p>{currentProduct.product.description}</p>
 
@@ -291,8 +289,7 @@ const Product = () => {
                                                                 type='number' min='1' defaultValue='1'
                                                                 className='w-full border rounded px-3 bg-white text-gray-600 py-2 appearance-none border-gray-300
                                                                 outline-none focus:ring-1 focus:border-dark-blue'
-
-                                                            // onChange={e => setName(e.target.value)}
+                                                                onChange={e => setQuantity(e.target.value)}
                                                             />
                                                         </div>
                                                     </div>
@@ -302,10 +299,10 @@ const Product = () => {
                                                         <div className='w-1/3 md:sr-only'>
                                                             <button
                                                                 className='flex btn bg-color border border-dark-blue text-dark-blue
-                                                                w-full h-9 rounded bg-dark-white items-center justify-center font-medium'
+                                                                w-full py-2 rounded bg-dark-white items-center justify-center font-medium'
                                                             >
                                                                 <span></span>
-                                                                <HeartIcon className='h-4 w-auto' aria-hidden='true' />
+                                                                <HeartIcon className='h-4 mr-1 w-auto' aria-hidden='true' />
                                                                 save
                                                             </button>
                                                         </div>
@@ -347,8 +344,7 @@ const Product = () => {
                                                 </div>
 
                                                 <Transition show={!!showDescription}>
-                                                    <div className='font-light pt-2'>{currentProduct?.product.description || `this div contain product description this
-                                                        div contain product description`}</div>
+                                                    <div className='font-light pt-2'>{currentProduct?.product.description}</div>
                                                 </Transition>
 
                                             </div>
@@ -369,7 +365,7 @@ const Product = () => {
                                                 </div>
 
                                                 <Transition show={!!showSpecification}>
-                                                    <div className='font-light pt-2'>{currentProduct?.product.specification || `Product specification Product specification`}</div>
+                                                    <div className='font-light pt-2'>{currentProduct?.product.specification}</div>
                                                 </Transition>
 
                                             </div>
@@ -392,7 +388,7 @@ const Product = () => {
                                                 </div>
 
                                                 <Transition show={!!showReturnPolicy}>
-                                                    <div className='font-light pt-2'>{currentProduct?.product.return_policy || `Shipping and return policies`}</div>
+                                                    <div className='font-light pt-2'>{currentProduct?.product.return_policy}</div>
                                                 </Transition>
 
                                             </div>

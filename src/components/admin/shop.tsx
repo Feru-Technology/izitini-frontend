@@ -132,7 +132,6 @@ const Shop = () => {
                                                 <input className='absolute hidden' type="file" name="img" ref={input}
                                                     accept='image/x-png,image/gif,image/jpeg, image/png'
                                                     onChange={e => {
-                                                        console.log(e.target)
                                                         if (e.target.files) changeShopImage(e.target.files[0])
                                                     }} />
 
