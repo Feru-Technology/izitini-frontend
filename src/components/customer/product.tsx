@@ -207,22 +207,22 @@ const Product = () => {
                                                     <Transition
                                                         show={showDescription}
                                                     >
-                                                        <p>this is the description of these product</p>
+                                                        <p className='text-sm lg:text-base capitalize'>{currentProduct.product.description}</p>
                                                     </Transition>
                                                     <Transition
                                                         show={showSpecification}
                                                     >
-                                                        <p>this is the specification of these product</p>
+                                                        <p className='text-sm lg:text-base capitalize'>{currentProduct.product.specification}</p>
                                                     </Transition>
                                                     <Transition
                                                         show={showReview}
                                                     >
-                                                        <p>this is the Review of these product</p>
+                                                        <p className='text-sm lg:text-base capitalize'>{currentProduct.product.manual}</p>
                                                     </Transition>
                                                     <Transition
                                                         show={showReturnPolicy}
                                                     >
-                                                        <p>this is the ReturnPolicy of these product</p>
+                                                        <p className='text-sm lg:text-base capitalize'>{currentProduct.product.return_policy}</p>
                                                     </Transition>
                                                 </div>
                                             </div>
