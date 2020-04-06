@@ -4,6 +4,7 @@ import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
+import { AiOutlineClose } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { fetch, post } from '../../api/apiAction'
@@ -27,6 +28,8 @@ const Ads = () => {
     })
 
     const [isClosed, setIsClosed] = useState(true)
+    const [open_image, setOpen_image] = useState<string | null>(null)
+    const [active_image, setActive_image] = useState<string | null>(null)
 
     const { isLoading } = useSelector((state: RootState) => state.profile)
 
@@ -96,24 +99,26 @@ const Ads = () => {
                                         }} />
                                 </div>
 
-                                {isFetching ? 'fetching' :
+                                {isFetching ? 'fetching ...' :
                                     <div className='grid grid-cols-2 md:grid-cols-4 xl:gap-5 gap-3'>
                                         {ads ?
                                             ads.map((ad) => (
-                                                <div className='w-full bg-gray-100 h-32 lg:h-48 relative' key={ad.id}>
+                                                <div className='w-full bg-gray-100 h-32 lg:h-48 relative' key={ad.id}
+                                                    onMouseOver={() => setActive_image(ad.id)} onMouseLeave={() => setActive_image(null)}>
                                                     <p className='text-gray-300 text-center text-xl md:text-2xl lg:text-3xl font-black mt-12 lg:mt-20 '>IZITINI</p>
-                                                    <img className='h-32 lg:h-48 w-full absolute top-0 rounded'
+                                                    <img className='h-32 lg:h-48 w-full absolute top-0 rounded bg-white'
                                                         src={ad.big_screen_image} alt='' />
 
-                                                    <div className='sr-only'>
-                                                        <div className='bg-gray-700 absolute h-32 lg:h-48 w-full top-0 rounded opacity-30'></div>
-                                                        <div className='md:top-7 lg:top-12 space-y-2 w-full absolute'>
+                                                    <div className={active_image === ad.id ? 'not-sr-only' : 'sr-only'}>
+                                                        <div className='bg-gray-700 absolute h-32 lg:h-48 w-full top-0 rounded opacity-20'></div>
+                                                        <div className='top-8 md:top-7 lg:top-12 space-y-2 w-full absolute'>
 
                                                             <div className='bg-dark-blue hover:bg-middle-blue shadow-md hover:shadow-lg text-white
-                                                    py-2 w-7/12 text-base rounded cursor-pointer text-center mx-auto lg:mt-1'>open</div>
+                                                    py-1.5 md:py-2 w-7/12 text-xs md:text-sm lg:text-base rounded cursor-pointer text-center mx-auto lg:mt-1'
+                                                                onClick={() => setOpen_image(ad.big_screen_image)} >open</div>
 
                                                             <div className='bg-red-700 hover:bg-red-500 shadow-md hover:shadow-lg text-white
-                                                    py-2 w-7/12 text-base rounded cursor-pointer text-center mx-auto'>delete</div>
+                                                    py-1.5 md:py-2 w-7/12 text-xs md:text-sm lg:text-base rounded cursor-pointer text-center mx-auto'>delete</div>
                                                         </div>
                                                     </div>
 
@@ -124,6 +129,18 @@ const Ads = () => {
                                 }
                             </div>
                         </div>
+                    </div>
+                    <div className={open_image ? 'absolute top-0 z-20' : 'hidden'}>
+                        <div className='w-screen h-screen overflow-hidden bg-gray-900 opacity-20'></div>
+                        <div className='absolute top-0 h-screen w-full'>
+                            <div className='h-screen'>
+                                <img className='max-h-screen max-w-screen mx-auto p-16' src={`${open_image}`} alt="" />
+                                <AiOutlineClose className='absolute w-10 h-10 top-6 right-1/4 text-white hover:text-black border
+                                border-gray-200 bg-gray-300'  onClick={() => setOpen_image(null)} />
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             }
