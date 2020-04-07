@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router-dom'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { fetch, post } from '../../api/apiAction'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { creatingAd, createdAd, createFailed } from '../../redux/admin/ads/createAd.slice'
+import { fetch, post, destroy } from '../../api/apiAction'
 import { fetchingAds, retrievedAds, adsFailed } from '../../redux/admin/ads/ads.slice'
+import { creatingAd, createdAd, createFailed } from '../../redux/admin/ads/createAd.slice'
+import { deletingAd, deletedAd, deleteFailed } from '../../redux/admin/ads/deleteAd.slice'
 
 const Ads = () => {
 
@@ -52,6 +53,12 @@ const Ads = () => {
 
     //@ts-ignore
     const handleInputClick = () => input.current.click()
+
+    const deleteAd = (id: string) => {
+        dispatch(deletingAd())
+        destroy(dispatch, retrievedAds, deleteFailed, `/admin/ad/${id}`, token)
+        dispatch(deletedAd(null))
+    }
 
     return (
         <>
@@ -118,7 +125,8 @@ const Ads = () => {
                                                                 onClick={() => setOpen_image(ad.big_screen_image)} >open</div>
 
                                                             <div className='bg-red-700 hover:bg-red-500 shadow-md hover:shadow-lg text-white
-                                                    py-1.5 md:py-2 w-7/12 text-xs md:text-sm lg:text-base rounded cursor-pointer text-center mx-auto'>delete</div>
+                                                    py-1.5 md:py-2 w-7/12 text-xs md:text-sm lg:text-base rounded cursor-pointer text-center mx-auto'
+                                                                onClick={() => deleteAd(ad.id)} >delete</div>
                                                         </div>
                                                     </div>
 
