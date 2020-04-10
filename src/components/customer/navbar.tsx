@@ -44,6 +44,7 @@ export const Navbar = () => {
 
     console.log(categories)
 
+    const [open, setOpen] = useState(false)
     const [showIdea, setShowIdea] = useState(false)
     const [showProduct, setShowProduct] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
@@ -62,26 +63,57 @@ export const Navbar = () => {
     }
 
     return (
-        <Disclosure as='nav' className='bg-white border-b'>
-            {({ open }) => (
-                <>
-                    <div className='mt-5 mb-5'>
+        <>
+            {/* menu breakdown */}
+            <div className={open ? 'sm:sr-only absolute z-10 overflow-hidden top-0 h-screen w-screen' : 'sr-only'}>
+                <div className='bg-gray-300 h-screen opacity-50 w-screen pointer-events-none overflow-hidden'></div>
+                <div className='bg-white top-0 absolute w-10/12 font-light uppercase h-screen overflow-y-scroll'>
+                    <ul className='mt-20'>
+                        <li className=' border-b border-gray-400 py-3'>
+                            <div className='flex px-2 mt-2'>
+                                <AiOutlineHome className='h-5 w-auto' />
+                                <p className='w-7/12'>Home</p>
+                            </div>
+                        </li>
+                        <li className='border-b border-gray-400 py-3'>
+                            <div className='flex px-2'>
+                                <p className='w-7/12'>Products</p>
+                            </div>
+                        </li>
+                        <li className='border-b border-gray-400 py-3'>
+                            <div className='flex px-2'>
+                                <p className='w-7/12'>Get Idea</p>
+                            </div>
+                        </li>
+                        <li className='border-b border-gray-400 py-3'>
+                            <div className='flex px-2'>
+                                <p className='w-7/12'>Find Pros</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <nav className={open ? 'z-40 absolute w-full bg-white top-0 border-b ' : 'bg-white border-b'}>
+                <div>
+                    <div className={'mt-5 mb-5'}>
                         <div className='flex w-full'>
 
                             {/* logo */}
-                            <div className='flex w-4/12 ml-1
+                            <div className='flex w-4/12 ml-1 
                             md:ml-8 md:w-1/12'>
 
                                 <div className=' inset-y-0 left-0 flex items-center sm:sr-only'>
+
                                     {/* Mobile menu button*/}
-                                    <Disclosure.Button className='inline-flex items-center justify-center p-2 rounded-md text-black'>
+                                    <div className='inline-flex items-center justify-center p-2 rounded-md text-black'>
                                         <span className='sr-only'>Open main menu</span>
                                         {open ? (
-                                            <XIcon className='block h-7 w-7 font-bold' aria-hidden='true' />
+                                            <XIcon className='block h-7 w-7 font-bold' aria-hidden='true' onClick={() => setOpen(false)} />
                                         ) : (
-                                            <MenuIcon className='block h-7 w-7 font-bold' aria-hidden='true' />
+                                            <MenuIcon className='block h-7 w-7 font-bold' aria-hidden='true' onClick={() => setOpen(true)} />
                                         )}
-                                    </Disclosure.Button>
+                                    </div>
                                 </div>
                                 <Link to='/'>
                                     <img
@@ -446,38 +478,10 @@ export const Navbar = () => {
                         </div>
                         {/* </div> */}
                     </Transition>
-                    {/* menu breakdown */}
-                    <Disclosure.Panel className='sm:sr-only absolute z-10 h-screen overflow-hidden'>
-                        <div className='bg-gray-300 h-screen opacity-50 top-0 w-screen pointer-events-none overflow-hidden'></div>
-                        <div className='bg-gray-50 top-0 absolute w-11/12 font-light uppercase h-screen overflow-y-scroll'>
-                            <ul>
-                                <li className='border-b border-gray-300 py-3'>
-                                    <div className='flex px-2'>
-                                        <AiOutlineHome className='h-5 w-auto' />
-                                        <p className='w-7/12'>Home</p>
-                                    </div>
-                                </li>
-                                <li className='border-b border-gray-300 py-3'>
-                                    <div className='flex px-2'>
-                                        <p className='w-7/12'>Products</p>
-                                    </div>
-                                </li>
-                                <li className='border-b border-gray-300 py-3'>
-                                    <div className='flex px-2'>
-                                        <p className='w-7/12'>Get Idea</p>
-                                    </div>
-                                </li>
-                                <li className='border-b border-gray-300 py-3'>
-                                    <div className='flex px-2'>
-                                        <p className='w-7/12'>Find Pros</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </Disclosure.Panel>
-                </>
-            )}
+                </div>
 
-        </Disclosure >
+            </nav >
+
+        </>
     )
 }

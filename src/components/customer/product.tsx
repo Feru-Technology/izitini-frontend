@@ -95,7 +95,7 @@ const Product = () => {
                             <div className='container'>
                                 <div className=''>
                                     <div className='md:flex px-5 py-6 md:py-0 md:px-12 lg:px-24 mx-auto bg-white w-full
-                                border-b md:border-b-0 border-gray-200'>
+                                        border-b md:border-b-0 border-gray-200'>
                                         <div className='md:w-2/3'>
                                             <div className='md:flex'>
 
