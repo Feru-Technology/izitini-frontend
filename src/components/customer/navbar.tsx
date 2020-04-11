@@ -9,9 +9,9 @@ import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { addingToCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+import { BsCart3, BsSuitHeart, BsBell, BsChevronRight, BsChevronDown } from 'react-icons/bs'
 import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
 
 function classNames(...classes: string[]) {
@@ -45,6 +45,8 @@ export const Navbar = () => {
     console.log(categories)
 
     const [open, setOpen] = useState(false)
+    const [collapse, setCollapse] = useState<string | null>(null)
+
     const [showIdea, setShowIdea] = useState(false)
     const [showProduct, setShowProduct] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
@@ -66,28 +68,55 @@ export const Navbar = () => {
         <>
             {/* menu breakdown */}
             <div className={open ? 'sm:sr-only absolute z-10 overflow-hidden top-0 h-screen w-screen' : 'sr-only'}>
-                <div className='bg-gray-300 h-screen opacity-50 w-screen pointer-events-none overflow-hidden'></div>
+                <div className='bg-gray-900 h-screen opacity-50 w-screen pointer-events-none overflow-hidden'></div>
                 <div className='bg-white top-0 absolute w-10/12 font-light uppercase h-screen overflow-y-scroll'>
-                    <ul className='mt-20'>
-                        <li className=' border-b border-gray-400 py-3'>
-                            <div className='flex px-2 mt-2'>
-                                <AiOutlineHome className='h-5 w-auto' />
-                                <p className='w-7/12'>Home</p>
+                    <ul className='mt-20 text-base'>
+                        <li className=' border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                            <div className='flex px-1 mt-2 w-full'>
+                                <AiOutlineHome className='h-5 w-1/6' />
+                                <p className='w-7/12 hover:underline'>Home</p>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3'>
-                            <div className='flex px-2'>
-                                <p className='w-7/12'>Products</p>
+                        <li className='border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                            <div className='flex px-1 w-full'>
+                                <div className='flex w-11/12'>
+                                    <FaTools className='h-5 w-1/6' />
+                                    <p className='w-7/12 hover:underline'>Products</p>
+                                </div>
+
+                                <div className='justify-end'>
+                                    {collapse === 'products'
+                                        ? <BsChevronDown className='w-5 h-5' />
+                                        : <BsChevronRight className='w-5 h-5' />}
+                                </div>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3'>
-                            <div className='flex px-2'>
-                                <p className='w-7/12'>Get Idea</p>
+                        <li className='border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                            <div className='flex px-1 w-full'>
+                                <div className='flex w-11/12'>
+                                    <FaBuilding className='h-5 w-1/6' />
+                                    <p className='w-7/12 hover:underline'>Get Idea</p>
+                                </div>
+
+                                <div>
+                                    {collapse === 'ideas'
+                                        ? <BsChevronDown className='w-5 h-5' />
+                                        : <BsChevronRight className='w-5 h-5' />}
+                                </div>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3'>
-                            <div className='flex px-2'>
-                                <p className='w-7/12'>Find Pros</p>
+                        <li className='border-b border-gray-400 py-3 hover:bg-dark-blue hover:text-white'>
+                            <div className='flex px-1 w-full'>
+                                <div className='flex w-11/12'>
+                                    <FaBuilding className='h-5 w-1/6' />
+                                    <p className='w-7/12 hover:underline'>Find Pros</p>
+                                </div>
+
+                                <div className='flex'>
+                                    {collapse === 'pros'
+                                        ? <BsChevronDown className='w-5 h-5' />
+                                        : <BsChevronRight className='w-5 h-5' />}
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -303,7 +332,7 @@ export const Navbar = () => {
                                 ${showProduct && ' border-dark-blue bg-gray-100'}`
                                     }
                                     >
-                                        <FaTools className='block h-3 w-3 mr-2' />Buy your products</span>
+                                        <FaTools className='h-6 w-3 mr-2' />Buy your products</span>
                                 </div>
 
                                 <div onPointerOver={() => {
@@ -316,7 +345,7 @@ export const Navbar = () => {
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
                                 ${showIdea && ' border-dark-blue bg-gray-100'}`
                                     }>
-                                        <FaBuilding className='block h-3 w-3 mr-2' />Get idea</span>
+                                        <FaBuilding className='h-6 w-3 mr-2' />Get idea</span>
                                 </div>
 
                                 <div onPointerOver={() => {
@@ -327,7 +356,7 @@ export const Navbar = () => {
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
                                 ${showProfession && 'border-dark-blue bg-gray-100'}`}>
-                                        <FaBuilding className='block h-3 w-3 mr-2' />Find a profession</span>
+                                        <FaBuilding className='h-6 w-3 mr-2' />Find a profession</span>
                                 </div>
                             </div>
 
