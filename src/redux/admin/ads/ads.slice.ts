@@ -1,39 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ICategory, HTTPError } from './category.interfaces'
+import { IAd, HTTPError } from './ads.interfaces'
 
 
-export interface CategoryState {
-    isLoading: boolean
+export interface AdsState {
+    isFetching: boolean
     error: Error | HTTPError | null
-    categories: ICategory[]
+    ads: IAd[]
 }
 
-const initialState: CategoryState = {
-    isLoading: false,
+const initialState: AdsState = {
+    isFetching: false,
     error: null,
-    categories: [],
+    ads: [],
 }
 
-// all categories in the system
-export const AdminCategoriesSlice = createSlice({
-    name: 'categories',
+// all ads in the system
+export const AdsSlice = createSlice({
+    name: 'ads',
     initialState,
     reducers: {
-        fetchingCategories: (state) => {
-            state.isLoading = true
+        fetchingAds: (state) => {
+            state.isFetching = true
         },
-        retrievedCategories: (state, { payload }) => {
-            state.isLoading = false
-            state.categories = [...payload]
+        retrievedAds: (state, { payload }) => {
+            state.isFetching = false
+            state.ads = [...payload]
         },
-        categoriesFailed: (state, { payload }) => {
-            state.isLoading = false
+        adsFailed: (state, { payload }) => {
+            state.isFetching = false
             state.error = payload
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { fetchingCategories, retrievedCategories, categoriesFailed } = AdminCategoriesSlice.actions
+export const { fetchingAds, retrievedAds, adsFailed } = AdsSlice.actions
 
-export default AdminCategoriesSlice.reducer
+export default AdsSlice.reducer

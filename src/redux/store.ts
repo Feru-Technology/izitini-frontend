@@ -1,6 +1,7 @@
 import { cartSlice } from './order/cart'
 import { profileSlice } from './profile.slice'
 import { orderSlice } from './order/order.slice'
+import { AdsSlice } from './admin/ads/ads.slice'
 import { storeSlice } from './stores/store.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { ordersSlice } from './order/orders.slice'
@@ -8,6 +9,7 @@ import { userSlice } from './admin/users/user.slice'
 import { usersSlice } from './admin/users/users.slice'
 import { productSlice } from './products/product.slice'
 import { AllStoresSlice } from './stores/allStores.slice'
+import { createAdSlice } from './admin/ads/createAd.slice'
 import { categorySlice } from './categories/category.slice'
 import { uploadImageSlice } from './image/uploadImage.slice'
 import { updateOrderSlice } from './order/updateOrder.slice'
@@ -43,6 +45,7 @@ import { updateSubCategorySlice } from './admin/subCategories/updateSubCategory.
 
 export const store = configureStore({
     reducer: {
+        ad: AdsSlice.reducer,
         cart: cartSlice.reducer,
         user: userSlice.reducer,
         store: storeSlice.reducer,
@@ -53,6 +56,7 @@ export const store = configureStore({
         product: productSlice.reducer,
         stores: AllStoresSlice.reducer,
         category: categorySlice.reducer,
+        createAd: createAdSlice.reducer,
         updateUser: updateUserSlice.reducer,
         createSize: createSizeSlice.reducer,
         deleteSize: deleteSizeSlice.reducer,

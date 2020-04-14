@@ -1,42 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ICategory, HTTPError } from './category.interfaces'
+import { IAd, HTTPError } from './ads.interfaces'
 
 
-export interface categoryState {
-    isCatLoading: boolean
+export interface adState {
+    iAdLoading: boolean
     error: Error | HTTPError | null
-    category: ICategory | null
+    ad: IAd | null
 }
 
-const initialState: categoryState = {
-    isCatLoading: false,
+const initialState: adState = {
+    iAdLoading: false,
     error: null,
-    category: null,
+    ad: null,
 }
 
-export const crateCategorySlice = createSlice({
-    name: 'category',
+export const createAdSlice = createSlice({
+    name: 'ad',
     initialState,
     reducers: {
-        createCategory: (state) => {
-            state.isCatLoading = true
-            state.category = null
+        createAd: (state) => {
+            state.iAdLoading = true
+            state.ad = null
             state.error = null
         },
-        createdCategory: (state, { payload }) => {
+        createdAd: (state, { payload }) => {
             state.error = null
-            state.isCatLoading = false
-            state.category = payload
+            state.iAdLoading = false
+            state.ad = payload
         },
         createFailed: (state, { payload }) => {
-            state.category = null
-            state.isCatLoading = false
+            state.ad = null
+            state.iAdLoading = false
             state.error = payload
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { createCategory, createdCategory, createFailed } = crateCategorySlice.actions
+export const { createAd, createdAd, createFailed } = createAdSlice.actions
 
-export default crateCategorySlice.reducer
+export default createAdSlice.reducer

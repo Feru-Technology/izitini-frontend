@@ -3,7 +3,7 @@ export interface HTTPError {
     status: number
     message: string
 }
-export interface ICategory {
+export interface IAd {
     id: string
     title: string
     is_active: boolean
