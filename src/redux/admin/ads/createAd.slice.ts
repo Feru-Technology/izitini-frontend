@@ -3,13 +3,13 @@ import { IAd, HTTPError } from './ads.interfaces'
 
 
 export interface adState {
-    iAdLoading: boolean
+    isCreating: boolean
     error: Error | HTTPError | null
     ad: IAd | null
 }
 
 const initialState: adState = {
-    iAdLoading: false,
+    isCreating: false,
     error: null,
     ad: null,
 }
@@ -18,25 +18,25 @@ export const createAdSlice = createSlice({
     name: 'ad',
     initialState,
     reducers: {
-        createAd: (state) => {
-            state.iAdLoading = true
+        creatingAd: (state) => {
+            state.isCreating = true
             state.ad = null
             state.error = null
         },
         createdAd: (state, { payload }) => {
             state.error = null
-            state.iAdLoading = false
+            state.isCreating = false
             state.ad = payload
         },
         createFailed: (state, { payload }) => {
             state.ad = null
-            state.iAdLoading = false
+            state.isCreating = false
             state.error = payload
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { createAd, createdAd, createFailed } = createAdSlice.actions
+export const { creatingAd, createdAd, createFailed } = createAdSlice.actions
 
 export default createAdSlice.reducer
