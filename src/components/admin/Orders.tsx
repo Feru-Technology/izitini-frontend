@@ -179,6 +179,12 @@ const AllOrders = () => {
                                                         className='
                                                 py-3 lg:text-base
                                     '
+                                                    >Shop</th>
+                                                    <th
+                                                        scope='col'
+                                                        className='
+                                                py-3 lg:text-base
+                                    '
                                                     >Date</th>
                                                 </tr>
                                             </thead>
@@ -198,6 +204,9 @@ const AllOrders = () => {
                                                         </td>
                                                         <td className='py-3 border'>
                                                             <p className='font-normal text-sm'>{order.status}</p>
+                                                        </td>
+                                                        <td className='py-3 border'>
+                                                            <p className='font-normal text-sm'>{order.shop.name}</p>
                                                         </td>
                                                         <td className='py-3 border'>
                                                             <p className='font-normal text-sm'>{format(new Date(order.createdAt), 'dd.MM.yyyy hh:mm')}</p>

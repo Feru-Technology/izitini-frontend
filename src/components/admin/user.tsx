@@ -129,7 +129,7 @@ const User = () => {
                                     bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                                     <div className='flex my-5 justify-center'>
                                         <div className='w-28 relative'>
-                                            <img className='w-full h-full rounded-full'
+                                            <img className='w-full h-28 rounded-full'
                                                 src={currentUser.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
 
                                             <input className='absolute hidden' type="file" name="img" ref={input}

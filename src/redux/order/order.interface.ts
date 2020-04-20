@@ -3,6 +3,7 @@ import { IUser } from '../admin/users/users.interface'
 import { IProduct } from '../products/product.interface'
 import { ISize } from '../admin/productSizes/size.interfaces'
 import { IColor } from '../admin/productColors/color.interfaces'
+import { IStore } from '../stores/store.interfaces'
 
 
 export interface HTTPError {
@@ -12,6 +13,7 @@ export interface HTTPError {
 
 export interface IOrder {
     id: string
+    shop: IStore
     status: string
     user_id: string
     is_sample: boolean
@@ -44,6 +46,7 @@ export interface ICart {
 
 export interface IOrders {
     id: string
+    shop: IStore
     status: string
     shop_id: string
     user_id: string
