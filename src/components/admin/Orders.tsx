@@ -66,7 +66,7 @@ const AllOrders = () => {
                             isClosed={isClosed}
                             setIsClosed={setIsClosed}
                             isStatic={isStatic}
-                            name={'Vendor'}
+                            name={'Admin'}
                         />
                         <Transition
                             appear={true}
@@ -81,7 +81,7 @@ const AllOrders = () => {
                             <div className='fixed inset-0 bg-black opacity-60 z-10' />
                         </Transition>
 
-                        {/* vendor orders */}
+                        {/* orders */}
                         <div className='px-2 md:px-6 lg:px-14 w-full'>
                             <p className='font-bold my-3 text-sm'>My Orders</p>
                             <div className='bg-white border border-gray-200'>

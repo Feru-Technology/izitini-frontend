@@ -66,7 +66,7 @@ const ShopOrder = () => {
                             isClosed={isClosed}
                             setIsClosed={setIsClosed}
                             isStatic={isStatic}
-                            name={''}
+                            name={'Vendor'}
                         />
                         <Transition
                             appear={true}

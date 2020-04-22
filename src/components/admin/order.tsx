@@ -52,7 +52,7 @@ const SingleOrder = () => {
                             isClosed={isClosed}
                             setIsClosed={setIsClosed}
                             isStatic={isStatic}
-                            name={''}
+                            name={'Admin'}
                         />
                         <Transition
                             appear={true}
@@ -67,7 +67,7 @@ const SingleOrder = () => {
                             <div className='fixed inset-0 bg-black opacity-60 z-10' />
                         </Transition>
 
-                        {/* customer order */}
+                        {/* order */}
                         <div className=' md:px-6 lg:px-14 w-full'>
                             <div className='flex justify-between text-sm md:text-base my-4 mx-2'>
                                 <p className='font-bold '>My Order</p>
