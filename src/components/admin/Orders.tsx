@@ -13,10 +13,9 @@ import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/o
 
 const AllOrders = () => {
 
-    const navigate = useNavigate()
     const token = localStorage.getItem('token')
-
-    useAuth(navigate, token, 'business')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
 
     // redux
     const dispatch = useDispatch()

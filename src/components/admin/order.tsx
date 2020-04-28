@@ -13,10 +13,9 @@ import { updatingOrder, updatedOrder, updateFailed } from '../../redux/order/upd
 
 const SingleOrder = () => {
 
-    const navigate = useNavigate()
     const token = localStorage.getItem('token')
-
-    useAuth(navigate, token, 'business')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
 
     // redux
     const dispatch = useDispatch()

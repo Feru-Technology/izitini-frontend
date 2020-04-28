@@ -13,6 +13,7 @@ import {
     TemplateIcon,
     UserGroupIcon
 } from '@heroicons/react/solid'
+import { ClipboardCheckIcon } from '@heroicons/react/outline'
 
 interface Isidebar {
     isClosed: boolean
@@ -140,6 +141,25 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         <BsShop className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Shops
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('orders') && 'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/orders'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Orders
                                         </p>
                                     </div>
                                 </Link>
