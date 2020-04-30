@@ -35,16 +35,16 @@ const AllOrders = () => {
 
     useEffect(() => {
         dispatch(getOrders())
-        fetch(dispatch, myOrders, ordersFailed, '/orders/store', token)
+        fetch(dispatch, myOrders, ordersFailed, '/admin/order/all', token)
     }, [dispatch, token])
 
     const MyOrders = (type: string, status?: string) => {
         dispatch(getOrders())
         let url: string
-        type === 'all' ? url = '/orders/store' :
-            type === 'processing' ? url = '/orders/processing' :
-                type === 'sample' ? url = '/orders/sample' :
-                    url = `/orders/my/${status}`
+        type === 'all' ? url = '/admin/order/all' :
+            type === 'processing' ? url = '/admin/order/processing' :
+                type === 'sample' ? url = '/admin/order/status?is_sample=true' :
+                    url = `/admin/order/status?status=${status}`
 
         return fetch(dispatch, myOrders, ordersFailed, url, token)
     }
@@ -187,7 +187,7 @@ const AllOrders = () => {
                                                 {orders.map((order) => (
                                                     <tr key={order.id}
                                                         className='text-center text-xs md:text-sm lg:text-base border text-gray-800
-                                                hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/vendor/orders/${order.id}`)}>
+                                                hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/admin/orders/${order.id}`)}>
                                                         <td className='py-3 border'>
                                                             <p className='font-normal text-sm'>
                                                                 <span className=''>{order.order_no}</span>
