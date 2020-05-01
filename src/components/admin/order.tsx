@@ -33,7 +33,7 @@ const SingleOrder = () => {
 
     useEffect(() => {
         dispatch(fetchingOrder())
-        fetch(dispatch, fetchedOrder, fetchFailed, `/orders/order/${id}`, token)
+        fetch(dispatch, fetchedOrder, fetchFailed, `/admin/order/s/${id}`, token)
     }, [dispatch, id, token])
 
     const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
