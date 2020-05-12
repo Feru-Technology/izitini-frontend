@@ -1,25 +1,26 @@
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
-import { useState, useEffect } from 'react'
-import { fetch, update } from '../../api/apiAction'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { useState, useEffect, useRef } from 'react'
+import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     user,
     getUser,
     userFailed
 } from '../../redux/admin/users/user.slice'
+import { AiFillCamera } from 'react-icons/ai'
 const User = () => {
 
-    // redux
-    const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
     const params = useParams()
     const { id } = params
+    const input = useRef(null)
+    const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -58,6 +59,19 @@ const User = () => {
         }
     }, [currentUser])
 
+
+    //@ts-ignore
+    const uploadImage = () => input.current.click()
+
+    const changeProfileImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
+        // dispatch(updatingStore())
+        // update(dispatch, updated, updateFailed, `/admin/shop/image/${id}`, formData, token)
+    }
+
+    const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
+
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>) :
@@ -95,10 +109,21 @@ const User = () => {
                                 <div className='flex flex-col min-w-0 break-words mb-6  rounded-lg w-full md:w-8/12 lg:w-1/2
                                     bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                                     <div className='flex my-5 justify-center'>
-                                        <img className='h-20 rounded-full'
-                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png' alt='profile' />
-                                    </div>
+                                        <div className='w-28 relative'>
+                                            <img className='w-full h-full rounded-full'
+                                                src={currentUser.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
 
+                                            <input className='absolute hidden' type="file" name="img" ref={input}
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    console.log(e.target)
+                                                    if (e.target.files) changeProfileImage(e.target.files[0])
+                                                }} />
+
+                                            <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
+                                            absolute bottom-0.5 right-0.5 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
+                                        </div>
+                                    </div>
                                     <div className='px-2 md:px-7'>
                                         <form className='w-full'>
                                             <div className=''>

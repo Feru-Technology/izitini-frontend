@@ -21,11 +21,10 @@ import {
 } from '../../redux/stores/updateStore.slice'
 const Shop = () => {
 
-    // redux
-    const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
     const input = useRef(null)
     const { id } = useParams()
+    const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
