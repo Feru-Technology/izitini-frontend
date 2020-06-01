@@ -14,6 +14,11 @@ import {
     getStore,
     storeFailed
 } from '../../redux/stores/store.slice'
+import {
+    updatingStore,
+    updated,
+    updateFailed
+} from '../../redux/stores/updateStore.slice'
 const Shop = () => {
 
     // redux
@@ -48,11 +53,20 @@ const Shop = () => {
 
     const changeShopImage = (file: File) => {
         const formData = new FormData()
-        console.log(file)
         formData.append('image', file)
-        dispatch(getStore())
-        update(dispatch, store, storeFailed, `/admin/shop/image/${id}`, formData, token)
+        dispatch(updatingStore())
+        update(dispatch, updated, updateFailed, `/admin/shop/image/${id}`, formData, token)
     }
+
+    const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
+
+    useEffect(() => {
+        if (updatedStore) {
+            dispatch(getStore())
+            dispatch(updated(null))
+            fetch(dispatch, store, storeFailed, `/shop/${id}`)
+        }
+    })
 
     useEffect(() => {
         if (currentStore) {
@@ -106,7 +120,7 @@ const Shop = () => {
                                     <div className='flex flex-col min-w-0 break-words mb-6  rounded-lg w-full md:w-8/12 lg:w-1/2
                                     bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                                         <div className='flex my-5 justify-center'>
-                                            <div className='w-32 h-32 relative'>
+                                            <div className='w-3/5 auto relative'>
                                                 <img className='w-full h-full rounded-lg'
                                                     src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
 
