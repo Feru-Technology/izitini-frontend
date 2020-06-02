@@ -111,9 +111,11 @@ const AdminProduct = () => {
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
     // image states
+    const [isActive, setIsActive] = useState(false)
     const [addImage, setAddImage] = useState(false)
     const [showImageDesc, setShowImageDesc] = useState(false)
     const [image_id, setImage_id] = useState<string | null>(null)
+    const [image_url, setImage_url] = useState<string | null>(null)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -122,6 +124,8 @@ const AdminProduct = () => {
 
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
+
+    console.log(currentProduct);
 
     useEffect(() => {
         if (currentProduct) {
@@ -220,13 +224,14 @@ const AdminProduct = () => {
     useEffect(() => {
         if (image) {
             setImage_id(image.id)
+            setImage_url(image.image_url)
             dispatch(uploadedImage(null))
         }
     }, [dispatch, image])
 
     const addProductImage = () => {
         dispatch(addingImage())
-        post(dispatch, addedImage, addFailed, `/admin/product/image/${id}/${image_id}`, {}, token)
+        post(dispatch, addedImage, addFailed, `/admin/product/image/${id}/${image_id}`, { image_url }, token)
     }
 
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
@@ -362,7 +367,7 @@ const AdminProduct = () => {
                                                             id='grid-state'
                                                             onChange={e => {
                                                                 updateProdStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')
-                                                                return window.location.reload()
+                                                                // return window.location.reload()
                                                             }}
                                                         >
                                                             <option className='text-center'>
@@ -521,7 +526,7 @@ const AdminProduct = () => {
                                             {/* product Colors */}
                                             <div className=' border-b border-dark-blue pb-8'>
                                                 <div className='flex space-x-2 my-4'>
-                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>ProductColors</p>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product Colors</p>
 
                                                     <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
                                                     hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
@@ -577,17 +582,26 @@ const AdminProduct = () => {
                                                     </Transition>
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+                                                    <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                            rounded relative hover:shadow-sm grope'>
+                                                        <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
+                                                        // onClick={() => removeImage(image.image.id)}
+                                                        />
+
+                                                        <img src={currentProduct.product.display_image} alt='product_image' className='h-32 rounded w-full' />
+                                                    </div>
 
                                                     {currentProduct.images.map((image) => {
                                                         return (
-                                                            <div className='bg-white border lg:px-4 font-medium text-xs md:text-sm lg:text-base
-                                                            rounded relative hover:shadow-sm'>
-                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
-                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                            <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                            rounded relative hover:shadow-sm group'>
+                                                                <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
                                                                     onClick={() => removeImage(image.image.id)}
                                                                 />
 
-                                                                <img src={image.image.image_url} alt='product_image' className='h-32 w-full object-cover' />
+                                                                <img src={image.image.image_url} alt='product_image' className='h-32 rounded w-full' />
                                                             </div>
                                                         )
                                                     })}

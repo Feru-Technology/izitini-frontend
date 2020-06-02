@@ -18,6 +18,7 @@ export interface IProduct {
     quantity: string
     image_url: string
     description: string
+    display_image: string
     return_policy: string
     specification: string
     shipping_policy: string
