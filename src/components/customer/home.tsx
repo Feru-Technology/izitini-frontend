@@ -143,7 +143,7 @@ const Home = () => {
                                 <div className='mt-2 hover:shadow-md'>
                                     <Link to={`/products/p/${p.id}`}>
                                         <img className='w-full h-32 2xl:h-52'
-                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                            src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         <p className='font-mono font-medium tracking-tighter text-md lg:text-lg'>{p.name}</p>
                                         <p className='font-normal text-xs text-gray-500'>by {p.brand}</p>
                                         <p className='font-semibold'>RWF {p.price}</p>

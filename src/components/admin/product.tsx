@@ -209,7 +209,15 @@ const AdminProduct = () => {
         return newStatus
     }
 
-    const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
+    const { newProductStatus, statusUpdateError } = useSelector((state: RootState) => state.updateProductStatus)
+
+    // refresh the page after status update
+    useEffect(() => {
+        if (newProductStatus) {
+            dispatch(updatedProductStatus(null))
+            return window.location.reload()
+        }
+    }, [dispatch, newProductStatus])
 
     // upload product image
     const uploadProductImage = (file: File) => {
@@ -245,8 +253,7 @@ const AdminProduct = () => {
 
     // if successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage || removedImgRes) {
-            dispatch(updatedProductStatus(null))
+        if (updated || newColor || newSize || deleted || deletedColorRes || newImage || removedImgRes) {
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
@@ -273,7 +280,7 @@ const AdminProduct = () => {
             setPricePerSize(null)
             setSizeQuantity(null)
         }
-    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
+    }, [dispatch, deleted, deletedColorRes, id, newColor, newSize, updated, newImage, removedImgRes])
 
     return (
         <>
@@ -340,11 +347,6 @@ const AdminProduct = () => {
                                     <div className='border border-gray-200 p-8 bg-white shadow-md rounded-md'>
                                         <form className='border-b border-dark-blue pb-8'>
                                             <div>
-                                                <Transition show={!!updateError}>
-                                                    <div className='border border-red-600 bg-red-100 mb-3'>
-                                                        <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
-                                                    </div>
-                                                </Transition>
                                                 <div className={`mb-3 w-full space-x-3 flex
                                                 ${currentProduct.product.status === 'waiting_for_review' ?
                                                         'justify-between' : 'justify-end'}`}>
@@ -365,10 +367,7 @@ const AdminProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                             id='grid-state'
-                                                            onChange={e => {
-                                                                updateProdStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')
-                                                                // return window.location.reload()
-                                                            }}
+                                                            onChange={() => updateProdStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
                                                         >
                                                             <option className='text-center'>
                                                                 {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
@@ -378,6 +377,11 @@ const AdminProduct = () => {
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <Transition show={!!updateError || !!statusUpdateError}>
+                                                    <div className='border border-red-600 bg-red-100 mb-3'>
+                                                        <span className='px-2 py-4 text-red-600'> {updateError?.message || statusUpdateError?.message} </span>
+                                                    </div>
+                                                </Transition>
                                                 <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
                                                     <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
@@ -582,15 +586,16 @@ const AdminProduct = () => {
                                                     </Transition>
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
-                                                    <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                    {currentProduct.product.display_image ?
+                                                        <div className='bg-white font-medium text-xs md:text-sm lg:text-base
                                                             rounded relative hover:shadow-sm grope'>
-                                                        <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
+                                                            <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
-                                                        // onClick={() => removeImage(image.image.id)}
-                                                        />
+                                                            // onClick={() => removeImage(image.image.id)}
+                                                            />
 
-                                                        <img src={currentProduct.product.display_image} alt='product_image' className='h-32 rounded w-full' />
-                                                    </div>
+                                                            <img src={currentProduct.product.display_image} alt='product_image' className='h-32 rounded w-full' />
+                                                        </div> : ''}
 
                                                     {currentProduct.images.map((image) => {
                                                         return (
@@ -851,7 +856,8 @@ const AdminProduct = () => {
                                                         return addProductImage()
                                                     }}
                                                 >
-                                                    {!!isUploading ? 'uploading...' : isAdding ? 'Creating...' : 'Create'}
+                                                    {!!isUploading ? <span className='flex space-x-3 justify-center'>
+                                                        <svg className="motion-reduce:hidden animate-spin h-4 w-4 mx-3 border-r-2 rounded-full"></svg> uploading...  </span> : isAdding ? 'Creating...' : 'Create'}
                                                 </button>
                                             </div>
                                         </form>

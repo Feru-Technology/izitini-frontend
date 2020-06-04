@@ -51,39 +51,18 @@ const Product = () => {
 
     console.log(currentProduct)
 
-    const data = [
-        {
-            image: 'https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A=',
-
-        },
-        {
-            image: 'https://media.istockphoto.com/photos/detail-of-broken-pipe-picture-id1074493878',
-
-        },
-        {
-            image: 'https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A=',
-
-        },
-        {
-            image: 'https://media.istockphoto.com/photos/sprinkler-installation-in-a-field-of-park-picture-id1043550948',
-
-        },
-        {
-            image: 'https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A=',
-
-        },
-        {
-            image: 'https://media.istockphoto.com/photos/rusty-burst-pipe-in-baku-botanic-garden-picture-id500598328',
-
-        },
-    ]
-
-    const [displayImage, setDisplayImage] = useState(data[0].image)
 
     const [showReview, setShowReview] = useState(false)
     const [showDescription, setShowDescription] = useState(false)
     const [showReturnPolicy, setShowReturnPolicy] = useState(false)
     const [showSpecification, setShowSpecification] = useState(false)
+    const [displayImage, setDisplayImage] = useState<string | null>(null)
+
+    useEffect(() => {
+        if (currentProduct) {
+            setDisplayImage(currentProduct.product.display_image)
+        }
+    }, [currentProduct])
 
     return (
         <div className='bg-gray-100 md:bg-white'>
@@ -118,16 +97,16 @@ const Product = () => {
                                     <div className='md:flex px-5 py-6 md:py-0 md:px-12 lg:px-24 mx-auto bg-white w-full
                                 border-b md:border-b-0 border-gray-200'>
                                         <div className='md:w-2/3'>
-                                            <div className='md:flex md:space-y-3'>
+                                            <div className='md:flex'>
 
                                                 <div className='sr-only md:not-sr-only'>
-                                                    {data.map((image) => (<div className='my-1 hover:border-black
+                                                    {currentProduct.images.map((img) => (<div className='my-1 hover:border-black
                                         '
-                                                        onPointerOver={() => setDisplayImage(image.image)}
+                                                        onPointerOver={() => setDisplayImage(img.image.image_url)}
                                                     >
                                                         <img
-                                                            src={image.image}
-                                                            className='border mr-2 w-16 lg:w-20'
+                                                            src={img.image.image_url}
+                                                            className='border mr-2 w-16 lg:w-20 h-16 lg:h-20'
                                                             alt='...'
                                                         />
                                                     </div>)
@@ -135,25 +114,27 @@ const Product = () => {
 
                                                 </div>
 
-                                                <div className='md:ml-2'>
-                                                    <img
+                                                <div className='md:ml-2 min-h-72 w-full'>
+
+                                                    {displayImage ? <img
                                                         src={displayImage}
                                                         object-fit='false'
-                                                        className='max-h-96 justify-right'
+                                                        className='max-h-96 mx-auto'
                                                         alt='product pic'
-                                                    />
+                                                    /> : ''}
                                                 </div>
 
-                                                <div className='md:sr-only flex'>
-                                                    {data.map((image) => (<div className='my-1 hover:border-black'
-                                                        onPointerOver={() => setDisplayImage(image.image)}
-                                                    >
-                                                        <img
-                                                            src={image.image}
-                                                            className='border mr-2 w-20'
-                                                            alt='...'
-                                                        />
-                                                    </div>)
+                                                <div className='md:sr-only flex space-x-4'>
+                                                    {currentProduct.images.map((img) => (
+                                                        <div className='my-5 hover:border-black'
+                                                            onPointerOver={() => setDisplayImage(img.image.image_url)}
+                                                        >
+                                                            <img
+                                                                src={img.image.image_url}
+                                                                className='border w-20 h-20'
+                                                                alt='...'
+                                                            />
+                                                        </div>)
                                                     )}
                                                 </div>
                                             </div>
@@ -161,9 +142,8 @@ const Product = () => {
                                             <div className='sr-only md:not-sr-only'>
                                                 {/* tabs */}
                                                 <div className='container mt-2'>
-                                                    <ul className='flex space-x-2 lg:space-x-5
-                                        md:font-medium md:-text-base
-                                        lg:font-bold lg:text-lg lg:space-x-12'>
+                                                    <ul className='flex space-x-2 lg:space-x-5 md:font-medium md:-text-base
+                                                    lg:font-bold lg:text-lg lg:space-x-12'>
                                                         <li className={`cursor-pointer ${showDescription && 'border-b-4 border-dark-blue'}`}
                                                             onClick={() => {
                                                                 setShowReview(false)

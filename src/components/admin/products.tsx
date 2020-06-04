@@ -247,7 +247,7 @@ const Products = () => {
                                                                 onClick={e => navigate(`/admin/products/${product.id}`)}>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
-                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
+                                                                        <img src={product.display_image || 'https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg'} alt='product'
                                                                             className='w-auto h-10' />
                                                                     </div>
                                                                     <div className='md:w-2/4'>
