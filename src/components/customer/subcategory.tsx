@@ -58,7 +58,7 @@ const Subcategory = () => {
                                     <Link to={`/products/p/${prod.product.id}`}>
                                         <img className='h-36  2xl:h-52 w-full bg-gray-200
                                 lg:h-40 xl:h-48'
-                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                            src={prod.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         <div className='mt-5'>
                                             <p className='text-base md:text-lg lg:text-xl'>{prod.product.name}</p>
                                             <p className='text-xs md:text-sm text-gray-400'>{prod.product.brand}</p>

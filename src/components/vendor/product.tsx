@@ -539,8 +539,6 @@ const VendorProduct = () => {
 
                                             </div>
 
-
-
                                             {/* product Images */}
                                             <div className=' border-b border-dark-blue pb-8'>
                                                 <div className='flex space-x-2 my-4'>
@@ -561,17 +559,27 @@ const VendorProduct = () => {
                                                     </Transition>
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+                                                    {currentProduct.product.display_image ?
+                                                        <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                            rounded relative hover:shadow-sm grope'>
+                                                            <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
+                                                            // onClick={() => removeImage(image.image.id)}
+                                                            />
+
+                                                            <img src={currentProduct.product.display_image} alt='product_image' className='h-32 rounded w-full' />
+                                                        </div> : ''}
 
                                                     {currentProduct.images.map((image) => {
                                                         return (
-                                                            <div className='bg-white border lg:px-4 font-medium text-xs md:text-sm lg:text-base
-                                                            rounded relative hover:shadow-sm'>
-                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
-                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                            <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                            rounded relative hover:shadow-sm group'>
+                                                                <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
                                                                     onClick={() => removeImage(image.image.id)}
                                                                 />
 
-                                                                <img src={image.image.image_url} alt='product_image' className='h-32 w-full object-cover' />
+                                                                <img src={image.image.image_url} alt='product_image' className='h-32 rounded w-full' />
                                                             </div>
                                                         )
                                                     })}
