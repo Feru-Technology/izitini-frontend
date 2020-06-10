@@ -43,8 +43,15 @@ const Shop = () => {
 
     const updateShop = () => {
         dispatch(getStore())
-        console.log({ about_shop, shop_contact_no, shop_email, name })
         update(dispatch, store, storeFailed, `/admin/shop/${id}`, { about_shop, shop_contact_no, shop_email, name }, token)
+    }
+
+    const changeShopImage = (file: File) => {
+        const formData = new FormData()
+        console.log(file)
+        formData.append('image', file)
+        dispatch(getStore())
+        update(dispatch, store, storeFailed, `/admin/shop/image/${id}`, formData, token)
     }
 
     useEffect(() => {
@@ -103,8 +110,12 @@ const Shop = () => {
                                                 <img className='w-full h-full rounded-lg'
                                                     src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
 
-                                                <input className='absolute hidden'
-                                                    type="file" name="img" id="" ref={input} onChange={e => e.target.files} />
+                                                <input className='' type="file" name="img" ref={input}
+                                                    accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                    onChange={e => {
+                                                        console.log(e.target)
+                                                        if (e.target.files) changeShopImage(e.target.files[0])
+                                                    }} />
 
                                                 <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
                                                 absolute bottom-0.5 right-0.5 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
