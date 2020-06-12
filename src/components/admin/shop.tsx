@@ -110,7 +110,7 @@ const Shop = () => {
                                                 <img className='w-full h-full rounded-lg'
                                                     src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
 
-                                                <input className='' type="file" name="img" ref={input}
+                                                <input className='absolute hidden' type="file" name="img" ref={input}
                                                     accept='image/x-png,image/gif,image/jpeg, image/png'
                                                     onChange={e => {
                                                         console.log(e.target)
