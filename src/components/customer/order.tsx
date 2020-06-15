@@ -65,7 +65,10 @@ const Order = () => {
 
                     {/* customer orders */}
                     <div className='px-2 md:px-6 lg:px-14 w-full'>
-                        <p className='font-bold my-3 text-sm'>My Order</p>
+                        <div className='flex justify-between text-sm md:text-base my-4 mx-2'>
+                            <p className='font-bold '>My Order</p>
+                            <p> <span className='font-bold'> status:</span> <span className='px-2 py-1 text-white bg-dark-blue rounded-lg'>{order?.status}</span> </p>
+                        </div>
                         <div className='bg-white border border-gray-200 rounded-md'>
 
                             {order ?
@@ -100,14 +103,23 @@ const Order = () => {
                                             </tr>
                                         </thead>
 
-                                        <tbody><div>{order.status}</div>
-
-
-
-                                            {order.order_items.map((item) =>
-                                            (
-                                                <tr>{item.createdAt}</tr>
-                                            ))}
+                                        <tbody>
+                                            {order.order_items.map((item) => {
+                                                return (
+                                                    <tr className='border'>
+                                                        <td className='text-center'>
+                                                            <div className='flex'>
+                                                                <img className='h-20 p-1  2xl:h-52'
+                                                                    src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                                                {item.product.name}
+                                                            </div>
+                                                        </td>
+                                                        <td className='text-center'>{item.product.price}</td>
+                                                        <td className='text-center'>{item.quantity}</td>
+                                                        <td className='text-center'>{item.details}</td>
+                                                    </tr>
+                                                )
+                                            })}
                                         </tbody>
 
                                     </table>

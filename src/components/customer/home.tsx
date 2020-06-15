@@ -151,14 +151,11 @@ const Home = () => {
                             {productSection.map((p) => (
                                 <div className='mt-2 shadow hover:shadow-lg'>
                                     <Link to={`/products/p/${p.id}`}>
-                                        <img className='bg-gray-200
-                                w-full
-                                h-32
-                                2xl:h-52' src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
-                                        <p>{p.name}</p>
-                                        <p>{p.brand}</p>
-                                        <p>Ratings</p>
-                                        <p>{p.price}</p>
+                                        <img className='bg-gray-200 w-full h-32 2xl:h-52'
+                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                        <p className='font-mono font-medium tracking-tighter text-md lg:text-lg'>{p.name}</p>
+                                        <p className='font-normal text-xs text-gray-500'>by {p.brand}</p>
+                                        <p className='font-semibold'>{p.price}</p>
                                     </Link>
                                 </div>
                             ))}
