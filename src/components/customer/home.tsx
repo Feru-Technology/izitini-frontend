@@ -113,49 +113,45 @@ const Home = () => {
                 lg:grid-cols-3
                 xl:gap-4
                 gap-3'>
-                        {categorySection.map((category) => (
-                            <Link to={`/products/c/${category.name}`}>
-                                <div className='relative my-2'>
-                                    <div className='hover:underline'>
-                                        <p className='absolute ml-2 hover:underline'>{category.name}</p>
-                                        <img className='h-36  2xl:h-52 w-full bg-gray-200
-                                        lg:h-40 xl:h-48 hover:shadow-sm'
-                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
-                                    </div>
-                                    <div className=''>
-                                        <ul>
-                                            {
-                                                category.subCategories.map((subCat) => (
-                                                    <li className='mt-1 font-light'>{subCat.name}</li>
-                                                ))
-                                            }
-                                            <p className='text-dark-blue'>see all</p>
-                                        </ul>
+                        {categorySection.map((category) => {
+                            const subCategories = category.subCategories.slice(0, 4)
+                            return (
+                                <Link to={`/products/c/${category.name}`}>
+                                    <div className='relative my-2'>
+                                        <div className='hover:underline'>
+                                            <p className='absolute ml-2 hover:underline'>{category.name}</p>
+                                            <img className='h-36  2xl:h-52 w-full bg-gray-200 lg:h-40 xl:h-48 hover:shadow-sm'
+                                                src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                        </div>
+                                        <div className=''>
+                                            <ul>
+                                                {
+                                                    subCategories.map((subCat) => (
+                                                        <li className='font-light hover:underline hover:text-dark-blue'>{subCat.name}</li>
+                                                    ))
+                                                }
+                                                <p className='text-dark-blue hover:underline'>see all</p>
+                                            </ul>
 
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            )
+                        })}
                     </div>
 
                     {/* recent updates */}
                     <div className='lg:mb-8 lg:mt-3 font-normal'>
                         <span>Recent Updates</span>
-                        <div className='
-                    grid
-                    grid-cols-2
-                    md:grid-cols-3
-                    lg:grid-cols-5
-                    gap-3
-                    '>
+                        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3'>
                             {productSection.map((p) => (
-                                <div className='mt-2 shadow hover:shadow-lg'>
+                                <div className='mt-2 hover:shadow-md'>
                                     <Link to={`/products/p/${p.id}`}>
-                                        <img className='bg-gray-200 w-full h-32 2xl:h-52'
+                                        <img className='w-full h-32 2xl:h-52'
                                             src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
                                         <p className='font-mono font-medium tracking-tighter text-md lg:text-lg'>{p.name}</p>
                                         <p className='font-normal text-xs text-gray-500'>by {p.brand}</p>
-                                        <p className='font-semibold'>{p.price}</p>
+                                        <p className='font-semibold'>RWF {p.price}</p>
                                     </Link>
                                 </div>
                             ))}
