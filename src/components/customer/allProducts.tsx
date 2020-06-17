@@ -25,34 +25,31 @@ const MyProducts = () => {
                         </div>
 
                         {/* categories */}
-                        <div className='md:mt-4 lg:mt-8 font-medium
-                grid
-                grid-cols-1
-                md:grid-cols-2
-                lg:grid-cols-3
-                xl:gap-4
-                gap-3'>
-                            {categories.map((category) => (
-                                <Link to={`/products/c/${category.name}`}>
-                                    <div className='relative my-2'>
-                                        <p className='absolute ml-2'>{category.name}</p>
-                                        <img className='h-36  2xl:h-52 w-full bg-gray-200
-                                lg:h-40 xl:h-48'
-                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
-                                        <div className=''>
-                                            <ul>
-                                                {
-                                                    category.subCategories.map((subCat) => (
-                                                        <li className='mt-1 font-normal'>{subCat.name}</li>
-                                                    ))
-                                                }
-                                                <p className='text-dark-blue'>see all</p>
-                                            </ul>
+                        <div className='md:mt-4 lg:mt-8 font-medium grid grid-cols-1
+                        md:grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
+                            {categories.map((category) => {
+                                const subCategories = category.subCategories.slice(0, 4)
+                                return (
+                                    <Link to={`/products/c/${category.name}`}>
+                                        <div className='relative my-2'>
+                                            <p className='absolute ml-2'>{category.name}</p>
+                                            <img className='h-36  2xl:h-52 w-full bg-gray-200 lg:h-40 xl:h-48'
+                                                src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
+                                            <div className=''>
+                                                <ul>
+                                                    {
+                                                        subCategories.map((subCat) => (
+                                                            <li className='mt-1 font-normal'>{subCat.name}</li>
+                                                        ))
+                                                    }
+                                                    <p className='text-dark-blue'>see all</p>
+                                                </ul>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            ))}
+                                    </Link>
+                                )
+                            })}
                         </div>
 
                     </div>

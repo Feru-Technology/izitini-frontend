@@ -107,7 +107,7 @@ const Home = () => {
 
                     {/* categories */}
                     <div className='md:mt-4 lg:mt-8 font-medium grid grid-cols-1
-                md:grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
+                    md:grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
                         {categorySection.map((category) => {
                             const subCategories = category.subCategories.slice(0, 4)
                             return (
