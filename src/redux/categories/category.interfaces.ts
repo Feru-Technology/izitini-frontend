@@ -10,5 +10,6 @@ export interface ICategory {
     subCategories: {
         id: string
         name: string
+        image_url: string
     }[]
 }
