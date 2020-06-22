@@ -30,8 +30,6 @@ const Profile = () => {
 
     const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
 
-    console.log('-------', currentUser)
-
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [tin_no, setTin_no] = useState<string>('')
@@ -41,10 +39,12 @@ const Profile = () => {
     const [full_name, setFull_name] = useState<string | null>(null)
     const [account_type, setAccount_type] = useState<string | null>(null)
 
-    // const updateUser = () => {
-    //     dispatch(getUser())
-    //     update(dispatch, user, userFailed, `/admin/user/${id}`, { tin_no, contact, email, full_name, is_verified, account_type }, token)
-    // }
+    const updateUser = () => {
+        dispatch(getUser())
+        update(dispatch, user, userFailed, '/users/profile', { tin_no, contact, email, full_name, is_verified, account_type }, token)
+    }
+
+    console.log({ tin_no, contact, email, full_name, is_verified, account_type })
 
     useEffect(() => {
         if (currentUser) {
@@ -249,7 +249,7 @@ const Profile = () => {
                                             <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    // return updateUser()
+                                                    return updateUser()
                                                 }} >
                                                 SAVE
                                             </button>
