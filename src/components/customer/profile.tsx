@@ -44,8 +44,6 @@ const Profile = () => {
         update(dispatch, user, userFailed, '/users/profile', { tin_no, contact, email, full_name, is_verified, account_type }, token)
     }
 
-    console.log({ tin_no, contact, email, full_name, is_verified, account_type })
-
     useEffect(() => {
         if (currentUser) {
             setEditMode(false)
