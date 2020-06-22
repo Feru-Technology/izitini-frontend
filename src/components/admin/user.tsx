@@ -104,7 +104,7 @@ const User = () => {
                                             <div className=''>
                                                 <Transition show={!editMode} className='space-y-6 mx-2'>
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-50'
+                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='names'>Names:</label>
                                                         <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border 
                                                 border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}

@@ -3,12 +3,13 @@ import SiderBar from './SiderBar'
 import { profile } from 'console'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
-import { update } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { update, fetch } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { getUser, user, userFailed } from '../../redux/admin/users/user.slice'
 
 const Profile = () => {
 
@@ -22,12 +23,14 @@ const Profile = () => {
         query: '(min-width: 640px)',
     })
 
-    // useEffect(() => {
-    //     dispatch(getUser())
-    //     fetch(dispatch, user, userFailed, `/users/${id}`)
-    // }, [dispatch, id])
+    useEffect(() => {
+        dispatch(getUser())
+        fetch(dispatch, user, userFailed, '/users/my/profile', token)
+    }, [dispatch, id, token])
 
     const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
+
+    console.log('-------', currentUser)
 
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
@@ -99,7 +102,7 @@ const Profile = () => {
                                     <div className=''>
                                         <Transition show={!editMode} className='space-y-6 mx-2'>
                                             <div className=''>
-                                                <label className='block font-semibold text-sm md:text-base text-gray-50'
+                                                <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                     htmlFor='names'>Names:</label>
                                                 <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border 
                                                 border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
@@ -221,17 +224,17 @@ const Profile = () => {
 
                                                 <div className='flex justify-center space-x-5 '>
                                                     <div className='space-x-1'>
-                                                        <input type="checkbox" id="true" name="true"
+                                                        <input type='checkbox' id='true' name='true'
                                                             checked={!!is_verified || false}
                                                             onClick={e => setIs_verified(true)} />
-                                                        <label htmlFor="True">True</label>
+                                                        <label htmlFor='True'>True</label>
                                                     </div>
 
                                                     <div className='space-x-1'>
-                                                        <input type="checkbox" id="false" name="false"
+                                                        <input type='checkbox' id='false' name='false'
                                                             checked={!is_verified ? true : false}
                                                             onClick={e => setIs_verified(false)} />
-                                                        <label htmlFor="False">False</label>
+                                                        <label htmlFor='False'>False</label>
                                                     </div>
                                                 </div>
                                             </div>
