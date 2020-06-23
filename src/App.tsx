@@ -7,6 +7,7 @@ import Users from './components/admin/users'
 import Cart from './components/customer/Cart'
 import Store from './components/vendor/Store'
 import Home from './components/customer/home'
+import Order from './components/customer/order'
 import Orders from './components/vendor/Orders'
 import Reports from './components/admin/reports'
 import Coupons from './components/vendor/Coupons'
@@ -65,6 +66,7 @@ function App() {
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/orders' element={<MyOrders />} />
+                <Route path='orders/:id' element={<Order />} />
                 <Route path='/signin' element={<SignInPage />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/products' element={<AllProducts />} />

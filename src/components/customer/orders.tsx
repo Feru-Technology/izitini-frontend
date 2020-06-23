@@ -184,7 +184,7 @@ const MyOrders = () => {
                                         <tbody>
                                             {orders.map((order) => (
                                                 <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800
-                                                hover:bg-gray-100 cursor-pointer '>
+                                                hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/orders/${order.id}`)}>
                                                     <td className='py-3 border'>
                                                         <p className='font-normal text-sm'>
                                                             <span className=''>{order.order_no}</span>
