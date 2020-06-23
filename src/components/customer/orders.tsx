@@ -48,7 +48,6 @@ const MyOrders = () => {
     }
 
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
-    console.log('++++++++++', orders)
 
     return (
         <div className='bg-gray-100'>

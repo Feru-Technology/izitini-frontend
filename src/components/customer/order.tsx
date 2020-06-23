@@ -21,7 +21,7 @@ const Order = () => {
 
     return (
         <>
-            <div className='flex h-screen overflow-hidden'>
+            <div className='flex h-screen overflow-hidden bg-gray-100'>
                 <SiderBar
                     isClosed={isClosed}
                     setIsClosed={setIsClosed}
@@ -48,9 +48,54 @@ const Order = () => {
                         <div className='fixed inset-0 bg-black opacity-60 z-10' />
                     </Transition>
 
-                    {/* user dashboard */}
 
-                    <div>Coming soon...</div>
+
+                    {/* customer orders */}
+                    <div className='px-2 md:px-6 lg:px-14 w-full'>
+                        <p className='font-bold my-3 text-sm'>My Orders</p>
+                        <div className='bg-white border border-gray-200 rounded-md'>
+
+                            <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
+                                <table className='w-full border-gray-200 text-gray-600'>
+                                    <thead className='bg-gray-100'>
+                                        <tr className='font-bold text-xs md:text-sm text-center border uppercase'>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >Product</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >Price</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >quantity</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >Notes</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
             </div>
