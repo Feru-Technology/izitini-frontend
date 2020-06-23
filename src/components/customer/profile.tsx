@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
-import { profile } from 'console'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
