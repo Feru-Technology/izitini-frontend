@@ -1,5 +1,8 @@
 import { IAddress } from '../adress/adress.interface'
 import { IProduct } from '../products/product.interface'
+import { ISize } from '../admin/productSizes/size.interfaces'
+import { IColor } from '../admin/productColors/color.interfaces'
+
 
 export interface HTTPError {
     status: number
@@ -11,15 +14,16 @@ export interface IOrder {
     status: string
     user_id: string
     is_sample: boolean
+    orderItems: IOrderItem[]
     shipping_address_id: string
 }
 
 export interface IOrderItem {
     id: string
+    color: IColor
+    size_id: ISize
     shop_id: string
-    size_id: string
     details: string
-    color_id: string
     quantity: string
     order_id: string
     product: IProduct
