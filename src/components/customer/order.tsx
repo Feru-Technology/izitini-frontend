@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { fetch } from '../../api/apiAction'
+import { useParams } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
 
 const Order = () => {
 
@@ -15,6 +17,11 @@ const Order = () => {
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
+    })
+
+    useEffect(() => {
+        dispatch(fetchingOrder())
+        // fetch(dispatch, fetchedOrder, fetchFailed, )
     })
 
     const [isClosed, setIsClosed] = useState(false)
