@@ -34,6 +34,11 @@ const MyOrders = () => {
         fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
     }, [dispatch, token])
 
+    const getMyProcessingOrders = () => {
+        dispatch(getOrders())
+        fetch(dispatch, myOrders, ordersFailed, '/orders/processing', token)
+    }
+
     const getMyOrders = (status: string) => {
         dispatch(getOrders())
         fetch(dispatch, myOrders, ordersFailed, `/orders/my/${status}`, token)
@@ -81,11 +86,12 @@ const MyOrders = () => {
                                             py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
-                                            setShowAllOrders(true)
-                                            setShowSampleOrders(false)
-                                            setShowRejectedOrders(false)
-                                            setShowCompletedOrders(false)
-                                            setShowProcessingOrders(false)
+                                            window.location.reload()
+                                            // setShowAllOrders(true)
+                                            // setShowSampleOrders(false)
+                                            // setShowRejectedOrders(false)
+                                            // setShowCompletedOrders(false)
+                                            // setShowProcessingOrders(false)
                                         }}
                                     >All
                                     </li>
@@ -93,6 +99,7 @@ const MyOrders = () => {
                                             py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
+                                            getMyProcessingOrders()
                                             setShowProcessingOrders(true)
                                             setShowAllOrders(false)
                                             setShowSampleOrders(false)
