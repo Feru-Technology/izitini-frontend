@@ -34,9 +34,9 @@ const MyOrders = () => {
         fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
     }, [dispatch, token])
 
-    const getMyOrders = () => {
+    const getMyOrders = (status: string) => {
         dispatch(getOrders())
-        fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
+        fetch(dispatch, myOrders, ordersFailed, `/orders/my/${status}`, token)
     }
 
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
