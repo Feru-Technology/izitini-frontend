@@ -47,7 +47,7 @@ const MyOrders = () => {
     }
 
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
-    console.log('++++++++++', orders)
+    console.log('++++++++++', error)
 
     return (
         <div className='bg-gray-100'>
@@ -203,18 +203,12 @@ const MyOrders = () => {
                                             ))}
                                         </tbody>
 
-                                    </table> : <div>no orders yet</div>}
+                                    </table> : <div className='text-center font-semibold py-10 text-gray-800'>{error?.message}</div>}
 
                             </div>
 
                         </div>
 
-                    </div>
-
-                    {/* orders */}
-
-                    <div>
-                        <div className='flex flex-col md:flex-row md:justify-center md:items-center'> </div>
                     </div>
                 </div>
             </div>
