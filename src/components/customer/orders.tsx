@@ -1,4 +1,5 @@
 import SiderBar from './SiderBar'
+import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { fetch } from '../../api/apiAction'
 import { useState, useEffect } from 'react'
@@ -47,7 +48,7 @@ const MyOrders = () => {
     }
 
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
-    console.log('++++++++++', error)
+    console.log('++++++++++', orders)
 
     return (
         <div className='bg-gray-100'>
@@ -83,7 +84,7 @@ const MyOrders = () => {
                         <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
                             <div className=' border-b border-gray-200'>
-                                <ul className='w-full text-xs flex cursor-pointer'>
+                                <ul className='w-full text-xs flex cursor-pointer uppercase'>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
@@ -152,7 +153,7 @@ const MyOrders = () => {
                                 {orders ?
                                     <table className='w-full border-gray-200 text-gray-600'>
                                         <thead className='bg-gray-100'>
-                                            <tr className='font-bold text-xs md:text-sm text-center border'>
+                                            <tr className='font-bold text-xs md:text-sm text-center border uppercase'>
                                                 <th
                                                     scope='col'
                                                     className='
@@ -176,7 +177,7 @@ const MyOrders = () => {
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >Tracking no</th>
+                                                >Date</th>
                                             </tr>
                                         </thead>
 
@@ -196,7 +197,7 @@ const MyOrders = () => {
                                                         <p className='font-normal text-sm'>{order.status}</p>
                                                     </td>
                                                     <td className='py-3 border'>
-                                                        <p className='font-normal text-sm'>{order.id}</p>
+                                                        <p className='font-normal text-sm'>{format(new Date(order.createdAt), 'dd.MM.yyyy hh:mm')}</p>
                                                     </td>
                                                 </tr>
 

@@ -40,6 +40,7 @@ export interface IOrders {
     shop_id: string
     user_id: string
     isPaid: boolean
+    createdAt: Date
     order_no: number
     address: IAddress
     sub_total: string
