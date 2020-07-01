@@ -151,39 +151,40 @@ const MyOrders = () => {
                             </div>
 
                             <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
-                                <table className='w-full border-gray-200 text-gray-600'>
-                                    <thead className='bg-gray-100'>
-                                        <tr className='font-bold text-xs md:text-sm text-center border'>
-                                            <th
-                                                scope='col'
-                                                className='
-                                                py-3 lg:text-base
-                                    '
-                                            >Order no</th>
-                                            <th
-                                                scope='col'
-                                                className='
-                                                py-3 lg:text-base
-                                    '
-                                            >Price</th>
-                                            <th
-                                                scope='col'
-                                                className='
-                                                py-3 lg:text-base
-                                    '
-                                            >Status</th>
-                                            <th
-                                                scope='col'
-                                                className='
-                                                py-3 lg:text-base
-                                    '
-                                            >Tracking no</th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>
-                                        {orders ?
-                                            orders.map((order) => (
+                                {orders ?
+                                    <table className='w-full border-gray-200 text-gray-600'>
+                                        <thead className='bg-gray-100'>
+                                            <tr className='font-bold text-xs md:text-sm text-center border'>
+                                                <th
+                                                    scope='col'
+                                                    className='
+                                                py-3 lg:text-base
+                                    '
+                                                >Order no</th>
+                                                <th
+                                                    scope='col'
+                                                    className='
+                                                py-3 lg:text-base
+                                    '
+                                                >Price</th>
+                                                <th
+                                                    scope='col'
+                                                    className='
+                                                py-3 lg:text-base
+                                    '
+                                                >Status</th>
+                                                <th
+                                                    scope='col'
+                                                    className='
+                                                py-3 lg:text-base
+                                    '
+                                                >Tracking no</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            {orders.map((order) => (
                                                 <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800
                                                 hover:bg-gray-100 cursor-pointer '>
                                                     <td className='py-3 border'>
@@ -202,10 +203,10 @@ const MyOrders = () => {
                                                     </td>
                                                 </tr>
 
-                                            )) : <div>no orders yet</div>}
-                                    </tbody>
+                                            ))}
+                                        </tbody>
 
-                                </table>
+                                    </table> : <div>no orders yet</div>}
 
                             </div>
 
