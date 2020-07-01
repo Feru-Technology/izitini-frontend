@@ -34,6 +34,11 @@ const MyOrders = () => {
         fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
     }, [dispatch, token])
 
+    const allMyOrders = () => {
+        dispatch(getOrders())
+        fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
+    }
+
     const getMyProcessingOrders = () => {
         dispatch(getOrders())
         fetch(dispatch, myOrders, ordersFailed, '/orders/processing', token)
@@ -86,12 +91,12 @@ const MyOrders = () => {
                                             py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
-                                            window.location.reload()
-                                            // setShowAllOrders(true)
-                                            // setShowSampleOrders(false)
-                                            // setShowRejectedOrders(false)
-                                            // setShowCompletedOrders(false)
-                                            // setShowProcessingOrders(false)
+                                            allMyOrders()
+                                            setShowAllOrders(true)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
                                         }}
                                     >All
                                     </li>
@@ -110,8 +115,9 @@ const MyOrders = () => {
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
-                                            setShowSampleOrders(true)
+                                            getMyOrders('sample')
                                             setShowAllOrders(false)
+                                            setShowSampleOrders(true)
                                             setShowRejectedOrders(false)
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
@@ -121,9 +127,10 @@ const MyOrders = () => {
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
-                                            setShowCompletedOrders(true)
+                                            getMyOrders('completed')
                                             setShowAllOrders(false)
                                             setShowSampleOrders(false)
+                                            setShowCompletedOrders(true)
                                             setShowRejectedOrders(false)
                                             setShowProcessingOrders(false)
                                         }}
@@ -131,9 +138,10 @@ const MyOrders = () => {
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
-                                            setShowRejectedOrders(true)
+                                            getMyOrders('rejected')
                                             setShowAllOrders(false)
                                             setShowSampleOrders(false)
+                                            setShowRejectedOrders(true)
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
                                         }}
