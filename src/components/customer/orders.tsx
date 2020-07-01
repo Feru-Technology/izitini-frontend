@@ -34,19 +34,16 @@ const MyOrders = () => {
         fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
     }, [dispatch, token])
 
-    const allMyOrders = () => {
-        dispatch(getOrders())
-        fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
-    }
 
-    const getMyProcessingOrders = () => {
+    const Orders = (type: string, status?: string) => {
         dispatch(getOrders())
-        fetch(dispatch, myOrders, ordersFailed, '/orders/processing', token)
-    }
+        let url: string
+        type === 'all' ? url = '/orders/mine' :
+            type === 'processing' ? url = '/orders/processing' :
+                type === 'sample' ? url = '/orders/sample' :
+                    url = `/orders/my/${status}`
 
-    const getMyOrders = (status: string) => {
-        dispatch(getOrders())
-        fetch(dispatch, myOrders, ordersFailed, `/orders/my/${status}`, token)
+        return fetch(dispatch, myOrders, ordersFailed, url, token)
     }
 
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
@@ -91,7 +88,7 @@ const MyOrders = () => {
                                             py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
-                                            allMyOrders()
+                                            Orders('all')
                                             setShowAllOrders(true)
                                             setShowSampleOrders(false)
                                             setShowRejectedOrders(false)
@@ -104,7 +101,7 @@ const MyOrders = () => {
                                             py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
-                                            getMyProcessingOrders()
+                                            Orders('processing')
                                             setShowProcessingOrders(true)
                                             setShowAllOrders(false)
                                             setShowSampleOrders(false)
@@ -115,7 +112,7 @@ const MyOrders = () => {
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
-                                            getMyOrders('sample')
+                                            Orders('sample')
                                             setShowAllOrders(false)
                                             setShowSampleOrders(true)
                                             setShowRejectedOrders(false)
@@ -127,7 +124,7 @@ const MyOrders = () => {
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
-                                            getMyOrders('completed')
+                                            Orders('d', 'delivered')
                                             setShowAllOrders(false)
                                             setShowSampleOrders(false)
                                             setShowCompletedOrders(true)
@@ -138,7 +135,7 @@ const MyOrders = () => {
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
-                                            getMyOrders('rejected')
+                                            Orders('r', 'rejected')
                                             setShowAllOrders(false)
                                             setShowSampleOrders(false)
                                             setShowRejectedOrders(true)
