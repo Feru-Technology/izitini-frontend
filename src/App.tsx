@@ -15,6 +15,7 @@ import MyOrders from './components/customer/orders'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyReports from './components/vendor/Reports'
+import Profile from './components/customer/profile'
 import AdminProduct from './components/admin/product'
 import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
@@ -62,6 +63,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/orders' element={<MyOrders />} />
                 <Route path='/signin' element={<SignInPage />} />
                 <Route path='/products' element={<AllProducts />} />
