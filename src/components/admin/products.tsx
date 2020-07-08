@@ -280,7 +280,7 @@ const Products = () => {
                             <Transition show={!!createMode} className='absolute'>
                                 <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
                                 </div>
-                                <div className='absolute top-1 w-full z-30 text-xs md:text-base  overflow-scroll'>
+                                <div className='absolute top-1 w-full z-30 text-xs md:text-base'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
