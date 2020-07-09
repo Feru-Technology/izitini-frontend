@@ -198,14 +198,14 @@ const SubCategories = () => {
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal'>
-                                                                        <span className='hover:underline hover:text-dark-blue'>{subCategory.name}</span>
+                                                                        <span className='hover:underline hover:text-dark-blue '>{subCategory.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <Link to={`/admin/categories/${subCategory.category.id}`}
-                                                                className='font-normal hover:underline hover:text-dark-blue'>{subCategory.category.name}</Link>
+                                                                className='font-normal hover:underline hover:text-dark-blue  cursor-pointer'>{subCategory.category.name}</Link>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
