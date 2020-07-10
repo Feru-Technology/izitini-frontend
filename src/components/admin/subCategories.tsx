@@ -198,7 +198,7 @@ const SubCategories = () => {
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal'>
-                                                                        <span className='hover:underline hover:text-dark-blue '>{subCategory.name}</span>
+                                                                        <span className='hover:underline hover:text-dark-blue  cursor-pointer'>{subCategory.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>

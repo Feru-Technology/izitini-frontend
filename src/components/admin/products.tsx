@@ -256,7 +256,7 @@ const Products = () => {
                                                             </div>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <Link to={`admin/products/shop/${product.shop.id}`}
+                                                            <Link to={`/admin/products/shop/${product.shop.id}`}
                                                                 className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'>{product.shop.name}</Link>
                                                         </td>
                                                         <td className='py-3 '>
