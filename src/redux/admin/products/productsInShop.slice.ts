@@ -3,13 +3,13 @@ import { IProduct, HTTPError } from '../../products/product.interface'
 
 export interface ProductState {
     isFetching: boolean
-    error: Error | HTTPError | null
+    fetchError: Error | HTTPError | null
     products: IProduct[]
 }
 
 const initialState: ProductState = {
     isFetching: false,
-    error: null,
+    fetchError: null,
     products: [],
 }
 
@@ -19,14 +19,18 @@ export const shopProductsSlice = createSlice({
     reducers: {
         fetchingProducts: (state) => {
             state.isFetching = true
+            state.fetchError = null
+            state.products = []
         },
         fetchedProducts: (state, { payload }) => {
             state.isFetching = false
+            state.fetchError = null
             state.products = [...payload]
         },
         fetchFailed: (state, { payload }) => {
+            state.products = []
             state.isFetching = false
-            state.error = payload
+            state.fetchError = payload
         }
     },
 })
