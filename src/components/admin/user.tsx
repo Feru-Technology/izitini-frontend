@@ -182,8 +182,8 @@ const User = () => {
                                                 <div className='w-full'>
                                                     <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='names'>Names:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 md:w-auto`}
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border
+                                                border-gray-400 focus:border-gray-800 md:w-auto px-4 py-3 rounded`}
                                                         id='grid-first-name' type='text' defaultValue={full_name || currentUser.full_name}
                                                         onChange={e => setFull_name(e.target.value)} />
                                                 </div>
@@ -191,8 +191,8 @@ const User = () => {
                                                 <div className='w-full'>
                                                     <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='contact'>Contact:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 md:w-auto`}
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border
+                                                border-gray-400 focus:border-gray-800 md:w-auto px-4 py-3 rounded`}
                                                         id='grid-last-name' type='text' defaultValue={contact || currentUser.contact}
                                                         onChange={e => setContact(e.target.value)} />
                                                 </div>
@@ -200,8 +200,8 @@ const User = () => {
                                                 <div className='w-full'>
                                                     <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Tin no'>Tin no:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 md:w-auto`}
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border
+                                                border-gray-400 focus:border-gray-800 md:w-auto px-4 py-3 rounded`}
                                                         id='grid-last-name' type='text' defaultValue={tin_no || currentUser.tin_no}
                                                         onChange={e => setTin_no(e.target.value)} />
                                                 </div>
@@ -209,8 +209,8 @@ const User = () => {
                                                 <div className='w-full'>
                                                     <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='email'>Email:</label>
-                                                    <input className='mx-4 md:mx-0 bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 md:w-auto'
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border
+                                                border-gray-400 focus:border-gray-800 md:w-aut px-4 py-3 rounded'
                                                         id='grid-last-name' type='text' defaultValue={email || currentUser.email}
                                                         onChange={e => setEmail(e.target.value)} />
                                                 </div>
@@ -220,8 +220,8 @@ const User = () => {
                                                         htmlFor='Account type'>Account:</label>
 
                                                     <select
-                                                        className='mx-4 md:mx-0 bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                        border-gray-400 focus:border-gray-800 md:w-auto'
+                                                        className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border
+                                                        border-gray-400 focus:border-gray-800 md:w-auto w-full px-4 py-3 rounded'
                                                         id='grid-state'
                                                         defaultValue={account_type || currentUser.account_type}
                                                         onChange={e => setAccount_type(e.target.value)}
