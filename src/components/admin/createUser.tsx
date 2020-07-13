@@ -108,7 +108,7 @@ const CreateCustomer = () => {
                     <input
                       type='text'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='Full Names'
                       onChange={e => setFull_name(e.target.value)}
                     />
@@ -123,7 +123,7 @@ const CreateCustomer = () => {
                     <input
                       type='text'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='contact'
                       onChange={e => setContact(e.target.value)}
                     />
@@ -138,7 +138,7 @@ const CreateCustomer = () => {
                     <input
                       type='email'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='Email'
                       onChange={e => setEmail(e.target.value)}
                     />
@@ -153,7 +153,7 @@ const CreateCustomer = () => {
                     <input
                       type='TinNo'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='TinNo'
                       onChange={e => setTin_no(e.target.value)}
                     />
