@@ -15,10 +15,10 @@ import {
     fetchFailed
 } from '../../redux/admin/products/productsInShop.slice'
 import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
+    fetchingSubCategories,
+    retrievedSubCategories,
+    fetchFailed as fetchSError
+} from '../../redux/admin/subCategories/subCategories.slice'
 import {
     creatingProduct,
     createdProduct,
@@ -44,28 +44,30 @@ const ShopProducts = () => {
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
     const [brand, setBrand] = useState<string | null>(null)
-    const [shop_id, setShop_id] = useState<string | null>(null)
+    const [subCategory, setSubCategory] = useState<string | null>(null)
 
     const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingProducts())
         fetch(dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`, token)
-    }, [dispatch, id])
+    }, [dispatch, id, token])
 
     const { isFetching, products, fetchError } = useSelector((state: RootState) => state.adminShopProducts)
     const shopName = products[0]?.shop.name
 
+    // get subcategories
     useEffect(() => {
-        dispatch(fetchingStores())
-        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+        dispatch(fetchingSubCategories())
+        fetch(dispatch, retrievedSubCategories, fetchSError, '/admin/subcategory')
     }, [dispatch])
 
-    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
+    const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
+    const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory: shopName, name, brand, unit }, token)
+        post(dispatch, createdProduct, createFailed, `/admin/product/${id}`, { subCategory, name, brand, unit }, token)
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
@@ -73,11 +75,12 @@ const ShopProducts = () => {
     useEffect(() => {
         if (product) {
             dispatch(fetchingProducts())
-            fetch(dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`)
+            fetch(dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`, token)
             dispatch(createdProduct(null))
             setCreateMode(false)
         }
-    }, [dispatch, id, product])
+    }, [dispatch, id, product, token])
+
 
     return (
         <>
@@ -221,16 +224,16 @@ const ShopProducts = () => {
 
 
                                             <div className=' w-full mb-3'>
-                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shops</h3>
+                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
                                                 <div className=' w-full mb-3'>
                                                     <select
                                                         className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
                                                         id='grid-state'
-                                                        onChange={e => setShop_id(e.target.value)}
+                                                        onChange={e => setSubCategory(e.target.value)}
                                                     >
-                                                        <option>Choose shop</option>
-                                                        {isLoading ? <h1>loading...</h1>
-                                                            : stores.map((s) => (<option value={s.id}>{s.name}</option>))}
+                                                        <option>Choose sub-category</option>
+                                                        {isSubCatLoading ? <h1>loading...</h1>
+                                                            : subCategories.map((c) => (<option>{c.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>
