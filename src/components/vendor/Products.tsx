@@ -7,7 +7,7 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import {
     fetchingProducts,
