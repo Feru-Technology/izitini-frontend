@@ -30,7 +30,7 @@ import {
     createFailed
 } from '../../redux/admin/products/createProduct.slice'
 
-const Product = () => {
+const AdminProduct = () => {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
@@ -122,4 +122,4 @@ const Product = () => {
     )
 }
 
-export default Product
+export default AdminProduct

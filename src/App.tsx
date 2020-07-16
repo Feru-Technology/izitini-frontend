@@ -15,6 +15,7 @@ import MyOrders from './components/customer/orders'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyReports from './components/vendor/Reports'
+import AdminProduct from './components/admin/product'
 import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
 import Categories from './components/admin/categories'
@@ -93,6 +94,7 @@ function App() {
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/categories' element={<Categories />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
+                <Route path='/admin/products/:id' element={<AdminProduct />} />
                 <Route path='/admin/subCategories' element={<SubCategories />} />
                 <Route path='admin/products/shop/:id' element={<ShopProducts />} />
                 <Route path='/admin/shops/create' element={<AdminCreateStore />} />
