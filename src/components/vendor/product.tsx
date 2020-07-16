@@ -90,6 +90,10 @@ const VendorProduct = () => {
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
+    // change product status
+    const [newStatus, setNewStatus] = useState<string | null>(null)
+    console.log(newStatus);
+
     useEffect(() => {
         dispatch(getProduct())
         fetch(dispatch, product, productFailed, `/product/${id}`)
@@ -269,10 +273,13 @@ const VendorProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
-                                                    // onChange={e => setShop_specialty_2(e.target.value)}
+                                                        onChange={e => setNewStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un-publish')}
                                                     >
-                                                        <option className='text-center'>{currentProduct.product.status}</option>
-                                                        <option className='text-center'>{currentProduct.product.status === 'draft' ? 'waiting_for_review' : 'draft'}</option>
+                                                        <option className='text-center'>
+                                                            {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
+                                                        </option>
+                                                        <option className='text-center'>
+                                                            {currentProduct.product.status === 'draft' ? 'Publish' : 'Un-publish'}</option>
                                                     </select>
                                                 </div>
                                                 <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
