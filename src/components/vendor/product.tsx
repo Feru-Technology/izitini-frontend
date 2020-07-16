@@ -91,8 +91,14 @@ const VendorProduct = () => {
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
     // change product status
-    const [newStatus, setNewStatus] = useState<string | null>(null)
-    console.log(newStatus);
+    const publishUnPublish = (newStatus: string) => {
+        if (newStatus === 'publish') {
+            //publish
+            return newStatus
+        }
+        // un-publish
+        return 'un=publish'
+    }
 
     useEffect(() => {
         dispatch(getProduct())
@@ -273,7 +279,7 @@ const VendorProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
-                                                        onChange={e => setNewStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un-publish')}
+                                                        onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un-publish')}
                                                     >
                                                         <option className='text-center'>
                                                             {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
