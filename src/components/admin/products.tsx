@@ -241,7 +241,8 @@ const Products = () => {
                                             {products.map((product) => (
                                                 <tbody>
                                                     <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
-                                                        <td className='py-1 '>
+                                                        <td className='py-1 hover:text-dark-blue hover:underline'
+                                                            onClick={e => navigate(`/admin/products/${product.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
                                                                     <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'

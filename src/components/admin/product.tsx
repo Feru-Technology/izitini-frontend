@@ -108,7 +108,7 @@ const AdminProduct = () => {
                                 {/* admin dashboard */}
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
-
+                                    product
                                 </div>
                             </div>
 

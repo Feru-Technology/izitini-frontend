@@ -158,33 +158,33 @@ const ShopProducts = () => {
                                                 </tr>
                                             </thead>
 
-                                            {products.map((subCat) => {
+                                            {products.map((product) => {
                                                 return (
                                                     <tbody>
                                                         <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
                                                             <td className='py-1 '>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
-                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='subCat'
+                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
                                                                             className='w-auto h-10' />
                                                                     </div>
                                                                     <div className='md:w-2/4'>
 
                                                                         <p className='font-normal text-sm'>
-                                                                            <span className=''>{subCat.name}</span>
+                                                                            <span className=''>{product.name}</span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td className='py-3 '>
                                                                 <p className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'
-                                                                    onClick={() => navigate(`/admin/shops/${subCat.shop.id}`)} >{subCat.shop.name}</p>
+                                                                    onClick={() => navigate(`/admin/shops/${product.shop.id}`)} >{product.shop.name}</p>
                                                             </td>
                                                             <td className='py-3 '>
-                                                                <p className='font-normal text-sm'>{subCat.status}</p>
+                                                                <p className='font-normal text-sm'>{product.status}</p>
                                                             </td>
                                                             <td className='py-3 '>
-                                                                <p className='font-normal text-sm'>{format(new Date(subCat.createdAt), 'dd.MM.yyyy')}</p>
+                                                                <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
                                                             </td>
                                                         </tr>
                                                     </tbody>)
