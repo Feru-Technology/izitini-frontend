@@ -7,33 +7,25 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
-    fetchingProducts,
-    fetchedProducts,
-    fetchFailed
-} from '../../redux/admin/products/products.slice'
-import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
+    product,
+    getProduct,
+    productFailed
+} from '../../redux/products/product.slice'
 import {
     fetchingSubCategories,
     retrievedSubCategories,
-    fetchFailed as fetchError
+    fetchFailed
 } from '../../redux/admin/subCategories/subCategories.slice'
-import {
-    creatingProduct,
-    createdProduct,
-    createFailed
-} from '../../redux/admin/products/createProduct.slice'
 
 const AdminProduct = () => {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const params = useParams()
+    const { id } = params
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
@@ -56,17 +48,17 @@ const AdminProduct = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-    }, [dispatch, token])
+        dispatch(getProduct())
+        fetch(dispatch, product, productFailed, `/product/${id}`)
+    }, [dispatch, id])
 
 
-    const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
+    const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
     // get subcategories
     useEffect(() => {
         dispatch(fetchingSubCategories())
-        fetch(dispatch, retrievedSubCategories, fetchError, '/admin/subcategory')
+        fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
     }, [dispatch])
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
@@ -75,8 +67,8 @@ const AdminProduct = () => {
 
     return (
         <>
-            {isFetching ? (<h1>loading ...</h1>)
-                : products ?
+            {isLoading ? (<h1>loading ...</h1>)
+                : currentProduct ?
                     (
                         <div className='flex h-screen overflow-hidden'>
                             <SiderBar
@@ -115,7 +107,7 @@ const AdminProduct = () => {
                             {/* add size to a product */}
                         </div>
                     )
-                    : navigate('/signin')
+                    : ''
 
             }
         </>
