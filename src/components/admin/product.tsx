@@ -127,80 +127,93 @@ const AdminProduct = () => {
                                                         <span className='px-2 py-4 text-red-600'> {error?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full border-b'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
                                                         htmlFor='names'>Name:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.name} />
+                                                        id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
 
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='contact'>Contact:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Unit'>Unit:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' onChange={e => setShop_contact_no(e.target.value)} defaultValue={shop_contact_no || currentProduct.shop_contact_no} />
+                                                        id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='Tin no'>About:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Tin no'>Price:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' onChange={e => setAbout_shop(e.target.value)} defaultValue={about_shop || currentProduct.about_shop || 'N/A'} />
+                                                        id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='email'>Email:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Brand'>Brand:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' onChange={e => setShop_email(e.target.value)} defaultValue={shop_email || currentProduct.shop_email} />
+                                                        id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                 </div>
 
-                                                {currentProduct.shopSpecialties.map((specialties) => (
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='Specialty type'>Specialty:</label>
-                                                        <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                            id='grid-last-name' type='text'
-                                                            value={specialties.category.name}
-                                                        />
-                                                    </div>
-                                                ))}
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Status'>Status:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                        id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
+                                                </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Manual'>Manual:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                        id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Quantity'>Quantity:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                        id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                        htmlFor='Specification'>Specification:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                        id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
                                                         htmlFor='Owner'>Owner:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text'
-                                                        value={currentProduct.owner.full_name}
+                                                        value={currentProduct.product.shop.name}
                                                     />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='Approved'>Approved:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={`${currentProduct.is_approved}`} />
-                                                </div>
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
                                                         htmlFor='created At'>created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={format(new Date(currentProduct.createdAt), 'dd.MM.yyyy')} />
+                                                        id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
                                                         htmlFor='Updated At'>Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={format(new Date(currentProduct.updatedAt), 'dd.MM.yyyy')} />
+                                                        id='grid-last-name' type='text' value={format(new Date(currentProduct.product.updatedAt), 'dd.MM.yyyy')} />
                                                 </div>
 
                                             </div>
@@ -208,41 +221,41 @@ const AdminProduct = () => {
 
                                     </form>
                                 </div>
+                                <div className='flex justify-center my-5 '>
+                                    <Transition className='flex space-x-6'
+                                        show={!!editMode}
+                                    >
+                                        <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            onClick={e => {
+                                                e.preventDefault()
+                                                return setEditMode(false)
+                                            }} >
+                                            CANCEL
+                                        </button>
+                                        <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            onClick={e => {
+                                                e.preventDefault()
+                                                // return updateShop()
+                                            }} >
+                                            SAVE
+                                        </button>
+                                    </Transition>
+                                    <Transition
+                                        show={!editMode}>
+                                        <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            onClick={e => {
+                                                e.preventDefault()
+                                                return setEditMode(true)
+                                            }} >
+                                            Edit
+                                        </button>
+                                    </Transition>
+                                </div>
                             </div>
 
                             {/* add size to a product */}
 
 
-                            <div className='flex justify-center my-5 '>
-                                <Transition className='flex space-x-6'
-                                    show={!!editMode}
-                                >
-                                    <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                        onClick={e => {
-                                            e.preventDefault()
-                                            return setEditMode(false)
-                                        }} >
-                                        CANCEL
-                                    </button>
-                                    <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                        onClick={e => {
-                                            e.preventDefault()
-                                            return updateShop()
-                                        }} >
-                                        SAVE
-                                    </button>
-                                </Transition>
-                                <Transition
-                                    show={!editMode}>
-                                    <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                        onClick={e => {
-                                            e.preventDefault()
-                                            return setEditMode(true)
-                                        }} >
-                                        Edit
-                                    </button>
-                                </Transition>
-                            </div>
                         </div>
                     )
                     : ''
