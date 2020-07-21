@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/outline'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
-import Header from '../vendor/Header'
+import Header from './Header'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
@@ -51,7 +51,7 @@ import {
     deleteColorFailed
 } from '../../redux/admin/productColors/DeleteColor.slice'
 
-const AdminProduct = () => {
+const VendorProduct = () => {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
@@ -208,7 +208,7 @@ const AdminProduct = () => {
                                     isClosed={isClosed}
                                     setIsClosed={setIsClosed}
                                     isStatic={isStatic}
-                                    name={'Admin'}
+                                    name={'Vendor'}
                                 />
                                 <Transition
                                     appear={true}
@@ -661,4 +661,4 @@ const AdminProduct = () => {
     )
 }
 
-export default AdminProduct
+export default VendorProduct

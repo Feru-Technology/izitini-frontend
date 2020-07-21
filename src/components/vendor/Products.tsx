@@ -40,13 +40,6 @@ const Products = () => {
 
     const navigate = useNavigate()
 
-
-    const activeProduct = (newProduct: IProduct) => {
-        dispatch(product(newProduct))
-        const { id } = newProduct
-        return navigate(`/products/${id}`)
-    }
-
     return (
         <div className='flex h-screen overflow-hidden'>
             <SiderBar
@@ -135,7 +128,7 @@ const Products = () => {
                                                     ? (<h1>loading ...</h1>)
                                                     : (products.map((product) => (
                                                         <tr className='hover:bg-gray-100' key={product.id}
-                                                            onClick={e => activeProduct(product)}>
+                                                            onClick={e => navigate(`/vendor/products/${product.id}`)}>
                                                             <td className='pl-3 w-5/12 py-4'>
                                                                 <div className='flex items-center'>
                                                                     <div className='flex-shrink-0 h-10 w-10'>

@@ -20,6 +20,7 @@ import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
 import Categories from './components/admin/categories'
 import AdminSettings from './components/admin/Settings'
+import VendorProduct from './components/vendor/product'
 import AdminDashboard from './components/admin/Dashboard'
 import NotFound from './components/customer/NotFoundPage'
 import CreateStore from './components/vendor/CreateStore'
@@ -81,6 +82,7 @@ function App() {
                 <Route path='/vendor/settings' element={<Settings />} />
                 <Route path='/vendor/products' element={<MyProducts />} />
                 <Route path='/vendor/create-store' element={<CreateStore />} />
+                <Route path='/vendor/products/:id' element={<VendorProduct />} />
                 <Route path='/vendor/create-product' element={<CreateProduct />} />
 
                 <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
