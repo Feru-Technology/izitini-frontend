@@ -119,8 +119,33 @@ const AdminProduct = () => {
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
+
+                                    <div className=' my-5 '>
+                                        <Transition className='flex space-x-6'
+                                            show={!!editMode}
+                                        >
+                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold'
+                                                onClick={e => {
+                                                    e.preventDefault()
+                                                    return setEditMode(false)
+                                                }} >
+                                                CANCEL
+                                            </button>
+                                        </Transition>
+                                        <Transition
+                                            show={!editMode}>
+                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold'
+                                                onClick={e => {
+                                                    e.preventDefault()
+                                                    return setEditMode(true)
+                                                }} >
+                                                Edit
+                                            </button>
+                                        </Transition>
+                                    </div>
+
                                     <form action=''>
-                                        <div className='flex md:justify-center'>
+                                        <div className=''>
                                             <div className='space-y-6 mx-2'>
                                                 <Transition show={!!error}>
                                                     <div className='border border-red-600 bg-red-100'>
@@ -128,7 +153,7 @@ const AdminProduct = () => {
                                                     </div>
                                                 </Transition>
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='names'>Name:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
@@ -137,7 +162,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Unit'>Unit:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
@@ -145,7 +170,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Tin no'>Price:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
@@ -153,7 +178,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Brand'>Brand:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
@@ -161,7 +186,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Status'>Status:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                     border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
@@ -169,7 +194,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Specification'>Specs:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                     border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
@@ -177,7 +202,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Manual'>Manual:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                     border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
@@ -185,7 +210,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Quantity'>Quantity:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                     border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
@@ -193,7 +218,7 @@ const AdminProduct = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Owner'>Owner:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -202,14 +227,14 @@ const AdminProduct = () => {
                                                     />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='created At'>created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Updated At'>Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -237,17 +262,7 @@ const AdminProduct = () => {
                                                 e.preventDefault()
                                                 // return updateShop()
                                             }} >
-                                            SAVE
-                                        </button>
-                                    </Transition>
-                                    <Transition
-                                        show={!editMode}>
-                                        <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                            onClick={e => {
-                                                e.preventDefault()
-                                                return setEditMode(true)
-                                            }} >
-                                            Edit
+                                            SAVE CHANGES
                                         </button>
                                     </Transition>
                                 </div>
