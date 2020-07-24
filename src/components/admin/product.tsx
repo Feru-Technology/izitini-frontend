@@ -156,7 +156,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='names'>Name:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2 ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
 
                                                 </div>
@@ -165,7 +165,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Unit'>Unit:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2 ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
@@ -173,7 +173,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Tin no'>Price:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2 ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                 </div>
 
@@ -181,7 +181,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Brand'>Brand:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                 </div>
 
@@ -189,7 +189,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Status'>Status:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
                                                 </div>
 
@@ -197,7 +197,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Specification'>Specs:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
@@ -205,7 +205,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Manual'>Manual:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual} />
                                                 </div>
 
@@ -213,7 +213,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Quantity'>Quantity:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                 </div>
 
@@ -221,7 +221,7 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Owner'>Owner:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
                                                         id='grid-last-name' type='text'
                                                         value={currentProduct.product.shop.name}
                                                     />
@@ -230,14 +230,14 @@ const AdminProduct = () => {
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='created At'>created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
                                                         htmlFor='Updated At'>Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
+                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.updatedAt), 'dd.MM.yyyy')} />
                                                 </div>
 
@@ -245,26 +245,26 @@ const AdminProduct = () => {
                                         </div>
 
                                     </form>
-                                </div>
-                                <div className='flex justify-center my-5 '>
-                                    <Transition className='flex space-x-6'
-                                        show={!!editMode}
-                                    >
-                                        <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                            onClick={e => {
-                                                e.preventDefault()
-                                                return setEditMode(false)
-                                            }} >
-                                            CANCEL
-                                        </button>
-                                        <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                            onClick={e => {
-                                                e.preventDefault()
-                                                // return updateShop()
-                                            }} >
-                                            SAVE CHANGES
-                                        </button>
-                                    </Transition>
+                                    <div className=' my-5 '>
+                                        <Transition className='flex space-x-6'
+                                            show={!!editMode}
+                                        >
+                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                onClick={e => {
+                                                    e.preventDefault()
+                                                    return setEditMode(false)
+                                                }} >
+                                                CANCEL
+                                            </button>
+                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                onClick={e => {
+                                                    e.preventDefault()
+                                                    // return updateShop()
+                                                }} >
+                                                SAVE CHANGES
+                                            </button>
+                                        </Transition>
+                                    </div>
                                 </div>
                             </div>
 
