@@ -98,8 +98,6 @@ const AdminProduct = () => {
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
-    console.log(currentProduct)
-
     useEffect(() => {
         if (currentProduct) {
             setEditMode(false)

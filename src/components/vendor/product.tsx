@@ -95,10 +95,7 @@ const VendorProduct = () => {
         fetch(dispatch, product, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
-
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
-
-    console.log(currentProduct)
 
     useEffect(() => {
         if (currentProduct) {
