@@ -185,9 +185,15 @@ const AdminProduct = () => {
                 productFailed,
                 `/product/${id}`)
 
+            setSize(null)
+            setAddSize(false)
             setEditMode(false)
             setAddColor(false)
-            setAddSize(false)
+            setColorName(null)
+            setColorName(null)
+            setPricePerColor(null)
+            setPricePerSize(null)
+            setSizeQuantity(null)
         }
     }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated])
 

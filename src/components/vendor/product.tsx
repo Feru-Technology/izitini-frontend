@@ -125,7 +125,7 @@ const VendorProduct = () => {
 
     const updateProduct = () => {
         dispatch(updatingProduct())
-        update(dispatch, updatedProduct, updateFailed, `/admin/product/${id}`, { name, unit, price, brand, status, manual, quantity, specification }, token)
+        update(dispatch, updatedProduct, updateFailed, `/product/${id}`, { name, unit, price, brand, status, manual, quantity, specification }, token)
     }
 
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
@@ -133,7 +133,7 @@ const VendorProduct = () => {
     // create product size
     const createSize = () => {
         dispatch(creatingSize())
-        post(dispatch, createdSize, createFailed, `/admin/product/size/${id}`, {
+        post(dispatch, createdSize, createFailed, `/product/size/${id}`, {
             size,
             price: pricePerSize,
             quantity: sizeQuantity
@@ -144,7 +144,7 @@ const VendorProduct = () => {
 
     const createColor = () => {
         dispatch(creatingColor())
-        post(dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, {
+        post(dispatch, createdColor, createColorFailed, `/product/color/${id}`, {
             name: colorName,
             price: pricePerColor,
             quantity: colorQuantity,
@@ -156,7 +156,7 @@ const VendorProduct = () => {
     // remove size from product
     const deleteSize = (size_id: string) => {
         dispatch(deletingSize())
-        destroy(dispatch, deletedSize, deleteFailed, `/admin/product/size/${id}/${size_id}`, token)
+        destroy(dispatch, deletedSize, deleteFailed, `/product/size/${id}/${size_id}`, token)
     }
 
     const { deleted } = useSelector((state: RootState) => state.deleteSize)
@@ -164,10 +164,11 @@ const VendorProduct = () => {
     // remove color from product
     const deleteColor = (color_id: string) => {
         dispatch(deletingColor())
-        destroy(dispatch, deletedColor, deleteColorFailed, `/admin/product/color/${id}/${color_id}`, token)
+        destroy(dispatch, deletedColor, deleteColorFailed, `/product/color/${id}/${color_id}`, token)
     }
 
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
+
 
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
@@ -185,9 +186,15 @@ const VendorProduct = () => {
                 productFailed,
                 `/product/${id}`)
 
+            setSize(null)
+            setAddSize(false)
             setEditMode(false)
             setAddColor(false)
-            setAddSize(false)
+            setColorName(null)
+            setColorName(null)
+            setPricePerColor(null)
+            setPricePerSize(null)
+            setSizeQuantity(null)
         }
     }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated])
 
