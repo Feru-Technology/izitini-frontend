@@ -46,8 +46,6 @@ const AdminProduct = () => {
     const [quantity, setQuantity] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
 
-    const navigate = useNavigate()
-
     useEffect(() => {
         dispatch(getProduct())
         fetch(dispatch, product, productFailed, `/product/${id}`)
@@ -57,7 +55,6 @@ const AdminProduct = () => {
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
     console.log('===========', currentProduct)
-
 
     useEffect(() => {
         if (currentProduct) {
