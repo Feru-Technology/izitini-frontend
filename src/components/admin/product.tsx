@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch, post } from '../../api/apiAction'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { fetch, post, update } from '../../api/apiAction'
 import {
     product,
     getProduct,
@@ -19,6 +19,11 @@ import {
     retrievedSubCategories,
     fetchFailed
 } from '../../redux/admin/subCategories/subCategories.slice'
+import {
+    updatingProduct,
+    updatedProduct,
+    updateFailed
+} from '../../redux/admin/products/updateProduct.slice'
 
 const AdminProduct = () => {
 
@@ -78,6 +83,11 @@ const AdminProduct = () => {
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
+
+    const updateProduct = () => {
+        dispatch(updatingProduct())
+        update(dispatch, updatedProduct, updateFailed, `/admin/product/${id}`, { name, unit, price, brand, status, manual, quantity, specification }, token)
+    }
 
 
     return (
