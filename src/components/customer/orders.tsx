@@ -164,20 +164,21 @@ const MyOrders = () => {
                                     <tbody>
                                         {orders ?
                                             orders.map((order) => (
-                                                <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800'>
+                                                <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800
+                                                hover:bg-gray-50 cursor-pointer '>
                                                     <td className='py-3 border'>
                                                         <p className='font-normal text-sm'>
-                                                            <span className=''>Order no</span>
+                                                            <span className=''>{order.order_no}</span>
                                                         </p>
                                                     </td>
                                                     <td className='py-3 border'>
-                                                        <p className='font-normal text-sm'>$100</p>
+                                                        <p className='font-normal text-sm'>{order.sub_total}</p>
                                                     </td>
                                                     <td className='py-3 border'>
-                                                        <p className='font-normal text-sm'>Processing</p>
+                                                        <p className='font-normal text-sm'>{order.status}</p>
                                                     </td>
                                                     <td className='py-3 border'>
-                                                        <p className='font-normal text-sm'>Tracking no</p>
+                                                        <p className='font-normal text-sm'>{order.id}</p>
                                                     </td>
                                                 </tr>
 
