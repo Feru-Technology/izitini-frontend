@@ -32,7 +32,6 @@ import Subcategory from './components/customer/subcategory'
 import AllProducts from './components/customer/allProducts'
 import SubCategories from './components/admin/subCategories'
 import AdminCreateStore from './components/admin/CreateStore'
-import CreateProduct from './components/vendor/CreateProduct'
 import SubCatProducts from './components/admin/subCatProducts'
 import CustomerDashboard from './components/customer/Dashboard'
 import CatSubCategories from './components/admin/catSubCategories'
@@ -63,27 +62,26 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/orders' element={<MyOrders />} />
                 <Route path='/signin' element={<SignInPage />} />
-                <Route path='/products/p/:id' element={<Product />} />
                 <Route path='/products' element={<AllProducts />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
+                <Route path='/products/p/:id' element={<Product />} />
                 <Route path='/account-types' element={<AccountTypes />} />
                 <Route path='/vendor-signup' element={<VendorSignUp />} />
-                <Route path='/products/c/:categoryName' element={<Category />} />
                 <Route path='/products/s/:id' element={<Subcategory />} />
                 <Route path='/dashboard' element={<CustomerDashboard />} />
-                <Route path='/orders' element={<MyOrders />} />
+                <Route path='/products/c/:categoryName' element={<Category />} />
 
                 <Route path='/vendor' element={<VendorDashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
                 <Route path='/vendor/orders' element={<Orders />} />
-                <Route path='/vendor/reports' element={<MyReports />} />
                 <Route path='/vendor/coupons' element={<Coupons />} />
+                <Route path='/vendor/reports' element={<MyReports />} />
                 <Route path='/vendor/settings' element={<Settings />} />
                 <Route path='/vendor/products' element={<MyProducts />} />
                 <Route path='/vendor/create-store' element={<CreateStore />} />
                 <Route path='/vendor/products/:id' element={<VendorProduct />} />
-                <Route path='/vendor/create-product' element={<CreateProduct />} />
 
                 <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
 
