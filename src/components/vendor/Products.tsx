@@ -8,16 +8,14 @@ import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { product } from '../../redux/products/product.slice'
-import { IProduct } from '../../redux/products/product.interface'
 
 import {
     fetchingProducts,
     storeProducts,
     productFailed
 } from '../../redux/products/storeProducts.slice '
-import { fetchedProducts, fetchFailed } from '../../redux/admin/products/products.slice'
 import { createdProduct, createFailed, creatingProduct } from '../../redux/admin/products/createProduct.slice'
+import { fetchingSubCategories, retrievedSubCategories, fetchFailed } from '../../redux/admin/subCategories/subCategories.slice'
 const Products = () => {
 
     //  get token
@@ -51,6 +49,15 @@ const Products = () => {
 
     const navigate = useNavigate()
 
+    // get subcategories
+    useEffect(() => {
+        dispatch(fetchingSubCategories())
+        fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+    }, [dispatch])
+
+    const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
+    const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
+
     const createProduct = () => {
         dispatch(creatingProduct())
         post(dispatch, createdProduct, createFailed, '/admin/product', { subCategory, name, brand, unit }, token)
@@ -60,12 +67,12 @@ const Products = () => {
 
     useEffect(() => {
         if (product) {
-            dispatch(fetchingProducts())
-            fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+            const { id } = product
             dispatch(createdProduct(null))
             setCreateMode(false)
+            navigate(`/vendor/products/${id}`)
         }
-    }, [dispatch, product, token])
+    }, [dispatch, navigate, product])
 
     return (
         <div className='flex h-screen overflow-hidden'>
@@ -97,12 +104,12 @@ const Products = () => {
                 <div className='px-2 lg:px-8 py-8 w-full mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
                         <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{currentStore?.name}</h3>
-                        <Link to='/vendor/create-product'>
-                            <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold
-                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'>
-                                ADD A PRODUCT
-                            </button>
-                        </Link>
+
+                        <button className='hover:bg-middle-blue bg-dark-blue text-white font-bold
+                            py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md'
+                            onClick={() => setCreateMode(true)}>
+                            ADD A PRODUCT
+                        </button>
                     </div>
                     <div className='flex flex-col'>
                         <div className='overflow-x-auto'>
@@ -196,106 +203,106 @@ const Products = () => {
                     </div>
                 </div>
 
-                {/* create product */}
-                <Transition show={!!createMode} className='absolute'>
-                    <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
-                    </div>
-                    <div className='absolute top-1 w-full z-30 text-xs md:text-base'>
-                        <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
-    md:p-6 lg:p-8'>
-
-                            <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
-        text-gray-600 hover:text-dark-blue hover:shadow-lg'
-                                onClick={() => setCreateMode(false)} />
-
-                            <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Product</div>
-                            <div className='container'>
-                                <Transition
-                                    show={!!createError}
-                                >
-                                    <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
-
-                                </Transition>
-                            </div>
-                            <form>
-
-                                <div className=' w-full mb-3'>
-                                    <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
-                                    <div className=' w-full mb-3'>
-                                        <select
-                                            className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
-                                            id='grid-state'
-                                            onChange={e => setSubCategory(e.target.value)}
-                                        >
-                                            <option>Choose sub-category</option>
-                                            {/* {isSubCatLoading ? <h1>loading...</h1>
-                                : subCategories.map((c) => (<option>{c.name}</option>))} */}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className=' w-full mb-3'>
-                                    <label
-                                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                        htmlFor='grid-text'
-                                    >
-                                        Name
-                                    </label>
-                                    <input
-                                        type='text'
-                                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                        placeholder='name'
-                                        onChange={e => setName(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className=' w-full mb-3'>
-                                    <label
-                                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                        htmlFor='grid-text'
-                                    >
-                                        Brand
-                                    </label>
-                                    <input
-                                        type='text'
-                                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                        placeholder='Brand'
-                                        onChange={e => setBrand(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className=' w-full mb-3'>
-                                    <label
-                                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                        htmlFor='grid-text'
-                                    >
-                                        Unit
-                                    </label>
-                                    <input
-                                        type='text'
-                                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                        placeholder='unit'
-                                        onChange={e => setUnit(e.target.value)}
-                                    />
-                                </div>
-                                <div className='text-center mt-6'>
-                                    <button
-                                        className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
-                                        type='button'
-                                        onClick={(e) => {
-                                            e.preventDefault()
-                                            return createProduct()
-                                        }}
-                                    >
-                                        {!!isCreating ? 'Creating...' : 'Create'}
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </Transition>
             </div>
+            {/* create product */}
+            <Transition show={!!createMode} className='absolute'>
+                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                </div>
+                <div className='absolute top-16 w-full z-30 text-xs md:text-base'>
+                    <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
+                        md:p-6 lg:p-8'>
+
+                        <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
+        text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                            onClick={() => setCreateMode(false)} />
+
+                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Product</div>
+                        <div className='container'>
+                            <Transition
+                                show={!!createError}
+                            >
+                                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
+
+                            </Transition>
+                        </div>
+                        <form>
+
+                            <div className=' w-full mb-3'>
+                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
+                                <div className=' w-full mb-3'>
+                                    <select
+                                        className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                                        id='grid-state'
+                                        onChange={e => setSubCategory(e.target.value)}
+                                    >
+                                        <option>Choose sub-category</option>
+                                        {isSubCatLoading ? <h1>loading...</h1>
+                                            : subCategories.map((c) => (<option>{c.name}</option>))}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className=' w-full mb-3'>
+                                <label
+                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                    htmlFor='grid-text'
+                                >
+                                    Name
+                                </label>
+                                <input
+                                    type='text'
+                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                    placeholder='name'
+                                    onChange={e => setName(e.target.value)}
+                                />
+                            </div>
+
+                            <div className=' w-full mb-3'>
+                                <label
+                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                    htmlFor='grid-text'
+                                >
+                                    Brand
+                                </label>
+                                <input
+                                    type='text'
+                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                    placeholder='Brand'
+                                    onChange={e => setBrand(e.target.value)}
+                                />
+                            </div>
+
+                            <div className=' w-full mb-3'>
+                                <label
+                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                    htmlFor='grid-text'
+                                >
+                                    Unit
+                                </label>
+                                <input
+                                    type='text'
+                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                    placeholder='unit'
+                                    onChange={e => setUnit(e.target.value)}
+                                />
+                            </div>
+                            <div className='text-center mt-6'>
+                                <button
+                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                    type='button'
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        return createProduct()
+                                    }}
+                                >
+                                    {!!isCreating ? 'Creating...' : 'Create'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </Transition>
         </div>
     )
 }
