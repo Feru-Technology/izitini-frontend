@@ -3,14 +3,14 @@ import { IProduct, HTTPError } from '../../products/product.interface'
 
 
 export interface productState {
-    isCreating: boolean
-    createError: Error | HTTPError | null
+    isUpdating: boolean
+    updateError: Error | HTTPError | null
     updated: IProduct | null
 }
 
 const initialState: productState = {
-    isCreating: false,
-    createError: null,
+    isUpdating: false,
+    updateError: null,
     updated: null,
 }
 
@@ -19,19 +19,19 @@ export const updateProductSlice = createSlice({
     initialState,
     reducers: {
         updatingProduct: (state) => {
-            state.isCreating = true
+            state.isUpdating = true
             state.updated = null
-            state.createError = null
+            state.updateError = null
         },
         updatedProduct: (state, { payload }) => {
-            state.createError = null
-            state.isCreating = false
+            state.updateError = null
+            state.isUpdating = false
             state.updated = payload
         },
         updateFailed: (state, { payload }) => {
             state.updated = null
-            state.isCreating = false
-            state.createError = payload
+            state.isUpdating = false
+            state.updateError = payload
         }
     },
 })

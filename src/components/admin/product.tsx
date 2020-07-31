@@ -59,8 +59,6 @@ const AdminProduct = () => {
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
-    console.log('===========', currentProduct)
-
     useEffect(() => {
         if (currentProduct) {
             setEditMode(false)
@@ -88,6 +86,17 @@ const AdminProduct = () => {
         dispatch(updatingProduct())
         update(dispatch, updatedProduct, updateFailed, `/admin/product/${id}`, { name, unit, price, brand, status, manual, quantity, specification }, token)
     }
+
+    const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
+
+    useEffect(() => {
+        if (updated) {
+            dispatch(getProduct())
+            fetch(dispatch, product, productFailed, `/product/${id}`)
+            dispatch(updatedProduct(null))
+            setEditMode(false)
+        }
+    }, [dispatch, id, updated])
 
 
     return (
@@ -154,9 +163,9 @@ const AdminProduct = () => {
                                     <form action=''>
                                         <div className=''>
                                             <div className='space-y-6 mx-2'>
-                                                <Transition show={!!error}>
+                                                <Transition show={!!updateError}>
                                                     <div className='border border-red-600 bg-red-100'>
-                                                        <span className='px-2 py-4 text-red-600'> {error?.message} </span>
+                                                        <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
@@ -266,9 +275,9 @@ const AdminProduct = () => {
                                             <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    // return updateShop()
+                                                    return updateProduct()
                                                 }} >
-                                                SAVE CHANGES
+                                                {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
                                             </button>
                                         </Transition>
                                     </div>
