@@ -93,15 +93,15 @@ const Shop = () => {
                             <div className='w-full flex justify-center'>
                                 {currentStore ? (
 
-                                    <div className='w-full mx-4 md:mx-0 bg-white w-full md:w-5/6 lg:w-3/5 border
+                                    <div className='w-full bg-white md:w-5/6 lg:w-3/5 border
                                     border-gray-300 shadow-md my-5 rounded'>
                                         <div className='flex my-5 justify-center'>
                                             <img className='h-32 rounded-lg'
                                                 src='https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png' alt='profile' />
                                         </div>
                                         <form action=''>
-                                            <div className='flex md:justify-center'>
-                                                <div className='mx-2'>
+                                            <div className='w-full mx-5'>
+                                                <div className=''>
                                                     <div>
                                                         <Transition show={!!error}>
                                                             <div className='border border-red-600 bg-red-100'>
@@ -114,7 +114,7 @@ const Shop = () => {
                                                         <div className=''>
                                                             <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                                 htmlFor='names'>Name:</label>
-                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                            <input className={`w-full text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
                                                 border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600
                                                 ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
                                                                 id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentStore.name} />
@@ -124,7 +124,7 @@ const Shop = () => {
                                                         <div className=''>
                                                             <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                                 htmlFor='contact'>Contact:</label>
-                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                            <input className={`w-full text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
                                                 border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600
                                                 ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
                                                                 id='grid-last-name' type='text' onChange={e => setShop_contact_no(e.target.value)} defaultValue={shop_contact_no || currentStore.shop_contact_no} />
@@ -133,7 +133,7 @@ const Shop = () => {
                                                         <div className=''>
                                                             <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                                 htmlFor='Tin no'>About:</label>
-                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                            <input className={`w-full text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
                                                 border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600
                                                 ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
                                                                 id='grid-last-name' type='text' onChange={e => setAbout_shop(e.target.value)} defaultValue={about_shop || currentStore.about_shop || 'N/A'} />
@@ -142,7 +142,7 @@ const Shop = () => {
                                                         <div className=''>
                                                             <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                                 htmlFor='email'>Email:</label>
-                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                            <input className={`w-full text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
                                                 border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600 
                                                 ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
                                                                 id='grid-last-name' type='text' onChange={e => setShop_email(e.target.value)} defaultValue={shop_email || currentStore.shop_email} />
