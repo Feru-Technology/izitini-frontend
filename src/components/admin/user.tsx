@@ -106,8 +106,8 @@ const User = () => {
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-50'
                                                             htmlFor='names'>Names:</label>
-                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium outline-none border 
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800`}
+                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border 
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
                                                             id='grid-first-name' type='text' value={currentUser.full_name} />
 
                                                     </div>
@@ -115,24 +115,24 @@ const User = () => {
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='contact'>Contact:</label>
-                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800`}
+                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
                                                             id='grid-last-name' type='text' value={currentUser.contact} />
                                                     </div>
 
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='Tin no'>Tin no:</label>
-                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800`}
+                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
                                                             id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
                                                     </div>
 
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='Account type'>Account:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
                                                             id='grid-last-name' type='text' value={currentUser.account_type} />
 
                                                     </div>
@@ -140,37 +140,37 @@ const User = () => {
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='email'>Email:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
                                                             id='grid-last-name' type='text' value={currentUser.email} />
                                                     </div>
 
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='Provider'>Provider:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
                                                             id='grid-last-name' type='text' value={currentUser.provider} />
                                                     </div>
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='Verified'>Verified:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
                                                             id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
                                                     </div>
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='created At'>created At:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
                                                             id='grid-last-name' type='text' value={format(new Date(currentUser.createdAt), 'dd.MM.yyyy')} />
                                                     </div>
                                                     <div className=''>
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='Updated At'>Updated At:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium outline-none border
-                                                border-gray-300 focus:border-gray-800 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
+                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
                                                             id='grid-last-name' type='text' value={format(new Date(currentUser.updatedAt), 'dd.MM.yyyy')} />
                                                     </div>
 
@@ -186,7 +186,7 @@ const User = () => {
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='names'>Names:</label>
                                                         <input className={`w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 px-4 py-3 rounded`}
+                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded`}
                                                             id='grid-first-name' type='text' defaultValue={full_name || currentUser.full_name}
                                                             onChange={e => setFull_name(e.target.value)} />
                                                     </div>
@@ -195,7 +195,7 @@ const User = () => {
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='contact'>Contact:</label>
                                                         <input className={`w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 px-4 py-3 rounded`}
+                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded`}
                                                             id='grid-last-name' type='text' defaultValue={contact || currentUser.contact}
                                                             onChange={e => setContact(e.target.value)} />
                                                     </div>
@@ -204,7 +204,7 @@ const User = () => {
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='Tin no'>Tin no:</label>
                                                         <input className={`w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 px-4 py-3 rounded`}
+                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded`}
                                                             id='grid-last-name' type='text' defaultValue={tin_no || currentUser.tin_no}
                                                             onChange={e => setTin_no(e.target.value)} />
                                                     </div>
@@ -213,7 +213,7 @@ const User = () => {
                                                         <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                             htmlFor='email'>Email:</label>
                                                         <input className='w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-gray-800 px-4 py-3 rounded'
+                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded'
                                                             id='grid-last-name' type='text' defaultValue={email || currentUser.email}
                                                             onChange={e => setEmail(e.target.value)} />
                                                     </div>
@@ -224,7 +224,7 @@ const User = () => {
 
                                                         <select
                                                             className='w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                        border-gray-400 focus:border-gray-800 px-4 py-3 rounded'
+                                                        border-gray-400 focus:border-dark-blue px-4 py-3 rounded'
                                                             id='grid-state'
                                                             defaultValue={account_type || currentUser.account_type}
                                                             onChange={e => setAccount_type(e.target.value)}
