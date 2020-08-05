@@ -267,7 +267,8 @@ const Categories = () => {
                                             </label>
                                             <input
                                                 type='text'
-                                                className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm
+                                                focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                                                 placeholder='category name'
                                                 onChange={e => setName(e.target.value)}
                                             />
