@@ -93,7 +93,7 @@ const Shop = () => {
                             <div className='w-full flex justify-center'>
                                 {currentStore ? (
 
-                                    <div className='mx-4 md:mx-0 bg-white w-full md:w-5/6 lg:w-3/5 border
+                                    <div className='w-full mx-4 md:mx-0 bg-white w-full md:w-5/6 lg:w-3/5 border
                                     border-gray-300 shadow-md my-5 rounded'>
                                         <div className='flex my-5 justify-center'>
                                             <img className='h-32 rounded-lg'
@@ -101,87 +101,97 @@ const Shop = () => {
                                         </div>
                                         <form action=''>
                                             <div className='flex md:justify-center'>
-                                                <div className='space-y-6 mx-2'>
-                                                    <Transition show={!!error}>
-                                                        <div className='border border-red-600 bg-red-100'>
-                                                            <span className='px-2 py-4 text-red-600'> {error?.message} </span>
+                                                <div className='mx-2'>
+                                                    <div>
+                                                        <Transition show={!!error}>
+                                                            <div className='border border-red-600 bg-red-100'>
+                                                                <span className='px-2 py-4 text-red-600'> {error?.message} </span>
+                                                            </div>
+                                                        </Transition>
+                                                    </div>
+
+                                                    <div className='w-full space-y-4'>
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='names'>Name:</label>
+                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600
+                                                ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
+                                                                id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentStore.name} />
+
                                                         </div>
-                                                    </Transition>
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='names'>Name:</label>
-                                                        <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentStore.name} />
 
-                                                    </div>
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='contact'>Contact:</label>
+                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600
+                                                ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
+                                                                id='grid-last-name' type='text' onChange={e => setShop_contact_no(e.target.value)} defaultValue={shop_contact_no || currentStore.shop_contact_no} />
+                                                        </div>
 
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='contact'>Contact:</label>
-                                                        <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setShop_contact_no(e.target.value)} defaultValue={shop_contact_no || currentStore.shop_contact_no} />
-                                                    </div>
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='Tin no'>About:</label>
+                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600
+                                                ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
+                                                                id='grid-last-name' type='text' onChange={e => setAbout_shop(e.target.value)} defaultValue={about_shop || currentStore.about_shop || 'N/A'} />
+                                                        </div>
 
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='Tin no'>About:</label>
-                                                        <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setAbout_shop(e.target.value)} defaultValue={about_shop || currentStore.about_shop || 'N/A'} />
-                                                    </div>
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='email'>Email:</label>
+                                                            <input className={`w-full mx-4 md:mx-0 text-sm md:text-base font-medium outline-none border py-3 px-4 rounded
+                                                border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none text-gray-600 
+                                                ${!editMode ? 'pointer-events-none bg-gray-100 border' : 'pointer-events-auto bg-white'}`}
+                                                                id='grid-last-name' type='text' onChange={e => setShop_email(e.target.value)} defaultValue={shop_email || currentStore.shop_email} />
+                                                        </div>
 
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='email'>Email:</label>
-                                                        <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setShop_email(e.target.value)} defaultValue={shop_email || currentStore.shop_email} />
-                                                    </div>
+                                                        {currentStore.shopSpecialties.map((specialties) => (
+                                                            <div className=''>
+                                                                <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                    htmlFor='Specialty type'>Specialty:</label>
+                                                                <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
+                                                border-gray-400 focus:border-dark-blue md:w-auto pointer-events-none'
+                                                                    text-gray-600 id='grid-last-name' type='text'
+                                                                    value={specialties.category.name}
+                                                                />
+                                                            </div>
+                                                        ))}
 
-                                                    {currentStore.shopSpecialties.map((specialties) => (
-                                                        <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                            <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                                htmlFor='Specialty type'>Specialty:</label>
-                                                            <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='Owner'>Owner:</label>
+                                                            <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
+                                                border-gray-400 md:w-auto pointer-events-none text-gray-600'
                                                                 id='grid-last-name' type='text'
-                                                                value={specialties.category.name}
+                                                                value={currentStore.owner.full_name}
                                                             />
                                                         </div>
-                                                    ))}
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='Approved'>Approved:</label>
+                                                            <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
+                                                border-gray-400 md:w-auto pointer-events-none text-gray-600'
+                                                                id='grid-last-name' type='text' value={`${currentStore.is_approved}`} />
+                                                        </div>
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='created At'>created At:</label>
+                                                            <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
+                                                border-gray-400 md:w-auto pointer-events-none text-gray-600'
+                                                                id='grid-last-name' type='text' value={format(new Date(currentStore.createdAt), 'dd.MM.yyyy')} />
+                                                        </div>
+                                                        <div className=''>
+                                                            <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                                htmlFor='Updated At'>Updated At:</label>
+                                                            <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
+                                                border-gray-400 md:w-auto pointer-events-none text-gray-600'
+                                                                id='grid-last-name' type='text' value={format(new Date(currentStore.updatedAt), 'dd.MM.yyyy')} />
+                                                        </div>
+                                                    </div>
 
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='Owner'>Owner:</label>
-                                                        <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                            id='grid-last-name' type='text'
-                                                            value={currentStore.owner.full_name}
-                                                        />
-                                                    </div>
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='Approved'>Approved:</label>
-                                                        <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                            id='grid-last-name' type='text' value={`${currentStore.is_approved}`} />
-                                                    </div>
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='created At'>created At:</label>
-                                                        <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                            id='grid-last-name' type='text' value={format(new Date(currentStore.createdAt), 'dd.MM.yyyy')} />
-                                                    </div>
-                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                            htmlFor='Updated At'>Updated At:</label>
-                                                        <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                            id='grid-last-name' type='text' value={format(new Date(currentStore.updatedAt), 'dd.MM.yyyy')} />
-                                                    </div>
 
                                                 </div>
                                             </div>
