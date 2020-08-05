@@ -61,7 +61,7 @@ const Shop = () => {
         <>
             {isLoading ? (<h1>loading ...</h1>) :
                 (
-                    <div className='flex h-screen overflow-hidden'>
+                    <div className='flex h-screen overflow-hidden bg-gray-100'>
                         <SiderBar
                             isClosed={isClosed}
                             setIsClosed={setIsClosed}
@@ -93,7 +93,8 @@ const Shop = () => {
                             <div className='w-full flex justify-center'>
                                 {currentStore ? (
 
-                                    <div className='mx-4 md:mx-0 md:w-full'>
+                                    <div className='mx-4 md:mx-0 bg-white w-full md:w-5/6 lg:w-3/5 border
+                                    border-gray-300 shadow-md my-5 rounded'>
                                         <div className='flex my-5 justify-center'>
                                             <img className='h-32 rounded-lg'
                                                 src='https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png' alt='profile' />
