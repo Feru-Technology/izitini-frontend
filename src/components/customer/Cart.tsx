@@ -58,7 +58,9 @@ const Cart = () => {
             {isLoading ? (<div>loading ...</div>)
                 : cart.length !== 0 ? cart.map((orders: any) => (
 
-                    <div className='h-full'>
+                    <div className='h-full min-h-36'
+                    // style={{'min'}}
+                    >
                         <div className='mx-3 my-3
                                 md:flex md:mx-2 md:my-5  md:space-x-3 md:y-3
                                 lg:mx-8 lg:space-x-5 relative'>
@@ -227,12 +229,13 @@ const Cart = () => {
                         </div>
                     </div>
                 )) :
-                    (<div className='flex flex-col items-center justify-center font-semibold '> your cart is empty </div>)
+                    (<div className='flex flex-col items-center justify-center font-semibold h-140 md:h-160 lg:h-136'
+                    // style={{ minHeight: '40.3vh' }}
+                    > your cart is empty </div>)
             }
             <Footer />
         </div>
     )
 }
-
 
 export default Cart

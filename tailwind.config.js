@@ -16,6 +16,11 @@ module.exports = {
       },
       backgroundImage: {
         'sidebar-photo': "url('images/2754223.svg')",
+      },
+      height: {
+        136: '36.3vh',
+        140: '40.3vh',
+        160: '60.3vh',
       }
     },
   },
