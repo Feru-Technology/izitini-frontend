@@ -48,7 +48,9 @@ const Cart = () => {
         navigate('/orders')
     }
 
-    let order: [] = []
+    let order: {}[] = []
+
+    console.log('++++++++++++++', order)
 
     return (
         <div className='bg-gray-100'>
@@ -124,18 +126,8 @@ const Cart = () => {
                                                 </thead>
 
                                                 {items.order_items.map((item: any) => {
-
-                                                    const order: {} = {
-                                                        order_id: item.order_id,
-                                                        subTotal: totalPricesPerOrder,
-                                                        shipping_cost: '1000'
-                                                    }
-                                                    console.log('|||||||||', order);
-                                                    Object.preventExtensions(order)
-                                                    Object.freeze(orders)
-                                                    // orders.push(order)
-                                                    // console.log('+++++++++++', orders)
-
+                                                    console.log(item);
+                                                    order.push(item)
                                                     return (
 
                                                         <tbody className='bg-white'>
@@ -151,19 +143,19 @@ const Cart = () => {
                                                                             />
                                                                         </div>
                                                                         <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
-                                                                            {items.product.name}
+                                                                            {item.product.name}
                                                                         </div>
                                                                     </div>
                                                                 </td>
                                                                 <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                    {items.product.price} RWF</td>
+                                                                    {item.product.price} RWF</td>
                                                                 <td className='py-4 text-xs md:text-sm text-gray-800
                                             md:px-6 lg:px-6'>
                                                                     <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
                                                                         <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
                                                                             <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                                onClick={() => increaseOrderItemQyt(items.order_id, items.product_id)} >+</button>
+                                                                                onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
                                                                             <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
                                                                                 {item.quantity}
                                                                             </span>
@@ -174,11 +166,12 @@ const Cart = () => {
                                                                 </td>
                                                                 <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                    {totalPrice(items.product.price, items.quantity)} RWF</td>
+                                                                    {totalPrice(item.product.price, item.quantity)} RWF
+                                                                </td>
                                                                 <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                                                     <button type='button'
                                                                         className='text-dark-blue hover:text-red-600'
-                                                                        onClick={() => removeOrderItem(items.order_id, items.product_id)}
+                                                                        onClick={() => removeOrderItem(item.order_id, item.product_id)}
                                                                     >
                                                                         <MdOutlineCancel className='w-6 h-auto' />
                                                                     </button>
