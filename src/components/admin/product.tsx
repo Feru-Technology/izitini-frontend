@@ -59,6 +59,8 @@ const AdminProduct = () => {
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
+    console.log(currentProduct)
+
     useEffect(() => {
         if (currentProduct) {
             setEditMode(false)
@@ -136,7 +138,7 @@ const AdminProduct = () => {
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
 
-                                    <div className=' my-5 '>
+                                    <div className='my-5 '>
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
                                         >
@@ -249,13 +251,6 @@ const AdminProduct = () => {
                                                 border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Updated At'>Updated At:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
-                                                        id='grid-last-name' type='text' value={format(new Date(currentProduct.product.updatedAt), 'dd.MM.yyyy')} />
-                                                </div>
 
                                             </div>
                                         </div>
@@ -281,6 +276,14 @@ const AdminProduct = () => {
                                             </button>
                                         </Transition>
                                     </div>
+                                </div>
+
+                                {/* product sub-category */}
+                                <div className='px-2 md:px-6 lg:px-14 w-full'>
+                                    {currentProduct.subCategory.map((subCat) => (
+                                        <div className='font-semibold text-sm md:text-base text-gray-500 w-2/12'>Sub-Category:
+                                            <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
+                                    ))}
                                 </div>
                             </div>
 
