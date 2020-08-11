@@ -23,7 +23,7 @@ export const updateProductStatusSlice = createSlice({
             state.newProductStatus = null
             state.statusUpdateError = null
         },
-        product: (state, { payload }) => {
+        updatedProductStatus: (state, { payload }) => {
             state.statusUpdateError = null
             state.isUpdatingStatus = false
             state.newProductStatus = payload
@@ -37,6 +37,6 @@ export const updateProductStatusSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { updatingProductStatus, product, failedToUpdateStatus } = updateProductStatusSlice.actions
+export const { updatingProductStatus, updatedProductStatus, failedToUpdateStatus } = updateProductStatusSlice.actions
 
 export default updateProductStatusSlice.reducer

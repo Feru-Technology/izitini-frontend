@@ -51,6 +51,12 @@ import {
     deleteColorFailed
 } from '../../redux/admin/productColors/DeleteColor.slice'
 
+import {
+    updatingProductStatus,
+    updatedProductStatus,
+    failedToUpdateStatus
+} from '../../redux/products/updateProductStatus.slice'
+
 const VendorProduct = () => {
 
     const dispatch = useDispatch()
@@ -94,11 +100,17 @@ const VendorProduct = () => {
     const publishUnPublish = (newStatus: string) => {
         if (newStatus === 'publish') {
             //publish
+            dispatch(updatingProductStatus())
+            update(dispatch, updatedProductStatus, failedToUpdateStatus, `/product/publish/${id}`, {}, token)
             return newStatus
         }
         // un-publish
-        return 'un_publish'
+        dispatch(updatingProductStatus())
+        update(dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, {}, token)
+        return newStatus
     }
+
+    const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -176,16 +188,16 @@ const VendorProduct = () => {
 
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
 
-
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize || deleted || deletedColorRes) {
+        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus) {
+            dispatch(updatedProductStatus(null))
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
             dispatch(deletedSize(null))
             dispatch(createdSize(null))
-            dispatch(getProduct())
+            // dispatch(getProduct())
 
             fetch(
                 dispatch,
@@ -203,7 +215,7 @@ const VendorProduct = () => {
             setPricePerSize(null)
             setSizeQuantity(null)
         }
-    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus])
 
     return (
         <>
