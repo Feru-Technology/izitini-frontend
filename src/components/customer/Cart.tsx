@@ -41,16 +41,15 @@ const Cart = () => {
 
     const navigate = useNavigate()
 
-    // check out handler
-    const checkOut = () => {
-        dispatch(getOrders())
-        update(dispatch, orders, ordersFailed, '/orders/checkout', {}, token)
-        navigate('/orders')
-    }
 
     let order: {}[] = []
 
-    console.log('++++++++++++++', order)
+    // check out handler
+    const checkOut = () => {
+        dispatch(getOrders())
+        update(dispatch, orders, ordersFailed, '/orders/checkout', order, token)
+        navigate('/orders')
+    }
 
     return (
         <div className='bg-gray-100'>
@@ -126,7 +125,6 @@ const Cart = () => {
                                                 </thead>
 
                                                 {items.order_items.map((item: any) => {
-                                                    console.log(item);
                                                     order.push(item)
                                                     return (
 
@@ -148,10 +146,10 @@ const Cart = () => {
                                                                     </div>
                                                                 </td>
                                                                 <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            md:px-6 lg:px-6 py-4'>
+                                                                md:px-6 lg:px-6 py-4'>
                                                                     {item.product.price} RWF</td>
                                                                 <td className='py-4 text-xs md:text-sm text-gray-800
-                                            md:px-6 lg:px-6'>
+                                                                md:px-6 lg:px-6'>
                                                                     <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
                                                                         <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
                                                                             <button className='font-medium text-gray-400 hover:text-dark-blue'
@@ -165,7 +163,7 @@ const Cart = () => {
                                                                     </div>
                                                                 </td>
                                                                 <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            md:px-6 lg:px-6 py-4'>
+                                                                md:px-6 lg:px-6 py-4'>
                                                                     {totalPrice(item.product.price, item.quantity)} RWF
                                                                 </td>
                                                                 <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
