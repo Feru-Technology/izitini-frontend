@@ -285,6 +285,7 @@ const AdminProduct = () => {
                                             <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
                                     ))}
                                 </div>
+
                             </div>
 
                             {/* add size to a product */}
