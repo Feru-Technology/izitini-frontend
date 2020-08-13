@@ -278,12 +278,21 @@ const AdminProduct = () => {
                                     </div>
                                 </div>
 
-                                {/* product sub-category */}
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
-                                    {currentProduct.subCategory.map((subCat) => (
-                                        <div className='font-semibold text-sm md:text-base text-gray-500 w-2/12'>Sub-Category:
-                                            <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
-                                    ))}
+                                    {/* product sub-category */}
+                                    <div >
+                                        {currentProduct.subCategory.map((subCat) => (
+                                            <div className='font-semibold text-sm md:text-base text-gray-500 w-2/12'>Sub-Category:
+                                                <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
+                                        ))}
+                                    </div>
+
+                                    {/* product sizes */}
+                                    <div>
+                                        <p>Product sizes</p>
+                                        { }
+                                    </div>
+
                                 </div>
 
                             </div>
