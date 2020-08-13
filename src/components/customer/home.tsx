@@ -116,10 +116,12 @@ const Home = () => {
                         {categorySection.map((category) => (
                             <Link to={`/products/c/${category.name}`}>
                                 <div className='relative my-2'>
-                                    <p className='absolute ml-2'>{category.name}</p>
-                                    <img className='h-36  2xl:h-52 w-full bg-gray-200
-                                lg:h-40 xl:h-48'
-                                        src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                    <div className='hover:underline'>
+                                        <p className='absolute ml-2 hover:underline'>{category.name}</p>
+                                        <img className='h-36  2xl:h-52 w-full bg-gray-200
+                                        lg:h-40 xl:h-48 hover:shadow-sm'
+                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                    </div>
                                     <div className=''>
                                         <ul>
                                             {
@@ -147,7 +149,7 @@ const Home = () => {
                     gap-3
                     '>
                             {productSection.map((p) => (
-                                <div className='mt-2'>
+                                <div className='mt-2 shadow hover:shadow-lg'>
                                     <Link to={`/products/p/${p.id}`}>
                                         <img className='bg-gray-200
                                 w-full
