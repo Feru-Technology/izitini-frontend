@@ -36,7 +36,7 @@ const Subcategory = () => {
                 < Navbar />
                 < CategoryBar
                 />
-                {isLoading ? (<h1>Loading...</h1>) : Products.length !== 0 ? (
+                {isLoading ? (<h1 className='h-140 md:h-160 lg:h-129'>Loading...</h1>) : Products.length !== 0 ? (
                     <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
                         {/* navigation */}
@@ -70,7 +70,7 @@ const Subcategory = () => {
                         </div>
                     </div>
 
-                ) : (<div className='font-normal flex justify-center'
+                ) : (<div className='flex flex-col items-center justify-center font-semibold h-140 md:h-160 lg:h-129'
                 >No Product yet</div>)}
 
                 <Footer />
