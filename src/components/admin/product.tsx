@@ -137,7 +137,6 @@ const AdminProduct = () => {
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
-
                                     <div className='my-5 '>
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
@@ -282,15 +281,20 @@ const AdminProduct = () => {
                                     {/* product sub-category */}
                                     <div >
                                         {currentProduct.subCategory.map((subCat) => (
-                                            <div className='font-semibold text-sm md:text-base text-gray-500 w-2/12'>Sub-Category:
+                                            <div className='font-semibold text-sm md:text-base text-gray-500 w-ful'>Sub-Category:
                                                 <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
                                         ))}
                                     </div>
 
                                     {/* product sizes */}
-                                    <div>
+                                    <div className='w-full'>
                                         <p>Product sizes</p>
-                                        { }
+                                        <div className='flex'>
+                                            { }
+                                            <div>
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                 </div>

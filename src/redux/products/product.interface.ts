@@ -1,5 +1,6 @@
-import { ICategory } from '../admin/categories/category.interfaces'
 import { IStore } from '../stores/store.interfaces'
+import { ISize } from '../admin/productSizes/size.interfaces'
+import { ICategory } from '../admin/categories/category.interfaces'
 
 export interface HTTPError {
     status: number
@@ -23,6 +24,6 @@ export interface IProduct {
     updatedAt: Date
     productImages: []
     // colors: IColor
-    // size: ISize
+    size: ISize[]
     category: ICategory
 }
