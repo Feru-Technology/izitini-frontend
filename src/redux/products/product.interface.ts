@@ -1,5 +1,6 @@
 import { IStore } from '../stores/store.interfaces'
 import { ISize } from '../admin/productSizes/size.interfaces'
+import { IColor } from '../admin/productColors/color.interfaces'
 import { ICategory } from '../admin/categories/category.interfaces'
 
 export interface HTTPError {
@@ -10,20 +11,20 @@ export interface HTTPError {
 export interface IProduct {
     id: string
     name: string
-    image_url: string
-    brand: string
     unit: string
-    shop_id: string
-    specification: string
-    manual: string
-    quantity: string
-    status: string
+    brand: string
     price: number
+    manual: string
+    status: string
+    shop_id: string
+    quantity: string
+    image_url: string
+    specification: string
     shop: IStore
+    size: ISize[]
     createdAt: Date
     updatedAt: Date
+    colors: IColor[]
     productImages: []
-    // colors: IColor
-    size: ISize[]
     category: ICategory
 }
