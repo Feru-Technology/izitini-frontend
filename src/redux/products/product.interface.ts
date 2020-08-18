@@ -17,7 +17,10 @@ export interface IProduct {
     shop_id: string
     quantity: string
     image_url: string
+    description: string
+    return_policy: string
     specification: string
+    shipping_policy: string
     shop: IStore
     createdAt: Date
     updatedAt: Date

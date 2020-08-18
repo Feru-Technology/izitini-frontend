@@ -36,7 +36,7 @@ export const CategoryBar = () => {
                         md:text-xs lg:text-sm xl:text-base 2xl:text-lg hover:text-dark-blue'>{v.name}</Link>))}
 
                         <button type='submit' className='font-medium text-dark-blue
-                        md:text-xs lg:text-sm xl:text-base hover:underline'>More</button>
+                        md:text-xs lg:text-sm xl:text-base hover:underline'> <Link to='/products'>More</Link> </button>
                     </ul>
                 </div>)}
         </>
