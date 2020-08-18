@@ -39,8 +39,12 @@ export const Navbar = () => {
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+
+    console.log(categories)
+
     const [showIdea, setShowIdea] = useState(false)
-    const [showProduct, setShowProduct] = useState(false)
+    const [showProduct, setShowProduct] = useState(true)
     const [showProfession, setShowProfession] = useState(false)
     const [showSignupOptions, setShowSignupOptions] = useState(false)
 
@@ -304,20 +308,24 @@ export const Navbar = () => {
                                             setShowProduct(false)
                                             setShowProfession(false)
                                         }}></div>
-                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
-                                        style={{ minHeight: '30vh' }}>
-                                        <ul> product head
-                                            <li>product 1</li>
-                                        </ul>
-                                        <ul> product head
-                                            <li>product 1</li>
-                                        </ul>
-                                        <ul> product head
-                                            <li>product 1</li>
-                                        </ul>
-                                        <ul> product head
-                                            <li>product 1</li>
-                                        </ul>
+                                    <div className=' w-full space-x-5 absolute p-5 z-20 bg-gray-100 shadow-lg min-h-130 flex justify-center'>
+
+                                        <div className='grid md:grid-cols-3 lg:grid-cols-5 gap-auto md:w-9/12 lg:w-9/12 content-center'>
+                                            {categories?.map((category) => {
+                                                const sub_categories = category.subCategories.slice(0, 4)
+                                                return (
+                                                    <ul className='space-y-1 my-4'><Link to={'/'} className='font-semibold text-dark-blue text-base hover:underline'>{category.name}</Link>
+                                                        {sub_categories.map((subCategory) => {
+                                                            return (
+                                                                <li className='font-light hover:underline hover:text-dark-blue text-sm'>{subCategory.name}</li>
+
+                                                            )
+                                                        })}
+                                                    </ul>
+
+                                                )
+                                            })}
+                                        </div>
                                     </div>
                                 </Transition>
                                 <Transition show={showIdea}>

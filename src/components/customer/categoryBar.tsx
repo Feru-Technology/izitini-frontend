@@ -20,7 +20,7 @@ export const CategoryBar = () => {
         fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/sub')
     }, [dispatch])
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
     const categoryBar = categories.slice(0, 8)
     return (
         <>
