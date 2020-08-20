@@ -24,6 +24,11 @@ import {
     updated,
     updateFailed
 } from '../../redux/admin/categories/updateCategory.slice'
+import {
+    uploadingImage,
+    uploadedImage,
+    uploadFailed
+} from '../../redux/image/uploadImage.slice'
 
 const Categories = () => {
 
@@ -42,7 +47,10 @@ const Categories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
+    const [uploadImage, setUploadImage] = useState<File | null>(null)
     const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
+
+    console.log('++++++++++++', uploadImage)
 
     const navigate = useNavigate()
 
@@ -72,7 +80,6 @@ const Categories = () => {
         }
     }, [categories, category, dispatch])
 
-
     // update category
     const updateCategory = (id: any) => {
         dispatch(updatingCategory())
@@ -90,6 +97,15 @@ const Categories = () => {
             return setEditMode(false)
         }
     }, [dispatch, updatedCategories])
+
+    const uploadCatImage = (file?: File) => {
+        dispatch(uploadingImage())
+        post(dispatch, uploadedImage, uploadFailed, '/image/upload', { file }, token)
+    }
+
+    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+
+    console.log(isUploading, image, uploadError);
 
     return (
         <>
@@ -272,11 +288,15 @@ const Categories = () => {
                                                 placeholder='category name'
                                                 onChange={e => setName(e.target.value)}
                                             />
-                                        </div>{/* upload image */}
+                                        </div>
+
+                                        {/* upload image */}
                                         <div>
-                                            <form action='/action_page.php'>
-                                                <input type='file' id='myFile' name='filename' />
-                                            </form>
+                                            <input type='file' id='myFile' name='filename'
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadCatImage(e.target.files[0])
+                                                }} />
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button

@@ -14,7 +14,7 @@ const initialState: imageState = {
     image: null,
 }
 
-export const imageSlice = createSlice({
+export const uploadImageSlice = createSlice({
     name: 'image',
     initialState,
     reducers: {
@@ -37,6 +37,6 @@ export const imageSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { uploadingImage, uploadedImage, uploadFailed } = imageSlice.actions
+export const { uploadingImage, uploadedImage, uploadFailed } = uploadImageSlice.actions
 
-export default imageSlice.reducer
+export default uploadImageSlice.reducer
