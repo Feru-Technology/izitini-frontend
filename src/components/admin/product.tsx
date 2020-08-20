@@ -290,7 +290,13 @@ const AdminProduct = () => {
                                     <div className='w-full'>
                                         <p>Product sizes</p>
                                         <div className='flex'>
-                                            { }
+                                            {currentProduct.sizes.map((size) => (
+                                                <div>
+                                                    <p>{size.size.size}</p>
+                                                    <p>{size.quantity}</p>
+                                                    <p>{size.price}</p>
+                                                </div>
+                                            ))}
                                             <div>
                                             </div>
 

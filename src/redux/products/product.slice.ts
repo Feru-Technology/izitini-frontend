@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IProduct, HTTPError } from './product.interface'
+import { ISize } from '../admin/productSizes/size.interfaces'
+import { IColor } from '../admin/productColors/color.interfaces'
 import { ISubCategory } from '../subCategories/subCategory.interface'
 
 
@@ -7,6 +9,16 @@ export interface productState {
     isLoading: boolean
     error: Error | HTTPError | null
     currentProduct: {
+        sizes: {
+            size: ISize
+            price: number
+            quantity: string
+        }[]
+        colors: {
+            color: IColor
+            price: number
+            quantity: string
+        }[]
         product: IProduct,
         subCategory: [{ subCategory: ISubCategory }]
     } | null
