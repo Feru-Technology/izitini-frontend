@@ -163,91 +163,91 @@ const AdminProduct = () => {
 
                                     <form action=''>
                                         <div className=''>
-                                            <div className='space-y-6 mx-2'>
-                                                <Transition show={!!updateError}>
-                                                    <div className='border border-red-600 bg-red-100'>
-                                                        <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
-                                                    </div>
-                                                </Transition>
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='names'>Name:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2 ${editMode && 'pointer-events-auto border'}`}
+                                            <Transition show={!!updateError}>
+                                                <div className='border border-red-600 bg-red-100'>
+                                                    <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
+                                                </div>
+                                            </Transition>
+                                            <div className='grid grid-cols-2 gap-4'>
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Name:</p>
+                                                    <input className={` bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-500 focus:border-gray-800 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
 
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Unit'>Unit:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2 ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Unit:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-500 focus:border-gray-800 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Tin no'>Price:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2 ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Price:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-500 focus:border-gray-800 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Brand'>Brand:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Brand:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-500 focus:border-gray-800 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Status'>Status:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Status:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-500 focus:border-gray-800 md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Specification'>Specs:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Specs:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-500 focus:border-gray-800 md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Manual'>Manual:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Manual:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-500 focus:border-gray-800 md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Quantity'>Quantity:</label>
-                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                    border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2  ${editMode && 'pointer-events-auto border'}`}
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Quantity:</p>
+                                                    <input className={`bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                    border-gray-500 focus:border-gray-800 md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Owner'>Owner:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >Owner:</p>
+                                                    <input className='bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-500 focus:border-gray-800 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text'
                                                         value={currentProduct.product.shop.name}
                                                     />
                                                 </div>
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='created At'>created At:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
+                                                <div className='w-full'>
+                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
+                                                    >created At:</p>
+                                                    <input className='bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-500 focus:border-gray-800 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
 
@@ -277,7 +277,7 @@ const AdminProduct = () => {
                                     </div>
                                 </div>
 
-                                <div className='px-2 md:px-6 lg:px-14 w-full'>
+                                <div className='px-2 md:px-6 lg:px-14 w-full mb-8'>
                                     {/* product sub-category */}
                                     <div >
                                         {currentProduct.subCategory.map((subCat) => (
@@ -291,10 +291,10 @@ const AdminProduct = () => {
                                         <p>Product sizes</p>
                                         <div className='flex'>
                                             {currentProduct.sizes.map((size) => (
-                                                <div>
-                                                    <p>{size.size.size}</p>
-                                                    <p>{size.quantity}</p>
-                                                    <p>{size.price}</p>
+                                                <div className='w-1/4 mx-1 bg-white border shadow-md p-2'>
+                                                    <p className='font-medium'>Size: <span className='font-normal'>{size.size.size}</span> </p>
+                                                    <p className='font-medium'>Price: <span className='font-normal'>{size.price}</span> </p>
+                                                    <p className='font-medium'>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
                                                 </div>
                                             ))}
                                             <div>
