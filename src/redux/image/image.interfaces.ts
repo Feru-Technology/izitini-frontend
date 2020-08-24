@@ -5,8 +5,8 @@ export interface HTTPError {
 }
 export interface IImage {
     id: string
+    url: string
     note: string
-    image_url: string
-    createdAt: Date,
+    createdAt: Date
     updatedAt: Date
 }

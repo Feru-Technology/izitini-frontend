@@ -47,10 +47,8 @@ const Categories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
-    const [uploadImage, setUploadImage] = useState<File | null>(null)
+    const [image_url, setImage_url] = useState<string | null>(null)
     const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
-
-    console.log('++++++++++++', uploadImage)
 
     const navigate = useNavigate()
 
@@ -65,20 +63,10 @@ const Categories = () => {
     // create category 
     const createNewCategory = () => {
         dispatch(createCategory())
-        post(dispatch, createdCategory, createFailed, '/admin/category', { name }, token)
+        post(dispatch, createdCategory, createFailed, '/admin/category', { name, image_url }, token)
     }
 
     const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
-
-    // on create success, fetch updated categories
-    useEffect(() => {
-        if (category) {
-            dispatch(fetchingCategories())
-            fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-            dispatch(createdCategory(null))
-            return setCreateMode(false)
-        }
-    }, [categories, category, dispatch])
 
     // update category
     const updateCategory = (id: any) => {
@@ -98,14 +86,32 @@ const Categories = () => {
         }
     }, [dispatch, updatedCategories])
 
-    const uploadCatImage = (file?: File) => {
+    // on create success, fetch updated categories
+    useEffect(() => {
+        if (category) {
+            dispatch(fetchingCategories())
+            fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+            dispatch(createdCategory(null))
+            return setCreateMode(false)
+        }
+    }, [categories, category, dispatch])
+
+    // update category image
+    const uploadCatImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
         dispatch(uploadingImage())
-        post(dispatch, uploadedImage, uploadFailed, '/image/upload', { file }, token)
+        post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
     }
 
     const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
 
-    console.log(isUploading, image, uploadError);
+    useEffect(() => {
+        if (image) {
+            setImage_url(image.url)
+            dispatch(uploadedImage(null))
+        }
+    }, [dispatch, image])
 
     return (
         <>
