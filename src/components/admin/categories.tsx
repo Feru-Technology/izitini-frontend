@@ -201,7 +201,7 @@ const Categories = () => {
                                                             onClick={() => navigate(`/admin/categories/${category.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={categoryImage} alt='product' className='w-full' />
+                                                                    <img src={categoryImage} alt='product' className='w-auto h-16' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
