@@ -78,10 +78,10 @@ const Categories = () => {
 
     // on success update, update categories state
     useEffect(() => {
-        if (updatedCategories.length !== 0) {
+        if (updatedCategories) {
             dispatch(fetchingCategories())
             fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-            dispatch(updated(''))
+            dispatch(updated(null))
             return setEditMode(false)
         }
     }, [dispatch, updatedCategories])
@@ -298,7 +298,7 @@ const Categories = () => {
 
                                         {/* upload image */}
                                         <div>
-                                            <input type='file' id='myFile' name='filename'
+                                            <input type='file' name='filename' className=''
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
                                                     if (e.target.files) uploadCatImage(e.target.files[0])
@@ -306,15 +306,16 @@ const Categories = () => {
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
+                                            ${isUploading ? 'pointer-events-none' : 'pointer-events-auto'}`}
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
                                                     return createNewCategory()
                                                 }}
                                             >
-                                                {!!isCatLoading ? 'Loading...' : 'Create'}
+                                                {!!isCatLoading ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
                                             </button>
                                         </div>
                                     </form>
