@@ -71,7 +71,7 @@ const Categories = () => {
     // update category
     const updateCategory = (id: any) => {
         dispatch(updatingCategory())
-        update(dispatch, updated, updateFailed, `/admin/category/${id}`, { name }, token)
+        update(dispatch, updated, updateFailed, `/admin/category/${id}`, { name, image_url }, token)
     }
 
     const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
@@ -96,7 +96,7 @@ const Categories = () => {
         }
     }, [categories, category, dispatch])
 
-    // update category image
+    // upload category image
     const uploadCatImage = (file: File) => {
         const formData = new FormData()
         formData.append('image', file)
@@ -220,6 +220,8 @@ const Categories = () => {
                                                             text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => {
                                                                     setCurrentCategory(category)
+                                                                    setName(category.name)
+                                                                    setImage_url(category.image_url)
                                                                     return setEditMode(true)
                                                                 }} >Edit</div>
                                                         </td>
@@ -327,7 +329,7 @@ const Categories = () => {
                         <Transition show={!!editMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
+                            <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
                                 <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
@@ -335,9 +337,10 @@ const Categories = () => {
                                     text-gray-600 hover:text-dark-blue hover:shadow-lg'
                                         onClick={() => setEditMode(false)} />
 
-                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600
-                                            mx-auto w-2/4 md:w-1/4'>
-                                        <img src={currentCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
+                                    <div className='mb-3 mx-auto relative flex justify-center'>
+                                        <img src={currentCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'}
+                                            className='max-h-24 w-auto' alt="" />
+
                                     </div>
                                     <div className='container'>
                                         <Transition
@@ -365,17 +368,27 @@ const Categories = () => {
                                                 onChange={e => setName(e.target.value)}
                                             />
                                         </div>
+
+                                        {/* upload image */}
+                                        <div>
+                                            <input type='file' name='filename' className=''
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadCatImage(e.target.files[0])
+                                                }} />
+                                        </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
+                                            ${isUploading ? 'pointer-events-none' : 'pointer-events-auto'}`}
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
                                                     return updateCategory(currentCategory?.id)
                                                 }}
                                             >
-                                                {!!isUpdating ? 'Loading...' : 'Update'}
+                                                {!!isUpdating ? 'Updating...' : isUploading ? 'uploading ...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
