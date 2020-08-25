@@ -172,8 +172,8 @@ const AdminProduct = () => {
                                                 <div className='w-full'>
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Name:</p>
-                                                    <input className={` bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
+                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
+                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
 
                                                 </div>
@@ -182,7 +182,7 @@ const AdminProduct = () => {
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Unit:</p>
                                                     <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
@@ -190,7 +190,7 @@ const AdminProduct = () => {
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Price:</p>
                                                     <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blu ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                 </div>
 
@@ -198,7 +198,7 @@ const AdminProduct = () => {
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Brand:</p>
                                                     <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
+                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                 </div>
 
@@ -206,7 +206,7 @@ const AdminProduct = () => {
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Status:</p>
                                                     <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    border-gray-300  md:w-auto pointer-event-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
                                                 </div>
 
@@ -214,7 +214,7 @@ const AdminProduct = () => {
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Specs:</p>
                                                     <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    border-gray-300  md:w-auto pointer-event-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
@@ -222,8 +222,8 @@ const AdminProduct = () => {
                                                     <p className='font-semibold text-sm md:text-base text-gray-500'
                                                     >Manual:</p>
                                                     <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual} />
+                                                    border-gray-300  md:w-auto pointer-event-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
+                                                        id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                 </div>
 
                                                 <div className='w-full'>
