@@ -106,7 +106,7 @@ const AdminProduct = () => {
             {isLoading ? (<h1>loading ...</h1>)
                 : currentProduct ?
                     (
-                        <div className='flex h-screen overflow-hidden'>
+                        <div className='flex h-screen overflow-hidden bg-gray-100'>
                             <SiderBar
                                 isClosed={isClosed}
                                 setIsClosed={setIsClosed}
@@ -161,7 +161,7 @@ const AdminProduct = () => {
                                         </Transition>
                                     </div>
 
-                                    <form action=''>
+                                    <form className='border border-gray-200 p-8 bg-white shadow-md rounded-md'>
                                         <div className=''>
                                             <Transition show={!!updateError}>
                                                 <div className='border border-red-600 bg-red-100'>
@@ -169,85 +169,94 @@ const AdminProduct = () => {
                                                 </div>
                                             </Transition>
                                             <div className='grid grid-cols-2 gap-4'>
-                                                <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Name:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
+                                                <div className=''>
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Name:</label>
+                                                    <input type='name'
+                                                        className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                        id='grid-first-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
 
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Unit:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Unit:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Price:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blu ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Price:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Brand:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Brand:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Status:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Status:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Specs:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Specs:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Manual:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none focus:outline-none focus:ring-1 focus:ring-dark-blue ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Manual:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Quantity:</p>
-                                                    <input className={`bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                    border-gray-300  md:w-auto pointer-event-none  ${editMode && 'pointer-events-auto border'}`}
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Quantity:</label>
+                                                    <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
                                                         id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                 </div>
 
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >Owner:</p>
-                                                    <input className='bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none'
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >Owner:</label>
+                                                    <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
                                                         id='grid-last-name' type='text'
                                                         value={currentProduct.product.shop.name}
                                                     />
                                                 </div>
                                                 <div className='w-full'>
-                                                    <p className='font-semibold text-sm md:text-base text-gray-500'
-                                                    >created At:</p>
-                                                    <input className='bg-gray-100 text-gray-700 text-sm md:text-base font-medium border rounded p-2
-                                                border-gray-300  md:w-auto pointer-events-none'
+                                                    <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    >created At:</label>
+                                                    <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
 
