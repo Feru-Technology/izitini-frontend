@@ -169,7 +169,7 @@ const AdminProduct = () => {
                                                         <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='grid grid-cols-2 gap-4'>
+                                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
                                                     <div className=''>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Name:</label>
@@ -265,6 +265,37 @@ const AdminProduct = () => {
                                             </div>
 
                                         </form>
+
+                                        <div className='w-full mb-8'>
+                                            {/* product sub-category */}
+                                            <div >
+                                                {currentProduct.subCategory.map((subCat) => (
+                                                    <div className='font-semibold text-sm md:text-base text-gray-500 w-ful'>Sub-Category:
+                                                        <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
+                                                ))}
+                                            </div>
+
+                                            {/* product sizes */}
+                                            <div className='w-full'>
+                                                <p>Product sizes</p>
+                                                <div className='flex'>
+                                                    {currentProduct.sizes.map((size) => {
+                                                        console.log('==========', size)
+                                                        return (
+                                                            <div className='w-1/4 mx-1 bg-white border shadow-md p-2'>
+                                                                <p className='font-medium'>Size: <span className='font-normal'>{size.size.size}</span> </p>
+                                                                <p className='font-medium'>Price: <span className='font-normal'>{size.price}</span> </p>
+                                                                <p className='font-medium'>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                    <div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                     <div className=' my-5 '>
@@ -287,34 +318,6 @@ const AdminProduct = () => {
                                             </button>
                                         </Transition>
                                     </div>
-                                </div>
-
-                                <div className='px-2 md:px-6 lg:px-14 w-full mb-8'>
-                                    {/* product sub-category */}
-                                    <div >
-                                        {currentProduct.subCategory.map((subCat) => (
-                                            <div className='font-semibold text-sm md:text-base text-gray-500 w-ful'>Sub-Category:
-                                                <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
-                                        ))}
-                                    </div>
-
-                                    {/* product sizes */}
-                                    <div className='w-full'>
-                                        <p>Product sizes</p>
-                                        <div className='flex'>
-                                            {currentProduct.sizes.map((size) => (
-                                                <div className='w-1/4 mx-1 bg-white border shadow-md p-2'>
-                                                    <p className='font-medium'>Size: <span className='font-normal'>{size.size.size}</span> </p>
-                                                    <p className='font-medium'>Price: <span className='font-normal'>{size.price}</span> </p>
-                                                    <p className='font-medium'>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
-                                                </div>
-                                            ))}
-                                            <div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
                                 </div>
 
                             </div>
