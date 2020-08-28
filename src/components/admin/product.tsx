@@ -169,8 +169,8 @@ const AdminProduct = () => {
                                                         <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
-                                                    <div className=''>
+                                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4 '>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Name:</label>
                                                         <input type='name'
@@ -178,10 +178,9 @@ const AdminProduct = () => {
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
                                                         ${editMode && 'pointer-events-auto border'}`}
                                                             id='grid-first-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
-
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Unit:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -190,7 +189,7 @@ const AdminProduct = () => {
                                                             id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Price:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -199,7 +198,7 @@ const AdminProduct = () => {
                                                             id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Brand:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -208,16 +207,7 @@ const AdminProduct = () => {
                                                             id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                     </div>
 
-                                                    <div className='w-full'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                                        >Status:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
-                                                    </div>
-
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Specs:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -226,7 +216,7 @@ const AdminProduct = () => {
                                                             id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Manual:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -235,7 +225,7 @@ const AdminProduct = () => {
                                                             id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Quantity:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -244,16 +234,26 @@ const AdminProduct = () => {
                                                             id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Owner:</label>
                                                         <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
+                                                        focus:outline-none w-full ease-linear transition-all duration-150 pointer-events-none'
                                                             id='grid-last-name' type='text'
                                                             value={currentProduct.product.shop.name}
                                                         />
                                                     </div>
-                                                    <div className='w-full'>
+
+                                                    <div className=' relative'>
+                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        >Status:</label>
+                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm w-full
+                                                        focus:outline-none ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
+                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                            id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
+                                                    </div>
+
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >created At:</label>
                                                         <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -266,17 +266,17 @@ const AdminProduct = () => {
 
                                         </form>
 
-                                        <div className='w-full mb-8'>
+                                        <div className=' mb-8'>
                                             {/* product sub-category */}
                                             <div >
                                                 {currentProduct.subCategory.map((subCat) => (
                                                     <div className='font-semibold text-sm md:text-base text-gray-500 w-ful'>Sub-Category:
-                                                        <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
+                                                        <span className='text-gray-800 ml-1'>{subCat.subCategory.name}</span></div>
                                                 ))}
                                             </div>
 
                                             {/* product sizes */}
-                                            <div className='w-full'>
+                                            <div className='my-1'>
                                                 <p>Product sizes</p>
                                                 <div className='flex'>
                                                     {currentProduct.sizes.map((size) => {
