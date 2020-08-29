@@ -169,7 +169,17 @@ const AdminProduct = () => {
                                                         <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4 '>
+                                                <div className='mb-3 w-full flex justify-end'>
+                                                    <select
+                                                        className='appearance-none w-fit bg-white border
+                                                        text-gray-700 rounded border-dark-blue px-4 py-2'
+                                                        id='grid-state'
+                                                    // onChange={e => setShop_specialty_2(e.target.value)}
+                                                    >
+                                                        <option>{currentProduct.product.status}</option>
+                                                    </select>
+                                                </div>
+                                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
                                                     <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Name:</label>
@@ -191,7 +201,7 @@ const AdminProduct = () => {
 
                                                     <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                                        >Price:</label>
+                                                        >Price Per Unit:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
                                                         ${editMode && 'pointer-events-auto border'}`}
@@ -246,7 +256,7 @@ const AdminProduct = () => {
 
                                                     <div className=' relative'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                                        >Status:</label>
+                                                        >Product sub_category:</label>
                                                         <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm w-full
                                                         focus:outline-none ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
                                                         ${editMode && 'pointer-events-auto border'}`}
