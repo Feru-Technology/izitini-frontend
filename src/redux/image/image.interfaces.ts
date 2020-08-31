@@ -10,3 +10,11 @@ export interface IImage {
     createdAt: Date
     updatedAt: Date
 }
+
+export interface IProductImage {
+    product_id: string
+    image_id: string
+    image: IImage
+    createdAt: Date
+    updatedAt: Date
+}

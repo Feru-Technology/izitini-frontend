@@ -214,7 +214,7 @@ const AdminProduct = () => {
         }
     }, [dispatch, image])
 
-    // if created successfully clear the state and fetch updated product data
+    // if successfully clear the state and fetch updated product data
     useEffect(() => {
         if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus) {
             dispatch(updatedProductStatus(null))
