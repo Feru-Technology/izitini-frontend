@@ -55,6 +55,11 @@ import {
     updatedProductStatus,
     failedToUpdateStatus
 } from '../../redux/products/updateProductStatus.slice'
+import {
+    uploadingImage,
+    uploadedImage,
+    uploadFailed
+} from '../../redux/image/uploadImage.slice'
 
 const AdminProduct = () => {
 
@@ -97,6 +102,7 @@ const AdminProduct = () => {
 
     // image states
     const [addImage, setAddImage] = useState(false)
+    const [image_url, setImage_url] = useState<string | null>(null)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -190,6 +196,23 @@ const AdminProduct = () => {
     }
 
     const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
+
+    // upload product image
+    const uploadProductImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
+        dispatch(uploadingImage())
+        post(dispatch, uploadedImage, uploadFailed, '/images', formData, token)
+    }
+
+    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+
+    useEffect(() => {
+        if (image) {
+            setImage_url(image.url)
+            dispatch(uploadedImage(null))
+        }
+    }, [dispatch, image])
 
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
@@ -701,6 +724,55 @@ const AdminProduct = () => {
                                                     placeholder='Quantity'
                                                     onChange={e => setColorQuantity(e.target.value)}
                                                 />
+                                            </div>
+                                            <div className='text-center mt-6'>
+                                                <button
+                                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                    type='button'
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        return createColor()
+                                                    }}
+                                                >
+                                                    {!!isCreatingColor ? 'Creating...' : 'Create'}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </Transition>
+
+                            {/* add image to a product */}
+                            <Transition show={!addImage} className='absolute'>
+                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                                </div>
+                                <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
+                                    <div className='p-3 bg-white w-ful mx-6 md:w-2/4 lg:w-1/4 md:mx-auto rounded-md shadow-md
+                                md:p-6 lg:p-8 relative'>
+
+                                        <MdOutlineCancel className='h-6 w-auto absolute top-1 right-1
+                                    text-gray-600 hover:text-dark-blue hover:shadow-lg cursor-pointer'
+                                            onClick={() => setAddImage(false)} />
+
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Color</div>
+                                        <div className='container'>
+                                            <Transition
+                                                show={!!colorError}
+                                            >
+                                                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{colorError?.message}</p>
+
+                                            </Transition>
+                                        </div>
+                                        <form>
+
+                                            {/* upload image */}
+                                            <div>
+                                                <input type='file' name='filename' className=''
+                                                    accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                    onChange={e => {
+                                                        if (e.target.files) uploadProductImage(e.target.files[0])
+                                                    }} />
                                             </div>
                                             <div className='text-center mt-6'>
                                                 <button

@@ -104,7 +104,6 @@ const CatSubCategories = () => {
         }
     }, [dispatch, id, updatedSubCategory])
 
-
     // upload category image
     const uploadSubCatImage = (file: File) => {
         const formData = new FormData()
