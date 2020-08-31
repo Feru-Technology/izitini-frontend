@@ -171,12 +171,14 @@ const AdminProduct = () => {
                                                 </Transition>
                                                 <div className='mb-3 w-full flex justify-end'>
                                                     <select
-                                                        className='appearance-none w-fit bg-white border
-                                                        text-gray-700 rounded border-dark-blue px-4 py-2'
+                                                        className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
+                                                        focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
+                                                        ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
                                                     // onChange={e => setShop_specialty_2(e.target.value)}
                                                     >
-                                                        <option>{currentProduct.product.status}</option>
+                                                        <option className='text-center'>{currentProduct.product.status}</option>
+                                                        <option className='text-center'>{currentProduct.product.status === 'draft' ? 'waiting_for_review' : 'draft'}</option>
                                                     </select>
                                                 </div>
                                                 <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
