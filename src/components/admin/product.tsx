@@ -95,6 +95,9 @@ const AdminProduct = () => {
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
+    // image states
+    const [addImage, setAddImage] = useState(false)
+
     useEffect(() => {
         dispatch(getProduct())
         fetch(dispatch, product, productFailed, `/product/${id}`)
@@ -472,6 +475,42 @@ const AdminProduct = () => {
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
+                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                    onClick={() => deleteColor(color.color.id)} />
+
+                                                            </div>
+                                                        )
+                                                    })}
+
+                                                </div>
+
+                                            </div>
+
+                                            {/* product Images */}
+                                            <div className=' border-b border-dark-blue pb-8'>
+                                                <div className='flex space-x-2 my-4'>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product Images</p>
+
+                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                        // onPointerOver={() => setShowColorDesc(true)}
+                                                        // onPointerLeave={() => setShowColorDesc(false)}
+                                                        onClick={() => setAddImage(true)}
+                                                    >
+                                                        <PlusIcon className='h-6 mx-auto' />
+                                                    </div>
+
+                                                    <Transition show={!!showColorDesc}
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
+                                                        {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
+                                                    </Transition>
+                                                </div>
+                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+
+                                                    {currentProduct.colors.map((color) => {
+                                                        return (
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
                                                                     onClick={() => deleteColor(color.color.id)} />
