@@ -107,6 +107,7 @@ const AdminProduct = () => {
 
     // image states
     const [addImage, setAddImage] = useState(false)
+    const [showImageDesc, setShowImageDesc] = useState(false)
     const [image_id, setImage_id] = useState<string | null>(null)
 
     useEffect(() => {
@@ -213,6 +214,8 @@ const AdminProduct = () => {
     }
 
     const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+
+    console.log(image)
 
     useEffect(() => {
         if (image) {
@@ -533,27 +536,29 @@ const AdminProduct = () => {
 
                                                     <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
                                                     hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
-                                                        // onPointerOver={() => setShowColorDesc(true)}
-                                                        // onPointerLeave={() => setShowColorDesc(false)}
+                                                        onPointerOver={() => setShowImageDesc(true)}
+                                                        onPointerLeave={() => setShowImageDesc(false)}
                                                         onClick={() => setAddImage(true)}
                                                     >
                                                         <PlusIcon className='h-6 mx-auto' />
                                                     </div>
 
-                                                    <Transition show={!!showColorDesc}
+                                                    <Transition show={!!showImageDesc}
                                                         className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
-                                                        {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
+                                                        {currentProduct.images.length === 0 ? <p>Add First Product image</p> : <p>Add Product image</p>}
                                                     </Transition>
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
 
-                                                    {currentProduct.colors.map((color) => {
+                                                    {currentProduct.images.map((image) => {
+                                                        console.log(image.image.image_url)
                                                         return (
                                                             <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteColor(color.color.id)} />
-
+                                                                // onClick={() => deleteImage(image.image.id)} 
+                                                                />
+                                                                <img src={image.image.image_url} alt='product_image' className='h-auto w-auto rounded-full object-cover' />
                                                             </div>
                                                         )
                                                     })}
@@ -792,8 +797,9 @@ const AdminProduct = () => {
                                             </div>
                                             <div className='text-center mt-6'>
                                                 <button
-                                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                    className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
+                                            ${isUploading ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer pointer-events-auto'}`}
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()

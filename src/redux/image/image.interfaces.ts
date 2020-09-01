@@ -6,6 +6,7 @@ export interface HTTPError {
 export interface IImage {
     id: string
     url: string
+    image_url: string
     note: string
     createdAt: Date
     updatedAt: Date

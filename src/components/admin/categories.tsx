@@ -108,7 +108,7 @@ const Categories = () => {
 
     useEffect(() => {
         if (image) {
-            setImage_url(image.url)
+            setImage_url(image.image_url)
             dispatch(uploadedImage(null))
         }
     }, [dispatch, image])

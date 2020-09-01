@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { IImage } from '../image/image.interfaces'
 import { IProduct, HTTPError } from './product.interface'
 import { ISize } from '../admin/productSizes/size.interfaces'
 import { IColor } from '../admin/productColors/color.interfaces'
@@ -18,6 +19,10 @@ export interface productState {
             color: IColor
             price: number
             quantity: string
+        }[]
+        images: {
+            image: IImage
+            product_id: string
         }[]
         product: IProduct,
         subCategory: [{ subCategory: ISubCategory }]
