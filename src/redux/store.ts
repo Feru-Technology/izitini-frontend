@@ -20,6 +20,7 @@ import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { adminCategorySlice } from './admin/categories/category.slice'
 import { deleteSizeSlice } from './admin/productSizes/deleteSize.slice'
 import { createSizeSlice } from './admin/productSizes/createSize.slice'
+import { addImageToProductSlice } from './image/addImageToProduct.slice'
 import { updateProductSlice } from './admin/products/updateProduct.slice'
 import { shopProductsSlice } from './admin/products/productsInShop.slice'
 import { createProductSlice } from './admin/products/createProduct.slice'
@@ -62,8 +63,9 @@ export const store = configureStore({
         adminCategory: adminCategorySlice.reducer,
         adminShopProducts: shopProductsSlice.reducer,
         adminCategories: AdminCategoriesSlice.reducer,
-        adminUpdateProduct: updateProductSlice.reducer,
+        productImages: addImageToProductSlice.reducer,
         adminCreateProduct: createProductSlice.reducer,
+        adminUpdateProduct: updateProductSlice.reducer,
         adminSubCategory: adminSubCategorySlice.reducer,
         adminCreateCategory: crateCategorySlice.reducer,
         adminUpdateCategory: UpdateCategorySlice.reducer,
@@ -72,7 +74,6 @@ export const store = configureStore({
         updateProductStatus: updateProductStatusSlice.reducer,
         adminCreateSubCategory: createSubCategorySlice.reducer,
         adminUpdateSubCategory: updateSubCategorySlice.reducer,
-
     },
 })
 

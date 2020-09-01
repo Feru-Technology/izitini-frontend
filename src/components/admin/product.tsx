@@ -60,6 +60,11 @@ import {
     uploadedImage,
     uploadFailed
 } from '../../redux/image/uploadImage.slice'
+import {
+    addingImage,
+    addedImage,
+    addFailed
+} from '../../redux/image/addImageToProduct.slice'
 
 const AdminProduct = () => {
 
@@ -102,7 +107,7 @@ const AdminProduct = () => {
 
     // image states
     const [addImage, setAddImage] = useState(false)
-    const [image_url, setImage_url] = useState<string | null>(null)
+    const [image_id, setImage_id] = useState<string | null>(null)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -111,6 +116,8 @@ const AdminProduct = () => {
 
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
+
+    console.log(currentProduct)
 
     useEffect(() => {
         if (currentProduct) {
@@ -209,20 +216,28 @@ const AdminProduct = () => {
 
     useEffect(() => {
         if (image) {
-            setImage_url(image.url)
+            setImage_id(image.id)
             dispatch(uploadedImage(null))
         }
     }, [dispatch, image])
 
+    const addProductImage = () => {
+        dispatch(addingImage())
+        post(dispatch, addedImage, addFailed, `/admin/product/image/${id}/${image_id}`, {}, token)
+    }
+
+    const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
+
     // if successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus) {
+        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage) {
             dispatch(updatedProductStatus(null))
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
             dispatch(deletedSize(null))
             dispatch(createdSize(null))
+            dispatch(addedImage(null))
             // dispatch(getProduct())
 
             fetch(
@@ -233,6 +248,7 @@ const AdminProduct = () => {
 
             setSize(null)
             setAddSize(false)
+            setAddImage(false)
             setEditMode(false)
             setAddColor(false)
             setColorName(null)
@@ -241,7 +257,7 @@ const AdminProduct = () => {
             setPricePerSize(null)
             setSizeQuantity(null)
         }
-    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage])
 
     return (
         <>
@@ -744,7 +760,7 @@ const AdminProduct = () => {
                             </Transition>
 
                             {/* add image to a product */}
-                            <Transition show={!addImage} className='absolute'>
+                            <Transition show={!!addImage} className='absolute'>
                                 <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
                                 </div>
                                 <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
@@ -781,10 +797,10 @@ const AdminProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return createColor()
+                                                        return addProductImage()
                                                     }}
                                                 >
-                                                    {!!isCreatingColor ? 'Creating...' : 'Create'}
+                                                    {!!isUploading ? 'uploading...' : isAdding ? 'Creating...' : 'Create'}
                                                 </button>
                                             </div>
                                         </form>
