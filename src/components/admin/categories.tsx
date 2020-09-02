@@ -152,7 +152,11 @@ const Categories = () => {
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Categories</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
-                                        onClick={() => setCreateMode(true)} >
+                                        onClick={() => {
+                                            setName(null)
+                                            setImage_url(null)
+                                            return setCreateMode(true)
+                                        }} >
                                         ADD A Category
                                     </button>
                                 </div>
@@ -276,7 +280,7 @@ const Categories = () => {
                                             show={!!error}
                                         >
                                             {/* {error ? } */}
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
+                                            <p className='p-2 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
 
                                         </Transition>
                                     </div>
@@ -347,7 +351,7 @@ const Categories = () => {
                                             show={!!updateError}
                                         >
 
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{updateError?.message}</p>
+                                            <p className='p-2 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{updateError?.message}</p>
 
                                         </Transition>
                                     </div>
