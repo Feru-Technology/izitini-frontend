@@ -24,6 +24,11 @@ import {
     updated,
     updateFailed
 } from '../../redux/admin/subCategories/updateSubCategory.slice'
+import {
+    uploadingImage,
+    uploadedImage,
+    uploadFailed
+} from '../../redux/image/uploadImage.slice'
 
 // all subcategory in a category
 const CatSubCategories = () => {
@@ -46,6 +51,7 @@ const CatSubCategories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
+    const [image_url, setImage_url] = useState<string | null>()
     const [currentSubCategory, setCurrentSubCategory] = useState<{ id: string, name: string, image_url: string } | null>(null)
 
     const navigate = useNavigate()
@@ -58,12 +64,14 @@ const CatSubCategories = () => {
 
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
 
+    console.log(category)
+
     const catName = category?.name
 
     // create new subCategory 
     const createNewSubCategory = () => {
         dispatch(creatingSubCategory())
-        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, { name }, token)
+        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
     }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
@@ -81,7 +89,7 @@ const CatSubCategories = () => {
     // update subcategory
     const updateCategory = (id: any) => {
         dispatch(updatingSubCategory())
-        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name }, token)
+        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
     }
 
     const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
@@ -95,6 +103,24 @@ const CatSubCategories = () => {
             return setEditMode(false)
         }
     }, [dispatch, id, updatedSubCategory])
+
+
+    // upload category image
+    const uploadSubCatImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
+        dispatch(uploadingImage())
+        post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+    }
+
+    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+
+    useEffect(() => {
+        if (image) {
+            setImage_url(image.url)
+            dispatch(uploadedImage(null))
+        }
+    }, [dispatch, image])
 
     return (
         <>
@@ -183,7 +209,7 @@ const CatSubCategories = () => {
                                                             onClick={() => navigate(`/admin/subCategory/${subCategory.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={subCategoryImage} alt='product' className='w-full' />
+                                                                    <img src={subCategoryImage} alt='product' className='w-auto h-16' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
@@ -274,23 +300,28 @@ const CatSubCategories = () => {
                                                 placeholder='subCategory name'
                                                 onChange={e => setName(e.target.value)}
                                             />
-                                        </div>{/* upload image */}
+                                        </div>
+
+                                        {/* upload image */}
                                         <div>
-                                            <form action='/action_page.php'>
-                                                <input type='file' id='myFile' name='filename' />
-                                            </form>
+                                            <input type='file' name='filename' className=''
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                }} />
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
+                                            ${isUploading ? 'pointer-events-none cursor-wait' : 'pointer-events-auto'}`}
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
                                                     return createNewSubCategory()
                                                 }}
                                             >
-                                                {!!isCreating ? 'Creating...' : 'Create'}
+                                                {!!isCreating ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
                                             </button>
                                         </div>
                                     </form>
