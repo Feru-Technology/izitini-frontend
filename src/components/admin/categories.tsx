@@ -221,7 +221,7 @@ const Categories = () => {
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
-                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
+                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out cursor-pointer'
                                                                 onClick={() => {
                                                                     setCurrentCategory(category)
                                                                     setName(category.name)
@@ -230,7 +230,7 @@ const Categories = () => {
                                                                 }} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
-                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 cursor-pointer
                                                             text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
