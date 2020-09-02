@@ -192,12 +192,12 @@ const Categories = () => {
                                             </tr>
                                         </thead>
 
-                                        {categories.map((category) => {
-                                            const subcategories = category.subCategories.length
-                                            const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
-                                            return (
-                                                <tbody>
+                                        <tbody>
+                                            {categories.map((category) => {
+                                                const subcategories = category.subCategories.length
+                                                const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
 
+                                                return (
                                                     <tr className='text-center text-xs md:text-base lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
@@ -210,7 +210,7 @@ const Categories = () => {
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal'>
-                                                                        <span className='hover:underline hover:text-dark-blue  cursor-pointer'>{category.name}</span>
+                                                                        <span className='hover:underline hover:text-dark-blue cursor-pointer'>{category.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -230,14 +230,15 @@ const Categories = () => {
                                                                 }} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
-                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 cursor-pointer
-                                                            text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
+                                                            <div className={`mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6
+                                                            text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out
+                                                        ${!category.subCategories.length ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer pointer-events-auto'}`}
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
-                                                    </tr>
-                                                </tbody>)
-                                        })
-                                        }
+                                                    </tr>)
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
 
                                 </div>
