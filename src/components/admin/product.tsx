@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
+import {
+    PlusIcon,
+} from '@heroicons/react/outline'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch, post, update } from '../../api/apiAction'
@@ -42,6 +44,7 @@ const AdminProduct = () => {
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [addColor, setAddColor] = useState(false)
+    const [isSizeDesc, setIsSizeDesc] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
     const [price, setPrice] = useState<number | null>(null)
@@ -200,7 +203,7 @@ const AdminProduct = () => {
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                     </div>
-
+                                                    {/* 
                                                     <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Price Per Unit:</label>
@@ -279,7 +282,7 @@ const AdminProduct = () => {
                                                         <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
                                                             id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
-                                                    </div>
+                                                    </div> */}
 
                                                 </div>
                                             </div>
@@ -287,18 +290,12 @@ const AdminProduct = () => {
                                         </form>
 
                                         <div className=' mb-8'>
-                                            {/* product sub-category */}
-                                            <div >
-                                                {currentProduct.subCategory.map((subCat) => (
-                                                    <div className='font-semibold text-sm md:text-base text-gray-500 w-ful'>Sub-Category:
-                                                        <span className='text-gray-800 ml-1'>{subCat.subCategory.name}</span></div>
-                                                ))}
-                                            </div>
 
                                             {/* product sizes */}
                                             <div className='my-1'>
-                                                <p>Product sizes</p>
-                                                <div className='flex'>
+                                                <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
+                                                <div className='flex space-x-2'>
+
                                                     {currentProduct.sizes.map((size) => {
                                                         console.log('==========', size)
                                                         return (
@@ -309,6 +306,23 @@ const AdminProduct = () => {
                                                             </div>
                                                         )
                                                     })}
+                                                    <div>
+                                                        <div>
+                                                            <p className='rounded-full bg-gray-100 border border-gray-500 w-7 h-7 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                                onPointerOver={() => setIsSizeDesc(true)}
+                                                                onPointerLeave={() => setIsSizeDesc(false)}
+                                                            >
+                                                                <PlusIcon className='h-6 mx-auto mt-0.5' />
+                                                            </p>
+                                                        </div>
+
+
+                                                        <Transition show={!!isSizeDesc}
+                                                            className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1'>
+                                                            {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
+                                                        </Transition>
+                                                    </div>
                                                     <div>
                                                     </div>
 
