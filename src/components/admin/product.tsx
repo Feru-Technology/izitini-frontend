@@ -292,8 +292,23 @@ const AdminProduct = () => {
                                         <div className=' mb-8'>
 
                                             {/* product sizes */}
-                                            <div className='my-1'>
-                                                <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
+                                            <div className=''>
+                                                <div className='flex space-x-2 my-4'>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
+
+                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                        onPointerOver={() => setIsSizeDesc(true)}
+                                                        onPointerLeave={() => setIsSizeDesc(false)}
+                                                    >
+                                                        <PlusIcon className='h-6 mx-auto' />
+                                                    </div>
+
+                                                    <Transition show={!!isSizeDesc}
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
+                                                    </Transition>
+                                                </div>
                                                 <div className='flex space-x-2'>
 
                                                     {currentProduct.sizes.map((size) => {
@@ -306,27 +321,9 @@ const AdminProduct = () => {
                                                             </div>
                                                         )
                                                     })}
-                                                    <div>
-                                                        <div>
-                                                            <p className='rounded-full bg-gray-100 border border-gray-500 w-7 h-7 text-gray-500
-                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
-                                                                onPointerOver={() => setIsSizeDesc(true)}
-                                                                onPointerLeave={() => setIsSizeDesc(false)}
-                                                            >
-                                                                <PlusIcon className='h-6 mx-auto mt-0.5' />
-                                                            </p>
-                                                        </div>
-
-
-                                                        <Transition show={!!isSizeDesc}
-                                                            className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1'>
-                                                            {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
-                                                        </Transition>
-                                                    </div>
-                                                    <div>
-                                                    </div>
 
                                                 </div>
+
                                             </div>
 
                                         </div>
