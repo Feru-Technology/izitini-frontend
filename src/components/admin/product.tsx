@@ -314,21 +314,10 @@ const AdminProduct = () => {
                                                     {currentProduct.sizes.map((size) => {
                                                         console.log('==========', size)
                                                         return (
-                                                            <div className='bg-white border shadow-md p-2 font-medium'>
-                                                                <p className=''>Size: <span className='font-normal'>{size.size.size}</span> </p>
-                                                                <p className=''>Price: <span className='font-normal'>{size.price}</span> </p>
-                                                                <p className=''>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
-                                                            </div>
-                                                        )
-                                                    })}
-
-                                                    {currentProduct.sizes.map((size) => {
-                                                        console.log('==========', size)
-                                                        return (
-                                                            <div className='bg-white border shadow-md p-2 font-medium'>
-                                                                <p className=''>Size: <span className='font-normal'>{size.size.size}</span> </p>
-                                                                <p className=''>Price: <span className='font-normal'>{size.price}</span> </p>
-                                                                <p className=''>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
                                                             </div>
                                                         )
                                                     })}
