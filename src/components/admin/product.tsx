@@ -292,7 +292,7 @@ const AdminProduct = () => {
                                         <div className=' mb-8'>
 
                                             {/* product sizes */}
-                                            <div className=''>
+                                            <div className=' border-b border-dark-blue pb-8'>
                                                 <div className='flex space-x-2 my-4'>
                                                     <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
 
@@ -309,15 +309,26 @@ const AdminProduct = () => {
                                                         {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
                                                     </Transition>
                                                 </div>
-                                                <div className='flex space-x-2'>
+                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
 
                                                     {currentProduct.sizes.map((size) => {
                                                         console.log('==========', size)
                                                         return (
-                                                            <div className='w-1/4 mx-1 bg-white border shadow-md p-2'>
-                                                                <p className='font-medium'>Size: <span className='font-normal'>{size.size.size}</span> </p>
-                                                                <p className='font-medium'>Price: <span className='font-normal'>{size.price}</span> </p>
-                                                                <p className='font-medium'>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
+                                                            <div className='bg-white border shadow-md p-2 font-medium'>
+                                                                <p className=''>Size: <span className='font-normal'>{size.size.size}</span> </p>
+                                                                <p className=''>Price: <span className='font-normal'>{size.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
+                                                            </div>
+                                                        )
+                                                    })}
+
+                                                    {currentProduct.sizes.map((size) => {
+                                                        console.log('==========', size)
+                                                        return (
+                                                            <div className='bg-white border shadow-md p-2 font-medium'>
+                                                                <p className=''>Size: <span className='font-normal'>{size.size.size}</span> </p>
+                                                                <p className=''>Price: <span className='font-normal'>{size.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
                                                             </div>
                                                         )
                                                     })}
