@@ -5,7 +5,7 @@ export interface HTTPError {
 }
 export interface IColor {
     id: string
-    size: string
+    name: string
     note: string
     createdAt: Date,
     updatedAt: Date

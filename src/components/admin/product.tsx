@@ -44,11 +44,12 @@ const AdminProduct = () => {
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [addColor, setAddColor] = useState(false)
-    const [isSizeDesc, setIsSizeDesc] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
     const [price, setPrice] = useState<number | null>(null)
     const [brand, setBrand] = useState<string | null>(null)
+    const [showSizeDesc, setShowSizeDesc] = useState(false)
+    const [showColorDesc, setShowColorDesc] = useState(false)
     const [status, setStatus] = useState<string | null>(null)
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
@@ -203,7 +204,7 @@ const AdminProduct = () => {
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                     </div>
-                                                    {/* 
+
                                                     <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Price Per Unit:</label>
@@ -282,7 +283,7 @@ const AdminProduct = () => {
                                                         <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
                                                             id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
-                                                    </div> */}
+                                                    </div>
 
                                                 </div>
                                             </div>
@@ -298,13 +299,13 @@ const AdminProduct = () => {
 
                                                     <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
                                                     hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
-                                                        onPointerOver={() => setIsSizeDesc(true)}
-                                                        onPointerLeave={() => setIsSizeDesc(false)}
+                                                        onPointerOver={() => setShowSizeDesc(true)}
+                                                        onPointerLeave={() => setShowSizeDesc(false)}
                                                     >
                                                         <PlusIcon className='h-6 mx-auto' />
                                                     </div>
 
-                                                    <Transition show={!!isSizeDesc}
+                                                    <Transition show={!!showSizeDesc}
                                                         className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
                                                         {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
                                                     </Transition>
@@ -312,12 +313,45 @@ const AdminProduct = () => {
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
 
                                                     {currentProduct.sizes.map((size) => {
-                                                        console.log('==========', size)
                                                         return (
                                                             <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
+                                                            </div>
+                                                        )
+                                                    })}
+
+                                                </div>
+
+                                            </div>
+
+                                            {/* product Colors */}
+                                            <div className=' border-b border-dark-blue pb-8'>
+                                                <div className='flex space-x-2 my-4'>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>ProductColors</p>
+
+                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                        onPointerOver={() => setShowColorDesc(true)}
+                                                        onPointerLeave={() => setShowColorDesc(false)}
+                                                    >
+                                                        <PlusIcon className='h-6 mx-auto' />
+                                                    </div>
+
+                                                    <Transition show={!!showColorDesc}
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
+                                                    </Transition>
+                                                </div>
+                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+
+                                                    {currentProduct.colors.map((color) => {
+                                                        return (
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
                                                             </div>
                                                         )
                                                     })}
