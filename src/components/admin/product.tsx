@@ -202,7 +202,7 @@ const AdminProduct = () => {
                                                         <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
                                                         ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
+                                                            id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.specification} />
                                                     </div>
 
                                                     <div className='my-1'>
