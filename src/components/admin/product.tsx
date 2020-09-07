@@ -553,12 +553,14 @@ const AdminProduct = () => {
                                                     {currentProduct.images.map((image) => {
                                                         console.log(image.image.image_url)
                                                         return (
-                                                            <div className='bg-white border shadow-md lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
+                                                            <div className='bg-white border lg:px-4 font-medium text-xs md:text-sm lg:text-base
+                                                            rounded relative hover:shadow-sm'>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
                                                                 // onClick={() => deleteImage(image.image.id)} 
                                                                 />
-                                                                <img src={image.image.image_url} alt='product_image' className='h-32 w-auto object-cover' />
+
+                                                                <img src={image.image.image_url} alt='product_image' className='h-32 w-full object-cover' />
                                                             </div>
                                                         )
                                                     })}
