@@ -26,6 +26,11 @@ import {
     updatedProduct,
     updateFailed
 } from '../../redux/admin/products/updateProduct.slice'
+import {
+    creatingSize,
+    createdSize,
+    createFailed
+} from '../../redux/admin/productSizes/createSize.slice'
 
 const AdminProduct = () => {
 
@@ -40,7 +45,7 @@ const AdminProduct = () => {
         query: '(min-width: 640px)',
     })
 
-    const [addSize, setAddSize] = useState(false)
+    // product states
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [addColor, setAddColor] = useState(false)
@@ -54,6 +59,12 @@ const AdminProduct = () => {
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
+
+    // size state
+    const [addSize, setAddSize] = useState(false)
+    const [size, setSize] = useState<string | null>(null)
+    const [pricePerSize, setPricePerSize] = useState<string | null>(null)
+    const [sizeQuantity, setSizeQuantity] = useState<string | null>(null)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -104,6 +115,15 @@ const AdminProduct = () => {
         }
     }, [dispatch, id, updated])
 
+    // create product size
+    const createSize = () => {
+        dispatch(creatingSize())
+        post(dispatch, createdSize, createFailed, `/admin/product/size/${id}`, {
+            size,
+            price: pricePerSize,
+            quantity: sizeQuantity
+        }, token)
+    }
 
     return (
         <>
