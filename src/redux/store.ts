@@ -14,6 +14,7 @@ import { allProductSlice } from './products/allProduct.slice'
 import { productsSlice } from './admin/products/products.slice'
 import { categoriesSlice } from './categories/categories.slice'
 import { createUserSlice } from './admin/users/createUser.slice'
+import { removeImgToProdSlice } from './image/removeImgToProd.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
@@ -62,6 +63,7 @@ export const store = configureStore({
         storeProducts: storeProductsSlice.reducer,
         adminCategory: adminCategorySlice.reducer,
         adminShopProducts: shopProductsSlice.reducer,
+        removeImgToProd: removeImgToProdSlice.reducer,
         adminCategories: AdminCategoriesSlice.reducer,
         productImages: addImageToProductSlice.reducer,
         adminCreateProduct: createProductSlice.reducer,
