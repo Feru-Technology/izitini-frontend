@@ -4,34 +4,34 @@ import { ISize, HTTPError } from './size.interfaces'
 
 export interface sizeState {
     isCreating: boolean
-    error: Error | HTTPError | null
+    sizeError: Error | HTTPError | null
     newSize: ISize | null
 }
 
 const initialState: sizeState = {
     isCreating: false,
-    error: null,
+    sizeError: null,
     newSize: null,
 }
 
 export const createSizeSlice = createSlice({
-    name: 'size',
+    name: 'create size',
     initialState,
     reducers: {
         creatingSize: (state) => {
             state.isCreating = true
             state.newSize = null
-            state.error = null
+            state.sizeError = null
         },
         createdSize: (state, { payload }) => {
-            state.error = null
+            state.sizeError = null
             state.isCreating = false
             state.newSize = payload
         },
         createFailed: (state, { payload }) => {
             state.newSize = null
             state.isCreating = false
-            state.error = payload
+            state.sizeError = payload
         }
     },
 })
