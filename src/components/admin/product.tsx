@@ -65,6 +65,11 @@ import {
     addedImage,
     addFailed
 } from '../../redux/image/addImageToProduct.slice'
+import {
+    removingImg,
+    removedImg,
+    removeImgFailed
+} from '../../redux/image/removeImgToProd.slice'
 
 const AdminProduct = () => {
 
@@ -215,8 +220,6 @@ const AdminProduct = () => {
 
     const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
 
-    console.log(image)
-
     useEffect(() => {
         if (image) {
             setImage_id(image.id)
@@ -231,9 +234,16 @@ const AdminProduct = () => {
 
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
 
+    const removeImage = (img_id: string) => {
+        dispatch(removingImg())
+        destroy(dispatch, removedImg, removeImgFailed, `/admin/product/image/${id}/${img_id}`, token)
+    }
+
+    const { isRemovingImg, removedImgRes, removeImgError } = useSelector((state: RootState) => state.removeImgToProd)
+
     // if successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage) {
+        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage || removedImgRes) {
             dispatch(updatedProductStatus(null))
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
@@ -241,6 +251,7 @@ const AdminProduct = () => {
             dispatch(deletedSize(null))
             dispatch(createdSize(null))
             dispatch(addedImage(null))
+            dispatch(removedImg(null))
             // dispatch(getProduct())
 
             fetch(
@@ -260,7 +271,7 @@ const AdminProduct = () => {
             setPricePerSize(null)
             setSizeQuantity(null)
         }
-    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
 
     return (
         <>
@@ -551,13 +562,12 @@ const AdminProduct = () => {
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
 
                                                     {currentProduct.images.map((image) => {
-                                                        console.log(image.image.image_url)
                                                         return (
                                                             <div className='bg-white border lg:px-4 font-medium text-xs md:text-sm lg:text-base
                                                             rounded relative hover:shadow-sm'>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                // onClick={() => deleteImage(image.image.id)} 
+                                                                    onClick={() => removeImage(image.image.id)}
                                                                 />
 
                                                                 <img src={image.image.image_url} alt='product_image' className='h-32 w-full object-cover' />
@@ -778,12 +788,12 @@ const AdminProduct = () => {
                                     text-gray-600 hover:text-dark-blue hover:shadow-lg cursor-pointer'
                                             onClick={() => setAddImage(false)} />
 
-                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Color</div>
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Image</div>
                                         <div className='container'>
                                             <Transition
-                                                show={!!colorError}
+                                                show={!!addError}
                                             >
-                                                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{colorError?.message}</p>
+                                                <p className='p-2 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{addError?.message}</p>
 
                                             </Transition>
                                         </div>
