@@ -218,7 +218,7 @@ const AdminProduct = () => {
         post(dispatch, uploadedImage, uploadFailed, '/images', formData, token)
     }
 
-    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+    const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
     useEffect(() => {
         if (image) {
@@ -239,7 +239,7 @@ const AdminProduct = () => {
         destroy(dispatch, removedImg, removeImgFailed, `/admin/product/image/${id}/${img_id}`, token)
     }
 
-    const { isRemovingImg, removedImgRes, removeImgError } = useSelector((state: RootState) => state.removeImgToProd)
+    const { removedImgRes } = useSelector((state: RootState) => state.removeImgToProd)
 
     // if successfully clear the state and fetch updated product data
     useEffect(() => {

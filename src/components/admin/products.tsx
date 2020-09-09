@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch, post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetch, post, prodImg } from '../../api/apiAction'
 import {
     fetchingProducts,
     fetchedProducts,
@@ -238,38 +238,41 @@ const Products = () => {
                                                 </tr>
                                             </thead>
 
-                                            {products.map((product) => (
-                                                <tbody>
-                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
-                                                        <td className='py-1 hover:text-dark-blue hover:underline'
-                                                            onClick={e => navigate(`/admin/products/${product.id}`)}>
-                                                            <div className='md:flex items-center'>
-                                                                <div className='md:w-1/4 mx-3'>
-                                                                    <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
-                                                                        className='w-auto h-10' />
-                                                                </div>
-                                                                <div className='md:w-2/4'>
+                                            <tbody>
+                                                {products.map((product) => {
+                                                    // console.log(prodImg(product.id))
+                                                    return (
+                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
+                                                            <td className='py-1 hover:text-dark-blue hover:underline'
+                                                                onClick={e => navigate(`/admin/products/${product.id}`)}>
+                                                                <div className='md:flex items-center'>
+                                                                    <div className='md:w-1/4 mx-3'>
+                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
+                                                                            className='w-auto h-10' />
+                                                                    </div>
+                                                                    <div className='md:w-2/4'>
 
-                                                                    <p className='font-normal text-sm  cursor-pointer'>
-                                                                        <span className=''>{product.name}</span>
-                                                                    </p>
+                                                                        <p className='font-normal text-sm  cursor-pointer'>
+                                                                            <span className=''>{product.name}</span>
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className='py-3 '>
-                                                            <Link to={`/admin/products/shop/${product.shop.id}`}
-                                                                className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'>{product.shop.name}</Link>
-                                                        </td>
-                                                        <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{product.status}</p>
-                                                        </td>
-                                                        <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>)
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <Link to={`/admin/products/shop/${product.shop.id}`}
+                                                                    className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'>{product.shop.name}</Link>
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm'>{product.status}</p>
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
+                                                            </td>
+                                                        </tr>)
+                                                }
 
-                                            )}
+                                                )}
+                                            </tbody>
 
                                         </table>
 

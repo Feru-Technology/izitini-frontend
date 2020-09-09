@@ -80,3 +80,9 @@ export const upload = (dispatch: any, response: any, failed: any, route: string,
                         : dispatch(failed(error.message))
         })
 }
+
+export const prodImg = (product_id: string) => {
+    Axios.get(`/product/image/${product_id}`)
+        .then(({ data }) => data)
+        .catch(error => error)
+}
