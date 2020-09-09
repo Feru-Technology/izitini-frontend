@@ -3,13 +3,13 @@ import { ISize, HTTPError } from './size.interfaces'
 
 
 export interface sizeState {
-    isCreating: boolean
+    isCreatingSize: boolean
     sizeError: Error | HTTPError | null
     newSize: ISize | null
 }
 
 const initialState: sizeState = {
-    isCreating: false,
+    isCreatingSize: false,
     sizeError: null,
     newSize: null,
 }
@@ -19,18 +19,18 @@ export const createSizeSlice = createSlice({
     initialState,
     reducers: {
         creatingSize: (state) => {
-            state.isCreating = true
+            state.isCreatingSize = true
             state.newSize = null
             state.sizeError = null
         },
         createdSize: (state, { payload }) => {
             state.sizeError = null
-            state.isCreating = false
+            state.isCreatingSize = false
             state.newSize = payload
         },
         createFailed: (state, { payload }) => {
             state.newSize = null
-            state.isCreating = false
+            state.isCreatingSize = false
             state.sizeError = payload
         }
     },

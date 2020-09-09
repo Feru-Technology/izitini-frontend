@@ -3,13 +3,13 @@ import { IColor, HTTPError } from './color.interfaces'
 
 
 export interface colorState {
-    isCreating: boolean
+    isCreatingColor: boolean
     colorError: Error | HTTPError | null
     newColor: IColor | null
 }
 
 const initialState: colorState = {
-    isCreating: false,
+    isCreatingColor: false,
     colorError: null,
     newColor: null,
 }
@@ -19,24 +19,24 @@ export const createColorSlice = createSlice({
     initialState,
     reducers: {
         creatingColor: (state) => {
-            state.isCreating = true
+            state.isCreatingColor = true
             state.newColor = null
             state.colorError = null
         },
-        cratedColor: (state, { payload }) => {
+        createdColor: (state, { payload }) => {
             state.colorError = null
             state.newColor = payload
-            state.isCreating = false
+            state.isCreatingColor = false
         },
         createColorFailed: (state, { payload }) => {
             state.newColor = null
             state.colorError = payload
-            state.isCreating = false
+            state.isCreatingColor = false
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { creatingColor, cratedColor, createColorFailed } = createColorSlice.actions
+export const { creatingColor, createdColor, createColorFailed } = createColorSlice.actions
 
 export default createColorSlice.reducer

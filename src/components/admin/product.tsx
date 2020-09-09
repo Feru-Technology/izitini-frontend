@@ -31,6 +31,11 @@ import {
     createdSize,
     createFailed
 } from '../../redux/admin/productSizes/createSize.slice'
+import {
+    creatingColor,
+    createdColor,
+    createColorFailed
+} from '../../redux/admin/productColors/createColor.slice'
 
 const AdminProduct = () => {
 
@@ -48,7 +53,6 @@ const AdminProduct = () => {
     // product states
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
-    const [addColor, setAddColor] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
     const [price, setPrice] = useState<number | null>(null)
@@ -65,6 +69,12 @@ const AdminProduct = () => {
     const [size, setSize] = useState<string | null>(null)
     const [pricePerSize, setPricePerSize] = useState<string | null>(null)
     const [sizeQuantity, setSizeQuantity] = useState<string | null>(null)
+
+    // color state
+    const [addColor, setAddColor] = useState(false)
+    const [colorName, setColorName] = useState<string | null>(null)
+    const [colorQuantity, setColorQuantity] = useState<string | null>(null)
+    const [pricePerQuantity, setPricePerQuantity] = useState<string | null>(null)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -124,6 +134,19 @@ const AdminProduct = () => {
             quantity: sizeQuantity
         }, token)
     }
+
+    const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
+
+    const createColor = () => {
+        dispatch(creatingColor())
+        post(dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, {
+            name: colorName,
+            quantity: colorQuantity,
+            price: pricePerQuantity
+        }, token)
+    }
+
+    const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
 
     return (
         <>
