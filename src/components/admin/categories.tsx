@@ -104,7 +104,7 @@ const Categories = () => {
         post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
     }
 
-    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+    const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
     useEffect(() => {
         if (image) {

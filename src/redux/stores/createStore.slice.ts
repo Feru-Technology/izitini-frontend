@@ -3,13 +3,13 @@ import { IStore, HTTPError } from './store.interfaces'
 
 
 export interface storeState {
-    isLoading: boolean
+    isCreating: boolean
     error: Error | HTTPError | null
     createdStore: IStore | null
 }
 
 const initialState: storeState = {
-    isLoading: false,
+    isCreating: false,
     error: null,
     createdStore: null,
 }
@@ -20,17 +20,17 @@ export const createStoreSlice = createSlice({
     reducers: {
         addStore: (state) => {
             state.createdStore = null
-            state.isLoading = true
+            state.isCreating = true
             state.error = null
         },
         getStore: (state, { payload }) => {
-            state.isLoading = false
+            state.isCreating = false
             state.error = null
             state.createdStore = payload
         },
         storeFailed: (state, { payload }) => {
             state.createdStore = null
-            state.isLoading = false
+            state.isCreating = false
             state.error = payload
         }
     },
