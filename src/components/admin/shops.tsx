@@ -119,7 +119,7 @@ const Shops = () => {
                                                         <td className='py-3 '>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={storeImage} alt='product' className='w-full' />
+                                                                    <img src={storeImage} alt='product' className='w-auto h-8 md:h-12 lg:h-16' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 

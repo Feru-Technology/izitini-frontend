@@ -97,7 +97,7 @@ const Shop = () => {
                                     bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                                         <div className='flex my-5 justify-center'>
                                             <img className='h-32 rounded-lg'
-                                                src='https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png' alt='profile' />
+                                                src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
                                         </div>
 
                                         <div className='px-2 md:px-7'>
