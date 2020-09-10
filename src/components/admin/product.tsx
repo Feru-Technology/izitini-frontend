@@ -36,6 +36,7 @@ import {
     createdColor,
     createColorFailed
 } from '../../redux/admin/productColors/createColor.slice'
+import { MdOutlineCancel } from 'react-icons/md'
 
 const AdminProduct = () => {
 
@@ -64,17 +65,17 @@ const AdminProduct = () => {
     const [quantity, setQuantity] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
 
-    // size state
+    // size states
     const [addSize, setAddSize] = useState(false)
     const [size, setSize] = useState<string | null>(null)
     const [pricePerSize, setPricePerSize] = useState<string | null>(null)
     const [sizeQuantity, setSizeQuantity] = useState<string | null>(null)
 
-    // color state
+    // color states
     const [addColor, setAddColor] = useState(false)
     const [colorName, setColorName] = useState<string | null>(null)
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
-    const [pricePerQuantity, setPricePerQuantity] = useState<string | null>(null)
+    const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -141,8 +142,8 @@ const AdminProduct = () => {
         dispatch(creatingColor())
         post(dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, {
             name: colorName,
+            price: pricePerColor,
             quantity: colorQuantity,
-            price: pricePerQuantity
         }, token)
     }
 
@@ -341,9 +342,10 @@ const AdminProduct = () => {
                                                     <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
 
                                                     <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
-                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50 cursor-pointer'
                                                         onPointerOver={() => setShowSizeDesc(true)}
                                                         onPointerLeave={() => setShowSizeDesc(false)}
+                                                        onClick={() => setAddSize(true)}
                                                     >
                                                         <PlusIcon className='h-6 mx-auto' />
                                                     </div>
@@ -431,7 +433,89 @@ const AdminProduct = () => {
                             </div>
 
                             {/* add size to a product */}
+                            <Transition show={!!addSize} className='absolute'>
+                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                                </div>
+                                <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
+                                    <div className='p-3 bg-white w-ful mx-6 md:w-2/4 lg:w-1/4 md:mx-auto rounded-md shadow-md
+                                md:p-6 lg:p-8 relative'>
 
+                                        <MdOutlineCancel className='h-6 w-auto absolute top-1 right-1
+                                    text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                                            onClick={() => setAddSize(false)} />
+
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Size</div>
+                                        <div className='container'>
+                                            <Transition
+                                                show={!!sizeError}
+                                            >
+                                                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{sizeError?.message}</p>
+
+                                            </Transition>
+                                        </div>
+                                        <form>
+
+                                            <div className=' w-full mb-3'>
+                                                <label
+                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    htmlFor='grid-text'
+                                                >
+                                                    Size
+                                                </label>
+                                                <input
+                                                    type='text'
+                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    placeholder='Size'
+                                                    onChange={e => setSize(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className=' w-full mb-3'>
+                                                <label
+                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    htmlFor='grid-text'
+                                                >
+                                                    Price
+                                                </label>
+                                                <input
+                                                    type='text'
+                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    placeholder='Brand'
+                                                    onChange={e => setPricePerSize(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className=' w-full mb-3'>
+                                                <label
+                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    htmlFor='grid-text'
+                                                >
+                                                    Quantity
+                                                </label>
+                                                <input
+                                                    type='number'
+                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    placeholder='Quantity'
+                                                    onChange={e => setSizeQuantity(e.target.value)}
+                                                />
+                                            </div>
+                                            <div className='text-center mt-6'>
+                                                <button
+                                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                    type='button'
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        return createSize()
+                                                    }}
+                                                >
+                                                    {!!isCreatingSize ? 'Creating...' : 'Create'}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </Transition>
 
                         </div>
                     )
