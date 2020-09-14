@@ -56,6 +56,21 @@ import {
     updatedProductStatus,
     failedToUpdateStatus
 } from '../../redux/products/updateProductStatus.slice'
+import {
+    uploadingImage,
+    uploadedImage,
+    uploadFailed
+} from '../../redux/image/uploadImage.slice'
+import {
+    addingImage,
+    addedImage,
+    addFailed
+} from '../../redux/image/addImageToProduct.slice'
+import {
+    removingImg,
+    removedImg,
+    removeImgFailed
+} from '../../redux/image/removeImgToProd.slice'
 
 const VendorProduct = () => {
 
@@ -99,6 +114,7 @@ const VendorProduct = () => {
     // image states
     const [addImage, setAddImage] = useState(false)
     const [showImageDesc, setShowImageDesc] = useState(false)
+    const [image_id, setImage_id] = useState<string | null>(null)
 
     // change product status
     const publishUnPublish = (newStatus: string) => {
@@ -192,15 +208,49 @@ const VendorProduct = () => {
 
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
 
+    // upload product image
+    const uploadProductImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
+        dispatch(uploadingImage())
+        post(dispatch, uploadedImage, uploadFailed, '/images', formData, token)
+    }
+
+    const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
+
+    useEffect(() => {
+        if (image) {
+            setImage_id(image.id)
+            dispatch(uploadedImage(null))
+        }
+    }, [dispatch, image])
+
+
+    const addProductImage = () => {
+        dispatch(addingImage())
+        post(dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, {}, token)
+    }
+
+    const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
+
+    const removeImage = (img_id: string) => {
+        dispatch(removingImg())
+        destroy(dispatch, removedImg, removeImgFailed, `/product/image/${id}/${img_id}`, token)
+    }
+
+    const { removedImgRes } = useSelector((state: RootState) => state.removeImgToProd)
+
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus) {
+        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage || removedImgRes) {
             dispatch(updatedProductStatus(null))
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
             dispatch(deletedSize(null))
             dispatch(createdSize(null))
+            dispatch(addedImage(null))
+            dispatch(removedImg(null))
             // dispatch(getProduct())
 
             fetch(
@@ -211,6 +261,7 @@ const VendorProduct = () => {
 
             setSize(null)
             setAddSize(false)
+            setAddImage(false)
             setEditMode(false)
             setAddColor(false)
             setColorName(null)
@@ -219,7 +270,7 @@ const VendorProduct = () => {
             setPricePerSize(null)
             setSizeQuantity(null)
         }
-    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
 
     return (
         <>
@@ -517,7 +568,7 @@ const VendorProduct = () => {
                                                             rounded relative hover:shadow-sm'>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                // onClick={() => removeImage(image.image.id)}
+                                                                    onClick={() => removeImage(image.image.id)}
                                                                 />
 
                                                                 <img src={image.image.image_url} alt='product_image' className='h-32 w-full object-cover' />
@@ -719,6 +770,57 @@ const VendorProduct = () => {
                                                     }}
                                                 >
                                                     {!!isCreatingColor ? 'Creating...' : 'Create'}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </Transition>
+
+
+                            {/* add image to a product */}
+                            <Transition show={!!addImage} className='absolute'>
+                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                                </div>
+                                <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
+                                    <div className='p-3 bg-white w-ful mx-6 md:w-2/4 lg:w-1/4 md:mx-auto rounded-md shadow-md
+                                md:p-6 lg:p-8 relative'>
+
+                                        <MdOutlineCancel className='h-6 w-auto absolute top-1 right-1
+                                    text-gray-600 hover:text-dark-blue hover:shadow-lg cursor-pointer'
+                                            onClick={() => setAddImage(false)} />
+
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Image</div>
+                                        <div className='container'>
+                                            <Transition
+                                                show={!!addError}
+                                            >
+                                                <p className='p-2 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{addError?.message}</p>
+
+                                            </Transition>
+                                        </div>
+                                        <form>
+
+                                            {/* upload image */}
+                                            <div>
+                                                <input type='file' name='filename' className=''
+                                                    accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                    onChange={e => {
+                                                        if (e.target.files) uploadProductImage(e.target.files[0])
+                                                    }} />
+                                            </div>
+                                            <div className='text-center mt-6'>
+                                                <button
+                                                    className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
+                                            ${isUploading ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer pointer-events-auto'}`}
+                                                    type='button'
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        return addProductImage()
+                                                    }}
+                                                >
+                                                    {!!isUploading ? 'uploading...' : isAdding ? 'Creating...' : 'Create'}
                                                 </button>
                                             </div>
                                         </form>
