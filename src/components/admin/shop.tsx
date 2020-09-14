@@ -55,8 +55,6 @@ const Shop = () => {
         }
     }, [currentStore])
 
-    console.log(currentStore);
-
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>) :

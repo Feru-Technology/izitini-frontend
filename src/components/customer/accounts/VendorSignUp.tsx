@@ -1,15 +1,22 @@
-import { useState } from 'react'
-import { post } from '../../../api/apiAction'
+import { useEffect, useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { RootState } from '../../../redux/store'
+import { post, fetch } from '../../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
+import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../../redux/categories/categories.slice'
 
 const VendorSignUp = () => {
 
-  // redux
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchingCategories())
+    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
+  }, [dispatch])
+
+  const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
   const [name, setName] = useState<string | null>(null)
   const [email, setEmail] = useState<string | null>(null)
@@ -17,6 +24,8 @@ const VendorSignUp = () => {
   const [password, setPassword] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
+  const [shop_specialty_1, setShop_specialty_1] = useState<string | null>(null)
+  const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
   const navigate = useNavigate()
 
@@ -28,7 +37,9 @@ const VendorSignUp = () => {
       contact,
       password,
       full_name,
-      about_shop
+      about_shop,
+      category1: shop_specialty_1,
+      category2: shop_specialty_2
     })
   }
 
@@ -58,7 +69,7 @@ const VendorSignUp = () => {
 
             <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
               <div className='text-gray-700 border-bottom border-gray-600 text-center mb-3 font-bold'>
-                <p className='my-5'>Create your Shop Account</p>
+                <p className='my-5'>Join as vendor</p>
               </div>
               <form>
                 <div className='relative w-full mb-3'>
@@ -71,7 +82,7 @@ const VendorSignUp = () => {
                   <input
                     type='text'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                    placeholder='Full Names'
+                    placeholder='Full Name'
                     onChange={e => setFull_name(e.target.value)}
                   />
                 </div>
@@ -116,6 +127,37 @@ const VendorSignUp = () => {
                     placeholder='contact number'
                     onChange={e => setContact(e.target.value)}
                   />
+                </div>
+                <div className='relative w-full mb-3'>
+                  <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>shop specialty 1</h3>
+                  <div className=''>
+                    <select
+                      className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight
+                        border-gray-700 focus:outline-none focus:border-dark-blue'
+                      id='grid-state'
+                      onChange={e => setShop_specialty_1(e.target.value)}
+                    >
+                      <option className='text-gray-600'>choose shop specialty</option>
+                      {isLoading ? <h1>loading...</h1>
+                        : categories.map((v) => (<option>{v.name}</option>))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className='relative w-full mb-3'>
+                  <h3 className='block uppercase text-gray-600 text-xs font-bold my-2'>shop specialty 2</h3>
+                  <div className=''>
+                    <select
+                      className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight
+                        border-gray-700 focus:outline-none focus:border-dark-blue'
+                      id='grid-state'
+                      onChange={e => setShop_specialty_2(e.target.value)}
+                    >
+                      <option className='text-gray-600'>choose shop specialty</option>
+                      {isLoading ? <h1>loading...</h1>
+                        : categories.map((v) => (<option>{v.name}</option>))}
+                    </select>
+                  </div>
                 </div>
                 <div className='relative w-full mb-3'>
                   <label
