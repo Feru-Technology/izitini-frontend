@@ -96,6 +96,10 @@ const VendorProduct = () => {
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
 
+    // image states
+    const [addImage, setAddImage] = useState(false)
+    const [showImageDesc, setShowImageDesc] = useState(false)
+
     // change product status
     const publishUnPublish = (newStatus: string) => {
         if (newStatus === 'publish') {
@@ -476,6 +480,47 @@ const VendorProduct = () => {
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
                                                                     onClick={() => deleteColor(color.color.id)} />
 
+                                                            </div>
+                                                        )
+                                                    })}
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            {/* product Images */}
+                                            <div className=' border-b border-dark-blue pb-8'>
+                                                <div className='flex space-x-2 my-4'>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product Images</p>
+
+                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                        onPointerOver={() => setShowImageDesc(true)}
+                                                        onPointerLeave={() => setShowImageDesc(false)}
+                                                        onClick={() => setAddImage(true)}
+                                                    >
+                                                        <PlusIcon className='h-6 mx-auto' />
+                                                    </div>
+
+                                                    <Transition show={!!showImageDesc}
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
+                                                        {currentProduct.images.length === 0 ? <p>Add First Product image</p> : <p>Add Product image</p>}
+                                                    </Transition>
+                                                </div>
+                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+
+                                                    {currentProduct.images.map((image) => {
+                                                        return (
+                                                            <div className='bg-white border lg:px-4 font-medium text-xs md:text-sm lg:text-base
+                                                            rounded relative hover:shadow-sm'>
+                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                // onClick={() => removeImage(image.image.id)}
+                                                                />
+
+                                                                <img src={image.image.image_url} alt='product_image' className='h-32 w-full object-cover' />
                                                             </div>
                                                         )
                                                     })}

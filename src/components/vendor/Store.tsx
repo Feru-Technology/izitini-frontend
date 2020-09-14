@@ -103,8 +103,8 @@ const Store = () => {
                       <div className=''>
                         <div>
                           <Transition show={!!error}>
-                            <div className='border border-red-600 bg-red-100'>
-                              <span className='px-2 py-4 text-red-600'> {error?.message} </span>
+                            <div className='border border-red-600 bg-red-100 p-2 flex justify-center text-red-600'>
+                              {error?.message}
                             </div>
                           </Transition>
                         </div>
@@ -158,16 +158,6 @@ const Store = () => {
                               />
                             </div>
                           ))}
-
-                          <div className=''>
-                            <label className='block font-semibold text-sm md:text-base text-gray-500'
-                              htmlFor='Owner'>Owner:</label>
-                            <input className='w-full mx-4 bg-gray-100 md:mx-0 text-sm md:text-base font-medium border py-3 px-4 rounded
-                    border-gray-400 pointer-events-none text-gray-600'
-                              id='grid-last-name' type='text'
-                              value={currentStore.owner.full_name}
-                            />
-                          </div>
                           <div className=''>
                             <label className='block font-semibold text-sm md:text-base text-gray-500'
                               htmlFor='Approved'>Approved:</label>
@@ -202,6 +192,7 @@ const Store = () => {
                         <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                           onClick={e => {
                             e.preventDefault()
+                            // dispatch()
                             return setEditMode(false)
                           }} >
                           CANCEL
