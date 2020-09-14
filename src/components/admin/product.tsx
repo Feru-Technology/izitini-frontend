@@ -138,6 +138,16 @@ const AdminProduct = () => {
 
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
 
+    // if created successfully clear newSize state and fetch updated product
+    useEffect(() => {
+        if (newSize) {
+            dispatch(createdSize(null))
+            dispatch(getProduct())
+            fetch(dispatch, product, productFailed, `/product/${id}`)
+            setAddSize(false)
+        }
+    }, [dispatch, id, newSize])
+
     const createColor = () => {
         dispatch(creatingColor())
         post(dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, {
@@ -148,6 +158,16 @@ const AdminProduct = () => {
     }
 
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
+
+    // if created successfully clear newColor state and fetch updated product
+    useEffect(() => {
+        if (newColor) {
+            dispatch(createdColor(null))
+            dispatch(getProduct())
+            fetch(dispatch, product, productFailed, `/product/${id}`)
+            setAddColor(false)
+        }
+    }, [dispatch, id, newColor])
 
     return (
         <>
@@ -479,9 +499,9 @@ const AdminProduct = () => {
                                                     Price
                                                 </label>
                                                 <input
-                                                    type='text'
+                                                    type='number'
                                                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                    placeholder='Brand'
+                                                    placeholder='Price'
                                                     onChange={e => setPricePerSize(e.target.value)}
                                                 />
                                             </div>
@@ -564,9 +584,9 @@ const AdminProduct = () => {
                                                     Price
                                                 </label>
                                                 <input
-                                                    type='text'
+                                                    type='number'
                                                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                    placeholder='Brand'
+                                                    placeholder='Price'
                                                     onChange={e => setPricePerColor(e.target.value)}
                                                 />
                                             </div>
