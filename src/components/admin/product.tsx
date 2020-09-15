@@ -313,7 +313,8 @@ const AdminProduct = () => {
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
                                         >
-                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold
+                                            hover:text-middle-blue hover:border-middle-blue'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return setEditMode(false)
@@ -323,7 +324,8 @@ const AdminProduct = () => {
                                         </Transition>
                                         <Transition
                                             show={!editMode}>
-                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold
+                                            hover:text-middle-blue hover:border-middle-blue'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return setEditMode(true)
@@ -346,7 +348,7 @@ const AdminProduct = () => {
                                                         <button type='submit'
                                                             className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
-                                                        ${editMode && 'pointer-events-none'}`}
+                                                        hover:text-middle-blue hover:border-middle-blue ${editMode && 'pointer-events-none'}`}
                                                             id='grid-state'
                                                         // onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
                                                         >
@@ -599,14 +601,16 @@ const AdminProduct = () => {
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
                                         >
-                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold
+                                            shadow-md hover:shadow-lg hover:bg-middle-blue'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return setEditMode(false)
                                                 }} >
                                                 CANCEL
                                             </button>
-                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold
+                                            shadow-md hover:shadow-lg hover:bg-middle-blue'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return updateProduct()
