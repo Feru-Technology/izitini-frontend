@@ -138,16 +138,6 @@ const AdminProduct = () => {
 
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
 
-    // if created successfully clear newSize state and fetch updated product
-    useEffect(() => {
-        if (newSize) {
-            dispatch(createdSize(null))
-            dispatch(getProduct())
-            fetch(dispatch, product, productFailed, `/product/${id}`)
-            setAddSize(false)
-        }
-    }, [dispatch, id, newSize])
-
     const createColor = () => {
         dispatch(creatingColor())
         post(dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, {
@@ -159,15 +149,23 @@ const AdminProduct = () => {
 
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
 
-    // if created successfully clear newColor state and fetch updated product
+    // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (newColor) {
+        if (newColor || newSize) {
             dispatch(createdColor(null))
+            dispatch(createdSize(null))
             dispatch(getProduct())
-            fetch(dispatch, product, productFailed, `/product/${id}`)
+
+            fetch(
+                dispatch,
+                product,
+                productFailed,
+                `/product/${id}`)
+
             setAddColor(false)
+            setAddSize(false)
         }
-    }, [dispatch, id, newColor])
+    }, [dispatch, id, newColor, newSize])
 
     return (
         <>
