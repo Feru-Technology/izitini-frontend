@@ -369,18 +369,21 @@ const AdminProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showSizeDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
                                                     </Transition>
                                                 </div>
-                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+                                                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4'>
 
                                                     {currentProduct.sizes.map((size) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
+                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                    onClick={() => setAddSize(false)} />
                                                             </div>
                                                         )
                                                     })}
@@ -404,7 +407,7 @@ const AdminProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showColorDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
                                                     </Transition>
                                                 </div>
@@ -412,10 +415,14 @@ const AdminProduct = () => {
 
                                                     {currentProduct.colors.map((color) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
+                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                    onClick={() => setAddSize(false)} />
+
                                                             </div>
                                                         )
                                                     })}
