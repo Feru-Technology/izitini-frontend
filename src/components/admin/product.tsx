@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react'
+import {
+    useState,
+    useEffect
+} from 'react'
 import {
     PlusIcon,
 } from '@heroicons/react/outline'
@@ -8,9 +11,10 @@ import Header from '../vendor/Header'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetch, post, update } from '../../api/apiAction'
+import { fetch, post, update, destroy } from '../../api/apiAction'
 import {
     product,
     getProduct,
@@ -36,7 +40,16 @@ import {
     createdColor,
     createColorFailed
 } from '../../redux/admin/productColors/createColor.slice'
-import { MdOutlineCancel } from 'react-icons/md'
+import {
+    deletingSize,
+    deletedSize,
+    deleteFailed
+} from '../../redux/admin/productSizes/deleteSize.slice'
+import {
+    deletingColor,
+    deletedColor,
+    deleteColorFailed
+} from '../../redux/admin/productColors/DeleteColor.slice'
 
 const AdminProduct = () => {
 
@@ -117,15 +130,6 @@ const AdminProduct = () => {
 
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
-    useEffect(() => {
-        if (updated) {
-            dispatch(getProduct())
-            fetch(dispatch, product, productFailed, `/product/${id}`)
-            dispatch(updatedProduct(null))
-            setEditMode(false)
-        }
-    }, [dispatch, id, updated])
-
     // create product size
     const createSize = () => {
         dispatch(creatingSize())
@@ -149,9 +153,15 @@ const AdminProduct = () => {
 
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
 
+    // const deleteSize = () => {
+    //     dispatch(deletingSize())
+    //     destroy()
+    // }
+
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (newColor || newSize) {
+        if (updated || newColor || newSize) {
+            dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(createdSize(null))
             dispatch(getProduct())
@@ -162,10 +172,11 @@ const AdminProduct = () => {
                 productFailed,
                 `/product/${id}`)
 
+            setEditMode(false)
             setAddColor(false)
             setAddSize(false)
         }
-    }, [dispatch, id, newColor, newSize])
+    }, [dispatch, id, newColor, newSize, updated])
 
     return (
         <>
