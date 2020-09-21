@@ -4,7 +4,7 @@ import { IOrders, HTTPError } from './order.interface'
 export interface ordersState {
     isLoading: boolean
     error: Error | HTTPError | null
-    orders: IOrders[]
+    orders: IOrders[] | null
 }
 
 const initialState: ordersState = {
@@ -19,16 +19,18 @@ export const ordersSlice = createSlice({
     reducers: {
         getOrders: (state) => {
             state.isLoading = true
+            state.orders = null
+            state.error = null
         },
         orders: (state, { payload }) => {
             state.isLoading = false
-            state.orders = [payload]
+            state.orders = payload
             state.error = null
         },
         ordersFailed: (state, { payload }) => {
             state.isLoading = false
             state.error = payload
-            state.orders = []
+            state.orders = null
         }
     },
 })
