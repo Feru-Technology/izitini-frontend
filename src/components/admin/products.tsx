@@ -258,14 +258,16 @@ const Products = () => {
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td className='py-3 '>
-                                                                <Link to={`/admin/products/shop/${product.shop.id}`}
-                                                                    className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'>{product.shop.name}</Link>
+                                                            <td className='py-3'
+                                                                onClick={e => navigate(`/admin/products/shop/${product.shop.id}`)}>
+                                                                <p className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'>{product.shop.name}</p>
                                                             </td>
-                                                            <td className='py-3 '>
+                                                            <td className='py-3'
+                                                                onClick={e => navigate(`/admin/products/${product.id}`)}>
                                                                 <p className='font-normal text-sm'>{product.status}</p>
                                                             </td>
-                                                            <td className='py-3 '>
+                                                            <td className='py-3'
+                                                                onClick={e => navigate(`/admin/products/${product.id}`)}>
                                                                 <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
                                                             </td>
                                                         </tr>)
