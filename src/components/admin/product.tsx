@@ -153,16 +153,29 @@ const AdminProduct = () => {
 
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
 
-    // const deleteSize = () => {
-    //     dispatch(deletingSize())
-    //     destroy()
-    // }
+    // remove size from product
+    const deleteSize = (size_id: string) => {
+        dispatch(deletingSize())
+        destroy(dispatch, deletedSize, deleteFailed, `/admin/product/size/${id}/${size_id}`, token)
+    }
+
+    const { deleted } = useSelector((state: RootState) => state.deleteSize)
+
+    // remove color from product
+    const deleteColor = (color_id: string) => {
+        dispatch(deletingColor())
+        destroy(dispatch, deletedColor, deleteColorFailed, `/admin/product/color/${id}/${color_id}`, token)
+    }
+
+    const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
 
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize) {
+        if (updated || newColor || newSize || deleted || deletedColorRes) {
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
+            dispatch(deletedColor(null))
+            dispatch(deletedSize(null))
             dispatch(createdSize(null))
             dispatch(getProduct())
 
@@ -176,7 +189,7 @@ const AdminProduct = () => {
             setAddColor(false)
             setAddSize(false)
         }
-    }, [dispatch, id, newColor, newSize, updated])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated])
 
     return (
         <>
@@ -394,7 +407,7 @@ const AdminProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => setAddSize(false)} />
+                                                                    onClick={() => deleteSize(size.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -432,7 +445,7 @@ const AdminProduct = () => {
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => setAddSize(false)} />
+                                                                    onClick={() => deleteColor(color.color.id)} />
 
                                                             </div>
                                                         )

@@ -5,13 +5,13 @@ import { IColor, HTTPError } from './color.interfaces'
 export interface colorState {
     isDeletingColor: boolean
     deleteColorError: Error | HTTPError | null
-    deleted: IColor | null
+    deletedColorRes: IColor | null
 }
 
 const initialState: colorState = {
     isDeletingColor: false,
     deleteColorError: null,
-    deleted: null,
+    deletedColorRes: null,
 }
 
 export const deleteColorSlice = createSlice({
@@ -20,16 +20,16 @@ export const deleteColorSlice = createSlice({
     reducers: {
         deletingColor: (state) => {
             state.isDeletingColor = true
-            state.deleted = null
+            state.deletedColorRes = null
             state.deleteColorError = null
         },
         deletedColor: (state, { payload }) => {
             state.deleteColorError = null
-            state.deleted = payload
+            state.deletedColorRes = payload
             state.isDeletingColor = false
         },
         deleteColorFailed: (state, { payload }) => {
-            state.deleted = null
+            state.deletedColorRes = null
             state.deleteColorError = payload
             state.isDeletingColor = false
         }

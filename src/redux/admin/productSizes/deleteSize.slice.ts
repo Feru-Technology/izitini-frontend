@@ -5,13 +5,13 @@ import { ISize, HTTPError } from './size.interfaces'
 export interface sizeState {
     isDeletingSize: boolean
     deleteSizeError: Error | HTTPError | null
-    deletedSize: ISize | null
+    deleted: ISize | null
 }
 
 const initialState: sizeState = {
     isDeletingSize: false,
     deleteSizeError: null,
-    deletedSize: null,
+    deleted: null,
 }
 
 export const deleteSizeSlice = createSlice({
@@ -20,16 +20,16 @@ export const deleteSizeSlice = createSlice({
     reducers: {
         deletingSize: (state) => {
             state.isDeletingSize = true
-            state.deletedSize = null
+            state.deleted = null
             state.deleteSizeError = null
         },
         deletedSize: (state, { payload }) => {
             state.deleteSizeError = null
             state.isDeletingSize = false
-            state.deletedSize = payload
+            state.deleted = payload
         },
         deleteFailed: (state, { payload }) => {
-            state.deletedSize = null
+            state.deleted = null
             state.isDeletingSize = false
             state.deleteSizeError = payload
         }
