@@ -162,22 +162,26 @@ const MyOrders = () => {
                                     </thead>
 
                                     <tbody>
-                                        <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800'>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>
-                                                    <span className=''>Order no</span>
-                                                </p>
-                                            </td>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>$100</p>
-                                            </td>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>Processing</p>
-                                            </td>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>Tracking no</p>
-                                            </td>
-                                        </tr>
+                                        {orders ?
+                                            orders.map((order) => (
+                                                <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800'>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>
+                                                            <span className=''>Order no</span>
+                                                        </p>
+                                                    </td>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>$100</p>
+                                                    </td>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>Processing</p>
+                                                    </td>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>Tracking no</p>
+                                                    </td>
+                                                </tr>
+
+                                            )) : <div>no orders yet</div>}
                                     </tbody>
 
                                 </table>
