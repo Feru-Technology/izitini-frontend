@@ -191,7 +191,7 @@ const Users = () => {
                                                 {users ? (users.map((user) => {
                                                     const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
                                                     return (
-                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'
+                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100 cursor-default'
                                                             onClick={e => activeUser(user)} >
 
                                                             <td className='py-3 '>
