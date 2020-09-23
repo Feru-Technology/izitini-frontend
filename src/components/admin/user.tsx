@@ -100,8 +100,8 @@ const User = () => {
                                     <form action=''>
                                         <div className='flex md:justify-center'>
                                             <Transition show={!editMode} className='space-y-6 mx-2'>
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
@@ -109,24 +109,24 @@ const User = () => {
 
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
                                                         id='grid-last-name' type='text' value={currentUser.contact} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
                                                         id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Account type'>Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -134,37 +134,37 @@ const User = () => {
 
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.email} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Provider'>Provider:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.provider} />
                                                 </div>
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Verified'>Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
                                                 </div>
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='created At'>created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentUser.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Updated At'>Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -179,8 +179,8 @@ const User = () => {
                                                 <Transition show={!!error} className='p-1 border border-red-600 bg-red-100 text-red-600'>
                                                     {error?.message}</Transition>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
@@ -188,8 +188,8 @@ const User = () => {
                                                         onChange={e => setFull_name(e.target.value)} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
@@ -197,8 +197,8 @@ const User = () => {
                                                         onChange={e => setContact(e.target.value)} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
@@ -206,8 +206,8 @@ const User = () => {
                                                         onChange={e => setTin_no(e.target.value)} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
@@ -215,8 +215,8 @@ const User = () => {
                                                         onChange={e => setEmail(e.target.value)} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Account type'>Account:</label>
 
                                                     <select
@@ -231,8 +231,8 @@ const User = () => {
                                                     </select>
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                <div className='w-full'>
+                                                    <label className='block font-semibold text-sm md:text-base text-gray-500'
                                                         htmlFor='Verified'>Verified:</label>
 
                                                     <div className='w-8/12 flex justify-center space-x-5 '>
