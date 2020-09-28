@@ -27,6 +27,7 @@ import CreateCustomer from './components/admin/createUser'
 import VendorDashboard from './components/vendor/Dashboard'
 import Subcategory from './components/customer/subcategory'
 import AllProducts from './components/customer/allProducts'
+import SubCategories from './components/admin/subCategories'
 import AdminCreateStore from './components/admin/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
 import CustomerDashboard from './components/customer/Dashboard'
@@ -90,6 +91,7 @@ function App() {
                 <Route path='/admin/categories' element={<Categories />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
                 <Route path='/admin/create-vendor' element={<CreateVendor />} />
+                <Route path='/admin/subCategories' element={<SubCategories />} />
                 <Route path='/admin/create-store' element={<AdminCreateStore />} />
                 <Route path='/admin/create-customer' element={<CreateCustomer />} />
 
