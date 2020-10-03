@@ -17,6 +17,7 @@ import Product from './components/customer/product'
 import MyReports from './components/vendor/Reports'
 import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
+import Categories from './components/admin/categories'
 import AdminSettings from './components/admin/Settings'
 import AdminDashboard from './components/admin/Dashboard'
 import NotFound from './components/customer/NotFoundPage'
@@ -86,6 +87,7 @@ function App() {
                 <Route path='/admin/shop/:id' element={<Shop />} />
                 <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
+                <Route path='/admin/categories' element={<Categories />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
                 <Route path='/admin/create-vendor' element={<CreateVendor />} />
                 <Route path='/admin/create-store' element={<AdminCreateStore />} />

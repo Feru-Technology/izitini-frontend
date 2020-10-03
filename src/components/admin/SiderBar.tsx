@@ -11,8 +11,7 @@ import {
     CogIcon,
     LogoutIcon,
     TemplateIcon,
-    UserGroupIcon,
-    CollectionIcon
+    UserGroupIcon
 } from '@heroicons/react/solid'
 
 interface Isidebar {
