@@ -92,19 +92,19 @@ const Categories = () => {
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >Email</th>
+                                                >CreatedAt</th>
                                                 <th
                                                     scope='col'
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >Contacts</th>
+                                                >Edit</th>
                                                 <th
                                                     scope='col'
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >About Shop</th>
+                                                >Delete</th>
                                             </tr>
                                         </thead>
 
