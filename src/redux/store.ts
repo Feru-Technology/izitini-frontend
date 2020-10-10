@@ -15,6 +15,7 @@ import { createUserSlice } from './admin/users/createUser.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
+import { AdminCategoriesSlice } from './admin/categories/categories.slice'
 import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.slice'
 
 
@@ -36,6 +37,7 @@ export const store = configureStore({
         createStore: createStoreSlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer,
+        adminCategories: AdminCategoriesSlice.reducer,
         subCategoryProducts: subCategoryProductsSlice.reducer
 
     },
