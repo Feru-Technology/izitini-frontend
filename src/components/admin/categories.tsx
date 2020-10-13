@@ -8,10 +8,10 @@ import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
+    fetchingCategories,
+    retrievedCategories,
+    categoriesFailed
+} from '../../redux/admin/categories/categories.slice'
 
 const Categories = () => {
 
@@ -28,16 +28,16 @@ const Categories = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(fetchingStores())
-        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+        dispatch(fetchingCategories())
+        fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
     }, [dispatch])
 
-    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
+    const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
 
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>)
-                : stores ? (
+                : categories ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
                             isClosed={isClosed}
@@ -108,35 +108,35 @@ const Categories = () => {
                                             </tr>
                                         </thead>
 
-                                        {stores.map((store) => {
-                                            const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                        {categories.map((category) => {
+                                            const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
                                                 <tbody>
 
                                                     <tr className='text-center text-xs md:text-sm lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
-                                                        onClick={() => navigate(`/admin/shop/${store.id}`)} >
+                                                        onClick={() => navigate(`/admin/shop/${category.id}`)} >
                                                         <td className='py-3 '>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={storeImage} alt='product' className='w-full' />
+                                                                    <img src={categoryImage} alt='product' className='w-full' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal text-sm'>
-                                                                        <span className=''>{store.name}</span>
+                                                                        <span className=''>{category.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{store.shop_email}</p>
+                                                            <p className='font-normal text-sm'>{category.createdAt}</p>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{store.shop_contact_no}</p>
+                                                            Edit
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{store.about_shop}</p>
+                                                            Delete
                                                         </td>
                                                     </tr>
                                                 </tbody>)
