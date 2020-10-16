@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { fetch } from '../../api/apiAction'
@@ -70,10 +71,10 @@ const Categories = () => {
                             <div className='px-2 md:px-6 lg:px-14 w-full'>
 
                                 <div className='flex items-center justify-between py-8'>
-                                    <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Shops</h3>
+                                    <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Categories</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base' >
-                                        <Link to='/admin/create-store'>ADD A Shop</Link>
+                                        <Link to='/admin/create-store'>ADD A Category</Link>
                                     </button>
                                 </div>
 
@@ -115,7 +116,7 @@ const Categories = () => {
 
                                                     <tr className='text-center text-xs md:text-sm lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
-                                                        onClick={() => navigate(`/admin/shop/${category.id}`)} >
+                                                        onClick={() => navigate(`/admin/category/${category.id}`)} >
                                                         <td className='py-3 '>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
@@ -130,7 +131,7 @@ const Categories = () => {
                                                             </div>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{category.createdAt}</p>
+                                                            <p className='font-normal text-sm'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
                                                         </td>
                                                         <td className='py-3 '>
                                                             Edit

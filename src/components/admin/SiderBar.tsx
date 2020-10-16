@@ -165,7 +165,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 </Link>
                             </li>
                             <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('Categories') &&
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('categories') &&
                                     'bg-gray-800'
                                     }`}
                                 onClick={handleClick}
