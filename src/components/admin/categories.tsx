@@ -133,11 +133,11 @@ const Categories = () => {
                                                         <td className='py-3 '>
                                                             <p className='font-normal text-sm'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
                                                         </td>
-                                                        <td className='py-3 '>
-                                                            Edit
+                                                        <td className='py-3'>
+                                                            <div className='mx-auto px-6 py-3 border rounded-md bg-dark-blue w-2/3 text-white hover:bg-middle-blue'>Edit</div>
                                                         </td>
-                                                        <td className='py-3 '>
-                                                            Delete
+                                                        <td className='py-3'>
+                                                            <div className='mx-auto px-6 py-3 border rounded-md w-2/3 text-white bg-red-800 hover:bg-red-700'>Delete</div>
                                                         </td>
                                                     </tr>
                                                 </tbody>)
