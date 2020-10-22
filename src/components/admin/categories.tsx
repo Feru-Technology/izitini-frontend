@@ -146,7 +146,14 @@ const Categories = () => {
                                     </table>
 
                                 </div>
+                            </div>
+                        </div>
 
+                        <div className='fixed top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            <span>Are ypu sure you want to delete this category</span>
+                            <div>
+                                <button>Cancel</button>
+                                <button>Delete</button>
                             </div>
                         </div>
                     </div>
