@@ -149,13 +149,19 @@ const Categories = () => {
                             </div>
                         </div>
 
-                        <div className='fixed top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
-                            <span>Are ypu sure you want to delete this category</span>
-                            <div>
-                                <button>Cancel</button>
-                                <button>Delete</button>
+                        <Transition show={true} className='fixed'>
+                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                        </div>
+                            <div className='absolute top-1/4 w-full z-30 '>
+                                <div className='p-2 bg-white w-ful text-sm mx-6'>
+                                    <p className='mb-2'>Are ypu sure you want to delete this category?</p>
+                                    <div className='flex justify-between text-sm text-white'>
+                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue'>Cancel</button>
+                                        <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700'>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Transition>
                     </div>
 
                 )
