@@ -25,6 +25,8 @@ const Categories = () => {
         query: '(min-width: 640px)',
     })
     const [isClosed, setIsClosed] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+    const [deleteMode, setDeleteMode] = useState(false)
 
     const navigate = useNavigate()
 
@@ -116,8 +118,9 @@ const Categories = () => {
 
                                                     <tr className='text-center text-xs md:text-sm lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
-                                                        onClick={() => navigate(`/admin/category/${category.id}`)} >
-                                                        <td className='py-3 '>
+                                                    >
+                                                        <td className='py-3 '
+                                                            onClick={() => navigate(`/admin/category/${category.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
                                                                     <img src={categoryImage} alt='product' className='w-full' />
@@ -125,7 +128,7 @@ const Categories = () => {
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal text-sm'>
-                                                                        <span className=''>{category.name}</span>
+                                                                        <span className='hover:underline hover:text-dark-blue'>{category.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -134,10 +137,14 @@ const Categories = () => {
                                                             <p className='font-normal text-sm'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
                                                         </td>
                                                         <td className='py-3'>
-                                                            <div className='mx-auto px-6 py-3 border rounded-md bg-dark-blue w-2/3 text-white hover:bg-middle-blue'>Edit</div>
+                                                            <div className='mx-auto px-6 py-3 border rounded-md bg-dark-blue w-2/3
+                                                            text-white hover:bg-middle-blue'
+                                                                onClick={() => setEditMode(true)} >Edit</div>
                                                         </td>
                                                         <td className='py-3'>
-                                                            <div className='mx-auto px-6 py-3 border rounded-md w-2/3 text-white bg-red-800 hover:bg-red-700'>Delete</div>
+                                                            <div className='mx-auto px-6 py-3 border rounded-md w-2/3
+                                                            text-white bg-red-800 hover:bg-red-700'
+                                                                onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
                                                     </tr>
                                                 </tbody>)
@@ -149,14 +156,15 @@ const Categories = () => {
                             </div>
                         </div>
 
-                        <Transition show={true} className='fixed'>
+                        <Transition show={!!deleteMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-1/4 w-full z-30 '>
                                 <div className='p-2 bg-white w-ful text-sm mx-6'>
                                     <p className='mb-2'>Are ypu sure you want to delete this category?</p>
                                     <div className='flex justify-between text-sm text-white'>
-                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue'>Cancel</button>
+                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue'
+                                            onClick={() => setDeleteMode(false)} >Cancel</button>
                                         <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700'>Delete</button>
                                     </div>
                                 </div>
