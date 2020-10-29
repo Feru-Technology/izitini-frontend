@@ -122,7 +122,7 @@ const SubCategories = () => {
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >SubCategories</th>
+                                                >Category</th>
                                                 <th
                                                     scope='col'
                                                     className='
