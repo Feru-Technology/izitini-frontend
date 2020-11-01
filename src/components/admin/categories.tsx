@@ -119,7 +119,7 @@ const Categories = () => {
                                                     <tr className='text-center text-xs md:text-sm lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
-                                                        <td className='py-3 '
+                                                        <td className='py-3 w-3/12 md:w-3/6'
                                                             onClick={() => navigate(`/admin/category/${category.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
@@ -133,16 +133,16 @@ const Categories = () => {
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td className='py-3 '>
+                                                        <td className='py-3 w-3/12 md:w-1/6'>
                                                             <p className='font-normal text-sm'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
                                                         </td>
-                                                        <td className='py-3'>
-                                                            <div className='mx-auto px-6 py-3 border rounded-md bg-dark-blue w-2/3
+                                                        <td className='py-3 w-3/12 md:w-1/6'>
+                                                            <div className='mx-auto px-1 py-1 md:px-6 md:py-3 border rounded-md bg-dark-blue w-2/3
                                                             text-white hover:bg-middle-blue'
                                                                 onClick={() => setEditMode(true)} >Edit</div>
                                                         </td>
-                                                        <td className='py-3'>
-                                                            <div className='mx-auto px-6 py-3 border rounded-md w-2/3
+                                                        <td className='py-3 w-3/12 md:w-1/6 pr-2'>
+                                                            <div className='mx-auto px-1 py-1 md:px-6 md:py-3 border rounded-md 
                                                             text-white bg-red-800 hover:bg-red-700'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
@@ -159,7 +159,7 @@ const Categories = () => {
                         <Transition show={!!deleteMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-1/4 w-full z-30 '>
+                            <div className='absolute top-2/4 w-full z-30 '>
                                 <div className='p-2 bg-white w-ful text-sm mx-6'>
                                     <p className='mb-2'>Are ypu sure you want to delete this category?</p>
                                     <div className='flex justify-between text-sm text-white'>
