@@ -5,9 +5,9 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
-import { fetch, post } from '../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetch, post, update } from '../../api/apiAction'
 import {
     fetchingCategories,
     retrievedCategories,
@@ -19,6 +19,7 @@ import {
     createFailed
 } from '../../redux/admin/categories/createCategory.slice'
 import { ICategory } from '../../redux/admin/categories/category.interfaces'
+import { updateCategory } from '../../../../izitini-backend/src/Modules/admin/category/category.controller';
 
 const Categories = () => {
 
@@ -62,6 +63,11 @@ const Categories = () => {
             return setCreateMode(false)
         }
     }, [categories, category, dispatch])
+
+    const updateCategory = (id: any) => {
+        dispatch(fetchingCategories())
+        update(dispatch, retrievedCategories, categoriesFailed, `/admin/category/${id}`, { name }, token)
+    }
 
     return (
         <>
@@ -139,6 +145,8 @@ const Categories = () => {
                                         </thead>
 
                                         {categories.map((category) => {
+                                            console.log(category)
+                                            console.log('+++++++++++', category.subCategories.length)
                                             const subcategories = category.subCategories.length
                                             const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
@@ -316,7 +324,7 @@ const Categories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return createNewCategory()
+                                                    return updateCategory(currentCategory?.id)
                                                 }}
                                             >
                                                 {!!isCatLoading ? 'Loading...' : 'Update'}
