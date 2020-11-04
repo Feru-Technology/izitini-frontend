@@ -116,7 +116,7 @@ const Categories = () => {
                                             return (
                                                 <tbody>
 
-                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b
+                                                    <tr className='text-center text-xs md:text-base lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
@@ -127,22 +127,22 @@ const Categories = () => {
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
-                                                                    <p className='font-normal text-sm'>
+                                                                    <p className='font-normal'>
                                                                         <span className='hover:underline hover:text-dark-blue'>{category.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
-                                                            <p className='font-normal text-sm'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
+                                                            <p className='font-normal'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
-                                                            <div className='mx-auto px-1 py-1 md:px-6 md:py-3 border rounded-md bg-dark-blue w-2/3
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
                                                             text-white hover:bg-middle-blue'
                                                                 onClick={() => setEditMode(true)} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
-                                                            <div className='mx-auto px-1 py-1 md:px-6 md:py-3 border rounded-md 
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6
                                                             text-white bg-red-800 hover:bg-red-700'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
@@ -159,10 +159,10 @@ const Categories = () => {
                         <Transition show={!!deleteMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-2/4 w-full z-30 '>
-                                <div className='p-2 bg-white w-ful text-sm mx-6'>
-                                    <p className='mb-2'>Are ypu sure you want to delete this category?</p>
-                                    <div className='flex justify-between text-sm text-white'>
+                            <div className='absolute top-2/4 w-full z-30 text-xs md:text-base'>
+                                <div className='p-2 bg-white w-ful mx-6 md:w-2/4 md:mx-auto '>
+                                    <p className='mb-2 '>Are you sure you want to delete this category?</p>
+                                    <div className='flex justify-between text-white'>
                                         <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue'
                                             onClick={() => setDeleteMode(false)} >Cancel</button>
                                         <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700'>Delete</button>
