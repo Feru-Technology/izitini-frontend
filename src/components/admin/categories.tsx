@@ -25,7 +25,7 @@ const Categories = () => {
         query: '(min-width: 640px)',
     })
     const [isClosed, setIsClosed] = useState(false)
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(true)
     const [deleteMode, setDeleteMode] = useState(false)
 
     const navigate = useNavigate()
@@ -138,12 +138,12 @@ const Categories = () => {
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
-                                                            text-white hover:bg-middle-blue'
+                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setEditMode(true)} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
-                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6
-                                                            text-white bg-red-800 hover:bg-red-700'
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 
+                                                            text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
                                                     </tr>
@@ -156,20 +156,42 @@ const Categories = () => {
                             </div>
                         </div>
 
+                        {/* delete category */}
                         <Transition show={!!deleteMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-2/4 w-full z-30 text-xs md:text-base'>
-                                <div className='p-2 bg-white w-ful mx-6 md:w-2/4 md:mx-auto '>
+                            <div className='absolute top-2/4 w-full z-30 text-xs md:text-base  transition duration-150 ease-in-out'>
+                                <div className='p-2 bg-white w-ful mx-6 md:w-2/4 lg:w-2/6 md:mx-auto rounded-md shadow-md'>
                                     <p className='mb-2 '>Are you sure you want to delete this category?</p>
                                     <div className='flex justify-between text-white'>
-                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue'
+                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue hover:shadow-md
+                                        transition duration-150 ease-in-out'
                                             onClick={() => setDeleteMode(false)} >Cancel</button>
-                                        <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700'>Delete</button>
+                                        <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700 hover:shadow-md
+                                        transition duration-150 ease-in-out'>Delete</button>
                                     </div>
                                 </div>
                             </div>
                         </Transition>
+
+                        {/* Edit category */}
+                        {/* <Transition show={!!editMode} className='fixed'>
+                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            </div>
+                            <div className='absolute top-2/4 w-full z-30 text-xs md:text-base'>
+                                <div className='p-2 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md'>
+                                    <p className='mb-2 '>Are you sure you want to delete this category?</p>
+                                    <div className='flex justify-between text-white'>
+                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue hover:shadow-md
+                                        transition duration-150 ease-in-out'
+                                            onClick={() => setDeleteMode(false)} >Cancel</button>
+                                        <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700 hover:shadow-md
+                                        transition duration-150 ease-in-out
+                                        '>Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </Transition> */}
                     </div>
 
                 )
