@@ -19,14 +19,16 @@ const Categories = () => {
     // redux
     const dispatch = useDispatch()
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const { profile, error } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(true)
     const [deleteMode, setDeleteMode] = useState(false)
+    const [name, setName] = useState<string | null>(null)
 
     const navigate = useNavigate()
 
@@ -160,7 +162,7 @@ const Categories = () => {
                         <Transition show={!!deleteMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-2/4 w-full z-30 text-xs md:text-base  transition duration-150 ease-in-out'>
+                            <div className='absolute top-2/4 w-full z-20 text-xs md:text-base  transition duration-150 ease-in-out'>
                                 <div className='p-2 bg-white w-ful mx-6 md:w-2/4 lg:w-2/6 md:mx-auto rounded-md shadow-md'>
                                     <p className='mb-2 '>Are you sure you want to delete this category?</p>
                                     <div className='flex justify-between text-white'>
@@ -175,23 +177,60 @@ const Categories = () => {
                         </Transition>
 
                         {/* Edit category */}
-                        {/* <Transition show={!!editMode} className='fixed'>
+                        <Transition show={!!editMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-2/4 w-full z-30 text-xs md:text-base'>
                                 <div className='p-2 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md'>
-                                    <p className='mb-2 '>Are you sure you want to delete this category?</p>
-                                    <div className='flex justify-between text-white'>
-                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue hover:shadow-md
-                                        transition duration-150 ease-in-out'
-                                            onClick={() => setDeleteMode(false)} >Cancel</button>
-                                        <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700 hover:shadow-md
-                                        transition duration-150 ease-in-out
-                                        '>Delete</button>
+
+                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center'>Create Category</div>
+                                    <div className='container'>
+                                        <Transition
+                                            show={!!error}
+                                        >
+                                            {/* {error ? } */}
+                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
+
+                                        </Transition>
                                     </div>
+                                    <form>
+
+                                        <div className=' w-full mb-3'>
+                                            <label
+                                                className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                htmlFor='grid-text'
+                                            >
+                                                Name
+                                            </label>
+                                            <input
+                                                type='text'
+                                                className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                placeholder='category name'
+                                                onChange={e => setName(e.target.value)}
+                                            />
+                                        </div>{/* upload image */}
+                                        <div>
+                                            <form action='/action_page.php'>
+                                                <input type='file' id='myFile' name='filename' />
+                                            </form>
+                                        </div>
+                                        <div className='text-center mt-6'>
+                                            <button
+                                                className='bg-dark-blue text-white active:bg-gray-600 text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                type='button'
+                                                onClick={(e) => {
+                                                    e.preventDefault()
+                                                    // createStore()
+                                                }}
+                                            >
+                                                Create
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
-                        </Transition> */}
+                        </Transition>
                     </div>
 
                 )
