@@ -180,8 +180,9 @@ const Categories = () => {
                         <Transition show={!!editMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-2/4 w-full z-30 text-xs md:text-base'>
-                                <div className='p-2 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md'>
+                            <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
+                                <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
+                                md:p-6 lg:p-8'>
 
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center'>Create Category</div>
                                     <div className='container'>
