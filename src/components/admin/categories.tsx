@@ -26,7 +26,8 @@ const Categories = () => {
     })
 
     const [isClosed, setIsClosed] = useState(false)
-    const [editMode, setEditMode] = useState(true)
+    const [editMode, setEditMode] = useState(false)
+    const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
 
@@ -38,6 +39,10 @@ const Categories = () => {
     }, [dispatch])
 
     const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
+
+    // const createCategory = {
+
+    // }
 
     return (
         <>
@@ -77,8 +82,9 @@ const Categories = () => {
                                 <div className='flex items-center justify-between py-8'>
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Categories</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
-                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base' >
-                                        <Link to='/admin/create-store'>ADD A Category</Link>
+                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'
+                                        onClick={() => setCreateMode(true)} >
+                                        ADD A Category
                                     </button>
                                 </div>
 
@@ -177,7 +183,7 @@ const Categories = () => {
                         </Transition>
 
                         {/* Edit category */}
-                        <Transition show={!!editMode} className='fixed'>
+                        <Transition show={!!createMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
@@ -217,7 +223,7 @@ const Categories = () => {
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className='bg-dark-blue text-white active:bg-gray-600 text-sm font-bold uppercase px-6 p-3
+                                                className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                                                 type='button'
                                                 onClick={(e) => {
