@@ -8,6 +8,7 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { fetch, post } from '../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { ICategory } from '../../redux/admin/categories/category.interfaces'
 import {
     fetchingCategories,
     retrievedCategories,
@@ -18,7 +19,6 @@ import {
     createdCategory,
     createFailed
 } from '../../redux/admin/categories/createCategory.slice'
-import { ICategory } from '../../redux/admin/categories/category.interfaces'
 
 const SubCategories = () => {
 

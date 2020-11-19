@@ -4,14 +4,14 @@ import { ICategory, HTTPError } from './category.interfaces'
 
 export interface CategoryState {
     isUpdating: boolean
-    error: Error | HTTPError | null
-    updatedCategories: ICategory[] | null
+    updateError: Error | HTTPError | null
+    updatedCategories: ICategory[]
 }
 
 const initialState: CategoryState = {
     isUpdating: false,
-    error: null,
-    updatedCategories: null,
+    updateError: null,
+    updatedCategories: [],
 }
 
 // all categories in the system
@@ -20,25 +20,25 @@ export const UpdateCategorySlice = createSlice({
     initialState,
     reducers: {
         updatingCategory: (state) => {
-            state.error = null
+            state.updateError = null
             state.isUpdating = true
-            state.updatedCategories = null
+            state.updatedCategories = []
         },
         updated: (state, { payload }) => {
-            state.error = null
+            state.updateError = null
             state.isUpdating = false
             state.updatedCategories = [payload]
         },
-        categoriesFailed: (state, { payload }) => {
-            state.error = payload
+        updateFailed: (state, { payload }) => {
+            state.updateError = payload
             state.isUpdating = false
-            state.updatedCategories = null
+            state.updatedCategories = []
 
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { updatingCategory, updated, categoriesFailed } = UpdateCategorySlice.actions
+export const { updatingCategory, updated, updateFailed } = UpdateCategorySlice.actions
 
 export default UpdateCategorySlice.reducer

@@ -19,7 +19,11 @@ import {
     createFailed
 } from '../../redux/admin/categories/createCategory.slice'
 import { ICategory } from '../../redux/admin/categories/category.interfaces'
-import { updateCategory } from '../../../../izitini-backend/src/Modules/admin/category/category.controller';
+import {
+    updatingCategory,
+    updated,
+    updateFailed
+} from '../../redux/admin/categories/updateCategory.slice'
 
 const Categories = () => {
 
@@ -42,6 +46,7 @@ const Categories = () => {
 
     const navigate = useNavigate()
 
+    // get categories
     useEffect(() => {
         dispatch(fetchingCategories())
         fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
@@ -49,6 +54,7 @@ const Categories = () => {
 
     const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
 
+    // create category 
     const createNewCategory = () => {
         dispatch(createCategory())
         post(dispatch, createdCategory, createFailed, '/admin/category', { name }, token)
@@ -56,18 +62,34 @@ const Categories = () => {
 
     const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
 
+    // on create success, fetch updated categories
     useEffect(() => {
         if (category) {
-            dispatch(retrievedCategories([...categories, category]))
+            dispatch(fetchingCategories())
+            fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
             dispatch(createdCategory(null))
             return setCreateMode(false)
         }
     }, [categories, category, dispatch])
 
+
+    // update category
     const updateCategory = (id: any) => {
-        dispatch(fetchingCategories())
-        update(dispatch, retrievedCategories, categoriesFailed, `/admin/category/${id}`, { name }, token)
+        dispatch(updatingCategory())
+        update(dispatch, updated, updateFailed, `/admin/category/${id}`, { name }, token)
     }
+
+    const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
+
+    // on success update, update categories state
+    useEffect(() => {
+        if (updatedCategories.length !== 0) {
+            dispatch(fetchingCategories())
+            fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+            dispatch(updatingCategory())
+            return setEditMode(false)
+        }
+    }, [dispatch, updatedCategories])
 
     return (
         <>
@@ -145,8 +167,6 @@ const Categories = () => {
                                         </thead>
 
                                         {categories.map((category) => {
-                                            console.log(category)
-                                            console.log('+++++++++++', category.subCategories.length)
                                             const subcategories = category.subCategories.length
                                             const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
@@ -293,10 +313,10 @@ const Categories = () => {
                                     </div>
                                     <div className='container'>
                                         <Transition
-                                            show={!!error}
+                                            show={!!updateError}
                                         >
-                                            {/* {error ? } */}
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
+
+                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{updateError?.message}</p>
 
                                         </Transition>
                                     </div>
@@ -327,7 +347,7 @@ const Categories = () => {
                                                     return updateCategory(currentCategory?.id)
                                                 }}
                                             >
-                                                {!!isCatLoading ? 'Loading...' : 'Update'}
+                                                {!!isUpdating ? 'Loading...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
