@@ -6,6 +6,7 @@ import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { MdOutlineCancel } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -190,7 +191,11 @@ const Categories = () => {
                                 <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
-                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center'>Create Category</div>
+                                    <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4 text-gray-600 hover:text-dark-blue'
+                                        onClick={() => setCreateMode(false)} />
+
+
+                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Category</div>
                                     <div className='container'>
                                         <Transition
                                             show={!!error}
