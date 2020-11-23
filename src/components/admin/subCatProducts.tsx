@@ -56,6 +56,7 @@ const SubCatProducts = () => {
     const { isFetching, subCategory, fetchError } = useSelector((state: RootState) => state.adminSubCategory)
 
     console.log('++++++++', subCategory)
+    console.log(fetchError)
 
     useEffect(() => {
         dispatch(fetchingStores())
@@ -117,7 +118,7 @@ const SubCatProducts = () => {
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
                                     <div className='flex items-center justify-between py-8'>
-                                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{subCategory[0].subCategory.name}</h3>
+                                        {/* <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{subCategory[0].subCategory.name}</h3> */}
                                         <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
                                             onClick={() => setCreateMode(true)} >
@@ -176,7 +177,7 @@ const SubCatProducts = () => {
                                                                 </div>
                                                             </td>
                                                             <td className='py-3 '>
-                                                                {/* <p className='font-normal text-sm'>{subCat.product.shop.name}</p> */}
+                                                                <p className='font-normal text-sm'>{subCat.product.shop.name}</p>
                                                             </td>
                                                             <td className='py-3 '>
                                                                 <p className='font-normal text-sm'>{subCat.product.status}</p>
