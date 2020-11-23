@@ -4,13 +4,13 @@ import { HTTPError, IPSubCategory } from './subCategory.interface'
 export interface SubCategoryState {
     isFetching: boolean
     fetchError: Error | HTTPError | null
-    subCategory: IPSubCategory | null
+    subCategory: IPSubCategory[]
 }
 
 const initialState: SubCategoryState = {
     isFetching: false,
     fetchError: null,
-    subCategory: null,
+    subCategory: [],
 }
 
 export const adminSubCategorySlice = createSlice({
@@ -20,7 +20,7 @@ export const adminSubCategorySlice = createSlice({
         fetchingSubCategory: (state) => {
             state.fetchError = null
             state.isFetching = true
-            state.subCategory = null
+            state.subCategory = []
         },
         fetchedSubCategory: (state, { payload }) => {
             state.fetchError = null
@@ -30,7 +30,7 @@ export const adminSubCategorySlice = createSlice({
         fetchFailed: (state, { payload }) => {
             state.fetchError = payload
             state.isFetching = false
-            state.subCategory = null
+            state.subCategory = []
         }
     },
 })

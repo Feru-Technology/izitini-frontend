@@ -15,9 +15,8 @@ export interface ISubCategory {
 
 // products in a subcategory
 export interface IPSubCategory {
-    id: string
-    name: string
-    image_url: string
-    products: IProduct[]
+    createdAt: Date
+    id: string | null
+    product: IProduct
+    subCategory: ISubCategory
 }
-
