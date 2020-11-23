@@ -83,7 +83,7 @@ const Categories = () => {
                                 <div className='flex items-center justify-between py-8'>
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Categories</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
-                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'
+                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
                                         onClick={() => setCreateMode(true)} >
                                         ADD A Category
                                     </button>
@@ -191,7 +191,8 @@ const Categories = () => {
                                 <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
-                                    <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4 text-gray-600 hover:text-dark-blue'
+                                    <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
+                                    text-gray-600 hover:text-dark-blue hover:shadow-lg'
                                         onClick={() => setCreateMode(false)} />
 
 
