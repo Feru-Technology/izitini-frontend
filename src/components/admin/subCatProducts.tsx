@@ -54,9 +54,7 @@ const SubCatProducts = () => {
     }, [dispatch, id])
 
     const { isFetching, subCategory, fetchError } = useSelector((state: RootState) => state.adminSubCategory)
-
-    console.log('++++++++', subCategory)
-    console.log(fetchError)
+    const categoryName = subCategory[0]?.subCategory.name
 
     useEffect(() => {
         dispatch(fetchingStores())
@@ -67,7 +65,7 @@ const SubCatProducts = () => {
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory: subCategory[0]?.subCategory.name, name, brand, unit }, token)
+        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory: categoryName, name, brand, unit }, token)
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
@@ -118,7 +116,7 @@ const SubCatProducts = () => {
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
                                     <div className='flex items-center justify-between py-8'>
-                                        {/* <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{subCategory[0].subCategory.name}</h3> */}
+                                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{categoryName}</h3>
                                         <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
                                             onClick={() => setCreateMode(true)} >
@@ -158,7 +156,6 @@ const SubCatProducts = () => {
                                             </thead>
 
                                             {subCategory.map((subCat) => {
-                                                console.log('---------', subCat)
                                                 return (
                                                     <tbody>
                                                         <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
@@ -177,7 +174,8 @@ const SubCatProducts = () => {
                                                                 </div>
                                                             </td>
                                                             <td className='py-3 '>
-                                                                <p className='font-normal text-sm'>{subCat.product.shop.name}</p>
+                                                                <p className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'
+                                                                    onClick={() => navigate(`/admin/shops/${subCat.product.shop.id}`)} >{subCat.product.shop.name}</p>
                                                             </td>
                                                             <td className='py-3 '>
                                                                 <p className='font-normal text-sm'>{subCat.product.status}</p>
@@ -300,7 +298,7 @@ const SubCatProducts = () => {
                             </Transition>
                         </div>
                     )
-                    : navigate('/signin')
+                    : <div className='flex justify-center'>{createError?.message}</div>
 
             }
         </>
