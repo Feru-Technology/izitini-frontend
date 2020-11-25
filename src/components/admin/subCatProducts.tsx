@@ -73,11 +73,11 @@ const SubCatProducts = () => {
     useEffect(() => {
         if (product) {
             dispatch(fetchingSubCategory())
-            fetch(dispatch, fetchedSubCategory, fetchFailed, '/admin/product/all', token)
+            fetch(dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
             dispatch(createdProduct(null))
             setCreateMode(false)
         }
-    }, [dispatch, product, token])
+    }, [dispatch, id, product])
 
     return (
         <>
