@@ -13,7 +13,7 @@ const initialState: SubCategoryState = {
     subCategories: [],
 }
 
-export const subCategorySlice = createSlice({
+export const AdminSubCategoriesSlice = createSlice({
     name: 'sub-category',
     initialState,
     reducers: {
@@ -22,12 +22,12 @@ export const subCategorySlice = createSlice({
             state.isLoading = true
             state.subCategories = []
         },
-        retrievedSubCategory: (state, { payload }) => {
+        retrievedSubCategories: (state, { payload }) => {
             state.error = null
             state.isLoading = false
             state.subCategories = [...payload]
         },
-        retrievedSubCategoryFailed: (state, { payload }) => {
+        fetchFailed: (state, { payload }) => {
             state.error = payload
             state.isLoading = false
             state.subCategories = []
@@ -36,6 +36,6 @@ export const subCategorySlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { fetchingSubCategories, retrievedSubCategory, retrievedSubCategoryFailed } = subCategorySlice.actions
+export const { fetchingSubCategories, retrievedSubCategories, fetchFailed } = AdminSubCategoriesSlice.actions
 
-export default subCategorySlice.reducer
+export default AdminSubCategoriesSlice.reducer

@@ -8,12 +8,12 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { fetch, post } from '../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { ICategory } from '../../redux/admin/categories/category.interfaces'
+import { ISubCategory } from '../../redux/admin/subCategories/subCategory.interface'
 import {
-    fetchingCategories,
-    retrievedCategories,
-    categoriesFailed
-} from '../../redux/admin/categories/categories.slice'
+    fetchingSubCategories,
+    retrievedSubCategories,
+    fetchFailed
+} from '../../redux/admin/subCategories/subCategories.slice'
 import {
     createCategory,
     createdCategory,
@@ -37,36 +37,59 @@ const SubCategories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
-    const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
+    const [currentSubCategory, setCurrentSubCategory] = useState<ISubCategory | null>(null)
 
     const navigate = useNavigate()
 
+    // get categories
     useEffect(() => {
-        dispatch(fetchingCategories())
-        fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+        dispatch(fetchingSubCategories())
+        fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
     }, [dispatch])
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
+    const { isLoading, subCategories } = useSelector((state: RootState) => state.adminSubCategories)
 
-    const createNewCategory = () => {
-        dispatch(createCategory())
-        post(dispatch, createdCategory, createFailed, '/admin/category', { name }, token)
-    }
+    // create category 
+    // const createNewCategory = () => {
+    //     dispatch(createCategory())
+    //     post(dispatch, createdCategory, createFailed, '/admin/category', { name }, token)
+    // }
 
     const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
 
-    useEffect(() => {
-        if (category) {
-            dispatch(retrievedCategories([...categories, category]))
-            dispatch(createdCategory(null))
-            return setCreateMode(false)
-        }
-    }, [categories, category, dispatch])
+    // on create success, fetch updated categories
+    // useEffect(() => {
+    //     if (category) {
+    //         dispatch(fetchingCategories())
+    //         fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+    //         dispatch(createdCategory(null))
+    //         return setCreateMode(false)
+    //     }
+    // }, [categories, category, dispatch])
+
+
+    // update category
+    // const updateCategory = (id: any) => {
+    //     dispatch(updatingCategory())
+    //     update(dispatch, updated, updateFailed, `/admin/category/${id}`, { name }, token)
+    // }
+
+    const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
+
+    // on success update, update categories state
+    // useEffect(() => {
+    //     if (updatedCategories.length !== 0) {
+    //         dispatch(fetchingCategories())
+    //         fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+    //         dispatch(updatingCategory())
+    //         return setEditMode(false)
+    //     }
+    // }, [dispatch, updatedCategories])
 
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>)
-                : categories ? (
+                : subCategories ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
                             isClosed={isClosed}
@@ -122,7 +145,7 @@ const SubCategories = () => {
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >Category</th>
+                                                >category</th>
                                                 <th
                                                     scope='col'
                                                     className='
@@ -138,9 +161,8 @@ const SubCategories = () => {
                                             </tr>
                                         </thead>
 
-                                        {categories.map((category) => {
-                                            const subcategories = category.subCategories.length
-                                            const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                        {subCategories.map((subCategory) => {
+                                            const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
                                                 <tbody>
 
@@ -148,28 +170,28 @@ const SubCategories = () => {
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
-                                                            onClick={() => navigate(`/admin/category/${category.id}`)}>
+                                                            onClick={() => navigate(`/admin/subCategory/${subCategory.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={categoryImage} alt='product' className='w-full' />
+                                                                    <img src={subCategoryImage} alt='product' className='w-full' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal'>
-                                                                        <span className='hover:underline hover:text-dark-blue'>{category.name}</span>
+                                                                        <span className='hover:underline hover:text-dark-blue'>{subCategory.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
-                                                            <Link to={`/admin/categories/${category.id}`}
-                                                                className='font-normal hover:underline hover:text-dark-blue'>{subcategories}</Link>
+                                                            <Link to={`/admin/categories/${subCategory.category.id}`}
+                                                                className='font-normal hover:underline hover:text-dark-blue'>{subCategory.category.name}</Link>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
                                                             text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => {
-                                                                    setCurrentCategory(category)
+                                                                    setCurrentSubCategory(subCategory)
                                                                     return setEditMode(true)
                                                                 }} >Edit</div>
                                                         </td>
@@ -188,13 +210,13 @@ const SubCategories = () => {
                             </div>
                         </div>
 
-                        {/* delete category */}
+                        {/* delete subCategory */}
                         <Transition show={!!deleteMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-2/4 w-full z-20 text-xs md:text-base  transition duration-150 ease-in-out'>
                                 <div className='p-2 bg-white w-ful mx-6 md:w-2/4 lg:w-2/6 md:mx-auto rounded-md shadow-md'>
-                                    <p className='mb-2 '>Are you sure you want to delete this category?</p>
+                                    <p className='mb-2 '>Are you sure you want to delete this subCategory?</p>
                                     <div className='flex justify-between text-white'>
                                         <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue hover:shadow-md
                                         transition duration-150 ease-in-out'
@@ -206,7 +228,7 @@ const SubCategories = () => {
                             </div>
                         </Transition>
 
-                        {/* create category */}
+                        {/* create subCategory */}
                         <Transition show={!!createMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
@@ -218,7 +240,7 @@ const SubCategories = () => {
                                     text-gray-600 hover:text-dark-blue hover:shadow-lg'
                                         onClick={() => setCreateMode(false)} />
 
-                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Category</div>
+                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create subCategory</div>
                                     <div className='container'>
                                         <Transition
                                             show={!!error}
@@ -240,7 +262,7 @@ const SubCategories = () => {
                                             <input
                                                 type='text'
                                                 className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                placeholder='category name'
+                                                placeholder='subCategory name'
                                                 onChange={e => setName(e.target.value)}
                                             />
                                         </div>{/* upload image */}
@@ -256,10 +278,10 @@ const SubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return createNewCategory()
+                                                    // return createNewSubCategory()
                                                 }}
                                             >
-                                                {!!isCatLoading ? 'Loading...' : 'Create'}
+                                                {/* {!!isCatLoading ? 'Loading...' : 'Create'} */}
                                             </button>
                                         </div>
                                     </form>
@@ -267,7 +289,7 @@ const SubCategories = () => {
                             </div>
                         </Transition>
 
-                        {/* Edit category */}
+                        {/* Edit subCategory */}
                         <Transition show={!!editMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
@@ -281,14 +303,14 @@ const SubCategories = () => {
 
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600
                                             mx-auto w-2/4 md:w-1/4'>
-                                        <img src={currentCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
+                                        <img src={currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
                                     </div>
                                     <div className='container'>
                                         <Transition
-                                            show={!!error}
+                                            show={!!updateError}
                                         >
-                                            {/* {error ? } */}
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
+
+                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{updateError?.message}</p>
 
                                         </Transition>
                                     </div>
@@ -305,7 +327,7 @@ const SubCategories = () => {
                                                 type='text'
                                                 className='border-0 border-b border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                                                 text-sm focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                defaultValue={currentCategory?.name}
+                                                defaultValue={currentSubCategory?.name}
                                                 onChange={e => setName(e.target.value)}
                                             />
                                         </div>
@@ -316,10 +338,10 @@ const SubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return createNewCategory()
+                                                    // return updateSubCategory(currentSubCategory?.id)
                                                 }}
                                             >
-                                                {!!isCatLoading ? 'Loading...' : 'Update'}
+                                                {!!isUpdating ? 'Loading...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
