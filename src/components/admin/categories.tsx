@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
+import { fetch, post } from '../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -14,13 +14,19 @@ import {
     retrievedCategories,
     categoriesFailed
 } from '../../redux/admin/categories/categories.slice'
+import {
+    createCategory,
+    createdCategory,
+    createFailed
+} from '../../redux/admin/categories/createCategory.slice'
 
 const Categories = () => {
 
     // redux
     const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
 
-    const { profile, error } = useSelector((state: RootState) => state.profile)
+    const { profile } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -41,9 +47,20 @@ const Categories = () => {
 
     const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
 
-    // const createCategory = {
+    const createNewCategory = () => {
+        dispatch(createCategory())
+        post(dispatch, createdCategory, createFailed, '/admin/category', { name }, token)
+    }
 
-    // }
+    const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
+
+    useEffect(() => {
+        if (category) {
+            dispatch(retrievedCategories([...categories, category]))
+            dispatch(createdCategory(null))
+            return setCreateMode(false)
+        }
+    }, [categories, category, dispatch])
 
     return (
         <>
@@ -234,10 +251,10 @@ const Categories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    // createStore()
+                                                    return createNewCategory()
                                                 }}
                                             >
-                                                Create
+                                                {!!isCatLoading ? 'Loading...' : 'Create'}
                                             </button>
                                         </div>
                                     </form>

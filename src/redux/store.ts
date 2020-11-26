@@ -16,8 +16,8 @@ import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { AdminCategoriesSlice } from './admin/categories/categories.slice'
+import { crateCategorySlice } from './admin/categories/createCategory.slice'
 import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.slice'
-
 
 export const store = configureStore({
     reducer: {
@@ -38,6 +38,7 @@ export const store = configureStore({
         AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer,
         adminCategories: AdminCategoriesSlice.reducer,
+        adminCreateCategory: crateCategorySlice.reducer,
         subCategoryProducts: subCategoryProductsSlice.reducer
 
     },

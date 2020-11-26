@@ -3,13 +3,13 @@ import { ICategory, HTTPError } from './category.interfaces'
 
 
 export interface categoryState {
-    isLoading: boolean
+    isCatLoading: boolean
     error: Error | HTTPError | null
     category: ICategory | null
 }
 
 const initialState: categoryState = {
-    isLoading: false,
+    isCatLoading: false,
     error: null,
     category: null,
 }
@@ -19,18 +19,18 @@ export const crateCategorySlice = createSlice({
     initialState,
     reducers: {
         createCategory: (state) => {
-            state.isLoading = true
+            state.isCatLoading = true
             state.category = null
             state.error = null
         },
         createdCategory: (state, { payload }) => {
             state.error = null
-            state.isLoading = false
+            state.isCatLoading = false
             state.category = payload
         },
         createFailed: (state, { payload }) => {
             state.category = null
-            state.isLoading = false
+            state.isCatLoading = false
             state.error = payload
         }
     },
