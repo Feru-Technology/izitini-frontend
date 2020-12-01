@@ -19,6 +19,7 @@ import {
     createdCategory,
     createFailed
 } from '../../redux/admin/categories/createCategory.slice'
+import { ICategory } from '../../redux/admin/categories/category.interfaces'
 
 const Categories = () => {
 
@@ -37,6 +38,7 @@ const Categories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
+    const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
 
     const navigate = useNavigate()
 
@@ -165,7 +167,10 @@ const Categories = () => {
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
                                                             text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
-                                                                onClick={() => setEditMode(true)} >Edit</div>
+                                                                onClick={() => {
+                                                                    setCurrentCategory(category)
+                                                                    return setEditMode(true)
+                                                                }} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 
@@ -200,7 +205,7 @@ const Categories = () => {
                             </div>
                         </Transition>
 
-                        {/* Edit category */}
+                        {/* create category */}
                         <Transition show={!!createMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
@@ -211,7 +216,6 @@ const Categories = () => {
                                     <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
                                     text-gray-600 hover:text-dark-blue hover:shadow-lg'
                                         onClick={() => setCreateMode(false)} />
-
 
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Category</div>
                                     <div className='container'>
@@ -255,6 +259,66 @@ const Categories = () => {
                                                 }}
                                             >
                                                 {!!isCatLoading ? 'Loading...' : 'Create'}
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </Transition>
+
+                        {/* Edit category */}
+                        <Transition show={!!editMode} className='fixed'>
+                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            </div>
+                            <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
+                                <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
+                                md:p-6 lg:p-8'>
+
+                                    <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
+                                    text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                                        onClick={() => setEditMode(false)} />
+
+                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600
+                                            mx-auto w-2/4 md:w-1/4'>
+                                        <img src={currentCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
+                                    </div>
+                                    <div className='container'>
+                                        <Transition
+                                            show={!!error}
+                                        >
+                                            {/* {error ? } */}
+                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
+
+                                        </Transition>
+                                    </div>
+                                    <form>
+
+                                        <div className=' w-full mb-3'>
+                                            <label
+                                                className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                htmlFor='grid-text'
+                                            >
+                                                Name
+                                            </label>
+                                            <input
+                                                type='text'
+                                                className='border-0 border-b border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                                                text-sm focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                defaultValue={currentCategory?.name}
+                                                onChange={e => setName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className='text-center mt-6'>
+                                            <button
+                                                className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                type='button'
+                                                onClick={(e) => {
+                                                    e.preventDefault()
+                                                    return createNewCategory()
+                                                }}
+                                            >
+                                                {!!isCatLoading ? 'Loading...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
