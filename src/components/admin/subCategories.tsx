@@ -190,7 +190,7 @@ const SubCategories = () => {
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
-                                                            onClick={() => navigate(`/admin/subCategory/${subCategory.id}`)}>
+                                                            onClick={() => navigate(`/admin/subCategories/p/${subCategory.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
                                                                     <img src={subCategoryImage} alt='product' className='w-full' />

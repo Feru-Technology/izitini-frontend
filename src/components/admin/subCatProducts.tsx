@@ -7,7 +7,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import {
     fetchingProducts,
@@ -30,10 +30,13 @@ import {
     createFailed
 } from '../../redux/admin/products/createProduct.slice'
 
-const Products = () => {
+const SubCatProducts = () => {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+
+    const params = useParams()
+    const { id } = params
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
@@ -45,12 +48,8 @@ const Products = () => {
     const [createMode, setCreateMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
-    const [showWaiting, setShowWaiting] = useState(false)
     const [brand, setBrand] = useState<string | null>(null)
-    const [showApproved, setShowApproved] = useState(false)
     const [shop_id, setShop_id] = useState<string | null>(null)
-    const [showAllProducts, setShowAllProducts] = useState(true)
-    const [showUnpublished, setShowUnpublished] = useState(false)
     const [subCategory, setSubCategory] = useState<string | null>(null)
 
     const navigate = useNavigate()
@@ -59,26 +58,6 @@ const Products = () => {
         dispatch(fetchingProducts())
         fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
     }, [dispatch, token])
-
-    const all = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-    }
-
-    const approved = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
-    }
-
-    const waiting = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/waiting', token)
-    }
-
-    const unPublished = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/drafts', token)
-    }
 
     const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
 
@@ -157,54 +136,6 @@ const Products = () => {
                                             onClick={() => setCreateMode(true)} >
                                             ADD A Product
                                         </button>
-                                    </div>
-
-                                    <div className='  border-gray-200'>
-                                        <ul className='w-full text-xs flex cursor-pointer'>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showAllProducts && 'border-b-2 border-dark-blue'}`}
-
-                                                onClick={() => {
-                                                    all()
-                                                    setShowAllProducts(true)
-                                                    setShowApproved(false)
-                                                    setShowWaiting(false)
-                                                    setShowUnpublished(false)
-                                                }}
-                                            >All</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showApproved && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    approved()
-                                                    setShowApproved(true)
-                                                    setShowAllProducts(false)
-                                                    setShowWaiting(false)
-                                                    setShowUnpublished(false)
-                                                }}
-
-                                            >Approved</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showUnpublished && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    waiting()
-                                                    setShowUnpublished(true)
-                                                    setShowAllProducts(false)
-                                                    setShowApproved(false)
-                                                    setShowWaiting(false)
-                                                }}
-                                            >Waiting</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    unPublished()
-                                                    setShowWaiting(true)
-                                                    setShowAllProducts(false)
-                                                    setShowApproved(false)
-                                                    setShowUnpublished(false)
-                                                }}
-
-                                            >Unpublished</li>
-                                        </ul>
                                     </div>
 
                                     <div className='w-full my-4 md:my-5 lg:my-6 '>
@@ -400,4 +331,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default SubCatProducts

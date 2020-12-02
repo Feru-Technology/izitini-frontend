@@ -30,6 +30,7 @@ import AllProducts from './components/customer/allProducts'
 import SubCategories from './components/admin/subCategories'
 import AdminCreateStore from './components/admin/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
+import SubCatProducts from './components/admin/subCatProducts'
 import CustomerDashboard from './components/customer/Dashboard'
 import CatSubCategories from './components/admin/catSubCategories'
 import SignInPage from './components/customer/accounts/SignInPage'
@@ -95,6 +96,7 @@ function App() {
                 <Route path='/admin/shops/create' element={<AdminCreateStore />} />
                 <Route path='/admin/categories/:id' element={<CatSubCategories />} />
                 <Route path='/admin/users/create-vendor' element={<CreateVendor />} />
+                <Route path='/admin/subCategories/p/:id' element={<SubCatProducts />} />
                 <Route path='/admin/users/create-customer' element={<CreateCustomer />} />
 
                 <Route path='*' element={<NotFound />} />
