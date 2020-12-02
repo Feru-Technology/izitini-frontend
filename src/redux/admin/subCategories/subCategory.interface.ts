@@ -1,3 +1,4 @@
+import { IProduct } from '../../products/product.interface'
 import { ICategory } from '../categories/category.interfaces'
 
 export interface HTTPError {
@@ -10,5 +11,13 @@ export interface ISubCategory {
     name: string
     image_url: string
     category: ICategory
+}
+
+// products in a subcategory
+export interface IPSubCategory {
+    id: string
+    name: string
+    image_url: string
+    products: IProduct[]
 }
 
