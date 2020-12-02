@@ -42,7 +42,7 @@ const Products = () => {
     })
 
     const [isClosed, setIsClosed] = useState(false)
-    const [createMode, setCreateMode] = useState(true)
+    const [createMode, setCreateMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
     const [showWaiting, setShowWaiting] = useState(false)
@@ -101,10 +101,19 @@ const Products = () => {
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, {}, token)
+        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory, name, brand, unit }, token)
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
+
+    useEffect(() => {
+        if (product) {
+            dispatch(fetchingProducts())
+            fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+            dispatch(createdProduct(null))
+            setCreateMode(false)
+        }
+    }, [dispatch, product, token])
 
     return (
         <>
@@ -269,10 +278,10 @@ const Products = () => {
                             </div>
 
                             {/* create product */}
-                            <Transition show={!!createMode} className='fixed'>
-                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            <Transition show={!!createMode} className='absolute'>
+                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
                                 </div>
-                                <div className='absolute top-16 w-full z-30 text-xs md:text-base'>
+                                <div className='absolute top-1 w-full z-30 text-xs md:text-base  overflow-scroll'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
