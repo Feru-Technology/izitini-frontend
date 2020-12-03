@@ -15,10 +15,10 @@ import {
     fetchFailed
 } from '../../redux/admin/subCategories/subCategories.slice'
 import {
-    createCategory,
-    createdCategory,
+    creatingSubCategory,
+    createdSubCategory,
     createFailed
-} from '../../redux/admin/categories/createCategory.slice'
+} from '../../redux/admin/subCategories/createSubCategory.slice'
 
 const SubCategories = () => {
 
@@ -49,23 +49,23 @@ const SubCategories = () => {
 
     const { isLoading, subCategories } = useSelector((state: RootState) => state.adminSubCategories)
 
-    // create category 
-    // const createNewCategory = () => {
-    //     dispatch(createCategory())
-    //     post(dispatch, createdCategory, createFailed, '/admin/category', { name }, token)
-    // }
+    // create new subCategory 
+    const createNewSubCategory = () => {
+        dispatch(creatingSubCategory())
+        post(dispatch, createdSubCategory, createFailed, '/admin/category', { name }, token)
+    }
 
-    const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
+    const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
 
     // on create success, fetch updated categories
-    // useEffect(() => {
-    //     if (category) {
-    //         dispatch(fetchingCategories())
-    //         fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-    //         dispatch(createdCategory(null))
-    //         return setCreateMode(false)
-    //     }
-    // }, [categories, category, dispatch])
+    useEffect(() => {
+        if (subCategory) {
+            dispatch(fetchingSubCategories())
+            fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+            dispatch(createdSubCategory(null))
+            return setCreateMode(false)
+        }
+    }, [dispatch, subCategory])
 
 
     // update category
@@ -243,10 +243,9 @@ const SubCategories = () => {
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create subCategory</div>
                                     <div className='container'>
                                         <Transition
-                                            show={!!error}
+                                            show={!!createError}
                                         >
-                                            {/* {error ? } */}
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
+                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
 
                                         </Transition>
                                     </div>
@@ -278,10 +277,10 @@ const SubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    // return createNewSubCategory()
+                                                    return createNewSubCategory()
                                                 }}
                                             >
-                                                {/* {!!isCatLoading ? 'Loading...' : 'Create'} */}
+                                                {!!isCreating ? 'Creating...' : 'Create'}
                                             </button>
                                         </div>
                                     </form>
