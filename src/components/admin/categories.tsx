@@ -123,7 +123,7 @@ const Categories = () => {
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >CreatedAt</th>
+                                                >SubCategories</th>
                                                 <th
                                                     scope='col'
                                                     className='
@@ -140,6 +140,7 @@ const Categories = () => {
                                         </thead>
 
                                         {categories.map((category) => {
+                                            const subcategories = category.subCategories.length
                                             const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
                                                 <tbody>
@@ -162,7 +163,8 @@ const Categories = () => {
                                                             </div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
-                                                            <p className='font-normal'>{format(new Date(category.createdAt), 'dd.MM.yyyy')}</p>
+                                                            <Link to={`/admin/categories/${category.id}`}
+                                                                className='font-normal hover:underline hover:text-dark-blue'>{subcategories}</Link>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
