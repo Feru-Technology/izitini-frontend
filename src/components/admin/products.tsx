@@ -5,6 +5,7 @@ import Header from '../vendor/Header'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,14 +14,18 @@ import {
     fetchedProducts,
     fetchFailed
 } from '../../redux/admin/products/products.slice'
-import { MdOutlineCancel } from 'react-icons/md'
+import {
+    fetchingStores,
+    retrievedStores,
+    retrievedStoreFailed
+} from '../../redux/stores/allStores.slice'
 
 const Products = () => {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
 
-    const { isLoading, profile } = useSelector((state: RootState) => state.profile);
+    const { profile } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -61,6 +66,15 @@ const Products = () => {
     }
 
     const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
+
+
+    useEffect(() => {
+        dispatch(fetchingStores())
+        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+    }, [dispatch])
+
+
+    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
 
     return (
         <>
