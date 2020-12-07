@@ -13,6 +13,7 @@ import {
     fetchedProducts,
     fetchFailed
 } from '../../redux/admin/products/products.slice'
+import { MdOutlineCancel } from 'react-icons/md'
 
 const Products = () => {
 
@@ -222,6 +223,82 @@ const Products = () => {
 
                                 </div>
                             </div>
+
+                            {/* create subCategory */}
+                            <Transition show={!!createMode} className='fixed'>
+                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                                </div>
+                                <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
+                                    <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
+                                md:p-6 lg:p-8'>
+
+                                        <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
+                                    text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                                            onClick={() => setCreateMode(false)} />
+
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create subCategory</div>
+                                        <div className='container'>
+                                            {/* <Transition
+                                            show={!!createError}
+                                        >
+                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
+
+                                        </Transition> */}
+                                        </div>
+                                        <form>
+
+
+                                            <div className=' w-full mb-3'>
+                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Category</h3>
+                                                <div className=' w-full mb-3'>
+                                                    <select
+                                                        className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                                                        id='grid-state'
+                                                    // onChange={e => setCategory_id(e.target.value)}
+                                                    >
+                                                        <option>Choose category</option>
+                                                        {/* {isLoading ? <h1>loading...</h1>
+                                                        : categories.map((c) => (<option value={c.id}>{c.name}</option>))} */}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div className=' w-full mb-3'>
+                                                <label
+                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    htmlFor='grid-text'
+                                                >
+                                                    Name
+                                                </label>
+                                                <input
+                                                    type='text'
+                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    placeholder='subCategory name'
+                                                // onChange={e => setName(e.target.value)}
+                                                />
+                                            </div>{/* upload image */}
+                                            <div>
+                                                <form action='/action_page.php'>
+                                                    <input type='file' id='myFile' name='filename' />
+                                                </form>
+                                            </div>
+                                            <div className='text-center mt-6'>
+                                                <button
+                                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                    type='button'
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        // return createNewSubCategory()
+                                                    }}
+                                                >
+                                                    {/* {!!isCreating ? 'Creating...' : 'Create'} */}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </Transition>
                         </div>
                     )
                     : navigate('/signin')
