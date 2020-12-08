@@ -19,6 +19,11 @@ import {
     createdSubCategory,
     createFailed
 } from '../../redux/admin/subCategories/createSubCategory.slice'
+import {
+    fetchingCategories,
+    retrievedCategories,
+    categoriesFailed
+} from '../../redux/admin/categories/categories.slice'
 
 const SubCategories = () => {
 
@@ -37,11 +42,12 @@ const SubCategories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
+    const [category_id, setCategory_id] = useState<string | null>(null)
     const [currentSubCategory, setCurrentSubCategory] = useState<ISubCategory | null>(null)
 
     const navigate = useNavigate()
 
-    // get categories
+    // get subcategories
     useEffect(() => {
         dispatch(fetchingSubCategories())
         fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
@@ -52,7 +58,7 @@ const SubCategories = () => {
     // create new subCategory 
     const createNewSubCategory = () => {
         dispatch(creatingSubCategory())
-        post(dispatch, createdSubCategory, createFailed, '/admin/category', { name }, token)
+        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${category_id}`, { name }, token)
     }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
@@ -67,6 +73,14 @@ const SubCategories = () => {
         }
     }, [dispatch, subCategory])
 
+
+    // get categories
+    useEffect(() => {
+        dispatch(fetchingCategories())
+        fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+    }, [dispatch])
+
+    const { categories } = useSelector((state: RootState) => state.adminCategories)
 
     // update category
     // const updateCategory = (id: any) => {
@@ -250,6 +264,22 @@ const SubCategories = () => {
                                         </Transition>
                                     </div>
                                     <form>
+
+
+                                        <div className=' w-full mb-3'>
+                                            <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Category</h3>
+                                            <div className=' w-full mb-3'>
+                                                <select
+                                                    className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                                                    id='grid-state'
+                                                    onChange={e => setCategory_id(e.target.value)}
+                                                >
+                                                    <option>Choose category</option>
+                                                    {isLoading ? <h1>loading...</h1>
+                                                        : categories.map((c) => (<option value={c.id}>{c.name}</option>))}
+                                                </select>
+                                            </div>
+                                        </div>
 
                                         <div className=' w-full mb-3'>
                                             <label
