@@ -21,6 +21,7 @@ import { UpdateCategorySlice } from './admin/categories/updateCategory.slice'
 import { AdminSubCategoriesSlice } from './admin/subCategories/subCategories.slice'
 import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.slice'
 import { createSubCategorySlice } from './admin/subCategories/createSubCategory.slice'
+import { updateSubCategorySlice } from './admin/subCategories/updateSubCategory.slice'
 
 export const store = configureStore({
     reducer: {
@@ -45,7 +46,8 @@ export const store = configureStore({
         adminUpdateCategory: UpdateCategorySlice.reducer,
         adminSubCategories: AdminSubCategoriesSlice.reducer,
         subCategoryProducts: subCategoryProductsSlice.reducer,
-        adminCreateSubCategory: createSubCategorySlice.reducer
+        adminCreateSubCategory: createSubCategorySlice.reducer,
+        adminUpdateSubCategory: updateSubCategorySlice.reducer
 
     },
 })
