@@ -95,10 +95,12 @@ const Products = () => {
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
 
-    // const createProduct = () => {
-    //     dispatch(creatingProduct())
-    //     post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}, {}`)
-    // }
+    const createProduct = () => {
+        dispatch(creatingProduct())
+        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, {}, token)
+    }
+
+    const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
 
     return (
         <>
@@ -266,7 +268,7 @@ const Products = () => {
                             <Transition show={!!createMode} className='fixed'>
                                 <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                                 </div>
-                                <div className='absolute top-0 w-full z-30 text-xs md:text-base'>
+                                <div className='absolute top-16 w-full z-30 text-xs md:text-base'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
@@ -274,14 +276,14 @@ const Products = () => {
                                     text-gray-600 hover:text-dark-blue hover:shadow-lg'
                                             onClick={() => setCreateMode(false)} />
 
-                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create subCategory</div>
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Product</div>
                                         <div className='container'>
-                                            {/* <Transition
-                                            show={!!createError}
-                                        >
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
+                                            <Transition
+                                                show={!!createError}
+                                            >
+                                                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
 
-                                        </Transition> */}
+                                            </Transition>
                                         </div>
                                         <form>
 
@@ -370,7 +372,7 @@ const Products = () => {
                                                         // return createNewSubCategory()
                                                     }}
                                                 >
-                                                    {/* {!!isCreating ? 'Creating...' : 'Create'} */}
+                                                    {!!isCreating ? 'Creating...' : 'Create'}
                                                 </button>
                                             </div>
                                         </form>
