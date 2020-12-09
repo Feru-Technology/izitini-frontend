@@ -43,11 +43,15 @@ const Products = () => {
 
     const [isClosed, setIsClosed] = useState(false)
     const [createMode, setCreateMode] = useState(true)
+    const [name, setName] = useState<string | null>(null)
+    const [unit, setUnit] = useState<string | null>(null)
     const [showWaiting, setShowWaiting] = useState(false)
+    const [brand, setBrand] = useState<string | null>(null)
     const [showApproved, setShowApproved] = useState(false)
     const [shop_id, setShop_id] = useState<string | null>(null)
     const [showAllProducts, setShowAllProducts] = useState(true)
     const [showUnpublished, setShowUnpublished] = useState(false)
+    const [subCategory, setSubCategory] = useState<string | null>(null)
 
     const navigate = useNavigate()
 
@@ -294,7 +298,7 @@ const Products = () => {
                                                     <select
                                                         className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
                                                         id='grid-state'
-                                                    // onChange={e => setCategory_id(e.target.value)}
+                                                        onChange={e => setShop_id(e.target.value)}
                                                     >
                                                         <option>Choose shop</option>
                                                         {isLoading ? <h1>loading...</h1>
@@ -309,11 +313,11 @@ const Products = () => {
                                                     <select
                                                         className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
                                                         id='grid-state'
-                                                    // onChange={e => setCategory_id(e.target.value)}
+                                                        onChange={e => setSubCategory(e.target.value)}
                                                     >
                                                         <option>Choose sub-category</option>
                                                         {isSubCatLoading ? <h1>loading...</h1>
-                                                            : subCategories.map((c) => (<option value={c.id}>{c.name}</option>))}
+                                                            : subCategories.map((c) => (<option>{c.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>
@@ -328,8 +332,8 @@ const Products = () => {
                                                 <input
                                                     type='text'
                                                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                                                    placeholder='subCategory name'
-                                                // onChange={e => setName(e.target.value)}
+                                                    placeholder='name'
+                                                    onChange={e => setName(e.target.value)}
                                                 />
                                             </div>
 
@@ -344,7 +348,7 @@ const Products = () => {
                                                     type='text'
                                                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Brand'
-                                                // onChange={e => setName(e.target.value)}
+                                                    onChange={e => setBrand(e.target.value)}
                                                 />
                                             </div>
 
@@ -359,7 +363,7 @@ const Products = () => {
                                                     type='text'
                                                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='unit'
-                                                // onChange={e => setName(e.target.value)}
+                                                    onChange={e => setUnit(e.target.value)}
                                                 />
                                             </div>
                                             <div className='text-center mt-6'>
@@ -369,7 +373,7 @@ const Products = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        // return createNewSubCategory()
+                                                        return createProduct()
                                                     }}
                                                 >
                                                     {!!isCreating ? 'Creating...' : 'Create'}
