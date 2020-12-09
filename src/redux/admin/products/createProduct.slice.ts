@@ -18,7 +18,7 @@ export const createProductSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        createProduct: (state) => {
+        creatingProduct: (state) => {
             state.isCreating = true
             state.product = null
             state.createError = null
@@ -37,6 +37,6 @@ export const createProductSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { createProduct, createdProduct, createFailed } = createProductSlice.actions
+export const { creatingProduct, createdProduct, createFailed } = createProductSlice.actions
 
 export default createProductSlice.reducer

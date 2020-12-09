@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch } from '../../api/apiAction'
+import { fetch, post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
@@ -19,6 +19,16 @@ import {
     retrievedStores,
     retrievedStoreFailed
 } from '../../redux/stores/allStores.slice'
+import {
+    fetchingSubCategories,
+    retrievedSubCategories,
+    fetchFailed as fetchError
+} from '../../redux/admin/subCategories/subCategories.slice'
+import {
+    creatingProduct,
+    createdProduct,
+    createFailed
+} from '../../redux/admin/products/createProduct.slice'
 
 const Products = () => {
 
@@ -34,8 +44,9 @@ const Products = () => {
     const [isClosed, setIsClosed] = useState(false)
     const [createMode, setCreateMode] = useState(true)
     const [showWaiting, setShowWaiting] = useState(false)
-    const [showAllProducts, setShowAllProducts] = useState(true)
     const [showApproved, setShowApproved] = useState(false)
+    const [shop_id, setShop_id] = useState<string | null>(null)
+    const [showAllProducts, setShowAllProducts] = useState(true)
     const [showUnpublished, setShowUnpublished] = useState(false)
 
     const navigate = useNavigate()
@@ -73,8 +84,21 @@ const Products = () => {
         fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
-
     const { isLoading, stores } = useSelector((state: RootState) => state.stores)
+
+    // get subcategories
+    useEffect(() => {
+        dispatch(fetchingSubCategories())
+        fetch(dispatch, retrievedSubCategories, fetchError, '/admin/subcategory')
+    }, [dispatch])
+
+    const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
+    const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
+
+    // const createProduct = () => {
+    //     dispatch(creatingProduct())
+    //     post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}, {}`)
+    // }
 
     return (
         <>
@@ -238,11 +262,11 @@ const Products = () => {
                                 </div>
                             </div>
 
-                            {/* create subCategory */}
+                            {/* create product */}
                             <Transition show={!!createMode} className='fixed'>
                                 <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                                 </div>
-                                <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
+                                <div className='absolute top-0 w-full z-30 text-xs md:text-base'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
@@ -263,16 +287,31 @@ const Products = () => {
 
 
                                             <div className=' w-full mb-3'>
-                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Category</h3>
+                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shops</h3>
                                                 <div className=' w-full mb-3'>
                                                     <select
                                                         className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
                                                         id='grid-state'
                                                     // onChange={e => setCategory_id(e.target.value)}
                                                     >
-                                                        <option>Choose category</option>
-                                                        {/* {isLoading ? <h1>loading...</h1>
-                                                        : categories.map((c) => (<option value={c.id}>{c.name}</option>))} */}
+                                                        <option>Choose shop</option>
+                                                        {isLoading ? <h1>loading...</h1>
+                                                            : stores.map((s) => (<option value={s.id}>{s.name}</option>))}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div className=' w-full mb-3'>
+                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
+                                                <div className=' w-full mb-3'>
+                                                    <select
+                                                        className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                                                        id='grid-state'
+                                                    // onChange={e => setCategory_id(e.target.value)}
+                                                    >
+                                                        <option>Choose sub-category</option>
+                                                        {isSubCatLoading ? <h1>loading...</h1>
+                                                            : subCategories.map((c) => (<option value={c.id}>{c.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>
@@ -290,11 +329,36 @@ const Products = () => {
                                                     placeholder='subCategory name'
                                                 // onChange={e => setName(e.target.value)}
                                                 />
-                                            </div>{/* upload image */}
-                                            <div>
-                                                <form action='/action_page.php'>
-                                                    <input type='file' id='myFile' name='filename' />
-                                                </form>
+                                            </div>
+
+                                            <div className=' w-full mb-3'>
+                                                <label
+                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    htmlFor='grid-text'
+                                                >
+                                                    Brand
+                                                </label>
+                                                <input
+                                                    type='text'
+                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    placeholder='Brand'
+                                                // onChange={e => setName(e.target.value)}
+                                                />
+                                            </div>
+
+                                            <div className=' w-full mb-3'>
+                                                <label
+                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    htmlFor='grid-text'
+                                                >
+                                                    Unit
+                                                </label>
+                                                <input
+                                                    type='text'
+                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    placeholder='unit'
+                                                // onChange={e => setName(e.target.value)}
+                                                />
                                             </div>
                                             <div className='text-center mt-6'>
                                                 <button
