@@ -4,13 +4,13 @@ import { HTTPError, ISubCategory } from './subCategory.interface'
 export interface SubCategoryState {
     isUpdating: boolean
     updateError: Error | HTTPError | null
-    updated: ISubCategory | null
+    updatedSubCategory: ISubCategory[]
 }
 
 const initialState: SubCategoryState = {
     isUpdating: false,
     updateError: null,
-    updated: null,
+    updatedSubCategory: [],
 }
 
 export const updateSubCategorySlice = createSlice({
@@ -20,22 +20,22 @@ export const updateSubCategorySlice = createSlice({
         updatingSubCategory: (state) => {
             state.updateError = null
             state.isUpdating = true
-            state.updated = null
+            state.updatedSubCategory = []
         },
-        updatedSubCategory: (state, { payload }) => {
+        updated: (state, { payload }) => {
             state.updateError = null
             state.isUpdating = false
-            state.updated = payload
+            state.updatedSubCategory = payload
         },
         updateFailed: (state, { payload }) => {
             state.updateError = payload
             state.isUpdating = false
-            state.updated = null
+            state.updatedSubCategory = []
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { updatingSubCategory, updatedSubCategory, updateFailed } = updateSubCategorySlice.actions
+export const { updatingSubCategory, updated, updateFailed } = updateSubCategorySlice.actions
 
 export default updateSubCategorySlice.reducer

@@ -5,9 +5,9 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
-import { fetch, post } from '../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetch, post, update } from '../../api/apiAction'
 import { ISubCategory } from '../../redux/admin/subCategories/subCategory.interface'
 import {
     fetchingSubCategories,
@@ -24,6 +24,12 @@ import {
     retrievedCategories,
     categoriesFailed
 } from '../../redux/admin/categories/categories.slice'
+
+import {
+    updatingSubCategory,
+    updated,
+    updateFailed
+} from '../../redux/admin/subCategories/updateSubCategory.slice'
 
 const SubCategories = () => {
 
@@ -83,22 +89,23 @@ const SubCategories = () => {
     const { categories } = useSelector((state: RootState) => state.adminCategories)
 
     // update category
-    // const updateCategory = (id: any) => {
-    //     dispatch(updatingCategory())
-    //     update(dispatch, updated, updateFailed, `/admin/category/${id}`, { name }, token)
-    // }
+    const updateCategory = (id: any) => {
+        dispatch(updatingSubCategory())
+        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name }, token)
+    }
 
-    const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
+    const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
 
+    console.log(updatedSubCategory.length);
     // on success update, update categories state
-    // useEffect(() => {
-    //     if (updatedCategories.length !== 0) {
-    //         dispatch(fetchingCategories())
-    //         fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-    //         dispatch(updatingCategory())
-    //         return setEditMode(false)
-    //     }
-    // }, [dispatch, updatedCategories])
+    useEffect(() => {
+        if (updatedSubCategory.length !== 0) {
+            dispatch(fetchingSubCategories())
+            fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+            dispatch(updated(''))
+            return setEditMode(false)
+        }
+    }, [dispatch, updatedSubCategory])
 
     return (
         <>
@@ -367,10 +374,10 @@ const SubCategories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    // return updateSubCategory(currentSubCategory?.id)
+                                                    return updateCategory(currentSubCategory?.id)
                                                 }}
                                             >
-                                                {!!isUpdating ? 'Loading...' : 'Update'}
+                                                {!!isUpdating ? 'Updating...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>
