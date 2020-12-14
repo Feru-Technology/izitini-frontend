@@ -177,11 +177,12 @@ const Products = () => {
 
                                             {products.map((product) => (
                                                 <tbody>
-                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
-                                                        <td className='py-3 '>
+                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
+                                                        <td className='py-1 '>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                                    <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
+                                                                        className='w-auto h-10' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
