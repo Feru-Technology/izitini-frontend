@@ -48,14 +48,14 @@ const Products = () => {
         fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
     }
 
-    const waitting = () => {
+    const waiting = () => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/waiting', token)
     }
 
     const unPublished = () => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/drafts', token)
     }
 
     const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
@@ -123,6 +123,7 @@ const Products = () => {
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showUnpublished && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
+                                                    waiting()
                                                     setShowUnpublished(true)
                                                     setShowAllProducts(false)
                                                     setShowApproved(false)
@@ -132,6 +133,7 @@ const Products = () => {
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
+                                                    unPublished()
                                                     setShowWaiting(true)
                                                     setShowAllProducts(false)
                                                     setShowApproved(false)
