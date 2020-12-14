@@ -88,7 +88,7 @@ const SubCategories = () => {
 
     const { categories } = useSelector((state: RootState) => state.adminCategories)
 
-    // update category
+    // update subcategory
     const updateCategory = (id: any) => {
         dispatch(updatingSubCategory())
         update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name }, token)
@@ -96,8 +96,7 @@ const SubCategories = () => {
 
     const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
 
-    console.log(updatedSubCategory.length);
-    // on success update, update categories state
+    // on success update, update subcategories state
     useEffect(() => {
         if (updatedSubCategory.length !== 0) {
             dispatch(fetchingSubCategories())

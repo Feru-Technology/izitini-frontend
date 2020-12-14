@@ -86,7 +86,7 @@ const Categories = () => {
         if (updatedCategories.length !== 0) {
             dispatch(fetchingCategories())
             fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-            dispatch(updatingCategory())
+            dispatch(updated(''))
             return setEditMode(false)
         }
     }, [dispatch, updatedCategories])
