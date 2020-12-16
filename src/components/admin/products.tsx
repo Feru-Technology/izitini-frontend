@@ -26,6 +26,7 @@ const Products = () => {
     })
 
     const [isClosed, setIsClosed] = useState(false)
+    const [createMode, setCreateMode] = useState(true)
     const [showWaiting, setShowWaiting] = useState(false)
     const [showAllProducts, setShowAllProducts] = useState(true)
     const [showApproved, setShowApproved] = useState(false)
@@ -95,7 +96,16 @@ const Products = () => {
                                 {/* admin dashboard */}
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
-                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Products</p>
+
+                                    <div className='flex items-center justify-between py-8'>
+                                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Products</h3>
+                                        <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
+                                            onClick={() => setCreateMode(true)} >
+                                            ADD A Product
+                                        </button>
+                                    </div>
+
                                     <div className='  border-gray-200'>
                                         <ul className='w-full text-xs flex cursor-pointer'>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
