@@ -85,8 +85,8 @@ function App() {
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route path='/admin/users' element={<Users />} />
                 <Route path='/admin/shops' element={<Shops />} />
-                <Route path='/admin/user/:id' element={<User />} />
-                <Route path='/admin/shop/:id' element={<Shop />} />
+                <Route path='/admin/users/:id' element={<User />} />
+                <Route path='/admin/shops/:id' element={<Shop />} />
                 <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/categories' element={<Categories />} />

@@ -63,7 +63,7 @@ const Users = () => {
     const activeUser = (newUser: IUser) => {
         dispatch(user(newUser))
         const { id } = newUser
-        return navigate(`/admin/user/${id}`)
+        return navigate(`/admin/users/${id}`)
     }
 
     return (

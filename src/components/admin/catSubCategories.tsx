@@ -5,10 +5,9 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
-import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetch, post, update } from '../../api/apiAction'
-import { ISubCategory } from '../../redux/admin/subCategories/subCategory.interface'
 import {
     fetchingCategory,
     fetchedCategory,
@@ -35,8 +34,6 @@ const CatSubCategories = () => {
 
     const params = useParams()
     const { id } = params
-
-    console.log('++++++++++++++++++++', id)
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
