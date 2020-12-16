@@ -31,6 +31,7 @@ import SubCategories from './components/admin/subCategories'
 import AdminCreateStore from './components/admin/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
 import CustomerDashboard from './components/customer/Dashboard'
+import CatSubCategories from './components/admin/catSubCategories'
 import SignInPage from './components/customer/accounts/SignInPage'
 import AccountTypes from './components/customer/accounts/accountTypes'
 import VendorSignUp from './components/customer/accounts/VendorSignUp'
@@ -94,6 +95,7 @@ function App() {
                 <Route path='/admin/subCategories' element={<SubCategories />} />
                 <Route path='/admin/create-store' element={<AdminCreateStore />} />
                 <Route path='/admin/create-customer' element={<CreateCustomer />} />
+                <Route path='/admin/categories/:id' element={<CatSubCategories />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>

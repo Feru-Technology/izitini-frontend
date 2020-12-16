@@ -9,7 +9,7 @@ export interface HTTPError {
 export interface ISubCategory {
     id: string
     name: string
-    imageUrl: string
+    image_url: string
     category: ICategory
 }
 

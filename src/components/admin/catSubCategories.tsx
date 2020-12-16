@@ -5,25 +5,20 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch, post, update } from '../../api/apiAction'
 import { ISubCategory } from '../../redux/admin/subCategories/subCategory.interface'
 import {
-    fetchingSubCategories,
-    retrievedSubCategories,
+    fetchingCategory,
+    fetchedCategory,
     fetchFailed
-} from '../../redux/admin/subCategories/subCategories.slice'
+} from '../../redux/admin/categories/category.slice'
 import {
     creatingSubCategory,
     createdSubCategory,
     createFailed
 } from '../../redux/admin/subCategories/createSubCategory.slice'
-import {
-    fetchingCategories,
-    retrievedCategories,
-    categoriesFailed
-} from '../../redux/admin/categories/categories.slice'
 
 import {
     updatingSubCategory,
@@ -38,6 +33,11 @@ const CatSubCategories = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
 
+    const params = useParams()
+    const { id } = params
+
+    console.log('++++++++++++++++++++', id)
+
     const { profile } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
@@ -49,23 +49,24 @@ const CatSubCategories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
-    const [category_id, setCategory_id] = useState<string | null>(null)
-    const [currentSubCategory, setCurrentSubCategory] = useState<ISubCategory | null>(null)
+    const [currentSubCategory, setCurrentSubCategory] = useState<{ id: string, name: string, image_url: string } | null>(null)
 
     const navigate = useNavigate()
 
     // get subcategories
     useEffect(() => {
-        dispatch(fetchingSubCategories())
-        fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
-    }, [dispatch])
+        dispatch(fetchingCategory())
+        fetch(dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
+    }, [dispatch, id])
 
-    const { isLoading, subCategories } = useSelector((state: RootState) => state.adminSubCategories)
+    const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
+
+    const catName = category?.name
 
     // create new subCategory 
     const createNewSubCategory = () => {
         dispatch(creatingSubCategory())
-        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${category_id}`, { name }, token)
+        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, { name }, token)
     }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
@@ -73,20 +74,12 @@ const CatSubCategories = () => {
     // on create success, fetch updated categories
     useEffect(() => {
         if (subCategory) {
-            dispatch(fetchingSubCategories())
-            fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+            dispatch(fetchingCategory())
+            fetch(dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
             dispatch(createdSubCategory(null))
             return setCreateMode(false)
         }
-    }, [dispatch, subCategory])
-
-    // get categories
-    useEffect(() => {
-        dispatch(fetchingCategories())
-        fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-    }, [dispatch])
-
-    const { categories } = useSelector((state: RootState) => state.adminCategories)
+    }, [dispatch, id, subCategory])
 
     // update subcategory
     const updateCategory = (id: any) => {
@@ -99,17 +92,17 @@ const CatSubCategories = () => {
     // on success update, update subcategories state
     useEffect(() => {
         if (updatedSubCategory.length !== 0) {
-            dispatch(fetchingSubCategories())
-            fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+            dispatch(fetchingCategory())
+            fetch(dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
             dispatch(updated(''))
             return setEditMode(false)
         }
-    }, [dispatch, updatedSubCategory])
+    }, [dispatch, id, updatedSubCategory])
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
-                : subCategories ? (
+            {isFetching ? (<h1>loading ...</h1>)
+                : category ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
                             isClosed={isClosed}
@@ -142,11 +135,11 @@ const CatSubCategories = () => {
                             <div className='px-2 md:px-6 lg:px-14 w-full'>
 
                                 <div className='flex items-center justify-between py-8'>
-                                    <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Categories</h3>
+                                    <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{catName}</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
-                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
+                                            py-2 px-4 rounded cursor-pointer text-xs md:text-base shadow-md hover:shadow-lg'
                                         onClick={() => setCreateMode(true)} >
-                                        ADD A Category
+                                        ADD A Sub-Category
                                     </button>
                                 </div>
 
@@ -181,7 +174,7 @@ const CatSubCategories = () => {
                                             </tr>
                                         </thead>
 
-                                        {subCategories.map((subCategory) => {
+                                        {category.subCategories.map((subCategory) => {
                                             const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
                                                 <tbody>
@@ -204,8 +197,7 @@ const CatSubCategories = () => {
                                                             </div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
-                                                            <Link to={`/admin/categories/${subCategory.category.id}`}
-                                                                className='font-normal hover:underline hover:text-dark-blue'>{subCategory.category.name}</Link>
+                                                            <p className='font-normal'>{catName}</p>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
@@ -270,22 +262,6 @@ const CatSubCategories = () => {
                                         </Transition>
                                     </div>
                                     <form>
-
-
-                                        <div className=' w-full mb-3'>
-                                            <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Category</h3>
-                                            <div className=' w-full mb-3'>
-                                                <select
-                                                    className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
-                                                    id='grid-state'
-                                                    onChange={e => setCategory_id(e.target.value)}
-                                                >
-                                                    <option>Choose category</option>
-                                                    {isLoading ? <h1>loading...</h1>
-                                                        : categories.map((c) => (<option value={c.id}>{c.name}</option>))}
-                                                </select>
-                                            </div>
-                                        </div>
 
                                         <div className=' w-full mb-3'>
                                             <label

@@ -176,7 +176,7 @@ const Categories = () => {
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
-                                                            onClick={() => navigate(`/admin/category/${category.id}`)}>
+                                                            onClick={() => navigate(`/admin/categories/${category.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
                                                                     <img src={categoryImage} alt='product' className='w-full' />
