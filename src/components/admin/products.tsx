@@ -1,13 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useSelector } from 'react-redux'
+import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    fetchingProducts,
+    fetchedProducts,
+    fetchFailed
+} from '../../redux/admin/products/products.slice'
 
 const Products = () => {
+
+    const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile);
 
@@ -23,12 +33,17 @@ const Products = () => {
 
     const navigate = useNavigate()
 
+    useEffect(() => {
+        dispatch(fetchingProducts())
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+    }, [dispatch, token])
 
+    const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
-                : profile ?
+            {isFetching ? (<h1>loading ...</h1>)
+                : products ?
                     (
                         <div className='flex h-screen overflow-hidden'>
                             <SiderBar
@@ -136,32 +151,35 @@ const Products = () => {
                                                 </tr>
                                             </thead>
 
-                                            <tbody>
-                                                <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
-                                                    <td className='py-3 '>
-                                                        <div className='md:flex items-center'>
-                                                            <div className='md:w-1/4 mx-3'>
-                                                                <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
-                                                            </div>
-                                                            <div className='md:w-2/4'>
+                                            {products.map((product) => (
+                                                <tbody>
+                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
+                                                        <td className='py-3 '>
+                                                            <div className='md:flex items-center'>
+                                                                <div className='md:w-1/4 mx-3'>
+                                                                    <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                                </div>
+                                                                <div className='md:w-2/4'>
 
-                                                                <p className='font-normal text-sm'>
-                                                                    <span className=''>Product Name</span>
-                                                                </p>
+                                                                    <p className='font-normal text-sm'>
+                                                                        <span className=''>{product.name}</span>
+                                                                    </p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                    <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>Rukali</p>
-                                                    </td>
-                                                    <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>waiting for review</p>
-                                                    </td>
-                                                    <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>15-06-2021 10:40</p>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
+                                                        </td>
+                                                        <td className='py-3 '>
+                                                            <p className='font-normal text-sm'>{product.shop.name}</p>
+                                                        </td>
+                                                        <td className='py-3 '>
+                                                            <p className='font-normal text-sm'>{product.status}</p>
+                                                        </td>
+                                                        <td className='py-3 '>
+                                                            <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>)
+
+                                            )}
 
                                         </table>
 

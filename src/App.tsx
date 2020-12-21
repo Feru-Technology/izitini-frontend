@@ -91,11 +91,11 @@ function App() {
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/categories' element={<Categories />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
-                <Route path='/admin/create-vendor' element={<CreateVendor />} />
                 <Route path='/admin/subCategories' element={<SubCategories />} />
                 <Route path='/admin/shops/create' element={<AdminCreateStore />} />
-                <Route path='/admin/create-customer' element={<CreateCustomer />} />
                 <Route path='/admin/categories/:id' element={<CatSubCategories />} />
+                <Route path='/admin/users/create-vendor' element={<CreateVendor />} />
+                <Route path='/admin/users/create-customer' element={<CreateCustomer />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>

@@ -246,7 +246,7 @@ const Users = () => {
                                                     setVendor(false)
                                                     setCustomer(true)
                                                     setProfessional(false)
-                                                    setSignupLink('/admin/create-customer')
+                                                    setSignupLink('/admin/users/create-customer')
                                                 }}>
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
@@ -258,7 +258,7 @@ const Users = () => {
                                                     setVendor(true)
                                                     setCustomer(false)
                                                     setProfessional(false)
-                                                    setSignupLink('/admin/create-vendor')
+                                                    setSignupLink('/admin/users/create-vendor')
                                                 }}>
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
@@ -270,7 +270,7 @@ const Users = () => {
                                                     setVendor(false)
                                                     setCustomer(false)
                                                     setProfessional(true)
-                                                    setSignupLink('/admin/create-professional')
+                                                    setSignupLink('/admin/users/create-professional')
                                                 }}>
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>

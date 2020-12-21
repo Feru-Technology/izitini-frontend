@@ -53,7 +53,7 @@ const CreateVendor = () => {
     if (createdUser) {
       const { id } = createdUser.user
       dispatch(getUser(null))
-      return navigate(`/admin/user/${id}`
+      return navigate(`/admin/users/${id}`
       )
     }
   }, [createdUser, dispatch, navigate])
@@ -105,7 +105,7 @@ const CreateVendor = () => {
                     <Transition
                       show={!!error}
                     >
-                      <div className='border border-red-700 bg-red-100'>
+                      <div className='border border-red-700 bg-red-100 mb-3'>
                         <p className='w-full py-1  text-red-700 text-center '>
                           {error?.message}
                         </p>
@@ -242,7 +242,7 @@ const CreateVendor = () => {
                     >
                       {isLoading ? 'Loading...' : 'Create'}
                     </button>
-                    <p> <Link to={'/admin/create-customer'}> Or <span className='text-dark-blue'>Create a Customer</span></Link></p>
+                    <p> <Link to={'/admin/users/create-customer'}> Or <span className='text-dark-blue'>Create a Customer</span></Link></p>
                   </div>
                 </form>
               </div>
