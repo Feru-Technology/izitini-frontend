@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IProduct, HTTPError } from './product.interface'
+import { IProduct, HTTPError } from '../../products/product.interface'
 
 export interface ProductState {
     isLoading: boolean;
