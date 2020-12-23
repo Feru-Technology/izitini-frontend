@@ -93,7 +93,7 @@ function App() {
                 <Route path='/admin/settings' element={<AdminSettings />} />
                 <Route path='/admin/create-vendor' element={<CreateVendor />} />
                 <Route path='/admin/subCategories' element={<SubCategories />} />
-                <Route path='/admin/create-store' element={<AdminCreateStore />} />
+                <Route path='/admin/shops/create' element={<AdminCreateStore />} />
                 <Route path='/admin/create-customer' element={<CreateCustomer />} />
                 <Route path='/admin/categories/:id' element={<CatSubCategories />} />
 

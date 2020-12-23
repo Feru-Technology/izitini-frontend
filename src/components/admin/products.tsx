@@ -23,6 +23,8 @@ const Products = () => {
 
     const navigate = useNavigate()
 
+
+
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>)
