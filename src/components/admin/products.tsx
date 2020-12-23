@@ -38,6 +38,26 @@ const Products = () => {
         fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
     }, [dispatch, token])
 
+    const all = () => {
+        dispatch(fetchingProducts())
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+    }
+
+    const approved = () => {
+        dispatch(fetchingProducts())
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
+    }
+
+    const waitting = () => {
+        dispatch(fetchingProducts())
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
+    }
+
+    const unPublished = () => {
+        dispatch(fetchingProducts())
+        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
+    }
+
     const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
 
     return (
@@ -82,6 +102,7 @@ const Products = () => {
                                             py-3 ${showAllProducts && 'border-b-2 border-dark-blue'}`}
 
                                                 onClick={() => {
+                                                    all()
                                                     setShowAllProducts(true)
                                                     setShowApproved(false)
                                                     setShowWaiting(false)
@@ -91,6 +112,7 @@ const Products = () => {
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showApproved && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
+                                                    approved()
                                                     setShowApproved(true)
                                                     setShowAllProducts(false)
                                                     setShowWaiting(false)
