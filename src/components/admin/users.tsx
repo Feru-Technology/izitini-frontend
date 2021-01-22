@@ -179,7 +179,7 @@ const Users = () => {
                                                             <td className='py-3 '>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/6 mx-3'>
-                                                                        <img src={profileImage} alt='product' className='w-full max-h-8' />
+                                                                        <img src={profileImage} alt='product' className='w-auto max-h-8' />
                                                                     </div>
                                                                     <div className='md:w-5/6'>
 
