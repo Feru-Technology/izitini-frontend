@@ -145,27 +145,27 @@ const Users = () => {
 
                                             <tbody>
                                                 {users?.map((user) => {
-                                                    console.log('++++++++++', user)
+                                                    const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
                                                     return (
                                                         <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
                                                             <td className='py-3 '>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
-                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                                        <img src={profileImage} alt='product' className='w-full' />
                                                                     </div>
                                                                     <div className='md:w-2/4'>
 
                                                                         <p className='font-normal text-sm'>
-                                                                            <span className=''>Product Name</span>
+                                                                            <span className=''>{user.full_name}</span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td className='py-3 '>
-                                                                <p className='font-normal text-sm'>email@gmail.com</p>
+                                                                <p className='font-normal text-sm'>{user.email}</p>
                                                             </td>
                                                             <td className='py-3 '>
-                                                                <p className='font-normal text-sm'>0786493807</p>
+                                                                <p className='font-normal text-sm'>{user.contact}</p>
                                                             </td>
                                                         </tr>
 
