@@ -1,19 +1,34 @@
-import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    fetchingUsers,
+    retrievedUsers,
+    retrievedUserFailed
+} from '../../redux/admin/users/users.slice'
 const Users = () => {
 
-    const { isLoading, profile } = useSelector((state: RootState) => state.profile);
+    const dispatch = useDispatch()
+
+    const { isLoading, profile } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+
+    useEffect(() => {
+        dispatch(fetchingUsers())
+        fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users')
+    }, [dispatch])
+
+    const { users } = useSelector((state: RootState) => state.users)
+    console.log(users)
 
     const [isClosed, setIsClosed] = useState(false)
     const [showVendor, setShowVendor] = useState(false)
@@ -129,27 +144,33 @@ const Users = () => {
                                             </thead>
 
                                             <tbody>
-                                                <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
-                                                    <td className='py-3 '>
-                                                        <div className='md:flex items-center'>
-                                                            <div className='md:w-1/4 mx-3'>
-                                                                <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
-                                                            </div>
-                                                            <div className='md:w-2/4'>
+                                                {users?.map((user) => {
+                                                    console.log('++++++++++', user)
+                                                    return (
+                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
+                                                            <td className='py-3 '>
+                                                                <div className='md:flex items-center'>
+                                                                    <div className='md:w-1/4 mx-3'>
+                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                                    </div>
+                                                                    <div className='md:w-2/4'>
 
-                                                                <p className='font-normal text-sm'>
-                                                                    <span className=''>Product Name</span>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>email@gmail.com</p>
-                                                    </td>
-                                                    <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>0786493807</p>
-                                                    </td>
-                                                </tr>
+                                                                        <p className='font-normal text-sm'>
+                                                                            <span className=''>Product Name</span>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm'>email@gmail.com</p>
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm'>0786493807</p>
+                                                            </td>
+                                                        </tr>
+
+                                                    )
+                                                })}
                                             </tbody>
 
                                         </table>

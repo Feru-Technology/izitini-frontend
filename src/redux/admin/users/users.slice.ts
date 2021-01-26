@@ -21,13 +21,16 @@ export const usersSlice = createSlice({
     reducers: {
         fetchingUsers: (state) => {
             state.isLoading = true
+            state.error = null
+            state.users = []
         },
         retrievedUsers: (state, { payload }) => {
             state.isLoading = false
-            state.users = [payload]
+            state.users = payload
         },
         retrievedUserFailed: (state, { payload }) => {
             state.isLoading = false
+            state.users = []
             state.error = payload
         }
     },
