@@ -3,6 +3,8 @@ import { profileSlice } from './profile.slice'
 import { storeSlice } from './stores/store.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { ordersSlice } from './order/orders.slice'
+import { userSlice } from './admin/users/user.slice'
+import { usersSlice } from './admin/users/users.slice'
 import { productSlice } from './products/product.slice'
 import { AllStoresSlice } from './stores/allMyStores.slice'
 import { categorySlice } from './categories/category.slice'
@@ -15,7 +17,9 @@ import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.sl
 export const store = configureStore({
     reducer: {
         cart: cartSlice.reducer,
+        user: userSlice.reducer,
         store: storeSlice.reducer,
+        users: usersSlice.reducer,
         orders: ordersSlice.reducer,
         profile: profileSlice.reducer,
         product: productSlice.reducer,
