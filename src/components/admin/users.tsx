@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { user } from '../../redux/admin/users/user.slice'
+import { IUser } from '../../redux/admin/users/users.interface'
 import {
     fetchingUsers,
     retrievedUsers,
@@ -37,6 +39,12 @@ const Users = () => {
     const [showProfessional, setShowProfessional] = useState(false)
 
     const navigate = useNavigate()
+
+    const activeUser = (newUser: IUser) => {
+        dispatch(user(newUser))
+        const { id } = newUser
+        return navigate(`/admin/user/${id}`)
+    }
 
     return (
         <>
@@ -147,7 +155,9 @@ const Users = () => {
                                                 {users?.map((user) => {
                                                     const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
                                                     return (
-                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
+                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'
+                                                            onClick={e => activeUser(user)} >
+
                                                             <td className='py-3 '>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
