@@ -27,11 +27,9 @@ const User = () => {
         fetch(dispatch, user, userFailed, '/user')
     }, [dispatch])
 
-
     // const { user } = useSelector((state: RootState) => state.user)
 
     const [isClosed, setIsClosed] = useState(false)
-
 
     return (
         <>
@@ -66,21 +64,27 @@ const User = () => {
 
                             {/* admin dashboard */}
 
-                            <div className='px-2 md:px-6 lg:px-14 w-full flex justify-center'>
-                                <div className='w-3/5'>
+                            <div className='w-full flex justify-center'>
+                                <div className='mx-4 md:w-3/4'>
+                                    <div className='flex my-5 justify-center'>
+                                        <img className='h-20 rounded-full'
+                                            src="https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png" alt="profile" />
+                                    </div>
                                     <form action="">
-                                        <div className='flex'>
-                                            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='grid-first-name'>
-                                                First Name
-                                            </label>
-                                            <input className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' id='grid-first-name' type='text' placeholder='Jane' />
+                                        <div className=''>
+                                            <div className='m-2'>
+                                                <label htmlFor="names">Names:</label>
+                                                <input className='bg-white outline-none border-0 border-b border-gray-400 focus:border-gray-800 w-auto'
+                                                    id='grid-first-name' type='text' value={'Names'} />
+                                            </div>
+
+                                            <div className='m-2'>
+                                                <label htmlFor="Account type">Account type:</label>
+                                                <input className='bg-white outline-none border-0 border-b border-gray-400 focus:border-gray-800 w-auto'
+                                                    id='grid-last-name' type='text' value={'account_type'} />
+                                            </div>
                                         </div>
-                                        <div className='flex'>
-                                            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='grid-last-name'>
-                                                Last Name
-                                            </label>
-                                            <input className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' id='grid-last-name' type='text' placeholder='Doe' />
-                                        </div>
+
                                     </form>
                                 </div>
                             </div>
