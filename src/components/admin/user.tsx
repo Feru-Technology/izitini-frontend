@@ -72,15 +72,17 @@ const User = () => {
                                     </div>
                                     <form action="">
                                         <div className=''>
-                                            <div className='m-2'>
-                                                <label htmlFor="names">Names:</label>
-                                                <input className='bg-white outline-none border-0 border-b border-gray-400 focus:border-gray-800 w-auto'
+                                            <div className='m-2 flex w-full'>
+                                                <label className='font-semibold text-sm text-gray-500 w-1/5' htmlFor="names">Names:</label>
+                                                <input className='bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-auto'
                                                     id='grid-first-name' type='text' value={'Names'} />
                                             </div>
 
-                                            <div className='m-2'>
-                                                <label htmlFor="Account type">Account type:</label>
-                                                <input className='bg-white outline-none border-0 border-b border-gray-400 focus:border-gray-800 w-auto'
+                                            <div className='m-2 flex w-full'>
+                                                <label className='font-semibold text-sm text-gray-500 w-1/5' htmlFor="Account type">Account:</label>
+                                                <input className='bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-auto'
                                                     id='grid-last-name' type='text' value={'account_type'} />
                                             </div>
                                         </div>
