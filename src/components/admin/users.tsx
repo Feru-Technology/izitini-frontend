@@ -30,7 +30,7 @@ const Users = () => {
     useEffect(() => {
         dispatch(fetchingUsers())
         fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
-    }, [dispatch])
+    }, [dispatch, token])
 
     const fetchByAccountType = (accountType: string) => {
         dispatch(fetchingUsers())
@@ -98,7 +98,8 @@ const Users = () => {
                                     <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Users</p>
                                     <div className='  border-gray-200'>
                                         <ul className='w-full text-xs flex cursor-pointer'>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                            hover:text-gray-500 px-1 w-1/4 text-center
                                             py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
 
                                                 onClick={() => {
@@ -109,7 +110,8 @@ const Users = () => {
                                                     setShowProfessional(false)
                                                 }}
                                             >All</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                            hover:text-gray-500 px-1 w-1/4 text-center
                                             py-3 ${showCustomer && 'border-b-2 border-dark-blue'}`}
                                                 onClick={e => {
                                                     setShowCustomer(true)
@@ -120,7 +122,8 @@ const Users = () => {
                                                 }}
 
                                             >Customer</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                            hover:text-gray-500 px-1 w-1/4 text-center
                                             py-3 ${showProfessional && 'border-b-2 border-dark-blue'}`}
                                                 onClick={e => {
                                                     setShowProfessional(true)
@@ -130,7 +133,8 @@ const Users = () => {
                                                     fetchByAccountType('business')
                                                 }}
                                             >Vendor</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                            hover:text-gray-500 px-1 w-1/4 text-center
                                             py-3 ${showVendor && 'border-b-2 border-dark-blue'}`}
                                                 onClick={e => {
                                                     setShowVendor(true)
@@ -173,7 +177,7 @@ const Users = () => {
                                                 {users ? (users.map((user) => {
                                                     const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
                                                     return (
-                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'
+                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'
                                                             onClick={e => activeUser(user)} >
 
                                                             <td className='py-3 '>

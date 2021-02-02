@@ -11,7 +11,7 @@ import {
     getUser,
     userFailed
 } from '../../redux/admin/users/user.slice'
-const Users = () => {
+const User = () => {
 
     // redux
     const dispatch = useDispatch()
@@ -93,4 +93,4 @@ const Users = () => {
     )
 }
 
-export default Users
+export default User
