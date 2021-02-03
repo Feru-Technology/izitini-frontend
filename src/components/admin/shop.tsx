@@ -34,28 +34,24 @@ const Shop = () => {
 
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
-    const [about_shop, setAbout_shop] = useState<string>('')
     const [name, setName] = useState<string | null>(null)
-    const [email, setEmail] = useState<string | null>(null)
-    const [contact, setContact] = useState<string | null>(null)
-    const [is_approved, setIs_approved] = useState<boolean>(false)
-    const [is_blocked, setIs_blocked] = useState<boolean>(false)
+    const [about_shop, setAbout_shop] = useState<string>('')
+    const [shop_email, setShop_email] = useState<string | null>(null)
+    const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
     const updateShop = () => {
-        // dispatch(getShop())
-        // console.log({ about_shop, contact, name, is_approved, is_blocked })
-        // update(dispatch, shop, shopFailed, `/admin/shop/${id}`, { about_shop, contact, email, name, is_approved, is_blocked }, token)
+        dispatch(getStore())
+        console.log({ about_shop, shop_contact_no, shop_email, name })
+        update(dispatch, store, storeFailed, `/admin/shop/${id}`, { about_shop, shop_contact_no, shop_email, name }, token)
     }
 
     useEffect(() => {
         if (currentStore) {
             setEditMode(false)
             setName(currentStore.name)
-            setEmail(currentStore.shop_email)
+            setShop_email(currentStore.shop_email)
             setAbout_shop(currentStore.about_shop)
-            setContact(currentStore.shop_contact_no)
-            setIs_approved(currentStore.is_approved)
-            setIs_blocked(currentStore.is_blocked)
+            setShop_contact_no(currentStore.shop_contact_no)
         }
     }, [currentStore])
 
@@ -117,7 +113,7 @@ const Shop = () => {
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' onChange={e => setContact(e.target.value)} defaultValue={currentStore.shop_contact_no} />
+                                                        id='grid-last-name' type='text' onChange={e => setShop_contact_no(e.target.value)} defaultValue={currentStore.shop_contact_no} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -133,7 +129,7 @@ const Shop = () => {
                                                         htmlFor='email'>Email:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' onChange={e => setEmail(e.target.value)} defaultValue={currentStore.shop_email} />
+                                                        id='grid-last-name' type='text' onChange={e => setShop_email(e.target.value)} defaultValue={currentStore.shop_email} />
                                                 </div>
 
                                                 {currentStore.shopSpecialties.map((specialties) => (
