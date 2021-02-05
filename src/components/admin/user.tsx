@@ -66,7 +66,7 @@ const User = () => {
                             {/* admin dashboard */}
 
                             <div className='w-full flex justify-center'>
-                                <div className='mx-4 md:w-3/4'>
+                                <div className='mx-4 md:mx-0 md:w-full'>
                                     <div className='flex my-5 justify-center'>
                                         <img className='h-20 rounded-full'
                                             src="https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png" alt="profile" />
@@ -74,79 +74,79 @@ const User = () => {
                                     <form action="">
                                         <div className='flex md:justify-center'>
                                             <div className='space-y-6 mx-2'>
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="names">Names:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-first-name' type='text' value={'Names'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Account type">Account:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'account_type'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="contact">Contact:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'contact'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="email">Email:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'email'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Tin no">Tin no:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Tin no'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Provider">Provider:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Provider'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Verified">Verified:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Verified'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="created At">created At:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'created At'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
-                                                <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Updated At">Updated At:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Updated At'} />
                                                     <GrEdit className='h-3 mt-2' />
@@ -156,7 +156,7 @@ const User = () => {
                                         </div>
 
                                         <div className='flex justify-center my-5 '>
-                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm font-semibold'>
+                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'>
                                                 SAVE
                                             </button>
                                         </div>
