@@ -73,81 +73,81 @@ const User = () => {
                                     </div>
                                     <form action="">
                                         <div className='flex md:justify-center'>
-                                            <div className='space-y-6 mx-5'>
+                                            <div className='space-y-6 mx-2'>
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="names">Names:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-first-name' type='text' value={'Names'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Account type">Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'account_type'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="contact">Contact:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'contact'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="email">Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'email'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Tin no">Tin no:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Tin no'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Provider">Provider:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Provider'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Verified">Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Verified'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="created At">created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'created At'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
                                                 <div className='space-x-2 flex w-full'>
-                                                    <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    <label className='font-semibold text-sm text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Updated At">Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-full md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={'Updated At'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
@@ -155,7 +155,11 @@ const User = () => {
                                             </div>
                                         </div>
 
-                                        <div className='flex justify-center'><button className='my-3 mx-6'>SAVE</button></div>
+                                        <div className='flex justify-center my-5 '>
+                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm font-semibold'>
+                                                SAVE
+                                            </button>
+                                        </div>
 
                                     </form>
                                 </div>
