@@ -71,19 +71,74 @@ const User = () => {
                                             src="https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png" alt="profile" />
                                     </div>
                                     <form action="">
-                                        <div className=''>
-                                            <div className='m-2 flex w-full'>
-                                                <label className='font-semibold text-sm text-gray-500 w-1/5' htmlFor="names">Names:</label>
-                                                <input className='bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-auto'
+                                        <div className='space-y-6 mx-5'>
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="names">Names:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
                                                     id='grid-first-name' type='text' value={'Names'} />
                                             </div>
 
-                                            <div className='m-2 flex w-full'>
-                                                <label className='font-semibold text-sm text-gray-500 w-1/5' htmlFor="Account type">Account:</label>
-                                                <input className='bg-white text-sm font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-auto'
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="Account type">Account:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
                                                     id='grid-last-name' type='text' value={'account_type'} />
+                                            </div>
+
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="contact">Contact:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'contact'} />
+                                            </div>
+
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="email">Email:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'email'} />
+                                            </div>
+
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="Tin no">Tin no:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'Tin no'} />
+                                            </div>
+
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="Provider">Provider:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'Provider'} />
+                                            </div>
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="Verified">Verified:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'Verified'} />
+                                            </div>
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="created At">created At:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'created At'} />
+                                            </div>
+                                            <div className='space-x-2 flex w-full'>
+                                                <label className='font-semibold sr-only md:not-sr-only text-sm text-gray-500 md:w-1/5'
+                                                    htmlFor="Updated At">Updated At:</label>
+                                                <input className='mx-4 md:mx-0 bg-white text-sm font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-full md:w-auto'
+                                                    id='grid-last-name' type='text' value={'Updated At'} />
                                             </div>
                                         </div>
 
