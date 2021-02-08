@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { user } from '../../redux/admin/users/user.slice'
 import { IUser } from '../../redux/admin/users/users.interface'
@@ -95,7 +95,16 @@ const Users = () => {
                                 {/* admin dashboard */}
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
-                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Users</p>
+
+                                    <div className='flex items-center justify-between py-8'>
+                                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Users</h3>
+                                        <Link to='/admin/create-customer'>
+                                            <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'>
+                                                ADD A User
+                                            </button>
+                                        </Link>
+                                    </div>
                                     <div className='  border-gray-200'>
                                         <ul className='w-full text-xs flex cursor-pointer'>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
