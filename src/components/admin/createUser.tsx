@@ -68,8 +68,23 @@ const CreateCustomer = () => {
                   </h6>
                 </div>
               </div>
-              <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
+              <div className='flex-auto px-4 lg:px-10 pb-10 pt-0'>
                 <form>
+                  <div className='flex justify-center py-5'>
+                    <div>
+                      <input type="radio" name="customer" value="Customer" />
+                      <label className='font-normal text-sm mx-2'
+                        htmlFor="customer">Customer</label>
+
+                      <input type="radio" name="vendor" value="vendor" />
+                      <label className='font-normal text-sm mx-2'
+                        htmlFor="Vendor">Vendor</label>
+
+                      <input type="radio" name="professional" value="professional" />
+                      <label className='font-normal text-sm mx-2'
+                        htmlFor="Profession">Profession</label>
+                    </div>
+                  </div>
                   <div className='relative w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
