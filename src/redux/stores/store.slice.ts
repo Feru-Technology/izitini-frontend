@@ -20,6 +20,7 @@ export const storeSlice = createSlice({
     reducers: {
         getStore: (state) => {
             state.isLoading = true
+            state.error = null
         },
         store: (state, { payload }) => {
             state.isLoading = false
@@ -28,7 +29,6 @@ export const storeSlice = createSlice({
         },
         storeFailed: (state, { payload }) => {
             state.isLoading = false
-            state.currentStore = null
             state.error = payload
         }
     },
