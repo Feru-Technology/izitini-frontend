@@ -17,13 +17,10 @@ const CreateCustomer = () => {
   })
 
   const [isClosed, setIsClosed] = useState(false)
-  const [is_vendor, setIs_vendor] = useState(true)
   const [email, setEmail] = useState<string | null>(null)
   const [tin_no, setTin_no] = useState<string | null>(null)
   const [contact, setContact] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
-  const [shop_name, setShop_name] = useState<string | null>(null)
-  const [about_shop, setAbout_shop] = useState<string | null>(null)
 
   const navigate = useNavigate()
 
@@ -70,21 +67,6 @@ const CreateCustomer = () => {
               </div>
               <div className='flex-auto px-4 lg:px-10 pb-10 pt-0'>
                 <form>
-                  <div className='flex justify-center py-5'>
-                    <div>
-                      <input type="radio" name="customer" value="Customer" />
-                      <label className='font-normal text-sm mx-2'
-                        htmlFor="customer">Customer</label>
-
-                      <input type="radio" name="vendor" value="vendor" />
-                      <label className='font-normal text-sm mx-2'
-                        htmlFor="Vendor">Vendor</label>
-
-                      <input type="radio" name="professional" value="professional" />
-                      <label className='font-normal text-sm mx-2'
-                        htmlFor="Profession">Profession</label>
-                    </div>
-                  </div>
                   <div className='relative w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
@@ -145,55 +127,6 @@ const CreateCustomer = () => {
                       onChange={e => setTin_no(e.target.value)}
                     />
                   </div>
-                  <Transition
-                    show={!!is_vendor}
-                  >
-                    <div className='relative w-full mb-3'>
-                      <label
-                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                        htmlFor='grid-password'
-                      >
-                        Tin no
-                      </label>
-                      <input
-                        type='TinNo'
-                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                        placeholder='Tin no'
-                        onChange={e => setTin_no(e.target.value)}
-                      />
-                    </div>
-                    <div className='relative w-full mb-3'>
-                      <label
-                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                        htmlFor='grid-password'
-                      >
-                        Shop Name
-                      </label>
-                      <input
-                        type='Shop_name'
-                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                        placeholder='Shop Name'
-                        onChange={e => setShop_name(e.target.value)}
-                      />
-                    </div>
-                    <div className='relative w-full mb-3'>
-                      <label
-                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                        htmlFor='grid-password'
-                      >
-                        About Shop
-                      </label>
-                      <input
-                        type='About Shop'
-                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                        placeholder='About Shop'
-                        onChange={e => setAbout_shop(e.target.value)}
-                      />
-                    </div>
-                  </Transition>
                   {/* <div>
 
                   <Transition
