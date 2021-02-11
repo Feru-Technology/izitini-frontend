@@ -186,9 +186,16 @@ const Shop = () => {
                                             </div>
 
                                             <div className='flex justify-center my-5 '>
-                                                <Transition
+                                                <Transition className='flex space-x-6'
                                                     show={!!editMode}
                                                 >
+                                                    <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                        onClick={e => {
+                                                            e.preventDefault()
+                                                            return setEditMode(false)
+                                                        }} >
+                                                        CANCEL
+                                                    </button>
                                                     <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                         onClick={e => {
                                                             e.preventDefault()
