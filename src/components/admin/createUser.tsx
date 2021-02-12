@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { getUser, user, userFailed } from '../../redux/admin/users/user.slice'
 
 const CreateCustomer = () => {
 
   // redux
   const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
 
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
@@ -23,6 +26,13 @@ const CreateCustomer = () => {
   const [full_name, setFull_name] = useState<string | null>(null)
 
   const navigate = useNavigate()
+
+  const createCustomer = () => {
+    dispatch(getUser())
+    post(dispatch, user, userFailed, '/admin/user', { email, tin_no, contact, full_name }, token)
+  }
+
+  const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
 
 
   return (
@@ -67,6 +77,19 @@ const CreateCustomer = () => {
               </div>
               <div className='flex-auto px-4 lg:px-10 pb-10 pt-0'>
                 <form>
+                  <div>
+
+                    <Transition
+                      show={!!error}
+                    >
+                      <div className='border border-red-700 bg-red-100'>
+                        <p className='w-full py-1  text-red-700 text-center '>
+                          {error?.message}
+                        </p>
+                      </div>
+
+                    </Transition>
+                  </div>
                   <div className='relative w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
@@ -127,22 +150,14 @@ const CreateCustomer = () => {
                       onChange={e => setTin_no(e.target.value)}
                     />
                   </div>
-                  {/* <div>
-
-                  <Transition
-                  // show={!!error}
-                  >
-                    <p className='w-full py-1  text-red-700 text-center '>
-                      {error?.message}
-                    </p>
-
-                  </Transition>
-                </div> */}
                   <div className='text-center mt-6'>
                     <button
                       className='bg-dark-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                       type='button'
-                    // onClick={ }
+                      onClick={e => {
+                        e.preventDefault()
+                        return createCustomer()
+                      }}
                     >
                       Create
                     </button>

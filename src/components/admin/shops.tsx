@@ -33,7 +33,6 @@ const Shops = () => {
     }, [dispatch])
 
     const { isLoading, stores, error } = useSelector((state: RootState) => state.stores)
-    console.log(stores);
 
     return (
         <>
