@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { post } from '../../api/apiAction'
@@ -21,7 +21,7 @@ const CreateCustomer = () => {
 
   const [isClosed, setIsClosed] = useState(false)
   const [email, setEmail] = useState<string | null>(null)
-  const [tin_no, setTin_no] = useState<string | null>(null)
+  const [tin_no, setTin_no] = useState<string>('')
   const [contact, setContact] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
 
@@ -34,6 +34,11 @@ const CreateCustomer = () => {
 
   const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
 
+  console.log('================================', currentUser?.user);
+
+  useEffect(() => {
+    if (currentUser) navigate(`/admin/user/${currentUser.user.id}`)
+  })
 
   return (
     <>
@@ -159,7 +164,7 @@ const CreateCustomer = () => {
                         return createCustomer()
                       }}
                     >
-                      Create
+                      {isLoading ? 'Loading...' : 'Create'}
                     </button>
                     <p> <Link to={'/admin/create-vendor'}>Or <span className='text-dark-blue'>Create a Vendor</span></Link> </p>
                   </div>

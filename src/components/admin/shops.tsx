@@ -32,7 +32,7 @@ const Shops = () => {
         fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
-    const { isLoading, stores, error } = useSelector((state: RootState) => state.stores)
+    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
 
     return (
         <>
