@@ -15,7 +15,6 @@ import {
     retrievedUserFailed
 } from '../../redux/admin/users/users.slice'
 import { XIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
-import { vendor } from 'postcss'
 const Users = () => {
 
     // redux

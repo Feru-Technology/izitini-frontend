@@ -63,7 +63,7 @@ const CreateVendor = () => {
               <div className='rounded-t mb-0 px-6 py-6'>
                 <div className='text-center mb-3'>
                   <h6 className='text-gray-500 text-sm font-bold md:text-base lg:text-lg'>
-                    Create a customer account
+                    Create a vendor account
                   </h6>
                 </div>
               </div>
@@ -178,6 +178,7 @@ const CreateVendor = () => {
                     >
                       Create
                     </button>
+                    <p> <Link to={'/admin/create-customer'}> Or <span className='text-dark-blue'>Create a Customer</span></Link></p>
                   </div>
                 </form>
               </div>

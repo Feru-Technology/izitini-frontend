@@ -146,6 +146,7 @@ const CreateCustomer = () => {
                     >
                       Create
                     </button>
+                    <p> <Link to={'/admin/create-vendor'}>Or <span className='text-dark-blue'>Create a Vendor</span></Link> </p>
                   </div>
                 </form>
               </div>
