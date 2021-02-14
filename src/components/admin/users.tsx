@@ -237,7 +237,6 @@ const Users = () => {
                                 <div className='absolute z-2 top-1/4 left-16
                                 md:left-9 lg:left-28 md:top-1/3 xl:left-1/4'>
                                     <div className='bg-white shadow-lg mx-auto px-5 pt-3 pb-10 md:pb-12 '
-                                    // style={{ height: 'fit-content', width: 'fit-content', marginTop: '0%' }}
                                     >
                                         < XIcon className='h-4 cursor-pointer mb-4 md:mb-0'
                                             style={{ marginLeft: '98%' }}
@@ -250,7 +249,7 @@ const Users = () => {
                                                     setVendor(false)
                                                     setCustomer(true)
                                                     setProfessional(false)
-                                                    setSignupLink('/signup')
+                                                    setSignupLink('/admin/create-customer')
                                                 }}>
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
@@ -262,7 +261,7 @@ const Users = () => {
                                                     setVendor(true)
                                                     setCustomer(false)
                                                     setProfessional(false)
-                                                    setSignupLink('/vendor-signup')
+                                                    setSignupLink('/admin/create-vendor')
                                                 }}>
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
@@ -274,7 +273,7 @@ const Users = () => {
                                                     setVendor(false)
                                                     setCustomer(false)
                                                     setProfessional(true)
-                                                    setSignupLink('/professional-signup')
+                                                    setSignupLink('/admin/create-professional')
                                                 }}>
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>

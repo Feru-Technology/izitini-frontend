@@ -84,7 +84,7 @@ function App() {
                 <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
-                <Route path='/admin/create-admin' element={<CreateVendor />} />
+                <Route path='/admin/create-vendor' element={<CreateVendor />} />
                 <Route path='/admin/create-customer' element={<CreateCustomer />} />
 
                 <Route path='*' element={<NotFound />} />
