@@ -30,7 +30,7 @@ const CreateVendor = () => {
   return (
     <>
 
-      <div className='flex h-screen overflow-hidden'>
+      <div className='flex h-screen overflow-hidden bg-gray-200'>
         <SiderBar
           isClosed={isClosed}
           setIsClosed={setIsClosed}

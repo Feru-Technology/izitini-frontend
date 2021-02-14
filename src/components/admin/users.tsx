@@ -234,9 +234,9 @@ const Users = () => {
                                 <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 h-screen w-screen'
                                     onClick={() => setShowCreateUserOptions(false)}>
                                 </div>
-                                <div className='absolute z-2 top-1/4 left-16
-                                md:left-9 lg:left-28 md:top-1/3 xl:left-1/4'>
-                                    <div className='bg-white shadow-lg mx-auto px-5 pt-3 pb-10 md:pb-12 '
+                                <div className='absolute z-2 top-1/4 left-16 md:left-9 lg:left-28 md:top-1/3 xl:left-1/4'>
+                                    <div className='mx-auto px-5 pt-3 pb-10 md:pb-12  rounded-md
+                                bg-white shadow hover:shadow-md ease-linear transition-all duration-150'
                                     >
                                         < XIcon className='h-4 cursor-pointer mb-4 md:mb-0'
                                             style={{ marginLeft: '98%' }}
@@ -266,7 +266,7 @@ const Users = () => {
                                                 <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                                 <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
                                             </div>
-                                            <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border
+                                            <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border pointer-events-none
                                                 border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
                                                 dark:hover:text-white dark:hover:bg-gray-600 ${professional && ' border-dark-blue'}`}
                                                 onClick={() => {
