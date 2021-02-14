@@ -14,6 +14,8 @@ import {
     retrievedUsers,
     retrievedUserFailed
 } from '../../redux/admin/users/users.slice'
+import { XIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
+import { vendor } from 'postcss'
 const Users = () => {
 
     // redux
@@ -49,6 +51,13 @@ const Users = () => {
     const [showAllUsers, setShowAllUsers] = useState(true)
     const [showCustomer, setShowCustomer] = useState(false)
     const [showProfessional, setShowProfessional] = useState(false)
+
+    // create user states
+    const [vendor, setVendor] = useState(false)
+    const [customer, setCustomer] = useState(false)
+    const [professional, setProfessional] = useState(false)
+    const [signupLink, setSignupLink] = useState<String | null>(null)
+    const [showCreateUserOptions, setShowCreateUserOptions] = useState(false)
 
     const navigate = useNavigate()
 
@@ -98,12 +107,11 @@ const Users = () => {
 
                                     <div className='flex items-center justify-between py-8'>
                                         <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Users</h3>
-                                        <Link to='/admin/create-customer'>
-                                            <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
-                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'>
-                                                ADD A User
-                                            </button>
-                                        </Link>
+                                        <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'
+                                            onClick={e => setShowCreateUserOptions(true)} >
+                                            ADD A User
+                                        </button>
                                     </div>
                                     <div className='  border-gray-200'>
                                         <ul className='w-full text-xs flex cursor-pointer'>
@@ -220,6 +228,71 @@ const Users = () => {
 
                                 </div>
                             </div>
+                            {/* signup options pop-up*/}
+                            <Transition show={showCreateUserOptions} className='fixed'>
+
+                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 h-screen w-screen'
+                                    onClick={() => setShowCreateUserOptions(false)}>
+                                </div>
+                                <div className='absolute z-2 top-1/4 left-16
+                                md:left-9 lg:left-28 md:top-1/3 xl:left-1/4'>
+                                    <div className='bg-white shadow-lg mx-auto px-5 pt-3 pb-10 md:pb-12 '
+                                    // style={{ height: 'fit-content', width: 'fit-content', marginTop: '0%' }}
+                                    >
+                                        < XIcon className='h-4 cursor-pointer mb-4 md:mb-0'
+                                            style={{ marginLeft: '98%' }}
+                                            onClick={() => setShowCreateUserOptions(false)} />
+                                        <div className='md:flex'>
+                                            <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border
+                                                border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
+                                                dark:hover:text-white dark:hover:bg-gray-600 ${customer && 'border-dark-blue'}`}
+                                                onClick={() => {
+                                                    setVendor(false)
+                                                    setCustomer(true)
+                                                    setProfessional(false)
+                                                    setSignupLink('/signup')
+                                                }}>
+                                                <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
+                                                <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
+                                            </div>
+                                            <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border
+                                                border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
+                                                dark:hover:text-white dark:hover:bg-gray-600 ${vendor && ' border-dark-blue'}`}
+                                                onClick={() => {
+                                                    setVendor(true)
+                                                    setCustomer(false)
+                                                    setProfessional(false)
+                                                    setSignupLink('/vendor-signup')
+                                                }}>
+                                                <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
+                                                <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
+                                            </div>
+                                            <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border
+                                                border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
+                                                dark:hover:text-white dark:hover:bg-gray-600 ${professional && ' border-dark-blue'}`}
+                                                onClick={() => {
+                                                    setVendor(false)
+                                                    setCustomer(false)
+                                                    setProfessional(true)
+                                                    setSignupLink('/professional-signup')
+                                                }}>
+                                                <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
+                                                <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>
+                                            </div>
+                                        </div>
+                                        <Link to={`${signupLink}`} className={`${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
+                                            <button disabled={false}
+                                                className={`flex text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-light-blue
+                                                    px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5`}
+                                            >
+                                                <span className='text-xs mr-1 md:text-sm md:mr-2
+                                                    lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
+                                {/* </div> */}
+                            </Transition>
                         </div>
                     )
                     : navigate('/signin')

@@ -370,7 +370,7 @@ export const Navbar = () => {
                         </div>
                     </div>
 
-                    {/* signup options */}
+                    {/* signup options pop-up*/}
                     <Transition show={showSignupOptions}>
 
                         <div className='absolute top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-full h-screen'

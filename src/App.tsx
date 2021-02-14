@@ -20,6 +20,7 @@ import AdminSettings from './components/admin/Settings'
 import AdminDashboard from './components/admin/Dashboard'
 import NotFound from './components/customer/NotFoundPage'
 import CreateStore from './components/vendor/CreateStore'
+import CreateVendor from './components/admin/createVendor'
 import CreateCustomer from './components/admin/createUser'
 import VendorDashboard from './components/vendor/Dashboard'
 import Subcategory from './components/customer/subcategory'
@@ -83,6 +84,7 @@ function App() {
                 <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
+                <Route path='/admin/create-admin' element={<CreateVendor />} />
                 <Route path='/admin/create-customer' element={<CreateCustomer />} />
 
                 <Route path='*' element={<NotFound />} />
