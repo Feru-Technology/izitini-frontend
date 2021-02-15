@@ -18,7 +18,8 @@ const User = () => {
     // redux
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
-    const { id } = useParams()
+    const params = useParams()
+    const { id } = params
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

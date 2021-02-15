@@ -17,3 +17,6 @@ export interface HTTPError {
     message: string
 }
 
+export interface ICreateUser {
+    user: IUser
+}
