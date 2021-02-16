@@ -15,6 +15,8 @@ import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.slice'
+
+
 export const store = configureStore({
     reducer: {
         cart: cartSlice.reducer,

@@ -34,14 +34,14 @@ const CreateCustomer = () => {
 
   const { isLoading, createdUser, error } = useSelector((state: RootState) => state.createUser)
 
-  console.log('================================', createdUser?.user);
-
   useEffect(() => {
     if (createdUser) {
-      return navigate(`/admin/user/${createdUser.user.id}`
+      const { id } = createdUser.user
+      dispatch(user(null))
+      return navigate(`/admin/user/${id}`
       )
     }
-  }, [createdUser, navigate])
+  }, [createdUser, dispatch, navigate])
 
   return (
     <>
