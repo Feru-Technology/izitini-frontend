@@ -83,7 +83,7 @@ const User = () => {
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-first-name' type='text' value={currentUser.full_name} />
-                                                    <GrEdit className='h-3 mt-2' />
+
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -92,7 +92,7 @@ const User = () => {
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.account_type} />
-                                                    <GrEdit className='h-3 mt-2' />
+
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -101,7 +101,7 @@ const User = () => {
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.contact} />
-                                                    <GrEdit className='h-3 mt-2' />
+
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -110,7 +110,6 @@ const User = () => {
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.email} />
-                                                    <GrEdit className='h-3 mt-2' />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -119,7 +118,7 @@ const User = () => {
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
-                                                    <GrEdit className='h-3 mt-2' />
+
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
