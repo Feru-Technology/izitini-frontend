@@ -1,8 +1,10 @@
 import SiderBar from './SiderBar'
+import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { GrEdit } from 'react-icons/gr'
 import { useState, useEffect } from 'react'
 import { fetch } from '../../api/apiAction'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -16,8 +18,8 @@ const User = () => {
 
     // redux
     const dispatch = useDispatch()
-
-    const { isLoading, currentUser } = useSelector((state: RootState) => state.user)
+    const token = localStorage.getItem('token')
+    const { id } = useParams()
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -25,17 +27,18 @@ const User = () => {
 
     useEffect(() => {
         dispatch(getUser())
-        fetch(dispatch, user, userFailed, '/user')
-    }, [dispatch])
+        fetch(dispatch, user, userFailed, `/users/${id}`)
+    }, [dispatch, id])
 
-    // const { user } = useSelector((state: RootState) => state.user)
+    const { isLoading, currentUser } = useSelector((state: RootState) => state.user)
+    console.log('......................', currentUser)
 
     const [isClosed, setIsClosed] = useState(false)
 
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>) :
-                (
+                currentUser ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
                             isClosed={isClosed}
@@ -79,7 +82,7 @@ const User = () => {
                                                         htmlFor="names">Names:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-first-name' type='text' value={'Names'} />
+                                                        id='grid-first-name' type='text' value={currentUser.full_name} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
@@ -88,7 +91,7 @@ const User = () => {
                                                         htmlFor="Account type">Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'account_type'} />
+                                                        id='grid-last-name' type='text' value={currentUser.account_type} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
@@ -97,7 +100,7 @@ const User = () => {
                                                         htmlFor="contact">Contact:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'contact'} />
+                                                        id='grid-last-name' type='text' value={currentUser.contact} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
@@ -106,7 +109,7 @@ const User = () => {
                                                         htmlFor="email">Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'email'} />
+                                                        id='grid-last-name' type='text' value={currentUser.email} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
@@ -115,7 +118,7 @@ const User = () => {
                                                         htmlFor="Tin no">Tin no:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'Tin no'} />
+                                                        id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
                                                     <GrEdit className='h-3 mt-2' />
                                                 </div>
 
@@ -124,32 +127,28 @@ const User = () => {
                                                         htmlFor="Provider">Provider:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'Provider'} />
-                                                    <GrEdit className='h-3 mt-2' />
+                                                        id='grid-last-name' type='text' value={currentUser.provider} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Verified">Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'Verified'} />
-                                                    <GrEdit className='h-3 mt-2' />
+                                                        id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="created At">created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'created At'} />
-                                                    <GrEdit className='h-3 mt-2' />
+                                                        id='grid-last-name' type='text' value={format(new Date(currentUser.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="Updated At">Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={'Updated At'} />
-                                                    <GrEdit className='h-3 mt-2' />
+                                                        id='grid-last-name' type='text' value={format(new Date(currentUser.updatedAt), 'dd.MM.yyyy')} />
                                                 </div>
 
                                             </div>
@@ -166,7 +165,7 @@ const User = () => {
                             </div>
                         </div>
                     </div>
-                )
+                ) : <div className='mt-24 ml-24 font-bold text-base'>Product not found</div>
 
             }
         </>

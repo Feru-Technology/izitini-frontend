@@ -5,6 +5,10 @@ export interface IUser {
     tin_no: string
     contact: string
     provider: string
+    createdAt: string
+    updatedAt: string
+    is_blocked: boolean
+    is_verified: boolean
     account_type: string
     profile_image: string
 }
