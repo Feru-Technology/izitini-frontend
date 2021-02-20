@@ -3,7 +3,7 @@ import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { GrEdit } from 'react-icons/gr'
 import { useState, useEffect } from 'react'
-import { fetch } from '../../api/apiAction'
+import { fetch, update } from '../../api/apiAction'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
@@ -34,6 +34,15 @@ const User = () => {
     console.log('......................', currentUser)
 
     const [isClosed, setIsClosed] = useState(false)
+    const [editMode, setEditMode] = useState(false)
+    const [tin_no, setTin_no] = useState<string | undefined>(currentUser?.tin_no)
+    const [contact, setContact] = useState<string | undefined>(currentUser?.contact)
+    const [full_name, setFull_name] = useState<string | undefined>(currentUser?.full_name)
+
+    const updateUser = () => {
+        dispatch(getUser())
+        update(dispatch, user, userFailed, `/users/${id}`, { tin_no, contact, full_name }, token)
+    }
 
     return (
         <>
@@ -80,10 +89,26 @@ const User = () => {
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="names">Names:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none ${!!editMode && 'pointer-events-auto'}`}
                                                         id='grid-first-name' type='text' value={currentUser.full_name} />
 
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="contact">Contact:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none ${!!editMode && 'pointer-events-auto'}`}
+                                                        id='grid-last-name' type='text' value={currentUser.contact} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="Tin no">Tin no:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none ${!!editMode && 'pointer-events-auto'}`}
+                                                        id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -97,28 +122,10 @@ const User = () => {
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="contact">Contact:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={currentUser.contact} />
-
-                                                </div>
-
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="email">Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.email} />
-                                                </div>
-
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Tin no">Tin no:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
-
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -154,9 +161,23 @@ const User = () => {
                                         </div>
 
                                         <div className='flex justify-center my-5 '>
-                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'>
-                                                SAVE
-                                            </button>
+                                            <Transition
+                                                show={!!editMode}
+                                            >
+                                                <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'>
+                                                    SAVE
+                                                </button>
+                                            </Transition>
+                                            <Transition
+                                                show={!editMode}>
+                                                <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                    onClick={e => {
+                                                        e.preventDefault()
+                                                        return setEditMode(true)
+                                                    }} >
+                                                    Edit
+                                                </button>
+                                            </Transition>
                                         </div>
 
                                     </form>
@@ -172,3 +193,7 @@ const User = () => {
 }
 
 export default User
+function setEditModeMode(arg0: boolean): void {
+    throw new Error('Function not implemented.')
+}
+
