@@ -165,7 +165,7 @@ const User = () => {
                                                         htmlFor="names">Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto`}
-                                                        id='grid-first-name' type='text' />
+                                                        id='grid-first-name' type='text' defaultValue={currentUser.full_name} readOnly={false} />
 
                                                 </div>
 
@@ -174,7 +174,7 @@ const User = () => {
                                                         htmlFor="contact">Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto`}
-                                                        id='grid-last-name' type='text' />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.contact} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -182,7 +182,7 @@ const User = () => {
                                                         htmlFor="Tin no">Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto`}
-                                                        id='grid-last-name' type='text' />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.tin_no} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -190,7 +190,7 @@ const User = () => {
                                                         htmlFor="email">Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto'
-                                                        id='grid-last-name' type='text' />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.email} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -198,7 +198,7 @@ const User = () => {
                                                         htmlFor="Account type">Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto'
-                                                        id='grid-last-name' type='text' />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.account_type} />
 
                                                 </div>
 
@@ -207,7 +207,7 @@ const User = () => {
                                                         htmlFor="Verified">Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-4/6 md:w-auto'
-                                                        id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
+                                                        id='grid-last-name' type='text' defaultValue={`${currentUser.is_verified}`} />
                                                 </div>
 
                                             </Transition>
