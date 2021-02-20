@@ -85,7 +85,7 @@ const User = () => {
                                     </div>
                                     <form action="">
                                         <div className='flex md:justify-center'>
-                                            <div className='space-y-6 mx-2'>
+                                            <Transition show={!editMode} className='space-y-6 mx-2'>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
                                                         htmlFor="names">Names:</label>
@@ -157,7 +157,60 @@ const User = () => {
                                                         id='grid-last-name' type='text' value={format(new Date(currentUser.updatedAt), 'dd.MM.yyyy')} />
                                                 </div>
 
-                                            </div>
+                                            </Transition>
+
+                                            <Transition show={!!editMode} className='space-y-6 mx-2 mt-9'>
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="names">Names:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none ${!!editMode && 'pointer-events-auto'}`}
+                                                        id='grid-first-name' type='text' value={currentUser.full_name} />
+
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="contact">Contact:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none ${!!editMode && 'pointer-events-auto'}`}
+                                                        id='grid-last-name' type='text' value={currentUser.contact} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="Tin no">Tin no:</label>
+                                                    <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none ${!!editMode && 'pointer-events-auto'}`}
+                                                        id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="email">Email:</label>
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                        id='grid-last-name' type='text' value={currentUser.email} />
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="Account type">Account:</label>
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                        id='grid-last-name' type='text' value={currentUser.account_type} />
+
+                                                </div>
+
+                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
+                                                        htmlFor="Verified">Verified:</label>
+                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                        id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
+                                                </div>
+
+                                            </Transition>
                                         </div>
 
                                         <div className='flex justify-center my-5 '>
