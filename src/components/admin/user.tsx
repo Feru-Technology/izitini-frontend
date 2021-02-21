@@ -43,7 +43,6 @@ const User = () => {
 
     const updateUser = () => {
         dispatch(getUser())
-        console.log({ tin_no, contact, full_name, is_verified, account_type })
         update(dispatch, user, userFailed, `/admin/user/${id}`, { tin_no, contact, email, full_name, is_verified, account_type }, token)
     }
 
