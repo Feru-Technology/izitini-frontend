@@ -81,79 +81,79 @@ const User = () => {
                                 <div className='mx-4 md:mx-0 md:w-full'>
                                     <div className='flex my-5 justify-center'>
                                         <img className='h-20 rounded-full'
-                                            src="https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png" alt="profile" />
+                                            src='https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png' alt='profile' />
                                     </div>
-                                    <form action="">
+                                    <form action=''>
                                         <div className='flex md:justify-center'>
                                             <Transition show={!editMode} className='space-y-6 mx-2'>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="names">Names:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none`}
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
                                                         id='grid-first-name' type='text' value={currentUser.full_name} />
 
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="contact">Contact:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none`}
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
                                                         id='grid-last-name' type='text' value={currentUser.contact} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Tin no">Tin no:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none`}
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
                                                         id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Account type">Account:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Account type'>Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.account_type} />
 
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="email">Email:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.email} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Provider">Provider:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Provider'>Provider:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.provider} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Verified">Verified:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Verified'>Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="created At">created At:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='created At'>created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentUser.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Updated At">Updated At:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Updated At'>Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto pointer-events-none'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentUser.updatedAt), 'dd.MM.yyyy')} />
                                                 </div>
 
@@ -161,53 +161,70 @@ const User = () => {
 
                                             <Transition show={!!editMode} className='space-y-6 mx-2 mt-9'>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="names">Names:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto`}
-                                                        id='grid-first-name' type='text' defaultValue={currentUser.full_name} readOnly={false} />
-
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
+                                                        id='grid-first-name' type='text' defaultValue={currentUser.full_name} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="contact">Contact:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto`}
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
                                                         id='grid-last-name' type='text' defaultValue={currentUser.contact} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Tin no">Tin no:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto`}
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
                                                         id='grid-last-name' type='text' defaultValue={currentUser.tin_no} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="email">Email:</label>
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto'
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
                                                         id='grid-last-name' type='text' defaultValue={currentUser.email} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Account type">Account:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto'
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.account_type} />
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Account type'>Account:</label>
 
+                                                    <select
+                                                        className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                        border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
+                                                        id='grid-state'
+                                                    >
+                                                        <option>Vendor</option>
+                                                        <option>Customer</option>
+                                                    </select>
                                                 </div>
 
+
+
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/6  flex justify-end'
-                                                        htmlFor="Verified">Verified:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-4/6 md:w-auto'
-                                                        id='grid-last-name' type='text' defaultValue={`${currentUser.is_verified}`} />
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                        htmlFor='Verified'>Verified:</label>
+
+                                                    <div className='w-8/12 flex justify-center space-x-5 '>
+                                                        <div className='space-x-1'>
+                                                            <input type="checkbox" id="True" name="True"
+                                                                checked={true} />
+                                                            <label htmlFor="True">True</label>
+                                                        </div>
+
+                                                        <div className='space-x-1'>
+                                                            <input type="checkbox" id="False" name="False"
+                                                                checked={false} />
+                                                            <label htmlFor="False">False</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </Transition>
