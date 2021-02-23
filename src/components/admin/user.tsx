@@ -30,20 +30,37 @@ const User = () => {
         fetch(dispatch, user, userFailed, `/users/${id}`)
     }, [dispatch, id])
 
-    const { isLoading, currentUser } = useSelector((state: RootState) => state.user)
-    console.log('......................', currentUser)
+    const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
+    console.log('......................', error, currentUser)
 
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
-    const [tin_no, setTin_no] = useState<string | undefined>(currentUser?.tin_no)
-    const [contact, setContact] = useState<string | undefined>(currentUser?.contact)
-    const [full_name, setFull_name] = useState<string | undefined>(currentUser?.full_name)
+    const [email, setEmail] = useState<string | null>(null)
+    const [tin_no, setTin_no] = useState<string | null>(null)
+    const [contact, setContact] = useState<string | null>(null)
+    const [is_verified, setIs_verified] = useState<boolean>(false)
+    const [full_name, setFull_name] = useState<string | null>(null)
+    const [account_type, setAccount_type] = useState<string | null>(null)
 
     const updateUser = () => {
         dispatch(getUser())
-        update(dispatch, user, userFailed, `/users/${id}`, { tin_no, contact, full_name }, token)
+        console.log({ tin_no, contact, full_name, is_verified, account_type })
+        update(dispatch, user, userFailed, `/admin/user/${id}`, { tin_no, contact, email, full_name, is_verified, account_type }, token)
     }
 
+    useEffect(() => {
+        if (currentUser) {
+            setEditMode(false)
+            setEmail(currentUser.email)
+            setTin_no(currentUser.tin_no)
+            setContact(currentUser.contact)
+            setFull_name(currentUser.full_name)
+            setIs_verified(currentUser.is_verified)
+            setAccount_type(currentUser.account_type)
+        }
+    }, [currentUser])
+
+    console.log('++++++++++++++++', { tin_no, contact, email, full_name, is_verified, account_type })
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>) :
@@ -87,7 +104,7 @@ const User = () => {
                                         <div className='flex md:justify-center'>
                                             <Transition show={!editMode} className='space-y-6 mx-2'>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
@@ -96,7 +113,7 @@ const User = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
@@ -104,7 +121,7 @@ const User = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
@@ -112,7 +129,7 @@ const User = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Account type'>Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -121,7 +138,7 @@ const User = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -129,28 +146,28 @@ const User = () => {
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Provider'>Provider:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentUser.provider} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Verified'>Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='created At'>created At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={format(new Date(currentUser.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Updated At'>Updated At:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
@@ -161,67 +178,73 @@ const User = () => {
 
                                             <Transition show={!!editMode} className='space-y-6 mx-2 mt-9'>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-first-name' type='text' defaultValue={currentUser.full_name} />
+                                                        id='grid-first-name' type='text' defaultValue={currentUser.full_name}
+                                                        onChange={e => setFull_name(e.target.value)} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.contact} />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.contact}
+                                                        onChange={e => setContact(e.target.value)} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.tin_no} />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.tin_no}
+                                                        onChange={e => setTin_no(e.target.value)} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.email} />
+                                                        id='grid-last-name' type='text' defaultValue={currentUser.email}
+                                                        onChange={e => setEmail(e.target.value)} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Account type'>Account:</label>
 
                                                     <select
                                                         className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                         border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
                                                         id='grid-state'
+                                                        defaultValue={currentUser.account_type}
+                                                        onChange={e => setAccount_type(e.target.value)}
                                                     >
-                                                        <option>Vendor</option>
-                                                        <option>Customer</option>
+                                                        <option>{currentUser.account_type}</option>
+                                                        <option>{currentUser.account_type === 'business' ? 'customer' : 'business'}</option>
                                                     </select>
                                                 </div>
 
-
-
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12  flex justify-end'
+                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Verified'>Verified:</label>
 
                                                     <div className='w-8/12 flex justify-center space-x-5 '>
                                                         <div className='space-x-1'>
-                                                            <input type="checkbox" id="True" name="True"
-                                                                checked={true} />
+                                                            <input type="checkbox" id="true" name="true"
+                                                                checked={!!is_verified || false}
+                                                                onClick={e => setIs_verified(true)} />
                                                             <label htmlFor="True">True</label>
                                                         </div>
 
                                                         <div className='space-x-1'>
-                                                            <input type="checkbox" id="False" name="False"
-                                                                checked={false} />
+                                                            <input type="checkbox" id="false" name="false"
+                                                                checked={!is_verified ? true : false}
+                                                                onClick={e => setIs_verified(false)} />
                                                             <label htmlFor="False">False</label>
                                                         </div>
                                                     </div>
@@ -234,7 +257,8 @@ const User = () => {
                                             <Transition
                                                 show={!!editMode}
                                             >
-                                                <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'>
+                                                <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                    onClick={e => updateUser()} >
                                                     SAVE
                                                 </button>
                                             </Transition>
@@ -263,7 +287,3 @@ const User = () => {
 }
 
 export default User
-function setEditModeMode(arg0: boolean): void {
-    throw new Error('Function not implemented.')
-}
-
