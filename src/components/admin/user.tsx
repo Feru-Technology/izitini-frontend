@@ -1,7 +1,6 @@
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
-import { GrEdit } from 'react-icons/gr'
 import { useState, useEffect } from 'react'
 import { fetch, update } from '../../api/apiAction'
 import { useParams } from 'react-router-dom'
@@ -35,8 +34,8 @@ const User = () => {
 
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
+    const [tin_no, setTin_no] = useState<string>('')
     const [email, setEmail] = useState<string | null>(null)
-    const [tin_no, setTin_no] = useState<string | null>(null)
     const [contact, setContact] = useState<string | null>(null)
     const [is_verified, setIs_verified] = useState<boolean>(false)
     const [full_name, setFull_name] = useState<string | null>(null)
@@ -60,7 +59,6 @@ const User = () => {
         }
     }, [currentUser])
 
-    console.log('++++++++++++++++', { tin_no, contact, email, full_name, is_verified, account_type })
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>) :
@@ -177,6 +175,11 @@ const User = () => {
                                             </Transition>
 
                                             <Transition show={!!editMode} className='space-y-6 mx-2 mt-9'>
+
+                                                {/* display error */}
+                                                <Transition show={!!error} className='p-1 border border-red-500 bg-red-200 text-red-500'>
+                                                    {error?.message}</Transition>
+
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='names'>Names:</label>
@@ -258,7 +261,10 @@ const User = () => {
                                                 show={!!editMode}
                                             >
                                                 <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
-                                                    onClick={e => updateUser()} >
+                                                    onClick={e => {
+                                                        e.preventDefault()
+                                                        return updateUser()
+                                                    }} >
                                                     SAVE
                                                 </button>
                                             </Transition>
@@ -279,7 +285,7 @@ const User = () => {
                             </div>
                         </div>
                     </div>
-                ) : <div className='mt-24 ml-24 font-bold text-base'>Product not found</div>
+                ) : <div className='mt-24 ml-24 font-bold text-base'>{error?.message}</div>
 
             }
         </>
