@@ -42,7 +42,9 @@ const CreateVendor = () => {
 
   const createVendor = () => {
     dispatch(postUser())
-    post(dispatch, user, userFailed, '/admin/user/vendor', { email, tin_no, contact, full_name, name, about_shop }, token)
+    post(dispatch, user, userFailed, '/admin/user/vendor', {
+      email, tin_no, contact, full_name, name, about_shop, category1, category2
+    }, token)
   }
 
   const { isLoading, createdUser, error } = useSelector((state: RootState) => state.createUser)
@@ -200,6 +202,34 @@ const CreateVendor = () => {
                       placeholder='About Shop'
                       onChange={e => setAbout_shop(e.target.value)}
                     />
+                  </div>
+                  <div>
+                    <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>shop specialty 1</h3>
+                    <div className="">
+                      <select
+                        className="block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight border-gray-700"
+                        id="grid-state"
+                        onChange={e => setCategory1(e.target.value)}
+                      >
+                        <option className='text-gray-600'>choose shop specialty</option>
+                        {isLoading ? <h1>loading...</h1>
+                          : categories.map((v) => (<option>{v.name}</option>))}
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className='block uppercase text-gray-600 text-xs font-bold my-2'>shop specialty 2</h3>
+                    <div className="">
+                      <select
+                        className="block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight border-gray-700"
+                        id="grid-state"
+                        onChange={e => setCategory2(e.target.value)}
+                      >
+                        <option className='text-gray-600'>choose shop specialty</option>
+                        {isLoading ? <h1>loading...</h1>
+                          : categories.map((v) => (<option>{v.name}</option>))}
+                      </select>
+                    </div>
                   </div>
                   <div className='text-center mt-6'>
                     <button
