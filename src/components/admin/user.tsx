@@ -30,7 +30,6 @@ const User = () => {
     }, [dispatch, id])
 
     const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
-    console.log('......................', error, currentUser)
 
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
@@ -177,7 +176,7 @@ const User = () => {
                                             <Transition show={!!editMode} className='space-y-6 mx-2 mt-9'>
 
                                                 {/* display error */}
-                                                <Transition show={!!error} className='p-1 border border-red-500 bg-red-200 text-red-500'>
+                                                <Transition show={!!error} className='p-1 border border-red-600 bg-red-100 text-red-600'>
                                                     {error?.message}</Transition>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
