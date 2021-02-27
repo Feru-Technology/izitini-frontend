@@ -34,16 +34,16 @@ const CreateVendor = () => {
   const [tin_no, setTin_no] = useState<string | null>(null)
   const [contact, setContact] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
-  const [category1, setCategory1] = useState<string | null>(null)
-  const [category2, setCategory2] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
+  const [shop_specialty_1, setShop_specialty_1] = useState<string | null>(null)
+  const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
   const navigate = useNavigate()
 
   const createVendor = () => {
     dispatch(postUser())
     post(dispatch, user, userFailed, '/admin/user/vendor', {
-      email, tin_no, contact, full_name, name, about_shop, category1, category2
+      email, tin_no, contact, full_name, name, about_shop, shop_specialty_1, shop_specialty_2
     }, token)
   }
 
@@ -209,7 +209,7 @@ const CreateVendor = () => {
                       <select
                         className="block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight border-gray-700"
                         id="grid-state"
-                        onChange={e => setCategory1(e.target.value)}
+                        onChange={e => setShop_specialty_1(e.target.value)}
                       >
                         <option className='text-gray-600'>choose shop specialty</option>
                         {isLoading ? <h1>loading...</h1>
@@ -223,7 +223,7 @@ const CreateVendor = () => {
                       <select
                         className="block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight border-gray-700"
                         id="grid-state"
-                        onChange={e => setCategory2(e.target.value)}
+                        onChange={e => setShop_specialty_2(e.target.value)}
                       >
                         <option className='text-gray-600'>choose shop specialty</option>
                         {isLoading ? <h1>loading...</h1>
