@@ -1,15 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useSelector } from 'react-redux'
+import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    fetchingStores,
+    retrievedStores,
+    retrievedStoreFailed
+} from '../../redux/stores/allStores.slice'
 
 const Shops = () => {
 
-    const { isLoading, profile } = useSelector((state: RootState) => state.profile);
+    // redux
+    const dispatch = useDispatch()
+
+    const { isLoading, profile } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -18,9 +27,13 @@ const Shops = () => {
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
+    useEffect(() => {
+        dispatch(fetchingStores())
+        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+    }, [dispatch])
 
-    // }
+    const { stores, error } = useSelector((state: RootState) => state.stores)
+    console.log(stores);
 
     return (
         <>

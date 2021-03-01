@@ -6,7 +6,7 @@ import { ordersSlice } from './order/orders.slice'
 import { userSlice } from './admin/users/user.slice'
 import { usersSlice } from './admin/users/users.slice'
 import { productSlice } from './products/product.slice'
-import { AllStoresSlice } from './stores/allMyStores.slice'
+import { AllStoresSlice } from './stores/allStores.slice'
 import { categorySlice } from './categories/category.slice'
 import { allProductSlice } from './products/allProduct.slice'
 import { categoriesSlice } from './categories/categories.slice'
@@ -23,8 +23,8 @@ export const store = configureStore({
         orders: ordersSlice.reducer,
         profile: profileSlice.reducer,
         product: productSlice.reducer,
+        stores: AllStoresSlice.reducer,
         category: categorySlice.reducer,
-        myStores: AllStoresSlice.reducer,
         categories: categoriesSlice.reducer,
         allProducts: allProductSlice.reducer,
         subCategory: subCategorySlice.reducer,
