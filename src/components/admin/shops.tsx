@@ -18,6 +18,10 @@ const Shops = () => {
 
     const navigate = useNavigate()
 
+    // useEffect(() => {
+
+    // }
+
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>)
