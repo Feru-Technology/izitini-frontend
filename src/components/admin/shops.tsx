@@ -103,28 +103,28 @@ const Shops = () => {
                                         </thead>
 
                                         {stores.map((store) => {
-                                            const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
+                                            const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
                                                 <tbody>
                                                     <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
                                                         <td className='py-3 '>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                                    <img src={storeImage} alt='product' className='w-full' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal text-sm'>
-                                                                        <span className=''>Shop Name</span>
+                                                                        <span className=''>{store.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>email@gmail.com</p>
+                                                            <p className='font-normal text-sm'>{store.shop_email}</p>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>0786493807</p>
+                                                            <p className='font-normal text-sm'>{store.shop_contact_no}</p>
                                                         </td>
                                                         <td className='py-3 '>
                                                             <p className='font-normal text-sm'>Electricity && Water</p>
