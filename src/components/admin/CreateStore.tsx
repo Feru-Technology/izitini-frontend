@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import Header from './Header'
 import SiderBar from './SiderBar'
+import Header from '../vendor/Header'
 import { post } from '../../api/apiAction'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
@@ -15,7 +15,7 @@ import {
 
 import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
 
-const CreateStore = () => {
+const AdminCreateStore = () => {
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -32,10 +32,11 @@ const CreateStore = () => {
 
   const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories)
 
-  const [category, setCategory] = useState<string | null>(null)
   const [name, setName] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
   const [shop_email, setShop_email] = useState<string | null>(null)
+  const [category, setCategory] = useState<string | null>(null)
+  // const [category, setCategory] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
   const token = localStorage.getItem('token')
@@ -80,7 +81,8 @@ const CreateStore = () => {
         >
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
-        <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
+        <div className="px-4 py-8 h-screen  max-w-9xl mx-auto bg-gray-200 flex justify-center
+        sm:w-5/6 md:w-4/6 lg:w-3/5">
           <div className="font-bold text-3xl text-center">Create a new Store</div>
           <div className='container'>
             <Transition
@@ -205,4 +207,4 @@ const CreateStore = () => {
   )
 }
 
-export default CreateStore
+export default AdminCreateStore
