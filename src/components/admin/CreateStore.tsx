@@ -82,8 +82,8 @@ const CreateProduct = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div className='px-4 sm:w-5/6 md:w-4/6 lg:3/6 flex mx-auto '>
-          <div className=' my-8 w-full h-screen bg-white shadow-md px-4 rounded-md'>
-            <div className='font-bold text-3xl text-center'>Create a new Store</div>
+          <div className=' my-8 w-full h-auto bg-white shadow-md px-4 rounded-md py-4'>
+            <div className='mb-6 font-bold text-lg md:text-xl lg:text-2xl text-center'>Create Store</div>
             <div className='container'>
               <Transition
                 show={!!error}
