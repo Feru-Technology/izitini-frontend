@@ -7,13 +7,8 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  fetchingCategories,
-  retrievedCategories,
-  retrievedCategoryFailed
-} from '../../redux/categories/allCategories.slice'
-
 import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
+import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../redux/categories/categories.slice'
 
 const CreateProduct = () => {
 
@@ -27,10 +22,13 @@ const CreateProduct = () => {
 
   useEffect(() => {
     dispatch(fetchingCategories())
-    fetch(dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
+    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
   }, [dispatch])
 
-  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories)
+
+  const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+
+  console.log('+++++++', categories)
 
   const [name, setName] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
@@ -52,7 +50,7 @@ const CreateProduct = () => {
     )
   }
 
-  const { currentStore, error } = useSelector((state: RootState) => state.store)
+  const { error } = useSelector((state: RootState) => state.store)
 
   return (
     <div className='flex h-screen overflow-hidden bg-gray-100 '>
@@ -104,7 +102,7 @@ const CreateProduct = () => {
                   >
                     <option>Choose Shop Specialty</option>
                     {isLoading ? <h1>loading...</h1>
-                      : categories.map((v) => (<option>{v.name}</option>))}
+                      : categories.map((c) => (<option>{c.name}</option>))}
                   </select>
                 </div>
               </div>
@@ -118,7 +116,7 @@ const CreateProduct = () => {
                   >
                     <option>Choose Shop Specialty</option>
                     {isLoading ? <h1>loading...</h1>
-                      : categories.map((v) => (<option>{v.name}</option>))}
+                      : categories.map((c) => (<option>{c.name}</option>))}
                   </select>
                 </div>
               </div>

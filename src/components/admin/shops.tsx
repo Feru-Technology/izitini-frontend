@@ -73,7 +73,7 @@ const Shops = () => {
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Shops</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base' >
-                                        <Link to='admin/create-shop'>ADD A Shop</Link>
+                                        <Link to='/admin/create-store'>ADD A Shop</Link>
                                     </button>
                                 </div>
 

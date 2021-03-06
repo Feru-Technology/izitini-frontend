@@ -23,7 +23,7 @@ const CreateVendor = () => {
 
   useEffect(() => {
     dispatch(fetchingCategories())
-    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/')
+    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
   }, [dispatch])
 
   const { categories } = useSelector((state: RootState) => state.categories)
