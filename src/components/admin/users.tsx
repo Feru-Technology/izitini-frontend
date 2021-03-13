@@ -9,12 +9,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { user } from '../../redux/admin/users/user.slice'
 import { IUser } from '../../redux/admin/users/users.interface'
+import { XIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
 import {
     fetchingUsers,
     retrievedUsers,
     retrievedUserFailed
 } from '../../redux/admin/users/users.slice'
-import { XIcon, ArrowNarrowRightIcon } from '@heroicons/react/solid'
 const Users = () => {
 
     // redux

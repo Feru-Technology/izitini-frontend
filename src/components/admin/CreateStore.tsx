@@ -8,7 +8,18 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
-import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../redux/categories/categories.slice'
+
+import {
+  fetchingCategories,
+  retrievedCategory,
+  retrievedCategoryFailed
+} from '../../redux/categories/categories.slice'
+
+import {
+  fetchingUsers,
+  retrievedUsers,
+  retrievedUserFailed
+} from '../../redux/admin/users/users.slice'
 
 const CreateProduct = () => {
 
@@ -19,12 +30,19 @@ const CreateProduct = () => {
 
   // redux
   const dispatch = useDispatch()
+  const token = localStorage.getItem('token')
 
+  // get all vendors without shops
+  useEffect(() => {
+    dispatch(fetchingUsers())
+    fetch(dispatch, retrievedUsers, retrievedUserFailed, '/admin/user/vendor-without-shop', token)
+  }, [dispatch, token])
+
+  // get all categories
   useEffect(() => {
     dispatch(fetchingCategories())
     fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
   }, [dispatch])
-
 
   const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
@@ -33,11 +51,9 @@ const CreateProduct = () => {
   const [name, setName] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
   const [shop_email, setShop_email] = useState<string | null>(null)
-  const [category, setCategory] = useState<string | null>(null)
-  // const [category, setCategory] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
-
-  const token = localStorage.getItem('token')
+  const [shop_specialty_1, setShop_specialty_1] = useState<string | null>(null)
+  const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
   const createStore = () => {
     dispatch(getStore())
@@ -45,7 +61,7 @@ const CreateProduct = () => {
       dispatch,
       store,
       storeFailed, '/shop',
-      { category, name, about_shop, shop_email, shop_contact_no },
+      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no },
       token
     )
   }
@@ -98,7 +114,7 @@ const CreateProduct = () => {
                   <select
                     className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
                     id='grid-state'
-                    onChange={e => setCategory(e.target.value)}
+                    onChange={e => setShop_specialty_1(e.target.value)}
                   >
                     <option>Choose Shop Specialty</option>
                     {isLoading ? <h1>loading...</h1>
@@ -112,7 +128,7 @@ const CreateProduct = () => {
                   <select
                     className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
                     id='grid-state'
-                    onChange={e => setCategory(e.target.value)}
+                    onChange={e => setShop_specialty_2(e.target.value)}
                   >
                     <option>Choose Shop Specialty</option>
                     {isLoading ? <h1>loading...</h1>
