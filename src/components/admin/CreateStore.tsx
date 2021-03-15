@@ -44,11 +44,13 @@ const CreateProduct = () => {
     fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
   }, [dispatch])
 
+
+  const { users } = useSelector((state: RootState) => state.users)
+
   const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
-  console.log('+++++++', categories)
-
   const [name, setName] = useState<string | null>(null)
+  const [owner, setOwner] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
@@ -61,7 +63,7 @@ const CreateProduct = () => {
       dispatch,
       store,
       storeFailed, '/shop',
-      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no },
+      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner },
       token
     )
   }
@@ -108,6 +110,20 @@ const CreateProduct = () => {
               </Transition>
             </div>
             <form>
+              <div className=' w-full mb-3'>
+                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Assign User to this shop</h3>
+                <div className=' w-full mb-3'>
+                  <select
+                    className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                    id='grid-state'
+                    onChange={e => setOwner(e.target.value)}
+                  >
+                    <option>Choose Shop Owner</option>
+                    {isLoading ? <h1>loading...</h1>
+                      : users.map((u) => (<option value={u.id}>{u.full_name}</option>))}
+                  </select>
+                </div>
+              </div>
               <div className=' w-full mb-3'>
                 <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shop Specialty 1</h3>
                 <div className=' w-full mb-3'>
