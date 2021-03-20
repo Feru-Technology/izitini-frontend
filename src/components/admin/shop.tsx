@@ -177,7 +177,6 @@ const Shop = () => {
                                                 </div>
 
                                             </div>
-
                                         </div>
 
                                         <div className='flex justify-center my-5 '>
