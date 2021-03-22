@@ -5,6 +5,7 @@ import { post } from '../../api/apiAction'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
@@ -62,13 +63,24 @@ const CreateProduct = () => {
     post(
       dispatch,
       store,
-      storeFailed, '/shop',
+      storeFailed, '/admin/shop',
       { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner },
       token
     )
   }
 
-  const { error } = useSelector((state: RootState) => state.store)
+  const navigate = useNavigate()
+
+  const { currentStore, error } = useSelector((state: RootState) => state.store)
+
+  useEffect(() => {
+    if (currentStore) {
+      const { id } = currentStore
+      dispatch(getStore())
+      return navigate(`/admin/shop/${id}`)
+    }
+  }, [currentStore, dispatch, navigate])
+
 
   return (
     <div className='flex h-screen overflow-hidden bg-gray-100 '>
