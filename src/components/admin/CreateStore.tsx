@@ -8,7 +8,7 @@ import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
+import { addStore, getStore, storeFailed } from '../../redux/stores/createStore.slice'
 
 import {
   fetchingCategories,
@@ -59,10 +59,10 @@ const CreateProduct = () => {
   const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
   const createStore = () => {
-    dispatch(getStore())
+    dispatch(addStore())
     post(
       dispatch,
-      store,
+      getStore,
       storeFailed, '/admin/shop',
       { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner },
       token
@@ -71,15 +71,15 @@ const CreateProduct = () => {
 
   const navigate = useNavigate()
 
-  const { currentStore, error } = useSelector((state: RootState) => state.store)
+  const { createdStore, error } = useSelector((state: RootState) => state.createStore)
 
   useEffect(() => {
-    if (currentStore) {
-      const { id } = currentStore
-      dispatch(getStore())
+    if (createdStore) {
+      const { id } = createdStore
+      dispatch(getStore(null))
       return navigate(`/admin/shop/${id}`)
     }
-  }, [currentStore, dispatch, navigate])
+  }, [createdStore, dispatch, navigate])
 
 
   return (
