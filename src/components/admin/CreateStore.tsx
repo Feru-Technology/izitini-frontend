@@ -48,6 +48,8 @@ const CreateProduct = () => {
 
   const { users } = useSelector((state: RootState) => state.users)
 
+  console.log(users)
+
   const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
   const [name, setName] = useState<string | null>(null)
@@ -114,10 +116,14 @@ const CreateProduct = () => {
             <div className='mb-6 font-bold text-lg md:text-xl lg:text-2xl text-center'>Create Store</div>
             <div className='container'>
               <Transition
+                show={users.length === 0} >
+                <div className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700'>You can not create a shop, since a Vendor can only have one shop and there is no vendor without a shop right now</div>
+              </Transition>
+              <Transition
                 show={!!error}
               >
                 {/* {error ? } */}
-                <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{error?.message}</p>
 
               </Transition>
             </div>
