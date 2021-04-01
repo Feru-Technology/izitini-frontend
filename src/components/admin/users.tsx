@@ -34,7 +34,12 @@ const Users = () => {
 
     const fetchByAccountType = (accountType: string) => {
         dispatch(fetchingUsers())
-        fetch(dispatch, retrievedUsers, retrievedUserFailed, `/users/accountType/${accountType}`, token)
+        fetch(dispatch, retrievedUsers, retrievedUserFailed, `/users/account-type/${accountType}`, token)
+    }
+
+    const all = () => {
+        dispatch(fetchingUsers())
+        fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
     }
 
     const { users } = useSelector((state: RootState) => state.users)
@@ -97,6 +102,7 @@ const Users = () => {
                                             py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
 
                                                 onClick={() => {
+                                                    all()
                                                     setShowAllUsers(true)
                                                     setShowCustomer(false)
                                                     setShowVendor(false)
@@ -121,7 +127,7 @@ const Users = () => {
                                                     setShowAllUsers(false)
                                                     setShowCustomer(false)
                                                     setShowVendor(false)
-                                                    fetchByAccountType('vendor')
+                                                    fetchByAccountType('business')
                                                 }}
                                             >Vendor</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
@@ -164,7 +170,7 @@ const Users = () => {
                                             </thead>
 
                                             <tbody>
-                                                {users?.map((user) => {
+                                                {users ? (users.map((user) => {
                                                     const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
                                                     return (
                                                         <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'
@@ -172,10 +178,10 @@ const Users = () => {
 
                                                             <td className='py-3 '>
                                                                 <div className='md:flex items-center'>
-                                                                    <div className='md:w-1/4 mx-3'>
-                                                                        <img src={profileImage} alt='product' className='w-full' />
+                                                                    <div className='md:w-1/6 mx-3'>
+                                                                        <img src={profileImage} alt='product' className='w-full max-h-8' />
                                                                     </div>
-                                                                    <div className='md:w-2/4'>
+                                                                    <div className='md:w-5/6'>
 
                                                                         <p className='font-normal text-sm'>
                                                                             <span className=''>{user.full_name}</span>
@@ -192,7 +198,7 @@ const Users = () => {
                                                         </tr>
 
                                                     )
-                                                })}
+                                                })) : <tr className='flex justify-center text-lg'> <td> No users found</td> </tr>}
                                             </tbody>
 
                                         </table>
