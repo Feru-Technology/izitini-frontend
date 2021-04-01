@@ -18,7 +18,7 @@ const AdminDashboard = () => {
 
     const navigate = useNavigate()
 
-    const accountType = profile?.user.account_type
+    const accountType = profile?.account_type
     console.log(accountType)
 
     return (

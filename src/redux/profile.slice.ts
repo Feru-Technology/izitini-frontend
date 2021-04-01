@@ -17,7 +17,7 @@ export interface HTTPError {
 export interface ProfileState {
     isLoading: boolean
     error: Error | HTTPError | null
-    profile: { user: IUser, token: string } | null
+    profile: IUser | null
 }
 
 const initialState: ProfileState = {

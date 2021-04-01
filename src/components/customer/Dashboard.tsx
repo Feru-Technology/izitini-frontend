@@ -53,10 +53,8 @@ const CustomerDashboard = () => {
                                 {/* customer dashboard */}
                                 <div className='p-5 flex flex-col justify-center'>
                                     <p>recent activities</p>
-                                    {profile.user.account_type === 'business' ?
-                                        <Link to='/vendor' className='text-light-blue underline'>Go to your Vendor Dashboard</Link> :
-                                        <p>Become a vendor</p>
-                                    }
+                                    <Link to='/vendor' className='text-light-blue underline'>Go to your Vendor Dashboard</Link> :
+                                    <p>Become a vendor</p>
 
                                 </div>
                             </div>

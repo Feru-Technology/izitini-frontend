@@ -16,6 +16,7 @@ import {
 } from '../../redux/admin/users/users.slice'
 const Users = () => {
 
+    // redux
     const dispatch = useDispatch()
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile)
@@ -23,14 +24,20 @@ const Users = () => {
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+    //  get token
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
         dispatch(fetchingUsers())
-        fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users')
+        fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
     }, [dispatch])
 
+    const fetchByAccountType = (accountType: string) => {
+        dispatch(fetchingUsers())
+        fetch(dispatch, retrievedUsers, retrievedUserFailed, `/users/accountType/${accountType}`, token)
+    }
+
     const { users } = useSelector((state: RootState) => state.users)
-    console.log(users)
 
     const [isClosed, setIsClosed] = useState(false)
     const [showVendor, setShowVendor] = useState(false)
@@ -45,6 +52,8 @@ const Users = () => {
         const { id } = newUser
         return navigate(`/admin/user/${id}`)
     }
+
+    console.log(profile);
 
     return (
         <>
@@ -96,30 +105,33 @@ const Users = () => {
                                             >All</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showCustomer && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
+                                                onClick={e => {
                                                     setShowCustomer(true)
                                                     setShowAllUsers(false)
                                                     setShowVendor(false)
                                                     setShowProfessional(false)
+                                                    fetchByAccountType('customer')
                                                 }}
 
                                             >Customer</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showProfessional && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
+                                                onClick={e => {
                                                     setShowProfessional(true)
                                                     setShowAllUsers(false)
                                                     setShowCustomer(false)
                                                     setShowVendor(false)
+                                                    fetchByAccountType('vendor')
                                                 }}
                                             >Vendor</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showVendor && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
+                                                onClick={e => {
                                                     setShowVendor(true)
                                                     setShowAllUsers(false)
                                                     setShowCustomer(false)
                                                     setShowProfessional(false)
+                                                    fetchByAccountType('profession')
                                                 }}
 
                                             >Professional</li>
