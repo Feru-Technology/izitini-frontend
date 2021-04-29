@@ -7,7 +7,7 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { postUser, user, userFailed } from '../../redux/admin/users/createUser.slice'
+import { postUser, getUser, userFailed } from '../../redux/admin/users/createUser.slice'
 
 const CreateCustomer = () => {
 
@@ -29,7 +29,7 @@ const CreateCustomer = () => {
 
   const createCustomer = () => {
     dispatch(postUser())
-    post(dispatch, user, userFailed, '/admin/user', { email, tin_no, contact, full_name }, token)
+    post(dispatch, getUser, userFailed, '/admin/user', { email, tin_no, contact, full_name }, token)
   }
 
   const { isLoading, createdUser, error } = useSelector((state: RootState) => state.createUser)
@@ -37,7 +37,7 @@ const CreateCustomer = () => {
   useEffect(() => {
     if (createdUser) {
       const { id } = createdUser.user
-      dispatch(user(null))
+      dispatch(getUser(null))
       return navigate(`/admin/user/${id}`
       )
     }

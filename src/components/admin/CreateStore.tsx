@@ -48,8 +48,6 @@ const CreateProduct = () => {
 
   const { users } = useSelector((state: RootState) => state.users)
 
-  console.log(users)
-
   const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
   const [name, setName] = useState<string | null>(null)

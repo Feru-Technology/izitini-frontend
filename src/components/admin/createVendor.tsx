@@ -8,7 +8,7 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { postUser, user, userFailed } from '../../redux/admin/users/createUser.slice'
+import { postUser, getUser, userFailed } from '../../redux/admin/users/createUser.slice'
 import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../redux/categories/categories.slice'
 
 const CreateVendor = () => {
@@ -42,7 +42,7 @@ const CreateVendor = () => {
 
   const createVendor = () => {
     dispatch(postUser())
-    post(dispatch, user, userFailed, '/admin/user/vendor', {
+    post(dispatch, getUser, userFailed, '/admin/user/vendor', {
       email, tin_no, contact, full_name, name, about_shop, shop_specialty_1, shop_specialty_2
     }, token)
   }
@@ -52,7 +52,7 @@ const CreateVendor = () => {
   useEffect(() => {
     if (createdUser) {
       const { id } = createdUser.user
-      dispatch(user(null))
+      dispatch(getUser(null))
       return navigate(`/admin/user/${id}`
       )
     }
