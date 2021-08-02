@@ -108,7 +108,7 @@ const Shop = () => {
                                                         htmlFor='names'>Name:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-first-name' type='text' defaultValue={currentStore.name} />
+                                                        id='grid-first-name' type='text' onChange={e => setName(e.target.value)} defaultValue={currentStore.name} />
 
                                                 </div>
 
@@ -117,7 +117,7 @@ const Shop = () => {
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' defaultValue={currentStore.shop_contact_no} />
+                                                        id='grid-last-name' type='text' onChange={e => setContact(e.target.value)} defaultValue={currentStore.shop_contact_no} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -125,7 +125,7 @@ const Shop = () => {
                                                         htmlFor='Tin no'>About:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' defaultValue={currentStore.about_shop || 'N/A'} />
+                                                        id='grid-last-name' type='text' onChange={e => setAbout_shop(e.target.value)} defaultValue={currentStore.about_shop || 'N/A'} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -133,7 +133,7 @@ const Shop = () => {
                                                         htmlFor='email'>Email:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none  ${editMode && 'pointer-events-auto border'}`}
-                                                        id='grid-last-name' type='text' defaultValue={currentStore.shop_email} />
+                                                        id='grid-last-name' type='text' onChange={e => setEmail(e.target.value)} defaultValue={currentStore.shop_email} />
                                                 </div>
 
                                                 {currentStore.shopSpecialties.map((specialties) => (
