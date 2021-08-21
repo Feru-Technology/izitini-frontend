@@ -59,6 +59,8 @@ const Shop = () => {
         }
     }, [currentStore])
 
+    console.log(currentStore);
+
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>) :
@@ -128,35 +130,36 @@ const Shop = () => {
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='Account type'>Account:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text'
-                                                    // value={currentStore.is_blocked} 
-                                                    />
-
-                                                </div>
-
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={currentStore.shop_email} />
                                                 </div>
 
+                                                {currentStore.shopSpecialties.map((specialties) => (
+                                                    <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                        <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
+                                                            htmlFor='Specialty type'>Specialty:</label>
+                                                        <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
+                                                border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
+                                                            id='grid-last-name' type='text'
+                                                            value={specialties.category.name}
+                                                        />
+                                                    </div>
+                                                ))}
+
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='Provider'>Provider:</label>
+                                                        htmlFor='Owner'>Owner:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text'
-                                                    // value={currentStore.owner} 
+                                                        value={currentStore.owner.full_name}
                                                     />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
-                                                        htmlFor='Verified'>Verified:</label>
+                                                        htmlFor='Approved'>Approved:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
                                                         id='grid-last-name' type='text' value={`${currentStore.is_approved}`} />

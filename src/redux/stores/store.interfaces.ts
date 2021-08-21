@@ -7,12 +7,17 @@ export interface IStore {
     shop_email: string
     is_blocked: boolean
     is_approved: boolean
-    owner: { name: string }
+    owner: { full_name: string }
     shop_contact_no: string
     shop_image_url: string
-    shopSpecialty: [{
+    shopSpecialties: [{
+        name: any
         id: string
-        category: string
+        category: {
+            id: string,
+            name: string,
+            image_url: string
+        }
     }]
 }
 export interface HTTPError {
