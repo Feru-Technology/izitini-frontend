@@ -1,4 +1,6 @@
 import React from 'react';
+import './register.css'
+import Submit from './submitButton';
 
 function Register() {
   return (
@@ -34,12 +36,7 @@ function Register() {
                 </span>
               </label>{' '}
               <br />
-              <input
-                type='submit'
-                name='submit'
-                className='btn btn-info btn-md'
-                value='submit'
-              />
+              <Submit />
             </div>
             <div id='register-link' className='text-right'>
               <a href='#' className='text-info'>
