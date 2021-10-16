@@ -1,19 +1,12 @@
 import React from 'react';
 import './register.css'
-import Submit from './submitButton';
 
-const inputs = () => {
+const Input: React.FC <{type: string, title: string}> = ({type, title, }) => {
   return (
-            <div className='form-group'>
-              <label className='text-info'>Username:</label> <br />
-              <input
-                type='text'
-                name='username'
-                id='username'
-                className='form-control'
-              />
-            </div>
+    <div className="input-group mb-3">
+      <input type={type} className="form-control" placeholder={title} aria-label={title} aria-describedby="basic-addon2" />
+    </div>
   );
 }
 
-export default inputs;
+export default Input;
