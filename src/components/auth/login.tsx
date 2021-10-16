@@ -3,17 +3,13 @@ import './register.css'
 import Submit from './submitButton';
 import Input from './inputs';
 
-function Register() {
+function Login() {
   return (
     <div className='container'>
       <div className='row justify-content-center align-item-center'>
-        <div className='card col-sm-6 p-5 login mt-5'>
+        <div className='card col-sm-6 p-5 login'>
           <form id='login-form' className='form' action='' method='post'>
-            <h3 className='text-center text-info'>Register</h3>
-              <Input
-              type= 'text'
-              title='full name'
-              />
+            <h3 className='text-center text-info'>Login</h3>
               <Input
               type= 'email'
               title='email'
@@ -21,10 +17,6 @@ function Register() {
               <Input
               type= 'password'
               title='password'
-              />
-              <Input
-              type= 'password'
-              title='confirm password'
               />
             <div className='form-group'>
             <div className="form-check">
@@ -35,7 +27,7 @@ function Register() {
             </div>
             <div id='register-link' className='text-right'>
               <a href='#' className='text-info'>
-                have an account Login
+                Dont have a account? Register
               </a>
             </div>
           </form>
@@ -45,4 +37,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
