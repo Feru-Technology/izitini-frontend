@@ -36,7 +36,7 @@ function Register() {
                 </span>
               </label>{' '}
               <br />
-              <Submit/>
+              <Submit title='login'/>
             </div>
             <div id='register-link' className='text-right'>
               <a href='#' className='text-info'>

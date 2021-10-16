@@ -1,9 +1,9 @@
 import React from 'react';
 import './register.css';
 
-const  Submit = () => (
+const  Submit: React.FC<{title: string, action?: () => void}> = ({title, action}) => (
   <div className='button'>
-    <button type="button" className="btn btn-primary">Submit</button>
+    <button type="button" className="btn btn-primary">{title}</button>
   </div>
 )
 
