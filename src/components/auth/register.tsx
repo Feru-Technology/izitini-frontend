@@ -4,7 +4,7 @@ function Register() {
   return (
     <div className='container'>
       <div className='row justify-content-center align-item-center'>
-        <div className='col-sm-6'>
+        <div className='card col-sm-6 login'>
           <form id='login-form' className='form' action='' method='post'>
             <h3 className='text-center text-info'>Login</h3>
             <div className='form-group'>
