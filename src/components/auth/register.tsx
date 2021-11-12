@@ -19,10 +19,6 @@ function Register() {
               title='email'
               />
               <Input
-              type= 'number'
-              title='contact'
-              />
-              <Input
               type= 'password'
               title='password'
               />
