@@ -1,5 +1,5 @@
 import React from 'react';
-import './register.css';
+import './register.scss';
 
 const  Submit: React.FC<{title: string, action?: () => void}> = ({title, action}) => (
   <div className='button'>
