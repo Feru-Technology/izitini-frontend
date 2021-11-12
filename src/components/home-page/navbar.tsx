@@ -1,5 +1,6 @@
 import React from 'react';
 import './home.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 function NavBar() {
@@ -8,12 +9,17 @@ function NavBar() {
       <nav className="navbar navbar-light bg-light">
         <div className="container-fluid">
           <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png" alt="logo" className='logo' />
-          <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          </form>
+          <div className="input-group ps-5">
+            <div id="navbar-search-autocomplete" className="form-outline">
+              <input className="form-control me-5" type="search" placeholder="Search" aria-label="Search" />
+            </div>
+            <button type="button" className="btn btn-primary">
+              <FontAwesomeIcon icon={["fal", "coffee"]} />
+            </button>
+          </div>
         </div>
-      </nav>
-    </div>
+      </nav >
+    </div >
   );
 }
 
