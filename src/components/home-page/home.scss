@@ -8,3 +8,17 @@
     background-color: bisque;
 }
 }
+
+.login-section {
+    background-color: red;
+    padding: 5% 10% !important;
+
+    .input-section {
+        background-color: aqua;
+
+        .input {
+            margin: 0 20% !important;
+        }
+    }
+
+}
