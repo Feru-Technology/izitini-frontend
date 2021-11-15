@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function NavBar() {
   return (
     <div className="">
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
         <div className="container-fluid">
           <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png" alt="logo" className='logo' />
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,18 +23,23 @@ function NavBar() {
             </form>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <p className="nav-link active" aria-current="page">Sign in as a Customer</p>
+                <p className="nav-link">Sign in as a Customer</p>
               </li>
               <li className="nav-item">
-                <p className="nav-link disabled" aria-disabled="true">Sign in as a Seller</p>
+                <p className="nav-link">Sign in as a Seller</p>
               </li>
             </ul>
           </div>
         </div>
       </nav>
 
-      <div className="container">
-        <h1>the second container</h1>
+      <div className="container d-flex justify-content-center">
+        <div className='mx-5 my-3 panel-heading'>
+          BUY YOUR PRODUCTS
+        </div>
+        <div className='mx-5 my-3 panel-heading'>
+          GET IDEAS
+        </div>
       </div>
     </div>
   );

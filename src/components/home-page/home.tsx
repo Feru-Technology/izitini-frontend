@@ -5,9 +5,9 @@ import NavBar from './navbar';
 
 function HomePage() {
   return (
-    <div className='container'>
+    <div className='w-100'>
       <NavBar />
-        <h1>hi</h1>
+      <h1>hi</h1>
     </div>
   );
 }
