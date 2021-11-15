@@ -15,7 +15,7 @@ function LoginSection() {
                             <button type="submit" className="btn mb-3">Sign Up with Email</button>
                         </div>
                     </form>
-                    <div className="form-check">
+                    <div className="form-check m-2">
                         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
                         <label className="form-check-label" htmlFor="flexCheckDefault">
                             I agree to the IZITINI terms and conditions
