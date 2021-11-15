@@ -33,7 +33,7 @@ function NavBar() {
         </div>
       </nav>
 
-      <div className="container d-flex justify-content-center">
+      <div className="d-flex justify-content-center">
         <div className='mx-5 my-3 panel-heading'>
           BUY YOUR PRODUCTS
         </div>

@@ -10,14 +10,39 @@
 }
 
 .login-section {
-    background-color: red;
+    background-image: url('https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%201.png');
     padding: 5% 10% !important;
+    // width:fit-content;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     .input-section {
-        background-color: aqua;
+        background: rgba(255, 255, 255, 0.707);
+
+        .header {
+            font-size: 500%;
+            font-weight: 700;
+            color: #004896;
+        }
+
+        .text {
+            font-size: 200%;
+            font-weight: 200%;
+        }
 
         .input {
             margin: 0 20% !important;
+
+            .btn {
+                width: 100%;
+                color: white;
+                background-color: #004896;
+            }
+
+            // .form-check-input:focus {
+            //     background-color: none;
+            // };
         }
     }
 
