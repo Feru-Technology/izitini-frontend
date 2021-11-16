@@ -4,6 +4,7 @@ import NavBar from './navbar';
 import LoginSection from './loginSection';
 import CategorySection from './categorySection';
 import ProductSection from './productSection';
+import GetIdeaSection from './getIdea';
 // import {Link} from 'react-router-dom';
 
 function HomePage() {
@@ -13,6 +14,7 @@ function HomePage() {
       <LoginSection />
       <CategorySection />
       <ProductSection />
+      <GetIdeaSection />
     </div>
   );
 }
