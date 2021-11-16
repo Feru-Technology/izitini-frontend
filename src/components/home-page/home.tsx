@@ -3,6 +3,7 @@ import './home.scss';
 import NavBar from './navbar';
 import LoginSection from './loginSection';
 import CategorySection from './categorySection';
+import ProductSection from './productSection';
 // import {Link} from 'react-router-dom';
 
 function HomePage() {
@@ -11,6 +12,7 @@ function HomePage() {
       <NavBar />
       <LoginSection />
       <CategorySection />
+      <ProductSection />
     </div>
   );
 }
