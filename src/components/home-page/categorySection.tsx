@@ -2,12 +2,12 @@ import React from 'react';
 import './home.scss'
 function CategorySection() {
     return (
-        <div className='category-section'>
-            <div className="card">
-                <img src="..." className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div className='raw category-section mt-5'>
+            <p className=''> Buy by category</p>
+            <div className="card col">
+                <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%202.png" className="card-img-top" alt="..." />
+                <div className="card-body border-top">
+                    <p className="card-text">building materials</p>
                 </div>
             </div>
         </div>

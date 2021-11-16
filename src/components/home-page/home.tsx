@@ -7,7 +7,7 @@ import CategorySection from './categorySection';
 
 function HomePage() {
   return (
-    <div className='w-100'>
+    <div className='m-1'>
       <NavBar />
       <LoginSection />
       <CategorySection />
