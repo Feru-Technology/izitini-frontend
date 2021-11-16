@@ -15,7 +15,7 @@ function ProductSection() {
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 3
+            items: 5
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -35,55 +35,55 @@ function ProductSection() {
                     <div className="card col">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <li className="fs-4">building materials</li>
+                            <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
                             <RatingView ratingValue={2} /* RatingView lirolis */ />
-                            <li className='fs-3'>50k RFW</li>
+                            <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
                     <div className="card col">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <li className="fs-4">building materials</li>
+                            <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
                             <RatingView ratingValue={2} /* RatingView lirolis */ />
-                            <li className='fs-3'>50k RFW</li>
+                            <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
                     <div className="card col">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <li className="fs-4">building materials</li>
+                            <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
                             <RatingView ratingValue={2} /* RatingView lirolis */ />
-                            <li className='fs-3'>50k RFW</li>
+                            <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
                     <div className="card col">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <li className="fs-4">building materials</li>
+                            <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
                             <RatingView ratingValue={2} /* RatingView lirolis */ />
-                            <li className='fs-3'>50k RFW</li>
+                            <li className='fs-5 fw-bolder'>50,000,0009 RFW</li>
                         </div>
                     </div>
                     <div className="card col">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <li className="fs-4">building materials</li>
-                            <li className='fs-6'>By Cimerw</li>
+                            <li className="fs-5 fw-normal">building materials</li>
+                            <li className='fs-6 fw-light'>By Cimerw</li>
                             <RatingView ratingValue={2} /* RatingView lirolis */ />
-                            <li className='fs-3'>50k RFW</li>
+                            <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
                     <div className="card col">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
-                            <li className="fs-4">building materials</li>
+                            <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
                             <RatingView ratingValue={2} /* RatingView lirolis */ />
-                            <li className='fs-3'>50k RFW</li>
+                            <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
                 </Carousel>
