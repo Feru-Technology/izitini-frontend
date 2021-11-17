@@ -5,7 +5,7 @@ import './home.scss';
 function Footer() {
     return (
         <div className="footer my-1">
-            <div className="container p-4 pb-0">
+            <div className="container p-4 pb-0 mt-5 mb-5">
 
                 <div className='row border-bottom'>
                     <div className='col-lg-4 col-md-4 col-sm-6'>
@@ -26,7 +26,7 @@ function Footer() {
 
                 <div className="row mt-3">
 
-                    <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -45,7 +45,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -64,7 +64,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -83,7 +83,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -102,7 +102,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -121,7 +121,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
