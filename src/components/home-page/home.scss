@@ -1,12 +1,29 @@
 .logo {
-    width: 10%;
+    width: 7%;
+    margin-left: 5%;
 }
 
 @media only screen and(min-width: 700px) {
-    .nav-links {
-        margin: 0 5% 0 0;
+    .nav-link {
+        // margin: 0 5% 0 0;
+        color: rgba(0, 0, 0, 0.789) !important;
+    }
+
+    .nav-item {
+        height: 50px;
+    }
+
+    .input-group {
+        width: 150%;
+        margin-left: -10%;
+
+        .input {
+            // width: 100%;
+        }
     }
 }
+
+
 
 .login-section {
     background-image: url('https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%201.png');

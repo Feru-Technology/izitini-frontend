@@ -1,11 +1,13 @@
 import React from 'react';
 import './home.scss';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { fa } from '@fortawesome/free-solid-svg-icons'
 // import {Link} from 'react-router-dom';
 
 function Footer() {
     return (
         <div className="footer my-1">
-            <div className="container p-4 pb-0 mt-5 mb-5">
+            <div className="container p-4 pb-0 mt-5">
 
                 <div className='row border-bottom'>
                     <div className='col-lg-4 col-md-4 col-sm-6'>
