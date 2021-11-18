@@ -28,7 +28,7 @@ function Footer() {
 
                 <div className="row mt-3">
 
-                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -47,7 +47,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -66,7 +66,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -85,7 +85,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -104,7 +104,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">
@@ -123,7 +123,7 @@ function Footer() {
                         </ul>
                     </div>
 
-                    <div className="col-lg-2 col-md-4 col-sm-6 my-4 mb-md-0">
+                    <div className="col-lg-2 col-md-4 col-sm-4 my-4 mb-md-0">
                         <h5 className="text-white">Links</h5>
 
                         <ul className="list-unstyled mb-0">

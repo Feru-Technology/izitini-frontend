@@ -5,7 +5,7 @@ function LoginSection() {
         <div className='login-section'>
             <div className='input-section p-5'>
                 <p className='header d-flex justify-content-center'>come home to quality</p>
-                <p className='text d-flex justify-content-center'>find inspiration, products and make it happen -- all in one place</p>
+                <p className='text d-flex justify-content-center'>Find inspiration, products and make it happen - all in one place</p>
                 <div className='row input'>
                     <form className="g-3">
                         <div className="mb-3">
@@ -14,13 +14,8 @@ function LoginSection() {
                         <div>
                             <button type="submit" className="btn mb-3">Sign Up with Email</button>
                         </div>
+                        <p className='text-center'>By signing up  I agree to the IZITINI Terms of use and Privacy Policy</p>
                     </form>
-                    <div className="form-check m-2">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label className="form-check-label" htmlFor="flexCheckDefault">
-                            I agree to the IZITINI terms and conditions
-                        </label>
-                    </div>
                 </div>
             </div>
         </div>
