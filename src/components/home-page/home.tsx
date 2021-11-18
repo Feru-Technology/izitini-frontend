@@ -10,7 +10,7 @@ import Footer from './footer';
 
 function HomePage() {
   return (
-    <div className='m-1'>
+    <div>
       <NavBar />
       <LoginSection />
       <CategorySection />

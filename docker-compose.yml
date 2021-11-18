@@ -1,0 +1,6 @@
+version: '3'
+services:
+  frontend:
+    image: izf
+    ports:
+      - 3000:6000
