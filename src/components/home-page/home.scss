@@ -3,6 +3,31 @@
     margin-left: 5%;
 }
 
+@media only screen and (max-width: 770px) {
+    .logo {
+        width: 13%;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .logo {
+        width: 23%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo {
+        width: 28%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo {
+        width: 35%;
+        margin-left: 2%;
+    }
+}
+
 @media only screen and(min-width: 700px) {
     .nav-link {
         // margin: 0 5% 0 0;
@@ -184,5 +209,19 @@
 
     img {
         width: 40%;
+    }
+
+    @media only screen and (max-width: 430px) {
+        img {
+            width: 100%;
+        }
+
+        .col-sm-6 {
+            width: 30% !important;
+        }
+
+        .fs-3 {
+            font-size: 100% !important;
+        }
     }
 }

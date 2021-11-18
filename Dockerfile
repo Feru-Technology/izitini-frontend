@@ -3,5 +3,5 @@ WORKDIR /usr/src/izitini
 COPY . .
 RUN yarn install
 RUN yarn run build
-EXPOSE 3000
+EXPOSE 4000
 CMD ["yarn", "start"]
