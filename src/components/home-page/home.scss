@@ -93,15 +93,10 @@
     .idea-section {
 
 
-        .rsis-images {
-            // margin-left: 200px !important;
-        }
-
-        .slide {
-            div {
-                width: 100% !important;
-                height: 400px !important;
-            }
+        .card-img-top {
+            width: 100%;
+            height: 15px !important;
+            object-fit: cover;
         }
 
     }

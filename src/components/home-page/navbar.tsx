@@ -1,7 +1,8 @@
 import React from 'react';
 import './home.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faUser, faHeart, faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { BsSearch } from "react-icons/bs";
 
 function NavBar() {
   return (
@@ -15,29 +16,31 @@ function NavBar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <form className="container-fluid w-25">
               <div className="input-group">
-                <input type="text" className="form-control input" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                <input type="text" className="form-control input" placeholder="search product" aria-label="Username" aria-describedby="basic-addon1" />
 
                 <span className="input-group-text" id="basic-addon1">
-                  <FontAwesomeIcon icon={faSearch} /></span>
+                  <BsSearch size={25} />
+                </span>
 
               </div>
             </form>
             <ul className="navbar-nav">
               <li className="nav-item mx-3 mt-2">
-                <p className="nav-link">
-                  <FontAwesomeIcon icon={faHeart} /> </p>
+                <p className="nav-link icon">
+                  <IoIosHeartEmpty size={25} /> </p>
               </li>
               <li className="nav-item mx-3 mt-2">
                 <p className="nav-link">
-                  <FontAwesomeIcon icon={faCartArrowDown} /> </p>
+                  <AiOutlineShoppingCart size={25} />
+                </p>
+              </li>
+              <li className="nav-item mx-3 mt-2">
+                <p className="nav-link ">
+                  <AiOutlineUser size={25} />  Sign in as a Customer</p>
               </li>
               <li className="nav-item mx-3 mt-2">
                 <p className="nav-link">
-                  <FontAwesomeIcon icon={faUser} />  Sign in as a Customer</p>
-              </li>
-              <li className="nav-item mx-3 mt-2">
-                <p className="nav-link">
-                  <FontAwesomeIcon icon={faUser} />  Sign in as a Seller</p>
+                  <AiOutlineUser size={25} />  Sign in as a Seller</p>
               </li>
             </ul>
           </div>
