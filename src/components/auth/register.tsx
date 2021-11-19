@@ -1,7 +1,8 @@
 import React from 'react';
-import './register.css'
+import './register.scss'
 import Submit from './submitButton';
 import Input from './inputs';
+import {Link} from 'react-router-dom';
 
 function Register() {
   return (

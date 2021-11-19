@@ -1,0 +1,227 @@
+.logo {
+    width: 7%;
+    margin-left: 5%;
+}
+
+@media only screen and (max-width: 770px) {
+    .logo {
+        width: 13%;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .logo {
+        width: 23%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo {
+        width: 28%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .logo {
+        width: 35%;
+        margin-left: 2%;
+    }
+}
+
+@media only screen and(min-width: 700px) {
+    .nav-link {
+        // margin: 0 5% 0 0;
+        color: rgba(0, 0, 0, 0.789) !important;
+    }
+
+    .nav-item {
+        height: 50px;
+    }
+
+    .input-group {
+        width: 150%;
+        margin-left: -10%;
+
+        .input {
+            // width: 100%;
+        }
+    }
+}
+
+
+
+.login-section {
+    background-image: url('https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%201.png');
+    padding: 5% 10% !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .input-section {
+        background: rgba(255, 255, 255, 0.707);
+
+        .header {
+            font-size: 500%;
+            font-weight: 700;
+            color: #004896;
+        }
+
+        .text {
+            font-size: 200%;
+            font-weight: 200%;
+        }
+
+        .input {
+            margin: 0 30% !important;
+
+            .btn {
+                width: 100%;
+                color: white;
+                background-color: #004896;
+            }
+        }
+
+        @media only screen and (max-width: 770px) {
+            .header {
+                font-size: 300%;
+                font-weight: 400;
+            }
+
+            .text {
+                font-size: 100% !important;
+                font-weight: 100%;
+            }
+
+            .input {
+                margin: 0 15% !important;
+            }
+        }
+
+        @media only screen and (max-width: 430px) {
+
+            .header {
+                font-size: 150%;
+                font-weight: 400;
+                margin: 0 -7% !important;
+            }
+
+            .text {
+                font-size: 50% !important;
+                font-weight: 100%;
+                margin: 0 -7% !important;
+            }
+
+            .input {
+                margin: 0 -4% !important;
+            }
+
+            .text-center {
+                font-size: 50% !important;
+                font-weight: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 430px) {
+            .header {
+                font-size: 147%;
+                font-weight: 400;
+            }
+
+            .input {
+                margin: 0 -10% !important;
+            }
+        }
+
+        @media only screen and (max-width: 330px) {
+            .header {
+                font-size: 116%;
+                font-weight: 400;
+            }
+
+            .input {
+                margin: 0 -17% !important;
+            }
+        }
+    }
+
+}
+
+.category-section {
+    padding: 0 3%;
+
+    .center {
+
+        .col {
+            margin: 0 3%;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.282), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    }
+
+}
+
+.product-section {
+    padding: 0 3%;
+
+    .center {
+
+        .col {
+            margin: 0 3%;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+    }
+
+}
+
+
+.idea-section {
+
+    .card-slide {
+        width: 90%;
+        margin: 0 5%;
+    }
+
+
+    .card-img-top {
+        width: 100%;
+        height: 350px !important;
+        object-fit: cover;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .idea-section {
+
+
+        .card-img-top {
+            width: 100%;
+        }
+
+    }
+
+}
+
+
+.footer {
+    background-color: #004896;
+
+    img {
+        width: 40%;
+    }
+
+    @media only screen and (max-width: 430px) {
+        img {
+            width: 100%;
+        }
+
+        .col-sm-6 {
+            width: 30% !important;
+        }
+
+        .fs-3 {
+            font-size: 100% !important;
+        }
+    }
+}
