@@ -1,5 +1,6 @@
 import React from 'react';
 import './home.scss'
+import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
@@ -54,6 +55,27 @@ function NavBar() {
         <div className='mx-5 my-3 panel-heading'>
           GET IDEAS
         </div>
+      </div>
+      <div className="d-flex justify-content-center nav-categories">
+        <p className="nav-item mx-3">
+          Building Materials
+        </p><p className="nav-item mx-3">
+          Paint
+        </p><p className="nav-item mx-3">
+          Building Materials
+        </p><p className="nav-item mx-3">
+          Electricity and lightenings
+        </p><p className="nav-item mx-3">
+          Bath & Faucet
+        </p><p className="nav-item mx-3">
+          Steel
+        </p><p className="nav-item mx-3">
+          Wood
+        </p><p className="nav-item mx-3">
+          Electricity & Lightning
+        </p><p className="nav-item mx-3">
+          see all
+        </p>
       </div>
     </div>
   );

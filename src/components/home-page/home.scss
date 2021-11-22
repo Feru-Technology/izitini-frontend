@@ -48,103 +48,48 @@
     }
 }
 
+.nav-categories {
+    background-color: #E8E8E8 !important;
+}
 
+.ad {
 
-.login-section {
-    background-image: url('https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%201.png');
-    padding: 5% 10% !important;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    .category {
 
-    .input-section {
-        background: rgba(255, 255, 255, 0.707);
+        .cat {
+            height: 16.1rem !important;
+        }
 
-        .header {
-            font-size: 500%;
-            font-weight: 700;
+        .text-h {
             color: #004896;
+        }
+    }
+
+    .c {
+        background-color: #F6F7F8;
+        height: 18.8em !important;
+
+        .image {
+            width: 90% !important;
+            height: 70% !important;
         }
 
         .text {
-            font-size: 200%;
-            font-weight: 200%;
-        }
 
-        .input {
-            margin: 0 30% !important;
+            .text-h {
+                color: #004896;
+            }
 
             .btn {
-                width: 100%;
-                color: white;
                 background-color: #004896;
-            }
-        }
-
-        @media only screen and (max-width: 770px) {
-            .header {
-                font-size: 300%;
-                font-weight: 400;
-            }
-
-            .text {
-                font-size: 100% !important;
-                font-weight: 100%;
-            }
-
-            .input {
-                margin: 0 15% !important;
-            }
-        }
-
-        @media only screen and (max-width: 430px) {
-
-            .header {
-                font-size: 150%;
-                font-weight: 400;
-                margin: 0 -7% !important;
-            }
-
-            .text {
-                font-size: 50% !important;
-                font-weight: 100%;
-                margin: 0 -7% !important;
-            }
-
-            .input {
-                margin: 0 -4% !important;
-            }
-
-            .text-center {
-                font-size: 50% !important;
-                font-weight: 100%;
-            }
-        }
-
-        @media only screen and (max-width: 430px) {
-            .header {
-                font-size: 147%;
-                font-weight: 400;
-            }
-
-            .input {
-                margin: 0 -10% !important;
-            }
-        }
-
-        @media only screen and (max-width: 330px) {
-            .header {
-                font-size: 116%;
-                font-weight: 400;
-            }
-
-            .input {
-                margin: 0 -17% !important;
+                color: #FFF;
             }
         }
     }
 
+
 }
+
 
 .category-section {
     padding: 0 3%;
@@ -181,7 +126,6 @@
         margin: 0 5%;
     }
 
-
     .card-img-top {
         width: 100%;
         height: 350px !important;
@@ -194,7 +138,6 @@
 
     .idea-section {
 
-
         .card-img-top {
             width: 100%;
         }
@@ -202,7 +145,6 @@
     }
 
 }
-
 
 .footer {
     background-color: #004896;
