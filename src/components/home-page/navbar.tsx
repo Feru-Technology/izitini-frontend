@@ -57,23 +57,23 @@ function NavBar() {
         </div>
       </div>
       <div className="d-flex justify-content-center nav-categories">
-        <p className="nav-item mx-3">
+        <p className="nav-item mx-3 mt-2">
           Building Materials
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Paint
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Building Materials
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Electricity and lightenings
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Bath & Faucet
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Steel
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Wood
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           Electricity & Lightning
-        </p><p className="nav-item mx-3">
+        </p><p className="nav-item mx-3 mt-2">
           see all
         </p>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import './home.scss'
 import Carousel from "react-multi-carousel";
+
 function AdSection(props: any) {
     const responsive = {
         desktop: {
