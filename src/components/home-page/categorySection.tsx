@@ -14,13 +14,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -28,13 +30,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -42,13 +46,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -56,13 +62,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -70,13 +78,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -84,13 +94,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -98,13 +110,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -112,13 +126,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className='col-lg-4 col-md-6 col-sm-12 mb-3'>
                     <div className="card col">
@@ -126,13 +142,15 @@ function CategorySection() {
                         <div className='text'>Building Materials</div>
 
                     </div>
-                    <ul className='mt-3'>
-                        <li>Power tools</li>
-                        <li>Hard Tools</li>
-                        <li>Tool Tools</li>
-                        <li>Ait Compressor Tools</li>
-                        <li>Sere all</li>
-                    </ul>
+                    <div className="d-none d-sm-block">
+                        <ul className='mt-3'>
+                            <li>Power tools</li>
+                            <li>Hard Tools</li>
+                            <li>Tool Tools</li>
+                            <li>Ait Compressor Tools</li>
+                            <li>Sere all</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 

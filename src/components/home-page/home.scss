@@ -51,6 +51,35 @@
 .nav-categories {
     background-color: #E8E8E8 !important;
     height: 2.6rem;
+
+}
+
+@media only screen and (max-width: 1160px) {
+
+    .nav-categories {
+        background-color: #E8E8E8 !important;
+        height: 2.6rem;
+
+        .nav-item {
+            font-size: 0.9rem;
+            margin: 1% 1% !important;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 950px) {
+
+    .nav-categories {
+        background-color: #E8E8E8 !important;
+        height: 2rem;
+
+        .nav-item {
+            font-size: 0.65rem;
+            margin: 1% 1% !important;
+        }
+    }
+
 }
 
 .ad {
@@ -88,9 +117,9 @@
             }
         }
     }
-
-
 }
+
+@media only screen and (max-width: 1030px) {}
 
 
 .category-section {
@@ -125,6 +154,29 @@
         margin: 4% -1%;
     }
 
+}
+
+@media only screen and (max-width: 950px) {
+    .category-section {
+
+        .col {
+            margin: 0;
+            box-shadow: none;
+            position: relative;
+            border-radius: 0% !important;
+
+            .card-img-top {
+                height: 14rem;
+            }
+
+            .text {
+                position: absolute;
+                top: 1rem;
+                left: 1rem;
+                padding: 0;
+            }
+        }
+    }
 }
 
 .product-section {
