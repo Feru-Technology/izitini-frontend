@@ -2,8 +2,9 @@ import React from 'react';
 import './home.scss'
 import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty, IoMdConstruct } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
+import { FaBuilding } from "react-icons/fa";
 
 function NavBar() {
   return (
@@ -50,10 +51,10 @@ function NavBar() {
 
       <div className="d-flex justify-content-center">
         <div className='mx-5 my-3 panel-heading'>
-          BUY YOUR PRODUCTS
+          <IoMdConstruct size={21} /> BUY YOUR PRODUCTS
         </div>
         <div className='mx-5 my-3 panel-heading'>
-          GET IDEAS
+          <FaBuilding size={18} /> GET IDEAS
         </div>
       </div>
       <div className="d-flex justify-content-center nav-categories">

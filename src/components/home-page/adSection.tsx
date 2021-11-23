@@ -1,6 +1,7 @@
 import React from 'react';
 import './home.scss'
 import Carousel from "react-multi-carousel";
+import { IoMdConstruct } from "react-icons/io";
 
 function AdSection(props: any) {
     const responsive = {
@@ -22,7 +23,7 @@ function AdSection(props: any) {
             <div className='col-3 category'>
                 <div className='row text-center border-bottom'>
                     <p className='fs-5 fw-bold text-h'>
-                        BUY YOUR PRODUCTS
+                        <IoMdConstruct size={20} /> BUY YOUR PRODUCTS
                     </p>
                 </div>
                 <div className='row overflow-auto cat'>
