@@ -95,12 +95,33 @@
 .category-section {
     padding: 0 3%;
 
-    .center {
+    .col {
+        margin: 0 -1.5%;
+        box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.282), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: relative;
+        border-radius: 0% !important;
 
-        .col {
-            margin: 0 3%;
-            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.282), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        .card-img-top {
+            height: 14rem;
         }
+
+        .text {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-color: rgba(255,
+                    255,
+                    255,
+                    0.802);
+            padding: 0 0.5rem;
+        }
+
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 4% -1%;
     }
 
 }
