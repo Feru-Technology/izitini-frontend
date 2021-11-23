@@ -79,7 +79,7 @@ function AdSection(props: any) {
                         </div>
                         <div className='col-6 text p-1'>
                             <p className='fs-3 fw-bold text-h'>Build Your Dreamed Project With The Best Quality Materials</p>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
+                            <p className='text'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod</p>
                             <div className='text-center'><button type='button' className='btn'>SHOP NOW</button></div>
                         </div>
                     </div>
