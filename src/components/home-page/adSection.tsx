@@ -27,37 +27,37 @@ function AdSection(props: any) {
                     </p>
                 </div>
                 <div className='row overflow-auto cat'>
-                    <p className=" mt-3">
+                    <p className="text mt-3">
                         Building Materials
-                    </p><p className="">
+                    </p><p className="text">
                         Paint
-                    </p><p className="">
+                    </p><p className="text">
                         Building Materials
-                    </p><p className="">
+                    </p><p className="text">
                         Electricity and lightenings
-                    </p><p className="">
+                    </p><p className="text">
                         Bath & Faucet
-                    </p><p className="">
+                    </p><p className="text">
                         Steel
                     </p>
-                    <p className="">
+                    <p className="text">
                         Wood
                     </p>
-                    <p className="">
+                    <p className="text">
                         Electricity & Lightning
-                    </p><p className="">
+                    </p><p className="text">
                         Building Materials
-                    </p><p className="">
+                    </p><p className="text">
                         Electricity and lightenings
-                    </p><p className="">
+                    </p><p className="text">
                         Bath & Faucet
-                    </p><p className="">
+                    </p><p className="text">
                         Steel
                     </p>
-                    <p className="">
+                    <p className="text">
                         Wood
                     </p>
-                    <p className="">
+                    <p className="text">
                         Electricity & Lightning
                     </p>
                 </div>

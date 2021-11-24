@@ -119,6 +119,47 @@
     }
 }
 
+@media screen and (max-width: 950px) {
+
+    .ad {
+
+        .category {
+
+            .text-h {
+                font-size: 0.8rem !important;
+            }
+
+            .cat {
+                height: 10rem !important;
+
+                .text {
+                    margin: 0;
+                    font-size: 0.8rem !important;
+                }
+            }
+        }
+
+        .c {
+            height: 12rem !important;
+
+            .image {
+                height: 80% !important;
+            }
+        }
+
+        .text {
+
+            .text-h {
+                font-size: 1rem !important;
+            }
+
+            .text {
+                font-size: 0.8rem !important;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 760px) {
 
     .ad {
@@ -192,6 +233,7 @@
 
         .col {
             box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.282), 0 1rem 1rem 0rem rgba(0, 0, 0, 0.19);
+            border-radius: 0 !important;
 
             .card-img-top {
                 height: 14rem;
