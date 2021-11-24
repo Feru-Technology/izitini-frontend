@@ -299,6 +299,60 @@
 
 }
 
+@media screen and (max-width: 760px) {
+
+    .product-section {
+        padding: 1.5% !important;
+
+        .center {
+
+            .col {
+                padding: 1% !important;
+                margin: 3% !important;
+
+                .card-img-top {
+                    // height: 5rem;
+                }
+
+                .card-body {
+
+                    .fs-5 {
+                        font-size: 1rem !important;
+                    }
+
+                    .fs-6 {
+                        font-size: 0.8rem !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 370px) {
+
+    .product-section {
+
+        .center {
+
+            .col {
+                .card-img-top {}
+
+                .card-body {
+
+                    .fs-5 {
+                        font-size: 0.8rem !important;
+                    }
+
+                    .fs-6 {
+                        font-size: 0.6rem !important;
+                    }
+
+                }
+            }
+        }
+    }
+}
 
 .idea-section {
 
