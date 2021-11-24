@@ -23,7 +23,7 @@ function ProductSection() {
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 1
+            items: 2
         }
     };
 
@@ -32,57 +32,63 @@ function ProductSection() {
             <p className='text-center fs-4 fw-bolder'>Recent Updates</p>
             <div className='center'>
                 <Carousel responsive={responsive}>
-                    <div className="card col">
+                    <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
-                            <RatingView ratingValue={2} /* RatingView lirolis */ />
+                            <div className='ratings'><RatingView ratingValue={2} /></div>
+
                             <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
-                    <div className="card col">
+                    <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
-                            <RatingView ratingValue={2} /* RatingView lirolis */ />
+                            <div className='ratings'><RatingView ratingValue={2} /></div>
+
                             <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
-                    <div className="card col">
+                    <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
-                            <RatingView ratingValue={2} /* RatingView lirolis */ />
+                            <div className='ratings'><RatingView ratingValue={2} /></div>
+
                             <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
-                    <div className="card col">
+                    <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
-                            <RatingView ratingValue={2} /* RatingView lirolis */ />
+                            <div className='ratings'><RatingView ratingValue={2} /></div>
+
                             <li className='fs-5 fw-bolder'>50,000,0009 RFW</li>
                         </div>
                     </div>
-                    <div className="card col">
+                    <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <li className="fs-5 fw-normal">building materials</li>
-                            <li className='fs-6 fw-light'>By Cimerw</li>
-                            <RatingView ratingValue={2} /* RatingView lirolis */ />
+                            <li className='fs-6 fw-li<RatingView ratingValue={2}/>ght'>By Cimerw</li>
+                            <div className='ratings'><RatingView ratingValue={2} /></div>
+
                             <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>
-                    <div className="card col">
+                    <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
                         <div className="card-body">
                             <li className="fs-5 fw-normal">building materials</li>
                             <li className='fs-6'>By Cimerw</li>
-                            <RatingView ratingValue={2} /* RatingView lirolis */ />
+                            <div className='ratings'><RatingView ratingValue={2} /></div>
+
                             <li className='fs-5 fw-bolder'>50k RFW</li>
                         </div>
                     </div>

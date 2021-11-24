@@ -31,22 +31,14 @@ function GetIdeaSection(props: any) {
             <p className='text-center fs-4 fw-bolder'>Get Ideas</p>
             <div className='card-slide'>
                 <Carousel
-                    // swipeable={false}
-                    // draggable={true}
-                    // showDots={false}
                     responsive={responsive}
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
                     autoPlay={props.deviceType !== "mobile" ? true : false}
                     autoPlaySpeed={1000}
                     keyBoardControl={true}
-                    // customTransition="all .5"
                     transitionDuration={3000}
-                    // containerClass="carousel-container"
                     removeArrowOnDeviceType={["tablet", "mobile"]}
-                // deviceType={props.deviceType}
-                // dotListClass="custom-dot-list-style"
-                // itemClass="carousel-item-padding-40-px"
                 >
                     <div className="m-1">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-daria-shevtsova-1029803.jpg" className="card-img-top" alt="..." />

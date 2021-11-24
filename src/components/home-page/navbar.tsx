@@ -1,8 +1,10 @@
 import React from 'react';
 import './home.scss'
+import { Link, NavLink } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty, IoMdConstruct } from "react-icons/io";
 import { BsSearch } from "react-icons/bs";
+import { FaBuilding } from "react-icons/fa";
 
 function NavBar() {
   return (
@@ -49,12 +51,36 @@ function NavBar() {
 
       <div className="d-flex justify-content-center">
         <div className='mx-5 my-3 panel-heading'>
-          BUY YOUR PRODUCTS
+          <IoMdConstruct size={21} /> BUY YOUR PRODUCTS
         </div>
         <div className='mx-5 my-3 panel-heading'>
-          GET IDEAS
+          <FaBuilding size={18} /> GET IDEAS
         </div>
       </div>
+      <div className='d-none d-sm-block'>
+        <div className="d-flex justify-content-center nav-categories">
+          <p className="nav-item mx-lg-3 mt-2">
+            Building Materials
+          </p><p className="nav-item mx-3 mt-2">
+            Paint
+          </p><p className="nav-item mx-3 mt-2">
+            Building Materials
+          </p><p className="nav-item mx-3 mt-2">
+            Electricity and lightenings
+          </p><p className="nav-item mx-3 mt-2">
+            Bath & Faucet
+          </p><p className="nav-item mx-3 mt-2">
+            Steel
+          </p><p className="nav-item mx-3 mt-2">
+            Wood
+          </p><p className="nav-item mx-3 mt-2">
+            Electricity & Lightning
+          </p><p className="nav-item mx-3 mt-2">
+            see all
+          </p>
+        </div>
+      </div>
+
     </div>
   );
 }

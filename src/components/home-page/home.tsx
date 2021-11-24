@@ -1,7 +1,7 @@
 import React from 'react';
 import './home.scss';
 import NavBar from './navbar';
-import LoginSection from './loginSection';
+import AdSection from './adSection';
 import CategorySection from './categorySection';
 import ProductSection from './productSection';
 import GetIdeaSection from './getIdea';
@@ -12,7 +12,7 @@ function HomePage() {
   return (
     <div>
       <NavBar />
-      <LoginSection />
+      <AdSection />
       <CategorySection />
       <ProductSection />
       <GetIdeaSection />
