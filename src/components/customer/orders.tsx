@@ -1,15 +1,22 @@
-import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useSelector } from 'react-redux'
+import { fetch } from '../../api/apiAction'
+import { useState, useEffect } from 'react'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { useSelector, useDispatch } from 'react-redux'
+import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/orders.slice'
 
 const MyOrders = () => {
 
-    const { isLoading, profile } = useSelector((state: RootState) => state.profile);
+    // redux
+    const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+
+    const { profile } = useSelector((state: RootState) => state.profile)
 
     const [isClosed, setIsClosed] = useState(false)
     const [showRejectedOrders, setShowRejectedOrders] = useState(false)
@@ -20,7 +27,13 @@ const MyOrders = () => {
         query: '(min-width: 640px)',
     })
 
-    const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(getOrders())
+        fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
+    }, [dispatch, token])
+
+    const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
+    console.log(orders)
 
     return (
         <>
@@ -79,6 +92,8 @@ const MyOrders = () => {
 
                                     >Rejected Orders</div>
                                 </div>
+
+                                {/* orders */}
 
                                 <div>
                                     <div className='flex flex-col md:flex-row md:justify-center md:items-center'> </div>

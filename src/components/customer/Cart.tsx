@@ -164,7 +164,6 @@ const Cart = () => {
                                                         </button>
                                                     </td>
                                                 </tr>
-
                                             </tbody>
                                         ))}
                                     </table>
