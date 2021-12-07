@@ -34,7 +34,6 @@ const Cart = () => {
         destroy(dispatch, getCart, cartFailed, `/orders/${order_id}/${product_id}`, token)
     }
 
-
     // increase order quantity handler
     const increaseOrderItemQyt = (order_id: string, product_id: string) => {
         update(dispatch, getCart, cartFailed, `/orders/increase-quantity/${order_id}/${product_id}`, {}, token)
@@ -192,7 +191,6 @@ const Cart = () => {
             }
             <Footer />
         </div>
-
     )
 }
 
