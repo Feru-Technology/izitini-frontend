@@ -13,8 +13,8 @@ const MyOrders = () => {
 
     const [isClosed, setIsClosed] = useState(false)
     const [showRejectedOrders, setShowRejectedOrders] = useState(false)
-    const [showCompletedOrders, setShowCompletedOrders] = useState(true)
-    const [showProcessingOrders, setShowProcessingOrders] = useState(false)
+    const [showCompletedOrders, setShowCompletedOrders] = useState(false)
+    const [showProcessingOrders, setShowProcessingOrders] = useState(true)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -55,14 +55,7 @@ const MyOrders = () => {
 
                                 {/* customer orders */}
                                 <div className=' px-1 pt-6 md:p-5 flex justify-center text-xs'>
-                                    <div className={`border-2 p-2 mx-1 rounded-l-lg ${showCompletedOrders && 'border-light-blue bg-light-blue text-white'}`}
-                                        onClick={() => {
-                                            setShowCompletedOrders(true)
-                                            setShowRejectedOrders(false)
-                                            setShowProcessingOrders(false)
-                                        }}
-                                    >Completed Orders</div>
-                                    <div className={`border-2 p-2 mx-1 ${showProcessingOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                    <div className={`border-2 p-2 mx-1 rounded-l-lg ${showProcessingOrders && 'border-light-blue bg-light-blue text-white'}`}
 
                                         onClick={() => {
                                             setShowRejectedOrders(false)
@@ -70,6 +63,13 @@ const MyOrders = () => {
                                             setShowCompletedOrders(false)
                                         }}
                                     >Processing Orders</div>
+                                    <div className={`border-2 p-2 mx-1 ${showCompletedOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                        onClick={() => {
+                                            setShowCompletedOrders(true)
+                                            setShowRejectedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
+                                    >Completed Orders</div>
                                     <div className={`border-2 p-2 mx-1 rounded-r-lg ${showRejectedOrders && 'border-light-blue bg-light-blue text-white'}`}
                                         onClick={() => {
                                             setShowRejectedOrders(true)
