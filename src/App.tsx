@@ -6,9 +6,10 @@ import Shops from './components/admin/shops'
 import Users from './components/admin/users'
 import Store from './components/vendor/Store'
 import Orders from './components/vendor/Orders'
-import Reports from './components/vendor/Reports'
+import Reports from './components/admin/reports'
 import Coupons from './components/vendor/Coupons'
 import Products from './components/admin/products'
+import MyReports from './components/vendor/Reports'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyOrders from './components/customer/orders'
@@ -63,7 +64,7 @@ function App() {
                 <Route path='/vendor' element={<VendorDashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
                 <Route path='/vendor/orders' element={<Orders />} />
-                <Route path='/vendor/reports' element={<Reports />} />
+                <Route path='/vendor/reports' element={<MyReports />} />
                 <Route path='/vendor/coupons' element={<Coupons />} />
                 <Route path='/vendor/settings' element={<Settings />} />
                 <Route path='/vendor/products' element={<MyProducts />} />
@@ -75,6 +76,7 @@ function App() {
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route path='/admin/users' element={<Users />} />
                 <Route path='/admin/shops' element={<Shops />} />
+                <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
 
                 <Route path='*' element={<NotFound />} />

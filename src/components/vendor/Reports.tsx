@@ -5,7 +5,7 @@ import Header from './Header'
 import { Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 
-const Reports = () => {
+const MyReports = () => {
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
@@ -39,11 +39,11 @@ const Reports = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div>
-          Reports page ....
+          MyReports page ....
         </div>
       </div>
     </div>
   )
 }
 
-export default Reports
+export default MyReports

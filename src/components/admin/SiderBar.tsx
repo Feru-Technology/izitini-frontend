@@ -3,11 +3,11 @@ import { BsShop } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { Transition } from '@headlessui/react'
 import { FaProductHunt } from 'react-icons/fa'
+import { MdReportProblem } from 'react-icons/md'
 import { loggedIn } from '../../redux/profile.slice'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
     CogIcon,
-    GiftIcon,
     LogoutIcon,
     TemplateIcon,
     UserGroupIcon
@@ -159,6 +159,26 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         <FaProductHunt className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Products
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('Reports') &&
+                                    'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/Reports'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('Reports') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <MdReportProblem className='flex-shrink-0 h-5 w-5 text-red-500' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Reports
                                         </p>
                                     </div>
                                 </Link>
