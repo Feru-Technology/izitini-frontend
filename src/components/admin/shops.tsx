@@ -15,10 +15,6 @@ const Shops = () => {
         query: '(min-width: 640px)',
     })
     const [isClosed, setIsClosed] = useState(false)
-    const [showVendor, setShowVendor] = useState(false)
-    const [showAllUsers, setShowAllUsers] = useState(true)
-    const [showCustomer, setShowCustomer] = useState(false)
-    const [showProfessional, setShowProfessional] = useState(false)
 
     const navigate = useNavigate()
 
@@ -58,49 +54,6 @@ const Shops = () => {
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
                                     <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Shops</p>
-                                    <div className='  border-gray-200'>
-                                        <ul className='w-full text-xs flex cursor-pointer'>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
-
-                                                onClick={() => {
-                                                    setShowAllUsers(true)
-                                                    setShowCustomer(false)
-                                                    setShowVendor(false)
-                                                    setShowProfessional(false)
-                                                }}
-                                            >All</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showCustomer && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    setShowCustomer(true)
-                                                    setShowAllUsers(false)
-                                                    setShowVendor(false)
-                                                    setShowProfessional(false)
-                                                }}
-
-                                            >Customer</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showProfessional && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    setShowProfessional(true)
-                                                    setShowAllUsers(false)
-                                                    setShowCustomer(false)
-                                                    setShowVendor(false)
-                                                }}
-                                            >Vendor</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showVendor && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    setShowVendor(true)
-                                                    setShowAllUsers(false)
-                                                    setShowCustomer(false)
-                                                    setShowProfessional(false)
-                                                }}
-
-                                            >Professional</li>
-                                        </ul>
-                                    </div>
 
                                     <div className='w-full my-4 md:my-5 lg:my-6 '>
                                         <table className='w-full border-gray-200 text-gray-600 border'>
