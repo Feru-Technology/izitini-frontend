@@ -42,8 +42,8 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
                                     />
                                 </button>
                             )}
-                        <h2 className='font-bold font-lg mx-2  text-2xl'>
-                            {name} Dashboard
+                        <h2 className='font-medium text-lg lg:font-bold mx-2  lg:text-2xl'>
+                            <span className=''>{name}</span>  Dashboard
                         </h2>
                     </div>
                     <div className='flex items-center justify-evenly space-x-3 mx-4'>
