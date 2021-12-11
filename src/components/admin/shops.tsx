@@ -4,8 +4,8 @@ import Header from '../vendor/Header'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Shops = () => {
 
@@ -56,9 +56,8 @@ const Shops = () => {
 
                                 {/* customer dashboard */}
 
-
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
-                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Users</p>
+                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Shops</p>
                                     <div className='  border-gray-200'>
                                         <ul className='w-full text-xs flex cursor-pointer'>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
@@ -112,7 +111,7 @@ const Shops = () => {
                                                         className='
                                                 w-2/5 py-3 lg:text-base
                                     '
-                                                    >Names</th>
+                                                    >Name</th>
                                                     <th
                                                         scope='col'
                                                         className='
@@ -125,6 +124,12 @@ const Shops = () => {
                                                 py-3 lg:text-base
                                     '
                                                     >Contacts</th>
+                                                    <th
+                                                        scope='col'
+                                                        className='
+                                                py-3 lg:text-base
+                                    '
+                                                    >Specialty</th>
                                                 </tr>
                                             </thead>
 
@@ -138,7 +143,7 @@ const Shops = () => {
                                                             <div className='md:w-2/4'>
 
                                                                 <p className='font-normal text-sm'>
-                                                                    <span className=''>Product Name</span>
+                                                                    <span className=''>Shop Name</span>
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -148,6 +153,9 @@ const Shops = () => {
                                                     </td>
                                                     <td className='py-3 '>
                                                         <p className='font-normal text-sm'>0786493807</p>
+                                                    </td>
+                                                    <td className='py-3 '>
+                                                        <p className='font-normal text-sm'>Electricity && Water</p>
                                                     </td>
                                                 </tr>
                                             </tbody>
