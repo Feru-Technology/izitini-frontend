@@ -8,10 +8,11 @@ import Store from './components/vendor/Store'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
-import Products from './components/vendor/Products'
+import Products from './components/admin/products'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyOrders from './components/customer/orders'
+import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
 import AdminDashboard from './components/admin/Dashboard'
 import NotFound from './components/customer/NotFoundPage'
@@ -65,7 +66,7 @@ function App() {
                 <Route path='/vendor/reports' element={<Reports />} />
                 <Route path='/vendor/coupons' element={<Coupons />} />
                 <Route path='/vendor/settings' element={<Settings />} />
-                <Route path='/vendor/products' element={<Products />} />
+                <Route path='/vendor/products' element={<MyProducts />} />
                 <Route path='/vendor/create-store' element={<CreateStore />} />
                 <Route path='/vendor/create-product' element={<CreateProduct />} />
 
@@ -74,6 +75,7 @@ function App() {
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route path='/admin/users' element={<Users />} />
                 <Route path='/admin/shops' element={<Shops />} />
+                <Route path='/admin/products' element={<Products />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>

@@ -1,6 +1,8 @@
 import React from 'react'
+import { BsShop } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { Transition } from '@headlessui/react'
+import { FaProductHunt } from 'react-icons/fa'
 import { loggedIn } from '../../redux/profile.slice'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
@@ -134,9 +136,29 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <GiftIcon className='flex-shrink-0 h-5 w-5' />
+                                        <BsShop className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Shops
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('products') &&
+                                    'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/products'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('products') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <FaProductHunt className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Products
                                         </p>
                                     </div>
                                 </Link>
