@@ -190,7 +190,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/settings'
+                                    to='/admin/settings'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') &&
                                         'hover:text-gray-400'
                                         }`}

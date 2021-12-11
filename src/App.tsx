@@ -1,20 +1,21 @@
 import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
-import Home from './components/customer/home'
-import Cart from './components/customer/Cart'
 import Shops from './components/admin/shops'
 import Users from './components/admin/users'
+import Cart from './components/customer/Cart'
 import Store from './components/vendor/Store'
+import Home from './components/customer/home'
 import Orders from './components/vendor/Orders'
 import Reports from './components/admin/reports'
 import Coupons from './components/vendor/Coupons'
 import Products from './components/admin/products'
-import MyReports from './components/vendor/Reports'
+import MyOrders from './components/customer/orders'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
-import MyOrders from './components/customer/orders'
+import MyReports from './components/vendor/Reports'
 import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
+import AdminSettings from './components/admin/Settings'
 import AdminDashboard from './components/admin/Dashboard'
 import NotFound from './components/customer/NotFoundPage'
 import CreateStore from './components/vendor/CreateStore'
@@ -78,6 +79,7 @@ function App() {
                 <Route path='/admin/shops' element={<Shops />} />
                 <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
+                <Route path='/admin/settings' element={<AdminSettings />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>
