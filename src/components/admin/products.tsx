@@ -16,10 +16,10 @@ const Products = () => {
     })
 
     const [isClosed, setIsClosed] = useState(false)
-    const [showVendor, setShowVendor] = useState(false)
-    const [showAllUsers, setShowAllUsers] = useState(true)
-    const [showCustomer, setShowCustomer] = useState(false)
-    const [showProfessional, setShowProfessional] = useState(false)
+    const [showWaiting, setShowWaiting] = useState(false)
+    const [showAllProducts, setShowAllProducts] = useState(true)
+    const [showApproved, setShowApproved] = useState(false)
+    const [showUnpublished, setShowUnpublished] = useState(false)
 
     const navigate = useNavigate()
 
@@ -58,48 +58,48 @@ const Products = () => {
                                 {/* admin dashboard */}
 
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
-                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Users</p>
+                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Products</p>
                                     <div className='  border-gray-200'>
                                         <ul className='w-full text-xs flex cursor-pointer'>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
+                                            py-3 ${showAllProducts && 'border-b-2 border-dark-blue'}`}
 
                                                 onClick={() => {
-                                                    setShowAllUsers(true)
-                                                    setShowCustomer(false)
-                                                    setShowVendor(false)
-                                                    setShowProfessional(false)
+                                                    setShowAllProducts(true)
+                                                    setShowApproved(false)
+                                                    setShowWaiting(false)
+                                                    setShowUnpublished(false)
                                                 }}
                                             >All</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showCustomer && 'border-b-2 border-dark-blue'}`}
+                                            py-3 ${showApproved && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
-                                                    setShowCustomer(true)
-                                                    setShowAllUsers(false)
-                                                    setShowVendor(false)
-                                                    setShowProfessional(false)
+                                                    setShowApproved(true)
+                                                    setShowAllProducts(false)
+                                                    setShowWaiting(false)
+                                                    setShowUnpublished(false)
                                                 }}
 
-                                            >Customer</li>
+                                            >Approved</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showProfessional && 'border-b-2 border-dark-blue'}`}
+                                            py-3 ${showUnpublished && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
-                                                    setShowProfessional(true)
-                                                    setShowAllUsers(false)
-                                                    setShowCustomer(false)
-                                                    setShowVendor(false)
+                                                    setShowUnpublished(true)
+                                                    setShowAllProducts(false)
+                                                    setShowApproved(false)
+                                                    setShowWaiting(false)
                                                 }}
-                                            >Vendor</li>
+                                            >Waiting</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showVendor && 'border-b-2 border-dark-blue'}`}
+                                            py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
-                                                    setShowVendor(true)
-                                                    setShowAllUsers(false)
-                                                    setShowCustomer(false)
-                                                    setShowProfessional(false)
+                                                    setShowWaiting(true)
+                                                    setShowAllProducts(false)
+                                                    setShowApproved(false)
+                                                    setShowUnpublished(false)
                                                 }}
 
-                                            >Professional</li>
+                                            >Unpublished</li>
                                         </ul>
                                     </div>
 
@@ -118,13 +118,19 @@ const Products = () => {
                                                         className='
                                                 py-3 lg:text-base
                                     '
-                                                    >Email</th>
+                                                    >Owner</th>
                                                     <th
                                                         scope='col'
                                                         className='
                                                 py-3 lg:text-base
                                     '
-                                                    >Contacts</th>
+                                                    >Status</th>
+                                                    <th
+                                                        scope='col'
+                                                        className='
+                                                py-3 lg:text-base
+                                    '
+                                                    >Date Created</th>
                                                 </tr>
                                             </thead>
 
@@ -144,10 +150,13 @@ const Products = () => {
                                                         </div>
                                                     </td>
                                                     <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>email@gmail.com</p>
+                                                        <p className='font-normal text-sm'>Rukali</p>
                                                     </td>
                                                     <td className='py-3 '>
-                                                        <p className='font-normal text-sm'>0786493807</p>
+                                                        <p className='font-normal text-sm'>waiting for review</p>
+                                                    </td>
+                                                    <td className='py-3 '>
+                                                        <p className='font-normal text-sm'>15-06-2021 10:40</p>
                                                     </td>
                                                 </tr>
                                             </tbody>
