@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Register() {
   return (
-    <div className='container register-main'>
+    <div className='register-main'>
       <div className='row justify-content-center align-item-center'>
         <div className='card col-sm-6 p-5 login mt-5'>
           <form id='login-form' className='form' action='' method='post'>

@@ -8,7 +8,7 @@ import { FaBuilding } from "react-icons/fa";
 
 function NavBar() {
   return (
-    <div className="">
+    <div className="nav">
       <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom px-5">
         <div className="container-fluid">
           <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png" alt="logo" className='logo mb-2' />

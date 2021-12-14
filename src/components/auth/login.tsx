@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Login() {
   return (
-    <div className='container login-main'>
+    <div className='login-main'>
       <div className='row justify-content-center align-item-center'>
         <div className='card col-sm-6 p-5 login'>
           <form id='login-form' className='form' action='' method='post'>
