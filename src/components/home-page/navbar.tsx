@@ -8,7 +8,7 @@ import { FaBuilding } from "react-icons/fa";
 
 function NavBar() {
   return (
-    <div className="nav">
+    <div className="">
       <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom px-5">
         <div className="container-fluid">
           <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png" alt="logo" className='logo mb-2' />
@@ -17,8 +17,8 @@ function NavBar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <form className="container-fluid w-25">
-              <div className="input-group">
-                <input type="text" className="form-control input" placeholder="search product" aria-label="Username" aria-describedby="basic-addon1" />
+              <div className="input-group search">
+                <input type="text" className="form-control input" placeholder="search-product" aria-label="Username" aria-describedby="basic-addon1" />
 
                 <span className="input-group-text" id="basic-addon1">
                   <BsSearch size={25} />
@@ -39,10 +39,6 @@ function NavBar() {
               <li className="nav-item mx-3 mt-2">
                 <p className="nav-link ">
                   <AiOutlineUser size={25} /><Link to="/login">  Sign in as a Customer</Link></p>
-              </li>
-              <li className="nav-item mx-3 mt-2">
-                <p className="nav-link">
-                  <AiOutlineUser size={25} />  Sign in as a Seller</p>
               </li>
             </ul>
           </div>

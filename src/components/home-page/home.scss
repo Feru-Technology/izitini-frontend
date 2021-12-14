@@ -30,23 +30,21 @@
 
 @media only screen and(min-width: 700px) {
 
-    .nav {
-        .nav-link {
-            // margin: 0 5% 0 0;
-            color: rgba(0, 0, 0, 0.789) !important;
-        }
+    .nav-link {
+        // margin: 0 5% 0 0;
+        color: rgba(0, 0, 0, 0.789) !important;
+    }
 
-        .nav-item {
-            height: 50px;
-        }
+    .nav-item {
+        height: 50px;
+    }
 
-        .input-group {
-            width: 150%;
-            margin-left: -10%;
+    .search {
+        width: 230%;
+        margin-left: -50%;
 
-            .input {
-                // width: 100%;
-            }
+        .input {
+            // width: 100%;
         }
     }
 
