@@ -38,7 +38,7 @@ function NavBar() {
               </li>
               <li className="nav-item mx-3 mt-2">
                 <p className="nav-link ">
-                  <AiOutlineUser size={25} />  Sign in as a Customer</p>
+                  <AiOutlineUser size={25} /><Link to="/login">  Sign in as a Customer</Link></p>
               </li>
               <li className="nav-item mx-3 mt-2">
                 <p className="nav-link">
