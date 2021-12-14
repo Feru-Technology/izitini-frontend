@@ -65,11 +65,12 @@ const MyOrders = () => {
                     </Transition>
 
                     {/* customer orders */}
-                    <div className=''>
-                        <p className='font-bold my-4'>My Orders</p>
+                    <div className='bg-red-800 px-2 w-full'>
+                        <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
-                            <div className=' px-1 pt-6 md:p-5 flex justify-center text-xs'>
-                                <div className={`border-2 p-2 mx-1 ${showProcessingOrders && 'border-light-blue bg-light-blue text-white'}`}
+                            <tr className=' px-1 pt-6 md:p-5 flex justify-center text-xs'>
+                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                            md:px-6 lg:px-6 py-3 ${showProcessingOrders && 'border-light-blue bg-light-blue text-white'}`}
 
                                     onClick={() => {
                                         setShowProcessingOrders(true)
@@ -77,16 +78,18 @@ const MyOrders = () => {
                                         setShowRejectedOrders(false)
                                         setShowCompletedOrders(false)
                                     }}
-                                >Processing Orders</div>
-                                <div className={`border-2 p-2 mx-1 ${showCompletedOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                >Processing</td>
+                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                            md:px-6 lg:px-6 py-3 ${showCompletedOrders && 'border-light-blue bg-light-blue text-white'}`}
                                     onClick={() => {
                                         setShowCompletedOrders(true)
                                         setShowSampleOrders(false)
                                         setShowRejectedOrders(false)
                                         setShowProcessingOrders(false)
                                     }}
-                                >Completed Orders</div>
-                                <div className={`border-2 p-2 mx-1 ${showSampleOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                >Completed</td>
+                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                            md:px-6 lg:px-6 py-3 ${showSampleOrders && 'border-light-blue bg-light-blue text-white'}`}
                                     onClick={() => {
                                         setShowSampleOrders(true)
                                         setShowRejectedOrders(false)
@@ -94,8 +97,9 @@ const MyOrders = () => {
                                         setShowProcessingOrders(false)
                                     }}
 
-                                >Sample Orders</div>
-                                <div className={`border-2 p-2 mx-1 ${showRejectedOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                >Sample</td>
+                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                            md:px-6 lg:px-6 py-3 ${showRejectedOrders && 'border-light-blue bg-light-blue text-white'}`}
                                     onClick={() => {
                                         setShowRejectedOrders(true)
                                         setShowSampleOrders(false)
@@ -103,8 +107,8 @@ const MyOrders = () => {
                                         setShowProcessingOrders(false)
                                     }}
 
-                                >Rejected Orders</div>
-                            </div>
+                                >Rejected</td>
+                            </tr>
 
                         </div>
 
