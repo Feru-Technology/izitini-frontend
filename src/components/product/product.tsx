@@ -1,8 +1,10 @@
-import "./singlePage.css"
+// import "./Product.css"
 import React from "react"
 import { AiFillStar } from "react-icons/all"
 import { tabItems } from "../../data/tabItems"
 import { imgs } from "../../data/itemPhoto"
+import NavBar from "../home-page/navbar"
+import Footer from "../home-page/footer"
 
 const TabItemComponent = ({
     title = "",
@@ -16,11 +18,12 @@ const TabItemComponent = ({
     )
 }
 
-const SinglePage = () => {
+const Product = () => {
     const [active, setActive] = React.useState(0)
 
     return (
         <>
+            <NavBar />
             <div className="container-fluid">
                 {/* picture and product name and details */}
                 <div className="container-fluid mx-auto" id="p">
@@ -136,8 +139,9 @@ const SinglePage = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     )
 }
 
-export default SinglePage
+export default Product
