@@ -1,28 +1,32 @@
 .logo {
-    width: 7%;
+    width: 100%;
     margin-left: 5%;
 }
 
+.logo-link {
+    width: 7%;
+}
+
 @media only screen and (max-width: 770px) {
-    .logo {
+    .logo-link {
         width: 13%;
     }
 }
 
 @media only screen and (max-width: 430px) {
-    .logo {
+    .logo-link {
         width: 23%;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .logo {
+    .logo-link {
         width: 28%;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .logo {
+    .logo-link {
         width: 35%;
         margin-left: 2%;
     }
