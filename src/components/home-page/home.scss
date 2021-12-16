@@ -1,34 +1,39 @@
 .logo {
-    width: 7%;
+    width: 100%;
     margin-left: 5%;
 }
 
+.logo-link {
+    width: 7%;
+}
+
 @media only screen and (max-width: 770px) {
-    .logo {
+    .logo-link {
         width: 13%;
     }
 }
 
 @media only screen and (max-width: 430px) {
-    .logo {
+    .logo-link {
         width: 23%;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .logo {
+    .logo-link {
         width: 28%;
     }
 }
 
 @media only screen and (max-width: 480px) {
-    .logo {
+    .logo-link {
         width: 35%;
         margin-left: 2%;
     }
 }
 
 @media only screen and(min-width: 700px) {
+
     .nav-link {
         // margin: 0 5% 0 0;
         color: rgba(0, 0, 0, 0.789) !important;
@@ -38,14 +43,15 @@
         height: 50px;
     }
 
-    .input-group {
-        width: 150%;
-        margin-left: -10%;
+    .search {
+        width: 230%;
+        margin-left: -50%;
 
         .input {
             // width: 100%;
         }
     }
+
 }
 
 .nav-categories {

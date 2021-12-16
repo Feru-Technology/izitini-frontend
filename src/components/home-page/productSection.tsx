@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { RatingView } from 'react-simple-star-rating'
@@ -33,14 +34,16 @@ function ProductSection() {
             <div className='center'>
                 <Carousel responsive={responsive}>
                     <div className="card col m-2">
-                        <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <li className="fs-5 fw-normal">building materials</li>
-                            <li className='fs-6'>By Cimerw</li>
-                            <div className='ratings'><RatingView ratingValue={2} /></div>
+                        <Link to="/product">
+                            <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
+                            <div className="card-body">
+                                <li className="fs-5 fw-normal">building materials</li>
+                                <li className='fs-6'>By Cimerw</li>
+                                <div className='ratings'><RatingView ratingValue={2} /></div>
 
-                            <li className='fs-5 fw-bolder'>50k RFW</li>
-                        </div>
+                                <li className='fs-5 fw-bolder'>50k RFW</li>
+                            </div>
+                        </Link>
                     </div>
                     <div className="card col m-2">
                         <img src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Artboard%20%E2%80%93%207.png" className="card-img-top" alt="..." />
