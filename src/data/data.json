@@ -1,0 +1,54 @@
+[
+
+  {
+    "id": "Combini",
+    "data": [
+      {
+        "x": "Vegetables",
+        "y": 52
+      },
+      {
+        "x": "Fruits",
+        "y": 269
+      },
+      {
+        "x": "Meat",
+        "y": 287
+      }
+    ]
+  },
+  {
+    "id": "Online",
+    "data": [
+      {
+        "x": "Vegetables",
+        "y": 70
+      },
+      {
+        "x": "Fruits",
+        "y": 230
+      },
+      {
+        "x": "Meat",
+        "y": 187
+      }
+    ]
+  },
+  {
+    "id": "Marché",
+    "data": [
+      {
+        "x": "Vegetables",
+        "y": 38
+      },
+      {
+        "x": "Fruits",
+        "y": 218
+      },
+      {
+        "x": "Meat",
+        "y": 27
+      }
+    ]
+  }
+]
