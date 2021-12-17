@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from 'react'
+import React, { useState } from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { Home } from './components/main/home'
 import Dashboard from './components/vendor/Dashboard'
@@ -11,11 +11,9 @@ import Coupons from './components/vendor/Coupons'
 import CreateProduct from './components/vendor/CreateProduct'
 import SignInPage from './components/main/accounts/SignInPage'
 import CustomerSignUp from './components/main/accounts/CustomerSignUp'
-import SideBar from './components/vendor/SiderBar'
 
 function App() {
     return (
-        // <div>
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Home />}>
@@ -25,9 +23,7 @@ function App() {
                 <Route path='/signup' element={<CustomerSignUp />} />
                 <Route path='/signin' element={<SignInPage />} />
 
-                <Route path='/vendor' element={<><SideBar isClosed={false} setIsClosed={function (value: SetStateAction<boolean>): void {
-                    throw new Error('Function not implemented.')
-                }} isStatic={false} /><Dashboard /></>} />
+                <Route path='/vendor' element={<Dashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
                 <Route
                     path='/vendor/create-product'
@@ -46,7 +42,6 @@ function App() {
             </Routes>
 
         </BrowserRouter>
-        // </div>
     )
 }
 

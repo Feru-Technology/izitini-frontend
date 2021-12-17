@@ -77,7 +77,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/'
+                                    to='/vendor'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' &&
                                         'hover:text-gray-400'
                                         }`}
@@ -116,7 +116,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/products'
+                                    to='/vendor/products'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('products') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -135,7 +135,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/orders'
+                                    to='/vendor/orders'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -155,7 +155,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/coupons'
+                                    to='/vendor/coupons'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('coupons') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -175,7 +175,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/reports'
+                                    to='/vendor/reports'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('reports') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -195,7 +195,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/settings'
+                                    to='/vendor/settings'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') &&
                                         'hover:text-gray-400'
                                         }`}
