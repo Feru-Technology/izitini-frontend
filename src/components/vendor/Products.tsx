@@ -43,7 +43,7 @@ const Products = () => {
                 <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
                         <h3 className='text-3xl font-bold'>Product</h3>
-                        <Link to='/products/create-product'>
+                        <Link to='/vendor/create-product'>
                             <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded cursor-pointer'>
                                 CREATE A PRODUCT
                             </button>
