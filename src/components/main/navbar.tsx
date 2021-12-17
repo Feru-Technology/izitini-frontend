@@ -35,12 +35,12 @@ export const Navbar = () => {
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                     <img
                                         className="hidden lg:block h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                 </div>
@@ -62,23 +62,24 @@ export const Navbar = () => {
                                                 </svg>
                                             </button>
                                         </div>
-                                    </div>
-                                </div>
-                                <div>
 
-                                    {navigation.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className={classNames(
-                                                'text-black hover:bg-gray-700 hover:text-white',
-                                                'px-3 py-2 rounded-md text-sm font-medium'
-                                            )}
-                                            aria-current={item.current ? 'page' : undefined}
-                                        >
-                                            {item.name}
-                                        </a>
-                                    ))}
+                                        {/* <div> */}
+
+                                        {/* {navigation.map((item) => (
+                                                <a
+                                                    key={item.name}
+                                                    href={item.href}
+                                                    className={classNames(
+                                                        'text-black hover:bg-gray-700 hover:text-white',
+                                                        'px-3 py-2 rounded-md text-sm font-medium'
+                                                    )}
+                                                    aria-current={item.current ? 'page' : undefined}
+                                                >
+                                                    {item.name}
+                                                </a>
+                                            ))} */}
+                                        {/* </div> */}
+                                    </div>
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
