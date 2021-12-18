@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon, HeartIcon } from '@heroicons/react/outline'
+import { FaTools, FaBuilding } from "react-icons/fa"
 import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
@@ -20,8 +21,8 @@ export const Navbar = () => {
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 mt-5">
-                        <div className="relative flex items-center justify-between h-16">
+                    <div className="max-w-7xl mx-0 sm:px-6 lg:px-8 mt-5">
+                        <div className="relative flex items-center justify-between h-16 border-b-2 ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -33,7 +34,7 @@ export const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mb-3">
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-8 w-auto"
@@ -137,6 +138,11 @@ export const Navbar = () => {
                                     </Transition>
                                 </Menu>
                             </div>
+                        </div>
+
+                        <div className="space-x-6 flex items-center justify-center mt-5">
+                            <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />buy your products</span>
+                            <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />get idea</span>
                         </div>
                     </div>
 
