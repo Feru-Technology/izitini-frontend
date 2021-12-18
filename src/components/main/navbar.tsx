@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon, HeartIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon, HeartIcon, BellIcon } from '@heroicons/react/outline'
 import { FaTools, FaBuilding } from "react-icons/fa"
 import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
@@ -42,11 +42,12 @@ export const Navbar = () => {
                                         alt="Workflow"
                                     />
                                     <img
-                                        className="hidden lg:block h-8 w-auto"
+                                        className="hidden lg:block h-12 w-auto"
                                         src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                 </div>
+
                                 <div className="hidden sm:block sm:ml-6">
 
                                     <div className="flex space-x-4">
@@ -69,20 +70,30 @@ export const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute space-x-6 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <div className="absolute space-x-12 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <button
                                     type="button"
-                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                    className="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <HeartIcon className="h-6 w-6" aria-hidden="true" />
+                                    <HeartIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
+                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
                                 </button>
                                 <button
                                     type="button"
-                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                    className="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BsCart3 className="h-6 w-6" aria-hidden="true" />
+                                    <BellIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
+                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                </button>
+                                <button
+                                    type="button"
+                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
+                                >
+                                    <span className="sr-only">View notifications</span>
+                                    <BsCart3 className="h-6 w-6 absolute" aria-hidden="true" />
+                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
                                 </button>
 
                                 {/* Profile dropdown */}
@@ -94,7 +105,7 @@ export const Navbar = () => {
                                                 className="h-8 w-8 rounded-full"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
-                                            /><span className="ml-2 mt-1">create an account</span>
+                                            /><span className="mx-2 mt-1">N. Ramadhan</span>
                                         </Menu.Button>
                                     </div>
                                     <Transition
