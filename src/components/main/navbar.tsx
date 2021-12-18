@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon, HeartIcon } from '@heroicons/react/outline'
+import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 
 const navigation = [
@@ -19,7 +20,7 @@ export const Navbar = () => {
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 mt-5">
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
@@ -49,7 +50,7 @@ export const Navbar = () => {
 
                                     <div className="flex space-x-4">
                                         <div className="pt-2 relative mx-auto text-gray-600">
-                                            <input className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                                            <input className="border-2 w-96 ml-36 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                                                 type="search" name="search" placeholder="Search" />
                                             <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
                                                 <svg className="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -67,20 +68,20 @@ export const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <div className="absolute space-x-6 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <button
                                     type="button"
-                                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                    <HeartIcon className="h-6 w-6" aria-hidden="true" />
                                 </button>
                                 <button
                                     type="button"
-                                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                    <BsCart3 className="h-6 w-6" aria-hidden="true" />
                                 </button>
 
                                 {/* Profile dropdown */}
@@ -92,7 +93,7 @@ export const Navbar = () => {
                                                 className="h-8 w-8 rounded-full"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
-                                            /><span className="ml-2 mt-1">login</span>
+                                            /><span className="ml-2 mt-1">create an account</span>
                                         </Menu.Button>
                                     </div>
                                     <Transition
