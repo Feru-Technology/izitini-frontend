@@ -151,7 +151,7 @@ export const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className="space-x-6 flex items-center justify-center mt-5">
+                        <div className="space-x-6 flex justify-center mt-5">
                             <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />buy your products</span>
                             <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />get idea</span>
                         </div>

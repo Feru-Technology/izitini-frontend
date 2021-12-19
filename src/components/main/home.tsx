@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar } from './navbar';
+import { FaTools } from "react-icons/fa"
 
 export const Home = () => {
 
@@ -9,11 +10,31 @@ export const Home = () => {
 
             {/* first section */}
             <div className='m-2 flex flex-row'>
-                <div className='w-1/5 bg-red-400'>
-                    <ul>
-                        <span>
-                            Buy your products
-                        </span>
+                <div className='w-1/5 bg-red-400 h-60 overflow-y-scroll'>
+                    <div className='flex flex-row justify-center'>
+                        <FaTools className="h-4 w-4 mr-1 mt-1" aria-hidden="true" />
+                        <p className='font-bold'>
+                            Buy your products</p>
+                    </div>
+                    <ul className='ml-2'>
+                        <li>
+                            building materials
+                        </li>
+                        <li>
+                            paint
+                        </li>
+                        <li>
+                            bath
+                        </li>
+                        <li>
+                            steel
+                        </li>
+                        <li>
+                            wood
+                        </li>
+                        <li>
+                            ceiling
+                        </li>
                         <li>
                             building materials
                         </li>
