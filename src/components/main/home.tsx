@@ -63,21 +63,96 @@ export const Home = () => {
 
             {/* section 2 */}
 
-            <div>
-                <div className='w-1/5'>
+            <div className='my-3 grid grid-cols-4 gap-3'>
+                <div className=''>
                     <img className='h-32 w-100 bg-gray-400' src="" alt="" />
-                    <ul>
+                    <ul className=''>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
                         <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>see all</li>
+                    </ul>
+                </div>
+
+                <div className=''>
+                    <img className='h-32 w-100 bg-gray-400' src="" alt="" />
+                    <ul className=''>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                        <li>see all</li>
                     </ul>
                 </div>
             </div>
