@@ -8,6 +8,25 @@ export const Home = () => {
         <div className='m-2'>
             < Navbar />
 
+            {/* category option bar */}
+
+            <div className='flex justify-center bg-gray-400 my-2'>
+                <ul className='flex space-x-2'>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                    <li>test</li>
+                </ul>
+            </div>
+
             {/* first section */}
             <div className='flex flex-row'>
                 <div className='w-1/5 bg-red-400 h-60 overflow-y-scroll'>
@@ -154,6 +173,57 @@ export const Home = () => {
                         <li>test</li>
                         <li>see all</li>
                     </ul>
+                </div>
+            </div>
+
+            {/* recent updates */}
+            {/* this have to be a slider */}
+
+            <div>
+                <span>Recent Updates</span>
+                <div className='grid grid-cols-6'>
+                    <div className='border-2 w-52'>
+                        <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                        <p>Building material</p>
+                        <p>By simerw</p>
+                        <p>Ratings</p>
+                        <p>Price</p>
+                    </div>
+                    <div className='border-2 w-52'>
+                        <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                        <p>Building material</p>
+                        <p>By simerw</p>
+                        <p>Ratings</p>
+                        <p>Price</p>
+                    </div>
+                    <div className='border-2 w-52'>
+                        <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                        <p>Building material</p>
+                        <p>By simerw</p>
+                        <p>Ratings</p>
+                        <p>Price</p>
+                    </div>
+                    <div className='border-2 w-52'>
+                        <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                        <p>Building material</p>
+                        <p>By simerw</p>
+                        <p>Ratings</p>
+                        <p>Price</p>
+                    </div>
+                    <div className='border-2 w-52'>
+                        <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                        <p>Building material</p>
+                        <p>By simerw</p>
+                        <p>Ratings</p>
+                        <p>Price</p>
+                    </div>
+                    <div className='border-2 w-48'>
+                        <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                        <p>Building material</p>
+                        <p>By simerw</p>
+                        <p>Ratings</p>
+                        <p>Price</p>
+                    </div>
                 </div>
             </div>
         </div>
