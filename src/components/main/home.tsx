@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar } from './navbar';
 import { FaTools } from "react-icons/fa"
+import { Footer } from './footer';
 
 export const Home = () => {
 
@@ -179,7 +180,7 @@ export const Home = () => {
             {/* recent updates */}
             {/* this have to be a slider */}
 
-            <div>
+            <div className='my-2'>
                 <span>Recent Updates</span>
                 <div className='grid grid-cols-6'>
                     <div className='border-2 w-52'>
@@ -226,6 +227,7 @@ export const Home = () => {
                     </div>
                 </div>
             </div>
+            < Footer />
         </div>
     )
 }
