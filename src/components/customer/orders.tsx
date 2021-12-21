@@ -19,10 +19,11 @@ const MyOrders = () => {
     const { profile } = useSelector((state: RootState) => state.profile)
 
     const [isClosed, setIsClosed] = useState(false)
+    const [showAllOrders, setShowAllOrders] = useState(true)
     const [showSampleOrders, setShowSampleOrders] = useState(false)
     const [showRejectedOrders, setShowRejectedOrders] = useState(false)
     const [showCompletedOrders, setShowCompletedOrders] = useState(false)
-    const [showProcessingOrders, setShowProcessingOrders] = useState(true)
+    const [showProcessingOrders, setShowProcessingOrders] = useState(false)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -65,33 +66,37 @@ const MyOrders = () => {
                     </Transition>
 
                     {/* customer orders */}
-                    <div className='bg-red-800 px-2 w-full'>
+                    <div className='px-2 md:px-8 w-full'>
                         <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
                             <tr className=' px-1 pt-6 md:p-5 flex justify-center text-xs'>
                                 <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
-                                            md:px-6 lg:px-6 py-3 ${showProcessingOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                            md:px-6 lg:px-6 py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
+
+                                    onClick={() => {
+                                        setShowAllOrders(true)
+                                        setShowSampleOrders(false)
+                                        setShowRejectedOrders(false)
+                                        setShowCompletedOrders(false)
+                                        setShowProcessingOrders(false)
+                                    }}
+                                >All</td>
+                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                            md:px-6 lg:px-6 py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
                                     onClick={() => {
                                         setShowProcessingOrders(true)
+                                        setShowAllOrders(false)
                                         setShowSampleOrders(false)
                                         setShowRejectedOrders(false)
                                         setShowCompletedOrders(false)
                                     }}
                                 >Processing</td>
                                 <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
-                                            md:px-6 lg:px-6 py-3 ${showCompletedOrders && 'border-light-blue bg-light-blue text-white'}`}
-                                    onClick={() => {
-                                        setShowCompletedOrders(true)
-                                        setShowSampleOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
-                                >Completed</td>
-                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
-                                            md:px-6 lg:px-6 py-3 ${showSampleOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                            md:px-6 lg:px-6 py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
                                     onClick={() => {
                                         setShowSampleOrders(true)
+                                        setShowAllOrders(false)
                                         setShowRejectedOrders(false)
                                         setShowCompletedOrders(false)
                                         setShowProcessingOrders(false)
@@ -99,9 +104,20 @@ const MyOrders = () => {
 
                                 >Sample</td>
                                 <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
-                                            md:px-6 lg:px-6 py-3 ${showRejectedOrders && 'border-light-blue bg-light-blue text-white'}`}
+                                            md:px-6 lg:px-6 py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
+                                    onClick={() => {
+                                        setShowCompletedOrders(true)
+                                        setShowAllOrders(false)
+                                        setShowSampleOrders(false)
+                                        setShowRejectedOrders(false)
+                                        setShowProcessingOrders(false)
+                                    }}
+                                >Completed</td>
+                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                            md:px-6 lg:px-6 py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
                                     onClick={() => {
                                         setShowRejectedOrders(true)
+                                        setShowAllOrders(false)
                                         setShowSampleOrders(false)
                                         setShowCompletedOrders(false)
                                         setShowProcessingOrders(false)
