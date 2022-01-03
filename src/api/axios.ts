@@ -1,18 +1,18 @@
 import axios from 'axios'
 
-interface ServerResponse {
+export interface ServerResponse {
     data: ServerData
 }
 
-interface ServerData {
+export interface ServerData {
     foo: string
     bar: number
 }
 
-const baseUrl = 'http://localhost:3002'
+const baseURL = 'http://localhost:3002'
 
 const Axios: any = {}
 
-Axios.instance = axios
+Axios.instance = axios.create({ baseURL })
 
 export default Axios.instance

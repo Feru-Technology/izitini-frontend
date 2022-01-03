@@ -1,9 +1,18 @@
 import React from 'react';
+import axios from 'axios'
 import { Navbar } from './navbar';
 import { FaTools } from "react-icons/fa"
 import { Footer } from './footer';
 
 export const Home = () => {
+
+    console.log('object =======================');
+    const categories = axios.get(`http://localhost:3002/category`)
+        .then(res => {
+            const persons = res.data;
+            console.log('====================================== object')
+            console.log(persons);
+        })
 
     return (
         <div className='m-2'>
