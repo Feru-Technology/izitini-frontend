@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'
-import { store, RootState } from '../../redux/store';
-import { useSelector, useDispatch } from 'react-redux'
-import Axios from '../../api/axios';
-import { fetchingSubCategories, retrievedSubCategoryFailed, retrievedSubCategory } from '../../redux/subCategory.slice'
+import { useEffect } from 'react';
+import { RootState } from '../../redux/store';
+import { Footer } from './footer';
 import { Navbar } from './navbar';
 import { FaTools } from "react-icons/fa"
-import { Footer } from './footer';
 import { fetch } from '../../api/apiAction';
+
+import {
+    useSelector,
+    useDispatch
+} from 'react-redux'
+
+import {
+    fetchingSubCategories,
+    retrievedSubCategoryFailed,
+    retrievedSubCategory
+} from '../../redux/subCategory.slice'
 
 export const Home = () => {
 
@@ -17,7 +24,7 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingSubCategories());
-        fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed)
+        fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/category')
     }, [dispatch])
 
     return (<>
@@ -32,7 +39,6 @@ export const Home = () => {
 
                 <div className='flex justify-center bg-gray-400 my-2'>
                     <ul className='flex space-x-2'>
-                        {/* <li>test</li>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
@@ -43,7 +49,8 @@ export const Home = () => {
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
-                        <li>test</li> */}
+                        <li>test</li>
+                        <li>test</li>
                     </ul>
                 </div>
 
