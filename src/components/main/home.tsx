@@ -7,7 +7,7 @@ import { fetchingSubCategories, retrievedSubCategoryFailed, retrievedSubCategory
 import { Navbar } from './navbar';
 import { FaTools } from "react-icons/fa"
 import { Footer } from './footer';
-// import { subCategory } from '../../api/actions/subCategory';
+import { fetch } from '../../api/apiAction';
 
 export const Home = () => {
 
@@ -17,19 +17,7 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingSubCategories());
-        const fetchSubCategory = () => {
-            Axios.get(`/category`)
-                .then(({ data }) => {
-                    console.log(data)
-                    dispatch(retrievedSubCategory(data.data))
-                })
-                .catch(error => {
-                    console.log(error);
-                    dispatch(retrievedSubCategoryFailed(error))
-                })
-        }
-
-        fetchSubCategory()
+        fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed)
     }, [dispatch])
 
     return (<>
@@ -44,6 +32,7 @@ export const Home = () => {
 
                 <div className='flex justify-center bg-gray-400 my-2'>
                     <ul className='flex space-x-2'>
+                        {/* <li>test</li>
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
@@ -54,8 +43,7 @@ export const Home = () => {
                         <li>test</li>
                         <li>test</li>
                         <li>test</li>
-                        <li>test</li>
-                        <li>test</li>
+                        <li>test</li> */}
                     </ul>
                 </div>
 
