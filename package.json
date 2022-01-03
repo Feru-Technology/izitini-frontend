@@ -20,6 +20,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/recharts": "^1.8.23",
     "autoprefixer": "^9",
+    "axios": "^0.24.0",
     "g": "^2.0.1",
     "latest-version": "^6.0.0",
     "postcss": "^7",
