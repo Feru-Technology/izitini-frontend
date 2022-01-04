@@ -5,13 +5,13 @@ export interface HTTPError { status: number; message: string }
 export interface SubCategoryState {
     isLoading: boolean;
     error: Error | HTTPError | null;
-    data: ISubCategory[];
+    subCategories: ISubCategory[];
 }
 
 const initialState: SubCategoryState = {
     isLoading: false,
     error: null,
-    data: [],
+    subCategories: [],
 }
 
 export const subCategorySlice = createSlice({
@@ -23,7 +23,7 @@ export const subCategorySlice = createSlice({
         },
         retrievedSubCategory: (state, { payload }) => {
             state.isLoading = false;
-            state.data = [...state.data, ...payload]
+            state.subCategories = [...state.subCategories, ...payload]
         },
         retrievedSubCategoryFailed: (state, { payload }) => {
             state.isLoading = false;

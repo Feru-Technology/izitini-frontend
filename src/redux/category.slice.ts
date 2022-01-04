@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export interface ICategory { id: string; name: string; imageUrl: string };
+export interface ICategory { id: string; name: string; image_url: string };
 export interface HTTPError { status: number; message: string }
 export interface CategoryState {
     isLoading: boolean;
     error: Error | HTTPError | null;
-    data: ICategory[];
+    categories: ICategory[];
 }
 
 const initialState: CategoryState = {
     isLoading: false,
     error: null,
-    data: [],
+    categories: [],
 }
 
 export const categorySlice = createSlice({
@@ -23,7 +23,7 @@ export const categorySlice = createSlice({
         },
         retrievedCategory: (state, { payload }) => {
             state.isLoading = false;
-            state.data = [...state.data, ...payload]
+            state.categories = [...state.categories, ...payload]
         },
         retrievedCategoryFailed: (state, { payload }) => {
             state.isLoading = false;

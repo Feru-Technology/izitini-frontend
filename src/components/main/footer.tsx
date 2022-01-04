@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export const Footer = () => {
     return (
-        <div className='bg-middle-blue py-10 text-white'>
+        <div className='bg-dark-blue py-10 text-white'>
             <div className='grid grid-cols-3 border-b-2 mx-28'>
                 <div className='m-2 mx-16'>
                     <img className='w-24' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo.png" alt="" />
