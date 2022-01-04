@@ -34,7 +34,8 @@ export const Home = () => {
 
 
     const { isLoading, subCategories, error } = useSelector((state: RootState) => state.subCategory);
-    console.log(subCategories)
+    // console.log(subCategories)
+    const subCategoryBar = subCategories.slice(0, 10)
 
     useEffect(() => {
         dispatch(fetchingCategories());
@@ -42,6 +43,8 @@ export const Home = () => {
     }, [dispatch])
 
     const { categories } = useSelector((state: RootState) => state.category);
+
+    const categoriess = categories.slice(0, 8)
     console.log(categories)
 
     return (<>
@@ -56,7 +59,7 @@ export const Home = () => {
                 <div className='flex justify-center bg-gray-400 my-2'>
                     <ul className='flex space-x-2'>
 
-                        {subCategories.map((v) => (<li>{v.name}</li>))}
+                        {subCategoryBar.map((v) => (<li>{v.name}</li>))}
                     </ul>
                 </div>
 
@@ -81,7 +84,7 @@ export const Home = () => {
                 {/* section 2 */}
 
                 <div className='my-3 grid grid-cols-4 gap-3'>
-                    {categories.map((v) => (<div className=''>
+                    {categoriess.map((v) => (<div className=''>
                         <p>{v.name}</p>
                         <img className='h-32 w-100 bg-gray-400' src={v.image_url} alt="" />
                         <ul className=''>
