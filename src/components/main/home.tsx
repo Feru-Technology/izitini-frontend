@@ -26,17 +26,23 @@ export const Home = () => {
 
     // redux
     const dispatch = useDispatch();
-    // const { isLoading, data, error } = useSelector((state: RootState) => state.subCategory);
 
     useEffect(() => {
         dispatch(fetchingSubCategories());
         fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
     }, [dispatch])
 
+
+    const subCategory = useSelector((state: RootState) => state.subCategory.data);
+    console.log(subCategory)
+
     useEffect(() => {
         dispatch(fetchingCategories());
         fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category')
     }, [dispatch])
+
+    const category = useSelector((state: RootState) => state.category.data);
+    console.log(category)
 
     return (<>
         {/* {isLoading ? (<h1>Loading</h1>) : ( */}
