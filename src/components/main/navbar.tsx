@@ -1,6 +1,9 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon, HeartIcon, BellIcon } from '@heroicons/react/outline'
+import { FaTools, FaBuilding } from "react-icons/fa"
+import { BsCart3 } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const navigation = [
     { name: 'Dashboard', href: '#', current: true },
@@ -18,8 +21,8 @@ export const Navbar = () => {
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                        <div className="relative flex items-center justify-between h-16">
+                    <div className="max-w-7xl mx-0 sm:px-6 lg:px-8 mt-5">
+                        <div className="relative flex items-center justify-between h-16 border-b-2 ">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -31,24 +34,25 @@ export const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mb-3">
                                 <div className="flex-shrink-0 flex items-center">
                                     <img
                                         className="block lg:hidden h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                     <img
-                                        className="hidden lg:block h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                                        className="hidden lg:block h-12 w-auto"
+                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                 </div>
+
                                 <div className="hidden sm:block sm:ml-6">
 
                                     <div className="flex space-x-4">
                                         <div className="pt-2 relative mx-auto text-gray-600">
-                                            <input className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                                            <input className="border-2 w-96 ml-36 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                                                 type="search" name="search" placeholder="Search" />
                                             <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
                                                 <svg className="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
@@ -62,44 +66,46 @@ export const Navbar = () => {
                                                 </svg>
                                             </button>
                                         </div>
+
                                     </div>
                                 </div>
-                                <div>
-
-                                    {navigation.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className={classNames(
-                                                'text-black hover:bg-gray-700 hover:text-white',
-                                                'px-3 py-2 rounded-md text-sm font-medium'
-                                            )}
-                                            aria-current={item.current ? 'page' : undefined}
-                                        >
-                                            {item.name}
-                                        </a>
-                                    ))}
-                                </div>
                             </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <div className="absolute space-x-12 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <button
                                     type="button"
-                                    className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                    className="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                    <HeartIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
+                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                </button>
+                                <button
+                                    type="button"
+                                    className="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
+                                >
+                                    <span className="sr-only">View notifications</span>
+                                    <BellIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
+                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                </button>
+                                <button
+                                    type="button"
+                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
+                                >
+                                    <span className="sr-only">View notifications</span>
+                                    <BsCart3 className="h-6 w-6 absolute" aria-hidden="true" />
+                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
                                 </button>
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
-                                        <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                                            <span className="sr-only">Open user menu</span>
+                                        <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+
                                             <img
                                                 className="h-8 w-8 rounded-full"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
-                                            />
+                                            /><span className="mx-2 mt-1">N. Ramadhan</span>
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -114,38 +120,40 @@ export const Navbar = () => {
                                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
+                                                    <Link to='/profile'
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Your Profile
-                                                    </a>
+                                                    </Link>
                                                 )}
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
+                                                    <Link to='/settings'
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Settings
-                                                    </a>
+                                                    </Link>
                                                 )}
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
+                                                    <Link to='/login'
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Sign out
-                                                    </a>
+                                                    </Link>
                                                 )}
                                             </Menu.Item>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>
                             </div>
+                        </div>
+
+                        <div className="space-x-6 flex justify-center mt-5">
+                            <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />buy your products</span>
+                            <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />get idea</span>
                         </div>
                     </div>
 

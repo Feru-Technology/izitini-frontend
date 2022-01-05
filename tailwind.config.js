@@ -7,15 +7,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      colors:{
+      colors: {
         'dark-blue': '#223c6d',
-        'middle-blue':'#0e87d2',
+        'middle-blue': '#0e87d2',
         'light-blue': '#00adef',
-        'header-blue':'#02a6ea'
+        'header-blue': '#02a6ea'
 
       },
       backgroundImage: {
-        'sidebar-photo':"url('images/2754223.svg')",
+        'sidebar-photo': "url('images/2754223.svg')",
       }
     },
   },
