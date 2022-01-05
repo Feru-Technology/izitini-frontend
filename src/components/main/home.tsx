@@ -34,7 +34,7 @@ export const Home = () => {
 
 
     const { isLoading, subCategories, error } = useSelector((state: RootState) => state.subCategory);
-    // console.log(subCategories)
+
     const subCategoryBar = subCategories.slice(0, 10)
 
     useEffect(() => {
@@ -44,8 +44,7 @@ export const Home = () => {
 
     const { categories } = useSelector((state: RootState) => state.category);
 
-    const categoriess = categories.slice(0, 8)
-    console.log(categories)
+    const categorySection = categories.slice(0, 8)
 
     return (<>
         {isLoading ? (<h1>Loading</h1>) : (
@@ -84,7 +83,7 @@ export const Home = () => {
                 {/* section 2 */}
 
                 <div className='my-3 grid grid-cols-4 gap-3'>
-                    {categoriess.map((v) => (<div className=''>
+                    {categorySection.map((v) => (<div className=''>
                         <p>{v.name}</p>
                         <img className='h-32 w-100 bg-gray-400' src={v.image_url} alt="" />
                         <ul className=''>
