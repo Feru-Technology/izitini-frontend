@@ -82,18 +82,26 @@ export const Home = () => {
                 </div>
 
                 {/* first section */}
-                <div className='flex flex-row'>
-                    <div className='w-1/5 bg-red-400 h-60 overflow-y-scroll'>
+                <div className='flex flex-row h-60'>
+                    <div className='
+                    sr-only md:not-sr-only
+                    md:w-1/5 md:h-full'>
                         <div className='flex flex-row justify-center'>
-                            <FaTools className="h-4 w-4 mr-1 mt-1" aria-hidden="true" />
-                            <p className='font-bold'>
+                            <FaTools className="
+                            md:h-3 md:w-3
+                            lg:h-4 lg:w-4
+                            mr-1 mt-1" aria-hidden="true" />
+                            <p className='font-bold
+                            md:text-sm
+                            lg:text-base'>
                                 Buy your products</p>
                         </div>
-                        <ul className='ml-2'>
+                        <ul className='ml-2
+                        md:w-full md:h-52 md:overflow-y-scroll'>
                             {categories.map((v) => (<li>{v.name}</li>))}
                         </ul>
                     </div>
-                    <div className='w-4/5 bg-yellow-300 flex flex-row'>
+                    <div className='w-full md:w-4/5 bg-yellow-300 flex flex-row h-full'>
                         <div className='w-3/6'>image section</div>
                         <div className='w-3/6'>text section</div>
                     </div>
