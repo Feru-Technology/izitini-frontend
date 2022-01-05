@@ -22,6 +22,12 @@ import {
     retrievedCategory
 } from '../../redux/category.slice'
 
+import {
+    fetchingProducts,
+    retrievedProductFailed,
+    retrievedProduct
+} from '../../redux/product.slice'
+
 export const Home = () => {
 
     // redux
@@ -45,6 +51,15 @@ export const Home = () => {
     const { categories } = useSelector((state: RootState) => state.category);
 
     const categorySection = categories.slice(0, 8)
+
+    useEffect(() => {
+        dispatch(fetchingProducts());
+        fetch(dispatch, retrievedProduct, retrievedProductFailed, '/product')
+    }, [dispatch])
+
+    const { products } = useSelector((state: RootState) => state.product);
+
+    const productSection = categories.slice(0, 8)
 
     return (<>
         {isLoading ? (<h1>Loading</h1>) : (
@@ -83,18 +98,19 @@ export const Home = () => {
                 {/* section 2 */}
 
                 <div className='my-3 grid grid-cols-4 gap-3'>
-                    {categorySection.map((v) => (<div className=''>
-                        <p>{v.name}</p>
-                        <img className='h-32 w-100 bg-gray-400' src={v.image_url} alt="" />
-                        <ul className=''>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>test</li>
-                            <li>see all</li>
-                        </ul>
-                    </div>
+                    {categorySection.map((v) => (
+                        <div className=''>
+                            <p>{v.name}</p>
+                            <img className='h-32 w-100 bg-gray-400' src={v.image_url} alt="" />
+                            <ul className=''>
+                                <li>test</li>
+                                <li>test</li>
+                                <li>test</li>
+                                <li>test</li>
+                                <li>test</li>
+                                <li>see all</li>
+                            </ul>
+                        </div>
                     ))}
                 </div>
 
@@ -104,48 +120,15 @@ export const Home = () => {
                 <div className='my-2'>
                     <span>Recent Updates</span>
                     <div className='grid grid-cols-6'>
-                        <div className='border-2 w-52'>
-                            <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                            <p>Building material</p>
-                            <p>By simerw</p>
-                            <p>Ratings</p>
-                            <p>Price</p>
-                        </div>
-                        <div className='border-2 w-52'>
-                            <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                            <p>Building material</p>
-                            <p>By simerw</p>
-                            <p>Ratings</p>
-                            <p>Price</p>
-                        </div>
-                        <div className='border-2 w-52'>
-                            <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                            <p>Building material</p>
-                            <p>By simerw</p>
-                            <p>Ratings</p>
-                            <p>Price</p>
-                        </div>
-                        <div className='border-2 w-52'>
-                            <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                            <p>Building material</p>
-                            <p>By simerw</p>
-                            <p>Ratings</p>
-                            <p>Price</p>
-                        </div>
-                        <div className='border-2 w-52'>
-                            <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                            <p>Building material</p>
-                            <p>By simerw</p>
-                            <p>Ratings</p>
-                            <p>Price</p>
-                        </div>
-                        <div className='border-2 w-48'>
-                            <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                            <p>Building material</p>
-                            <p>By simerw</p>
-                            <p>Ratings</p>
-                            <p>Price</p>
-                        </div>
+                        {categorySection.map((v) => (
+                            <div className='border-2 w-52'>
+                                <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                                <p>Building material</p>
+                                <p>By simerw</p>
+                                <p>Ratings</p>
+                                <p>Price</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <Footer />
