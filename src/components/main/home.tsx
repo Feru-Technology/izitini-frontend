@@ -59,7 +59,7 @@ export const Home = () => {
 
     const { products } = useSelector((state: RootState) => state.product);
 
-    const productSection = products.slice(0, 12)
+    const productSection = products.slice(0, 6)
 
     return (<>
         {isLoading ? (<h1>Loading</h1>) : (
@@ -97,11 +97,16 @@ export const Home = () => {
 
                 {/* section 2 */}
 
-                <div className='my-3 grid grid-cols-4 gap-3'>
+                <div className='my-3
+                grid
+                grid-cols-1
+                md:grid-cols-2
+                lg:grid-cols-4
+                gap-3'>
                     {categorySection.map((v) => (
                         <div className=''>
                             <p>{v.name}</p>
-                            <img className='h-32 w-100 bg-gray-400' src={v.image_url} alt="" />
+                            <img className='h-36 w-full bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                             <ul className=''>
                                 <li>test</li>
                                 <li>test</li>
@@ -119,10 +124,16 @@ export const Home = () => {
 
                 <div className='my-2'>
                     <span>Recent Updates</span>
-                    <div className='grid grid-cols-6'>
+                    <div className='
+                    grid
+                    grid-cols-2
+                    md:grid-cols-3
+                    lg:grid-cols-6
+                    gap-3
+                    '>
                         {productSection.map((p) => (
-                            <div className='border-2 w-52 mt-2'>
-                                <img className='bg-gray-200 w-fit h-32' src="" alt="" />
+                            <div className='mt-2'>
+                                <img className='bg-gray-200 w-full h-32' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                                 <p>{p.name}</p>
                                 <p>{p.brand}</p>
                                 <p>Ratings</p>
