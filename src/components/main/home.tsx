@@ -70,10 +70,14 @@ export const Home = () => {
 
                 {/* category option bar */}
 
-                <div className='flex justify-center bg-gray-400 my-2'>
-                    <ul className='flex space-x-2'>
+                <div className='
+                sr-only
+                md:not-sr-only
+                flex justify-center
+                bg-gray-400 my-2'>
+                    <ul className='flex md:space-x-1 lg:space-x-2 xl:space-x-4 2xl:space-x-6'>
 
-                        {subCategoryBar.map((v) => (<li>{v.name}</li>))}
+                        {subCategoryBar.map((v) => (<li className='md:text-xs lg:text-sm xl:text-base'>{v.name}</li>))}
                     </ul>
                 </div>
 
@@ -106,7 +110,11 @@ export const Home = () => {
                     {categorySection.map((v) => (
                         <div className=''>
                             <p>{v.name}</p>
-                            <img className='h-36 w-full bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
+                            <img className='
+                            h-36
+                            2xl:h-52
+                            w-full
+                            bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                             <ul className=''>
                                 <li>test</li>
                                 <li>test</li>
@@ -133,7 +141,10 @@ export const Home = () => {
                     '>
                         {productSection.map((p) => (
                             <div className='mt-2'>
-                                <img className='bg-gray-200 w-full h-32' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
+                                <img className='bg-gray-200
+                                w-full
+                                h-32
+                                2xl:h-52' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                                 <p>{p.name}</p>
                                 <p>{p.brand}</p>
                                 <p>Ratings</p>
