@@ -69,7 +69,6 @@ export const Home = () => {
                 < Navbar />
 
                 {/* category option bar */}
-
                 <div className='
                 sr-only
                 md:not-sr-only
@@ -108,7 +107,6 @@ export const Home = () => {
                 </div>
 
                 {/* section 2 */}
-
                 <div className='my-3
                 grid
                 grid-cols-1
@@ -123,7 +121,7 @@ export const Home = () => {
                             2xl:h-52
                             w-full
                             bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
-                            <ul className=''>
+                            <ul className='self-center'>
                                 <li>test</li>
                                 <li>test</li>
                                 <li>test</li>
@@ -136,7 +134,6 @@ export const Home = () => {
                 </div>
 
                 {/* recent updates */}
-                {/* this have to be a slider */}
 
                 <div className='my-2'>
                     <span>Recent Updates</span>
