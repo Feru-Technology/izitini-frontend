@@ -59,7 +59,7 @@ export const Home = () => {
 
     const { products } = useSelector((state: RootState) => state.product);
 
-    const productSection = categories.slice(0, 8)
+    const productSection = products.slice(0, 12)
 
     return (<>
         {isLoading ? (<h1>Loading</h1>) : (
@@ -120,11 +120,11 @@ export const Home = () => {
                 <div className='my-2'>
                     <span>Recent Updates</span>
                     <div className='grid grid-cols-6'>
-                        {categorySection.map((v) => (
-                            <div className='border-2 w-52'>
+                        {productSection.map((p) => (
+                            <div className='border-2 w-52 mt-2'>
                                 <img className='bg-gray-200 w-fit h-32' src="" alt="" />
-                                <p>Building material</p>
-                                <p>By simerw</p>
+                                <p>{p.name}</p>
+                                <p>{p.brand}</p>
                                 <p>Ratings</p>
                                 <p>Price</p>
                             </div>
