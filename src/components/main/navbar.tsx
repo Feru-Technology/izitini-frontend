@@ -21,11 +21,11 @@ export const Navbar = () => {
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-0 sm:px-6 lg:px-8 mt-5">
-                        <div className="relative flex items-center justify-between h-16 border-b-2 ">
+                    <div className="max-w-7xl mt-5 mb-5">
+                        <div className="relative flex items-center justify-between h-16 border-b-2">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block h-6 w-6" aria-hidden="true" />
@@ -34,21 +34,16 @@ export const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start mb-3">
-                                <div className="flex-shrink-0 flex items-center">
+                            <div className="ml-12 md:flex-1 md:flex md:items-stretch md:justify-start mb-3">
+                                <div className="flex-shrink-0">
                                     <img
-                                        className="block lg:hidden h-8 w-auto"
-                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
-                                        alt="Workflow"
-                                    />
-                                    <img
-                                        className="hidden lg:block h-12 w-auto"
+                                        className="block h-7 md:h-8 lg:h-12 w-auto"
                                         src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                 </div>
 
-                                <div className="hidden sm:block sm:ml-6">
+                                <div className="sr-only md:not-sr-only md:block md:ml-6">
 
                                     <div className="flex space-x-4">
                                         <div className="pt-2 relative mx-auto text-gray-600">
@@ -77,7 +72,7 @@ export const Navbar = () => {
                                 >
                                     <span className="sr-only">View notifications</span>
                                     <HeartIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
-                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                    <div className="bg-dark-blue w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
                                 </button>
                                 <button
                                     type="button"
@@ -85,7 +80,7 @@ export const Navbar = () => {
                                 >
                                     <span className="sr-only">View notifications</span>
                                     <BellIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
-                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                    <div className="bg-dark-blue w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
                                 </button>
                                 <button
                                     type="button"
@@ -93,7 +88,7 @@ export const Navbar = () => {
                                 >
                                     <span className="sr-only">View notifications</span>
                                     <BsCart3 className="h-6 w-6 absolute" aria-hidden="true" />
-                                    <div className="bg-red-400 w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                    <div className="bg-dark-blue w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
                                 </button>
 
                                 {/* Profile dropdown */}
@@ -105,7 +100,7 @@ export const Navbar = () => {
                                                 className="h-8 w-8 rounded-full"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
-                                            /><span className="mx-2 mt-1">N. Ramadhan</span>
+                                            /><span className=" sr-only md:not-sr-only mx-2 mt-1">N. Ramadhan</span>
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -151,7 +146,7 @@ export const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className="space-x-6 flex justify-center mt-5">
+                        <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5">
                             <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />buy your products</span>
                             <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />get idea</span>
                         </div>

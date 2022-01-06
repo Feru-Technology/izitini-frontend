@@ -62,7 +62,7 @@ export const Home = () => {
     const productSection = products.slice(0, 6)
 
     return (<>
-        {isLoading ? (<h1>Loading</h1>) : (
+        {isLoading ? (<h1>Loading ...</h1>) : (
 
             <div className='m-2'>
                 < Navbar />
@@ -153,7 +153,7 @@ export const Home = () => {
                                 <p>{p.name}</p>
                                 <p>{p.brand}</p>
                                 <p>Ratings</p>
-                                <p>Price</p>
+                                <p>{p.price}</p>
                             </div>
                         ))}
                     </div>
