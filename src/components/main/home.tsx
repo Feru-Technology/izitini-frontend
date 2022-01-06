@@ -64,7 +64,6 @@ export const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading</h1>) : (
 
-
             <div className='m-2'>
                 < Navbar />
 
@@ -73,15 +72,17 @@ export const Home = () => {
                 sr-only
                 md:not-sr-only
                 flex justify-center
-                bg-gray-400 my-2'>
+                bg-gray-200 my-2'>
                     <ul className='flex md:space-x-1 lg:space-x-2 xl:space-x-4 2xl:space-x-6'>
 
                         {subCategoryBar.map((v) => (<li className='md:text-xs lg:text-sm xl:text-base'>{v.name}</li>))}
+
+                        <p className='md:text-xs lg:text-sm xl:text-base'>see all</p>
                     </ul>
                 </div>
 
                 {/* first section */}
-                <div className='flex flex-row h-60'>
+                <div className='flex flex-row h-60 mt-2'>
                     <div className='
                     sr-only md:not-sr-only
                     md:w-1/5 md:h-full'>
@@ -114,15 +115,14 @@ export const Home = () => {
                 lg:grid-cols-4
                 gap-3'>
                     {categorySection.map((v) => (
-                        <div className=''>
-                            <p>{v.name}</p>
+                        <div className='relative'>
+                            <p className='absolute ml-2'>{v.name}</p>
                             <img className='
                             h-36
                             2xl:h-52
                             w-full
                             bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                             <ul className='self-center'>
-                                <li>test</li>
                                 <li>test</li>
                                 <li>test</li>
                                 <li>test</li>
