@@ -44,7 +44,6 @@ export const Navbar = () => {
                                 </div>
 
                                 <div className="sr-only md:not-sr-only md:block md:ml-6">
-
                                     <div className="flex space-x-4">
                                         <div className="pt-2 relative mx-auto text-gray-600">
                                             <input className="border-2 w-96 ml-36 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
@@ -65,30 +64,29 @@ export const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="absolute space-x-12 inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <div className="flex space-x-14 right-0 text-black">
                                 <button
                                     type="button"
-                                    className="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
+                                    className="relative"
                                 >
-                                    <span className="sr-only">View notifications</span>
-                                    <HeartIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
-                                    <div className="bg-dark-blue w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                    <span className="sr-only">View saved items</span>
+                                    <HeartIcon className="h-8 w-8 absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
                                 </button>
                                 <button
                                     type="button"
-                                    className="relative p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
+                                    className="relative"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-8 w-8 absolute mb-6" aria-hidden="true" />
-                                    <div className="bg-dark-blue w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                    <BellIcon className="h-8 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
                                 </button>
                                 <button
                                     type="button"
-                                    className="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none mb-3"
                                 >
-                                    <span className="sr-only">View notifications</span>
-                                    <BsCart3 className="h-6 w-6 absolute" aria-hidden="true" />
-                                    <div className="bg-dark-blue w-6 h-6 rounded-full z-10 absolute ml-4 mt-2" ><p className='text-white test-xs'>30</p></div>
+                                    <span className="sr-only">View cart</span>
+                                    <BsCart3 className="h-8 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
                                 </button>
 
                                 {/* Profile dropdown */}
