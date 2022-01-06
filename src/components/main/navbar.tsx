@@ -6,13 +6,6 @@ import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { RiSearchLine } from 'react-icons/ri'
 
-const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
-    { name: 'Team', href: '#', current: false },
-    { name: 'Projects', href: '#', current: false },
-    { name: 'Calendar', href: '#', current: false },
-]
-
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
@@ -73,29 +66,27 @@ export const Navbar = () => {
                                     <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
                                 </button>
                             </div>
-                            <div className="flex space-x-6 right-0 text-black mb-3">
+                            <div className="flex space-x-4 right-0 text-black mb-3">
                                 <button
                                     type="button"
-                                    className="relative"
                                 >
                                     <span className="sr-only">View saved items</span>
-                                    <HeartIcon className="h-6 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
+                                    <HeartIcon className="h-7 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4'>30</p>
                                 </button>
                                 <button
                                     type="button"
-                                    className="relative"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
+                                    <BellIcon className="h-7 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4'>30</p>
                                 </button>
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View cart</span>
-                                    <BsCart3 className="h-6 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
+                                    <BsCart3 className="h-7 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4'>30</p>
                                 </button>
 
                                 {/* Profile dropdown */}
@@ -104,7 +95,7 @@ export const Navbar = () => {
                                         <Menu.Button className="flex text-sm rounded-full">
 
                                             <img
-                                                className="h-8 w-8 rounded-full"
+                                                className="h-8 w-auto rounded-full"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
                                             /><span className=" sr-only md:not-sr-only mx-2 mt-1">N. Ramadhan</span>
@@ -159,22 +150,9 @@ export const Navbar = () => {
                         </div>
                     </div>
 
-                    <Disclosure.Panel className="sm:hidden">
+                    <Disclosure.Panel className="sm:hidden z-10">
                         <div className="px-2 pt-2 pb-3 space-y-1">
-                            {navigation.map((item) => (
-                                <Disclosure.Button
-                                    key={item.name}
-                                    as="a"
-                                    href={item.href}
-                                    className={classNames(
-                                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium'
-                                    )}
-                                    aria-current={item.current ? 'page' : undefined}
-                                >
-                                    {item.name}
-                                </Disclosure.Button>
-                            ))}
+                            <p>Home</p>
                         </div>
                     </Disclosure.Panel>
                 </>
