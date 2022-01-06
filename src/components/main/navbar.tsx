@@ -4,6 +4,7 @@ import { MenuIcon, XIcon, HeartIcon, BellIcon } from '@heroicons/react/outline'
 import { FaTools, FaBuilding } from "react-icons/fa"
 import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import { RiSearchLine } from 'react-icons/ri'
 
 const navigation = [
     { name: 'Dashboard', href: '#', current: true },
@@ -64,13 +65,21 @@ export const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex space-x-14 right-0 text-black">
+                            <div className='sm:sr-only'>
+                                <button
+                                    type="button"
+                                >
+                                    <span className="sr-only">View saved search</span>
+                                    <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
+                                </button>
+                            </div>
+                            <div className="flex space-x-6 right-0 text-black mb-3">
                                 <button
                                     type="button"
                                     className="relative"
                                 >
                                     <span className="sr-only">View saved items</span>
-                                    <HeartIcon className="h-8 w-8 absolute" aria-hidden="true" />
+                                    <HeartIcon className="h-6 w-auto absolute" aria-hidden="true" />
                                     <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
                                 </button>
                                 <button
@@ -78,21 +87,21 @@ export const Navbar = () => {
                                     className="relative"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-8 w-auto absolute" aria-hidden="true" />
+                                    <BellIcon className="h-6 w-auto absolute" aria-hidden="true" />
                                     <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
                                 </button>
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View cart</span>
-                                    <BsCart3 className="h-8 w-auto absolute" aria-hidden="true" />
+                                    <BsCart3 className="h-6 w-auto absolute" aria-hidden="true" />
                                     <p className='text-white text-xs p-0 bg-dark-blue rounded-full'>30</p>
                                 </button>
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
-                                        <Menu.Button className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                                        <Menu.Button className="flex text-sm rounded-full">
 
                                             <img
                                                 className="h-8 w-8 rounded-full"
