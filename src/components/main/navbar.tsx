@@ -28,25 +28,25 @@ export const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="ml-12 md:flex-1 md:flex md:items-stretch md:justify-start mb-3">
+                            <div className="ml-10 md:ml-6 md:flex md:justify-start mb-3">
                                 <div className="flex-shrink-0">
                                     <img
-                                        className="block h-7 md:h-8 lg:h-12 w-auto"
+                                        className="block h-7 md:h-11 lg:h-12 w-auto"
                                         src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                         alt="Workflow"
                                     />
                                 </div>
 
-                                <div className="sr-only md:not-sr-only md:block md:ml-6">
-                                    <div className="flex space-x-4">
+                                <div className="sr-only md:not-sr-only md:block">
+                                    <div className="flex">
                                         <div className="pt-2 relative mx-auto text-gray-600">
-                                            <input className="border-2 w-96 ml-36 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                                            <input className="border-2 w-80 md:ml-16 border-gray-300
+                                            bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                                                 type="search" name="search" placeholder="Search" />
                                             <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
                                                 <svg className="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
                                                     xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                                     viewBox="0 0 56.966 56.966"
-                                                    // style={"enable-background:new 0 0 56.966 56.966;"}
                                                     xmlSpace="preserve"
                                                     width="512px" height="512px">
                                                     <path
@@ -54,7 +54,6 @@ export const Navbar = () => {
                                                 </svg>
                                             </button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -66,27 +65,27 @@ export const Navbar = () => {
                                     <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
                                 </button>
                             </div>
-                            <div className="flex space-x-4 right-0 text-black mb-3">
+                            <div className="flex space-x-4 right-0 text-black mb-3 md:mb-5">
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View saved items</span>
-                                    <HeartIcon className="h-7 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4'>30</p>
+                                    <HeartIcon className="h-7 md:h-9 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4 md:ml-5 md:p-1'>30</p>
                                 </button>
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-7 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4'>30</p>
+                                    <BellIcon className="h-7 md:h-9 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4 md:ml-5 md:p-1'>30</p>
                                 </button>
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View cart</span>
-                                    <BsCart3 className="h-7 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4'>30</p>
+                                    <BsCart3 className="h-7 md:h-9 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4 md:ml-5 md:p-1'>30</p>
                                 </button>
 
                                 {/* Profile dropdown */}
@@ -95,10 +94,10 @@ export const Navbar = () => {
                                         <Menu.Button className="flex text-sm rounded-full">
 
                                             <img
-                                                className="h-8 w-auto rounded-full"
+                                                className="h-8 md:h-9 w-auto rounded-full md:mt-3"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
-                                            /><span className=" sr-only md:not-sr-only mx-2 mt-1">N. Ramadhan</span>
+                                            /><span className=" sr-only lg:not-sr-only mx-2 mt-1">N. Ramadhan</span>
                                         </Menu.Button>
                                     </div>
                                     <Transition
