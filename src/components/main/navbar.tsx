@@ -16,8 +16,8 @@ export const Navbar = () => {
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mt-5 mb-5">
-                        <div className="relative flex items-center justify-between h-16 border-b-2">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <div className="relative flex items-center justify-between">
+                            <div className="absolute inset-y-0 left-0 flex items-center sm:sr-only">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black">
                                     <span className="sr-only">Open main menu</span>
@@ -40,11 +40,12 @@ export const Navbar = () => {
                                 <div className="sr-only md:not-sr-only md:block">
                                     <div className="flex">
                                         <div className="pt-2 relative mx-auto text-gray-600">
-                                            <input className="border-2 w-80 md:ml-16 border-gray-300
-                                            bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                                            <input className="border-2 w-80 lg:w-full md:ml-16 lg:ml-32 border-gray-300
+                                            bg-white h-10 px-3 rounded-lg text-sm focus:outline-none"
                                                 type="search" name="search" placeholder="Search" />
-                                            <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
-                                                <svg className="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
+                                            <button type="submit" className="absolute right-0 top-0 mt-5">
+
+                                                <svg className="text-gray-600 h-4 w-4 fill-current lg:sr-only" xmlns="http://www.w3.org/2000/svg"
                                                     xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                                     viewBox="0 0 56.966 56.966"
                                                     xmlSpace="preserve"
@@ -57,6 +58,7 @@ export const Navbar = () => {
                                     </div>
                                 </div>
                             </div>
+
                             <div className='sm:sr-only'>
                                 <button
                                     type="button"
@@ -70,34 +72,35 @@ export const Navbar = () => {
                                     type="button"
                                 >
                                     <span className="sr-only">View saved items</span>
-                                    <HeartIcon className="h-7 md:h-9 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4 md:ml-5 md:p-1'>30</p>
+                                    <HeartIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
                                 </button>
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-7 md:h-9 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4 md:ml-5 md:p-1'>30</p>
+                                    <BellIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
                                 </button>
                                 <button
                                     type="button"
                                 >
                                     <span className="sr-only">View cart</span>
-                                    <BsCart3 className="h-7 md:h-9 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs p-0 bg-dark-blue rounded-full ml-4 md:ml-5 md:p-1'>30</p>
+                                    <BsCart3 className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
+                                    <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
                                 </button>
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="ml-3 relative">
                                     <div>
-                                        <Menu.Button className="flex text-sm rounded-full">
+                                        <Menu.Button className="flex md:mt-3">
 
                                             <img
-                                                className="h-8 md:h-9 w-auto rounded-full md:mt-3"
+                                                className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
                                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                                                 alt=""
-                                            /><span className=" sr-only lg:not-sr-only mx-2 mt-1">N. Ramadhan</span>
+                                            />
+                                            <p className="sr-only lg:not-sr-only mt-24 text-base">N. Ramadhan</p>
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -149,7 +152,7 @@ export const Navbar = () => {
                         </div>
                     </div>
 
-                    <Disclosure.Panel className="sm:hidden z-10">
+                    <Disclosure.Panel className="sm:sr-only z-10">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             <p>Home</p>
                         </div>
