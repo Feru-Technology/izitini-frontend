@@ -8,11 +8,11 @@ export const Footer = () => {
                     <img className='w-16 md:w-24' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo.png" alt="" />
                     <p className='text-xs'>This where we ut staff about our company This where we ut staff about our company This where we ut staff about our company</p>
                 </div>
-                <div className=''>
+                <div className='mx-2 sm:m-0'>
                     <p className='font-bold mt-3 md:mt-5'>Follow Us</p>
                     <p className='text-xs mt-1 md:mt-3'>This where we put some staff that attracts our clients to our social medias</p>
                 </div>
-                <div className=''>
+                <div className='mx-2 sm:m-0'>
                     <p className='font-bold mt-3 md:mt-5'>Contact Us</p>
                     <ul className='mt-1 mb-2'>
                         <li className='text-xs'>Company address</li>
