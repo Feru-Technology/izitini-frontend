@@ -147,8 +147,19 @@ export const Navbar = () => {
                         </div>
 
                         <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5">
-                            <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />buy your products</span>
-                            <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />get idea</span>
+
+                            <div>
+                                <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />Buy your products</span>
+                            </div>
+
+                            <div>
+                                <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />Get idea</span>
+                            </div>
+
+                            <div>
+                                <span className="flex items-center"><FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
+                            </div>
+
                         </div>
                     </div>
 
