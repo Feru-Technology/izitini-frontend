@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export interface ICategory { id: string; name: string; image_url: string };
+export interface ICategory {
+    id: string; name: string; image_url: string;
+    SubCategories: [{ name: string }];
+};
 export interface HTTPError { status: number; message: string }
 export interface CategoryState {
     isLoading: boolean;

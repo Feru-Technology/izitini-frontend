@@ -45,7 +45,7 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingCategories());
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category')
+        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
     }, [dispatch])
 
     const { categories } = useSelector((state: RootState) => state.category);
@@ -114,20 +114,21 @@ export const Home = () => {
                 md:grid-cols-2
                 lg:grid-cols-4
                 gap-3'>
-                    {categorySection.map((v) => (
+                    {categorySection.map((c) => (
                         <div className='relative'>
-                            <p className='absolute ml-2'>{v.name}</p>
+                            <p className='absolute ml-2'>{c.name}</p>
                             <img className='
                             h-36
                             2xl:h-52
                             w-full
                             bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                             <ul className='self-center'>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>see all</li>
+                                {
+                                    c.SubCategories.map((s) => (
+                                        <li>{s.name}</li>
+                                    ))
+                                }
+                                <p>see all</p>
                             </ul>
                         </div>
                     ))}
