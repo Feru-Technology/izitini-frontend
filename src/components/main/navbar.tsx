@@ -22,6 +22,8 @@ export const Navbar = () => {
 
     console.log(profile);
 
+    const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
+
     return (
 
         <Disclosure as="nav" className="bg-white">
@@ -123,10 +125,10 @@ export const Navbar = () => {
 
                                                     <img
                                                         className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
-                                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                        src={profile.user.profile_image === null ? backUpPImage : profile.user.profile_image}
                                                         alt=""
                                                     />
-                                                    <p className="sr-only lg:not-sr-only mt-24 text-base">N. Ramadhan</p>
+                                                    <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
                                                 </Menu.Button>
                                             </div>
                                             <Transition

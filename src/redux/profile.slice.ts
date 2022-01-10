@@ -7,14 +7,14 @@ export interface IUser {
     tin_no: string;
     contact: string;
     provider: string;
-    image_url: string;
     account_type: string;
+    profile_image: string;
 };
 export interface HTTPError { status: number; message: string }
 export interface ProfileState {
     isLoading: boolean;
     error: Error | HTTPError | null;
-    profile: IUser | null;
+    profile: { user: IUser, token: string } | null;
 }
 
 const initialState: ProfileState = {
