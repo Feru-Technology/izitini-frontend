@@ -30,7 +30,7 @@ export const profileSlice = createSlice({
         login: (state) => {
             state.isLoading = true;
         },
-        logedIn: (state, { payload }) => {
+        loggedIn: (state, { payload }) => {
             state.isLoading = false;
             state.profile = payload;
         },
@@ -42,6 +42,6 @@ export const profileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { login, logedIn, loginFailed } = profileSlice.actions
+export const { login, loggedIn, loginFailed } = profileSlice.actions
 
 export default profileSlice.reducer
