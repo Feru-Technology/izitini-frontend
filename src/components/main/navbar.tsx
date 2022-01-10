@@ -6,33 +6,19 @@ import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store';
-import { post } from '../../api/apiAction'
 
 import {
-    useSelector,
-    useDispatch
+    useSelector
 } from 'react-redux'
 
-import {
-    login,
-    loggedIn,
-    loginFailed
-} from '../../redux/profile.slice'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
 export const Navbar = () => {
-    // redus
-    const dispatch = useDispatch()
 
     const { isLoading, profile, error } = useSelector((state: RootState) => state.profile);
-
-    const login = () => {
-        dispatch(login());
-        post(dispatch, loggedIn, loginFailed, '/auth/login')
-    }
 
     console.log(profile);
 
