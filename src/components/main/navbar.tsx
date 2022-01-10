@@ -13,7 +13,11 @@ import {
     useDispatch
 } from 'react-redux'
 
-import { login, loggedIn, loginFailed } from '../../redux/profile.slice'
+import {
+    login,
+    loggedIn,
+    loginFailed
+} from '../../redux/profile.slice'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -98,7 +102,7 @@ export const Navbar = () => {
                                     <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
                                 </button>
                                 {profile === null
-                                    ? <span className='sr-only'>nologged in</span>
+                                    ? <span className='sr-only'>not logged in</span>
                                     : <button
                                         type="button"
                                     >
@@ -117,10 +121,13 @@ export const Navbar = () => {
                                 </button>
 
                                 {profile === null
-                                    ? <div className='flex space-x-2'><div>
-                                        Login
+                                    ? <div className='flex space-x-2'>
+                                        <div>
+                                            <Link to='/signin'>Login</Link>
+
+                                        </div>
+                                        <div><Link to='/signup'>Register</Link></div>
                                     </div>
-                                        <div>Register</div></div>
                                     : <div>
 
                                         {/* Profile dropdown */}
