@@ -13,7 +13,7 @@ import {
 } from '../../../redux/profile.slice'
 const SignInPage = () => {
 
-  // redus
+  // redux
   const dispatch = useDispatch()
 
 
@@ -179,9 +179,9 @@ const SignInPage = () => {
                   </div>
 
                   <div className="">
-                    <button className="uppercase  w-full p-2 
-                    text-white  text-lg rounded-lg 
-                    bg-light-blue hover:bg-middle-blue 
+                    <button className="uppercase  w-full p-2
+                    text-white  text-lg rounded-lg
+                    bg-light-blue hover:bg-middle-blue
                     focus:outline-none"
                       onClick={loginF}
                     >
