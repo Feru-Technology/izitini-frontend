@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import { post } from '../../../api/apiAction'
+import { useNavigate } from "react-router-dom";
 
 import {
   useDispatch
@@ -20,11 +21,12 @@ const SignInPage = () => {
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
 
-  const loginF = (event?: any) => {
-    event.preventDefault()
+  const loginF = () => {
     dispatch(login());
     post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
   }
+
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -183,7 +185,11 @@ const SignInPage = () => {
                     text-white  text-lg rounded-lg
                     bg-light-blue hover:bg-middle-blue
                     focus:outline-none"
-                      onClick={loginF}
+                      onClick={(e) => {
+                        e.preventDefault()
+                        loginF()
+                        navigate('/')
+                      }}
                     >
                       sign in
                     </button>
