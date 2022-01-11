@@ -23,7 +23,6 @@ export const Navbar = () => {
     const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
 
     return (
-
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
                 <>
@@ -124,7 +123,7 @@ export const Navbar = () => {
                                                     <img
                                                         className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
                                                         src={profile.user.profile_image === null ? backUpPImage : profile.user.profile_image}
-                                                        alt=""
+                                                        alt="PImage"
                                                     />
                                                     <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
                                                 </Menu.Button>
