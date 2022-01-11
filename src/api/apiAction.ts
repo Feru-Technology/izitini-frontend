@@ -14,8 +14,11 @@ export const post = (dispatch: any, response: any, failed: any, route: string, b
     Axios.post(route, body)
         .then(({ data }) => {
             dispatch(response(data.data))
+            console.log(data.data.token);
+            return localStorage.setItem('token', data.data.token)
         })
         .catch(error => {
+            console.log(error);
             dispatch(failed(error))
         })
 }

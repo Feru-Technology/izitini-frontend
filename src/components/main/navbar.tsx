@@ -20,8 +20,6 @@ export const Navbar = () => {
 
     const { isLoading, profile, error } = useSelector((state: RootState) => state.profile);
 
-    console.log(profile);
-
     const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
 
     return (
