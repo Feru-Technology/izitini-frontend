@@ -20,7 +20,7 @@ import {
     fetchingCategories,
     retrievedCategoryFailed,
     retrievedCategory
-} from '../../redux/category.slice'
+} from '../../redux/categories/category.slice'
 
 import {
     fetchingProducts,
