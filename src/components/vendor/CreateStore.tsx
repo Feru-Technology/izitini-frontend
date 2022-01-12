@@ -44,7 +44,7 @@ const CreateProduct = () => {
           <form>
             <div>
               <h3>Select Category</h3>
-              <div className="relative">
+              <div className="">
                 <select
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
@@ -114,6 +114,7 @@ const CreateProduct = () => {
                 placeholder="Store Contact"
               />
             </div>
+            {/* upload image */}
             <div>
               <form action="/action_page.php">
                 <input type="file" id="myFile" name="filename" />
