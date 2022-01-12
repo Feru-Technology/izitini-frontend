@@ -3,8 +3,6 @@ import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
 import Header from './Header'
 import { Transition } from '@headlessui/react'
-import { Link } from 'react-router-dom'
-import ImageUpload from "./ImageUpload";
 
 const CreateProduct = () => {
 
@@ -72,7 +70,7 @@ const CreateProduct = () => {
                 name
               </label>
               <input
-                type="number"
+                type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="name"
               />
@@ -85,7 +83,20 @@ const CreateProduct = () => {
                 Brand
               </label>
               <input
-                type="number"
+                type="text"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                placeholder="Brand"
+              />
+            </div>
+            <div className=" w-full mb-3">
+              <label
+                className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                Unit/measurements
+              </label>
+              <input
+                type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Brand"
               />
@@ -124,7 +135,7 @@ const CreateProduct = () => {
                 Product manual
               </label>
               <input
-                type="number"
+                type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Product manual"
               />
@@ -137,7 +148,7 @@ const CreateProduct = () => {
                 Product Specifications
               </label>
               <input
-                type="number"
+                type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Product Specifications"
               />
