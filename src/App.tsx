@@ -8,6 +8,7 @@ import Reports from './components/vendor/Reports'
 import Settings from './components/vendor/Settings'
 import Store from './components/vendor/Store'
 import Coupons from './components/vendor/Coupons'
+import CreateStore from './components/vendor/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
 import SignInPage from './components/main/accounts/SignInPage'
 import CustomerSignUp from './components/main/accounts/CustomerSignUp'
@@ -28,6 +29,10 @@ function App() {
                 <Route
                     path='/vendor/create-product'
                     element={<CreateProduct />}
+                />
+                <Route
+                    path='/vendor/create-store'
+                    element={<CreateStore />}
                 />
                 <Route path='/vendor/products' element={<Products />} />
                 <Route path='/vendor/orders' element={<Orders />} />

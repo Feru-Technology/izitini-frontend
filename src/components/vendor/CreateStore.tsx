@@ -40,44 +40,16 @@ const CreateProduct = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
-          <div className="font-bold text-3xl text-center">Create a Product</div>
+          <div className="font-bold text-3xl text-center">Create a new Store</div>
           <form>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Category
-              </label>
-              <input
-                type="email"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Category"
-              />
-            </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                SubCategory
-              </label>
-              <input
-                type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="SubCategory"
-              />
-            </div>
             <div>
-              <h3>Pick color</h3>
+              <h3>Select Category</h3>
               <div className="relative">
                 <select
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>sima</option>
-                  <option>ingorofani</option>
-                  <option>Tv</option>
+                  <option>Select Category</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -93,44 +65,59 @@ const CreateProduct = () => {
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-p"
+                htmlFor="grid-text"
               >
-                Quantity
+                Name
               </label>
               <input
-                type="number"
+                type="email"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Quantity"
+                placeholder="Name"
               />
             </div>
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-text"
               >
-                Price unit
+                About Store
               </label>
               <input
-                type="number"
+                type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Price unit"
+                placeholder="About Store"
               />
             </div>
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-text"
               >
-                Product Description
+                Store Email
+              </label>
+              <input
+                type="text"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                placeholder="Store Email"
+              />
+            </div>
+            <div className=" w-full mb-3">
+              <label
+                className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                htmlFor="grid-number"
+              >
+                Store Contact
               </label>
               <input
                 type="number"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Product Description"
+                placeholder="Store Contact"
               />
             </div>
             <div>
-              {/* <ImageUpload /> */}
+              <form action="/action_page.php">
+                <input type="file" id="myFile" name="filename" />
+              </form>
             </div>
             <div className="text-center mt-6">
               <button
