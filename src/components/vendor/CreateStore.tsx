@@ -3,7 +3,7 @@ import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
 import Header from './Header'
 import { Transition } from '@headlessui/react'
-import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../redux/categories/category.slice'
+import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../redux/categories/categories.slice'
 import { useDispatch } from 'react-redux'
 
 const CreateProduct = () => {
@@ -18,7 +18,7 @@ const CreateProduct = () => {
 
   // useEffect(() => {
   //   dispatch(fetchingCategories());
-  //   fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
+  //   fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category')
   // }, [dispatch])
 
   return (
