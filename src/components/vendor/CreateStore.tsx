@@ -40,9 +40,7 @@ const CreateProduct = () => {
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  console.log(name, about_shop, shop_email, shop_contact_no, category);
   const token = localStorage.getItem('token');
-  console.log(token);
 
   const createStore = () => {
     dispatch(fetchingCategories())
@@ -163,6 +161,7 @@ const CreateProduct = () => {
                 onChange={e => setShop_contact_no(e.target.value)}
               />
             </div>
+
             {/* upload image */}
             <div>
               <form action="/action_page.php">
@@ -176,10 +175,10 @@ const CreateProduct = () => {
                 onClick={(e) => {
                   e.preventDefault()
                   createStore()
-                  navigate('/store')
+                  navigate('/vendor/stores')
                 }}
               >
-                Sign Up
+                create store
               </button>
             </div>
           </form>

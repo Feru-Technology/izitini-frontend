@@ -164,7 +164,7 @@ const CreateProduct = () => {
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
               >
-                Sign Up
+                create product
               </button>
             </div>
           </form>
