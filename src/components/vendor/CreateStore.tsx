@@ -2,9 +2,16 @@ import React, { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
 import Header from './Header'
+import { fetch } from '../../api/apiAction'
+import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../redux/categories/categories.slice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  fetchingCategories,
+  retrievedCategories,
+  retrievedCategoryFailed
+} from '../../redux/categories/allCategories.slice'
 
 const CreateProduct = () => {
 
@@ -16,13 +23,16 @@ const CreateProduct = () => {
   // redux
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchingCategories());
-  //   fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category')
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(fetchingCategories());
+    fetch(dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
+  }, [dispatch])
+
+  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories);
+
+  console.log(categories);
 
   return (
-
     <div className='flex h-screen overflow-hidden'>
       <SiderBar
         isClosed={isClosed}
@@ -59,6 +69,8 @@ const CreateProduct = () => {
                   id="grid-state"
                 >
                   <option>Select Category</option>
+                  {isLoading ? <h1>loading</h1>
+                    : categories.map((v) => (<option>{v.name}</option>))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg

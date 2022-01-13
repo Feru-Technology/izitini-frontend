@@ -22,7 +22,7 @@ export const AllCategoriesSlice = createSlice({
         fetchingCategories: (state) => {
             state.isLoading = true;
         },
-        retrievedCategory: (state, { payload }) => {
+        retrievedCategories: (state, { payload }) => {
             state.isLoading = false;
             state.categories = [...state.categories, ...payload]
         },
@@ -34,6 +34,6 @@ export const AllCategoriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { fetchingCategories, retrievedCategory, retrievedCategoryFailed } = AllCategoriesSlice.actions
+export const { fetchingCategories, retrievedCategories, retrievedCategoryFailed } = AllCategoriesSlice.actions
 
 export default AllCategoriesSlice.reducer

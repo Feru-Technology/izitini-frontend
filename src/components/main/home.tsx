@@ -38,7 +38,6 @@ export const Home = () => {
         fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
     }, [dispatch])
 
-
     const { isLoading, subCategories, error } = useSelector((state: RootState) => state.subCategory);
 
     const subCategoryBar = subCategories.slice(0, 10)
