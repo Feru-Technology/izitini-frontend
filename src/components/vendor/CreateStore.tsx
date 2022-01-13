@@ -6,14 +6,18 @@ import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
+import { post } from '../../api/apiAction'
 
 import {
   fetchingCategories,
   retrievedCategories,
   retrievedCategoryFailed
 } from '../../redux/categories/allCategories.slice'
+import { useNavigate } from 'react-router'
 
 const CreateProduct = () => {
+
+  const navigate = useNavigate()
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -32,11 +36,24 @@ const CreateProduct = () => {
 
   const [category, setCategory] = useState<string | null>(null)
   const [name, setName] = useState<string | null>(null)
-  const [aboutStore, setAboutStore] = useState<string | null>(null)
-  const [storeEmail, setStoreEmail] = useState<string | null>(null)
-  const [storeContact, setStoreContact] = useState<string | null>(null)
+  const [about_shop, setAbout_shop] = useState<string | null>(null)
+  const [shop_email, setShop_email] = useState<string | null>(null)
+  const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  console.log(name, aboutStore, storeEmail, storeContact, category);
+  console.log(name, about_shop, shop_email, shop_contact_no, category);
+  const token = localStorage.getItem('token');
+  console.log(token);
+
+  const createStore = () => {
+    dispatch(fetchingCategories())
+    post(
+      dispatch,
+      retrievedCategories,
+      retrievedCategoryFailed, '/shop',
+      { category, name, about_shop, shop_email, shop_contact_no },
+      token
+    )
+  }
 
   return (
     <div className='flex h-screen overflow-hidden'>
@@ -115,7 +132,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="About Store"
-                onChange={e => setAboutStore(e.target.value)}
+                onChange={e => setAbout_shop(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -129,7 +146,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Store Email"
-                onChange={e => setStoreEmail(e.target.value)}
+                onChange={e => setShop_email(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -143,7 +160,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Store Contact"
-                onChange={e => setStoreContact(e.target.value)}
+                onChange={e => setShop_contact_no(e.target.value)}
               />
             </div>
             {/* upload image */}
@@ -156,6 +173,11 @@ const CreateProduct = () => {
               <button
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  createStore()
+                  navigate('/store')
+                }}
               >
                 Sign Up
               </button>

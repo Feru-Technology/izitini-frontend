@@ -10,12 +10,11 @@ export const fetch = (dispatch: any, retrievedData: any, retrieveDataFailed: any
         })
 }
 
-export const post = (dispatch: any, response: any, failed: any, route: string, body: object) => {
-    Axios.post(route, body)
+export const post = (dispatch: any, response: any, failed: any, route: string, body: object, token?: any) => {
+    Axios.post(route, body, { headers: { 'Authorization': token } })
         .then(({ data }) => {
-            dispatch(response(data.data))
-            console.log(data.data.token);
-            return localStorage.setItem('token', data.data.token)
+            data.data.token ? localStorage.setItem('token', data.data.token) : console.log(data);
+            return dispatch(response(data.data))
         })
         .catch(error => {
             console.log(error);
