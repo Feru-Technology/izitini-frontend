@@ -30,7 +30,13 @@ const CreateProduct = () => {
 
   const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories);
 
-  console.log(categories);
+  const [category, setCategory] = useState<string | null>(null)
+  const [name, setName] = useState<string | null>(null)
+  const [aboutStore, setAboutStore] = useState<string | null>(null)
+  const [storeEmail, setStoreEmail] = useState<string | null>(null)
+  const [storeContact, setStoreContact] = useState<string | null>(null)
+
+  console.log(name, aboutStore, storeEmail, storeContact, category);
 
   return (
     <div className='flex h-screen overflow-hidden'>
@@ -67,6 +73,7 @@ const CreateProduct = () => {
                 <select
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
+                  onChange={e => setCategory(e.target.value)}
                 >
                   <option>Select Category</option>
                   {isLoading ? <h1>loading</h1>
@@ -94,6 +101,7 @@ const CreateProduct = () => {
                 type="email"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Name"
+                onChange={e => setName(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -107,6 +115,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="About Store"
+                onChange={e => setAboutStore(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -120,6 +129,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Store Email"
+                onChange={e => setStoreEmail(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -130,9 +140,10 @@ const CreateProduct = () => {
                 Store Contact
               </label>
               <input
-                type="number"
+                type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Store Contact"
+                onChange={e => setStoreContact(e.target.value)}
               />
             </div>
             {/* upload image */}
