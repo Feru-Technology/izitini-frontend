@@ -4,6 +4,7 @@ import { subCategorySlice } from './subCategory.slice'
 import { categorySlice } from './categories/categories.slice'
 import { productSlice } from './product.slice'
 import { profileSlice } from './profile.slice'
+import { AllCategoriesSlice } from './categories/allCategories.slice'
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         category: categorySlice.reducer,
         product: productSlice.reducer,
         profile: profileSlice.reducer,
+        AllCategories: AllCategoriesSlice.reducer
     },
 })
 
