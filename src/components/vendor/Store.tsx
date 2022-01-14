@@ -11,6 +11,8 @@ import { RootState } from '../../redux/store'
 import {
   fetchingStores, retrievedStores, retrievedStoreFailed
 } from '../../redux/stores/allMyStores.slice'
+
+import { store } from '../../redux/stores/store.slice'
 const Store = () => {
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -29,6 +31,9 @@ const Store = () => {
 
   const { isLoading, stores } = useSelector((state: RootState) => state.myStores);
 
+  const activeStore = async (newStore: object) => {
+    await dispatch(store(newStore))
+  }
   console.log(stores);
 
   return (
@@ -125,7 +130,11 @@ const Store = () => {
                           isLoading
                             ? (<h1>loading ...</h1>)
                             : (stores.map((store) => (
-                              <tr>
+                              <tr className='hover:bg-gray-200'
+                                onClick={() => {
+                                  activeStore(store)
+                                }}
+                              >
                                 <td className='px-6 py-4 whitespace-nowrap'>
                                   <div className='flex items-center'>
                                     <div className='flex-shrink-0 h-10 w-10'>
