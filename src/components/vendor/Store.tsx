@@ -7,12 +7,13 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
+import { store } from '../../redux/stores/store.slice'
+import { useNavigate } from "react-router-dom"
 
 import {
   fetchingStores, retrievedStores, retrievedStoreFailed
 } from '../../redux/stores/allMyStores.slice'
 
-import { store } from '../../redux/stores/store.slice'
 const Store = () => {
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -30,9 +31,11 @@ const Store = () => {
   }, [dispatch])
 
   const { isLoading, stores } = useSelector((state: RootState) => state.myStores);
+  const navigate = useNavigate()
 
-  const activeStore = async (newStore: object) => {
-    await dispatch(store(newStore))
+  const activeStore = (newStore: object) => {
+    dispatch(store(newStore))
+    return navigate('/vendor/products')
   }
   console.log(stores);
 
