@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
-import SiderBar from './SiderBar'
+import SiderBar from '../SiderBar'
 import { useMediaQuery } from 'react-responsive'
-import Header from './Header'
+import Header from '../Header'
 import { Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
 
 const Products = () => {
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
-    const [values, setValues] = React.useState()
-    const [loading, setLoading] = React.useState(false)
-    const [error, setError] = React.useState(null)
+
+
+    const { store } = useSelector((state: RootState) => state.store);
+
 
     return (
         <div className='flex h-screen overflow-hidden'>
@@ -45,7 +48,7 @@ const Products = () => {
                         <h3 className='text-3xl font-bold'>All in one store</h3>
                         <Link to='/vendor/create-product'>
                             <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded cursor-pointer'>
-                                CREATE A PRODUCT
+                                ADD A PRODUCT
                             </button>
                         </Link>
                     </div>

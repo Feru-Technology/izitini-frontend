@@ -37,7 +37,6 @@ const Store = () => {
     dispatch(store(newStore))
     return navigate('/vendor/products')
   }
-  console.log(stores);
 
   return (
     <>
