@@ -1,15 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
 import Header from './Header'
 import { Transition } from '@headlessui/react'
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { fetchingSubCategories, retrievedSubCategory, retrievedSubCategoryFailed } from '../../redux/subCategory.slice'
 
 const Store = () => {
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
+
+  // redux
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //     dispatch(fetchingSubCategories());
+  //     fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
+  // }, [dispatch])
 
   return (
     <>

@@ -1,7 +1,7 @@
 import Axios from './axios';
 
-export const fetch = (dispatch: any, retrievedData: any, retrieveDataFailed: any, route: string) => {
-    Axios.get(route)
+export const fetch = (dispatch: any, retrievedData: any, retrieveDataFailed: any, route: string, token?: any) => {
+    Axios.get(route, { headers: { 'Authorization': token } })
         .then(({ data }) => {
             dispatch(retrievedData(data.data))
         })
