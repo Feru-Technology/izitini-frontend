@@ -2,7 +2,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { subCategorySlice } from './subCategory.slice'
 import { categorySlice } from './categories/categories.slice'
-import { productSlice } from './product.slice'
+import { allProductSlice } from './products/allProduct.slice'
 import { profileSlice } from './profile.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { AllStoresSlice } from './stores/allMyStores.slice'
@@ -13,7 +13,7 @@ export const store = configureStore({
         subCategory: subCategorySlice.reducer,
         category: categorySlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,
-        product: productSlice.reducer,
+        allProducts: allProductSlice.reducer,
         profile: profileSlice.reducer,
         myStores: AllStoresSlice.reducer,
         store: storeSlice.reducer

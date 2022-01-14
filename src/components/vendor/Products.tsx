@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import SiderBar from '../SiderBar'
+import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
-import Header from '../Header'
+import Header from './Header'
 import { Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../../redux/store'
+import { RootState } from '../../redux/store'
 
 const Products = () => {
     const [isClosed, setIsClosed] = useState(false)

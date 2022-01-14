@@ -25,8 +25,8 @@ import {
 import {
     fetchingProducts,
     retrievedProductFailed,
-    retrievedProduct
-} from '../../redux/product.slice'
+    retrievedProducts
+} from '../../redux/products/allProduct.slice'
 
 export const Home = () => {
 
@@ -53,10 +53,10 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingProducts());
-        fetch(dispatch, retrievedProduct, retrievedProductFailed, '/product')
+        fetch(dispatch, retrievedProducts, retrievedProductFailed, '/product')
     }, [dispatch])
 
-    const { products } = useSelector((state: RootState) => state.product);
+    const { products } = useSelector((state: RootState) => state.allProducts);
 
     const productSection = products.slice(0, 6)
 
