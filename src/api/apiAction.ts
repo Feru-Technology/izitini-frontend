@@ -3,6 +3,9 @@ import Axios from './axios';
 export const fetch = (dispatch: any, retrievedData: any, retrieveDataFailed: any, route: string, token?: any) => {
     Axios.get(route, { headers: { 'Authorization': token } })
         .then(({ data }) => {
+            console.log('===================');
+            console.log(data);
+            console.log('===================');
             dispatch(retrievedData(data.data))
         })
         .catch(error => {

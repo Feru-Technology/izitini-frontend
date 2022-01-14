@@ -14,7 +14,7 @@ const initialState: StoreState = {
     stores: [],
 }
 
-// all stores
+// all my stores
 export const AllStoresSlice = createSlice({
     name: 'all stores',
     initialState,
