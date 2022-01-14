@@ -134,7 +134,6 @@ export const Home = () => {
                 </div>
 
                 {/* recent updates */}
-
                 <div className='my-2'>
                     <span>Recent Updates</span>
                     <div className='

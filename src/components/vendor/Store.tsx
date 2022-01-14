@@ -6,11 +6,11 @@ import { Transition } from '@headlessui/react'
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch } from '../../api/apiAction'
+import { RootState } from '../../redux/store'
+
 import {
   fetchingStores, retrievedStores, retrievedStoreFailed
 } from '../../redux/stores/allMyStores.slice'
-import { RootState } from '../../redux/store'
-
 const Store = () => {
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -165,7 +165,6 @@ const Store = () => {
                                 </td>
                               </tr>
                             )))}
-
                       </tbody>
                     </table>
                   </div>
