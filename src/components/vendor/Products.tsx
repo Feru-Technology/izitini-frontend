@@ -55,7 +55,7 @@ const Products = () => {
                 </Transition>
                 <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
-                        <h3 className='text-3xl font-bold'>All in one store</h3>
+                        <h3 className='text-3xl font-bold'>{store?.name}</h3>
                         <Link to='/vendor/create-product'>
                             <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded cursor-pointer'>
                                 ADD A PRODUCT
@@ -79,19 +79,31 @@ const Products = () => {
                                                     scope='col'
                                                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                                                 >
-                                                    Title
+                                                    Brand
+                                                </th>
+                                                <th
+                                                    scope='col'
+                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                >
+                                                    Quantity
+                                                </th>
+                                                <th
+                                                    scope='col'
+                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                >
+                                                    Unit
+                                                </th>
+                                                <th
+                                                    scope='col'
+                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                >
+                                                    Price
                                                 </th>
                                                 <th
                                                     scope='col'
                                                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                                                 >
                                                     Status
-                                                </th>
-                                                <th
-                                                    scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-                                                >
-                                                    Role
                                                 </th>
                                                 <th
                                                     scope='col'
@@ -105,7 +117,7 @@ const Products = () => {
                                         </thead>
                                         <tbody className='bg-white divide-y divide-gray-200'>
                                             <tr>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
+                                                <td className='px-6 py-4'>
                                                     <div className='flex items-center'>
                                                         <div className='flex-shrink-0 h-10 w-10'>
                                                             <img
@@ -114,78 +126,27 @@ const Products = () => {
                                                                 alt=''
                                                             />
                                                         </div>
-                                                        <div className='ml-4'>
-                                                            <div className='text-sm font-medium text-gray-900'>
-                                                                Jane Cooper
-                                                            </div>
-                                                            <div className='text-sm text-gray-500'>
-                                                                jane.cooper@example.com
-                                                            </div>
+                                                        <div className='ml-4 text-sm font-medium text-gray-500'>
+                                                            sima
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='text-sm text-gray-900'>
-                                                        Regional Paradigm Technician
-                                                    </div>
-                                                    <div className='text-sm text-gray-500'>
-                                                        Optimization
-                                                    </div>
+                                                <td className='px-6 py-4 text-sm text-gray-500'>
+                                                    sime rw
                                                 </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                                                        Active
-                                                    </span>
+                                                <td className='px-6 py-4 text-xs text-gray-500'>
+                                                    50
                                                 </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                                    Admin
+                                                <td className='px-6 py-4 text-sm text-gray-500'>
+                                                    kg
                                                 </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-                                                    <a
-                                                        href='#'
-                                                        className='text-indigo-600 hover:text-indigo-900'
-                                                    >
-                                                        Edit
-                                                    </a>
+                                                <td className='px-6 py-4 text-sm text-gray-500'>
+                                                    2000
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='flex items-center'>
-                                                        <div className='flex-shrink-0 h-10 w-10'>
-                                                            <img
-                                                                className='h-10 w-10 rounded-full'
-                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                                                                alt=''
-                                                            />
-                                                        </div>
-                                                        <div className='ml-4'>
-                                                            <div className='text-sm font-medium text-gray-900'>
-                                                                Jane Cooper
-                                                            </div>
-                                                            <div className='text-sm text-gray-500'>
-                                                                jane.cooper@example.com
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <td className='px-6 py-4 text-sm text-gray-500'>
+                                                    draft
                                                 </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='text-sm text-gray-900'>
-                                                        Regional Paradigm Technician
-                                                    </div>
-                                                    <div className='text-sm text-gray-500'>
-                                                        Optimization
-                                                    </div>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                                                        Active
-                                                    </span>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                                    Admin
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
+                                                <td className='px-6 py-4 text-right text-sm font-medium'>
                                                     <a
                                                         href='#'
                                                         className='text-indigo-600 hover:text-indigo-900'
