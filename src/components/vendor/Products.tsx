@@ -16,7 +16,6 @@ const Products = () => {
 
     const { store } = useSelector((state: RootState) => state.store);
 
-
     return (
         <div className='flex h-screen overflow-hidden'>
             <SiderBar
