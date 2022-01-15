@@ -1,20 +1,31 @@
-import React, { useState } from 'react'
-import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
-import { Transition } from '@headlessui/react'
+import SiderBar from './SiderBar'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
-
+import { Transition } from '@headlessui/react'
+import { useMediaQuery } from 'react-responsive'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchingProducts, products, productFailed } from '../../redux/products/storeProducts.slice '
 const Products = () => {
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
 
+    // redux
+    const dispatch = useDispatch();
+
 
     const { store } = useSelector((state: RootState) => state.store);
+
+    const store_id = store?.id
+
+    useEffect(() => {
+        dispatch(fetchingProducts());
+        fetch(dispatch, products, productFailed, `/product/shop/${store_id}`)
+    }, [dispatch])
 
     return (
         <div className='flex h-screen overflow-hidden'>

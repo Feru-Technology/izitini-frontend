@@ -7,7 +7,7 @@ import { profileSlice } from './profile.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { AllStoresSlice } from './stores/allMyStores.slice'
 import { storeSlice } from './stores/store.slice'
-import { allStoreProductsSlice } from './products/allStoreProduct.slice '
+import { storeProductsSlice } from './products/storeProducts.slice '
 
 export const store = configureStore({
     reducer: {
@@ -18,7 +18,7 @@ export const store = configureStore({
         profile: profileSlice.reducer,
         myStores: AllStoresSlice.reducer,
         store: storeSlice.reducer,
-        storeProducts: allStoreProductsSlice.reducer
+        storeProducts: storeProductsSlice.reducer
     },
 })
 
