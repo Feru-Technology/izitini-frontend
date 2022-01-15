@@ -20,9 +20,9 @@ export const storeProductsSlice = createSlice({
         fetchingProducts: (state) => {
             state.isLoading = true;
         },
-        products: (state, { payload }) => {
+        storeProducts: (state, { payload }) => {
             state.isLoading = false;
-            state.products = [...state.products, ...payload]
+            state.products = [...payload]
         },
         productFailed: (state, { payload }) => {
             state.isLoading = false;
@@ -32,6 +32,6 @@ export const storeProductsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { fetchingProducts, products, productFailed } = storeProductsSlice.actions
+export const { fetchingProducts, storeProducts, productFailed } = storeProductsSlice.actions
 
 export default storeProductsSlice.reducer

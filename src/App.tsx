@@ -14,6 +14,10 @@ import SignInPage from './components/main/accounts/SignInPage'
 import CustomerSignUp from './components/main/accounts/CustomerSignUp'
 
 function App() {
+
+    const token = localStorage.getItem('token');
+
+    console.log(token);
     return (
         <BrowserRouter>
             <Routes>
@@ -26,25 +30,33 @@ function App() {
 
                 <Route path='/vendor' element={<Dashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
-                <Route
-                    path='/vendor/create-product'
-                    element={<CreateProduct />}
-                />
-                <Route
-                    path='/vendor/create-store'
-                    element={<CreateStore />}
-                />
-                <Route path='/vendor/products' element={<Products />} />
-                <Route path='/vendor/orders' element={<Orders />} />
-                <Route path='/vendor/coupons' element={<Coupons />} />
-                <Route path='/vendor/reports' element={<Reports />} />
-                <Route path='/vendor/settings' element={<Settings />} />
-
-                <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
-                <Route path='/test' element={<h2>test</h2>}>
-                    <Route path='test1' element={<h2>test1</h2>} />
-                </Route>
             </Routes>
+
+            <div>
+                {token ? <h1>please login </h1>
+                    :
+                    <Routes>
+                        <Route
+                            path='/vendor/create-product'
+                            element={<CreateProduct />}
+                        />
+                        <Route
+                            path='/vendor/create-store'
+                            element={<CreateStore />}
+                        />
+                        <Route path='/vendor/products' element={<Products />} />
+                        <Route path='/vendor/orders' element={<Orders />} />
+                        <Route path='/vendor/coupons' element={<Coupons />} />
+                        <Route path='/vendor/reports' element={<Reports />} />
+                        <Route path='/vendor/settings' element={<Settings />} />
+
+                        <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
+                        <Route path='/test' element={<h2>test</h2>}>
+                            <Route path='test1' element={<h2>test1</h2>} />
+                        </Route>
+                    </Routes>
+                }
+            </div>
 
         </BrowserRouter>
     )

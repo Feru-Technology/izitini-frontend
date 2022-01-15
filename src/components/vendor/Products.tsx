@@ -7,7 +7,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchingProducts, products, productFailed } from '../../redux/products/storeProducts.slice '
+import { fetchingProducts, storeProducts, productFailed } from '../../redux/products/storeProducts.slice '
 const Products = () => {
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
@@ -17,15 +17,17 @@ const Products = () => {
     // redux
     const dispatch = useDispatch();
 
-
     const { store } = useSelector((state: RootState) => state.store);
 
     const store_id = store?.id
 
+
     useEffect(() => {
         dispatch(fetchingProducts());
-        fetch(dispatch, products, productFailed, `/product/shop/${store_id}`)
-    }, [dispatch])
+        fetch(dispatch, storeProducts, productFailed, `/product/shop/${store_id}`)
+    }, [dispatch, store_id])
+
+    const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
 
     return (
         <div className='flex h-screen overflow-hidden'>
@@ -116,45 +118,51 @@ const Products = () => {
                                             </tr>
                                         </thead>
                                         <tbody className='bg-white divide-y divide-gray-200'>
-                                            <tr>
-                                                <td className='px-6 py-4'>
-                                                    <div className='flex items-center'>
-                                                        <div className='flex-shrink-0 h-10 w-10'>
-                                                            <img
-                                                                className='h-10 w-10 rounded-full'
-                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                                                                alt=''
-                                                            />
-                                                        </div>
-                                                        <div className='ml-4 text-sm font-medium text-gray-500'>
-                                                            sima
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className='px-6 py-4 text-sm text-gray-500'>
-                                                    sime rw
-                                                </td>
-                                                <td className='px-6 py-4 text-xs text-gray-500'>
-                                                    50
-                                                </td>
-                                                <td className='px-6 py-4 text-sm text-gray-500'>
-                                                    kg
-                                                </td>
-                                                <td className='px-6 py-4 text-sm text-gray-500'>
-                                                    2000
-                                                </td>
-                                                <td className='px-6 py-4 text-sm text-gray-500'>
-                                                    draft
-                                                </td>
-                                                <td className='px-6 py-4 text-right text-sm font-medium'>
-                                                    <a
-                                                        href='#'
-                                                        className='text-indigo-600 hover:text-indigo-900'
-                                                    >
-                                                        Edit
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            {
+                                                isLoading
+                                                    ? (<h1>loading ...</h1>)
+                                                    : (products.map((product) => (
+                                                        <tr>
+                                                            <td className='px-6 py-4'>
+                                                                <div className='flex items-center'>
+                                                                    <div className='flex-shrink-0 h-10 w-10'>
+                                                                        <img
+                                                                            className='h-10 w-10 rounded-full'
+                                                                            src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
+                                                                            alt=''
+                                                                        />
+                                                                    </div>
+                                                                    <div className='ml-4 text-sm font-medium text-gray-500'>
+                                                                        {product.name}
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.brand}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-xs text-gray-500'>
+                                                                {product.quantity}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.unit}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.price}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.status}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-right text-sm font-medium'>
+                                                                <a
+                                                                    href='#'
+                                                                    className='text-indigo-600 hover:text-indigo-900'
+                                                                >
+                                                                    Edit
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    )))}
+
                                         </tbody>
                                     </table>
                                 </div>
