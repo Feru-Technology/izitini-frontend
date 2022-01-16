@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
+import React,
+{
+  useEffect, useState
+} from 'react'
+
 import Header from './Header'
+import SiderBar from './SiderBar'
+import { useNavigate } from 'react-router'
+import { post } from '../../api/apiAction'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { post } from '../../api/apiAction'
-
 import {
   fetchingCategories,
   retrievedCategories,
   retrievedCategoryFailed
 } from '../../redux/categories/allCategories.slice'
-import { useNavigate } from 'react-router'
 
 const CreateProduct = () => {
 

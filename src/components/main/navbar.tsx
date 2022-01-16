@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon, HeartIcon, BellIcon } from '@heroicons/react/outline'
 import { FaTools, FaBuilding } from "react-icons/fa"
@@ -6,11 +6,7 @@ import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store';
-
-import {
-    useSelector
-} from 'react-redux'
-
+import { useSelector } from 'react-redux'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -18,7 +14,7 @@ function classNames(...classes: string[]) {
 
 export const Navbar = () => {
 
-    const { isLoading, profile, error } = useSelector((state: RootState) => state.profile);
+    const { isLoading, profile, error } = useSelector((state: RootState) => state.profile)
 
     const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
 
@@ -122,7 +118,11 @@ export const Navbar = () => {
 
                                                     <img
                                                         className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
-                                                        src={profile.user.profile_image === null ? backUpPImage : profile.user.profile_image}
+                                                        src={
+                                                            profile.user.profile_image === null ?
+                                                                backUpPImage
+                                                                : profile.user.profile_image
+                                                        }
                                                         alt="PImage"
                                                     />
                                                     <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
