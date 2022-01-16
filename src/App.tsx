@@ -1,7 +1,5 @@
-import { useEffect } from 'react'
-import { fetch, post } from './api/apiAction'
+import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
 import { Home } from './components/main/home'
 import Store from './components/vendor/Store'
 import Orders from './components/vendor/Orders'
@@ -13,9 +11,9 @@ import Dashboard from './components/vendor/Dashboard'
 import CreateStore from './components/vendor/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
 import SignInPage from './components/main/accounts/SignInPage'
-import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import CustomerSignUp from './components/main/accounts/CustomerSignUp'
 import { loggedIn, login, loginFailed } from './redux/profile.slice'
+import CustomerSignUp from './components/main/accounts/CustomerSignUp'
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
 
 function App() {
 
@@ -30,9 +28,6 @@ function App() {
     }
 
     if (token) profile();
-    console.log(token);
-
-    console.log(loggedIn);
 
     return (
         <BrowserRouter>
@@ -47,10 +42,10 @@ function App() {
             </Routes>
 
             <div>
-                {/* {!token ? <Link to='/signin'></Link>
-                    : */}
 
-                <Routes>
+            </div>
+            {token ?
+                (<Routes>
                     <Route path='/vendor' element={<Dashboard />} />
                     <Route path='/vendor/stores' element={<Store />} />
                     <Route
@@ -68,9 +63,10 @@ function App() {
                     <Route path='/vendor/settings' element={<Settings />} />
 
                     <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
-                </Routes>
+                </Routes>)
 
-            </div>
+                : (<Navigate to='/signin' />)
+            }
 
         </BrowserRouter>
     )
