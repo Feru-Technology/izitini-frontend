@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { HTTPError } from './subCategory.interface'
+import { ISubCategory } from './subCategory.interface'
 
-export interface ISubCategory { id: string; name: string; imageUrl: string };
-export interface HTTPError { status: number; message: string }
 export interface SubCategoryState {
     isLoading: boolean;
     error: Error | HTTPError | null;
