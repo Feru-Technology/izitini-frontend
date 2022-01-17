@@ -1,15 +1,39 @@
-import { useState } from 'react'
-import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
+import { useEffect, useState } from 'react'
 import Header from './Header'
+import SiderBar from './SiderBar'
+import { fetch } from '../../api/apiAction'
+import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useMediaQuery } from 'react-responsive'
+import { useDispatch, useSelector } from 'react-redux'
+
+import {
+  fetchingSubCategories,
+  retrievedSubCategory,
+  retrievedSubCategoryFailed
+} from '../../redux/subCategories/subCategory.slice'
 
 const CreateProduct = () => {
+  // redux
+  const dispatch = useDispatch();
+
+  //   useEffect(() => {
+  //     dispatch(fetchingSubCategories());
+  //     fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
+  // }, [dispatch])
+
+  const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory);
+
+  console.log('=========================================');
+  console.log(isLoading, subCategories);
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
+
+
+
   return (
 
     <div className='flex h-screen overflow-hidden'>
