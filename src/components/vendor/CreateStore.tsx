@@ -94,7 +94,7 @@ const CreateProduct = () => {
                   onChange={e => setCategory(e.target.value)}
                 >
                   <option>Select Category</option>
-                  {isLoading ? <h1>loading</h1>
+                  {isLoading ? <h1>loading...</h1>
                     : categories.map((v) => (<option>{v.name}</option>))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

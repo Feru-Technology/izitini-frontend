@@ -32,6 +32,8 @@ const CreateProduct = () => {
     query: '(min-width: 640px)',
   })
 
+  // add inputs state
+
 
 
   return (
@@ -71,7 +73,9 @@ const CreateProduct = () => {
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                 >
-                  <option>lights</option>
+                  <option>Select Sub-Category</option>
+                  {isLoading ? <h1>loading</h1>
+                    : subCategories.map((s) => (<option>{s.name}</option>))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
