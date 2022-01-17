@@ -14,18 +14,18 @@ import {
 } from '../../redux/subCategories/subCategory.slice'
 
 const CreateProduct = () => {
+
   // redux
   const dispatch = useDispatch();
 
-  //   useEffect(() => {
-  //     dispatch(fetchingSubCategories());
-  //     fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
-  // }, [dispatch])
+  const fetchSubcategory = () => {
+    dispatch(fetchingSubCategories());
+    fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
+  }
 
   const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory);
 
-  console.log('=========================================');
-  console.log(isLoading, subCategories);
+  if (subCategories.length === 0) fetchSubcategory()
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
