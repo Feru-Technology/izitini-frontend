@@ -23,7 +23,7 @@ export const subCategorySlice = createSlice({
         },
         retrievedSubCategory: (state, { payload }) => {
             state.isLoading = false;
-            state.subCategories = [...state.subCategories, ...payload]
+            state.subCategories = [...payload]
         },
         retrievedSubCategoryFailed: (state, { payload }) => {
             state.isLoading = false;

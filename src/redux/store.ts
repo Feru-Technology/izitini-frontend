@@ -1,6 +1,6 @@
 
 import { configureStore } from '@reduxjs/toolkit'
-import { subCategorySlice } from './subCategory.slice'
+import { subCategorySlice } from './subCategories/subCategory.slice'
 import { categorySlice } from './categories/categories.slice'
 import { allProductSlice } from './products/allProduct.slice'
 import { profileSlice } from './profile.slice'

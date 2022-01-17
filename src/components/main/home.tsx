@@ -14,7 +14,7 @@ import {
     fetchingSubCategories,
     retrievedSubCategoryFailed,
     retrievedSubCategory
-} from '../../redux/subCategory.slice'
+} from '../../redux/subCategories/subCategory.slice'
 
 import {
     fetchingCategories,
