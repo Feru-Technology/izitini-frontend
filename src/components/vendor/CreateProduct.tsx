@@ -33,7 +33,14 @@ const CreateProduct = () => {
   })
 
   // add inputs state
-
+  const [name, setName] = useState<string | null>(null)
+  const [unit, setUnit] = useState<string | null>(null)
+  const [brand, setBrand] = useState<string | null>(null)
+  const [price, setPrice] = useState<string | null>(null)
+  const [manual, setManual] = useState<string | null>(null)
+  const [quantity, setQuantity] = useState<string | null>(null)
+  const [subCategory, setSubCategory] = useState<string | null>(null)
+  const [specification, setSpecification] = useState<string | null>(null)
 
 
   return (
@@ -72,6 +79,7 @@ const CreateProduct = () => {
                 <select
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
+                  onChange={e => setSubCategory(e.target.value)}
                 >
                   <option>Select Sub-Category</option>
                   {isLoading ? <h1>loading</h1>
@@ -99,6 +107,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="name"
+                onChange={e => setName(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -112,6 +121,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Brand"
+                onChange={e => setBrand(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -125,6 +135,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Brand"
+                onChange={e => setUnit(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -138,6 +149,7 @@ const CreateProduct = () => {
                 type="number"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Quantity"
+                onChange={e => setQuantity(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -145,12 +157,13 @@ const CreateProduct = () => {
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
               >
-                Price unit
+                Price per unit
               </label>
               <input
                 type="number"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Price unit"
+                onChange={e => setPrice(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -164,6 +177,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Product manual"
+                onChange={e => setManual(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
@@ -177,6 +191,7 @@ const CreateProduct = () => {
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Product Specifications"
+                onChange={e => setSpecification(e.target.value)}
               />
             </div>
             {/* upload image */}
