@@ -17,6 +17,11 @@ import {
   retrievedCategories,
   retrievedCategoryFailed
 } from '../../redux/categories/allCategories.slice'
+import {
+  fetchingStores,
+  retrievedStores,
+  retrievedStoreFailed
+} from '../../redux/stores/allMyStores.slice'
 
 const CreateProduct = () => {
 
@@ -46,14 +51,15 @@ const CreateProduct = () => {
   const token = localStorage.getItem('token');
 
   const createStore = () => {
-    dispatch(fetchingCategories())
+    dispatch(fetchingStores())
     post(
       dispatch,
-      retrievedCategories,
-      retrievedCategoryFailed, '/shop',
+      retrievedStores,
+      retrievedStoreFailed, '/shop',
       { category, name, about_shop, shop_email, shop_contact_no },
       token
     )
+    navigate('/vendor/stores')
   }
 
   return (
@@ -175,11 +181,7 @@ const CreateProduct = () => {
               <button
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
-                onClick={(e) => {
-                  e.preventDefault()
-                  createStore()
-                  navigate('/vendor/stores')
-                }}
+                onClick={() => createStore()}
               >
                 create store
               </button>

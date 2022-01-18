@@ -42,6 +42,19 @@ const CreateProduct = () => {
   const [subCategory, setSubCategory] = useState<string | null>(null)
   const [specification, setSpecification] = useState<string | null>(null)
 
+  console.log(name, unit, brand, price, manual, quantity, subCategory, specification);
+
+  // const createProduct = () => {
+  //   dispatch(fetchingCategories())
+  //   post(
+  //     dispatch,
+  //     retrievedCategories,
+  //     retrievedCategoryFailed, '/shop',
+  //     { category, name, about_shop, shop_email, shop_contact_no },
+  //     token
+  //   )
+  //   navigate('/vendor/stores')
+  // }
 
   return (
 
