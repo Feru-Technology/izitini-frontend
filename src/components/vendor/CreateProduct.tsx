@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
 import Header from './Header'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
-import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -12,6 +13,12 @@ import {
   retrievedSubCategory,
   retrievedSubCategoryFailed
 } from '../../redux/subCategories/subCategory.slice'
+
+import {
+  fetchingProducts,
+  storeProducts,
+  productFailed
+} from '../../redux/products/storeProducts.slice '
 
 const CreateProduct = () => {
 
@@ -42,19 +49,23 @@ const CreateProduct = () => {
   const [subCategory, setSubCategory] = useState<string | null>(null)
   const [specification, setSpecification] = useState<string | null>(null)
 
-  console.log(name, unit, brand, price, manual, quantity, subCategory, specification);
+  const { store } = useSelector((state: RootState) => state.store);
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate()
 
-  // const createProduct = () => {
-  //   dispatch(fetchingCategories())
-  //   post(
-  //     dispatch,
-  //     retrievedCategories,
-  //     retrievedCategoryFailed, '/shop',
-  //     { category, name, about_shop, shop_email, shop_contact_no },
-  //     token
-  //   )
-  //   navigate('/vendor/stores')
-  // }
+  const store_id = store?.id
+
+  const createProduct = () => {
+    dispatch(fetchingProducts())
+    post(
+      dispatch,
+      storeProducts,
+      productFailed, `/product/${store_id}`,
+      { name, unit, brand, price, manual, quantity, subCategory, specification },
+      token
+    )
+    navigate('/vendor/products')
+  }
 
   return (
 
@@ -217,6 +228,11 @@ const CreateProduct = () => {
               <button
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                }
+                }
               >
                 create product
               </button>

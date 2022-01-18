@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
+import { useEffect, useState } from 'react'
 import Header from './Header'
-import { Transition } from '@headlessui/react'
+import SiderBar from './SiderBar'
 import { Link } from "react-router-dom"
-import { useDispatch, useSelector } from 'react-redux'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
+import { useNavigate } from 'react-router-dom'
+import { Transition } from '@headlessui/react'
+import { useMediaQuery } from 'react-responsive'
+import { useDispatch, useSelector } from 'react-redux'
 import { store } from '../../redux/stores/store.slice'
-import { useNavigate } from "react-router-dom"
 
 import {
   fetchingStores, retrievedStores, retrievedStoreFailed
@@ -28,7 +28,7 @@ const Store = () => {
   useEffect(() => {
     dispatch(fetchingStores());
     fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop/mine/all', token)
-  }, [dispatch])
+  }, [dispatch, token])
 
   const { isLoading, stores } = useSelector((state: RootState) => state.myStores);
   const navigate = useNavigate()

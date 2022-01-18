@@ -7,8 +7,14 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchingProducts, storeProducts, productFailed } from '../../redux/products/storeProducts.slice '
+
+import {
+    fetchingProducts,
+    storeProducts,
+    productFailed
+} from '../../redux/products/storeProducts.slice '
 const Products = () => {
+
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
