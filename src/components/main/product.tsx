@@ -84,6 +84,28 @@ const Product = () => {
                                         />
                                     </div>
                                 </div>
+
+                                {/* tabs and details */}
+                                <div className="container">
+                                    {/* tabs */}
+                                    <div className="">
+                                        <ul className="flex space-x-5 justify-center font-bold text-lg" style={{ color: "#000" }}>
+                                            <li>Description</li>
+                                            <li>Technical & specification</li>
+                                            <li>Review</li>
+                                            <li>Shipping & Return</li>
+                                        </ul>
+                                    </div>
+                                    <hr />
+                                    {/* details  */}
+                                    <div className="container">
+                                        <div>
+                                            <p>test 1</p>
+                                            <p>test 2</p>
+                                        </div>
+                                        <div></div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="w-1/3">
                                 <div className='text-base space-y-3'>
@@ -137,27 +159,6 @@ const Product = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                {/* tabs and details */}
-                <div className="container px-24">
-                    {/* tabs */}
-                    <div className="">
-                        <ul className="flex" style={{ color: "#000" }}>
-                            <li>Description</li>
-                            <li>Technical & specification</li>
-                            <li>Review</li>
-                            <li>Shipping & Return</li>
-                        </ul>
-                    </div>
-                    <hr />
-                    {/* details  */}
-                    <div className="container">
-                        <div>
-                            <p>test 1</p>
-                            <p>test 2</p>
-                        </div>
-                        <div></div>
                     </div>
                 </div>
             </div>
