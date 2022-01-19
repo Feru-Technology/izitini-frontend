@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
-import { Link } from 'react-router-dom'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -14,6 +14,9 @@ import {
     productFailed
 } from '../../redux/products/storeProducts.slice '
 const Products = () => {
+
+    // Get ID from URL
+    const params = useParams();
 
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
@@ -25,15 +28,19 @@ const Products = () => {
 
     const { store } = useSelector((state: RootState) => state.store);
 
-    const store_id = store?.id
-
+    const { id } = params
 
     useEffect(() => {
         dispatch(fetchingProducts());
-        fetch(dispatch, storeProducts, productFailed, `/product/shop/${store_id}`)
-    }, [dispatch, store_id])
+        fetch(dispatch, storeProducts, productFailed, `/product/shop/${id}`)
+    }, [dispatch, id])
 
     const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
+
+
+
+    console.log('================ params ===================');
+    console.log(params);
 
     return (
         <div className='flex h-screen overflow-hidden'>

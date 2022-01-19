@@ -56,6 +56,7 @@ function App() {
                         path='/vendor/create-store'
                         element={<CreateStore />}
                     />
+                    <Route path='/vendor/store/:id' element={<Products />} />
                     <Route path='/vendor/products' element={<Products />} />
                     <Route path='/vendor/orders' element={<Orders />} />
                     <Route path='/vendor/coupons' element={<Coupons />} />

@@ -1,19 +1,18 @@
-import { ChevronDownIcon, DotsHorizontalIcon } from '@heroicons/react/solid'
-import React, { useState } from 'react'
-import data from '../../data/data.json'
-import Example from './charts/overallRevenue'
-import DashboardCard10 from './cards/topDeals'
-import { MyResponsiveRadialBar } from './charts/orderCharts'
-import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
 import Header from './Header'
-import { Transition } from '@headlessui/react'
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import SiderBar from './SiderBar'
+import data from '../../data/data.json'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import Example from './charts/overallRevenue'
+import DashboardCard10 from './cards/topDeals'
+import { Transition } from '@headlessui/react'
+import { useNavigate } from "react-router-dom"
+import { useMediaQuery } from 'react-responsive'
+import { MyResponsiveRadialBar } from './charts/orderCharts'
+import { ChevronDownIcon, DotsHorizontalIcon } from '@heroicons/react/solid'
 
 const Dashboard = () => {
-
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile);
 
