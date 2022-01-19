@@ -2,6 +2,7 @@ import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import { Home } from './components/main/home'
 import Store from './components/vendor/Store'
+import Product from './components/main/product'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
@@ -32,10 +33,9 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Home />}>
-                    <Route path='/products' element={<h1>This is all products page</h1>} />
-                    <Route path='/product' element={<h1>This is product page</h1>} />
-                </Route>
+                <Route path='/' element={<Home />} />
+                {/* <Route path='/products' element={<products />} /> */}
+                <Route path='/product' element={<Product />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
                 <Route path='/signin' element={<SignInPage />} />
 

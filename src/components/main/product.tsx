@@ -4,34 +4,38 @@ import { RootState } from '../../redux/store'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiFillStar } from "react-icons/all"
+import { Navbar } from './navbar'
 
-import {
-    fetchingProducts,
-    storeProducts,
-    productFailed
-} from '../../redux/products/storeProducts.slice '
-const Products = () => {
+// import {
+//     fetchingProduct,
+//     storeProduct,
+//     productFailed
+// } from '../../redux/product/storeProduct.slice '
+const Product = () => {
 
     // redux
     // const dispatch = useDispatch();
 
 
     // useEffect(() => {
-    //     dispatch(fetchingProducts());
-    //     fetch(dispatch, storeProducts, productFailed, `/product/shop/${store_id}`)
+    //     dispatch(fetchingProduct());
+    //     fetch(dispatch, storeProduct, productFailed, `/product/shop/${store_id}`)
     // }, [dispatch, store_id])
 
-    // const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
+    // const { isLoading, product } = useSelector((state: RootState) => state.storeProduct);
 
     return (
         <>
+
+            < Navbar />
             <div className="container-fluid">
                 {/* picture and product name and details */}
-                <div className="container-fluid mx-auto" id="p">
+                <div className="fluid mx-auto" id="p">
                     <div className="container p-5 mx-auto">
-                        <div className="row">
-                            <div className="col-md-7">
-                                <div className="d-flex flex-shrink-1">
+                        <div className="flex">
+                            <div className="w-2/3">
+                                <div className="flex">
+
                                     <div>
 
                                         <div className="d-flex flex-direction-column gap-2">
@@ -84,17 +88,17 @@ const Products = () => {
                                         </div>
                                     </div>
 
-                                    <div className="flex-fill fillflex-shrink-1">
+                                    <div className="">
                                         <img
                                             src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
                                             object-fit="false"
-                                            width='100%'
+                                            width='50%'
                                             alt="product pic"
                                         />
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-sm-5 ">
+                            <div className="w-1/3">
                                 <div className="d-flex flex-column flex-grow-1">
                                     <h2 className="fw-bold">Product Name</h2>
                                     <p>name of the store</p>
@@ -156,7 +160,7 @@ const Products = () => {
                 <div className="container">
                     {/* tabs */}
                     <div className="">
-                        <ul className="nav nav-fill" style={{ color: "#000" }}>
+                        <ul className="flex" style={{ color: "#000" }}>
                             <li>Description</li>
                             <li>Technical & specification</li>
                             <li>Review</li>
@@ -178,4 +182,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default Product
