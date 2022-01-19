@@ -31,7 +31,7 @@ const Product = () => {
             <div className="container-fluid">
                 {/* picture and product name and details */}
                 <div className="fluid mx-auto" id="p">
-                    <div className="container p-5 mx-auto">
+                    <div className="container px-24 mx-auto">
                         <div className="flex">
                             <div className="w-2/3">
                                 <div className="flex">
@@ -41,48 +41,35 @@ const Product = () => {
                                         <div className="d-flex flex-direction-column gap-2">
                                             <img
                                                 src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
-                                                className="border mr-2"
-                                                width="75"
+                                                className="border mr-2 w-20"
                                                 alt="..."
                                             />
                                         </div>
                                         <div className="d-flex flex-direction-column gap-2">
                                             <img
                                                 src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
-                                                className="border mr-2"
-                                                width="75"
+                                                className="border mr-2 w-20"
                                                 alt="..."
                                             />
                                         </div>
                                         <div className="d-flex flex-direction-column gap-2">
                                             <img
                                                 src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
-                                                className="border mr-2"
-                                                width="75"
+                                                className="border mr-2 w-20"
                                                 alt="..."
                                             />
                                         </div>
                                         <div className="d-flex flex-direction-column gap-2">
                                             <img
                                                 src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
-                                                className="border mr-2"
-                                                width="75"
+                                                className="border mr-2 w-20"
                                                 alt="..."
                                             />
                                         </div>
                                         <div className="d-flex flex-direction-column gap-2">
                                             <img
                                                 src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
-                                                className="border mr-2"
-                                                width="75"
-                                                alt="..."
-                                            />
-                                        </div>
-                                        <div className="d-flex flex-direction-column gap-2">
-                                            <img
-                                                src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
-                                                className="border mr-2"
-                                                width="75"
+                                                className="border mr-2 w-20"
                                                 alt="..."
                                             />
                                         </div>
@@ -92,17 +79,19 @@ const Product = () => {
                                         <img
                                             src="https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A="
                                             object-fit="false"
-                                            width='50%'
+                                            className=""
                                             alt="product pic"
                                         />
                                     </div>
                                 </div>
                             </div>
                             <div className="w-1/3">
-                                <div className="d-flex flex-column flex-grow-1">
-                                    <h2 className="fw-bold">Product Name</h2>
+                                <div className='text-base space-y-3'>
+                                    <h2 className="font-bold text-3xl">Product Name</h2>
                                     <p>name of the store</p>
-                                    <span className="fs-2" style={{ color: "#ff9900" }}>
+                                    <span className="flex text-4xl"
+                                        style={{ color: "#ff9900" }}
+                                    >
                                         <i>
                                             <AiFillStar />
                                         </i>
@@ -119,33 +108,27 @@ const Product = () => {
                                             <AiFillStar />
                                         </i>
                                     </span>
-                                    (28)
-                                    <p className="fw-bold fs-2">25,000 RWF</p>
+                                    <span> (28)</span>
+                                    <p className="font-bold">25,000 RWF</p>
                                     <p>xx in the store</p>
                                     <p>
                                         Lorem Ipsum is simply dummy text of the dummy text ever since
                                         the 1500s, when an unknown
                                     </p>
-                                    <div className="d-flex flex-md-row gap-5 align-items-center">
-                                        <div className="w-452">
+                                    <div className="flex space-x-12">
+                                        <div className="w-24">
                                             <select
-                                                className="form-select form-select-md"
+                                                className='w-32 h-9 rounded border-2 bg-white'
                                                 aria-label="multiple select example"
-                                                style={{ width: "130px" }}
                                             >
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                             </select>
                                         </div>
-                                        <div className="">
+                                        <div className="w-24">
                                             <button
-                                                className="btn bg-color text-white"
-                                                style={{
-                                                    width: "130px",
-                                                    backgroundColor: "#004896",
-                                                    marginRight: "",
-                                                }}
+                                                className="btn bg-color text-white w-32 h-9 rounded bg-dark-blue"
                                             >
                                                 Add cart
                                             </button>
@@ -157,7 +140,7 @@ const Product = () => {
                     </div>
                 </div>
                 {/* tabs and details */}
-                <div className="container">
+                <div className="container px-24">
                     {/* tabs */}
                     <div className="">
                         <ul className="flex" style={{ color: "#000" }}>
