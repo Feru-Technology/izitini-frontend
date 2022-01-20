@@ -61,12 +61,12 @@ const Product = () => {
             <div className="container-fluid">
                 {/* picture and product name and details */}
                 <div className="fluid mx-auto" id="p">
-                    <div className="container px-24 mx-auto">
-                        <div className="flex">
-                            <div className="w-2/3">
-                                <div className="flex">
+                    <div className="px-5 container md:px-24 mx-auto">
+                        <div className="md:flex">
+                            <div className="md:w-2/3">
+                                <div className="md:flex">
 
-                                    <div>
+                                    <div className="sr-only md:not-sr-only">
                                         {data.map((image) => (<div className="my-1 hover:border-black"
                                             onPointerOver={() => setDisplayImage(image.image)}
                                         >
@@ -89,10 +89,24 @@ const Product = () => {
                                         />
                                     </div>
 
+                                    <div className="md:sr-only flex">
+                                        {data.map((image) => (<div className="my-1 hover:border-black"
+                                            onPointerOver={() => setDisplayImage(image.image)}
+                                        >
+                                            <img
+                                                src={image.image}
+                                                className="border mr-2 w-20"
+                                                alt="..."
+                                            />
+                                        </div>)
+                                        )}
+
+                                    </div>
+
                                 </div>
 
                                 {/* tabs and details */}
-                                <div className="container">
+                                <div className="sr-only md:not-sr-only container">
                                     {/* tabs */}
                                     <div className="">
                                         <ul className="flex space-x-5 justify-center font-bold text-lg">
@@ -112,7 +126,7 @@ const Product = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-1/3">
+                            <div className="md:w-1/3">
                                 <div className='text-base space-y-3'>
                                     <h2 className=" text-3xl">Product Name</h2>
                                     <p>name of the store</p>
