@@ -113,7 +113,7 @@ const Product = () => {
                                     <div className="">
                                         <ul className="flex space-x-2 lg:space-x-5 justify-center
                                         md:font-medium md:-text-base
-                                        lg:font-bold lg:text-lg">
+                                        lg:font-bold lg:text-lg lg:space-x-12">
                                             <li>Description</li>
                                             <li>Specification</li>
                                             <li>Review</li>
