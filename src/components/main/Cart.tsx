@@ -114,7 +114,29 @@ const Cart = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className='w-1/3 bg-gray-500'></div>
+                <div className='w-1/3 bg-white text-base font-bold'>
+                    <p className='py-3'>Order Summary</p>
+                    <div className='flex m-3 text-gray-500'>
+                        <p>Subtotal</p>
+                        <p className='right-0 inset-y-0'>75000 RWF</p>
+                    </div>
+                    <div className='flex m-3 text-gray-500'>
+                        <p>Shipping</p>
+                        <p className='right-0 inset-y-0'>75000 RWF</p>
+                    </div>
+                    <p className='m-3 text-dark-blue'>Add Coupon Code</p>
+                    <div className='flex bg-gray-200 font-bold py-3'>
+                        <p className='justify-start'>Total</p>
+                        <p className='justify-end'>75000 RWF</p>
+                    </div>
+                    <button
+                        className="bg-dark-blue text-white text-sm font-bold uppercase px-6 py-3 rounded mt-3
+                        shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                        type="button"
+                    >
+                        Checkout
+                    </button>
+                </div>
             </div>
         </div>
         <Footer />
