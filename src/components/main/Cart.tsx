@@ -22,7 +22,7 @@ const Cart = () => {
         <div className='bg-gray-100 h-full'>
             <p>Your cart</p>
             <div className='md:flex md:p-12 md:space-x-5'>
-                <div className='w-2/3 bg-black'>
+                <div className='w-2/3'>
 
                     <table className='min-w-full divide-y divide-gray-200'>
                         <thead className='bg-white'>
@@ -64,12 +64,7 @@ const Cart = () => {
                             </tr>
                         </thead>
                         <tbody className='bg-white'>
-                            {/* {
-                                                // isLoading
-                                                //     ? (<h1>loading ...</h1>)
-                                                //     : (products.map((product) => ( */}
                             <tr
-                            // onClick={e => activeProduct(product)}
                             >
                                 <td className='px-6 py-4'>
                                     <div className='flex items-center'>
@@ -109,28 +104,27 @@ const Cart = () => {
                                     </a>
                                 </td>
                             </tr>
-                            {/* // )))} */}
 
                         </tbody>
                     </table>
                 </div>
                 <div className='w-1/3 bg-white text-base font-bold'>
-                    <p className='py-3'>Order Summary</p>
+                    <p className='py-3 border-b-2 border-dark-blue text-center text-lg'>Order Summary</p>
                     <div className='flex m-3 text-gray-500'>
                         <p>Subtotal</p>
-                        <p className='right-0 inset-y-0'>75000 RWF</p>
+                        <p className='absolute right-16'>75000 RWF</p>
                     </div>
                     <div className='flex m-3 text-gray-500'>
                         <p>Shipping</p>
-                        <p className='right-0 inset-y-0'>75000 RWF</p>
+                        <p className='absolute right-16'>75000 RWF</p>
                     </div>
                     <p className='m-3 text-dark-blue'>Add Coupon Code</p>
                     <div className='flex bg-gray-200 font-bold py-3'>
-                        <p className='justify-start'>Total</p>
-                        <p className='justify-end'>75000 RWF</p>
+                        <p className='ml-3'>Total</p>
+                        <p className='absolute right-16'>75000 RWF</p>
                     </div>
                     <button
-                        className="bg-dark-blue text-white text-sm font-bold uppercase px-6 py-3 rounded mt-3
+                        className="bg-dark-blue text-white text-lg font-bold uppercase px-6 py-3 rounded mt-3
                         shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                         type="button"
                     >
