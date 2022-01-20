@@ -36,7 +36,6 @@ const Store = () => {
 
   const activeStore = (newStore: IStore) => {
     dispatch(store(newStore))
-    console.log(newStore.id);
     const { id } = newStore
     return navigate(`/vendor/store/${id}`)
   }

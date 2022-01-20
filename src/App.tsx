@@ -34,11 +34,10 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Home />} />
-                {/* <Route path='/products' element={<products />} /> */}
-                <Route path='/product' element={<Product />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
                 <Route path='/signin' element={<SignInPage />} />
-
+                <Route path='/products/:id' element={<Product />} />
+                {/* <Route path='/products' element={<products />} /> */}
             </Routes>
 
             <div>
@@ -57,7 +56,7 @@ function App() {
                         element={<CreateStore />}
                     />
                     <Route path='/vendor/store/:id' element={<Products />} />
-                    <Route path='/vendor/products' element={<Products />} />
+                    {/* <Route path='/vendor/products' element={<Products />} /> */}
                     <Route path='/vendor/orders' element={<Orders />} />
                     <Route path='/vendor/coupons' element={<Coupons />} />
                     <Route path='/vendor/reports' element={<Reports />} />

@@ -5,8 +5,10 @@ import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
-import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { product } from '../../redux/products/product.slice'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { IProduct } from '../../redux/products/product.interface'
 
 import {
     fetchingProducts,
@@ -14,6 +16,7 @@ import {
     productFailed
 } from '../../redux/products/storeProducts.slice '
 const Products = () => {
+
 
     // Get ID from URL
     const params = useParams();
@@ -36,6 +39,15 @@ const Products = () => {
     }, [dispatch, id])
 
     const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
+
+    const navigate = useNavigate()
+
+
+    const activeProduct = (newProduct: IProduct) => {
+        dispatch(product(newProduct))
+        const { id } = newProduct
+        return navigate(`/products/${id}`)
+    }
 
     return (
         <div className='flex h-screen overflow-hidden'>
@@ -130,7 +142,7 @@ const Products = () => {
                                                 isLoading
                                                     ? (<h1>loading ...</h1>)
                                                     : (products.map((product) => (
-                                                        <tr>
+                                                        <tr onClick={e => activeProduct(product)}>
                                                             <td className='px-6 py-4'>
                                                                 <div className='flex items-center'>
                                                                     <div className='flex-shrink-0 h-10 w-10'>
