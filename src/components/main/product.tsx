@@ -71,6 +71,8 @@ const Product = () => {
     const [displayImage, setDisplayImage] = useState(data[0].image);
     const [style, setStyle] = useState<null | String>(null)
 
+    // const addToCart = 
+
     return (
         <>
 

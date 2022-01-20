@@ -1,6 +1,7 @@
 import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import { Home } from './components/main/home'
+import Cart from './components/main/Cart'
 import Store from './components/vendor/Store'
 import Product from './components/main/product'
 import Orders from './components/vendor/Orders'
@@ -38,6 +39,8 @@ function App() {
                 <Route path='/signin' element={<SignInPage />} />
                 <Route path='/products/:id' element={<Product />} />
                 {/* <Route path='/products' element={<products />} /> */}
+
+                <Route path='/cart' element={<Cart />} />
             </Routes>
 
             <div>
