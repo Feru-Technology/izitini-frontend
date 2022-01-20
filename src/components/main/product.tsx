@@ -102,7 +102,6 @@ const Product = () => {
                                         )}
 
                                     </div>
-
                                 </div>
 
                                 {/* tabs and details */}
@@ -127,10 +126,10 @@ const Product = () => {
                                 </div>
                             </div>
                             <div className="md:w-1/3">
-                                <div className='text-base space-y-3'>
-                                    <h2 className=" text-3xl">Product Name</h2>
+                                <div className='text-sm md:text-base space-y-3'>
+                                    <h2 className="text-xl font-bold md:text-3xl">Product Name</h2>
                                     <p>name of the store</p>
-                                    <span className="flex text-4xl"
+                                    <span className="flex text-xl md:text-4xl"
                                         style={{ color: "#ff9900" }}
                                     >
                                         <i>
@@ -148,17 +147,17 @@ const Product = () => {
                                         <i>
                                             <AiFillStar />
                                         </i>
-                                        <span className='ml-3 text-black text-2xl'> (28)</span>
+                                        <span className='ml-3 text-black text-base md:text-2xl'> (28)</span>
                                     </span>
-                                    <p className="text-lg">25,000 RWF</p>
+                                    <p className="text-base font-bold md:text-lg">25,000 RWF</p>
                                     <p>read to shop in Kigali</p>
                                     <p>xx in the store</p>
                                     <p>
                                         Lorem Ipsum is simply dummy text of the dummy text ever since
                                         the 1500s, when an unknown
                                     </p>
-                                    <div className="flex space-x-12">
-                                        <div className="w-24">
+                                    <div className="md:flex space-x-12">
+                                        <div className="w-full">
                                             <select
                                                 className='w-32 h-9 rounded border-2 bg-white px-3'
                                                 aria-label="multiple select example"
@@ -168,13 +167,19 @@ const Product = () => {
                                                 <option value="3">3</option>
                                             </select>
                                         </div>
-                                        <div className="w-24">
+                                        {/* <div className="w-24">
                                             <button
                                                 className="btn bg-color text-white w-32 h-9 rounded bg-dark-blue"
                                             >
                                                 Add cart
-                                            </button>
-                                        </div>
+                                            </button> */}
+                                    </div>
+                                    <div className="w-24">
+                                        <button
+                                            className="btn bg-color text-white w-32 h-9 rounded bg-dark-blue"
+                                        >
+                                            Add cart
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -182,6 +187,7 @@ const Product = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </>
     )
 }
