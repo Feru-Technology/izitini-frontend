@@ -1,23 +1,25 @@
 
+import { profileSlice } from './profile.slice'
 import { configureStore } from '@reduxjs/toolkit'
-import { subCategorySlice } from './subCategories/subCategory.slice'
+import { storeSlice } from './stores/store.slice'
+import { productSlice } from './products/product.slice'
+import { AllStoresSlice } from './stores/allMyStores.slice'
 import { categorySlice } from './categories/categories.slice'
 import { allProductSlice } from './products/allProduct.slice'
-import { profileSlice } from './profile.slice'
-import { AllCategoriesSlice } from './categories/allCategories.slice'
-import { AllStoresSlice } from './stores/allMyStores.slice'
-import { storeSlice } from './stores/store.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
+import { subCategorySlice } from './subCategories/subCategory.slice'
+import { AllCategoriesSlice } from './categories/allCategories.slice'
 
 export const store = configureStore({
     reducer: {
-        subCategory: subCategorySlice.reducer,
-        category: categorySlice.reducer,
-        AllCategories: AllCategoriesSlice.reducer,
-        allProducts: allProductSlice.reducer,
-        profile: profileSlice.reducer,
-        myStores: AllStoresSlice.reducer,
         store: storeSlice.reducer,
+        profile: profileSlice.reducer,
+        product: productSlice.reducer,
+        category: categorySlice.reducer,
+        myStores: AllStoresSlice.reducer,
+        allProducts: allProductSlice.reducer,
+        subCategory: subCategorySlice.reducer,
+        AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer
     },
 })
