@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiFillStar } from "react-icons/all"
 import { Navbar } from './navbar'
+import { HeartIcon } from '@heroicons/react/outline'
 
 // import {
 //     fetchingProduct,
@@ -156,30 +157,61 @@ const Product = () => {
                                         Lorem Ipsum is simply dummy text of the dummy text ever since
                                         the 1500s, when an unknown
                                     </p>
-                                    <div className="md:flex space-x-12">
-                                        <div className="w-full">
-                                            <select
-                                                className='w-32 h-9 rounded border-2 bg-white px-3'
-                                                aria-label="multiple select example"
-                                            >
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
+                                    <div className="md:flex md:space-x-12">
+                                        <div>
+                                            <div className="w-full">
+                                                <select
+                                                    className='w-full h-9 rounded border-2 bg-white px-3'
+                                                    aria-label="multiple select example"
+                                                >
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        {/* <div className="w-24">
-                                            <button
-                                                className="btn bg-color text-white w-32 h-9 rounded bg-dark-blue"
-                                            >
-                                                Add cart
-                                            </button> */}
+
+                                        <div className='flex mt-3 space-x-3 text-base'>
+                                            <div className="w-1/3 md:sr-only">
+                                                <button
+                                                    className="flex btn bg-color border-2 border-dark-blue text-dark-blue
+                                                    w-full h-9 rounded bg-dark-white items-center justify-center font-medium"
+                                                >
+                                                    <span></span>
+                                                    <HeartIcon className="h-4 w-auto" aria-hidden="true" />
+                                                    save
+                                                </button>
+                                            </div>
+                                            <div className="w-2/3">
+                                                <button
+                                                    className="btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium"
+                                                >
+                                                    Add to cart
+                                                </button>
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div className="w-24">
-                                        <button
-                                            className="btn bg-color text-white w-32 h-9 rounded bg-dark-blue"
-                                        >
-                                            Add cart
-                                        </button>
+                                </div>
+                            </div>
+
+                            {/* tabs and details */}
+                            <div className="md:sr-only">
+                                {/* tabs */}
+                                <div className="">
+                                    <ul className="flex space-x-5 justify-center font-bold text-lg">
+                                        <li>Description</li>
+                                        <li>Products Specification</li>
+                                        <li>Review</li>
+                                        <li>Shipping & Return</li>
+                                    </ul>
+                                </div>
+                                <hr />
+                                {/* details  */}
+                                <div className="container">
+                                    <div>
+                                        <p>test 1</p>
+                                        <p>test 2</p>
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +219,6 @@ const Product = () => {
                     </div>
                 </div>
             </div>
-        </div>
         </>
     )
 }
