@@ -54,6 +54,7 @@ const Product = () => {
     ]
 
     const [displayImage, setDisplayImage] = useState(data[0].image);
+    const [style, setStyle] = useState<null | String>(null)
 
     return (
         <>
@@ -62,18 +63,19 @@ const Product = () => {
             <div className="container-fluid">
                 {/* picture and product name and details */}
                 <div className="fluid mx-auto" id="p">
-                    <div className="px-5 container md:px-24 mx-auto">
+                    <div className="px-5 container md:px12 lg:px-24 mx-auto">
                         <div className="md:flex">
                             <div className="md:w-2/3">
                                 <div className="md:flex">
 
                                     <div className="sr-only md:not-sr-only">
-                                        {data.map((image) => (<div className="my-1 hover:border-black"
+                                        {data.map((image) => (<div className="my-1 hover:border-black
+                                        "
                                             onPointerOver={() => setDisplayImage(image.image)}
                                         >
                                             <img
                                                 src={image.image}
-                                                className="border mr-2 w-20"
+                                                className="border mr-2 w-16 lg:w-20"
                                                 alt="..."
                                             />
                                         </div>)
@@ -109,11 +111,13 @@ const Product = () => {
                                 <div className="sr-only md:not-sr-only container">
                                     {/* tabs */}
                                     <div className="">
-                                        <ul className="flex space-x-5 justify-center font-bold text-lg">
+                                        <ul className="flex space-x-2 lg:space-x-5 justify-center
+                                        md:font-medium md:-text-base
+                                        lg:font-bold lg:text-lg">
                                             <li>Description</li>
-                                            <li>Products Specification</li>
+                                            <li>Specification</li>
                                             <li>Review</li>
-                                            <li>Shipping & Return</li>
+                                            <li>Shipping & Return Policy</li>
                                         </ul>
                                     </div>
                                     <hr />
@@ -128,9 +132,9 @@ const Product = () => {
                             </div>
                             <div className="md:w-1/3">
                                 <div className='text-sm md:text-base space-y-3'>
-                                    <h2 className="text-xl font-bold md:text-3xl">Product Name</h2>
+                                    <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">Product Name</h2>
                                     <p>name of the store</p>
-                                    <span className="flex text-xl md:text-4xl"
+                                    <span className="flex text-xl md:text-3xl lg:text-4xl"
                                         style={{ color: "#ff9900" }}
                                     >
                                         <i>
@@ -157,8 +161,8 @@ const Product = () => {
                                         Lorem Ipsum is simply dummy text of the dummy text ever since
                                         the 1500s, when an unknown
                                     </p>
-                                    <div className="md:flex md:space-x-12">
-                                        <div>
+                                    <div className="md:flex md:space-x-3 lg:space-x-5">
+                                        <div className='md:w-1/2'>
                                             <div className="w-full">
                                                 <select
                                                     className='w-full h-9 rounded border-2 bg-white px-3'
@@ -171,7 +175,8 @@ const Product = () => {
                                             </div>
                                         </div>
 
-                                        <div className='flex mt-3 space-x-3 text-base'>
+                                        <div className='flex mt-3 space-x-3 text-base
+                                        md:w-1/2 md:space-x-0 md:mt-0'>
                                             <div className="w-1/3 md:sr-only">
                                                 <button
                                                     className="flex btn bg-color border-2 border-dark-blue text-dark-blue
@@ -182,7 +187,7 @@ const Product = () => {
                                                     save
                                                 </button>
                                             </div>
-                                            <div className="w-2/3">
+                                            <div className="w-2/3 md:w-full">
                                                 <button
                                                     className="btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium"
                                                 >
