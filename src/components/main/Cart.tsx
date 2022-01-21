@@ -20,36 +20,37 @@ const Cart = () => {
     return (<>
         <Navbar />
         <div className='bg-gray-100 h-full'>
-            <p>Your cart</p>
-            <div className='md:flex md:p-12 md:space-x-5'>
+            <p className='font-bold text-xl text-center md:pt-5'>Your cart</p>
+            <div className='
+            md:flex md:mx-12 md:my-5  md:space-x-5'>
                 <div className='w-2/3'>
 
                     <table className='min-w-full divide-y divide-gray-200'>
                         <thead className='bg-white'>
-                            <tr>
+                            <tr className=''>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-xs font-medium text-gray-700
+                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700
                                     uppercase tracking-wider'
                                 >
                                     Product
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-xs font-medium text-gray-700
+                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700
                                     uppercase tracking-wider items-center'
                                 >
                                     Price
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'
+                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700 uppercase tracking-wider'
                                 >
                                     Quality
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider'
+                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700 uppercase tracking-wider'
                                 >
                                     Total
                                 </th>
@@ -75,27 +76,27 @@ const Cart = () => {
                                                 alt=''
                                             />
                                         </div>
-                                        <div className='ml-4 text-sm font-medium text-gray-800'>
+                                        <div className='ml-4 text-base font-medium text-gray-800'>
                                             ab
                                         </div>
                                     </div>
                                 </td>
-                                <td className='px-6 py-4 text-sm text-gray-800'>
+                                <td className='px-6 py-4 text-base font-medium text-gray-800'>
                                     abc
                                 </td>
                                 <td className='px-6 py-4 text-xs text-gray-800'>
-                                    <div className=' rounded border-2 w-24'>
-                                        <div className='flex justify-center py-1'>
-                                            <button>+</button>
-                                            <span className='mx-4 font-semibold'>1</span>
-                                            <button>-</button>
+                                    <div className='rounded-full border-2 border-gray-400 w-28'>
+                                        <div className='flex justify-center py-1 text-base'>
+                                            <button className='font-medium text-gray-400'>+</button>
+                                            <span className='mx-6 font-medium'>1</span>
+                                            <button className='font-medium text-gray-400'>-</button>
                                         </div>
                                     </div>
                                 </td>
-                                <td className='px-6 py-4 text-sm text-gray-800'>
+                                <td className='px-6 py-4 text-base font-medium text-gray-800'>
                                     abcde
                                 </td>
-                                <td className='px-6 py-4 text-right text-sm font-medium'>
+                                <td className='px-6 py-4 text-right text-base font-medium'>
                                     <a
                                         href='#'
                                         className='text-indigo-600 hover:text-indigo-900'
