@@ -24,20 +24,12 @@ const Product = () => {
 
     const { id } = params
 
-
-    // redux
-    // const dispatch = useDispatch();
-
-
     useEffect(() => {
         dispatch(getProduct());
         fetch(dispatch, currentProduct, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
     const { isLoading, product } = useSelector((state: RootState) => state.product);
-
-    console.log('==================================================');
-    console.log(product);
 
     const data = [
         {
@@ -69,7 +61,6 @@ const Product = () => {
     // const images = product?.productImages
 
     const [displayImage, setDisplayImage] = useState(data[0].image);
-    const [style, setStyle] = useState<null | String>(null)
 
     // const addToCart = 
 
@@ -151,7 +142,7 @@ const Product = () => {
                                 <div className="md:w-1/3">
                                     <div className='text-sm md:text-base space-y-3'>
                                         <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">{product?.name}</h2>
-                                        <p>{product?.shop.name}</p>
+                                        <p>{product?.shop?.name}</p>
                                         <p></p>
                                         <span className="flex text-xl md:text-3xl lg:text-4xl"
                                             style={{ color: "#ff9900" }}
