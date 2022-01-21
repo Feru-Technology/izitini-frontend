@@ -23,35 +23,37 @@ const Cart = () => {
         <div className='bg-gray-100 h-full'>
             <p className='font-bold text-xl text-center md:pt-5'>Your cart</p>
             <div className='
-            md:flex md:mx-12 md:my-5  md:space-x-5'>
-                <div className='w-2/3'>
+            md:flex md:mx-6 md:my-5  md:space-x-3
+            lg:mx:12 lg:space-x-5'>
+                <div className='md:w-2/3'>
 
-                    <table className='min-w-full divide-y divide-gray-200'>
+                    <table className='lg:min-w-full divide-y divide-gray-200'>
                         <thead className='bg-white'>
                             <tr className=''>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700
-                                    uppercase tracking-wider'
+                                    className='
+                                    px-6 py-3 text-left text-base font-semibold text-gray-700
+                                    '
                                 >
                                     Product
                                 </th>
                                 <th
                                     scope='col'
                                     className='px-6 py-3 text-left text-base font-semibold text-gray-700
-                                    uppercase tracking-wider items-center'
+                                    '
                                 >
                                     Price
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700 uppercase tracking-wider'
+                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700'
                                 >
                                     Quality
                                 </th>
                                 <th
                                     scope='col'
-                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700 uppercase tracking-wider'
+                                    className='px-6 py-3 text-left text-base font-semibold text-gray-700'
                                 >
                                     Total
                                 </th>
@@ -70,9 +72,9 @@ const Cart = () => {
                             >
                                 <td className='px-6 py-4'>
                                     <div className='flex items-center'>
-                                        <div className='flex-shrink-0 h-10 w-10'>
+                                        <div className='flex-shrink-0'>
                                             <img
-                                                className='h-10 w-10'
+                                                className='h-16 w-auto'
                                                 src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
                                                 alt=''
                                             />
