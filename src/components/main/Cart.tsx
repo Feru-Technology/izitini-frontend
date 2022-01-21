@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Navbar } from './navbar';
 import { Footer } from './footer'
+import { MdOutlineCancel } from "react-icons/md"
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
@@ -97,12 +98,11 @@ const Cart = () => {
                                     abcde
                                 </td>
                                 <td className='px-6 py-4 text-right text-base font-medium'>
-                                    <a
-                                        href='#'
-                                        className='text-indigo-600 hover:text-indigo-900'
+                                    <button type='button'
+                                        className='text-dark-blue'
                                     >
-                                        Edit
-                                    </a>
+                                        <MdOutlineCancel className='w-6 h-auto' />
+                                    </button>
                                 </td>
                             </tr>
 
