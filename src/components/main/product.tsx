@@ -28,6 +28,10 @@ const Product = () => {
         fetch(dispatch, currentProduct, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
+    const addToCart = () => {
+
+    }
+
     const { isLoading, product } = useSelector((state: RootState) => state.product);
 
     const data = [

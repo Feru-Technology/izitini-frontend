@@ -51,7 +51,8 @@ export const Home = () => {
 
             <div className='m-2'>
                 < Navbar />
-                < CategoryBar />
+                < CategoryBar
+                />
 
                 {/* category option bar */}
 

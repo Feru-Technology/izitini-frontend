@@ -50,9 +50,9 @@ export const Navbar = () => {
                                             <input className="border-2 w-80 lg:w-full md:ml-16 lg:ml-32 border-gray-300
                                             bg-white h-10 px-3 rounded-lg text-sm focus:outline-none"
                                                 type="search" name="search" placeholder="Search" />
-                                            <button type="submit" className="absolute right-0 top-0 mt-5">
+                                            <button type="submit" className="absolute right-5 top-0 mt-5">
 
-                                                <svg className="text-gray-600 h-4 w-4 fill-current lg:sr-only" xmlns="http://www.w3.org/2000/svg"
+                                                <svg className="sr-only md:not-sr-only text-gray-600 md:h-4 w-auto fill-current" xmlns="http://www.w3.org/2000/svg"
                                                     xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                                     viewBox="0 0 56.966 56.966"
                                                     xmlSpace="preserve"
