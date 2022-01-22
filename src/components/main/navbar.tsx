@@ -1,4 +1,4 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon, HeartIcon, BellIcon } from '@heroicons/react/outline'
 import { FaTools, FaBuilding } from "react-icons/fa"
@@ -17,6 +17,8 @@ export const Navbar = () => {
     const { isLoading, profile, error } = useSelector((state: RootState) => state.profile)
 
     const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
+
+    const [isShowing, setIsShowing] = useState(false)
 
     return (
         <Disclosure as="nav" className="bg-white">
@@ -175,8 +177,12 @@ export const Navbar = () => {
 
                         <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5">
 
-                            <div>
-                                <span className="flex items-center"><FaTools className="block h-3 w-3 mr-2" />Buy your products</span>
+                            <div onPointerOver={() => setIsShowing((isShowing) => !isShowing)}>
+                                <span className={`flex items-center px-4 font-bold
+                                ${isShowing && 'border-t-4 border-dark-blue'}`
+                                }>
+                                    <FaTools className="block h-3 w-3 mr-2" />Buy your products</span>
+                                <Transition show={isShowing}>I will appear and disappear.</Transition>
                             </div>
 
                             <div>
