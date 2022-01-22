@@ -194,7 +194,7 @@ export const Navbar = () => {
                                 }}
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showProduct && ' border-dark-blue'}`
+                                ${showProduct && ' border-dark-blue bg-gray-100'}`
                                     }
                                     >
                                         <FaTools className="block h-3 w-3 mr-2" />Buy your products</span>
@@ -208,7 +208,7 @@ export const Navbar = () => {
                                 }
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showIdea && ' border-dark-blue'}`
+                                ${showIdea && ' border-dark-blue bg-gray-100'}`
                                     }>
                                         <FaBuilding className="block h-3 w-3 mr-2" />Get idea</span>
                                 </div>
@@ -220,16 +220,16 @@ export const Navbar = () => {
                                 }}
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showProfession && ' border-dark-blue'}`
+                                ${showProfession && ' border-dark-blue bg-gray-100'}`
                                     }>
                                         <FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
                                 </div>
 
                             </div>
 
-                            <div className='w-full z-auto absolute shadow-md bg-white px-5'>
+                            <div className='w-full z-auto absolute shadow-md px-5 bg-gray-100'>
                                 <Transition show={showProduct}>
-                                    <div className='flex space-x-5  right-2'>
+                                    <div className='flex space-x-5'>
                                         <ul> product head
                                             <li>product 1</li>
                                         </ul>
