@@ -1,20 +1,15 @@
-import { useEffect } from 'react';
-import { RootState } from '../../redux/store';
-import { Footer } from './footer';
-import { Navbar } from './navbar';
+import { useEffect } from 'react'
+import { Footer } from './footer'
+import { Navbar } from './navbar'
 import { FaTools } from "react-icons/fa"
-import { fetch } from '../../api/apiAction';
+import { fetch } from '../../api/apiAction'
+import { RootState } from '../../redux/store'
+import { CategoryBar } from './categoryBar'
 
 import {
     useSelector,
     useDispatch
 } from 'react-redux'
-
-import {
-    fetchingSubCategories,
-    retrievedSubCategoryFailed,
-    retrievedSubCategory
-} from '../../redux/subCategories/subCategory.slice'
 
 import {
     fetchingCategories,
@@ -34,20 +29,11 @@ export const Home = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchingSubCategories());
-        fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
-    }, [dispatch])
-
-    const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory);
-
-    const subCategoryBar = subCategories.slice(0, 10)
-
-    useEffect(() => {
         dispatch(fetchingCategories());
         fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
     }, [dispatch])
 
-    const { categories } = useSelector((state: RootState) => state.category);
+    const { isLoading, categories } = useSelector((state: RootState) => state.category);
 
     const categorySection = categories.slice(0, 8)
 
@@ -65,20 +51,10 @@ export const Home = () => {
 
             <div className='m-2'>
                 < Navbar />
+                < CategoryBar />
 
                 {/* category option bar */}
-                <div className='
-                sr-only
-                md:not-sr-only
-                flex justify-center
-                bg-gray-200 my-2'>
-                    <ul className='flex md:space-x-1 lg:space-x-2 xl:space-x-4 2xl:space-x-6'>
 
-                        {subCategoryBar.map((v) => (<li className='md:text-xs lg:text-sm xl:text-base'>{v.name}</li>))}
-
-                        <p className='md:text-xs lg:text-sm xl:text-base'>see all</p>
-                    </ul>
-                </div>
 
                 {/* first section */}
                 <div className='flex flex-row h-60 mt-2'>

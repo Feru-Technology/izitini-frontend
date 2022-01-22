@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
-import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiFillStar } from "react-icons/all"
 import { Navbar } from './navbar'
