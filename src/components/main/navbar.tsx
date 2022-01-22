@@ -177,85 +177,108 @@ export const Navbar = () => {
                             </div>
                         </div>
 
-                        <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5">
+                        <div
+                            onPointerLeave={() => {
+                                setShowIdea(false)
+                                setShowProduct(false)
+                                setShowProfession(false)
+                            }}
+                        >
 
-                            <div onPointerOver={() => setShowProduct(true)}
-                                onPointerLeave={() => setShowProduct(false)}
-                            >
-                                <span className={`flex items-center px-4 font-bold border-t-4 border-white
+                            <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5">
+
+                                <div onPointerOver={() => {
+                                    setShowIdea(false)
+                                    setShowProduct(true)
+                                    setShowProfession(false)
+                                }}
+                                >
+                                    <span className={`flex items-center px-4 font-bold border-t-4 border-white
                                 ${showProduct && ' border-dark-blue'}`
+                                    }
+                                    >
+                                        <FaTools className="block h-3 w-3 mr-2" />Buy your products</span>
+                                </div>
+
+                                <div onPointerOver={() => {
+                                    setShowIdea(true)
+                                    setShowProduct(false)
+                                    setShowProfession(false)
+                                }
                                 }
                                 >
-                                    <FaTools className="block h-3 w-3 mr-2" />Buy your products</span>
-                            </div>
-
-                            <div onPointerOver={() => setShowIdea(true)}
-                                onPointerLeave={() => setShowIdea(false)}
-                            >
-                                <span className={`flex items-center px-4 font-bold border-t-4 border-white
+                                    <span className={`flex items-center px-4 font-bold border-t-4 border-white
                                 ${showIdea && ' border-dark-blue'}`
-                                }>
-                                    <FaBuilding className="block h-3 w-3 mr-2" />Get idea</span>
-                            </div>
+                                    }>
+                                        <FaBuilding className="block h-3 w-3 mr-2" />Get idea</span>
+                                </div>
 
-                            <div onPointerOver={() => setShowProfession(true)}
-                                onPointerLeave={() => setShowProfession(false)}
-                            >
-                                <span className={`flex items-center px-4 font-bold border-t-4 border-white
+                                <div onPointerOver={() => {
+                                    setShowIdea(false)
+                                    setShowProduct(false)
+                                    setShowProfession(true)
+                                }}
+                                >
+                                    <span className={`flex items-center px-4 font-bold border-t-4 border-white
                                 ${showProfession && ' border-dark-blue'}`
-                                }>
-                                    <FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
+                                    }>
+                                        <FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
+                                </div>
+
                             </div>
 
+                            <div className='w-full z-auto absolute shadow-md bg-white px-5'>
+                                <Transition show={showProduct}>
+                                    <div className='flex space-x-5  right-2'>
+                                        <ul> product head
+                                            <li>product 1</li>
+                                        </ul>
+                                        <ul> product head
+                                            <li>product 1</li>
+                                        </ul>
+                                        <ul> product head
+                                            <li>product 1</li>
+                                        </ul>
+                                        <ul> product head
+                                            <li>product 1</li>
+                                        </ul>
+                                    </div>
+                                </Transition><Transition show={showIdea}>
+                                    <div className='flex space-x-5'>
+                                        <ul> idea head
+                                            <li>idea 1</li>
+                                        </ul>
+                                        <ul> idea head
+                                            <li>idea 1</li>
+                                        </ul>
+                                        <ul> idea head
+                                            <li>idea 1</li>
+                                        </ul>
+                                        <ul> idea head
+                                            <li>idea 1</li>
+                                        </ul>
+                                    </div>
+                                </Transition>
+                                <Transition show={showProfession}>
+                                    <div className='flex space-x-5'>
+                                        <ul> profession head
+                                            <li>profession 1</li>
+                                        </ul>
+                                        <ul> profession head
+                                            <li>profession 1</li>
+                                        </ul>
+                                        <ul> profession head
+                                            <li>profession 1</li>
+                                        </ul>
+                                        <ul> profession head
+                                            <li>profession 1</li>
+                                        </ul>
+                                    </div>
+                                </Transition>
+                            </div>
                         </div>
 
-                        <Transition show={showProduct}>
-                            <div className='flex'>
-                                <ul> product head
-                                    <li>product 1</li>
-                                </ul>
-                                <ul> product head
-                                    <li>product 1</li>
-                                </ul>
-                                <ul> product head
-                                    <li>product 1</li>
-                                </ul>
-                                <ul> product head
-                                    <li>product 1</li>
-                                </ul>
-                            </div>
-                        </Transition><Transition show={showIdea}>
-                            <div className='flex'>
-                                <ul> idea head
-                                    <li>idea 1</li>
-                                </ul>
-                                <ul> idea head
-                                    <li>idea 1</li>
-                                </ul>
-                                <ul> idea head
-                                    <li>idea 1</li>
-                                </ul>
-                                <ul> idea head
-                                    <li>idea 1</li>
-                                </ul>
-                            </div>
-                        </Transition>
-                        <Transition show={showProfession}>
-                            <div className='flex'>
-                                <ul> profession head
-                                    <li>profession 1</li>
-                                </ul>
-                                <ul> profession head
-                                    <li>profession 1</li>
-                                </ul>
-                                <ul> profession head
-                                    <li>profession 1</li>
-                                </ul>
-                                <ul> profession head
-                                    <li>profession 1</li>
-                                </ul>
-                            </div>
-                        </Transition>
+
                     </div>
 
                     <Disclosure.Panel className="sm:sr-only z-10">
