@@ -26,8 +26,8 @@ export const Navbar = () => {
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mt-5 mb-5">
-                        <div className="relative flex items-center justify-between">
+                    <div className="mt-5 mb-5">
+                        <div className="flex w-full">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:sr-only">
                                 {/* Mobile menu button*/}
                                 <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black">
@@ -39,34 +39,35 @@ export const Navbar = () => {
                                     )}
                                 </Disclosure.Button>
                             </div>
-                            <div className="ml-10 md:ml-6 md:flex md:justify-start mb-3">
-                                <div className="flex-shrink-0">
-                                    <img
-                                        className="block h-7 md:h-11 lg:h-12 w-auto"
-                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
-                                        alt="Workflow"
-                                    />
-                                </div>
 
-                                <div className="sr-only md:not-sr-only md:block">
-                                    <div className="flex">
-                                        <div className="pt-2 relative mx-auto text-gray-600">
-                                            <input className="border-2 w-80 lg:w-full md:ml-16 lg:ml-32 border-gray-300
-                                            bg-white h-10 px-3 rounded-lg text-sm focus:outline-none"
-                                                type="search" name="search" placeholder="Search" />
-                                            <button type="submit" className="absolute right-5 top-0 mt-5">
+                            {/* logo */}
+                            <div className="flex-shrink-0 ml-8
+                            md:w-1/12">
+                                <img
+                                    className="block h-7 md:h-11 lg:h-12 w-auto"
+                                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
+                                    alt="Workflow"
+                                />
+                            </div>
 
-                                                <svg className="sr-only md:not-sr-only text-gray-600 md:h-4 w-auto fill-current" xmlns="http://www.w3.org/2000/svg"
-                                                    xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
-                                                    viewBox="0 0 56.966 56.966"
-                                                    xmlSpace="preserve"
-                                                    width="512px" height="512px">
-                                                    <path
-                                                        d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </div>
+                            {/* search */}
+                            <div className="sr-only md:not-sr-only flex md:w-8/12">
+                                <div className="pt-2 relative mx-auto text-gray-600 w-full px-5">
+                                    <input className="border-2 border-gray-300 w-full
+                                            bg-white h-10 lg:h-11 px-3 rounded-lg text-sm focus:outline-none"
+                                        type="search" name="search" placeholder="Search" />
+                                    <button type="submit" className="absolute right-10  top-0 mt-5">
+
+                                        <svg className="sr-only md:not-sr-only text-gray-600 md:h-4 lg:h-5 w-auto fill-current" xmlns="http://www.w3.org/2000/svg"
+                                            xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                            viewBox="0 0 56.966 56.966"
+                                            xmlSpace="preserve"
+                                        // width="512px" height="512px"
+                                        >
+                                            <path
+                                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
 
@@ -78,7 +79,7 @@ export const Navbar = () => {
                                     <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
                                 </button>
                             </div>
-                            <div className="flex space-x-4 right-0 text-black mb-3 md:mb-5">
+                            <div className="flex space-x-4 right-0 text-black mb-3 md:mb-5 md:w-5/12">
                                 <button
                                     type="button"
                                 >
@@ -228,8 +229,10 @@ export const Navbar = () => {
                             </div>
 
                             <div className='w-full z-auto absolute shadow-md px-5 bg-gray-100'>
-                                <Transition show={showProduct}>
-                                    <div className='flex space-x-5'>
+                                <Transition
+                                    show={showProduct}
+                                >
+                                    <div className='flex space-x-5 justify-center'>
                                         <ul> product head
                                             <li>product 1</li>
                                         </ul>
@@ -243,8 +246,9 @@ export const Navbar = () => {
                                             <li>product 1</li>
                                         </ul>
                                     </div>
-                                </Transition><Transition show={showIdea}>
-                                    <div className='flex space-x-5'>
+                                </Transition>
+                                <Transition show={showIdea}>
+                                    <div className='flex space-x-5 justify-center'>
                                         <ul> idea head
                                             <li>idea 1</li>
                                         </ul>
@@ -260,7 +264,7 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showProfession}>
-                                    <div className='flex space-x-5'>
+                                    <div className='flex space-x-5 justify-center'>
                                         <ul> profession head
                                             <li>profession 1</li>
                                         </ul>
