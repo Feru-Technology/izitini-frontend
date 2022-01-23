@@ -27,24 +27,25 @@ export const Navbar = () => {
             {({ open }) => (
                 <>
                     <div className="mt-5 mb-5">
-                        <div className="flex w-full">
-                            <div className="absolute inset-y-0 left-0 flex items-center sm:sr-only">
-                                {/* Mobile menu button*/}
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black">
-                                    <span className="sr-only">Open main menu</span>
-                                    {open ? (
-                                        <XIcon className="block h-6 w-6" aria-hidden="true" />
-                                    ) : (
-                                        <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                                    )}
-                                </Disclosure.Button>
-                            </div>
+                        <div className="flex w-full relative">
 
                             {/* logo */}
-                            <div className="flex-shrink-0 ml-8
-                            md:w-1/12">
+                            <div className="flex w-1/4 ml-1
+                            md:ml-8 md:w-1/12">
+
+                                <div className=" inset-y-0 left-0 flex items-center sm:sr-only">
+                                    {/* Mobile menu button*/}
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-black">
+                                        <span className="sr-only">Open main menu</span>
+                                        {open ? (
+                                            <XIcon className="block h-6 w-6 font-bold" aria-hidden="true" />
+                                        ) : (
+                                            <MenuIcon className="block h-7 w-7 font-bold" aria-hidden="true" />
+                                        )}
+                                    </Disclosure.Button>
+                                </div>
                                 <img
-                                    className="block h-7 md:h-10 lg:h-12 w-auto"
+                                    className="block h-8 md:h-10 lg:h-12 w-auto"
                                     src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                     alt="Workflow"
                                 />
@@ -71,16 +72,17 @@ export const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className='sm:sr-only'>
-                                <button
-                                    type="button"
-                                >
-                                    <span className="sr-only">View saved search</span>
-                                    <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
-                                </button>
-                            </div>
-                            <div className="flex space-x-4 lg:space-x-6 text-black md:w-5/12 justify-center md:mt-3 lg:mt-4">
-                                <div className='flex space-x-6'>
+                            <div className="flex space-x-4 lg:space-x-6 text-black w-2/4
+                            md:w-5/12 justify-center md:mt-3 lg:mt-4">
+                                <div className='flex md:space-x-6'>
+                                    {/* search icon on a phone */}
+                                    <button
+                                        type="button"
+                                        className='sm:sr-only'
+                                    >
+                                        <span className="sr-only">View saved search</span>
+                                        <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
+                                    </button>
 
                                     <button
                                         type="button"
