@@ -72,24 +72,24 @@ export const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className="flex space-x-4 lg:space-x-6 text-black w-2/4
+                            <div className="flex space-x-4 lg:space-x-6 text-black w-3/4
                             md:w-5/12 justify-center md:mt-3 lg:mt-4">
-                                <div className='flex md:space-x-6'>
+                                <div className='flex space-x-5 md:space-x-6 absolute right-12 md:right-0 md:relative'>
                                     {/* search icon on a phone */}
                                     <button
                                         type="button"
                                         className='sm:sr-only'
                                     >
                                         <span className="sr-only">View saved search</span>
-                                        <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
+                                        <RiSearchLine className="h-5 mt-2  w-auto" aria-hidden="true" />
                                     </button>
 
                                     <button
                                         type="button"
-                                        className='flex'
+                                        className='flex mt-3 md:mt-0'
                                     >
                                         <span className="sr-only">View saved items</span>
-                                        <BsSuitHeart className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                        <BsSuitHeart className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
                                         <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>
                                             <p>3</p>
                                         </div>
@@ -98,25 +98,25 @@ export const Navbar = () => {
                                         ? <span className='sr-only'>not logged in</span>
                                         : <button
                                             type="button"
-                                            className='flex'
+                                            className='flex mt-3 md:mt-0'
                                         >
                                             <span className="sr-only">View notifications</span>
-                                            <BsBell className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            <BsBell className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
                                             <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
                                         </button>
                                     }
 
                                     <button
                                         type="button"
-                                        className='flex'
+                                        className='flex mt-3 md:mt-0'
                                     >
                                         <span className="sr-only">View cart</span>
-                                        <BsCart3 className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                        <BsCart3 className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
                                         <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
                                     </button>
                                 </div>
 
-                                <div>
+                                <div className='absolute right-0 md:relative'>
                                     {profile === null
                                         ? <div className='flex space-x-2'>
                                             <div>
@@ -133,7 +133,7 @@ export const Navbar = () => {
                                                     <Menu.Button className="flex space-x-4">
 
                                                         <img
-                                                            className="h-8 md:h-9 w-auto rounded-full"
+                                                            className="h-7 mt-2 md:mt-0 md:h-9 w-auto rounded-full"
                                                             src={
                                                                 profile.user.profile_image === null ?
                                                                     backUpPImage
@@ -298,6 +298,7 @@ export const Navbar = () => {
 
                     </div>
 
+                    {/* menu breakdown */}
                     <Disclosure.Panel className="sm:sr-only z-10">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             <p>Home</p>
