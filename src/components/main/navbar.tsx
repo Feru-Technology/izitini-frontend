@@ -79,7 +79,7 @@ export const Navbar = () => {
                                     <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
                                 </button>
                             </div>
-                            <div className="flex space-x-4 text-black md:w-5/12 justify-center">
+                            <div className="flex space-x-4 lg:space-x-6 text-black md:w-5/12 justify-center md:mt-3 lg:mt-4">
                                 <div className='flex space-x-6'>
 
                                     <button
@@ -88,7 +88,7 @@ export const Navbar = () => {
                                     >
                                         <span className="sr-only">View saved items</span>
                                         <BsSuitHeart className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
-                                        <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-3 min-w-5'>
+                                        <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>
                                             <p>3</p>
                                         </div>
                                     </button>
@@ -100,7 +100,7 @@ export const Navbar = () => {
                                         >
                                             <span className="sr-only">View notifications</span>
                                             <BsBell className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
-                                            <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-3 min-w-5'>3</p>
+                                            <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
                                         </button>
                                     }
 
@@ -110,7 +110,7 @@ export const Navbar = () => {
                                     >
                                         <span className="sr-only">View cart</span>
                                         <BsCart3 className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
-                                        <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-3 min-w-0'>3</p>
+                                        <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
                                     </button>
                                 </div>
 
@@ -126,12 +126,12 @@ export const Navbar = () => {
                                         : <div>
 
                                             {/* Profile dropdown */}
-                                            <Menu as="div" className="ml-3 relative">
+                                            <Menu as="div" className="">
                                                 <div>
-                                                    <Menu.Button className="flex md:mt-3">
+                                                    <Menu.Button className="flex space-x-4">
 
                                                         <img
-                                                            className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
+                                                            className="h-8 md:h-9 w-auto rounded-full"
                                                             src={
                                                                 profile.user.profile_image === null ?
                                                                     backUpPImage
@@ -139,7 +139,7 @@ export const Navbar = () => {
                                                             }
                                                             alt="PImage"
                                                         />
-                                                        <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
+                                                        <p className="sr-only lg:not-sr-only text-base">{profile.user.full_name}</p>
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition
