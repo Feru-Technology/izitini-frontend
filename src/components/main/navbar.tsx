@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon, HeartIcon, BellIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { FaTools, FaBuilding } from "react-icons/fa"
-import { BsCart3 } from 'react-icons/bs'
+import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store';
@@ -44,7 +44,7 @@ export const Navbar = () => {
                             <div className="flex-shrink-0 ml-8
                             md:w-1/12">
                                 <img
-                                    className="block h-7 md:h-11 lg:h-12 w-auto"
+                                    className="block h-7 md:h-10 lg:h-12 w-auto"
                                     src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
                                     alt="Workflow"
                                 />
@@ -54,11 +54,11 @@ export const Navbar = () => {
                             <div className="sr-only md:not-sr-only flex md:w-8/12">
                                 <div className="pt-2 relative mx-auto text-gray-600 w-full px-5">
                                     <input className="border-2 border-gray-300 w-full
-                                            bg-white h-10 lg:h-11 px-3 rounded-lg text-sm focus:outline-none"
+                                            bg-white h-9 lg:h-11 px-3 rounded-lg text-sm focus:outline-none"
                                         type="search" name="search" placeholder="Search" />
                                     <button type="submit" className="absolute right-10  top-0 mt-5">
 
-                                        <svg className="sr-only md:not-sr-only text-gray-600 md:h-4 lg:h-5 w-auto fill-current" xmlns="http://www.w3.org/2000/svg"
+                                        <svg className="sr-only md:not-sr-only text-gray-600 md:h-3 lg:h-5 w-auto fill-current" xmlns="http://www.w3.org/2000/svg"
                                             xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
                                             viewBox="0 0 56.966 56.966"
                                             xmlSpace="preserve"
@@ -79,102 +79,113 @@ export const Navbar = () => {
                                     <RiSearchLine className="h-6 w-auto right-0" aria-hidden="true" />
                                 </button>
                             </div>
-                            <div className="flex space-x-4 right-0 text-black mb-3 md:mb-5 md:w-5/12">
-                                <button
-                                    type="button"
-                                >
-                                    <span className="sr-only">View saved items</span>
-                                    <HeartIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
-                                </button>
-                                {profile === null
-                                    ? <span className='sr-only'>not logged in</span>
-                                    : <button
+                            <div className="flex space-x-4 text-black md:w-5/12 justify-center">
+                                <div className='flex space-x-6'>
+
+                                    <button
                                         type="button"
+                                        className='flex'
                                     >
-                                        <span className="sr-only">View notifications</span>
-                                        <BellIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
-                                        <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
-                                    </button>
-                                }
-
-                                <button
-                                    type="button"
-                                >
-                                    <span className="sr-only">View cart</span>
-                                    <BsCart3 className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
-                                </button>
-
-                                {profile === null
-                                    ? <div className='flex space-x-2'>
-                                        <div>
-                                            <Link to='/signin'>Login</Link>
-
+                                        <span className="sr-only">View saved items</span>
+                                        <BsSuitHeart className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                        <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-3 min-w-5'>
+                                            <p>3</p>
                                         </div>
-                                        <div><Link to='/signup'>Register</Link></div>
-                                    </div>
-                                    : <div>
+                                    </button>
+                                    {profile === null
+                                        ? <span className='sr-only'>not logged in</span>
+                                        : <button
+                                            type="button"
+                                            className='flex'
+                                        >
+                                            <span className="sr-only">View notifications</span>
+                                            <BsBell className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-3 min-w-5'>3</p>
+                                        </button>
+                                    }
 
-                                        {/* Profile dropdown */}
-                                        <Menu as="div" className="ml-3 relative">
+                                    <button
+                                        type="button"
+                                        className='flex'
+                                    >
+                                        <span className="sr-only">View cart</span>
+                                        <BsCart3 className="h-6 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                        <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-3 min-w-0'>3</p>
+                                    </button>
+                                </div>
+
+                                <div>
+                                    {profile === null
+                                        ? <div className='flex space-x-2'>
                                             <div>
-                                                <Menu.Button className="flex md:mt-3">
+                                                <Link to='/signin'>Login</Link>
 
-                                                    <img
-                                                        className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
-                                                        src={
-                                                            profile.user.profile_image === null ?
-                                                                backUpPImage
-                                                                : profile.user.profile_image
-                                                        }
-                                                        alt="PImage"
-                                                    />
-                                                    <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
-                                                </Menu.Button>
                                             </div>
-                                            <Transition
-                                                as={Fragment}
-                                                enter="transition ease-out duration-100"
-                                                enterFrom="transform opacity-0 scale-95"
-                                                enterTo="transform opacity-100 scale-100"
-                                                leave="transition ease-in duration-75"
-                                                leaveFrom="transform opacity-100 scale-100"
-                                                leaveTo="transform opacity-0 scale-95"
-                                            >
-                                                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                    <Menu.Item>
-                                                        {({ active }) => (
-                                                            <Link to='/profile'
-                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                            >
-                                                                Your Profile
-                                                            </Link>
-                                                        )}
-                                                    </Menu.Item>
-                                                    <Menu.Item>
-                                                        {({ active }) => (
-                                                            <Link to='/vendor'
-                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                            >
-                                                                Dashboard
-                                                            </Link>
-                                                        )}
-                                                    </Menu.Item>
-                                                    <Menu.Item>
-                                                        {({ active }) => (
-                                                            <Link to='/login'
-                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                            >
-                                                                Sign out
-                                                            </Link>
-                                                        )}
-                                                    </Menu.Item>
-                                                </Menu.Items>
-                                            </Transition>
-                                        </Menu>
-                                    </div>
-                                }
+                                            <div><Link to='/signup'>Register</Link></div>
+                                        </div>
+                                        : <div>
+
+                                            {/* Profile dropdown */}
+                                            <Menu as="div" className="ml-3 relative">
+                                                <div>
+                                                    <Menu.Button className="flex md:mt-3">
+
+                                                        <img
+                                                            className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
+                                                            src={
+                                                                profile.user.profile_image === null ?
+                                                                    backUpPImage
+                                                                    : profile.user.profile_image
+                                                            }
+                                                            alt="PImage"
+                                                        />
+                                                        <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
+                                                    </Menu.Button>
+                                                </div>
+                                                <Transition
+                                                    as={Fragment}
+                                                    enter="transition ease-out duration-100"
+                                                    enterFrom="transform opacity-0 scale-95"
+                                                    enterTo="transform opacity-100 scale-100"
+                                                    leave="transition ease-in duration-75"
+                                                    leaveFrom="transform opacity-100 scale-100"
+                                                    leaveTo="transform opacity-0 scale-95"
+                                                >
+                                                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <Menu.Item>
+                                                            {({ active }) => (
+                                                                <Link to='/profile'
+                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    Your Profile
+                                                                </Link>
+                                                            )}
+                                                        </Menu.Item>
+                                                        <Menu.Item>
+                                                            {({ active }) => (
+                                                                <Link to='/vendor'
+                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    Dashboard
+                                                                </Link>
+                                                            )}
+                                                        </Menu.Item>
+                                                        <Menu.Item>
+                                                            {({ active }) => (
+                                                                <Link to='/login'
+                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                >
+                                                                    Sign out
+                                                                </Link>
+                                                            )}
+                                                        </Menu.Item>
+                                                    </Menu.Items>
+                                                </Transition>
+                                            </Menu>
+                                        </div>
+                                    }
+                                </div>
+
                             </div>
                         </div>
 
