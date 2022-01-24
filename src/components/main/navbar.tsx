@@ -191,7 +191,7 @@ export const Navbar = () => {
                             </div>
                         </div>
 
-                        <div
+                        <div className='md:mt-3'
                             onPointerLeave={() => {
                                 setShowIdea(false)
                                 setShowProduct(false)
@@ -199,7 +199,7 @@ export const Navbar = () => {
                             }}
                         >
 
-                            <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5">
+                            <div className="sr-only md:not-sr-only space-x-6 flex justify-center mt-5 text-gray-800">
 
                                 <div onPointerOver={() => {
                                     setShowIdea(false)

@@ -49,7 +49,7 @@ export const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
-            <div className='m-2'>
+            <div className='m-2 font-mono'>
                 < Navbar />
                 < CategoryBar
                 />
@@ -62,7 +62,7 @@ export const Home = () => {
                     <div className='
                     sr-only md:not-sr-only
                     md:w-1/5 md:h-full'>
-                        <div className='flex flex-row justify-center'>
+                        <div className='flex flex-row justify-center text-dark-blue'>
                             <FaTools className="
                             md:h-3 md:w-3
                             lg:h-4 lg:w-4
@@ -74,7 +74,12 @@ export const Home = () => {
                         </div>
                         <ul className='ml-2
                         md:w-full md:h-52 md:overflow-y-scroll'>
-                            {categories.map((v) => (<li>{v.name}</li>))}
+                            {categories.map((v) => (
+                                <li
+                                    className='w-full text-lg font-medium text-gray-700
+                                     hover:bg-dark-blue hover:text-white
+                                    lg:px-4'
+                                >{v.name}</li>))}
                         </ul>
                     </div>
                     <div className='w-full md:w-4/5 bg-yellow-300 flex flex-row h-full'>
@@ -84,28 +89,31 @@ export const Home = () => {
                 </div>
 
                 {/* section 2 */}
-                <div className='my-3
+                <div className='my-3 font-medium
                 grid
                 grid-cols-1
                 md:grid-cols-2
                 lg:grid-cols-4
                 gap-3'>
-                    {categorySection.map((c) => (
+                    {categorySection.map((category) => (
                         <div className='relative'>
-                            <p className='absolute ml-2'>{c.name}</p>
+                            <p className='absolute ml-2'>{category.name}</p>
                             <img className='
                             h-36
                             2xl:h-52
                             w-full
                             bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
-                            <ul className='self-center'>
-                                {
-                                    c.SubCategories.map((s) => (
-                                        <li>{s.name}</li>
-                                    ))
-                                }
-                                <p>see all</p>
-                            </ul>
+                            <div className=''>
+                                <ul className='justify-center'>
+                                    {
+                                        category.SubCategories.map((subCat) => (
+                                            <li className='py-1'>{subCat.name}</li>
+                                        ))
+                                    }
+                                    <p className='text-dark-blue'>see all</p>
+                                </ul>
+
+                            </div>
                         </div>
                     ))}
                 </div>
