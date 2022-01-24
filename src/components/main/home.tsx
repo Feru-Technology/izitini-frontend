@@ -49,7 +49,7 @@ export const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
-            <div className='m-2 font-mono'>
+            <div className='m-2 font-sans'>
                 < Navbar />
                 < CategoryBar
                 />
@@ -107,7 +107,7 @@ export const Home = () => {
                                 <ul className='justify-center'>
                                     {
                                         category.SubCategories.map((subCat) => (
-                                            <li className='py-1'>{subCat.name}</li>
+                                            <li className='mt-1 font-normal'>{subCat.name}</li>
                                         ))
                                     }
                                     <p className='text-dark-blue'>see all</p>
@@ -119,7 +119,7 @@ export const Home = () => {
                 </div>
 
                 {/* recent updates */}
-                <div className='my-2'>
+                <div className='my-2 font-normal'>
                     <span>Recent Updates</span>
                     <div className='
                     grid
