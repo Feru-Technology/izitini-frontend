@@ -54,15 +54,15 @@ export const Home = () => {
                 < CategoryBar
                 />
 
-                <div className='lg:mx-12 xl:mx-24'>
+                <div className='md:mx-10 lg:mx-12 xl:mx-24'>
 
                     {/* first section */}
                     <div className='flex flex-row h-60 mt-2'>
                         <div className='
                     sr-only md:not-sr-only
-                    md:w-1/5 md:h-full'>
+                    md:w-3/12 lg:w-1/5 md:h-full'>
                             <div className='flex flex-row justify-center text-dark-blue
-                             border-b-2 border-dark-blue mr-3 ml-2'>
+                            border-b-2 border-dark-blue mr-3 ml-2'>
                                 <FaTools className="
                             md:h-3 md:w-3
                             lg:h-4 lg:w-4
@@ -78,18 +78,18 @@ export const Home = () => {
                                     <li
                                         className='w-full text-lg font-medium text-gray-700
                                     hover:bg-dark-blue hover:text-white
-                                    lg:px-4'
+                                    md:px-3 lg:px-4'
                                     >{v.name}</li>))}
                             </ul>
                         </div>
-                        <div className='w-full md:w-4/5 bg-yellow-300 flex flex-row h-full'>
+                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-yellow-300 flex flex-row h-full'>
                             <div className='w-3/6'>image section</div>
                             <div className='w-3/6'>text section</div>
                         </div>
                     </div>
 
                     {/* categories */}
-                    <div className='lg:mt-8 font-medium
+                    <div className='md:mt-4 lg:mt-8 font-medium
                 grid
                 grid-cols-1
                 md:grid-cols-2
