@@ -14,7 +14,7 @@ export const CategoryBar = () => {
                 sr-only
                 md:not-sr-only border-t-2 border-b-2 border-gray-300
                 flex justify-center
-                bg-gray-100 my-2'>
+                bg-gray-100 mt-2'>
                     <ul className='flex md:space-x-4 lg:space-x-8'>
 
                         {categoryBar.map((v) => (<li className='font-bold text-gray-600 py-2

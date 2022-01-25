@@ -118,12 +118,24 @@ export const Navbar = () => {
 
                                 <div className='absolute right-0 md:relative'>
                                     {profile === null
-                                        ? <div className='flex space-x-2'>
+                                        ? <div>
+                                            <div className='sr-only md:not-sr-only flex space-x-2'>
+                                                <div>
+                                                    <Link to='/signin'>Login</Link>
+
+                                                </div>
+                                                <div><Link to='/signup'>Register</Link></div>
+                                            </div>
                                             <div>
-                                                <Link to='/signin'>Login</Link>
+                                                <Link to='/signin'>
+                                                    <img
+                                                        className="h-7 mt-2 mr-1 w-auto rounded-full sm:sr-only"
+                                                        src={backUpPImage}
+                                                        alt="PImage"
+                                                    />
+                                                </Link>
 
                                             </div>
-                                            <div><Link to='/signup'>Register</Link></div>
                                         </div>
                                         : <div>
 

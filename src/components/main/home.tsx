@@ -49,19 +49,20 @@ export const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
-            <div className='my-2 font-sans'>
+            <div className='font-sans'>
                 < Navbar />
                 < CategoryBar
                 />
 
-                <div className='lg:px-0 xl:mx-16'>
+                <div className='lg:mx-12 xl:mx-24'>
 
                     {/* first section */}
                     <div className='flex flex-row h-60 mt-2'>
                         <div className='
                     sr-only md:not-sr-only
                     md:w-1/5 md:h-full'>
-                            <div className='flex flex-row justify-center text-dark-blue'>
+                            <div className='flex flex-row justify-center text-dark-blue
+                             border-b-2 border-dark-blue mr-3 ml-2'>
                                 <FaTools className="
                             md:h-3 md:w-3
                             lg:h-4 lg:w-4
@@ -88,18 +89,19 @@ export const Home = () => {
                     </div>
 
                     {/* categories */}
-                    <div className='my-3 font-medium
+                    <div className='lg:mt-8 font-medium
                 grid
                 grid-cols-1
                 md:grid-cols-2
                 lg:grid-cols-3
+                xl:gap-4
                 gap-3'>
                         {categorySection.map((category) => (
-                            <div className='relative'>
+                            <div className='relative my-2'>
                                 <p className='absolute ml-2'>{category.name}</p>
                                 <img className='h-36  2xl:h-52 w-full bg-gray-200
-                                lg:h-48'
-                                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
+                                lg:h-40 xl:h-48'
+                                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png" alt="" />
                                 <div className=''>
                                     <ul>
                                         {
@@ -116,7 +118,7 @@ export const Home = () => {
                     </div>
 
                     {/* recent updates */}
-                    <div className='my-2 font-normal'>
+                    <div className='lg:mb-8 lg:mt-3 font-normal'>
                         <span>Recent Updates</span>
                         <div className='
                     grid
@@ -130,7 +132,7 @@ export const Home = () => {
                                     <img className='bg-gray-200
                                 w-full
                                 h-32
-                                2xl:h-52' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
+                                2xl:h-52' src="https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png" alt="" />
                                     <p>{p.name}</p>
                                     <p>{p.brand}</p>
                                     <p>Ratings</p>
