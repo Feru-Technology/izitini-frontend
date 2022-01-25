@@ -294,12 +294,10 @@ export const Navbar = () => {
                                 </Transition>
                             </div>
                         </div>
-
-
                     </div>
 
                     {/* menu breakdown */}
-                    <Disclosure.Panel className="sm:sr-only z-10">
+                    <Disclosure.Panel className="sm:sr-only absolute z-10  bg-white">
                         <div className="px-2 pt-2 pb-3 space-y-1">
                             <p>Home</p>
                         </div>
