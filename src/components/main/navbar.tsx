@@ -5,12 +5,19 @@ import { FaTools, FaBuilding } from "react-icons/fa"
 import { BsCart3 } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { RiSearchLine } from 'react-icons/ri'
+import { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
 export const Navbar = () => {
+
+    const { isLoading, profile, error } = useSelector((state: RootState) => state.profile)
+
+    const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
+
     return (
         <Disclosure as="nav" className="bg-white">
             {({ open }) => (
@@ -75,13 +82,17 @@ export const Navbar = () => {
                                     <HeartIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
                                     <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
                                 </button>
-                                <button
-                                    type="button"
-                                >
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
-                                    <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
-                                </button>
+                                {profile === null
+                                    ? <span className='sr-only'>not logged in</span>
+                                    : <button
+                                        type="button"
+                                    >
+                                        <span className="sr-only">View notifications</span>
+                                        <BellIcon className="h-6 md:h-9 w-auto absolute" aria-hidden="true" />
+                                        <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
+                                    </button>
+                                }
+
                                 <button
                                     type="button"
                                 >
@@ -90,59 +101,75 @@ export const Navbar = () => {
                                     <p className='text-white text-xs bg-dark-blue rounded-full ml-4 md:ml-5 p-1'>3</p>
                                 </button>
 
-                                {/* Profile dropdown */}
-                                <Menu as="div" className="ml-3 relative">
-                                    <div>
-                                        <Menu.Button className="flex md:mt-3">
+                                {profile === null
+                                    ? <div className='flex space-x-2'>
+                                        <div>
+                                            <Link to='/signin'>Login</Link>
 
-                                            <img
-                                                className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt=""
-                                            />
-                                            <p className="sr-only lg:not-sr-only mt-24 text-base">N. Ramadhan</p>
-                                        </Menu.Button>
+                                        </div>
+                                        <div><Link to='/signup'>Register</Link></div>
                                     </div>
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-100"
-                                        enterFrom="transform opacity-0 scale-95"
-                                        enterTo="transform opacity-100 scale-100"
-                                        leave="transition ease-in duration-75"
-                                        leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
-                                    >
-                                        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <Link to='/profile'
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Your Profile
-                                                    </Link>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <Link to='/settings'
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Settings
-                                                    </Link>
-                                                )}
-                                            </Menu.Item>
-                                            <Menu.Item>
-                                                {({ active }) => (
-                                                    <Link to='/login'
-                                                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                                                    >
-                                                        Sign out
-                                                    </Link>
-                                                )}
-                                            </Menu.Item>
-                                        </Menu.Items>
-                                    </Transition>
-                                </Menu>
+                                    : <div>
+
+                                        {/* Profile dropdown */}
+                                        <Menu as="div" className="ml-3 relative">
+                                            <div>
+                                                <Menu.Button className="flex md:mt-3">
+
+                                                    <img
+                                                        className="h-8 md:h-9 w-auto rounded-full lg:mr-2"
+                                                        src={
+                                                            profile.user.profile_image === null ?
+                                                                backUpPImage
+                                                                : profile.user.profile_image
+                                                        }
+                                                        alt="PImage"
+                                                    />
+                                                    <p className="sr-only lg:not-sr-only mt-24 text-base">{profile.user.full_name}</p>
+                                                </Menu.Button>
+                                            </div>
+                                            <Transition
+                                                as={Fragment}
+                                                enter="transition ease-out duration-100"
+                                                enterFrom="transform opacity-0 scale-95"
+                                                enterTo="transform opacity-100 scale-100"
+                                                leave="transition ease-in duration-75"
+                                                leaveFrom="transform opacity-100 scale-100"
+                                                leaveTo="transform opacity-0 scale-95"
+                                            >
+                                                <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <Link to='/profile'
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Your Profile
+                                                            </Link>
+                                                        )}
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <Link to='/vendor'
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Dashboard
+                                                            </Link>
+                                                        )}
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <Link to='/login'
+                                                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                            >
+                                                                Sign out
+                                                            </Link>
+                                                        )}
+                                                    </Menu.Item>
+                                                </Menu.Items>
+                                            </Transition>
+                                        </Menu>
+                                    </div>
+                                }
                             </div>
                         </div>
 

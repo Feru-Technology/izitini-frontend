@@ -6,7 +6,7 @@ const CustomerSignUp = () => {
       <section className="min-h-screen bg-gray-100">
 
         <div className="w-full lg:w-5/12 px-4 mx-auto pt-6">
-        <div>
+          <div>
             <h1 className="my-6 flex justify-center">
               <img
                 src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
@@ -137,9 +137,9 @@ const CustomerSignUp = () => {
                     Sign Up
                   </button>
                 </div>
-                <hr className="text-gray-600 mb-4"/>
+                <hr className="text-gray-600 mb-4" />
                 <div className="text-right ">
-                <Link to="signin"><a href="#"className="text-light-blue hover:underline hover:text-middle-blue">Sign in</a> if already have an account by sign in,I agree to izitini's
+                  <Link to="/signin"><a href="#" className="text-light-blue hover:underline hover:text-middle-blue">Sign in</a> if already have an account by sign in,I agree to izitini's
                     Terms of use * Privacy Policy</Link>
                 </div>
               </form>

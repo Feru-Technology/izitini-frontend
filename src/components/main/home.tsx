@@ -14,19 +14,19 @@ import {
     fetchingSubCategories,
     retrievedSubCategoryFailed,
     retrievedSubCategory
-} from '../../redux/subCategory.slice'
+} from '../../redux/subCategories/subCategory.slice'
 
 import {
     fetchingCategories,
     retrievedCategoryFailed,
     retrievedCategory
-} from '../../redux/category.slice'
+} from '../../redux/categories/categories.slice'
 
 import {
     fetchingProducts,
     retrievedProductFailed,
-    retrievedProduct
-} from '../../redux/product.slice'
+    retrievedProducts
+} from '../../redux/products/allProduct.slice'
 
 export const Home = () => {
 
@@ -38,14 +38,13 @@ export const Home = () => {
         fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
     }, [dispatch])
 
-
-    const { isLoading, subCategories, error } = useSelector((state: RootState) => state.subCategory);
+    const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory);
 
     const subCategoryBar = subCategories.slice(0, 10)
 
     useEffect(() => {
         dispatch(fetchingCategories());
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category')
+        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
     }, [dispatch])
 
     const { categories } = useSelector((state: RootState) => state.category);
@@ -54,10 +53,10 @@ export const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingProducts());
-        fetch(dispatch, retrievedProduct, retrievedProductFailed, '/product')
+        fetch(dispatch, retrievedProducts, retrievedProductFailed, '/product')
     }, [dispatch])
 
-    const { products } = useSelector((state: RootState) => state.product);
+    const { products } = useSelector((state: RootState) => state.allProducts);
 
     const productSection = products.slice(0, 6)
 
@@ -114,27 +113,27 @@ export const Home = () => {
                 md:grid-cols-2
                 lg:grid-cols-4
                 gap-3'>
-                    {categorySection.map((v) => (
+                    {categorySection.map((c) => (
                         <div className='relative'>
-                            <p className='absolute ml-2'>{v.name}</p>
+                            <p className='absolute ml-2'>{c.name}</p>
                             <img className='
                             h-36
                             2xl:h-52
                             w-full
                             bg-gray-400' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/design/pexels-mark-mccammon-1080721.jpg" alt="" />
                             <ul className='self-center'>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>test</li>
-                                <li>see all</li>
+                                {
+                                    c.SubCategories.map((s) => (
+                                        <li>{s.name}</li>
+                                    ))
+                                }
+                                <p>see all</p>
                             </ul>
                         </div>
                     ))}
                 </div>
 
                 {/* recent updates */}
-
                 <div className='my-2'>
                     <span>Recent Updates</span>
                     <div className='

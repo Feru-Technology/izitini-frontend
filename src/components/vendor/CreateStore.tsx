@@ -1,74 +1,68 @@
+import React,
+{
+  useEffect, useState
+} from 'react'
+
 import Header from './Header'
-import { useState } from 'react'
 import SiderBar from './SiderBar'
+import { useNavigate } from 'react-router'
+import { post } from '../../api/apiAction'
+import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
-import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
-
 import {
-  fetchingSubCategories,
-  retrievedSubCategory,
-  retrievedSubCategoryFailed
-} from '../../redux/subCategories/subCategory.slice'
-
+  fetchingCategories,
+  retrievedCategories,
+  retrievedCategoryFailed
+} from '../../redux/categories/allCategories.slice'
 import {
-  fetchingProducts,
-  storeProducts,
-  productFailed
-} from '../../redux/products/storeProducts.slice '
+  fetchingStores,
+  retrievedStores,
+  retrievedStoreFailed
+} from '../../redux/stores/allMyStores.slice'
 
 const CreateProduct = () => {
 
-  // redux
-  const dispatch = useDispatch();
-
-  const fetchSubcategory = () => {
-    dispatch(fetchingSubCategories());
-    fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
-  }
-
-  const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory);
-
-  if (subCategories.length === 0) fetchSubcategory()
+  const navigate = useNavigate()
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
 
-  // add inputs state
+  // redux
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchingCategories());
+    fetch(dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
+  }, [dispatch])
+
+  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories);
+
+  const [category, setCategory] = useState<string | null>(null)
   const [name, setName] = useState<string | null>(null)
-  const [unit, setUnit] = useState<string | null>(null)
-  const [brand, setBrand] = useState<string | null>(null)
-  const [price, setPrice] = useState<string | null>(null)
-  const [manual, setManual] = useState<string | null>(null)
-  const [quantity, setQuantity] = useState<string | null>(null)
-  const [subCategory, setSubCategory] = useState<string | null>(null)
-  const [specification, setSpecification] = useState<string | null>(null)
+  const [about_shop, setAbout_shop] = useState<string | null>(null)
+  const [shop_email, setShop_email] = useState<string | null>(null)
+  const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  const { store } = useSelector((state: RootState) => state.store);
   const token = localStorage.getItem('token');
-  const navigate = useNavigate()
 
-  const store_id = store?.id
-
-  const createProduct = () => {
-    dispatch(fetchingProducts())
+  const createStore = () => {
+    dispatch(fetchingStores())
     post(
       dispatch,
-      storeProducts,
-      productFailed, `/product/${store_id}`,
-      { name, unit, brand, price, manual, quantity, subCategory, specification },
+      retrievedStores,
+      retrievedStoreFailed, '/shop',
+      { category, name, about_shop, shop_email, shop_contact_no },
       token
     )
-    navigate('/vendor/products')
+    navigate('/vendor/stores')
   }
 
   return (
-
     <div className='flex h-screen overflow-hidden'>
       <SiderBar
         isClosed={isClosed}
@@ -95,19 +89,19 @@ const CreateProduct = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
-          <div className="font-bold text-3xl text-center">Create a Product</div>
+          <div className="font-bold text-3xl text-center">Create a new Store</div>
           <form>
             <div>
-              <h3>sub-category</h3>
+              <h3>Select Category</h3>
               <div className="">
                 <select
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
-                  onChange={e => setSubCategory(e.target.value)}
+                  onChange={e => setCategory(e.target.value)}
                 >
-                  <option>Select Sub-Category</option>
-                  {isLoading ? <h1>loading</h1>
-                    : subCategories.map((s) => (<option>{s.name}</option>))}
+                  <option>Select Category</option>
+                  {isLoading ? <h1>loading...</h1>
+                    : categories.map((v) => (<option>{v.name}</option>))}
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -123,101 +117,60 @@ const CreateProduct = () => {
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-text"
               >
-                name
+                Name
               </label>
               <input
-                type="text"
+                type="email"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="name"
+                placeholder="Name"
                 onChange={e => setName(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-text"
               >
-                Brand
+                About Store
               </label>
               <input
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Brand"
-                onChange={e => setBrand(e.target.value)}
+                placeholder="About Store"
+                onChange={e => setAbout_shop(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-text"
               >
-                Unit/measurements
+                Store Email
               </label>
               <input
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Brand"
-                onChange={e => setUnit(e.target.value)}
+                placeholder="Store Email"
+                onChange={e => setShop_email(e.target.value)}
               />
             </div>
             <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="grid-number"
               >
-                Quantity
-              </label>
-              <input
-                type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Quantity"
-                onChange={e => setQuantity(e.target.value)}
-              />
-            </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Price per unit
-              </label>
-              <input
-                type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Price unit"
-                onChange={e => setPrice(e.target.value)}
-              />
-            </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Product manual
+                Store Contact
               </label>
               <input
                 type="text"
                 className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Product manual"
-                onChange={e => setManual(e.target.value)}
+                placeholder="Store Contact"
+                onChange={e => setShop_contact_no(e.target.value)}
               />
             </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Product Specifications
-              </label>
-              <input
-                type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Product Specifications"
-                onChange={e => setSpecification(e.target.value)}
-              />
-            </div>
+
             {/* upload image */}
             <div>
               <form action="/action_page.php">
@@ -229,12 +182,11 @@ const CreateProduct = () => {
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={(e) => {
-                  e.preventDefault()
-                  createProduct()
-                }
-                }
+                  e.preventDefault();
+                  createStore()
+                }}
               >
-                create product
+                create store
               </button>
             </div>
           </form>

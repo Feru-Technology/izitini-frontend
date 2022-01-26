@@ -1,5 +1,32 @@
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { post } from '../../../api/apiAction'
+import { useNavigate } from "react-router-dom"
+
+import {
+  useDispatch
+} from 'react-redux'
+
+import {
+  login,
+  loggedIn,
+  loginFailed
+} from '../../../redux/profile.slice'
 const SignInPage = () => {
+
+  // redux
+  const dispatch = useDispatch()
+
+  const [email, setEmail] = useState<string | null>(null)
+  const [password, setPassword] = useState<string | null>(null)
+
+  const loginF = () => {
+    dispatch(login());
+    post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
+  }
+
+  const navigate = useNavigate()
+
   return (
     <div>
       <body>
@@ -24,13 +51,15 @@ const SignInPage = () => {
           <div className="lg:w-1/2 w-full flex items-center justify-center text-center bg-gray-100 md:px-16 px-4 z-0">
             <div className="py-6 px-1 z-20 mx-auto">
               <h1 className="my-6 inline-flex justify-center">
-                <img
-                  src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
-                  className="text-center"
-                  width="100px"
-                  height="100px"
-                  alt="logo"
-                />
+                <Link to="/">
+                  <img
+                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
+                    className="text-center"
+                    width="100px"
+                    height="100px"
+                    alt="logo"
+                  />
+                </Link>
               </h1>
               <div className="">
                 <div className="flex py-4 justify-center items-center gap-3">
@@ -115,7 +144,7 @@ const SignInPage = () => {
                 <div className="flex justify-center">
                   <hr />
                   <p className="text-gray-900 mb-2">
-                    or use email your account
+                    Login
                   </p>
                   <hr />
                 </div>
@@ -129,7 +158,11 @@ const SignInPage = () => {
                       name="email"
                       id="email"
                       placeholder="Email"
-                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none w-full ease-linear transition-all duration-150"
+                      className="border border-gray-700 px-3 py-3
+                      placeholder-gray-500 text-gray-600 bg-white
+                      rounded text-sm  focus:outline-none w-full ease-linear
+                      transition-all duration-150"
+                      onChange={e => setEmail(e.target.value)}
                     />
                   </div>
                   <div className="pb-2 pt-4">
@@ -139,6 +172,7 @@ const SignInPage = () => {
                       name="password"
                       id="password"
                       placeholder="Password"
+                      onChange={e => setPassword(e.target.value)}
                     />
                   </div>
                   <div className="text-right text-light-blue hover:underline hover:text-middle-blue">
@@ -146,7 +180,16 @@ const SignInPage = () => {
                   </div>
 
                   <div className="">
-                    <button className="uppercase  w-full p-2 text-white  text-lg rounded-lg bg-light-blue hover:bg-middle-blue focus:outline-none">
+                    <button className="uppercase  w-full p-2
+                    text-white  text-lg rounded-lg
+                    bg-light-blue hover:bg-middle-blue
+                    focus:outline-none"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        loginF()
+                        navigate('/')
+                      }}
+                    >
                       sign in
                     </button>
                   </div>
@@ -154,9 +197,9 @@ const SignInPage = () => {
                     By continuing, you agree to Izitini's Terms and Conditions
                     of Use and Privacy Notice. New
                     <Link to="/signup">
-                      <a className="text-right text-light-blue hover:underline hover:text-middle-blue">
+                      <span className="text-right text-light-blue hover:underline hover:text-middle-blue">
                         Sign Up
-                      </a>
+                      </span>
                     </Link>
                   </div>
                 </form>

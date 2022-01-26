@@ -1,18 +1,39 @@
-import React, { useState } from 'react'
-import SiderBar from './SiderBar'
-import { useMediaQuery } from 'react-responsive'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
-import { Transition } from '@headlessui/react'
+import SiderBar from './SiderBar'
 import { Link } from 'react-router-dom'
+import { fetch } from '../../api/apiAction'
+import { RootState } from '../../redux/store'
+import { Transition } from '@headlessui/react'
+import { useMediaQuery } from 'react-responsive'
+import { useDispatch, useSelector } from 'react-redux'
 
+import {
+    fetchingProducts,
+    storeProducts,
+    productFailed
+} from '../../redux/products/storeProducts.slice '
 const Products = () => {
+
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
-    const [values, setValues] = React.useState()
-    const [loading, setLoading] = React.useState(false)
-    const [error, setError] = React.useState(null)
+
+    // redux
+    const dispatch = useDispatch();
+
+    const { store } = useSelector((state: RootState) => state.store);
+
+    const store_id = store?.id
+
+
+    useEffect(() => {
+        dispatch(fetchingProducts());
+        fetch(dispatch, storeProducts, productFailed, `/product/shop/${store_id}`)
+    }, [dispatch, store_id])
+
+    const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
 
     return (
         <div className='flex h-screen overflow-hidden'>
@@ -42,10 +63,10 @@ const Products = () => {
                 </Transition>
                 <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
-                        <h3 className='text-3xl font-bold'>Product</h3>
+                        <h3 className='text-3xl font-bold'>{store?.name}</h3>
                         <Link to='/vendor/create-product'>
                             <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded cursor-pointer'>
-                                CREATE A PRODUCT
+                                ADD A PRODUCT
                             </button>
                         </Link>
                     </div>
@@ -66,19 +87,31 @@ const Products = () => {
                                                     scope='col'
                                                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                                                 >
-                                                    Title
+                                                    Brand
+                                                </th>
+                                                <th
+                                                    scope='col'
+                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                >
+                                                    Quantity
+                                                </th>
+                                                <th
+                                                    scope='col'
+                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                >
+                                                    Unit
+                                                </th>
+                                                <th
+                                                    scope='col'
+                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                >
+                                                    Price
                                                 </th>
                                                 <th
                                                     scope='col'
                                                     className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
                                                 >
                                                     Status
-                                                </th>
-                                                <th
-                                                    scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-                                                >
-                                                    Role
                                                 </th>
                                                 <th
                                                     scope='col'
@@ -91,96 +124,51 @@ const Products = () => {
                                             </tr>
                                         </thead>
                                         <tbody className='bg-white divide-y divide-gray-200'>
-                                            <tr>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='flex items-center'>
-                                                        <div className='flex-shrink-0 h-10 w-10'>
-                                                            <img
-                                                                className='h-10 w-10 rounded-full'
-                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                                                                alt=''
-                                                            />
-                                                        </div>
-                                                        <div className='ml-4'>
-                                                            <div className='text-sm font-medium text-gray-900'>
-                                                                Jane Cooper
-                                                            </div>
-                                                            <div className='text-sm text-gray-500'>
-                                                                jane.cooper@example.com
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='text-sm text-gray-900'>
-                                                        Regional Paradigm Technician
-                                                    </div>
-                                                    <div className='text-sm text-gray-500'>
-                                                        Optimization
-                                                    </div>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                                                        Active
-                                                    </span>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                                    Admin
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-                                                    <a
-                                                        href='#'
-                                                        className='text-indigo-600 hover:text-indigo-900'
-                                                    >
-                                                        Edit
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='flex items-center'>
-                                                        <div className='flex-shrink-0 h-10 w-10'>
-                                                            <img
-                                                                className='h-10 w-10 rounded-full'
-                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                                                                alt=''
-                                                            />
-                                                        </div>
-                                                        <div className='ml-4'>
-                                                            <div className='text-sm font-medium text-gray-900'>
-                                                                Jane Cooper
-                                                            </div>
-                                                            <div className='text-sm text-gray-500'>
-                                                                jane.cooper@example.com
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <div className='text-sm text-gray-900'>
-                                                        Regional Paradigm Technician
-                                                    </div>
-                                                    <div className='text-sm text-gray-500'>
-                                                        Optimization
-                                                    </div>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap'>
-                                                    <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                                                        Active
-                                                    </span>
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
-                                                    Admin
-                                                </td>
-                                                <td className='px-6 py-4 whitespace-nowrap text-right text-sm font-medium'>
-                                                    <a
-                                                        href='#'
-                                                        className='text-indigo-600 hover:text-indigo-900'
-                                                    >
-                                                        Edit
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            {
+                                                isLoading
+                                                    ? (<h1>loading ...</h1>)
+                                                    : (products.map((product) => (
+                                                        <tr>
+                                                            <td className='px-6 py-4'>
+                                                                <div className='flex items-center'>
+                                                                    <div className='flex-shrink-0 h-10 w-10'>
+                                                                        <img
+                                                                            className='h-10 w-10 rounded-full'
+                                                                            src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
+                                                                            alt=''
+                                                                        />
+                                                                    </div>
+                                                                    <div className='ml-4 text-sm font-medium text-gray-500'>
+                                                                        {product.name}
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.brand}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-xs text-gray-500'>
+                                                                {product.quantity}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.unit}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.price}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                                {product.status}
+                                                            </td>
+                                                            <td className='px-6 py-4 text-right text-sm font-medium'>
+                                                                <a
+                                                                    href='#'
+                                                                    className='text-indigo-600 hover:text-indigo-900'
+                                                                >
+                                                                    Edit
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    )))}
+
                                         </tbody>
                                     </table>
                                 </div>
