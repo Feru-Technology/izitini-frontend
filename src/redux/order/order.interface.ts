@@ -16,4 +16,12 @@ export interface IOrderItem {
     details: string,
 }
 
+export interface ICart {
+    id: string
+    user_id: string
+    status: string
+    is_sample: boolean
+    order_items: [IOrder]
+}
+
 export interface HTTPError { status: number; message: string }
