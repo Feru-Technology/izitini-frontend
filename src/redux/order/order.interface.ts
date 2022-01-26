@@ -5,4 +5,15 @@ export interface IOrder {
     status: string
     is_sample: boolean
 }
+
+export interface IOrderItem {
+    id: string
+    order_id: string
+    product_id: string
+    color_id: string,
+    size_id: string,
+    quantity: string,
+    details: string,
+}
+
 export interface HTTPError { status: number; message: string }
