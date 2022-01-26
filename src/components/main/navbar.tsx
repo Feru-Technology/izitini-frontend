@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux'
+import backUpPImage from '../../images/profile.png'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -15,8 +16,6 @@ function classNames(...classes: string[]) {
 export const Navbar = () => {
 
     const { isLoading, profile, error } = useSelector((state: RootState) => state.profile)
-
-    const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
 
     const [showProduct, setShowProduct] = useState(false)
     const [showIdea, setShowIdea] = useState(false)

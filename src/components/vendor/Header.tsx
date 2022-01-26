@@ -7,6 +7,7 @@ import {
 import { SearchIcon } from '@heroicons/react/solid'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import backUpPImage from '../../images/profile.png'
 
 interface IHeader {
     isClosed: boolean
@@ -17,8 +18,6 @@ interface IHeader {
 const Header = ({ isClosed, setIsClosed, isStatic }: IHeader) => {
 
     const { profile } = useSelector((state: RootState) => state.profile);
-
-    const backUpProfileImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
 
     return (
         <>
@@ -68,7 +67,7 @@ const Header = ({ isClosed, setIsClosed, isStatic }: IHeader) => {
                         </div>
                         <div className='flex flex-row justify-center items-center space-x-2'>
                             <img
-                                src={profile?.user.profile_image === null ? backUpProfileImage : profile?.user.profile_image}
+                                src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
                                 className='w-9 h-9 rounded-full mx-auto'
                                 alt='pImg'
                             />
