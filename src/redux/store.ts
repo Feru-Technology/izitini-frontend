@@ -1,4 +1,5 @@
 
+import { cartSlice } from './order/cart'
 import { profileSlice } from './profile.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { storeSlice } from './stores/store.slice'
@@ -12,6 +13,7 @@ import { AllCategoriesSlice } from './categories/allCategories.slice'
 
 export const store = configureStore({
     reducer: {
+        cart: cartSlice.reducer,
         store: storeSlice.reducer,
         profile: profileSlice.reducer,
         product: productSlice.reducer,
@@ -21,6 +23,7 @@ export const store = configureStore({
         subCategory: subCategorySlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer
+
     },
 })
 
