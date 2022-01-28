@@ -125,8 +125,8 @@ const Product = () => {
 
                                     <div className='sr-only md:not-sr-only'>
                                         {/* tabs */}
-                                        <div className="container">
-                                            <ul className="flex space-x-2 lg:space-x-5 justify-center
+                                        <div className="container mt-2">
+                                            <ul className="flex space-x-2 lg:space-x-5
                                         md:font-medium md:-text-base
                                         lg:font-bold lg:text-lg lg:space-x-12">
                                                 <li className={`cursor-pointer ${showDescription && 'border-b-4 border-dark-blue'}`}
@@ -168,7 +168,7 @@ const Product = () => {
                                         </div>
 
                                         {/* tabs and details */}
-                                        <div className='w-full text-base font-normal'>
+                                        <div className='w-full text-base font-normal mt-2'>
                                             <Transition
                                                 show={showDescription}
                                             >

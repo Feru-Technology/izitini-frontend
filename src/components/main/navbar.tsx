@@ -264,7 +264,7 @@ export const Navbar = () => {
                                 }}
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showProfession && ' border-dark-blue bg-gray-100'}`
+                                ${showProfession && 'border-dark-blue bg-gray-100'}`
                                     }>
                                         <FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
                                 </div>
