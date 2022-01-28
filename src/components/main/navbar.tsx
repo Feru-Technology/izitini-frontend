@@ -21,7 +21,6 @@ export const Navbar = () => {
     // redux
     const dispatch = useDispatch();
 
-
     const token = localStorage.getItem('token');
 
     useEffect(() => {

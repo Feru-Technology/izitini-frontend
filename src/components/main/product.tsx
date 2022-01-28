@@ -6,6 +6,7 @@ import { AiFillStar } from "react-icons/all"
 import { Navbar } from './navbar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useParams } from 'react-router-dom'
+import { Transition } from '@headlessui/react'
 
 import {
     getProduct,
@@ -65,7 +66,11 @@ const Product = () => {
 
     const [displayImage, setDisplayImage] = useState(data[0].image);
 
-    // const addToCart = 
+    const [showReview, setShowReview] = useState(false)
+    const [showDescription, setShowDescription] = useState(false)
+    const [showReturnPolicy, setShowReturnPolicy] = useState(false)
+    const [showSpecification, setShowSpecification] = useState(false)
+
 
     return (
         <>
@@ -115,30 +120,75 @@ const Product = () => {
                                                 />
                                             </div>)
                                             )}
-
                                         </div>
                                     </div>
 
-                                    {/* tabs and details */}
-                                    <div className="sr-only md:not-sr-only container">
+                                    <div className='sr-only md:not-sr-only'>
                                         {/* tabs */}
-                                        <div className="">
+                                        <div className="container">
                                             <ul className="flex space-x-2 lg:space-x-5 justify-center
                                         md:font-medium md:-text-base
                                         lg:font-bold lg:text-lg lg:space-x-12">
-                                                <li>Description</li>
-                                                <li>Specification</li>
-                                                <li>Review</li>
-                                                <li>Shipping & Return Policy</li>
+                                                <li className={`${showDescription && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(false)
+                                                        setShowDescription(true)
+                                                        setShowReturnPolicy(false)
+                                                        setShowSpecification(false)
+                                                    }}
+                                                >Description</li>
+
+                                                <li className={`${showSpecification && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(false)
+                                                        setShowDescription(false)
+                                                        setShowReturnPolicy(false)
+                                                        setShowSpecification(true)
+                                                    }}
+                                                >Specification</li>
+
+                                                <li className={`${showReview && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(true)
+                                                        setShowDescription(false)
+                                                        setShowReturnPolicy(false)
+                                                        setShowSpecification(false)
+                                                    }}
+                                                >Review</li>
+
+                                                <li className={`${showReturnPolicy && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(false)
+                                                        setShowReturnPolicy(true)
+                                                        setShowDescription(false)
+                                                        setShowSpecification(false)
+                                                    }}
+                                                >Shipping & Return Policy</li>
                                             </ul>
                                         </div>
-                                        <hr />
-                                        {/* details  */}
-                                        <div className="container">
-                                            <div>
-                                                <p>test 1</p>
-                                                <p>test 2</p>
-                                            </div>
+
+                                        {/* tabs and details */}
+                                        <div className='w-full text-base font-normal'>
+                                            <Transition
+                                                show={showDescription}
+                                            >
+                                                <p>this is the description of these product</p>
+                                            </Transition>
+                                            <Transition
+                                                show={showSpecification}
+                                            >
+                                                <p>this is the specification of these product</p>
+                                            </Transition>
+                                            <Transition
+                                                show={showReview}
+                                            >
+                                                <p>this is the Review of these product</p>
+                                            </Transition>
+                                            <Transition
+                                                show={showReturnPolicy}
+                                            >
+                                                <p>this is the ReturnPolicy of these product</p>
+                                            </Transition>
                                         </div>
                                     </div>
                                 </div>
