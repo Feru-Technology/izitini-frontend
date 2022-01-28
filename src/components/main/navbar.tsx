@@ -61,11 +61,13 @@ export const Navbar = () => {
                                         )}
                                     </Disclosure.Button>
                                 </div>
-                                <img
-                                    className="block h-8 md:h-10 lg:h-12 w-auto"
-                                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
-                                    alt="Workflow"
-                                />
+                                <Link to="/">
+                                    <img
+                                        className="block h-8 md:h-10 lg:h-12 w-auto"
+                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
+                                        alt="Workflow"
+                                    /></Link>
+
                             </div>
 
                             {/* search */}

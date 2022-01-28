@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { fetch } from '../../api/apiAction'
+import { fetch, post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiFillStar } from "react-icons/all"
@@ -13,11 +13,11 @@ import {
     product as currentProduct,
     productFailed
 } from '../../redux/products/product.slice'
+import { getCart, cart, cartFailed } from '../../redux/order/cart'
 const Product = () => {
 
     // redux
     const dispatch = useDispatch();
-
 
     // Get ID from URL
     const params = useParams();
@@ -29,8 +29,13 @@ const Product = () => {
         fetch(dispatch, currentProduct, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
-    const addToCart = () => {
+    const token = localStorage.getItem('token');
 
+    const [quantity, setQuantity] = useState<string>('1')
+
+    const addToCart = () => {
+        dispatch(getCart())
+        post(dispatch, cart, cartFailed, `/orders/${id}`, { quantity: quantity }, token)
     }
 
     const { isLoading, product } = useSelector((state: RootState) => state.product);
@@ -70,7 +75,6 @@ const Product = () => {
     const [showDescription, setShowDescription] = useState(false)
     const [showReturnPolicy, setShowReturnPolicy] = useState(false)
     const [showSpecification, setShowSpecification] = useState(false)
-
 
     return (
         <>
@@ -230,6 +234,7 @@ const Product = () => {
                                                     <select
                                                         className='w-full h-9 rounded border-2 bg-white px-3'
                                                         aria-label="multiple select example"
+                                                        onChange={e => setQuantity(e.target.value)}
                                                     >
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -253,6 +258,7 @@ const Product = () => {
                                                 <div className="w-2/3 md:w-full">
                                                     <button
                                                         className="btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium"
+                                                        onClick={() => addToCart()}
                                                     >
                                                         Add to cart
                                                     </button>

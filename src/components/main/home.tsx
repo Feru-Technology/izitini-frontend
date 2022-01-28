@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
-import { FaTools } from "react-icons/fa"
+import { FaTools } from 'react-icons/fa'
+import { CategoryBar } from './categoryBar'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
-import { CategoryBar } from './categoryBar'
+import { useNavigate } from 'react-router-dom'
 
 import {
     useSelector,
@@ -27,6 +28,9 @@ export const Home = () => {
 
     // redux
     const dispatch = useDispatch();
+
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingCategories());
@@ -63,10 +67,10 @@ export const Home = () => {
                     md:w-3/12 lg:w-1/5 md:h-full'>
                             <div className='flex flex-row justify-center text-dark-blue
                             border-b-2 border-dark-blue mr-3 ml-2'>
-                                <FaTools className="
+                                <FaTools className='
                             md:h-3 md:w-3
                             lg:h-4 lg:w-4
-                            mr-1 mt-1" aria-hidden="true" />
+                            mr-1 mt-1' aria-hidden='true' />
                                 <p className='font-bold
                             md:text-sm
                             lg:text-base'>
@@ -101,7 +105,7 @@ export const Home = () => {
                                 <p className='absolute ml-2'>{category.name}</p>
                                 <img className='h-36  2xl:h-52 w-full bg-gray-200
                                 lg:h-40 xl:h-48'
-                                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png" alt="" />
+                                    src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
                                 <div className=''>
                                     <ul>
                                         {
@@ -128,11 +132,12 @@ export const Home = () => {
                     gap-3
                     '>
                             {productSection.map((p) => (
-                                <div className='mt-2'>
+                                <div className='mt-2'
+                                    onClick={() => navigate(`/products/${p.id}`)}>
                                     <img className='bg-gray-200
                                 w-full
                                 h-32
-                                2xl:h-52' src="https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png" alt="" />
+                                2xl:h-52' src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
                                     <p>{p.name}</p>
                                     <p>{p.brand}</p>
                                     <p>Ratings</p>

@@ -3,11 +3,9 @@ import Axios from './axios';
 export const fetch = (dispatch: any, retrievedData: any, retrieveDataFailed: any, route: string, token?: any) => {
     Axios.get(route, { headers: { 'Authorization': token } })
         .then(({ data }) => {
-            console.log(data);
             dispatch(retrievedData(data.data))
         })
         .catch(error => {
-            console.log(error);
             dispatch(retrieveDataFailed(error))
         })
 }
@@ -19,7 +17,6 @@ export const post = (dispatch: any, response: any, failed: any, route: string, b
             return dispatch(response(data.data))
         })
         .catch(error => {
-            console.log(error);
             dispatch(failed(error))
         })
 }
