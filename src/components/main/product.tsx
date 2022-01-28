@@ -168,7 +168,7 @@ const Product = () => {
                                         </div>
 
                                         {/* tabs and details */}
-                                        <div className='w-full text-base font-normal mt-2'>
+                                        <div className='w-full text-base font-normal mt-1'>
                                             <Transition
                                                 show={showDescription}
                                             >
