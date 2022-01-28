@@ -129,7 +129,7 @@ const Product = () => {
                                             <ul className="flex space-x-2 lg:space-x-5 justify-center
                                         md:font-medium md:-text-base
                                         lg:font-bold lg:text-lg lg:space-x-12">
-                                                <li className={`${showDescription && 'border-b-4 border-dark-blue'}`}
+                                                <li className={`cursor-pointer ${showDescription && 'border-b-4 border-dark-blue'}`}
                                                     onClick={() => {
                                                         setShowReview(false)
                                                         setShowDescription(true)
@@ -138,7 +138,7 @@ const Product = () => {
                                                     }}
                                                 >Description</li>
 
-                                                <li className={`${showSpecification && 'border-b-4 border-dark-blue'}`}
+                                                <li className={`cursor-pointer ${showSpecification && 'border-b-4 border-dark-blue'}`}
                                                     onClick={() => {
                                                         setShowReview(false)
                                                         setShowDescription(false)
@@ -147,7 +147,7 @@ const Product = () => {
                                                     }}
                                                 >Specification</li>
 
-                                                <li className={`${showReview && 'border-b-4 border-dark-blue'}`}
+                                                <li className={`cursor-pointer ${showReview && 'border-b-4 border-dark-blue'}`}
                                                     onClick={() => {
                                                         setShowReview(true)
                                                         setShowDescription(false)
@@ -156,7 +156,7 @@ const Product = () => {
                                                     }}
                                                 >Review</li>
 
-                                                <li className={`${showReturnPolicy && 'border-b-4 border-dark-blue'}`}
+                                                <li className={`cursor-pointer ${showReturnPolicy && 'border-b-4 border-dark-blue'}`}
                                                     onClick={() => {
                                                         setShowReview(false)
                                                         setShowReturnPolicy(true)
