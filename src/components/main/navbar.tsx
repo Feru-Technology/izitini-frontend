@@ -269,7 +269,6 @@ export const Navbar = () => {
                                 ${showProfession && 'border-dark-blue bg-gray-100'}`}>
                                         <FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
                                 </div>
-
                             </div>
 
                             <div className='w-full z-auto absolute shadow-md px-5 bg-gray-100'>
