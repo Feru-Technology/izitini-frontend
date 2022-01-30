@@ -19,6 +19,8 @@ const CustomerSignUp = () => {
 
   console.log(email, contact, password, full_name, account_type);
 
+  const navigate = useNavigate()
+
   const signup = () => {
     dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/register', {
@@ -28,10 +30,8 @@ const CustomerSignUp = () => {
       full_name,
       account_type
     })
+    navigate('/')
   }
-
-  const navigate = useNavigate()
-
 
   return (
     <div>
