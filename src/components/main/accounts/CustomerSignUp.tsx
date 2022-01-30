@@ -17,9 +17,17 @@ const CustomerSignUp = () => {
   const [full_name, setFull_name] = useState<string | null>(null)
   const [account_type, setAccount_type] = useState<string | null>(null)
 
+  console.log(email, contact, password, full_name, account_type);
+
   const signup = () => {
     dispatch(login())
-    post(dispatch, loggedIn, loginFailed, '/auth/register', { email, password })
+    post(dispatch, loggedIn, loginFailed, '/auth/register', {
+      email,
+      contact,
+      password,
+      full_name,
+      account_type
+    })
   }
 
   const navigate = useNavigate()
@@ -32,13 +40,15 @@ const CustomerSignUp = () => {
         <div className='w-full lg:w-5/12 px-4 mx-auto pt-6'>
           <div>
             <h1 className='my-6 flex justify-center'>
-              <img
-                src='https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png'
-                className=''
-                width='100px'
-                height='100px'
-                alt='logo'
-              />
+              <Link to={'/'}>
+                <img
+                  src='https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png'
+                  className=''
+                  width='100px'
+                  height='100px'
+                  alt='logo'
+                />
+              </Link>
             </h1>
           </div>
           <div className='relative flex flex-col min-w-0 break-words w-full mb-6  rounded-lg bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
@@ -99,15 +109,16 @@ const CustomerSignUp = () => {
                   <select
                     className='block appearance-none w-full bg-white border border-gray-700 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-700'
                     id='grid-state'
-                  // onChange={e => setSubCategory(e.target.value)}
+                    onChange={e => setAccount_type(e.target.value)}
                   >
                     <option>Select Account type</option>
-                    <option>customer</option>
-                    <option>business</option>
+                    <option className='hover:bg-dark-blue hover:text-white'>customer</option>
+                    <option className='hover:bg-dark-blue hover:text-white'>business</option>
+                    <option className='hover:bg-dark-blue hover:text-white'>profession</option>
                   </select>
                   <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
                     <svg
-                      className='fill-current h-4 w-4'
+                      className='fill-current h-4 w-4 mx-2 mt-6'
                       xmlns='http://www.w3.org/2000/svg'
                       viewBox='0 0 20 20'
                     >
@@ -123,9 +134,10 @@ const CustomerSignUp = () => {
                     Full Names
                   </label>
                   <input
-                    type='email'
+                    type='text'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Full Names'
+                    onChange={e => setFull_name(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
@@ -136,9 +148,10 @@ const CustomerSignUp = () => {
                     Contact
                   </label>
                   <input
-                    type='number'
+                    type='text'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                    placeholder='Tel'
+                    placeholder='contact'
+                    onChange={e => setContact(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
@@ -152,6 +165,7 @@ const CustomerSignUp = () => {
                     type='email'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Email'
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
@@ -165,6 +179,7 @@ const CustomerSignUp = () => {
                     type='password'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Password'
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </div>
                 <div>
@@ -183,6 +198,7 @@ const CustomerSignUp = () => {
                   <button
                     className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
                     type='button'
+                    onClick={() => signup()}
                   >
                     Sign Up
                   </button>
