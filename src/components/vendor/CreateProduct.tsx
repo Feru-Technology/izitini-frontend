@@ -49,11 +49,11 @@ const CreateProduct = () => {
   const [subCategory, setSubCategory] = useState<string | null>(null)
   const [specification, setSpecification] = useState<string | null>(null)
 
-  const { store } = useSelector((state: RootState) => state.store);
+  const { currentStore } = useSelector((state: RootState) => state.store);
   const token = localStorage.getItem('token');
   const navigate = useNavigate()
 
-  const store_id = store?.id
+  const store_id = currentStore?.id
 
   const createProduct = () => {
     dispatch(fetchingProducts())

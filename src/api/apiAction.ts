@@ -14,5 +14,9 @@ export const post = (dispatch: any, response: any, failed: any, route: string, b
             data.data.token ? localStorage.setItem('token', data.data.token) : console.log(data)
             return dispatch(response(data.data))
         })
-        .catch(error => error.response ? dispatch(failed(error.response.data)) : console.log(error.message))
+        .catch(error => {
+            const err = error.response;
+            console.log(err.data);
+            return error.response ? dispatch(failed(err.data)) : console.log(error.message)
+        })
 }
