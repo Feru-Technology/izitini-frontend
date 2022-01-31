@@ -70,8 +70,7 @@ const CreateProduct = () => {
 
   const { currentProduct, error } = useSelector((state: RootState) => state.product);
 
-  console.log('===============================================');
-  console.log(currentProduct);
+  console.log(currentProduct, error);
 
   return (
 
@@ -105,13 +104,13 @@ const CreateProduct = () => {
           <form>
             <div>
               <Transition
-                show={!!error || false}
+                show={!!error}
               >
                 <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
 
               </Transition>
               <Transition
-                show={!!product || false}
+                show={!!currentProduct}
               >
                 <p className='w-full py-1 text-light-blue text-center'>success</p>
 

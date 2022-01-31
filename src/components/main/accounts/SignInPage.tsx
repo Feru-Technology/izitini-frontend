@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link } from "react-router-dom"
 import { post } from '../../../api/apiAction'
 import { useNavigate } from "react-router-dom"
+import { RootState } from '../../../redux/store'
+import { Transition } from '@headlessui/react'
 
 import {
-  useDispatch
+  useDispatch, useSelector
 } from 'react-redux'
 
 import {
@@ -20,10 +22,16 @@ const SignInPage = () => {
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
 
+  const { profile, error } = useSelector((state: RootState) => state.profile)
+
   const loginF = () => {
-    dispatch(login());
+    dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
+
+    console.log(profile, error);
+    if (profile !== null) navigate('/')
   }
+
 
   const navigate = useNavigate()
 
@@ -141,6 +149,13 @@ const SignInPage = () => {
                     </svg>
                   </Link>
                 </div>
+                <div>
+                  {/* <Transition
+
+                  >
+
+                  </Transition> */}
+                </div>
                 <div className="flex justify-center">
                   <hr />
                   <p className="text-gray-900 mb-2">
@@ -187,7 +202,6 @@ const SignInPage = () => {
                       onClick={(e) => {
                         e.preventDefault()
                         loginF()
-                        navigate('/')
                       }}
                     >
                       sign in
@@ -209,7 +223,7 @@ const SignInPage = () => {
         </section>
       </body>
     </div>
-  );
-};
+  )
+}
 
-export default SignInPage;
+export default SignInPage
