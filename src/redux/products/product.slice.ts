@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IProduct, HTTPError } from './product.interface';
+import { IProduct, HTTPError } from './product.interface'
 
 
 export interface productState {
-    isLoading: boolean;
-    error: Error | HTTPError | null;
-    product: IProduct | null;
+    isLoading: boolean
+    error: Error | HTTPError | null
+    product: IProduct | null
 }
 
 const initialState: productState = {
@@ -19,18 +19,20 @@ export const productSlice = createSlice({
     initialState,
     reducers: {
         getProduct: (state) => {
-            state.isLoading = true;
+            state.isLoading = true
         },
         product: (state, { payload }) => {
-            state.isLoading = false;
-            state.product = payload;
+            state.isLoading = false
+            state.error = null
+            state.product = payload
         },
         productFailed: (state, { payload }) => {
-            state.isLoading = false;
-            state.error = payload;
+            state.isLoading = false
+            state.product = null
+            state.error = payload
         }
     },
-});
+})
 
 // Action creators are generated for each case reducer function
 export const { getProduct, product, productFailed } = productSlice.actions
