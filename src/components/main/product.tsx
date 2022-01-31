@@ -10,7 +10,7 @@ import { Transition } from '@headlessui/react'
 
 import {
     getProduct,
-    product as currentProduct,
+    product,
     productFailed
 } from '../../redux/products/product.slice'
 import { getCart, cart, cartFailed } from '../../redux/order/cart'
@@ -26,7 +26,7 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(getProduct());
-        fetch(dispatch, currentProduct, productFailed, `/product/${id}`)
+        fetch(dispatch, product, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
     const token = localStorage.getItem('token');
@@ -38,7 +38,7 @@ const Product = () => {
         post(dispatch, cart, cartFailed, `/orders/${id}`, { quantity: quantity }, token)
     }
 
-    const { isLoading, product } = useSelector((state: RootState) => state.product);
+    const { isLoading, currentProduct } = useSelector((state: RootState) => state.product);
 
     const data = [
         {
@@ -198,8 +198,8 @@ const Product = () => {
                                 </div>
                                 <div className="md:w-1/3">
                                     <div className='text-sm md:text-base space-y-3'>
-                                        <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">{product?.name}</h2>
-                                        <p>{product?.shop?.name}</p>
+                                        <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">{currentProduct?.name}</h2>
+                                        <p>{currentProduct?.shop?.name}</p>
                                         <p></p>
                                         <span className="flex text-xl md:text-3xl lg:text-4xl"
                                             style={{ color: "#ff9900" }}
@@ -221,9 +221,9 @@ const Product = () => {
                                             </i>
                                             <span className='ml-3 text-black text-base md:text-2xl'> (28)</span>
                                         </span>
-                                        <p className="text-base font-bold md:text-lg">{product?.shop.name}</p>
+                                        <p className="text-base font-bold md:text-lg">{currentProduct?.shop.name}</p>
                                         <p>read to ship in Kigali</p>
-                                        <p>{product?.price} in the store</p>
+                                        <p>{currentProduct?.price} in the store</p>
                                         <p>
                                             Lorem Ipsum is simply dummy text of the dummy text ever since
                                             the 1500s, when an unknown

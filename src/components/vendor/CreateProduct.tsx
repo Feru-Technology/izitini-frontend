@@ -13,12 +13,11 @@ import {
   retrievedSubCategory,
   retrievedSubCategoryFailed
 } from '../../redux/subCategories/subCategory.slice'
-
 import {
-  fetchingProducts,
-  storeProducts,
+  getProduct,
+  product,
   productFailed
-} from '../../redux/products/storeProducts.slice '
+} from '../../redux/products/product.slice'
 
 const CreateProduct = () => {
 
@@ -56,16 +55,23 @@ const CreateProduct = () => {
   const store_id = currentStore?.id
 
   const createProduct = () => {
-    dispatch(fetchingProducts())
+    dispatch(getProduct())
     post(
       dispatch,
-      storeProducts,
+      product,
       productFailed, `/product/${store_id}`,
       { name, unit, brand, price, manual, quantity, subCategory, specification },
       token
     )
-    navigate('/vendor/products')
+
+    // navigate('/vendor/products')
   }
+
+
+  const { currentProduct, error } = useSelector((state: RootState) => state.product);
+
+  console.log('===============================================');
+  console.log(currentProduct);
 
   return (
 
@@ -98,7 +104,26 @@ const CreateProduct = () => {
           <div className="font-bold text-3xl text-center">Create a Product</div>
           <form>
             <div>
-              <h3>sub-category</h3>
+              <Transition
+                show={!!error || false}
+              >
+                <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+
+              </Transition>
+              <Transition
+                show={!!product || false}
+              >
+                <p className='w-full py-1 text-light-blue text-center'>success</p>
+
+              </Transition>
+            </div>
+            <div className='mb-3'>
+              <label
+                className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                htmlFor="grid-password"
+              >
+                sub-category
+              </label>
               <div className="">
                 <select
                   className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"

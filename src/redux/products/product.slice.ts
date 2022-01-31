@@ -5,13 +5,13 @@ import { IProduct, HTTPError } from './product.interface'
 export interface productState {
     isLoading: boolean
     error: Error | HTTPError | null
-    product: IProduct | null
+    currentProduct: IProduct | null
 }
 
 const initialState: productState = {
     isLoading: false,
     error: null,
-    product: null,
+    currentProduct: null,
 }
 
 export const productSlice = createSlice({
@@ -20,15 +20,17 @@ export const productSlice = createSlice({
     reducers: {
         getProduct: (state) => {
             state.isLoading = true
+            state.currentProduct = null
+            state.error = null
         },
         product: (state, { payload }) => {
-            state.isLoading = false
             state.error = null
-            state.product = payload
+            state.isLoading = false
+            state.currentProduct = payload
         },
         productFailed: (state, { payload }) => {
+            state.currentProduct = null
             state.isLoading = false
-            state.product = null
             state.error = payload
         }
     },
