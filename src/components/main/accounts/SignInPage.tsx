@@ -32,6 +32,9 @@ const SignInPage = () => {
     if (profile !== null) navigate('/')
   }
 
+  console.log('===========================================');
+  console.log(error?.message);
+
   const navigate = useNavigate()
 
   return (
@@ -149,11 +152,6 @@ const SignInPage = () => {
                   </Link>
                 </div>
                 <div>
-                  {/* <Transition
-
-                  >
-
-                  </Transition> */}
                 </div>
                 <div className="flex justify-center">
                   <hr />
@@ -188,6 +186,16 @@ const SignInPage = () => {
                       placeholder="Password"
                       onChange={e => setPassword(e.target.value)}
                     />
+                  </div>
+                  <div>
+
+
+                    <Transition
+                      show={!!error}
+                    >
+                      <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+
+                    </Transition>
                   </div>
                   <div className="text-right text-light-blue hover:underline hover:text-middle-blue">
                     <a href="#">Forgot your password?</a>

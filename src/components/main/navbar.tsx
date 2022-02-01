@@ -1,10 +1,10 @@
-
 import { Link } from 'react-router-dom'
 import { fetch } from '../../api/apiAction'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store'
 import { useNavigate } from 'react-router-dom'
 import backUpPImage from '../../images/profile.png'
+import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -12,7 +12,6 @@ import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
-import { loggedIn } from '../../redux/profile.slice'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
