@@ -1,7 +1,9 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { post } from '../../../api/apiAction'
+import { Transition } from '@headlessui/react'
+import { RootState } from '../../../redux/store'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
 
 const CustomerSignUp = () => {
@@ -30,8 +32,14 @@ const CustomerSignUp = () => {
       full_name,
       account_type
     })
-    navigate('/')
+    if (profile) navigate('/')
   }
+
+
+  const { profile, error } = useSelector((state: RootState) => state.profile)
+
+  console.log('===========================================');
+  console.log(error?.message);
 
   return (
     <div>
@@ -193,6 +201,15 @@ const CustomerSignUp = () => {
                       Remember me
                     </span>
                   </label>
+                </div>
+                <div>
+
+                  <Transition
+                    show={!!error}
+                  >
+                    <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+
+                  </Transition>
                 </div>
                 <div className='text-center mt-6'>
                   <button

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from "react-router-dom"
 import { post } from '../../../api/apiAction'
 import { useNavigate } from "react-router-dom"
@@ -28,12 +28,8 @@ const SignInPage = () => {
     dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
 
-    console.log(profile, error);
-    if (profile !== null) navigate('/')
+    if (profile) navigate('/')
   }
-
-  console.log('===========================================');
-  console.log(error?.message);
 
   const navigate = useNavigate()
 
@@ -188,7 +184,6 @@ const SignInPage = () => {
                     />
                   </div>
                   <div>
-
 
                     <Transition
                       show={!!error}
