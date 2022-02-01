@@ -41,35 +41,36 @@ function App() {
                 {/* <Route path='/products' element={<products />} /> */}
 
                 <Route path='/cart' element={<Cart />} />
-            </Routes>
+                {/* </Routes>
 
             <div>
 
             </div>
             {token ?
-                (<Routes>
-                    <Route path='/vendor' element={<Dashboard />} />
-                    <Route path='/vendor/stores' element={<Store />} />
-                    <Route
-                        path='/vendor/create-product'
-                        element={<CreateProduct />}
-                    />
-                    <Route
-                        path='/vendor/create-store'
-                        element={<CreateStore />}
-                    />
-                    <Route path='/vendor/store/:id' element={<Products />} />
-                    {/* <Route path='/vendor/products' element={<Products />} /> */}
-                    <Route path='/vendor/orders' element={<Orders />} />
-                    <Route path='/vendor/coupons' element={<Coupons />} />
-                    <Route path='/vendor/reports' element={<Reports />} />
-                    <Route path='/vendor/settings' element={<Settings />} />
+                (<Routes> */}
+                <Route path='/vendor' element={<Dashboard />} />
+                <Route path='/vendor/stores' element={<Store />} />
+                <Route
+                    path='/vendor/create-product'
+                    element={<CreateProduct />}
+                />
+                <Route
+                    path='/vendor/create-store'
+                    element={<CreateStore />}
+                />
+                <Route path='/vendor/store/:id' element={<Products />} />
+                {/* <Route path='/vendor/products' element={<Products />} /> */}
+                <Route path='/vendor/orders' element={<Orders />} />
+                <Route path='/vendor/coupons' element={<Coupons />} />
+                <Route path='/vendor/reports' element={<Reports />} />
+                <Route path='/vendor/settings' element={<Settings />} />
 
-                    <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
-                </Routes>)
+                <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
+            </Routes>
+            {/* )
 
                 : (<Navigate to='/signin' />)
-            }
+            } */}
 
         </BrowserRouter>
     )
