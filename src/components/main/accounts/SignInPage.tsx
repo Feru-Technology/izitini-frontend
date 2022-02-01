@@ -32,7 +32,6 @@ const SignInPage = () => {
     if (profile !== null) navigate('/')
   }
 
-
   const navigate = useNavigate()
 
   return (

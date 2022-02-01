@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { fetch } from '../../api/apiAction'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store'
+import { useNavigate } from 'react-router-dom'
 import backUpPImage from '../../images/profile.png'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Fragment, useEffect, useState } from 'react'
@@ -11,12 +12,15 @@ import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+import { loggedIn } from '../../redux/profile.slice'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
 export const Navbar = () => {
+
+    const navigate = useNavigate()
 
     // redux
     const dispatch = useDispatch();
@@ -33,11 +37,17 @@ export const Navbar = () => {
     let cartItems: number
     if (cart) cartItems = cart.order_items.length
 
-    const { profile, error } = useSelector((state: RootState) => state.profile)
+    const { profile } = useSelector((state: RootState) => state.profile)
 
     const [showProduct, setShowProduct] = useState(false)
     const [showIdea, setShowIdea] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
+
+    const logout = () => {
+        dispatch(loggedIn(null))
+        localStorage.clear()
+        navigate('/')
+    }
 
     return (
         <Disclosure as="nav" className="bg-white">
@@ -144,7 +154,8 @@ export const Navbar = () => {
                                                     <Link to='/signin'>Login</Link>
 
                                                 </div>
-                                                <div><Link to='/signup'>Register</Link></div>
+                                                <div>
+                                                    <Link to='/signup'>Register</Link></div>
                                             </div>
                                             <div>
                                                 <Link to='/signin'>
@@ -206,11 +217,12 @@ export const Navbar = () => {
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             {({ active }) => (
-                                                                <Link to='/login'
+                                                                <p
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                    onClick={() => logout()}
                                                                 >
                                                                     Sign out
-                                                                </Link>
+                                                                </p>
                                                             )}
                                                         </Menu.Item>
                                                     </Menu.Items>
