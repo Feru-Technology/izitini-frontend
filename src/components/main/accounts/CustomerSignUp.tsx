@@ -215,12 +215,12 @@ const CustomerSignUp = () => {
                   </button>
                 </div>
                 <hr className='text-gray-600 mb-4' />
-                <div className='text-right '>
+                <div className='text-right'>
                   <p className='font-medium'>
-                    <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link>
-                    <span className='text-gray-800'> if already have an account by sign in,I agree to izitini's
-                      Terms of use * Privacy Policy</span>
-                  </p>
+                    <span className='text-gray-800'> Already have an account ? </span>
+                    <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link> </p>
+
+                  <p>By sign in,I agree to izitini's Terms of use * Privacy Policy</p>
                 </div>
               </form>
             </div>

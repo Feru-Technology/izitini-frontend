@@ -209,6 +209,15 @@ const SignInPage = () => {
                       sign in
                     </button>
                   </div>
+
+                  <div className='text-right'>
+                    <p className='font-medium'>
+                      <span className='text-gray-800'> Already have an account ?
+                        <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link>
+                        By sign in,I agree to izitini's
+                        Terms of use * Privacy Policy</span>
+                    </p>
+                  </div>
                   <div>
                     By continuing, you agree to Izitini's Terms and Conditions
                     of Use and Privacy Notice. New
