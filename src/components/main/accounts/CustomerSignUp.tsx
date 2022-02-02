@@ -8,8 +8,6 @@ import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
 
 const CustomerSignUp = () => {
 
-
-
   // redux
   const dispatch = useDispatch()
 
@@ -35,11 +33,7 @@ const CustomerSignUp = () => {
     if (profile) navigate('/')
   }
 
-
   const { profile, error } = useSelector((state: RootState) => state.profile)
-
-  console.log('===========================================');
-  console.log(error?.message);
 
   return (
     <div>
@@ -222,8 +216,11 @@ const CustomerSignUp = () => {
                 </div>
                 <hr className='text-gray-600 mb-4' />
                 <div className='text-right '>
-                  <Link to='/signin'><a href='#' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</a> if already have an account by sign in,I agree to izitini's
-                    Terms of use * Privacy Policy</Link>
+                  <p className='font-medium'>
+                    <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link>
+                    <span className='text-gray-800'> if already have an account by sign in,I agree to izitini's
+                      Terms of use * Privacy Policy</span>
+                  </p>
                 </div>
               </form>
             </div>
