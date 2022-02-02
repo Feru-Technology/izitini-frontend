@@ -22,7 +22,6 @@ const SignInPage = () => {
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
 
-  const { profile, error } = useSelector((state: RootState) => state.profile)
 
   const loginF = () => {
     dispatch(login())
@@ -30,6 +29,8 @@ const SignInPage = () => {
 
     if (profile) navigate('/')
   }
+
+  const { profile, error } = useSelector((state: RootState) => state.profile)
 
   const navigate = useNavigate()
 
@@ -59,7 +60,7 @@ const SignInPage = () => {
               <h1 className="my-6 inline-flex justify-center">
                 <Link to="/">
                   <img
-                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
+                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png"
                     className="text-center"
                     width="100px"
                     height="100px"
@@ -209,7 +210,6 @@ const SignInPage = () => {
                       sign in
                     </button>
                   </div>
-
 
                   <div className='text-right'>
                     <p className='font-medium'>

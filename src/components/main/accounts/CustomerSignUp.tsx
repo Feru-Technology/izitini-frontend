@@ -44,7 +44,7 @@ const CustomerSignUp = () => {
             <h1 className='my-6 flex justify-center'>
               <Link to={'/'}>
                 <img
-                  src='https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png'
+                  src='https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                   className=''
                   width='100px'
                   height='100px'
