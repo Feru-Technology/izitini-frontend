@@ -53,11 +53,10 @@ export const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
-            <div className='font-sans'>
+            <div className='font-nova'>
                 < Navbar />
                 < CategoryBar
                 />
-
                 <div className='md:mx-10 lg:mx-12 xl:mx-24'>
 
                     {/* first section */}
@@ -78,12 +77,12 @@ export const Home = () => {
                             </div>
                             <ul className='ml-2
                         md:w-full md:h-52 md:overflow-y-scroll'>
-                                {categories.map((v) => (
+                                {categories.map((cat) => (
                                     <li
-                                        className='w-full text-lg font-medium text-gray-700
+                                        className='w-full text-lg font-normal text-gray-700
                                     hover:bg-dark-blue hover:text-white
                                     md:px-3 lg:px-4'
-                                    >{v.name}</li>))}
+                                    >{cat.name}</li>))}
                             </ul>
                         </div>
                         <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-yellow-300 flex flex-row h-full'>
