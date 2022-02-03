@@ -22,7 +22,6 @@ const SignInPage = () => {
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
 
-
   const loginF = () => {
     dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })

@@ -1,4 +1,4 @@
-import { fetch } from './api/apiAction'
+import { fetch, post } from './api/apiAction';
 import { useDispatch } from 'react-redux'
 import { Home } from './components/main/home'
 import Cart from './components/main/Cart'
@@ -7,6 +7,7 @@ import Product from './components/main/product'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
+import NotFound from './components/main/NotFound'
 import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
 import Dashboard from './components/vendor/Dashboard'
@@ -66,6 +67,8 @@ function App() {
                 <Route path='/vendor/settings' element={<Settings />} />
 
                 <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
+
+                <Route path='*' element={<NotFound />} />
             </Routes>
             {/* )
 
