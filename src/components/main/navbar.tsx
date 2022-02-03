@@ -49,7 +49,7 @@ export const Navbar = () => {
     }
 
     return (
-        <Disclosure as="nav" className="bg-white">
+        <Disclosure as="nav" className="bg-white border-b-2">
             {({ open }) => (
                 <>
                     <div className="mt-5 mb-5">

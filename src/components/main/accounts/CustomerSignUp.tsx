@@ -220,7 +220,7 @@ const CustomerSignUp = () => {
                     <span className='text-gray-800'> Already have an account ? </span>
                     <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link> </p>
 
-                  <p>By sign in,I agree to izitini's Terms of use * Privacy Policy</p>
+                  <p>By sign in,I agree to izitini's Terms of use and  Privacy Policy</p>
                 </div>
               </form>
             </div>
