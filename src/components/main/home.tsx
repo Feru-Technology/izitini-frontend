@@ -6,6 +6,8 @@ import { CategoryBar } from './categoryBar'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { useNavigate } from 'react-router-dom'
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 
 import {
     useSelector,
@@ -85,9 +87,33 @@ export const Home = () => {
                                     >{cat.name}</li>))}
                             </ul>
                         </div>
-                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-yellow-300 flex flex-row h-full'>
-                            <div className='w-3/6'>image section</div>
-                            <div className='w-3/6'>text section</div>
+                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-gray-100 flex flex-row h-full'>
+                            <Carousel
+                                autoPlay={true}
+                                interval={3000}
+                                emulateTouch={true}
+                                infiniteLoop={true}
+                                showArrows={false}
+                                showThumbs={false}
+                                swipeable={true}
+                                showStatus={false}
+                            >
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' />
+                                </div>
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/1094767/pexels-photo-1094767.jpeg' />
+                                </div>
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg' />
+                                </div>
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/4792488/pexels-photo-4792488.jpeg' />
+                                </div>
+
+
+
+                            </Carousel>
                         </div>
                     </div>
 
