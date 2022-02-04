@@ -15,7 +15,7 @@ const initialState: CategoryState = {
 }
 
 // all categories with subcategories
-export const categorySlice = createSlice({
+export const categoriesSlice = createSlice({
     name: 'category',
     initialState,
     reducers: {
@@ -34,6 +34,6 @@ export const categorySlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { fetchingCategories, retrievedCategory, retrievedCategoryFailed } = categorySlice.actions
+export const { fetchingCategories, retrievedCategory, retrievedCategoryFailed } = categoriesSlice.actions
 
-export default categorySlice.reducer
+export default categoriesSlice.reducer

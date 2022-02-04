@@ -1,12 +1,12 @@
-
 import { cartSlice } from './order/cart'
 import { profileSlice } from './profile.slice'
-import { configureStore } from '@reduxjs/toolkit'
 import { storeSlice } from './stores/store.slice'
+import { configureStore } from '@reduxjs/toolkit'
 import { productSlice } from './products/product.slice'
 import { AllStoresSlice } from './stores/allMyStores.slice'
-import { categorySlice } from './categories/categories.slice'
+import { categorySlice } from './categories/category.slice'
 import { allProductSlice } from './products/allProduct.slice'
+import { categoriesSlice } from './categories/categories.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
@@ -19,6 +19,7 @@ export const store = configureStore({
         product: productSlice.reducer,
         category: categorySlice.reducer,
         myStores: AllStoresSlice.reducer,
+        categories: categoriesSlice.reducer,
         allProducts: allProductSlice.reducer,
         subCategory: subCategorySlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,

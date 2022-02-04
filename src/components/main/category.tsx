@@ -16,17 +16,17 @@ import {
     retrievedCategory
 } from '../../redux/categories/categories.slice'
 
-const AllProducts = () => {
+const Subcategory = () => {
 
     // redux
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchingCategories());
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
+        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/category1')
     }, [dispatch])
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
+    const { isLoading, currentCategory } = useSelector((state: RootState) => state.category);
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -46,21 +46,13 @@ const AllProducts = () => {
                 lg:grid-cols-3
                 xl:gap-4
                 gap-3'>
-                        {categories.map((category) => (
+                        {currentCategory?.SubCategories.map((subCat) => (
                             <div className='relative my-2'>
-                                <p className='absolute ml-2'>{category.name}</p>
+                                <p className='absolute ml-2'>{subCat.name}</p>
                                 <img className='h-36  2xl:h-52 w-full bg-gray-200
                                 lg:h-40 xl:h-48'
                                     src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
                                 <div className=''>
-                                    <ul>
-                                        {
-                                            category.SubCategories.map((subCat) => (
-                                                <li className='mt-1 font-normal'>{subCat.name}</li>
-                                            ))
-                                        }
-                                        <p className='text-dark-blue'>see all</p>
-                                    </ul>
 
                                 </div>
                             </div>
@@ -75,4 +67,4 @@ const AllProducts = () => {
     </>)
 }
 
-export default AllProducts
+export default Subcategory

@@ -8,6 +8,7 @@ import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
 import NotFound from './components/main/NotFound'
+import Category from './components/main/category'
 import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
 import Dashboard from './components/vendor/Dashboard'
@@ -41,7 +42,7 @@ function App() {
                 <Route path='/signin' element={<SignInPage />} />
                 <Route path='/products/:id' element={<Product />} />
                 <Route path='/products' element={<AllProducts />} />
-
+                <Route path='/products/:category' element={<Category />} />
                 <Route path='/cart' element={<Cart />} />
                 {/* </Routes>
 

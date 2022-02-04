@@ -39,7 +39,7 @@ const Home = () => {
         fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
     }, [dispatch])
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.category);
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
 
     const categorySection = categories.slice(0, 9)
 

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 export const CategoryBar = () => {
 
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.category);
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
     const categoryBar = categories.slice(0, 8)
     return (
         <>
