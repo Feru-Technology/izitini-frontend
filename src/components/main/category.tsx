@@ -3,7 +3,7 @@ import { Footer } from './footer'
 import { Navbar } from './navbar'
 import { CategoryBar } from './categoryBar'
 import { fetch } from '../../api/apiAction'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 
 import {
@@ -43,6 +43,13 @@ const Subcategory = () => {
                 < CategoryBar
                 />
                 <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
+
+                    {/* navigation */}
+                    <div className='flex mt-4'>
+                        <p>
+                            <Link to={'/products'}>All Products</Link>
+                            <span className='text-gray-500'> {categoryName}</span></p>
+                    </div>
 
                     {/* categories */}
                     <div className='md:mt-4 lg:mt-8 font-medium

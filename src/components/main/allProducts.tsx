@@ -38,6 +38,12 @@ const AllProducts = () => {
                 />
                 <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
+                    {/* navigation */}
+                    <div className='flex mt-4'>
+                        <p>
+                            <span className='text-gray-500'> All Products</span>
+                        </p>
+                    </div>
 
                     {/* categories */}
                     <div className='md:mt-4 lg:mt-8 font-medium
