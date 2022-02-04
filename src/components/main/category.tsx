@@ -3,6 +3,7 @@ import { Footer } from './footer'
 import { Navbar } from './navbar'
 import { CategoryBar } from './categoryBar'
 import { fetch } from '../../api/apiAction'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 
 import {
@@ -11,22 +12,28 @@ import {
 } from 'react-redux'
 
 import {
-    fetchingCategories,
-    retrievedCategoryFailed,
-    retrievedCategory
-} from '../../redux/categories/categories.slice'
+    getCategory,
+    category,
+    categoryFailed
+} from '../../redux/categories/category.slice'
 
 const Subcategory = () => {
 
+    // Get ID from URL
+    const params = useParams()
+    const { categoryName } = params
+
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchingCategories());
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/category1')
-    }, [dispatch])
+        dispatch(getCategory())
+        fetch(dispatch, category, categoryFailed, `/category/${categoryName}`)
+    }, [categoryName, dispatch])
 
-    const { isLoading, currentCategory } = useSelector((state: RootState) => state.category);
+    const { isLoading, currentCategory } = useSelector((state: RootState) => state.category)
+
+    console.log(currentCategory);
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -36,7 +43,6 @@ const Subcategory = () => {
                 < CategoryBar
                 />
                 <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
-
 
                     {/* categories */}
                     <div className='md:mt-4 lg:mt-8 font-medium

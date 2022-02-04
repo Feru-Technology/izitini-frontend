@@ -4,6 +4,7 @@ export const fetch = (dispatch: any, retrievedData: any, failed: any, route: str
     Axios.get(route, { headers: { 'Authorization': token } })
         .then((response) => {
             const { data } = response
+            console.log(data.data);
             return dispatch(retrievedData(data.data))
         })
         .catch(error => {
