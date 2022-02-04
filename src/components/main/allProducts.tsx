@@ -63,7 +63,7 @@ const AllProducts = () => {
                                     <div className=''>
                                         <ul>
                                             {
-                                                category.SubCategories.map((subCat) => (
+                                                category.subCategories.map((subCat) => (
                                                     <li className='mt-1 font-normal'>{subCat.name}</li>
                                                 ))
                                             }

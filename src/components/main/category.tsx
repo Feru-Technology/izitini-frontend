@@ -53,13 +53,9 @@ const Subcategory = () => {
 
                     {/* categories */}
                     <div className='md:mt-4 lg:mt-8 font-medium
-                grid
-                grid-cols-1
-                md:grid-cols-2
-                lg:grid-cols-3
-                xl:gap-4
-                gap-3'>
-                        {currentCategory?.SubCategories.map((subCat) => (
+                grid grid-cols-1 md:grid-cols-2
+                lg:grid-cols-3 xl:gap-4 gap-3'>
+                        {currentCategory?.subCategories.map((subCat) => (
                             <div className='relative my-2'>
                                 <p className='absolute ml-2'>{subCat.name}</p>
                                 <img className='h-36  2xl:h-52 w-full bg-gray-200
