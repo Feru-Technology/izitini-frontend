@@ -26,7 +26,7 @@ import {
     retrievedProducts
 } from '../../redux/products/allProduct.slice'
 
-export const Home = () => {
+const Home = () => {
 
     // redux
     const dispatch = useDispatch();
@@ -59,7 +59,7 @@ export const Home = () => {
                 < Navbar />
                 < CategoryBar
                 />
-                <div className='md:mx-10 lg:mx-12 xl:mx-24'>
+                <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
                     {/* first section */}
                     <div className='flex flex-row h-60 mt-2'>
@@ -87,7 +87,7 @@ export const Home = () => {
                                     >{cat.name}</li>))}
                             </ul>
                         </div>
-                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-gray-100 flex flex-row h-full'>
+                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-gray-50 flex flex-row h-full'>
                             <Carousel
                                 autoPlay={true}
                                 interval={3000}
@@ -179,3 +179,4 @@ export const Home = () => {
     </>)
 }
 
+export default Home

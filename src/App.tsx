@@ -1,6 +1,6 @@
 import { fetch, post } from './api/apiAction';
 import { useDispatch } from 'react-redux'
-import { Home } from './components/main/home'
+import Home from './components/main/home'
 import Cart from './components/main/Cart'
 import Store from './components/vendor/Store'
 import Product from './components/main/product'
@@ -11,6 +11,7 @@ import NotFound from './components/main/NotFound'
 import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
 import Dashboard from './components/vendor/Dashboard'
+import AllProducts from './components/main/allProducts'
 import CreateStore from './components/vendor/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
 import SignInPage from './components/main/accounts/SignInPage'
@@ -39,7 +40,7 @@ function App() {
                 <Route path='/signup' element={<CustomerSignUp />} />
                 <Route path='/signin' element={<SignInPage />} />
                 <Route path='/products/:id' element={<Product />} />
-                {/* <Route path='/products' element={<products />} /> */}
+                <Route path='/products' element={<AllProducts />} />
 
                 <Route path='/cart' element={<Cart />} />
                 {/* </Routes>
