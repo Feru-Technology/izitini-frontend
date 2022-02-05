@@ -8,28 +8,31 @@ import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
-    getCategory,
-    category,
-    categoryFailed
-} from '../../redux/categories/category.slice'
+    fetchingSubCategoryProducts,
+    subCategoryProducts,
+    subCategoryProductsFailed
+} from '../../redux/subCategories/subCategoryProducts.slice'
 
 const Subcategory = () => {
 
     // Get ID from URL
     const params = useParams()
-    const { categoryName } = params
+    const { categoryId } = params
 
     // redux
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getCategory())
-        fetch(dispatch, category, categoryFailed, `/category/${categoryName}`)
-    }, [categoryName, dispatch])
+        dispatch(fetchingSubCategoryProducts())
+        fetch(dispatch, subCategoryProducts, subCategoryProductsFailed, `/subcategory/products/${categoryId}`)
+    }, [categoryId, dispatch])
 
-    const { isLoading, currentCategory } = useSelector((state: RootState) => state.category)
+    const { currentCategory } = useSelector((state: RootState) => state.category)
 
-    console.log(currentCategory);
+
+    const { isLoading, Products } = useSelector((state: RootState) => state.subCategoryProducts)
+
+    console.log(Products);
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -44,7 +47,8 @@ const Subcategory = () => {
                     <div className='flex mt-4'>
                         <p>
                             <Link to={'/products'}>All Products</Link>
-                            <span className='text-gray-500'> {categoryName}</span></p>
+                            <span className='text-gray-500'> {currentCategory?.name}</span>
+                        </p>
                     </div>
 
                     {/* categories */}

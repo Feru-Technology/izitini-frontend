@@ -4,13 +4,13 @@ import { HTTPError, ISubCategoryProducts } from './subCategory.interface'
 export interface SubCategoryProductsState {
     isLoading: boolean
     error: Error | HTTPError | null
-    subCategoryProducts: ISubCategoryProducts[]
+    Products: ISubCategoryProducts[]
 }
 
 const initialState: SubCategoryProductsState = {
     isLoading: false,
     error: null,
-    subCategoryProducts: [],
+    Products: [],
 }
 
 export const subCategoryProductsSlice = createSlice({
@@ -22,7 +22,7 @@ export const subCategoryProductsSlice = createSlice({
         },
         subCategoryProducts: (state, { payload }) => {
             state.isLoading = false
-            state.subCategoryProducts = [...payload]
+            state.Products = [...payload]
         },
         subCategoryProductsFailed: (state, { payload }) => {
             state.isLoading = false
