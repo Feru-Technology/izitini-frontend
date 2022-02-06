@@ -9,6 +9,7 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { store } from '../../redux/stores/store.slice'
+import { IStore } from '../../redux/stores/store.interfaces'
 
 import {
   fetchingStores, retrievedStores, retrievedStoreFailed
@@ -33,9 +34,10 @@ const Store = () => {
   const { isLoading, stores } = useSelector((state: RootState) => state.myStores);
   const navigate = useNavigate()
 
-  const activeStore = (newStore: object) => {
+  const activeStore = (newStore: IStore) => {
     dispatch(store(newStore))
-    return navigate('/vendor/products')
+    const { id } = newStore
+    return navigate(`/vendor/store/${id}`)
   }
 
   return (

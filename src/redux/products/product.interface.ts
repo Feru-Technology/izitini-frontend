@@ -1,3 +1,5 @@
+import { IStore } from '../stores/store.interfaces'
+
 export interface IProduct {
     id: string;
     name: string;
@@ -10,5 +12,7 @@ export interface IProduct {
     quantity: string
     status: string
     price: number
+    productImages: []
+    shop: IStore
 };
 export interface HTTPError { status: number; message: string }

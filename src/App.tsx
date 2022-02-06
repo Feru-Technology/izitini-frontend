@@ -1,7 +1,9 @@
 import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import { Home } from './components/main/home'
+import Cart from './components/main/Cart'
 import Store from './components/vendor/Store'
+import Product from './components/main/product'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
@@ -32,13 +34,13 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Home />}>
-                    <Route path='/products' element={<h1>This is all products page</h1>} />
-                    <Route path='/product' element={<h1>This is product page</h1>} />
-                </Route>
+                <Route path='/' element={<Home />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
                 <Route path='/signin' element={<SignInPage />} />
+                <Route path='/products/:id' element={<Product />} />
+                {/* <Route path='/products' element={<products />} /> */}
 
+                <Route path='/cart' element={<Cart />} />
             </Routes>
 
             <div>
@@ -56,7 +58,8 @@ function App() {
                         path='/vendor/create-store'
                         element={<CreateStore />}
                     />
-                    <Route path='/vendor/products' element={<Products />} />
+                    <Route path='/vendor/store/:id' element={<Products />} />
+                    {/* <Route path='/vendor/products' element={<Products />} /> */}
                     <Route path='/vendor/orders' element={<Orders />} />
                     <Route path='/vendor/coupons' element={<Coupons />} />
                     <Route path='/vendor/reports' element={<Reports />} />
