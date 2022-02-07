@@ -19,7 +19,7 @@ import CreateProduct from './components/vendor/CreateProduct'
 import SignInPage from './components/main/accounts/SignInPage'
 import { loggedIn, login, loginFailed } from './redux/profile.slice'
 import CustomerSignUp from './components/main/accounts/CustomerSignUp'
-import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
 function App() {
 
@@ -41,10 +41,10 @@ function App() {
                 <Route path='/' element={<Home />} />
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/signin' element={<SignInPage />} />
-                <Route path='/product/:id' element={<Product />} />
+                <Route path='/products/:id' element={<Product />} />
                 <Route path='/products' element={<AllProducts />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
-                <Route path='/products/:categoryName' element={<Category />} />
+                <Route path='/products/c/:categoryName' element={<Category />} />
                 <Route path='/products/s/:id' element={<Subcategory />} />
 
                 <Route path='/vendor' element={<Dashboard />} />

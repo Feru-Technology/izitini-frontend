@@ -33,9 +33,6 @@ const Subcategory = () => {
 
     const { isLoading, currentCategory } = useSelector((state: RootState) => state.category)
 
-    console.log('================================================')
-    console.log(currentCategory);
-
     return (<>
         {isLoading ? (<h1>Loading...</h1>) : (
 
