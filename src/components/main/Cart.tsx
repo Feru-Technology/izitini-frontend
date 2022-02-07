@@ -1,15 +1,30 @@
 import React from 'react'
-import { Navbar } from './navbar';
+import { Navbar } from './navbar'
 import { Footer } from './footer'
 import { MdOutlineCancel } from "react-icons/md"
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 
+const lodash = require('lodash')
 const Cart = () => {
 
     const { isLoading, cart, error } = useSelector((state: RootState) => state.cart)
     console.log('==========================================')
     console.log(cart)
+
+    let totalPrices: any = []
+
+    const totalPrice = (price: number, quantity: string) => {
+        const total = price * parseInt(quantity)
+        totalPrices.push(total)
+        return total
+    }
+
+    console.log(totalPrices)
+
+    const subTotal = (totals: []) => {
+        return lodash.sum(totals)
+    }
 
     return (<>
         <Navbar />
@@ -106,7 +121,7 @@ const Cart = () => {
                                         <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                 md:px-6
                                 lg:px-6 py-4'>
-                                            abcde
+                                            {totalPrice(item.product.price, item.quantity)}
                                         </td>
                                         <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                             <button type='button'
@@ -128,11 +143,11 @@ const Cart = () => {
                     text-base lg:text-lg'>Order Summary</p>
                     <div className='flex m-3 text-gray-500'>
                         <p>Subtotal</p>
-                        <p className='absolute right-8 md:right-10 lg:right-16'>75000 RWF</p>
+                        <p className='absolute right-8 md:right-10 lg:right-16'>{subTotal(totalPrices)} RWF</p>
                     </div>
                     <div className='flex m-3 text-gray-500'>
                         <p>Shipping</p>
-                        <p className='absolute right-8 md:right-10 lg:right-16'>75000 RWF</p>
+                        <p className='absolute right-8 md:right-10 lg:right-16'> N/A </p>
                     </div>
                     <p className='m-3 text-dark-blue'>Have a Coupon</p>
                     <div className='flex bg-gray-200 font-bold py-2 md:py-3'>
