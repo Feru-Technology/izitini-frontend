@@ -1,11 +1,10 @@
+import { IProduct } from "../products/product.interface"
 
 export interface IOrder {
-    quantity: string
     id: string
     user_id: string
     status: string
     is_sample: boolean
-    order_items: [IOrderItem]
 }
 
 export interface IOrderItem {
@@ -16,6 +15,7 @@ export interface IOrderItem {
     size_id: string,
     quantity: string,
     details: string,
+    product: IProduct
 }
 
 export interface ICart {
@@ -23,7 +23,7 @@ export interface ICart {
     user_id: string
     status: string
     is_sample: boolean
-    order_items: [IOrder]
+    order_items: [IOrderItem]
 }
 
 export interface HTTPError { status: number; message: string }
