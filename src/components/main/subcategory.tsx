@@ -17,21 +17,22 @@ const Subcategory = () => {
 
     // Get ID from URL
     const params = useParams()
-    const { categoryId } = params
+    const { id } = params
 
     // redux
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(fetchingSubCategoryProducts())
-        fetch(dispatch, subCategoryProducts, subCategoryProductsFailed, `/subcategory/products/${categoryId}`)
-    }, [categoryId, dispatch])
+        fetch(dispatch, subCategoryProducts, subCategoryProductsFailed, `/subcategory/products/${id}`)
+    }, [id, dispatch])
 
     const { currentCategory } = useSelector((state: RootState) => state.category)
 
-
     const { isLoading, Products } = useSelector((state: RootState) => state.subCategoryProducts)
 
+    console.log('================================')
+    //@ts-ignore
     console.log(Products);
 
     return (<>
@@ -55,9 +56,9 @@ const Subcategory = () => {
                     <div className='md:mt-4 lg:mt-8 font-medium
                 grid grid-cols-1 md:grid-cols-2
                 lg:grid-cols-3 xl:gap-4 gap-3'>
-                        {currentCategory?.subCategories.map((subCat) => (
+                        {Products?.map((prod) => (
                             <div className='relative my-2'>
-                                <p className='absolute ml-2'>{subCat.name}</p>
+                                <p className='absolute ml-2'>{prod.product.name}</p>
                                 <img className='h-36  2xl:h-52 w-full bg-gray-200
                                 lg:h-40 xl:h-48'
                                     src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />

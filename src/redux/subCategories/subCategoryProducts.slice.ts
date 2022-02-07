@@ -19,14 +19,18 @@ export const subCategoryProductsSlice = createSlice({
     reducers: {
         fetchingSubCategoryProducts: (state) => {
             state.isLoading = true
+            state.error = null
+            state.Products = []
         },
         subCategoryProducts: (state, { payload }) => {
             state.isLoading = false
+            state.error = null
             state.Products = [...payload]
         },
         subCategoryProductsFailed: (state, { payload }) => {
             state.isLoading = false
             state.error = payload
+            state.Products = []
         }
     },
 })
