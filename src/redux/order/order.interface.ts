@@ -1,9 +1,11 @@
 
 export interface IOrder {
+    quantity: string
     id: string
     user_id: string
     status: string
     is_sample: boolean
+    order_items: [IOrderItem]
 }
 
 export interface IOrderItem {
