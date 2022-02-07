@@ -54,16 +54,17 @@ const Subcategory = () => {
 
                     {/* categories */}
                     <div className='md:mt-4 lg:mt-8 font-medium
-                grid grid-cols-1 md:grid-cols-2
+                grid grid-cols-2
                 lg:grid-cols-3 xl:gap-4 gap-3'>
                         {Products?.map((prod) => (
-                            <div className='relative my-2'>
-                                <p className='absolute ml-2'>{prod.product.name}</p>
+                            <div className='my-2'>
                                 <img className='h-36  2xl:h-52 w-full bg-gray-200
                                 lg:h-40 xl:h-48'
                                     src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
-                                <div className=''>
-
+                                <div className='mt-5'>
+                                    <p className='text-base md:text-lg lg:text-xl'>{prod.product.name}</p>
+                                    <p className='text-xs md:text-sm text-gray-400'>{prod.product.brand}</p>
+                                    <p className='text-sm md:text-lg lg:text-xl'>{prod.product.price}</p>
                                 </div>
                             </div>
                         ))}
