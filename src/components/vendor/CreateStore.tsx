@@ -17,11 +17,8 @@ import {
   retrievedCategories,
   retrievedCategoryFailed
 } from '../../redux/categories/allCategories.slice'
-import {
-  fetchingStores,
-  retrievedStores,
-  retrievedStoreFailed
-} from '../../redux/stores/allMyStores.slice'
+
+import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
 
 const CreateProduct = () => {
 
@@ -51,16 +48,25 @@ const CreateProduct = () => {
   const token = localStorage.getItem('token');
 
   const createStore = () => {
-    dispatch(fetchingStores())
+    dispatch(getStore())
     post(
       dispatch,
-      retrievedStores,
-      retrievedStoreFailed, '/shop',
+      store,
+      storeFailed, '/shop',
       { category, name, about_shop, shop_email, shop_contact_no },
       token
     )
-    navigate('/vendor/stores')
+    // navigate('/vendor/stores')
   }
+
+
+  const { currentStore, error } = useSelector((state: RootState) => state.store)
+
+  // error !== null ? setShowError(true) : setShowSuccess(true)
+
+
+  console.log('=================');
+  console.log(currentStore, error?.message);
 
   return (
     <div className='flex h-screen overflow-hidden'>
@@ -90,6 +96,22 @@ const CreateProduct = () => {
         </Transition>
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
           <div className="font-bold text-3xl text-center">Create a new Store</div>
+          <div className='container'>
+            {/* {error ? setShowError(true) : setShowSuccess(true)} */}
+            <Transition
+              show={!!error}
+            >
+              {/* {error ? } */}
+              <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+
+            </Transition>
+            <Transition
+              show={!!currentStore}
+            >
+              <p className='w-full py-1 text-light-blue text-center'>Store created successfully</p>
+
+            </Transition>
+          </div>
           <form>
             <div>
               <h3>Select Category</h3>

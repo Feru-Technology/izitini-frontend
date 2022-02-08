@@ -1,12 +1,16 @@
-import { Fragment, useState } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon, } from '@heroicons/react/outline'
-import { FaTools, FaBuilding } from "react-icons/fa"
-import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
+
 import { Link } from 'react-router-dom'
+import { fetch } from '../../api/apiAction'
 import { RiSearchLine } from 'react-icons/ri'
-import { RootState } from '../../redux/store';
-import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import backUpPImage from '../../images/profile.png'
+import { FaTools, FaBuilding } from 'react-icons/fa'
+import { Fragment, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { MenuIcon, XIcon, } from '@heroicons/react/outline'
+import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
+import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -14,9 +18,22 @@ function classNames(...classes: string[]) {
 
 export const Navbar = () => {
 
-    const { isLoading, profile, error } = useSelector((state: RootState) => state.profile)
+    // redux
+    const dispatch = useDispatch();
 
-    const backUpPImage = 'https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/profile.png'
+    const token = localStorage.getItem('token');
+
+    useEffect(() => {
+        dispatch(gettingCart())
+        fetch(dispatch, getCart, cartFailed, '/orders/cart', token)
+    }, [dispatch, token])
+
+    const { cart } = useSelector((state: RootState) => state.cart);
+
+    let cartItems: number
+    if (cart) cartItems = cart.order_items.length
+
+    const { profile, error } = useSelector((state: RootState) => state.profile)
 
     const [showProduct, setShowProduct] = useState(false)
     const [showIdea, setShowIdea] = useState(false)
@@ -44,11 +61,13 @@ export const Navbar = () => {
                                         )}
                                     </Disclosure.Button>
                                 </div>
-                                <img
-                                    className="block h-8 md:h-10 lg:h-12 w-auto"
-                                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
-                                    alt="Workflow"
-                                />
+                                <Link to="/">
+                                    <img
+                                        className="block h-8 md:h-10 lg:h-12 w-auto"
+                                        src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
+                                        alt="Workflow"
+                                    /></Link>
+
                             </div>
 
                             {/* search */}
@@ -112,7 +131,8 @@ export const Navbar = () => {
                                     >
                                         <span className="sr-only">View cart</span>
                                         <BsCart3 className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
-                                        <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
+                                        {cart ?
+                                            <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>{cartItems}</p> : ''}
                                     </button>
                                 </div>
 
@@ -246,11 +266,9 @@ export const Navbar = () => {
                                 }}
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showProfession && ' border-dark-blue bg-gray-100'}`
-                                    }>
+                                ${showProfession && 'border-dark-blue bg-gray-100'}`}>
                                         <FaBuilding className="block h-3 w-3 mr-2" />Find a profession</span>
                                 </div>
-
                             </div>
 
                             <div className='w-full z-auto absolute shadow-md px-5 bg-gray-100'>

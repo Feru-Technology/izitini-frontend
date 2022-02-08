@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { fetch } from '../../api/apiAction'
+import { fetch, post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { AiFillStar } from "react-icons/all"
 import { Navbar } from './navbar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useParams } from 'react-router-dom'
+import { Transition } from '@headlessui/react'
 
 import {
     getProduct,
-    product as currentProduct,
+    product,
     productFailed
 } from '../../redux/products/product.slice'
+import { getCart, cart, cartFailed } from '../../redux/order/cart'
 const Product = () => {
 
     // redux
     const dispatch = useDispatch();
-
 
     // Get ID from URL
     const params = useParams();
@@ -25,14 +26,19 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(getProduct());
-        fetch(dispatch, currentProduct, productFailed, `/product/${id}`)
+        fetch(dispatch, product, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
-    const addToCart = () => {
+    const token = localStorage.getItem('token');
 
+    const [quantity, setQuantity] = useState<string>('1')
+
+    const addToCart = () => {
+        dispatch(getCart())
+        post(dispatch, cart, cartFailed, `/orders/${id}`, { quantity: quantity }, token)
     }
 
-    const { isLoading, product } = useSelector((state: RootState) => state.product);
+    const { isLoading, currentProduct } = useSelector((state: RootState) => state.product);
 
     const data = [
         {
@@ -65,7 +71,10 @@ const Product = () => {
 
     const [displayImage, setDisplayImage] = useState(data[0].image);
 
-    // const addToCart = 
+    const [showReview, setShowReview] = useState(false)
+    const [showDescription, setShowDescription] = useState(false)
+    const [showReturnPolicy, setShowReturnPolicy] = useState(false)
+    const [showSpecification, setShowSpecification] = useState(false)
 
     return (
         <>
@@ -115,37 +124,82 @@ const Product = () => {
                                                 />
                                             </div>)
                                             )}
-
                                         </div>
                                     </div>
 
-                                    {/* tabs and details */}
-                                    <div className="sr-only md:not-sr-only container">
+                                    <div className='sr-only md:not-sr-only'>
                                         {/* tabs */}
-                                        <div className="">
-                                            <ul className="flex space-x-2 lg:space-x-5 justify-center
+                                        <div className="container mt-2">
+                                            <ul className="flex space-x-2 lg:space-x-5
                                         md:font-medium md:-text-base
                                         lg:font-bold lg:text-lg lg:space-x-12">
-                                                <li>Description</li>
-                                                <li>Specification</li>
-                                                <li>Review</li>
-                                                <li>Shipping & Return Policy</li>
+                                                <li className={`cursor-pointer ${showDescription && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(false)
+                                                        setShowDescription(true)
+                                                        setShowReturnPolicy(false)
+                                                        setShowSpecification(false)
+                                                    }}
+                                                >Description</li>
+
+                                                <li className={`cursor-pointer ${showSpecification && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(false)
+                                                        setShowDescription(false)
+                                                        setShowReturnPolicy(false)
+                                                        setShowSpecification(true)
+                                                    }}
+                                                >Specification</li>
+
+                                                <li className={`cursor-pointer ${showReview && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(true)
+                                                        setShowDescription(false)
+                                                        setShowReturnPolicy(false)
+                                                        setShowSpecification(false)
+                                                    }}
+                                                >Review</li>
+
+                                                <li className={`cursor-pointer ${showReturnPolicy && 'border-b-4 border-dark-blue'}`}
+                                                    onClick={() => {
+                                                        setShowReview(false)
+                                                        setShowReturnPolicy(true)
+                                                        setShowDescription(false)
+                                                        setShowSpecification(false)
+                                                    }}
+                                                >Shipping & Return Policy</li>
                                             </ul>
                                         </div>
-                                        <hr />
-                                        {/* details  */}
-                                        <div className="container">
-                                            <div>
-                                                <p>test 1</p>
-                                                <p>test 2</p>
-                                            </div>
+
+                                        {/* tabs and details */}
+                                        <div className='w-full text-base font-normal mt-1'>
+                                            <Transition
+                                                show={showDescription}
+                                            >
+                                                <p>this is the description of these product</p>
+                                            </Transition>
+                                            <Transition
+                                                show={showSpecification}
+                                            >
+                                                <p>this is the specification of these product</p>
+                                            </Transition>
+                                            <Transition
+                                                show={showReview}
+                                            >
+                                                <p>this is the Review of these product</p>
+                                            </Transition>
+                                            <Transition
+                                                show={showReturnPolicy}
+                                            >
+                                                <p>this is the ReturnPolicy of these product</p>
+                                            </Transition>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="md:w-1/3">
                                     <div className='text-sm md:text-base space-y-3'>
-                                        <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">{product?.name}</h2>
-                                        <p>{product?.shop?.name}</p>
+                                        <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">{currentProduct?.name}</h2>
+                                        <p>{currentProduct?.shop?.name}</p>
                                         <p></p>
                                         <span className="flex text-xl md:text-3xl lg:text-4xl"
                                             style={{ color: "#ff9900" }}
@@ -167,9 +221,9 @@ const Product = () => {
                                             </i>
                                             <span className='ml-3 text-black text-base md:text-2xl'> (28)</span>
                                         </span>
-                                        <p className="text-base font-bold md:text-lg">{product?.shop.name}</p>
+                                        <p className="text-base font-bold md:text-lg">{currentProduct?.shop.name}</p>
                                         <p>read to ship in Kigali</p>
-                                        <p>{product?.price} in the store</p>
+                                        <p>{currentProduct?.price} in the store</p>
                                         <p>
                                             Lorem Ipsum is simply dummy text of the dummy text ever since
                                             the 1500s, when an unknown
@@ -180,6 +234,7 @@ const Product = () => {
                                                     <select
                                                         className='w-full h-9 rounded border-2 bg-white px-3'
                                                         aria-label="multiple select example"
+                                                        onChange={e => setQuantity(e.target.value)}
                                                     >
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -203,6 +258,7 @@ const Product = () => {
                                                 <div className="w-2/3 md:w-full">
                                                     <button
                                                         className="btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium"
+                                                        onClick={() => addToCart()}
                                                     >
                                                         Add to cart
                                                     </button>

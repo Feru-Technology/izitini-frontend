@@ -29,7 +29,7 @@ const Products = () => {
     // redux
     const dispatch = useDispatch();
 
-    const { store } = useSelector((state: RootState) => state.store);
+    const { currentStore } = useSelector((state: RootState) => state.store);
 
     const { id } = params
 
@@ -77,7 +77,7 @@ const Products = () => {
                 </Transition>
                 <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
-                        <h3 className='text-3xl font-bold'>{store?.name}</h3>
+                        <h3 className='text-3xl font-bold'>{currentStore?.name}</h3>
                         <Link to='/vendor/create-product'>
                             <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded cursor-pointer'>
                                 ADD A PRODUCT
