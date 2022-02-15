@@ -69,64 +69,73 @@ const MyOrders = () => {
                     <div className='px-2 md:px-8 w-full'>
                         <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
-                            <tr className=' px-1 pt-6 md:p-5 flex justify-center text-xs'>
-                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                            <div>
+                                <tr className=' px-1 pt-6 md:p-5 w-full text-xs'>
+                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
-                                    onClick={() => {
-                                        setShowAllOrders(true)
-                                        setShowSampleOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowCompletedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
-                                >All</td>
-                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                        onClick={() => {
+                                            setShowAllOrders(true)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
+                                    >All</td>
+                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
-                                    onClick={() => {
-                                        setShowProcessingOrders(true)
-                                        setShowAllOrders(false)
-                                        setShowSampleOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowCompletedOrders(false)
-                                    }}
-                                >Processing</td>
-                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                        onClick={() => {
+                                            setShowProcessingOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                        }}
+                                    >Processing</td>
+                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
-                                    onClick={() => {
-                                        setShowSampleOrders(true)
-                                        setShowAllOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowCompletedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
+                                        onClick={() => {
+                                            setShowSampleOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
 
-                                >Sample</td>
-                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                    >Sample</td>
+                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
-                                    onClick={() => {
-                                        setShowCompletedOrders(true)
-                                        setShowAllOrders(false)
-                                        setShowSampleOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
-                                >Completed</td>
-                                <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1
+                                        onClick={() => {
+                                            setShowCompletedOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
+                                    >Completed</td>
+                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
-                                    onClick={() => {
-                                        setShowRejectedOrders(true)
-                                        setShowAllOrders(false)
-                                        setShowSampleOrders(false)
-                                        setShowCompletedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
+                                        onClick={() => {
+                                            setShowRejectedOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowSampleOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
 
-                                >Rejected</td>
-                            </tr>
+                                    >Rejected</td>
+                                </tr>
+                            </div>
 
                         </div>
+
+                        <thead>
+                            <th className=''>name</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                            <th>Tracking no</th>
+                        </thead>
 
                     </div>
 
