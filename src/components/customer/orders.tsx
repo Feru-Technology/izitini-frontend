@@ -66,13 +66,13 @@ const MyOrders = () => {
                     </Transition>
 
                     {/* customer orders */}
-                    <div className='px-2 md:px-8 w-full'>
+                    <div className='px-2 md:px-6 lg:px-14 w-full'>
                         <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
                             <div className=' border-b border-gray-200'>
                                 <ul className='w-full text-xs flex cursor-pointer'>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            md:px-6 lg:px-6 py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
+                                            py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
                                             setShowAllOrders(true)
@@ -83,7 +83,7 @@ const MyOrders = () => {
                                         }}
                                     >All</li>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            md:px-6 lg:px-6 py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
+                                            py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
                                             setShowProcessingOrders(true)
@@ -94,7 +94,7 @@ const MyOrders = () => {
                                         }}
                                     >Processing</li>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            md:px-6 lg:px-6 py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
+                                            py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
                                             setShowSampleOrders(true)
                                             setShowAllOrders(false)
@@ -105,7 +105,7 @@ const MyOrders = () => {
 
                                     >Sample</li>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            md:px-6 lg:px-6 py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
+                                            py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
                                             setShowCompletedOrders(true)
                                             setShowAllOrders(false)
@@ -115,7 +115,7 @@ const MyOrders = () => {
                                         }}
                                     >Completed</li>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            md:px-6 lg:px-6 py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
+                                            py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
                                             setShowRejectedOrders(true)
                                             setShowAllOrders(false)
@@ -128,15 +128,44 @@ const MyOrders = () => {
                                 </ul>
                             </div>
 
-                            <table>
-                                <thead>
-                                    <th className=''>name</th>
-                                    <th>Price</th>
-                                    <th>Status</th>
-                                    <th>Tracking no</th>
-                                </thead>
+                            <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
+                                <table className='border border-gray-200 w-full bg-gray-50 text-gray-600'>
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                font-semibold text-gray-700 text-center
+                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                    '
+                                            >name</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                font-semibold text-gray-700 text-center
+                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                    '
+                                            >Price</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                font-semibold text-gray-700 text-center
+                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                    '
+                                            >Status</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                font-semibold text-gray-700 text-center
+                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                    '
+                                            >Tracking no</th>
+                                        </tr>
+                                    </thead>
 
-                            </table>
+                                </table>
+
+                            </div>
 
                         </div>
 
