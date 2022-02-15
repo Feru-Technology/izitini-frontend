@@ -129,69 +129,59 @@ const MyOrders = () => {
                             </div>
 
                             <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
-                                <table className='border border-gray-200 w-full bg-gray-50 text-gray-600'>
-                                    <thead>
-                                        <tr>
+                                <table className='w-full border-gray-200 text-gray-600'>
+                                    <thead className='bg-gray-100'>
+                                        <tr className='font-bold text-xs md:text-sm text-center border'>
                                             <th
                                                 scope='col'
                                                 className='
-                                                font-semibold text-gray-700 text-center w-2/5
-                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                                w-2/5 py-3 lg:text-base
                                     '
                                             >name</th>
                                             <th
                                                 scope='col'
                                                 className='
-                                                font-semibold text-gray-700 text-center
-                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                                py-3 lg:text-base
                                     '
                                             >Price</th>
                                             <th
                                                 scope='col'
                                                 className='
-                                                font-semibold text-gray-700 text-center
-                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                                py-3 lg:text-base
                                     '
                                             >Status</th>
                                             <th
                                                 scope='col'
                                                 className='
-                                                font-semibold text-gray-700 text-center
-                                                text-xs md:text-sm py-3 lg:text-base border border-gray-100
+                                                py-3 lg:text-base
                                     '
                                             >Tracking no</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
-                                                <div className='flex items-center'>
-                                                    <div className='w-1/5'>
+                                        <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800'>
+                                            <td className='py-3 border'>
+                                                <div className='md:flex items-center'>
+                                                    <div className='md:w-1/5 mx-3'>
                                                         <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
                                                     </div>
-                                                    <div className='w-4/5'>
+                                                    <div className='md:w-4/5'>
 
-                                                        <p className='font-semibold text-gray-800 text-sm'>
-                                                            <span className='text-gray-600'>Product Name</span>
-                                                            <span className='text-gray-500'> - </span>
-                                                            <span className='text-gray-600'>Product Code</span>
-                                                        </p>
-                                                        <p className='text-gray-500 text-xs md:text-sm lg:text-base'>
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                            Curabitur auctor in nunc nec lobortis.
+                                                        <p className='font-normal text-sm'>
+                                                            <span className=''>Product Name</span>
                                                         </p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
-                                                <p className='font-semibold text-gray-800 text-sm'>$100</p>
+                                            <td className='py-3 border'>
+                                                <p className='font-normal text-sm'>$100</p>
                                             </td>
-                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
-                                                <p className='font-semibold text-gray-800 text-sm'>Processing</p>
+                                            <td className='py-3 border'>
+                                                <p className='font-normal text-sm'>Processing</p>
                                             </td>
-                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
-                                                <p className='font-semibold text-gray-800 text-sm'>Tracking no</p>
+                                            <td className='py-3 border'>
+                                                <p className='font-normal text-sm'>Tracking no</p>
                                             </td>
                                         </tr>
                                     </tbody>
