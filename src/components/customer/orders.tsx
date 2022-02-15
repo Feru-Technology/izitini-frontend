@@ -135,7 +135,7 @@ const MyOrders = () => {
                                             <th
                                                 scope='col'
                                                 className='
-                                                font-semibold text-gray-700 text-center
+                                                font-semibold text-gray-700 text-center w-2/5
                                                 text-xs md:text-sm py-3 lg:text-base border border-gray-100
                                     '
                                             >name</th>
@@ -162,6 +162,39 @@ const MyOrders = () => {
                                             >Tracking no</th>
                                         </tr>
                                     </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
+                                                <div className='flex items-center'>
+                                                    <div className='w-1/5'>
+                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                    </div>
+                                                    <div className='w-4/5'>
+
+                                                        <p className='font-semibold text-gray-800 text-sm'>
+                                                            <span className='text-gray-600'>Product Name</span>
+                                                            <span className='text-gray-500'> - </span>
+                                                            <span className='text-gray-600'>Product Code</span>
+                                                        </p>
+                                                        <p className='text-gray-500 text-xs md:text-sm lg:text-base'>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Curabitur auctor in nunc nec lobortis.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
+                                                <p className='font-semibold text-gray-800 text-sm'>$100</p>
+                                            </td>
+                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
+                                                <p className='font-semibold text-gray-800 text-sm'>Processing</p>
+                                            </td>
+                                            <td className='text-center text-xs md:text-sm lg:text-base py-3 border border-gray-100'>
+                                                <p className='font-semibold text-gray-800 text-sm'>Tracking no</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
 
                                 </table>
 
