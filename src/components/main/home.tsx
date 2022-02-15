@@ -5,7 +5,9 @@ import { FaTools } from 'react-icons/fa'
 import { CategoryBar } from './categoryBar'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { Carousel } from 'react-responsive-carousel'
+import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
 
 import {
     useSelector,
@@ -24,7 +26,7 @@ import {
     retrievedProducts
 } from '../../redux/products/allProduct.slice'
 
-export const Home = () => {
+const Home = () => {
 
     // redux
     const dispatch = useDispatch();
@@ -37,7 +39,7 @@ export const Home = () => {
         fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
     }, [dispatch])
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.category);
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
 
     const categorySection = categories.slice(0, 9)
 
@@ -53,12 +55,11 @@ export const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
-            <div className='font-sans'>
+            <div className='font-nova'>
                 < Navbar />
                 < CategoryBar
                 />
-
-                <div className='md:mx-10 lg:mx-12 xl:mx-24'>
+                <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
                     {/* first section */}
                     <div className='flex flex-row h-60 mt-2'>
@@ -78,17 +79,44 @@ export const Home = () => {
                             </div>
                             <ul className='ml-2
                         md:w-full md:h-52 md:overflow-y-scroll'>
-                                {categories.map((v) => (
-                                    <li
-                                        className='w-full text-lg font-medium text-gray-700
+                                {categories.map((cat) => (
+                                    <Link to={`/products/${cat.name}`}>
+                                        <li
+                                            className='w-full text-lg font-normal text-gray-700
                                     hover:bg-dark-blue hover:text-white
                                     md:px-3 lg:px-4'
-                                    >{v.name}</li>))}
+                                        >{cat.name}</li>
+                                    </Link>))}
                             </ul>
+
                         </div>
-                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-yellow-300 flex flex-row h-full'>
-                            <div className='w-3/6'>image section</div>
-                            <div className='w-3/6'>text section</div>
+                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-gray-50 flex flex-row h-full'>
+                            <Carousel
+                                autoPlay={true}
+                                interval={3000}
+                                emulateTouch={true}
+                                infiniteLoop={true}
+                                showArrows={false}
+                                showThumbs={false}
+                                swipeable={true}
+                                showStatus={false}
+                            >
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' />
+                                </div>
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/1094767/pexels-photo-1094767.jpeg' />
+                                </div>
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg' />
+                                </div>
+                                <div className='h-60'>
+                                    <img alt='ads' src='https://images.pexels.com/photos/4792488/pexels-photo-4792488.jpeg' />
+                                </div>
+
+
+
+                            </Carousel>
                         </div>
                     </div>
 
@@ -101,23 +129,25 @@ export const Home = () => {
                 xl:gap-4
                 gap-3'>
                         {categorySection.map((category) => (
-                            <div className='relative my-2'>
-                                <p className='absolute ml-2'>{category.name}</p>
-                                <img className='h-36  2xl:h-52 w-full bg-gray-200
+                            <Link to={`/products/${category.name}`}>
+                                <div className='relative my-2'>
+                                    <p className='absolute ml-2'>{category.name}</p>
+                                    <img className='h-36  2xl:h-52 w-full bg-gray-200
                                 lg:h-40 xl:h-48'
-                                    src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
-                                <div className=''>
-                                    <ul>
-                                        {
-                                            category.SubCategories.map((subCat) => (
-                                                <li className='mt-1 font-normal'>{subCat.name}</li>
-                                            ))
-                                        }
-                                        <p className='text-dark-blue'>see all</p>
-                                    </ul>
+                                        src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                    <div className=''>
+                                        <ul>
+                                            {
+                                                category.subCategories.map((subCat) => (
+                                                    <li className='mt-1 font-normal'>{subCat.name}</li>
+                                                ))
+                                            }
+                                            <p className='text-dark-blue'>see all</p>
+                                        </ul>
 
+                                    </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
 
@@ -154,3 +184,4 @@ export const Home = () => {
     </>)
 }
 
+export default Home

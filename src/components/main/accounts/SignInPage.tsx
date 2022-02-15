@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from "react-router-dom"
 import { post } from '../../../api/apiAction'
 import { useNavigate } from "react-router-dom"
@@ -22,16 +22,14 @@ const SignInPage = () => {
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
 
-  const { profile, error } = useSelector((state: RootState) => state.profile)
-
   const loginF = () => {
     dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
 
-    console.log(profile, error);
-    if (profile !== null) navigate('/')
+    if (profile) navigate('/')
   }
 
+  const { profile, error } = useSelector((state: RootState) => state.profile)
 
   const navigate = useNavigate()
 
@@ -61,7 +59,7 @@ const SignInPage = () => {
               <h1 className="my-6 inline-flex justify-center">
                 <Link to="/">
                   <img
-                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png"
+                    src="https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png"
                     className="text-center"
                     width="100px"
                     height="100px"
@@ -150,11 +148,6 @@ const SignInPage = () => {
                   </Link>
                 </div>
                 <div>
-                  {/* <Transition
-
-                  >
-
-                  </Transition> */}
                 </div>
                 <div className="flex justify-center">
                   <hr />
@@ -190,6 +183,15 @@ const SignInPage = () => {
                       onChange={e => setPassword(e.target.value)}
                     />
                   </div>
+                  <div>
+
+                    <Transition
+                      show={!!error}
+                    >
+                      <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+
+                    </Transition>
+                  </div>
                   <div className="text-right text-light-blue hover:underline hover:text-middle-blue">
                     <a href="#">Forgot your password?</a>
                   </div>
@@ -207,14 +209,13 @@ const SignInPage = () => {
                       sign in
                     </button>
                   </div>
-                  <div>
-                    By continuing, you agree to Izitini's Terms and Conditions
-                    of Use and Privacy Notice. New
-                    <Link to="/signup">
-                      <span className="text-right text-light-blue hover:underline hover:text-middle-blue">
-                        Sign Up
-                      </span>
-                    </Link>
+
+                  <div className='text-right'>
+                    <p className='font-medium'>
+                      <p>By sign in,I agree to izitini's Terms of use and Privacy Policy</p>
+                      <span className='text-gray-800'>New to Izitini ? </span>
+                      <Link to='/signup' className='text-light-blue hover:underline hover:text-middle-blue'>Sign up</Link> </p>
+
                   </div>
                 </form>
               </div>

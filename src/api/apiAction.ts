@@ -1,11 +1,22 @@
 import Axios from './axios'
 
-export const fetch = (dispatch: any, retrievedData: any, retrieveDataFailed: any, route: string, token?: any) => {
+export const fetch = (dispatch: any, retrievedData: any, failed: any, route: string, token?: any) => {
     Axios.get(route, { headers: { 'Authorization': token } })
-        .then(({ data }) => {
-            dispatch(retrievedData(data.data))
+        .then((response) => {
+            const { data } = response
+            console.log(data.data);
+            return dispatch(retrievedData(data.data))
         })
-        .catch(error => error.response ? dispatch(retrieveDataFailed(error.response.data)) : console.log(error.message))
+        .catch(error => {
+            const ResponseErr = error.response
+            const requestErr = error.request
+            const configErr = error.config
+            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
+            return ResponseErr ? dispatch(failed(ResponseErr))
+                : requestErr ? dispatch(failed(requestErr))
+                    : configErr ? dispatch(failed(configErr))
+                        : dispatch(failed(error.message))
+        })
 }
 
 export const post = (dispatch: any, response: any, failed: any, route: string, body: object, token?: any) => {
@@ -15,8 +26,13 @@ export const post = (dispatch: any, response: any, failed: any, route: string, b
             return dispatch(response(data.data))
         })
         .catch(error => {
-            const err = error.response;
-            console.log(err.data);
-            return error.response ? dispatch(failed(err.data)) : console.log(error.message)
+            const ResponseErr = error.response
+            const requestErr = error.request
+            const configErr = error.config
+            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
+            return ResponseErr ? dispatch(failed(ResponseErr.data))
+                : requestErr ? dispatch(failed(requestErr))
+                    : configErr ? dispatch(failed(configErr))
+                        : dispatch(failed(error.message))
         })
 }

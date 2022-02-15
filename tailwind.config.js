@@ -38,6 +38,9 @@ module.exports = {
         },
         fontFamily: {
           inter: ['Inter', 'sans-serif'],
+
+          // google fonts
+          nova: ['Nova Mono', 'monospace']
         },
         fontSize: {
           xs: ['0.75rem', { lineHeight: '1.5' }],

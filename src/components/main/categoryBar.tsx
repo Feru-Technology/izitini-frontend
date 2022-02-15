@@ -5,14 +5,14 @@ import { useSelector } from 'react-redux'
 export const CategoryBar = () => {
 
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.category);
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
     const categoryBar = categories.slice(0, 8)
     return (
         <>
             {isLoading ? (<h1>Loading ...</h1>) :
                 (<div className='
                 sr-only
-                md:not-sr-only border-t-2 border-b-2 border-gray-300
+                md:not-sr-only border-b-2 border-gray-300
                 flex justify-center
                 bg-gray-100 mt-2'>
                     <ul className='flex md:space-x-4 lg:space-x-8'>

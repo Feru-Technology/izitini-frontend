@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { fetch, post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { post } from '../../../api/apiAction'
+import { Transition } from '@headlessui/react'
+import { RootState } from '../../../redux/store'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
 
 const CustomerSignUp = () => {
-
-
 
   // redux
   const dispatch = useDispatch()
@@ -30,8 +30,10 @@ const CustomerSignUp = () => {
       full_name,
       account_type
     })
-    navigate('/')
+    if (profile) navigate('/')
   }
+
+  const { profile, error } = useSelector((state: RootState) => state.profile)
 
   return (
     <div>
@@ -42,7 +44,7 @@ const CustomerSignUp = () => {
             <h1 className='my-6 flex justify-center'>
               <Link to={'/'}>
                 <img
-                  src='https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo1.png'
+                  src='https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                   className=''
                   width='100px'
                   height='100px'
@@ -194,6 +196,15 @@ const CustomerSignUp = () => {
                     </span>
                   </label>
                 </div>
+                <div>
+
+                  <Transition
+                    show={!!error}
+                  >
+                    <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+
+                  </Transition>
+                </div>
                 <div className='text-center mt-6'>
                   <button
                     className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
@@ -204,9 +215,12 @@ const CustomerSignUp = () => {
                   </button>
                 </div>
                 <hr className='text-gray-600 mb-4' />
-                <div className='text-right '>
-                  <Link to='/signin'><a href='#' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</a> if already have an account by sign in,I agree to izitini's
-                    Terms of use * Privacy Policy</Link>
+                <div className='text-right'>
+                  <p className='font-medium'>
+                    <span className='text-gray-800'> Already have an account ? </span>
+                    <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link> </p>
+
+                  <p>By sign in,I agree to izitini's Terms of use and  Privacy Policy</p>
                 </div>
               </form>
             </div>
