@@ -69,9 +69,9 @@ const MyOrders = () => {
                     <div className='px-2 md:px-8 w-full'>
                         <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
-                            <div>
-                                <tr className=' px-1 pt-6 md:p-5 w-full text-xs'>
-                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                            <div className=' border-b border-gray-200'>
+                                <ul className='w-full text-xs flex cursor-pointer'>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
@@ -81,8 +81,8 @@ const MyOrders = () => {
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
                                         }}
-                                    >All</td>
-                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                    >All</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
                                         onClick={() => {
@@ -92,8 +92,8 @@ const MyOrders = () => {
                                             setShowRejectedOrders(false)
                                             setShowCompletedOrders(false)
                                         }}
-                                    >Processing</td>
-                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                    >Processing</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
                                             setShowSampleOrders(true)
@@ -103,8 +103,8 @@ const MyOrders = () => {
                                             setShowProcessingOrders(false)
                                         }}
 
-                                    >Sample</td>
-                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                    >Sample</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
                                             setShowCompletedOrders(true)
@@ -113,8 +113,8 @@ const MyOrders = () => {
                                             setShowRejectedOrders(false)
                                             setShowProcessingOrders(false)
                                         }}
-                                    >Completed</td>
-                                    <td className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                    >Completed</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             md:px-6 lg:px-6 py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
                                         onClick={() => {
                                             setShowRejectedOrders(true)
@@ -124,18 +124,21 @@ const MyOrders = () => {
                                             setShowProcessingOrders(false)
                                         }}
 
-                                    >Rejected</td>
-                                </tr>
+                                    >Rejected</li>
+                                </ul>
                             </div>
 
-                        </div>
+                            <table>
+                                <thead>
+                                    <th className=''>name</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Tracking no</th>
+                                </thead>
 
-                        <thead>
-                            <th className=''>name</th>
-                            <th>Price</th>
-                            <th>Status</th>
-                            <th>Tracking no</th>
-                        </thead>
+                            </table>
+
+                        </div>
 
                     </div>
 
