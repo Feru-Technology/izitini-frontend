@@ -157,7 +157,7 @@ export const Navbar = () => {
 
                                                 </div>
                                                 <div>
-                                                    <Link to='/signup'>Register</Link></div>
+                                                    <Link to='/account-types'>Register</Link></div>
                                             </div>
                                             <div>
                                                 <Link to='/signin'>

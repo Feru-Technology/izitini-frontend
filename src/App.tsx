@@ -15,6 +15,7 @@ import Dashboard from './components/vendor/Dashboard'
 import Subcategory from './components/main/subcategory'
 import AllProducts from './components/main/allProducts'
 import CreateStore from './components/vendor/CreateStore'
+import AccountTypes from './components/main/accountTypes'
 import CreateProduct from './components/vendor/CreateProduct'
 import SignInPage from './components/main/accounts/SignInPage'
 import { loggedIn, login, loginFailed } from './redux/profile.slice'
@@ -44,6 +45,7 @@ function App() {
                 <Route path='/products/:id' element={<Product />} />
                 <Route path='/products' element={<AllProducts />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
+                <Route path='/account-types' element={<AccountTypes />} />
                 <Route path='/products/c/:categoryName' element={<Category />} />
                 <Route path='/products/s/:id' element={<Subcategory />} />
 
