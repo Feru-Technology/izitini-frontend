@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
 
-const CustomerSignUp = () => {
+const VendorSignUp = () => {
 
   // redux
   const dispatch = useDispatch()
@@ -200,4 +200,4 @@ const CustomerSignUp = () => {
   )
 }
 
-export default CustomerSignUp
+export default VendorSignUp

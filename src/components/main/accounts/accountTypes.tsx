@@ -45,8 +45,10 @@ const AccountTypes = () => {
 
                     <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72 lg:w-80
                     hover:bg-dark-blue hover:text-white'>
-                        <span className='flex justify-center font-normal'>Vendor</span>
-                        <p className='flex justify-center'>I own a construction shop</p>
+                        <Link to='/vendor-signup'>
+                            <span className='flex justify-center font-normal'>Vendor</span>
+                            <p className='flex justify-center'>I own a construction shop</p>
+                        </Link>
                     </div>
                 </div>
             </div>
