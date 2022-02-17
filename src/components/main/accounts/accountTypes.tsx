@@ -20,28 +20,30 @@ const AccountTypes = () => {
                     <span className='font-serif font-light text-xl md:text-2xl'>Who are you?</span>
                 </div>
 
-                <div className='md:flex justify-center font-sans font-extralight md:text-lg'>
-                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72
+                <div className='md:flex justify-center font-sans font-extralight md:text-lg lg:text-xl'>
+                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72 lg:w-80
                     hover:bg-dark-blue hover:text-white'>
-                        <span className='flex justify-center font-normal'>Customer</span>
-                        <p className='flex justify-center'>I want to buy construction tools for my home</p>
+                        <Link to='/signup'>
+                            <span className='flex justify-center font-normal'>Customer</span>
+                            <p className='flex justify-center'>I want to buy construction tools for my home</p>
+                        </Link>
                     </div>
 
-                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72
+                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72 lg:w-80
                     hover:bg-dark-blue hover:text-white'>
                         <span className='flex justify-center font-normal'>Professional</span>
                         <p className='flex justify-center'>I fix peoples homes</p>
                     </div>
                 </div>
 
-                <div className='md:flex justify-center font-sans font-extralight md:text-lg'>
-                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72
+                <div className='md:flex justify-center font-sans font-extralight md:text-lg lg:text-xl'>
+                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72 lg:w-80
                     hover:bg-dark-blue hover:text-white'>
                         <span className='flex justify-center font-normal'>Contractor</span>
                         <p className='flex justify-center'>I own a construction company</p>
                     </div>
 
-                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72
+                    <div className='bg-gray-100 mx-5 p-5 border-2 border-gray-200 my-5 md:w-72 lg:w-80
                     hover:bg-dark-blue hover:text-white'>
                         <span className='flex justify-center font-normal'>Vendor</span>
                         <p className='flex justify-center'>I own a construction shop</p>
