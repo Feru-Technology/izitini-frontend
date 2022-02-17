@@ -214,7 +214,7 @@ const SignInPage = () => {
                     <p className='font-medium'>
                       <p>By sign in,I agree to izitini's Terms of use and Privacy Policy</p>
                       <span className='text-gray-800'>New to Izitini ? </span>
-                      <Link to='/signup' className='text-light-blue hover:underline hover:text-middle-blue'>Sign up</Link> </p>
+                      <Link to='/account-types' className='text-light-blue hover:underline hover:text-middle-blue'>Sign up</Link> </p>
 
                   </div>
                 </form>
