@@ -12,7 +12,7 @@ import { useMediaQuery } from 'react-responsive'
 import { MyResponsiveRadialBar } from './charts/orderCharts'
 import { ChevronDownIcon, DotsHorizontalIcon } from '@heroicons/react/solid'
 
-const Dashboard = () => {
+const VendorDashboard = () => {
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile);
 
@@ -126,4 +126,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default VendorDashboard

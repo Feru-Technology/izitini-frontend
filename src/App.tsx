@@ -1,27 +1,29 @@
-import { fetch, post } from './api/apiAction';
+import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import Home from './components/customer/home'
 import Cart from './components/customer/Cart'
 import Store from './components/vendor/Store'
-import Product from './components/customer/product'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
-import NotFound from './components/customer/NotFound'
-import Category from './components/customer/category'
 import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
-import Dashboard from './components/vendor/Dashboard'
+import Product from './components/customer/product'
+import NotFound from './components/customer/NotFound'
+import Category from './components/customer/category'
+import CreateStore from './components/vendor/CreateStore'
+import VendorDashboard from './components/vendor/Dashboard'
 import Subcategory from './components/customer/subcategory'
 import AllProducts from './components/customer/allProducts'
-import CreateStore from './components/vendor/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
+import CustomerDashboard from './components/customer/Dashboard'
 import SignInPage from './components/customer/accounts/SignInPage'
 import AccountTypes from './components/customer/accounts/accountTypes'
 import VendorSignUp from './components/customer/accounts/VendorSignUp'
-import { loggedIn, login, loginFailed } from './redux/profile.slice'
 import CustomerSignUp from './components/customer/accounts/CustomerSignUp'
+
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { loggedIn, login, loginFailed } from './redux/profile.slice'
 
 function App() {
 
@@ -50,8 +52,9 @@ function App() {
                 <Route path='/vendor-signup' element={<VendorSignUp />} />
                 <Route path='/products/c/:categoryName' element={<Category />} />
                 <Route path='/products/s/:id' element={<Subcategory />} />
+                <Route path='/dashboard' element={<CustomerDashboard />} />
 
-                <Route path='/vendor' element={<Dashboard />} />
+                <Route path='/vendor' element={<VendorDashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
                 <Route path='/vendor/orders' element={<Orders />} />
                 <Route path='/vendor/reports' element={<Reports />} />
