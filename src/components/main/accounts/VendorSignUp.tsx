@@ -15,16 +15,20 @@ const VendorSignUp = () => {
   const [contact, setContact] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
+  const [shop_name, setShop_name] = useState<string | null>(null)
+  const [about_shop, setAbout_shop] = useState<string | null>(null)
 
   const navigate = useNavigate()
 
   const signup = () => {
     dispatch(login())
-    post(dispatch, loggedIn, loginFailed, '/auth/register', {
+    post(dispatch, loggedIn, loginFailed, '/auth/register-vendor', {
       email,
       contact,
       password,
-      full_name
+      full_name,
+      shop_name,
+      about_shop
     })
     if (profile) navigate('/')
   }
@@ -68,6 +72,34 @@ const VendorSignUp = () => {
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Full Names'
                     onChange={e => setFull_name(e.target.value)}
+                  />
+                </div>
+                <div className='relative w-full mb-3'>
+                  <label
+                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    htmlFor='grid-password'
+                  >
+                    Shop Name
+                  </label>
+                  <input
+                    type='text'
+                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    placeholder='Shop Name'
+                    onChange={e => setShop_name(e.target.value)}
+                  />
+                </div>
+                <div className='relative w-full mb-3'>
+                  <label
+                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    htmlFor='grid-password'
+                  >
+                    About Shop
+                  </label>
+                  <input
+                    type='text'
+                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    placeholder='About Shop'
+                    onChange={e => setAbout_shop(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
