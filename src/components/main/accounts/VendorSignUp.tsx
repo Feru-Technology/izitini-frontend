@@ -11,11 +11,11 @@ const VendorSignUp = () => {
   // redux
   const dispatch = useDispatch()
 
+  const [name, setName] = useState<string | null>(null)
   const [email, setEmail] = useState<string | null>(null)
   const [contact, setContact] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
-  const [shop_name, setShop_name] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
 
   const navigate = useNavigate()
@@ -23,11 +23,11 @@ const VendorSignUp = () => {
   const signup = () => {
     dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/register-vendor', {
+      name,
       email,
       contact,
       password,
       full_name,
-      shop_name,
       about_shop
     })
     if (profile) navigate('/')
@@ -85,7 +85,7 @@ const VendorSignUp = () => {
                     type='text'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Shop Name'
-                    onChange={e => setShop_name(e.target.value)}
+                    onChange={e => setName(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
