@@ -50,51 +50,10 @@ const VendorSignUp = () => {
             </h1>
           </div>
           <div className='relative flex flex-col min-w-0 break-words w-full mb-6  rounded-lg bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
-            <div className='rounded-t mb-0 px-6 py-6'>
-              <div className='text-center mb-3'>
-                <h6 className='text-gray-500 text-sm font-bold'>
-                  Sign in with
-                </h6>
-              </div>
-              <div className=' text-center'>
-                <button
-                  className='bg-white active:bg-gray-50 text-gray-700 px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150'
-                  type='button'
-                >
-                  <img
-                    alt='...'
-                    className='w-5 mr-1'
-                    src='https://givefast.link/wp-content/themes/aiodl-default/assets/sources/facebook.svg'
-                  />
-                  facebook
-                </button>
-                <button
-                  className='bg-white active:bg-blueGray-50 text-blueGray-700 px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150'
-                  type='button'
-                >
-                  <img
-                    alt='...'
-                    className='w-5 mr-1'
-                    src='https://demos.creative-tim.com/notus-js/assets/img/google.svg'
-                  />
-                  Google
-                </button>
-                <button
-                  className='bg-white active:bg-blueGray-50 text-blueGray-700 px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150'
-                  type='button'
-                >
-                  <img
-                    alt='...'
-                    className='w-5 mr-1'
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png'
-                  />
-                  LinkedIn
-                </button>
-              </div>
-            </div>
+
             <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
               <div className='text-gray-700 border-bottom border-gray-600 text-center mb-3 font-bold'>
-                <small>Or sign in with credentials</small>
+                <p className='my-5'>Create your Account</p>
               </div>
               <form>
                 <div className='relative w-full mb-3'>
@@ -176,7 +135,7 @@ const VendorSignUp = () => {
                 </div>
                 <div className='text-center mt-6'>
                   <button
-                    className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
+                    className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                     type='button'
                     onClick={() => signup()}
                   >
@@ -185,11 +144,11 @@ const VendorSignUp = () => {
                 </div>
                 <hr className='text-gray-600 mb-4' />
                 <div className='text-right'>
-                  <p className='font-medium'>
+                  <p className='font-normal'>
                     <span className='text-gray-800'> Already have an account ? </span>
                     <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link> </p>
 
-                  <p>By sign in,I agree to izitini's Terms of use and  Privacy Policy</p>
+                  <p className='font-light'>By sign in,I agree to izitini's Terms of use and  Privacy Policy</p>
                 </div>
               </form>
             </div>

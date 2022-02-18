@@ -193,7 +193,7 @@ const SignInPage = () => {
                     </Transition>
                   </div>
                   <div className="text-right text-light-blue hover:underline hover:text-middle-blue">
-                    <a href="#">Forgot your password?</a>
+                    <span>Forgot your password?</span>
                   </div>
 
                   <div className="">
