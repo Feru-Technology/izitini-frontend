@@ -29,26 +29,26 @@ import {
 const Home = () => {
 
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(fetchingCategories());
+        dispatch(fetchingCategories())
         fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
     }, [dispatch])
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.categories);
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
     const categorySection = categories.slice(0, 9)
 
     useEffect(() => {
-        dispatch(fetchingProducts());
+        dispatch(fetchingProducts())
         fetch(dispatch, retrievedProducts, retrievedProductFailed, '/product')
     }, [dispatch])
 
-    const { products } = useSelector((state: RootState) => state.allProducts);
+    const { products } = useSelector((state: RootState) => state.allProducts)
 
     const productSection = products.slice(0, 5)
 
