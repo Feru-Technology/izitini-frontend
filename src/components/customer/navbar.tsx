@@ -8,10 +8,12 @@ import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { ChevronDownIcon } from '@heroicons/react/outline'
 import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -175,19 +177,18 @@ export const Navbar = () => {
                                             {/* Profile dropdown */}
                                             <Menu as="div" className="">
                                                 <div>
-                                                    <Menu.Button className="flex space-x-4">
 
+                                                    <div className='flex flex-row justify-center items-center space-x-2'>
                                                         <img
-                                                            className="h-7 mt-2 md:mt-0 md:h-9 w-auto rounded-full"
-                                                            src={
-                                                                profile.user.profile_image === null ?
-                                                                    backUpPImage
-                                                                    : profile.user.profile_image
-                                                            }
-                                                            alt="PImage"
+                                                            src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
+                                                            className='w-9 h-9 rounded-full mx-auto'
+                                                            alt='pImg'
                                                         />
-                                                        <p className="sr-only lg:not-sr-only text-base">{profile.user.full_name}</p>
-                                                    </Menu.Button>
+                                                        <p className=''>{profile?.user.full_name}</p>
+                                                        <Menu.Button className="flex space-x-4">
+                                                            <ChevronDownIcon className='h-5 w-5' />
+                                                        </Menu.Button>
+                                                    </div>
                                                 </div>
                                                 <Transition
                                                     as={Fragment}

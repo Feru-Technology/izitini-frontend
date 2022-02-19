@@ -1,16 +1,11 @@
-import Header from '../vendor/Header'
 import { useState } from 'react'
+import Header from '../vendor/Header'
 import SiderBar from '../vendor/SiderBar'
-import data from '../../data/data.json'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import Example from '../vendor/charts/overallRevenue'
-import DashboardCard10 from '../vendor/cards/topDeals'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
-import { MyResponsiveRadialBar } from '../vendor/charts/orderCharts'
-import { ChevronDownIcon, DotsHorizontalIcon } from '@heroicons/react/solid'
 
 const CustomerDashboard = () => {
 
