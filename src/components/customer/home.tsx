@@ -55,7 +55,7 @@ const Home = () => {
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
-            <div className='font-nova'>
+            <div className='font-sans'>
                 < Navbar />
                 < CategoryBar
                 />
@@ -82,8 +82,8 @@ const Home = () => {
                                 {categories.map((cat) => (
                                     <Link to={`/products/c/${cat.name}`}>
                                         <li
-                                            className='w-full text-lg font-normal text-gray-700
-                                    hover:bg-dark-blue hover:text-white
+                                            className='w-full text-lg text-gray-700
+                                    hover:bg-dark-blue hover:text-white press-start
                                     md:px-3 lg:px-4'
                                         >{cat.name}</li>
                                     </Link>))}
@@ -139,7 +139,7 @@ const Home = () => {
                                         <ul>
                                             {
                                                 category.subCategories.map((subCat) => (
-                                                    <li className='mt-1 font-normal'>{subCat.name}</li>
+                                                    <li className='mt-1 font-light'>{subCat.name}</li>
                                                 ))
                                             }
                                             <p className='text-dark-blue'>see all</p>

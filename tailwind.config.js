@@ -40,7 +40,8 @@ module.exports = {
           inter: ['Inter', 'sans-serif'],
 
           // google fonts
-          nova: ['Nova Mono', 'monospace']
+          nova: ['Nova Mono', 'monospace'],
+          'press-start': ['"IBM Plex Sans"', 'cursive']
         },
         fontSize: {
           xs: ['0.75rem', { lineHeight: '1.5' }],
