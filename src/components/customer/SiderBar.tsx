@@ -77,7 +77,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor'
+                                    to='/dashboard'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' &&
                                         'hover:text-gray-400'
                                         }`}
@@ -86,45 +86,6 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         <TemplateIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className=' text-sm font-medium ml-3 text-white   duration-200'>
                                             Dashboard
-                                        </p>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('store') && 'bg-gray-800'
-                                    }`}
-                                onClick={handleClick}
-                            >
-                                <Link
-                                    to='/vendor/stores'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('store') &&
-                                        'hover:text-gray-400'
-                                        }`}
-                                >
-                                    <div className='flex items-center'>
-                                        <ShoppingBagIcon className='flex-shrink-0 h-5 w-5' />
-                                        <p className='text-sm font-medium ml-3  duration-200'>
-                                            Store
-                                        </p>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('products') &&
-                                    'bg-gray-800'
-                                    }`}
-                                onClick={handleClick}
-                            >
-                                <Link
-                                    to='/vendor/products'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('products') &&
-                                        'hover:text-gray-400'
-                                        }`}
-                                >
-                                    <div className='flex items-center'>
-                                        <CollectionIcon className='flex-shrink-0 h-5 w-5' />
-                                        <p className='text-sm font-medium ml-3  duration-200'>
-                                            Products
                                         </p>
                                     </div>
                                 </Link>

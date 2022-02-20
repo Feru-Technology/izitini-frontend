@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import SiderBar from '../vendor/SiderBar'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
