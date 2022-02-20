@@ -1,14 +1,13 @@
 import React from 'react'
 import { Transition } from '@headlessui/react'
 import {
-    TemplateIcon,
-    ShoppingBagIcon,
-    GiftIcon,
-    ChartSquareBarIcon,
     CogIcon,
-    CollectionIcon,
-    ClipboardCheckIcon,
+    GiftIcon,
     LogoutIcon,
+    TemplateIcon,
+    MinusCircleIcon,
+    ClipboardCheckIcon,
+    DotsHorizontalIcon
 } from '@heroicons/react/solid'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -104,7 +103,45 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                     <div className='flex items-center'>
                                         <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Orders
+                                            Completed Orders
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('orders') && 'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/vendor/orders'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <DotsHorizontalIcon className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Processing Orders
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('orders') && 'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/vendor/orders'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <MinusCircleIcon className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Rejected Orders
                                         </p>
                                     </div>
                                 </Link>
@@ -125,26 +162,6 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         <GiftIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Coupons
-                                        </p>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('reports') &&
-                                    'bg-gray-800'
-                                    }`}
-                                onClick={handleClick}
-                            >
-                                <Link
-                                    to='/vendor/reports'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('reports') &&
-                                        'hover:text-gray-400'
-                                        }`}
-                                >
-                                    <div className='flex items-center'>
-                                        <ChartSquareBarIcon className='flex-shrink-0 h-5 w-5' />
-                                        <p className='text-sm font-medium ml-3  duration-200'>
-                                            Reports
                                         </p>
                                     </div>
                                 </Link>
