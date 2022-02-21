@@ -134,15 +134,18 @@ export const Navbar = () => {
                                         </button>
                                     }
 
-                                    <button
-                                        type="button"
-                                        className='flex mt-3 md:mt-0'
-                                    >
-                                        <span className="sr-only">View cart</span>
-                                        <BsCart3 className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
-                                        {cart ?
-                                            <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>{cartItems}</p> : ''}
-                                    </button>
+                                    <Link to='/cart'>
+                                        <button
+                                            type="button"
+                                            className='flex mt-3 md:mt-0'
+                                        >
+                                            <span className="sr-only">View cart</span>
+                                            <BsCart3 className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            {cart ?
+                                                <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>{cartItems}</p> : ''}
+
+                                        </button>
+                                    </Link>
                                 </div>
 
                                 <div className='absolute right-0 md:relative'>

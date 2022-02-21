@@ -80,7 +80,7 @@ const Home = () => {
                             <ul className='ml-2
                         md:w-full md:h-52 md:overflow-y-scroll'>
                                 {categories.map((cat) => (
-                                    <Link to={`/products/${cat.name}`}>
+                                    <Link to={`/products/c/${cat.name}`}>
                                         <li
                                             className='w-full text-lg font-normal text-gray-700
                                     hover:bg-dark-blue hover:text-white
@@ -129,7 +129,7 @@ const Home = () => {
                 xl:gap-4
                 gap-3'>
                         {categorySection.map((category) => (
-                            <Link to={`/products/${category.name}`}>
+                            <Link to={`/products/c/${category.name}`}>
                                 <div className='relative my-2'>
                                     <p className='absolute ml-2'>{category.name}</p>
                                     <img className='h-36  2xl:h-52 w-full bg-gray-200
@@ -162,16 +162,17 @@ const Home = () => {
                     gap-3
                     '>
                             {productSection.map((p) => (
-                                <div className='mt-2'
-                                    onClick={() => navigate(`/products/${p.id}`)}>
-                                    <img className='bg-gray-200
+                                <div className='mt-2'>
+                                    <Link to={`/products/${p.id}`}>
+                                        <img className='bg-gray-200
                                 w-full
                                 h-32
                                 2xl:h-52' src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
-                                    <p>{p.name}</p>
-                                    <p>{p.brand}</p>
-                                    <p>Ratings</p>
-                                    <p>{p.price}</p>
+                                        <p>{p.name}</p>
+                                        <p>{p.brand}</p>
+                                        <p>Ratings</p>
+                                        <p>{p.price}</p>
+                                    </Link>
                                 </div>
                             ))}
                         </div>
