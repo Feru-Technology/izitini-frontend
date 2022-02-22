@@ -1,5 +1,6 @@
 import React from 'react'
 import { Transition } from '@headlessui/react'
+import { Link, useLocation } from 'react-router-dom'
 import {
     CogIcon,
     GiftIcon,
@@ -9,7 +10,6 @@ import {
     ClipboardCheckIcon,
     DotsHorizontalIcon
 } from '@heroicons/react/solid'
-import { Link, useLocation } from 'react-router-dom'
 
 interface Isidebar {
     isClosed: boolean
@@ -101,9 +101,9 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
+                                        <MinusCircleIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Completed Orders
+                                            Rejected Orders
                                         </p>
                                     </div>
                                 </Link>
@@ -139,9 +139,9 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <MinusCircleIcon className='flex-shrink-0 h-5 w-5' />
+                                        <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Rejected Orders
+                                            Completed Orders
                                         </p>
                                     </div>
                                 </Link>
