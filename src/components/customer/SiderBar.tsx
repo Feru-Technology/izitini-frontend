@@ -1,14 +1,14 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Transition } from '@headlessui/react'
-import { Link, useLocation } from 'react-router-dom'
+import { loggedIn } from '../../redux/profile.slice'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
     CogIcon,
     GiftIcon,
     LogoutIcon,
     TemplateIcon,
-    MinusCircleIcon,
     ClipboardCheckIcon,
-    DotsHorizontalIcon
 } from '@heroicons/react/solid'
 
 interface Isidebar {
@@ -17,12 +17,25 @@ interface Isidebar {
     isStatic: boolean
 }
 const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
+
+    const navigate = useNavigate()
+
+    // redux
+    const dispatch = useDispatch();
+
     const location = useLocation()
     const { pathname } = location
 
     const handleClick = () => {
         setIsClosed(true)
     }
+
+    const logout = () => {
+        dispatch(loggedIn(null))
+        localStorage.clear()
+        navigate('/')
+    }
+
     return (
         <div>
             <Transition
@@ -95,7 +108,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/orders'
+                                    to='/orders'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -115,7 +128,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/coupons'
+                                    to='/profile'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('coupons') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -135,7 +148,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/settings'
+                                    to='/settings'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -161,7 +174,8 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 'hover:text-gray-400'
                                 }`}
                         >
-                            <div className='flex items-center space-x-2'>
+                            <div className='flex items-center space-x-2'
+                                onClick={() => logout()}>
                                 <LogoutIcon className='w-5 h-5' />
                                 <p>Logout</p>
                             </div>

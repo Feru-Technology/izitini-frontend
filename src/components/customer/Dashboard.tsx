@@ -50,6 +50,9 @@ const CustomerDashboard = () => {
                                 </Transition>
 
                                 {/* customer dashboard */}
+                                <div className=''>
+                                    <p>recent activities</p>
+                                </div>
                             </div>
                         </div>
                     )
