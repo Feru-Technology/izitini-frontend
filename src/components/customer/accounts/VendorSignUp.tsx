@@ -57,7 +57,7 @@ const VendorSignUp = () => {
 
             <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
               <div className='text-gray-700 border-bottom border-gray-600 text-center mb-3 font-bold'>
-                <p className='my-5'>Create your Account</p>
+                <p className='my-5'>Create your Shop Account</p>
               </div>
               <form>
                 <div className='relative w-full mb-3'>
@@ -112,7 +112,7 @@ const VendorSignUp = () => {
                   <input
                     type='text'
                     className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
-                    placeholder='contact'
+                    placeholder='contact number'
                     onChange={e => setContact(e.target.value)}
                   />
                 </div>
