@@ -182,10 +182,10 @@ export const Navbar = () => {
                                                         <div className='flex flex-row justify-center items-center space-x-2'>
                                                             <img
                                                                 src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
-                                                                className='w-6 h-6 mt-2 rounded-full mx-auto'
+                                                                className='w-6 h-6 mt-2 rounded-full mx-auto md:w-8 md:h-8 md:mt-0'
                                                                 alt='pImg'
                                                             />
-                                                            <p className='sr-only md:not-sr-only'>{profile?.user.full_name}</p>
+                                                            <p className='sr-only lg:not-sr-only'>{profile?.user.full_name}</p>
                                                             <ChevronDownIcon className='sr-only lg:h-5 lg:w-5 lg:not-sr-only' />
                                                         </div>
                                                     </Menu.Button>
