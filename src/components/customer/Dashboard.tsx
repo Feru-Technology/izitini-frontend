@@ -50,7 +50,7 @@ const CustomerDashboard = () => {
                                 </Transition>
 
                                 {/* customer dashboard */}
-                                <div className=''>
+                                <div className='p-5 flex justify-center'>
                                     <p>recent activities</p>
                                 </div>
                             </div>
