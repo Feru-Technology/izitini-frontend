@@ -119,7 +119,7 @@ export const Navbar = () => {
                                         className='flex mt-3 md:mt-0'
                                     >
                                         <span className="sr-only">View saved items</span>
-                                        <BsSuitHeart className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                        <BsSuitHeart className="h-5 md:h-6 lg:h-7 md:text-sm w-auto" aria-hidden="true" />
                                         <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>
                                             <p>3</p>
                                         </div>
@@ -131,7 +131,7 @@ export const Navbar = () => {
                                             className='flex mt-3 md:mt-0'
                                         >
                                             <span className="sr-only">View notifications</span>
-                                            <BsBell className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            <BsBell className="h-5 md:h-6 lg:h-7 md:text-sm w-auto" aria-hidden="true" />
                                             <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
                                         </button>
                                     }
@@ -142,7 +142,7 @@ export const Navbar = () => {
                                             className='flex mt-3 md:mt-0'
                                         >
                                             <span className="sr-only">View cart</span>
-                                            <BsCart3 className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            <BsCart3 className="h-5 md:h-6 lg:h-7 md:text-sm w-auto" aria-hidden="true" />
                                             {cart ?
                                                 <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>{cartItems}</p> : ''}
 
@@ -177,18 +177,18 @@ export const Navbar = () => {
                                             {/* Profile dropdown */}
                                             <Menu as="div" className="">
                                                 <div>
+                                                    <Menu.Button className="flex space-x-4">
 
-                                                    <div className='flex flex-row justify-center items-center space-x-2'>
-                                                        <img
-                                                            src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
-                                                            className='w-9 h-9 rounded-full mx-auto'
-                                                            alt='pImg'
-                                                        />
-                                                        <p className=''>{profile?.user.full_name}</p>
-                                                        <Menu.Button className="flex space-x-4">
-                                                            <ChevronDownIcon className='h-5 w-5' />
-                                                        </Menu.Button>
-                                                    </div>
+                                                        <div className='flex flex-row justify-center items-center space-x-2'>
+                                                            <img
+                                                                src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
+                                                                className='w-6 h-6 mt-2 rounded-full mx-auto'
+                                                                alt='pImg'
+                                                            />
+                                                            <p className='sr-only md:not-sr-only'>{profile?.user.full_name}</p>
+                                                            <ChevronDownIcon className='sr-only lg:h-5 lg:w-5 lg:not-sr-only' />
+                                                        </div>
+                                                    </Menu.Button>
                                                 </div>
                                                 <Transition
                                                     as={Fragment}
@@ -349,6 +349,6 @@ export const Navbar = () => {
                     </Disclosure.Panel>
                 </>
             )}
-        </Disclosure>
+        </Disclosure >
     )
 }

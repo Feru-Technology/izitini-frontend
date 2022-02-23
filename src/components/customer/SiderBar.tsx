@@ -123,7 +123,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                     <div className='flex items-center'>
                                         <GiftIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Coupons
+                                            Profile
                                         </p>
                                     </div>
                                 </Link>
