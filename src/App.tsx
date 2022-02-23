@@ -9,6 +9,7 @@ import Coupons from './components/vendor/Coupons'
 import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
+import MyOrders from './components/customer/orders'
 import NotFound from './components/customer/NotFound'
 import Category from './components/customer/category'
 import CreateStore from './components/vendor/CreateStore'
@@ -53,6 +54,7 @@ function App() {
                 <Route path='/products/c/:categoryName' element={<Category />} />
                 <Route path='/products/s/:id' element={<Subcategory />} />
                 <Route path='/dashboard' element={<CustomerDashboard />} />
+                <Route path='/orders' element={<MyOrders />} />
 
                 <Route path='/vendor' element={<VendorDashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
