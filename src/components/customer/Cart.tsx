@@ -71,115 +71,122 @@ const Cart = () => {
                                 {orders.map((items: any) => {
                                     console.log('items', items)
                                     return (
-                                        <table className='min-w-full divide-y divide-gray-200'>
-                                            <thead className='bg-white'>
-                                                <tr className=''>
-                                                    <th
-                                                        scope='col'
-                                                        className='px-3 font-semibold text-gray-700
+                                        <div>
+                                            <table className='min-w-full divide-y divide-gray-200'>
+                                                <thead className='bg-white'>
+                                                    <tr className=''>
+                                                        <th
+                                                            scope='col'
+                                                            className='px-3 font-semibold text-gray-700
                                                 md:px-6 text-xs md:text-sm
                                                 lg:px-6 py-3 text-left lg:text-base'
-                                                    >
-                                                        Product
-                                                    </th>
-                                                    <th
-                                                        scope='col'
-                                                        className='font-semibold text-gray-700
+                                                        >
+                                                            Product
+                                                        </th>
+                                                        <th
+                                                            scope='col'
+                                                            className='font-semibold text-gray-700
                                                 md:px-6 text-xs md:text-sm
                                                 lg:px-6 py-3 text-left lg:text-base
                                     '
-                                                    >
-                                                        Price
-                                                    </th>
-                                                    <th
-                                                        scope='col'
-                                                        className='font-semibold text-gray-700
-                                                md:px-6 text-xs md:text-sm
-                                                lg:px-6 py-3 text-left lg:text-base'
-                                                    >
-                                                        Quality
-                                                    </th>
-                                                    <th
-                                                        scope='col'
-                                                        className='font-semibold text-gray-700
-                                                md:px-6 text-xs md:text-sm
-                                                lg:px-6 py-3 text-left lg:text-base'
-                                                    >
-                                                        Total
-                                                    </th>
-                                                    <th
-                                                        scope='col'
-                                                        className='relative md:px-6 lg:px-6 py-3'
-                                                    >
-                                                        <span className='sr-only'>
-                                                            Edit
-                                                        </span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-
-                                            {items.order_items.map((item: any) => {
-                                                console.log(item)
-                                                return (
-
-                                                    <tbody className='bg-white'>
-                                                        <tr
                                                         >
-                                                            <td className='px-3 md:px-6 py-4'>
-                                                                <div className='flex items-center'>
-                                                                    <div className='flex-shrink-0'>
-                                                                        <img
-                                                                            className='h-8 w-auto md:h-10 lg:h-16'
-                                                                            src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                                                                            alt=''
-                                                                        />
+                                                            Price
+                                                        </th>
+                                                        <th
+                                                            scope='col'
+                                                            className='font-semibold text-gray-700
+                                                md:px-6 text-xs md:text-sm
+                                                lg:px-6 py-3 text-left lg:text-base'
+                                                        >
+                                                            Quality
+                                                        </th>
+                                                        <th
+                                                            scope='col'
+                                                            className='font-semibold text-gray-700
+                                                md:px-6 text-xs md:text-sm
+                                                lg:px-6 py-3 text-left lg:text-base'
+                                                        >
+                                                            Total
+                                                        </th>
+                                                        <th
+                                                            scope='col'
+                                                            className='relative md:px-6 lg:px-6 py-3'
+                                                        >
+                                                            <span className='sr-only'>
+                                                                Edit
+                                                            </span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                {items.order_items.map((item: any) => {
+                                                    console.log(item)
+                                                    return (
+
+                                                        <tbody className='bg-white'>
+                                                            <tr
+                                                            >
+                                                                <td className='px-3 md:px-6 py-4'>
+                                                                    <div className='flex items-center'>
+                                                                        <div className='flex-shrink-0'>
+                                                                            <img
+                                                                                className='h-8 w-auto md:h-10 lg:h-16'
+                                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
+                                                                                alt=''
+                                                                            />
+                                                                        </div>
+                                                                        <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
+                                                                            {item.product.name}
+                                                                        </div>
                                                                     </div>
-                                                                    <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
-                                                                        {item.product.name}
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                                                </td>
+                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                {item.product.price}
-                                                            </td>
-                                                            <td className='py-4 text-xs md:text-sm text-gray-800
+                                                                    {item.product.price}
+                                                                </td>
+                                                                <td className='py-4 text-xs md:text-sm text-gray-800
                                             md:px-6 lg:px-6'>
-                                                                <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
-                                                                    <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
-                                                                        <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                            onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
-                                                                        <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
-                                                                            {item.quantity}
-                                                                        </span>
-                                                                        <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                            onClick={() => reduceOrderItemQyt(item.order_id, item.product_id)} >-</button>
+                                                                    <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
+                                                                        <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
+                                                                            <button className='font-medium text-gray-400 hover:text-dark-blue'
+                                                                                onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
+                                                                            <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
+                                                                                {item.quantity}
+                                                                            </span>
+                                                                            <button className='font-medium text-gray-400 hover:text-dark-blue'
+                                                                                onClick={() => reduceOrderItemQyt(item.order_id, item.product_id)} >-</button>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                                                </td>
+                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                {totalPrice(item.product.price, item.quantity)}
-                                                            </td>
-                                                            <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
-                                                                <button type='button'
-                                                                    className='text-dark-blue hover:text-red-600'
-                                                                    onClick={() => removeOrderItem(item.order_id, item.product_id)}
-                                                                >
-                                                                    <MdOutlineCancel className='w-6 h-auto' />
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
+                                                                    {totalPrice(item.product.price, item.quantity)}
+                                                                </td>
+                                                                <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
+                                                                    <button type='button'
+                                                                        className='text-dark-blue hover:text-red-600'
+                                                                        onClick={() => removeOrderItem(item.order_id, item.product_id)}
+                                                                    >
+                                                                        <MdOutlineCancel className='w-6 h-auto' />
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
 
-                                                )
-                                            })}
+                                                    )
+                                                })}
 
-                                            <div className='bg-gray-100 w-full flex'>
-                                                <p>vendor: {items.shop.name}</p>
+                                            </table>
+
+                                            <div className='flex border border-gray-200 bg-white mb-4 p-3 font-light text-xs space-x-3
+                                            md:text-sm lg:text-base'>
+                                                <p className='w-2/6 flex'>Vendor: <span className='ml-1 text-gray-500'>{items.shop.name}</span></p>
+                                                <p className='w-2/6 flex'>Total <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
+                                                    <span className='ml-1 text-dark-blue'>1000</span> </p>
+                                                <p className='w-2/6 flex'>Shipping <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
+                                                    <span className='ml-1 text-dark-blue'>1000</span> </p>
                                             </div>
-
-                                        </table>
+                                        </div>
                                     )
                                 })}
 
