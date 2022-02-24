@@ -56,11 +56,11 @@ const Cart = () => {
                 : cart.length !== 0 ? cart.map((orders: any) => (
 
                     <div className='h-full'>
-                        <p className='font-bold text-xl text-center pt-3 md:pt-5'>Your cart</p>
                         <div className='mx-3 my-3
-                                md:flex md:mx-6 md:my-5  md:space-x-3 md:y-3
-                                lg:mx:12 lg:space-x-5'>
+                                md:flex md:mx-2 md:my-5  md:space-x-3 md:y-3
+                                lg:mx-8 lg:space-x-5 relative'>
                             <div className='w-full md:w-2/3'>
+                                <p className='font-semibold text-xl text-center p-3 md:p-5'>Your cart</p>
 
                                 {orders.map((items: any) => {
                                     console.log('items', items)
@@ -143,8 +143,7 @@ const Cart = () => {
                                                             </td>
                                                             <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                {item.product.price}
-                                                            </td>
+                                                                {item.product.price} RWF</td>
                                                             <td className='py-4 text-xs md:text-sm text-gray-800
                                             md:px-6 lg:px-6'>
                                                                 <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
@@ -161,8 +160,7 @@ const Cart = () => {
                                                             </td>
                                                             <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                {totalPrice(item.product.price, item.quantity)}
-                                                            </td>
+                                                                {totalPrice(item.product.price, item.quantity)} RWF</td>
                                                             <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                                                 <button type='button'
                                                                     className='text-dark-blue hover:text-red-600'
@@ -183,27 +181,27 @@ const Cart = () => {
                                             md:text-sm lg:text-base'>
                                                 <p className='w-2/6 flex'>Vendor: <span className='ml-1 text-gray-500'>{items.shop.name}</span></p>
                                                 <p className='w-2/6 flex'>Total <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
-                                                    <span className='ml-1 text-dark-blue'>{subTotal(totalPricesPerOrder)}</span> </p>
+                                                    <span className='ml-1 text-dark-blue'>{subTotal(totalPricesPerOrder)} RWF</span> </p>
                                                 <p className='w-2/6 flex'>Shipping <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
-                                                    <span className='ml-1 text-dark-blue'>1000</span> </p>
+                                                    <span className='ml-1 text-dark-blue'>1000 RWF</span> </p>
                                             </div>
                                         </div>
                                     )
                                 })}
 
                             </div>
-                            <div className=' mt-3 md:mt-0 md:w-1/3 bg-white text-base font-bold'>
-                                <p className='py-3 border-b-2 border-dark-blue text-center
+
+                            <div className='bg-white text-base font-bold md:w-1/3 absolute bottom-3 -right-3'>
+                                <p className='py-3 border-b border-dark-blue text-center
                                 text-base lg:text-lg'>Order Summary</p>
                                 <div className='flex m-3 text-gray-500'>
                                     <p>Subtotal</p>
-                                    <p className='absolute right-8 md:right-10 lg:right-16'>
-                                        {subTotal(totalPrices)}
-                                        RWF</p>
+                                    <p className='absolute right-8 md:right-10 lg:right-16 text-dark-blue'>
+                                        {subTotal(totalPrices)} RWF</p>
                                 </div>
                                 <div className='flex m-3 text-gray-500'>
                                     <p>Shipping</p>
-                                    <p className='absolute right-8 md:right-10 lg:right-16'> N/A </p>
+                                    <p className='absolute right-8 md:right-10 lg:right-16 text-dark-blue'> - RWF </p>
                                 </div>
                                 <p className='m-3 text-dark-blue'>Have a Coupon</p>
                                 <div className='flex bg-gray-200 font-bold py-2 md:py-3'>
