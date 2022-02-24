@@ -20,12 +20,6 @@ const Cart = () => {
 
     let totalPrices: any = []
 
-    const totalPrice = (price: number, quantity: string) => {
-        const total = price * parseInt(quantity)
-        totalPrices.push(total)
-        return total
-    }
-
     const subTotal = (totals: []) => {
         return lodash.sum(totals)
     }
@@ -70,6 +64,15 @@ const Cart = () => {
 
                                 {orders.map((items: any) => {
                                     console.log('items', items)
+
+                                    let totalPricesPerOrder: any = []
+
+                                    const totalPrice = (price: number, quantity: string) => {
+                                        const total = price * parseInt(quantity)
+                                        totalPricesPerOrder.push(total)
+                                        totalPrices.push(total)
+                                        return total
+                                    }
                                     return (
                                         <div>
                                             <table className='min-w-full divide-y divide-gray-200'>
@@ -119,62 +122,60 @@ const Cart = () => {
                                                     </tr>
                                                 </thead>
 
-                                                {items.order_items.map((item: any) => {
-                                                    console.log(item)
-                                                    return (
+                                                {items.order_items.map((item: any) => (
 
-                                                        <tbody className='bg-white'>
-                                                            <tr
-                                                            >
-                                                                <td className='px-3 md:px-6 py-4'>
-                                                                    <div className='flex items-center'>
-                                                                        <div className='flex-shrink-0'>
-                                                                            <img
-                                                                                className='h-8 w-auto md:h-10 lg:h-16'
-                                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
-                                                                                alt=''
-                                                                            />
-                                                                        </div>
-                                                                        <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
-                                                                            {item.product.name}
-                                                                        </div>
+                                                    <tbody className='bg-white'>
+                                                        <tr
+                                                        >
+                                                            <td className='px-3 md:px-6 py-4'>
+                                                                <div className='flex items-center'>
+                                                                    <div className='flex-shrink-0'>
+                                                                        <img
+                                                                            className='h-8 w-auto md:h-10 lg:h-16'
+                                                                            src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
+                                                                            alt=''
+                                                                        />
                                                                     </div>
-                                                                </td>
-                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                                                    <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
+                                                                        {item.product.name}
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                    {item.product.price}
-                                                                </td>
-                                                                <td className='py-4 text-xs md:text-sm text-gray-800
+                                                                {item.product.price}
+                                                            </td>
+                                                            <td className='py-4 text-xs md:text-sm text-gray-800
                                             md:px-6 lg:px-6'>
-                                                                    <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
-                                                                        <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
-                                                                            <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                                onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
-                                                                            <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
-                                                                                {item.quantity}
-                                                                            </span>
-                                                                            <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                                onClick={() => reduceOrderItemQyt(item.order_id, item.product_id)} >-</button>
-                                                                        </div>
+                                                                <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
+                                                                    <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
+                                                                        <button className='font-medium text-gray-400 hover:text-dark-blue'
+                                                                            onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
+                                                                        <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
+                                                                            {item.quantity}
+                                                                        </span>
+                                                                        <button className='font-medium text-gray-400 hover:text-dark-blue'
+                                                                            onClick={() => reduceOrderItemQyt(item.order_id, item.product_id)} >-</button>
                                                                     </div>
-                                                                </td>
-                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                                                </div>
+                                                            </td>
+                                                            <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
                                             md:px-6 lg:px-6 py-4'>
-                                                                    {totalPrice(item.product.price, item.quantity)}
-                                                                </td>
-                                                                <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
-                                                                    <button type='button'
-                                                                        className='text-dark-blue hover:text-red-600'
-                                                                        onClick={() => removeOrderItem(item.order_id, item.product_id)}
-                                                                    >
-                                                                        <MdOutlineCancel className='w-6 h-auto' />
-                                                                    </button>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
+                                                                {totalPrice(item.product.price, item.quantity)}
+                                                            </td>
+                                                            <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
+                                                                <button type='button'
+                                                                    className='text-dark-blue hover:text-red-600'
+                                                                    onClick={() => removeOrderItem(item.order_id, item.product_id)}
+                                                                >
+                                                                    <MdOutlineCancel className='w-6 h-auto' />
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
 
-                                                    )
-                                                })}
+                                                )
+                                                )}
 
                                             </table>
 
@@ -182,7 +183,7 @@ const Cart = () => {
                                             md:text-sm lg:text-base'>
                                                 <p className='w-2/6 flex'>Vendor: <span className='ml-1 text-gray-500'>{items.shop.name}</span></p>
                                                 <p className='w-2/6 flex'>Total <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
-                                                    <span className='ml-1 text-dark-blue'>1000</span> </p>
+                                                    <span className='ml-1 text-dark-blue'>{subTotal(totalPricesPerOrder)}</span> </p>
                                                 <p className='w-2/6 flex'>Shipping <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
                                                     <span className='ml-1 text-dark-blue'>1000</span> </p>
                                             </div>
