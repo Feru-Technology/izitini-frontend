@@ -50,8 +50,10 @@ const MyOrders = () => {
                                 </Transition>
 
                                 {/* customer orders */}
-                                <div className='p-5 flex justify-center'>
-                                    <p>my orders</p>
+                                <div className='p-5 flex justify-center text-xs'>
+                                    <div className='border-2 p-2 mx-1 rounded-lg'>Completed Orders</div>
+                                    <div className='border-2 p-2 mx-1 rounded-lg'>Processing Orders</div>
+                                    <div className='border-2 p-2 mx-1 rounded-lg'>Rejected Orders</div>
                                 </div>
                             </div>
                         </div>
