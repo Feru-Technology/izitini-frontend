@@ -51,9 +51,9 @@ const MyOrders = () => {
 
                                 {/* customer orders */}
                                 <div className='p-5 flex justify-center text-xs'>
-                                    <div className='border-2 p-2 mx-1 rounded-lg'>Completed Orders</div>
-                                    <div className='border-2 p-2 mx-1 rounded-lg'>Processing Orders</div>
-                                    <div className='border-2 p-2 mx-1 rounded-lg'>Rejected Orders</div>
+                                    <div className='border-2 p-2 mx-1 rounded-lg hover:bg-header-blue hover:border-header-blue'>Completed Orders</div>
+                                    <div className='border-2 p-2 mx-1 rounded-lg hover:bg-header-blue hover:border-header-blue'>Processing Orders</div>
+                                    <div className='border-2 p-2 mx-1 rounded-lg hover:bg-header-blue hover:border-header-blue'>Rejected Orders</div>
                                 </div>
                             </div>
                         </div>
