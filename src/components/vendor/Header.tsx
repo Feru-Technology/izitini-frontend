@@ -1,7 +1,6 @@
 import {
     BellIcon,
     ChatIcon,
-    ChevronDownIcon,
     MenuAlt2Icon
 } from '@heroicons/react/outline'
 import { SearchIcon } from '@heroicons/react/solid'
@@ -71,7 +70,7 @@ const Header = ({ isClosed, setIsClosed, isStatic }: IHeader) => {
                                 className='w-9 h-9 rounded-full mx-auto'
                                 alt='pImg'
                             />
-                            <p className='sr-only md:not-sr-only'>{profile?.user.full_name}</p>
+                            <p className='sr-only lg:not-sr-only'>{profile?.user.full_name}</p>
                         </div>
                     </div>
                 </div>

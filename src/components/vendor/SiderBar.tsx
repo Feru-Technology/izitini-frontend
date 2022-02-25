@@ -35,7 +35,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                 leaveTo='-ml-64'
             >
                 <div
-                    className={`bg-gradient-to-t z-20 from-dark-blue via-middle-blue to-light-blue p-4 space-y-8 w-64 text-gray-200 min-h-screen ${isStatic ? '' : 'fixed'
+                    className={`bg-gradient-to-t z-20 from-dark-blue via-middle-blue to-light-blue p-4 space-y-8 md:w-44 lg:w-64 text-gray-200 min-h-screen ${isStatic ? '' : 'fixed'
                         }`}
                 >
                     <div className='flex justify-between px-3 text-white  border-b'>
