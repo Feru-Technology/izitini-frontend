@@ -71,8 +71,7 @@ const Header = ({ isClosed, setIsClosed, isStatic }: IHeader) => {
                                 className='w-9 h-9 rounded-full mx-auto'
                                 alt='pImg'
                             />
-                            <p className=''>{profile?.user.full_name}</p>
-                            <ChevronDownIcon className='h-5 w-5' />
+                            <p className='sr-only md:not-sr-only'>{profile?.user.full_name}</p>
                         </div>
                     </div>
                 </div>
