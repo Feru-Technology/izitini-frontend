@@ -30,10 +30,11 @@ const VendorSignUp = () => {
       full_name,
       about_shop
     })
-    if (profile) navigate('/')
   }
 
   const { profile, error } = useSelector((state: RootState) => state.profile)
+
+  if (profile) navigate('/')
 
   return (
     <div>
