@@ -5,7 +5,7 @@ export const Footer = () => {
         <div className='bg-dark-blue pb-2 md:py-5 lg:py-10 text-white'>
             <div className='grid grid-cols-1 md:grid-cols-3 border-b-2 md:mx-12 lg:mx-28'>
                 <div className='m-2 md:mx-8 lg:mx-16'>
-                    <img className='w-16 md:w-24' src="https://izitini-spaces.fra1.digitaloceanspaces.com/syastem-images/Logo.png" alt="" />
+                    <img className='w-16 md:w-24' src="https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo.png" alt="" />
                     <p className='text-xs'>This where we ut staff about our company This where we ut staff about our company This where we ut staff about our company</p>
                 </div>
                 <div className='mx-2 sm:m-0'>
