@@ -26,10 +26,9 @@ const SignInPage = () => {
     dispatch(login())
     post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
 
-    // if (profile) navigate('/')
   }
 
-  const { isLoading, profile, error } = useSelector((state: RootState) => state.profile)
+  const { profile, error } = useSelector((state: RootState) => state.profile)
 
   const navigate = useNavigate()
 

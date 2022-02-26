@@ -26,10 +26,11 @@ const CustomerSignUp = () => {
       password,
       full_name
     })
-    if (profile) navigate('/')
   }
 
   const { profile, error } = useSelector((state: RootState) => state.profile)
+
+  if (profile) navigate('/')
 
   return (
     <div>
