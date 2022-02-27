@@ -350,20 +350,20 @@ export const Navbar = () => {
 
                     <Transition show={showSignupOptions}>
                         <div className='bg-gray-100 w-full flex justify-center'>
-                            <div className='absolute mt-10 z-50 shadow-md px-5 bg-white
+                            <div className='absolute mt-10 z-50 shadow-md px-5 bg-gray-50
                             md:flex
                             '>
-                                <div className='m-3 bg-gray-200 p-2 '>
-                                    <p className='flex  justify-center'>customer</p>
-                                    <p className='flex  justify-center'>buy construction tools for my self</p>
+                                <div className='m-3 bg-gray-200 p-4'>
+                                    <p className='flex  justify-center font-normal text-lg'>customer</p>
+                                    <p className='flex  justify-center font-extralight text-xs'>buy construction tools for my self</p>
                                 </div>
-                                <div className='m-3 bg-gray-200 p-2'>
-                                    <p className='flex  justify-center'>vendor</p>
-                                    <p className='flex  justify-center'>I own a construction store</p>
+                                <div className='m-3 bg-gray-200 p-4'>
+                                    <p className='flex  justify-center font-normal text-lg'>vendor</p>
+                                    <p className='flex  justify-center font-extralight text-xs'>I own a construction store</p>
                                 </div>
-                                <div className='m-3 bg-gray-200 p-2'>
-                                    <p className='flex  justify-center'>professional</p>
-                                    <p className='flex  justify-center'>I am in construction business</p>
+                                <div className='m-3 bg-gray-200 p-4'>
+                                    <p className='flex  justify-center font-normal text-lg'>professional</p>
+                                    <p className='flex  justify-center font-extralight text-xs'>I am in construction business</p>
                                 </div>
 
                             </div>
