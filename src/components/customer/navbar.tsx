@@ -43,6 +43,7 @@ export const Navbar = () => {
     const [showProduct, setShowProduct] = useState(false)
     const [showIdea, setShowIdea] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
+    const [showSignupOptions, setShowSignupOptions] = useState(false)
 
     const logout = () => {
         dispatch(loggedIn(null))
@@ -158,8 +159,12 @@ export const Navbar = () => {
                                                     <Link to='/signin'>Login</Link>
 
                                                 </div>
-                                                <div>
-                                                    <Link to='/account-types'>Register</Link></div>
+                                                <div className='cursor-pointer'
+                                                    onClick={() => setShowSignupOptions(true)}>
+                                                    {/* <Link to='/account-types'> */}
+                                                    Register
+                                                    {/* </Link> */}
+                                                </div>
                                             </div>
                                             <div>
                                                 <Link to='/signin'>
@@ -340,6 +345,30 @@ export const Navbar = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* signup options */}
+
+                    <Transition show={showSignupOptions}>
+                        <div className='bg-gray-100 w-full flex justify-center'>
+                            <div className='absolute mt-10 z-50 shadow-md px-5 bg-white
+                            md:flex
+                            '>
+                                <div className='m-3 bg-gray-200 p-2 '>
+                                    <p className='flex  justify-center'>customer</p>
+                                    <p className='flex  justify-center'>buy construction tools for my self</p>
+                                </div>
+                                <div className='m-3 bg-gray-200 p-2'>
+                                    <p className='flex  justify-center'>vendor</p>
+                                    <p className='flex  justify-center'>I own a construction store</p>
+                                </div>
+                                <div className='m-3 bg-gray-200 p-2'>
+                                    <p className='flex  justify-center'>professional</p>
+                                    <p className='flex  justify-center'>I am in construction business</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Transition>
 
                     {/* menu breakdown */}
                     <Disclosure.Panel className="sm:sr-only absolute z-10  bg-white">
