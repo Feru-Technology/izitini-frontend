@@ -78,7 +78,8 @@ export const Navbar = () => {
                                         className="block h-8 md:h-10 lg:h-12 w-auto"
                                         src="https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png"
                                         alt="Workflow"
-                                    /></Link>
+                                    />
+                                </Link>
 
                             </div>
 
@@ -159,11 +160,9 @@ export const Navbar = () => {
                                                     <Link to='/signin'>Login</Link>
 
                                                 </div>
-                                                <div className='cursor-pointer'
+                                                <div className='cursor-pointer transition duration-150'
                                                     onClick={() => setShowSignupOptions(true)}>
-                                                    {/* <Link to='/account-types'> */}
                                                     Register
-                                                    {/* </Link> */}
                                                 </div>
                                             </div>
                                             <div>
@@ -347,21 +346,27 @@ export const Navbar = () => {
                     </div>
 
                     {/* signup options */}
-
                     <Transition show={showSignupOptions}>
-                        <div className='bg-gray-100 w-full flex justify-center'>
+
+                        <div className='text-gray-500 bg-white flex justify-center'>
                             <div className='absolute mt-10 z-50 shadow-md px-5 bg-gray-50
                             md:flex
                             '>
-                                <div className='m-3 bg-gray-200 p-4'>
+                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4 
+                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
                                     <p className='flex  justify-center font-normal text-lg'>customer</p>
                                     <p className='flex  justify-center font-extralight text-xs'>buy construction tools for my self</p>
                                 </div>
-                                <div className='m-3 bg-gray-200 p-4'>
+                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4 
+                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
                                     <p className='flex  justify-center font-normal text-lg'>vendor</p>
                                     <p className='flex  justify-center font-extralight text-xs'>I own a construction store</p>
                                 </div>
-                                <div className='m-3 bg-gray-200 p-4'>
+                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4 
+                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
                                     <p className='flex  justify-center font-normal text-lg'>professional</p>
                                     <p className='flex  justify-center font-extralight text-xs'>I am in construction business</p>
                                 </div>
