@@ -348,10 +348,11 @@ export const Navbar = () => {
                     {/* signup options */}
                     <Transition show={showSignupOptions}>
 
-                        <div className='absolute top-0 z-10 text-gray-500 bg-blue-900 flex justify-center w-full h-screen'>
-                            <div className='shadow-md px-5 bg-gray-50 mt-16
-                            md:flex m-10'
-                                style={{ height: 'fit-content' }}
+                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-300 opacity-50 w-full h-screen'>
+                        </div>
+                        <div className='absolute z-20 w-full'>
+                            <div className=' mx-auto md:flex p-5 bg-white shadow-md'
+                                style={{ height: 'fit-content', width: 'fit-content', marginTop: '5%' }}
                             >
                                 <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
@@ -374,6 +375,7 @@ export const Navbar = () => {
 
                             </div>
                         </div>
+                        {/* </div> */}
                     </Transition>
                     {/* menu breakdown */}
                     <Disclosure.Panel className="sm:sr-only absolute z-10  bg-white">
