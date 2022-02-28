@@ -348,29 +348,32 @@ export const Navbar = () => {
                     {/* signup options */}
                     <Transition show={showSignupOptions}>
 
-                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-300 opacity-50 w-full h-screen'>
+                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-300 opacity-50 w-full h-screen'
+                            onClick={() => setShowSignupOptions(false)}>
                         </div>
                         <div className='absolute z-20 w-full'>
-                            <div className=' mx-auto md:flex p-5 bg-white shadow-md'
+                            <div className=' mx-auto p-5 bg-white shadow-md'
                                 style={{ height: 'fit-content', width: 'fit-content', marginTop: '5%' }}
                             >
-                                <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                <div className='md:flex'>
+                                    <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
-                                    <p className='flex  justify-center font-normal text-lg'>customer</p>
-                                    <p className='flex  justify-center font-extralight text-xs'>buy construction tools for my self</p>
-                                </div>
-                                <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                        <p className='flex  justify-center font-normal text-lg'>customer</p>
+                                        <p className='flex  justify-center font-extralight text-xs'>buy construction tools for my self</p>
+                                    </div>
+                                    <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
-                                    <p className='flex  justify-center font-normal text-lg'>vendor</p>
-                                    <p className='flex  justify-center font-extralight text-xs'>I own a construction store</p>
-                                </div>
-                                <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                        <p className='flex  justify-center font-normal text-lg'>vendor</p>
+                                        <p className='flex  justify-center font-extralight text-xs'>I own a construction store</p>
+                                    </div>
+                                    <div className='m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
-                                    <p className='flex  justify-center font-normal text-lg'>professional</p>
-                                    <p className='flex  justify-center font-extralight text-xs'>I am in construction business</p>
+                                        <p className='flex  justify-center font-normal text-lg'>professional</p>
+                                        <p className='flex  justify-center font-extralight text-xs'>I am in construction business</p>
+                                    </div>
                                 </div>
 
                             </div>
