@@ -8,11 +8,13 @@ import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ChevronDownIcon } from '@heroicons/react/outline'
-import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
+import {
+    getCart as gettingCart,
+    cart as getCart, cartFailed
+} from '../../redux/order/cart'
 
 
 function classNames(...classes: string[]) {
@@ -362,23 +364,28 @@ export const Navbar = () => {
                                     <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
-                                        <p className='flex  justify-center font-normal text-lg'>customer</p>
-                                        <p className='flex  justify-center font-extralight text-xs'>buy construction tools for my self</p>
+                                        <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
+                                        <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
                                     </div>
                                     <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
-                                        <p className='flex  justify-center font-normal text-lg'>vendor</p>
-                                        <p className='flex  justify-center font-extralight text-xs'>I own a construction store</p>
+                                        <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
+                                        <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
                                     </div>
                                     <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
-                                        <p className='flex  justify-center font-normal text-lg'>professional</p>
-                                        <p className='flex  justify-center font-extralight text-xs'>I am in construction business</p>
+                                        <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
+                                        <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>
                                     </div>
                                 </div>
-
+                                <button disabled={true}
+                                    className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
+                                    px-5 py-2 rounded-lg flex'
+                                ><span className='text-xs mr-1 md:text-sm md:mr-2
+                                lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
+                                </button>
                             </div>
                         </div>
                         {/* </div> */}
