@@ -348,7 +348,7 @@ export const Navbar = () => {
                     {/* signup options */}
                     <Transition show={showSignupOptions}>
 
-                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-300 opacity-50 w-full h-screen'
+                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-full h-screen'
                             onClick={() => setShowSignupOptions(false)}>
                         </div>
                         <div className='absolute z-20 w-full'>

@@ -29,52 +29,50 @@ import { loggedIn, login, loginFailed } from './redux/profile.slice'
 function App() {
 
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
 
     const profile = () => {
-        dispatch(login());
+        dispatch(login())
         fetch(dispatch, loggedIn, loginFailed, '/users/my/profile', token)
     }
 
-    if (token) profile();
+    if (token) profile()
 
     return (
-        <div className='min-h-screen'>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/cart' element={<Cart />} />
-                    <Route path='/signin' element={<SignInPage />} />
-                    <Route path='/products/:id' element={<Product />} />
-                    <Route path='/products' element={<AllProducts />} />
-                    <Route path='/signup' element={<CustomerSignUp />} />
-                    <Route path='/account-types' element={<AccountTypes />} />
-                    <Route path='/vendor-signup' element={<VendorSignUp />} />
-                    <Route path='/products/c/:categoryName' element={<Category />} />
-                    <Route path='/products/s/:id' element={<Subcategory />} />
-                    <Route path='/dashboard' element={<CustomerDashboard />} />
-                    <Route path='/orders' element={<MyOrders />} />
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/signin' element={<SignInPage />} />
+                <Route path='/products/:id' element={<Product />} />
+                <Route path='/products' element={<AllProducts />} />
+                <Route path='/signup' element={<CustomerSignUp />} />
+                <Route path='/account-types' element={<AccountTypes />} />
+                <Route path='/vendor-signup' element={<VendorSignUp />} />
+                <Route path='/products/c/:categoryName' element={<Category />} />
+                <Route path='/products/s/:id' element={<Subcategory />} />
+                <Route path='/dashboard' element={<CustomerDashboard />} />
+                <Route path='/orders' element={<MyOrders />} />
 
-                    <Route path='/vendor' element={<VendorDashboard />} />
-                    <Route path='/vendor/stores' element={<Store />} />
-                    <Route path='/vendor/orders' element={<Orders />} />
-                    <Route path='/vendor/reports' element={<Reports />} />
-                    <Route path='/vendor/coupons' element={<Coupons />} />
-                    <Route path='/vendor/settings' element={<Settings />} />
-                    <Route path='/vendor/store/:id' element={<Products />} />
-                    <Route path='/vendor/create-store' element={<CreateStore />} />
-                    <Route path='/vendor/create-product' element={<CreateProduct />} />
+                <Route path='/vendor' element={<VendorDashboard />} />
+                <Route path='/vendor/stores' element={<Store />} />
+                <Route path='/vendor/orders' element={<Orders />} />
+                <Route path='/vendor/reports' element={<Reports />} />
+                <Route path='/vendor/coupons' element={<Coupons />} />
+                <Route path='/vendor/settings' element={<Settings />} />
+                <Route path='/vendor/store/:id' element={<Products />} />
+                <Route path='/vendor/create-store' element={<CreateStore />} />
+                <Route path='/vendor/create-product' element={<CreateProduct />} />
 
-                    <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
+                <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
 
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                <Route path='*' element={<NotFound />} />
+            </Routes>
 
-            </BrowserRouter>
+        </BrowserRouter>
 
-        </div>
     )
 }
 
