@@ -350,19 +350,19 @@ export const Navbar = () => {
 
                         <div className='absolute top-0 z-10 text-gray-500 bg-blue-900 flex justify-center w-full h-screen'>
                             <div className='shadow-md px-5 bg-gray-50 h-24 md:flex m-10 '>
-                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4 
+                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
                                     <p className='flex  justify-center font-normal text-lg'>customer</p>
                                     <p className='flex  justify-center font-extralight text-xs'>buy construction tools for my self</p>
                                 </div>
-                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4 
+                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
                                     <p className='flex  justify-center font-normal text-lg'>vendor</p>
                                     <p className='flex  justify-center font-extralight text-xs'>I own a construction store</p>
                                 </div>
-                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4 
+                                <div className='m-3 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
                                 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
                                     <p className='flex  justify-center font-normal text-lg'>professional</p>
