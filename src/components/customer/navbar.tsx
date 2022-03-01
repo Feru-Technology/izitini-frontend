@@ -369,7 +369,7 @@ export const Navbar = () => {
                                 <div className='md:flex'>
                                     <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600`}
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${customer && 'border-dark-blue'}`}
                                         onClick={() => {
                                             setVendor(false)
                                             setCustomer(true)
@@ -381,7 +381,7 @@ export const Navbar = () => {
                                     </div>
                                     <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600`}
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${vendor && 'border-dark-blue'}`}
                                         onClick={() => {
                                             setVendor(true)
                                             setCustomer(false)
@@ -393,7 +393,7 @@ export const Navbar = () => {
                                     </div>
                                     <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600`}
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${professional && 'border-dark-blue'}`}
                                         onClick={() => {
                                             setVendor(false)
                                             setCustomer(false)
