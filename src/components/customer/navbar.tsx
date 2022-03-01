@@ -211,7 +211,7 @@ export const Navbar = () => {
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
-                                                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-4/5 rounded-md shadow-lg p-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Items className="origin-top-right absolute right-0 z-10 mt-2 w-36 rounded-md shadow-lg p-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <Link to='/profile'
@@ -369,7 +369,7 @@ export const Navbar = () => {
                                 <div className='md:flex'>
                                     <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${customer && 'border-dark-blue'}`}
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${customer && ' border-dark-blue'}`}
                                         onClick={() => {
                                             setVendor(false)
                                             setCustomer(true)
@@ -381,7 +381,7 @@ export const Navbar = () => {
                                     </div>
                                     <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${vendor && 'border-dark-blue'}`}
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${vendor && ' border-dark-blue'}`}
                                         onClick={() => {
                                             setVendor(true)
                                             setCustomer(false)
@@ -393,7 +393,7 @@ export const Navbar = () => {
                                     </div>
                                     <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${professional && 'border-dark-blue'}`}
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${professional && ' border-dark-blue'}`}
                                         onClick={() => {
                                             setVendor(false)
                                             setCustomer(false)
@@ -405,10 +405,10 @@ export const Navbar = () => {
                                     </div>
                                 </div>
                                 <button disabled={false}
-                                    className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
-                                    px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5'
+                                    className={`text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
+                                    px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5`}
                                 >
-                                    <Link to={`${signupLink}`} className='flex'>
+                                    <Link to={`${signupLink}`} className={`flex  ${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
                                         <span className='text-xs mr-1 md:text-sm md:mr-2
                                 lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
                                     </Link>
