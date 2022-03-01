@@ -354,7 +354,7 @@ export const Navbar = () => {
                             onClick={() => setShowSignupOptions(false)}>
                         </div>
                         <div className='absolute z-20 w-full'>
-                            <div className=' mx-auto p-5 bg-white shadow-lg'
+                            <div className='bg-white shadow-lg mx-auto px-5 pt-3 pb-10 md:pb-12 '
                                 style={{ height: 'fit-content', width: 'fit-content', marginTop: '5%' }}
                             >
                                 < XIcon className='h-4 cursor-pointer mb-4 md:mb-0'
@@ -382,7 +382,7 @@ export const Navbar = () => {
                                 </div>
                                 <button disabled={true}
                                     className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
-                                    px-5 py-2 rounded-lg flex'
+                                    px-5 py-2 rounded-lg flex float-right mr-2 md:mr-3.5'
                                 ><span className='text-xs mr-1 md:text-sm md:mr-2
                                 lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
                                 </button>
