@@ -48,9 +48,10 @@ export const Navbar = () => {
     const [showSignupOptions, setShowSignupOptions] = useState(false)
 
     // sign-up links
-    const [vendorLink, setVendorLink] = useState<String | null>(null)
-    const [customerLink, setCustomerLink] = useState<String | null>(null)
-    const [ProfessionalLink, setProfessionalLink] = useState<String | null>(null)
+    const [vendor, setVendor] = useState(false)
+    const [customer, setCustomer] = useState(false)
+    const [professional, setProfessional] = useState(false)
+    const [signupLink, setSignupLink] = useState<String | null>(null)
 
     const logout = () => {
         dispatch(loggedIn(null))
@@ -366,30 +367,48 @@ export const Navbar = () => {
                                     style={{ marginLeft: '98%' }}
                                     onClick={() => setShowSignupOptions(false)} />
                                 <div className='md:flex'>
-                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600`}
+                                        onClick={() => {
+                                            setVendor(false)
+                                            setCustomer(true)
+                                            setProfessional(false)
+                                            setSignupLink('/signup')
+                                        }}>
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
                                     </div>
-                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600`}
+                                        onClick={() => {
+                                            setVendor(true)
+                                            setCustomer(false)
+                                            setProfessional(false)
+                                            setSignupLink('/vendor-signup')
+                                        }}>
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
                                     </div>
-                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600`}
+                                        onClick={() => {
+                                            setVendor(false)
+                                            setCustomer(false)
+                                            setProfessional(true)
+                                            setSignupLink('/professional-signup')
+                                        }}>
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>
                                     </div>
                                 </div>
-                                <button disabled={true}
+                                <button disabled={false}
                                     className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
                                     px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5'
                                 >
-                                    <Link to='/' className='flex'>
+                                    <Link to={`${signupLink}`} className='flex'>
                                         <span className='text-xs mr-1 md:text-sm md:mr-2
                                 lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
                                     </Link>
