@@ -47,6 +47,11 @@ export const Navbar = () => {
     const [showProfession, setShowProfession] = useState(false)
     const [showSignupOptions, setShowSignupOptions] = useState(false)
 
+    // sign-up links
+    const [vendorLink, setVendorLink] = useState<String | null>(null)
+    const [customerLink, setCustomerLink] = useState<String | null>(null)
+    const [ProfessionalLink, setProfessionalLink] = useState<String | null>(null)
+
     const logout = () => {
         dispatch(loggedIn(null))
         localStorage.clear()
