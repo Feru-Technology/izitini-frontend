@@ -382,9 +382,12 @@ export const Navbar = () => {
                                 </div>
                                 <button disabled={true}
                                     className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
-                                    px-5 py-2 rounded-lg flex float-right mr-2 md:mr-3.5'
-                                ><span className='text-xs mr-1 md:text-sm md:mr-2
+                                    px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5'
+                                >
+                                    <Link to='/' className='flex'>
+                                        <span className='text-xs mr-1 md:text-sm md:mr-2
                                 lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
+                                    </Link>
                                 </button>
                             </div>
                         </div>
