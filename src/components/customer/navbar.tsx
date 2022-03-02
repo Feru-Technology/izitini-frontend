@@ -298,11 +298,12 @@ export const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className='w-full z-auto absolute shadow-md px-5 bg-gray-100'>
+                            <div className='w-full z-10 absolute shadow-md px-5'>
                                 <Transition
                                     show={showProduct}
                                 >
-                                    <div className='flex space-x-5 justify-center'>
+                                    <div className='bg-gray-800 min-h-screen'></div>
+                                    <div className='flex space-x-5 justify-center z-20 bg-gray-100'>
                                         <ul> product head
                                             <li>product 1</li>
                                         </ul>
@@ -318,7 +319,8 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showIdea}>
-                                    <div className='flex space-x-5 justify-center'>
+                                    <div className='bg-gray-800 min-h-screen'></div>
+                                    <div className='flex space-x-5 justify-center z-20 bg-gray-100'>
                                         <ul> idea head
                                             <li>idea 1</li>
                                         </ul>
@@ -334,7 +336,8 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showProfession}>
-                                    <div className='flex space-x-5 justify-center'>
+                                    <div className='bg-gray-800 min-h-screen'></div>
+                                    <div className='flex space-x-5 justify-center z-20 bg-gray-100'>
                                         <ul> profession head
                                             <li>profession 1</li>
                                         </ul>
