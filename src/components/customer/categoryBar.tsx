@@ -1,9 +1,22 @@
+import { useEffect } from 'react'
+import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+    fetchingCategories,
+    retrievedCategoryFailed,
+    retrievedCategory
+} from '../../redux/categories/categories.slice'
 
 
 export const CategoryBar = () => {
+    // redux
+    // const dispatch = useDispatch()
 
+    // useEffect(() => {
+    //     dispatch(fetchingCategories())
+    //     fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
+    // }, [dispatch])
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories);
     const categoryBar = categories.slice(0, 8)
