@@ -4,7 +4,7 @@ import Header from '../vendor/Header'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
 
 const CustomerDashboard = () => {
@@ -50,8 +50,13 @@ const CustomerDashboard = () => {
                                 </Transition>
 
                                 {/* customer dashboard */}
-                                <div className='p-5 flex justify-center'>
+                                <div className='p-5 flex flex-col justify-center'>
                                     <p>recent activities</p>
+                                    {profile.user.account_type === 'business' ?
+                                        <Link to='/vendor' className='text-light-blue underline'>go to vendor Dashboard</Link> :
+                                        <p>Become vendor</p>
+                                    }
+
                                 </div>
                             </div>
                         </div>
