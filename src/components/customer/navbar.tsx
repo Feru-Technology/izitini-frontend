@@ -404,15 +404,15 @@ export const Navbar = () => {
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>
                                     </div>
                                 </div>
-                                <button disabled={false}
-                                    className={`text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
+                                <Link to={`${signupLink}`} className={`${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
+                                    <button disabled={false}
+                                        className={`flex text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-light-blue
                                     px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5`}
-                                >
-                                    <Link to={`${signupLink}`} className={`flex  ${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
+                                    >
                                         <span className='text-xs mr-1 md:text-sm md:mr-2
                                 lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
-                                    </Link>
-                                </button>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         {/* </div> */}
