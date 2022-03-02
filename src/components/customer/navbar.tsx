@@ -298,12 +298,13 @@ export const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className='w-full px-5'>
+                            <div className='sr-only md:not-sr-only w-full'>
                                 <Transition
                                     show={showProduct}
                                 >
-                                    <div className='bg-gray-700 opacity-50 absolute min-h-screen w-full z-10'></div>
-                                    <div className='flex space-x-5 justify-center z-20 bg-gray-100'>
+                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'></div>
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                        style={{ minHeight: '30vh' }}>
                                         <ul> product head
                                             <li>product 1</li>
                                         </ul>
@@ -319,8 +320,9 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showIdea}>
-                                    <div className='bg-gray-700 opacity-50 absolute min-h-screen w-full z-10'></div>
-                                    <div className='flex space-x-5 justify-center z-20 bg-gray-100'>
+                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'></div>
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                        style={{ minHeight: '30vh' }}>
                                         <ul> idea head
                                             <li>idea 1</li>
                                         </ul>
@@ -336,8 +338,9 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showProfession}>
-                                    <div className='bg-gray-700 opacity-50 absolute min-h-screen w-full z-10'></div>
-                                    <div className='flex space-x-5 justify-center z-20 bg-gray-100'>
+                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'></div>
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                        style={{ minHeight: '30vh' }}>
                                         <ul> profession head
                                             <li>profession 1</li>
                                         </ul>
