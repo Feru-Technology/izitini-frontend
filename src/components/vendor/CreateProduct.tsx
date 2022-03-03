@@ -100,8 +100,16 @@ const CreateProduct = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
-          <div className="font-bold text-3xl text-center">Create a Product</div>
-          <form>
+          <div className="font-bold text-3xl text-center ">Add a Product</div>
+          <div className='flex h-2 my-5'>
+            <hr className='bg-light-blue h-1 w-1/3' />
+            <span className='bg-light-blue'>1</span>
+            <hr className='bg-light-blue h-1 w-1/3' />
+            <span className='bg-light-blue'>2</span>
+            <hr className='bg-light-blue h-1 w-1/3' />
+            <span className='bg-light-blue'>3</span>
+          </div>
+          <form className='md:w-4/6 lg:w-3/6 mx-auto'>
             <div>
               <Transition
                 show={!!error}
