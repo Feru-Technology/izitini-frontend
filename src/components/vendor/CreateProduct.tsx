@@ -3,7 +3,6 @@ import { useState } from 'react'
 import SiderBar from './SiderBar'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
@@ -50,7 +49,6 @@ const CreateProduct = () => {
 
   const { currentStore } = useSelector((state: RootState) => state.store);
   const token = localStorage.getItem('token');
-  const navigate = useNavigate()
 
   const store_id = currentStore?.id
 
@@ -101,13 +99,18 @@ const CreateProduct = () => {
         </Transition>
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
           <div className="font-bold text-3xl text-center ">Add a Product</div>
-          <div className='flex h-2 my-5'>
-            <hr className='bg-light-blue h-1 w-1/3' />
-            <span className='bg-light-blue'>1</span>
-            <hr className='bg-light-blue h-1 w-1/3' />
-            <span className='bg-light-blue'>2</span>
-            <hr className='bg-light-blue h-1 w-1/3' />
-            <span className='bg-light-blue'>3</span>
+          <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
+            <ol className='flex list-none w-full'>
+              <li className='bg-light-blue h-1 w-1/3' />
+              <li className='bg-white -mt-1.5 flex justify-center
+              h-4 w-4 text-xs rounded-full border-2 border-light-blue'>1</li>
+              <li className='bg-light-blue h-1 w-1/3' />
+              <li className='bg-white -mt-1.5 flex justify-center
+              h-4 w-4 text-xs rounded-full border-2 border-light-blue'>2</li>
+              <li className='bg-light-blue h-1 w-1/3' />
+              <li className='bg-white -mt-1.5 flex justify-center
+              h-4 w-4 text-xs rounded-full border-2 border-light-blue'>3</li>
+            </ol>
           </div>
           <form className='md:w-4/6 lg:w-3/6 mx-auto'>
             <div>
@@ -258,7 +261,7 @@ const CreateProduct = () => {
             </div>
             <div className="text-center mt-6">
               <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault()
