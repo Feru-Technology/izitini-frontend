@@ -47,6 +47,11 @@ const CreateProduct = () => {
   const [subCategory, setSubCategory] = useState<string | null>(null)
   const [specification, setSpecification] = useState<string | null>(null)
 
+  // set progress level
+  const [level1, setLevel1] = useState(true)
+  const [level2, setLevel2] = useState(false)
+  const [level3, setLevel3] = useState(false)
+
   const { currentStore } = useSelector((state: RootState) => state.store);
   const token = localStorage.getItem('token');
 
@@ -65,10 +70,7 @@ const CreateProduct = () => {
     // navigate('/vendor/products')
   }
 
-
   const { currentProduct, error } = useSelector((state: RootState) => state.product);
-
-  console.log(currentProduct, error);
 
   return (
 
@@ -100,14 +102,14 @@ const CreateProduct = () => {
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
           <div className="font-bold text-3xl text-center ">Add a Product</div>
           <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
-            <ol className='flex list-none w-full'>
-              <li className='bg-light-blue h-1 w-1/3' />
+            <ol className='flex list-none w-full text-gray-600'>
+              <li className={`bg-light-blue h-1 w-1/3`} />
               <li className='bg-white -mt-1.5 flex justify-center
               h-4 w-4 text-xs rounded-full border-2 border-light-blue'>1</li>
-              <li className='bg-light-blue h-1 w-1/3' />
+              <li className={`bg-light-blue h-1 w-1/3`} />
               <li className='bg-white -mt-1.5 flex justify-center
               h-4 w-4 text-xs rounded-full border-2 border-light-blue'>2</li>
-              <li className='bg-light-blue h-1 w-1/3' />
+              <li className={`bg-light-blue h-1 w-1/3`} />
               <li className='bg-white -mt-1.5 flex justify-center
               h-4 w-4 text-xs rounded-full border-2 border-light-blue'>3</li>
             </ol>
