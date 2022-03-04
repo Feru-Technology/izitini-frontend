@@ -203,7 +203,7 @@ const CreateProduct = () => {
                 onChange={e => setUnit(e.target.value)}
               />
             </div>
-            <div className=" w-full mb-3">
+            {/* <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
@@ -217,8 +217,8 @@ const CreateProduct = () => {
                 placeholder="Quantity"
                 onChange={e => setQuantity(e.target.value)}
               />
-            </div>
-            <div className=" w-full mb-3">
+            </div> */}
+            {/* <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
@@ -232,8 +232,8 @@ const CreateProduct = () => {
                 placeholder="Price unit"
                 onChange={e => setPrice(e.target.value)}
               />
-            </div>
-            <div className=" w-full mb-3">
+            </div> */}
+            {/* <div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
                 htmlFor="grid-password"
@@ -262,13 +262,13 @@ const CreateProduct = () => {
                 placeholder="Product Specifications"
                 onChange={e => setSpecification(e.target.value)}
               />
-            </div>
+            </div> */}
             {/* upload image */}
-            <div>
+            {/* <div>
               <form action="/action_page.php">
                 <input type="file" id="myFile" name="filename" />
               </form>
-            </div>
+            </div> */}
             <div className="text-center mt-6">
               <button
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3
