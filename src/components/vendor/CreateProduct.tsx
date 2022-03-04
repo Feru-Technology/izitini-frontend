@@ -246,21 +246,22 @@ const CreateProduct = () => {
                 </form>
               </div>
             </Transition>
-            <Transition show={level3}><div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="text"
-              >
-                Product manual
-              </label>
-              <input
-                type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+            <Transition show={level3}>
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  Product manual
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Product manual"
-                onChange={e => setManual(e.target.value)}
-              />
-            </div>
+                  placeholder="Product manual"
+                  onChange={e => setManual(e.target.value)}
+                />
+              </div>
               <div className=" w-full mb-3">
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
@@ -277,6 +278,8 @@ const CreateProduct = () => {
                 />
               </div>
             </Transition>
+
+            {/* buttons */}
             <div className="text-center mt-3 space-x-4">
               <Transition show={level2}>
                 <button
