@@ -63,7 +63,7 @@ const CreateProduct = () => {
       dispatch,
       product,
       productFailed, `/product/${store_id}`,
-      { name, unit, brand, price, manual, quantity, subCategory, specification },
+      { name, unit, brand, subCategory },
       token
     )
 
@@ -269,10 +269,11 @@ const CreateProduct = () => {
                 <input type="file" id="myFile" name="filename" />
               </form>
             </div> */}
-            <div className="text-center mt-6">
+            <div className="text-center mt-3 space-x-4">
               <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
+                right-0"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault()
@@ -280,7 +281,33 @@ const CreateProduct = () => {
                 }
                 }
               >
-                create product
+                Previous
+              </button>
+              <button
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
+                right-0"
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                }
+                }
+              >
+                Continue
+              </button>
+              <button
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
+                right-0"
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                }
+                }
+              >
+                Finish
               </button>
             </div>
           </form>
