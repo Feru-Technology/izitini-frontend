@@ -138,7 +138,8 @@ const CreateProduct = () => {
               </label>
               <div className="">
                 <select
-                  className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="block appearance-none w-full bg-white border border-gray-200 text-gray-700
+                  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   onChange={e => setSubCategory(e.target.value)}
                 >
@@ -166,7 +167,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="name"
                 onChange={e => setName(e.target.value)}
               />
@@ -180,7 +182,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Brand"
                 onChange={e => setBrand(e.target.value)}
               />
@@ -194,7 +197,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Brand"
                 onChange={e => setUnit(e.target.value)}
               />
@@ -208,7 +212,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Quantity"
                 onChange={e => setQuantity(e.target.value)}
               />
@@ -222,7 +227,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Price unit"
                 onChange={e => setPrice(e.target.value)}
               />
@@ -236,7 +242,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Product manual"
                 onChange={e => setManual(e.target.value)}
               />
@@ -250,7 +257,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Product Specifications"
                 onChange={e => setSpecification(e.target.value)}
               />
@@ -263,7 +271,8 @@ const CreateProduct = () => {
             </div>
             <div className="text-center mt-6">
               <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault()
