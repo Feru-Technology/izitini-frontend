@@ -270,45 +270,53 @@ const CreateProduct = () => {
               </form>
             </div> */}
             <div className="text-center mt-3 space-x-4">
-              <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+              <Transition show={level2}>
+                <button
+                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
                 right-0"
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault()
-                  createProduct()
-                }
-                }
-              >
-                Previous
-              </button>
-              <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    createProduct()
+                  }
+                  }
+                >
+                  Previous
+                </button>
+              </Transition>
+
+              <Transition show={level1 || level2}>
+                <button
+                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
                 right-0"
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault()
-                  createProduct()
-                }
-                }
-              >
-                Continue
-              </button>
-              <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    createProduct()
+                  }
+                  }
+                >
+                  Continue
+                </button>
+              </Transition>
+
+              <Transition show={level3}>
+                <button
+                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
                 right-0"
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault()
-                  createProduct()
-                }
-                }
-              >
-                Finish
-              </button>
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    createProduct()
+                  }
+                  }
+                >
+                  Finish
+                </button>
+              </Transition>
             </div>
           </form>
         </div>
