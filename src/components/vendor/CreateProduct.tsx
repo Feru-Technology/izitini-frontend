@@ -129,114 +129,127 @@ const CreateProduct = () => {
 
               </Transition>
             </div>
-            <div className='mb-3'>
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                sub-category
-              </label>
-              <div className="">
-                <select
-                  className="block appearance-none w-full bg-white border border-gray-200 text-gray-700
-                  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-state"
-                  onChange={e => setSubCategory(e.target.value)}
+
+            <Transition show={level1}>
+              <div className='mb-3'>
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
                 >
-                  <option>Select Sub-Category</option>
-                  {isLoading ? <h1>loading</h1>
-                    : subCategories.map((s) => (<option>{s.name}</option>))}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg
-                    className="fill-current h-4 w-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
+                  sub-category
+                </label>
+                <div className="">
+                  <select
+                    className="block appearance-none w-full bg-white border border-gray-200 text-gray-700
+                  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    id="grid-state"
+                    onChange={e => setSubCategory(e.target.value)}
                   >
-                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                  </svg>
+                    <option>Select Sub-Category</option>
+                    {isLoading ? <h1>loading</h1>
+                      : subCategories.map((s) => (<option>{s.name}</option>))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg
+                      className="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                name
-              </label>
-              <input
-                type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  name
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="name"
-                onChange={e => setName(e.target.value)}
-              />
-            </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Brand
-              </label>
-              <input
-                type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                  placeholder="name"
+                  onChange={e => setName(e.target.value)}
+                />
+              </div>
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  Brand
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Brand"
-                onChange={e => setBrand(e.target.value)}
-              />
-            </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Unit/measurements
-              </label>
-              <input
-                type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                  placeholder="Brand"
+                  onChange={e => setBrand(e.target.value)}
+                />
+              </div>
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  Unit/measurements
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Brand"
-                onChange={e => setUnit(e.target.value)}
-              />
-            </div>
-            {/* <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Quantity
-              </label>
-              <input
-                type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                  placeholder="Brand"
+                  onChange={e => setUnit(e.target.value)}
+                />
+              </div>
+            </Transition>
+            <Transition show={level2}>
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  Price per unit
+                </label>
+                <input
+                  type="number"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Quantity"
-                onChange={e => setQuantity(e.target.value)}
-              />
-            </div> */}
-            {/* <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Price per unit
-              </label>
-              <input
-                type="number"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                  placeholder="Price unit"
+                  onChange={e => setPrice(e.target.value)}
+                />
+              </div>
+
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  Quantity
+                </label>
+                <input
+                  type="number"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Price unit"
-                onChange={e => setPrice(e.target.value)}
-              />
-            </div> */}
-            {/* <div className=" w-full mb-3">
+                  placeholder="Quantity"
+                  onChange={e => setQuantity(e.target.value)}
+                />
+              </div>
+
+              {/* upload image */}
+              <div>
+                <form action="/action_page.php">
+                  <input type="file" id="myFile" name="filename" />
+                </form>
+              </div>
+            </Transition>
+            <Transition show={level3}><div className=" w-full mb-3">
               <label
                 className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
+                htmlFor="text"
               >
                 Product manual
               </label>
@@ -248,27 +261,22 @@ const CreateProduct = () => {
                 onChange={e => setManual(e.target.value)}
               />
             </div>
-            <div className=" w-full mb-3">
-              <label
-                className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                htmlFor="grid-password"
-              >
-                Product Specifications
-              </label>
-              <input
-                type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+              <div className=" w-full mb-3">
+                <label
+                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                  htmlFor="text"
+                >
+                  Product Specifications
+                </label>
+                <input
+                  type="text"
+                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                placeholder="Product Specifications"
-                onChange={e => setSpecification(e.target.value)}
-              />
-            </div> */}
-            {/* upload image */}
-            {/* <div>
-              <form action="/action_page.php">
-                <input type="file" id="myFile" name="filename" />
-              </form>
-            </div> */}
+                  placeholder="Product Specifications"
+                  onChange={e => setSpecification(e.target.value)}
+                />
+              </div>
+            </Transition>
             <div className="text-center mt-3 space-x-4">
               <Transition show={level2}>
                 <button
