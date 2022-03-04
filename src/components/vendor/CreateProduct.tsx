@@ -99,18 +99,18 @@ const CreateProduct = () => {
         >
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
-        <div className="px-4 sm:px-6  lg:px-8 py-8 w-full max-w-9xl mx-auto bg-gray-200 h-full">
+        <div className="px-4 sm:px-6  lg:px-8 py-8 w-full max-w-9xl mx-auto">
           <div className="font-bold text-3xl text-center ">Add a Product</div>
           <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
             <ol className='flex list-none w-full text-gray-600'>
-              <li className={`bg-gray-400 h-1 w-1/3 ${level1 && 'bg-light-blue'}`} />
-              <li className={`bg-gray-400 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-400
+              <li className={`bg-gray-300 h-1 w-1/3 ${level1 && 'bg-light-blue'}`} />
+              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
               ${level1 && 'border-light-blue bg-light-blue'}`} />
-              <li className={`bg-gray-400 h-1 w-1/3 ${level2 && 'bg-light-blue'}`} />
-              <li className={`bg-gray-400 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-400
+              <li className={`bg-gray-300 h-1 w-1/3 ${level2 && 'bg-light-blue'}`} />
+              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
               ${level2 && 'border-light-blue bg-light-blue'}`} />
-              <li className={`bg-gray-400 h-1 w-1/3 ${level3 && 'bg-light-blue'}`} />
-              <li className={`bg-gray-400 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-400
+              <li className={`bg-gray-300 h-1 w-1/3 ${level3 && 'bg-light-blue'}`} />
+              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
               ${level3 && 'border-light-blue bg-light-blue'}`} />
             </ol>
           </div>
