@@ -281,6 +281,24 @@ const CreateProduct = () => {
 
             {/* buttons */}
             <div className="text-center mt-3 space-x-4">
+
+              <Transition show={level1}>
+                <button
+                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
+                right-0"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    createProduct()
+                    setLevel2(true)
+                    setLevel1(false)
+                    setLevel3(false)
+                  }}>
+                  Continue
+                </button>
+              </Transition>
+
               <Transition show={level2}>
                 <button
                   className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
@@ -290,14 +308,28 @@ const CreateProduct = () => {
                   onClick={(e) => {
                     e.preventDefault()
                     createProduct()
-                  }
-                  }
-                >
+                    setLevel1(true)
+                    setLevel2(false)
+                    setLevel3(false)
+                  }}>
                   Previous
+                </button>
+                <button
+                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    createProduct()
+                    setLevel3(true)
+                    setLevel1(false)
+                    setLevel2(false)
+                  }}>
+                  Continue
                 </button>
               </Transition>
 
-              <Transition show={level1 || level2}>
+              <Transition show={level3}>
                 <button
                   className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
@@ -306,14 +338,12 @@ const CreateProduct = () => {
                   onClick={(e) => {
                     e.preventDefault()
                     createProduct()
-                  }
-                  }
-                >
-                  Continue
+                    setLevel2(true)
+                    setLevel1(false)
+                    setLevel3(false)
+                  }}>
+                  Previous
                 </button>
-              </Transition>
-
-              <Transition show={level3}>
                 <button
                   className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
