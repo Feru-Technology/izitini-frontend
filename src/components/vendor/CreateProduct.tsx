@@ -53,7 +53,7 @@ const CreateProduct = () => {
   const [level3, setLevel3] = useState(false)
 
   // set errors
-  const [isError, setIsError] = useState(true)
+  const [isError, setIsError] = useState(false)
 
   const { currentStore } = useSelector((state: RootState) => state.store)
   const token = localStorage.getItem('token')
@@ -132,14 +132,14 @@ const CreateProduct = () => {
             </div>
 
             <Transition show={level1}>
-              <div className='mb-3'>
+              <div className='mb-5'>
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
                   htmlFor="text"
                 >
                   sub-category
                 </label>
-                <div className="">
+                <div className='mb-5'>
                   <select
                     className="block appearance-none w-full bg-white border border-gray-200 text-gray-700
                   py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -150,19 +150,11 @@ const CreateProduct = () => {
                     {isLoading ? <h1>loading</h1>
                       : subCategories.map((s) => (<option>{s.name}</option>))}
                   </select>
-                  {subCategory === null ? <span className={`sr-only text-xs md:text-sm text-red-600 flex justify-center ${isError && 'not-sr-only '}`}>Please select subCategory</span> : ''}
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                    <svg
-                      className="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </div>
+                  {subCategory === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
+                  ${isError && 'not-sr-only mt-1 font-light absolute'}`}>Please select subCategory</span> : ''}
                 </div>
               </div>
-              <div className=" w-full mb-3">
+              <div className='mb-5'>
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
                   htmlFor="text"
@@ -176,8 +168,10 @@ const CreateProduct = () => {
                   placeholder="name"
                   onChange={e => setName(e.target.value)}
                 />
+                {name === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
+                ${isError && 'not-sr-only mt-1 font-light absolute'}`}>Please Provide product name</span> : ''}
               </div>
-              <div className=" w-full mb-3">
+              <div className='mb-5'>
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
                   htmlFor="text"
@@ -191,8 +185,10 @@ const CreateProduct = () => {
                   placeholder="Brand"
                   onChange={e => setBrand(e.target.value)}
                 />
+                {brand === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
+                ${isError && 'not-sr-only mt-1 font-light absolute'}`}>Please Provide product brand</span> : ''}
               </div>
-              <div className=" w-full mb-3">
+              <div className='mb-5'>
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
                   htmlFor="text"
@@ -206,6 +202,8 @@ const CreateProduct = () => {
                   placeholder="Brand"
                   onChange={e => setUnit(e.target.value)}
                 />
+                {unit === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
+                ${isError && 'not-sr-only mt-1 font-light absolute'}`}>Please Provide product unit</span> : ''}
               </div>
             </Transition>
             <Transition show={level2}>
@@ -364,7 +362,7 @@ const CreateProduct = () => {
           </form>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
