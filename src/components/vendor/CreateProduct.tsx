@@ -21,14 +21,14 @@ import {
 const CreateProduct = () => {
 
   // redux
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const fetchSubcategory = () => {
-    dispatch(fetchingSubCategories());
+    dispatch(fetchingSubCategories())
     fetch(dispatch, retrievedSubCategory, retrievedSubCategoryFailed, '/subCategory')
   }
 
-  const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory);
+  const { isLoading, subCategories } = useSelector((state: RootState) => state.subCategory)
 
   if (subCategories.length === 0) fetchSubcategory()
 
@@ -52,8 +52,11 @@ const CreateProduct = () => {
   const [level2, setLevel2] = useState(false)
   const [level3, setLevel3] = useState(false)
 
-  const { currentStore } = useSelector((state: RootState) => state.store);
-  const token = localStorage.getItem('token');
+  // set errors
+  const [isError, setIsError] = useState(true)
+
+  const { currentStore } = useSelector((state: RootState) => state.store)
+  const token = localStorage.getItem('token')
 
   const store_id = currentStore?.id
 
@@ -66,11 +69,9 @@ const CreateProduct = () => {
       { name, unit, brand, subCategory },
       token
     )
-
     // navigate('/vendor/products')
   }
-
-  const { currentProduct, error } = useSelector((state: RootState) => state.product);
+  const { currentProduct, error } = useSelector((state: RootState) => state.product)
 
   return (
 
@@ -149,6 +150,7 @@ const CreateProduct = () => {
                     {isLoading ? <h1>loading</h1>
                       : subCategories.map((s) => (<option>{s.name}</option>))}
                   </select>
+                  {subCategory === null ? <span className={`sr-only text-xs md:text-sm text-red-600 flex justify-center ${isError && 'not-sr-only '}`}>Please select subCategory</span> : ''}
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                     <svg
                       className="fill-current h-4 w-4"
@@ -363,7 +365,7 @@ const CreateProduct = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreateProduct;
+export default CreateProduct
