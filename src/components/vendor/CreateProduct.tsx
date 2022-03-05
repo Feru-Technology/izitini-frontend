@@ -103,12 +103,12 @@ const CreateProduct = () => {
           <div className="font-bold text-3xl text-center ">Add a Product</div>
           <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
             <ol className='flex list-none w-full text-gray-600'>
-              <li className={`bg-gray-300 h-1 w-1/3 ${level1 && 'bg-light-blue'}`} />
+              <li className={`bg-gray-300 h-1 w-1/3 ${(level1 || level2 || level3) && 'bg-light-blue'}`} />
               <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${level1 && 'border-light-blue bg-light-blue'}`} />
-              <li className={`bg-gray-300 h-1 w-1/3 ${level2 && 'bg-light-blue'}`} />
+              ${(level1 || level2 || level3) && 'border-light-blue bg-light-blue'}`} />
+              <li className={`bg-gray-300 h-1 w-1/3 ${(level2 || level3) && 'bg-light-blue'}`} />
               <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${level2 && 'border-light-blue bg-light-blue'}`} />
+              ${(level2 || level3) && 'border-light-blue bg-light-blue'}`} />
               <li className={`bg-gray-300 h-1 w-1/3 ${level3 && 'bg-light-blue'}`} />
               <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
               ${level3 && 'border-light-blue bg-light-blue'}`} />
