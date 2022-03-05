@@ -119,7 +119,7 @@ const CreateProduct = () => {
               <Transition
                 show={!!error}
               >
-                <p className='w-full py-1  text-red-700 text-center '>{error?.message}</p>
+                <p className='w-full py-1  text-red-600 text-center border-2 border-red-100 bg-red-50 px-2'>{error?.message}</p>
 
               </Transition>
               <Transition
