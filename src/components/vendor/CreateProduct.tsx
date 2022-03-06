@@ -48,8 +48,8 @@ const CreateProduct = () => {
   const [specification, setSpecification] = useState<string | null>(null)
 
   // set progress level
-  const [level1, setLevel1] = useState(true)
-  const [level2, setLevel2] = useState(false)
+  const [level1, setLevel1] = useState(false)
+  const [level2, setLevel2] = useState(true)
   const [level3, setLevel3] = useState(false)
 
   // set errors
@@ -60,6 +60,8 @@ const CreateProduct = () => {
 
   const store_id = currentStore?.id
 
+
+  // create product product
   const createProduct = () => {
     if (name && unit && brand) {
       setIsError(true)
@@ -217,7 +219,37 @@ const CreateProduct = () => {
               </div>
             </Transition>
             <Transition show={level2}>
-              <div className=" w-full mb-3">
+
+              {/* product sizes */}
+              <div>
+                <div className="mb-3">
+                  <input type="checkbox" name="size" value="sizes"
+                    className="mr-3 transition-all duration-150"
+                    onChange={e => setPrice(e.target.value)}
+                  />
+                  <label htmlFor="Product has multiple sizes"
+                    className='text-gray-700 font-normal' >
+                    I have this product in multiple sizes
+                  </label>
+                </div>
+
+              </div>
+
+              {/* product colors */}
+              <div>
+                <div className="mb-3">
+                  <input type="checkbox" name="color" value="colors"
+                    className="mr-3 transition-all duration-150"
+                    onChange={e => setPrice(e.target.value)}
+                  />
+                  <label htmlFor="Product has multiple colors"
+                    className='text-gray-700 font-normal' >
+                    I have this product in multiple colors
+                  </label>
+                </div>
+
+              </div>
+              {/* <div className=" w-full mb-3">
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
                   htmlFor="text"
@@ -247,14 +279,14 @@ const CreateProduct = () => {
                   placeholder="Quantity"
                   onChange={e => setQuantity(e.target.value)}
                 />
-              </div>
+              </div> */}
 
               {/* upload image */}
-              <div>
+              {/* <div>
                 <form action="/action_page.php">
                   <input type="file" id="myFile" name="filename" />
                 </form>
-              </div>
+              </div> */}
             </Transition>
             <Transition show={level3}>
               <div className=" w-full mb-3">
