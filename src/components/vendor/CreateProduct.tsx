@@ -1,5 +1,5 @@
 import Header from './Header'
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import SiderBar from './SiderBar'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
@@ -61,17 +61,27 @@ const CreateProduct = () => {
   const store_id = currentStore?.id
 
   const createProduct = () => {
-    dispatch(getProduct())
-    post(
-      dispatch,
-      product,
-      productFailed, `/product/${store_id}`,
-      { name, unit, brand, subCategory },
-      token
-    )
-    // navigate('/vendor/products')
+    if (name && unit && brand) {
+      setIsError(true)
+      dispatch(getProduct())
+      post(
+        dispatch,
+        product,
+        productFailed, `/product/${store_id}`,
+        { name, unit, brand, subCategory },
+        token
+      )
+    }
   }
   const { currentProduct, error } = useSelector((state: RootState) => state.product)
+
+  useEffect(() => {
+    if (currentProduct) {
+      setLevel2(true)
+      setLevel1(false)
+      setLevel3(false)
+    }
+  }, [currentProduct])
 
   return (
 
@@ -289,11 +299,8 @@ const CreateProduct = () => {
                 right-0"
                   type="button"
                   onClick={(e) => {
-                    e.preventDefault()
                     createProduct()
-                    setLevel2(true)
-                    setLevel1(false)
-                    setLevel3(false)
+                    e.preventDefault()
                   }}>
                   Continue
                 </button>
