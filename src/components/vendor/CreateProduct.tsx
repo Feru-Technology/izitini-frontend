@@ -246,10 +246,10 @@ const CreateProduct = () => {
                       Size
                     </label>
                     <input
-                      type="number"
+                      type="size"
                       className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                      placeholder="Price unit"
+                      placeholder="Size"
                       onChange={e => setPrice(e.target.value)}
                     />
                   </div>
@@ -265,7 +265,7 @@ const CreateProduct = () => {
                       type="number"
                       className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
                 rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                      placeholder="Price unit"
+                      placeholder="price per size"
                       onChange={e => setPrice(e.target.value)}
                     />
                   </div>
