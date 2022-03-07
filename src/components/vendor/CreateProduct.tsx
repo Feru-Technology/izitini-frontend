@@ -240,17 +240,43 @@ const CreateProduct = () => {
 
               {/* product sizes */}
               <div>
-                <div className="mb-3">
-                  <input type="checkbox" name="size" value="sizes"
-                    className="mr-3 transition-all duration-150"
-                    onChange={e => e.target.checked ? setHasSizes(true) : setHasSizes(false)}
-                  />
-                  <label htmlFor="Product has multiple sizes"
-                    className='text-gray-700 font-normal' >
-                    I have this product in multiple sizes
-                  </label>
-                </div>
 
+                {/* as if product has multiple sizes */}
+                <Transition show={!hasSizes}>
+                  <div className="mb-3">
+                    <p className='text-center font-normal'>I have this product in multiple sizes</p>
+
+                    <div className='flex justify-center mt-5 space-x-5'>
+                      <button
+                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          createProduct()
+                          setLevel3(true)
+                          setLevel1(false)
+                          setLevel2(false)
+                        }}>
+                        No
+                      </button>
+                      <button
+                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg mr-1 ease-linear transition-all duration-150
+                right-0"
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setHasSizes(true)
+                        }}>
+                        yes
+                      </button>
+                    </div>
+                  </div>
+
+                </Transition>
+
+                {/* size inputs */}
                 <Transition show={hasSizes}>
 
                   <div className=" w-full mb-3">
@@ -285,91 +311,41 @@ const CreateProduct = () => {
                     />
                   </div>
 
+                  <div>
 
-                  <div className="mb-3">
-                    <input type="checkbox" name="size" value="sizes"
-                      className="mr-3 transition-all duration-150"
-                      onChange={e => e.target.checked ? setSizePrice(true) : setSizePrice(false)}
-                    />
-                    <label htmlFor="Product has multiple sizes"
-                      className='text-gray-700 font-normal' >
-                      This size has deferent price
-                    </label>
+                    <button
+                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
+                right-0"
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        createProduct()
+                        setLevel1(true)
+                        setLevel2(false)
+                        setLevel3(false)
+                      }}>
+                      Previous
+                    </button>
+                    <button
+                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        createProduct()
+                        setLevel3(true)
+                        setLevel1(false)
+                        setLevel2(false)
+                      }}>
+                      Continue
+                    </button>
                   </div>
 
-                  <Transition show={sizePrice}>
-                    <div className=" w-full mb-3">
-                      <label
-                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                        htmlFor="price"
-                      >
-                        Price per unit
-                      </label>
-                      <input
-                        type="number"
-                        className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                        placeholder="price per size"
-                        onChange={e => setPrice(e.target.value)}
-                      />
-                    </div>
-                  </Transition>
                 </Transition>
 
               </div>
 
-              {/* product colors */}
-              <div>
-                <div className="mb-3">
-                  <input type="checkbox" name="color" value="colors"
-                    className="mr-3 transition-all duration-150"
-                    onChange={e => setPrice(e.target.value)}
-                  />
-                  <label htmlFor="Product has multiple colors"
-                    className='text-gray-700 font-normal' >
-                    I have this product in multiple colors
-                  </label>
-                </div>
-
-              </div>
-              {/* <div className=" w-full mb-3">
-                <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
-                >
-                  Price per unit
-                </label>
-                <input
-                  type="number"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="Price unit"
-                  onChange={e => setPrice(e.target.value)}
-                />
-              </div>
-
-              <div className=" w-full mb-3">
-                <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
-                >
-                  Quantity
-                </label>
-                <input
-                  type="number"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="Quantity"
-                  onChange={e => setQuantity(e.target.value)}
-                />
-              </div> */}
-
-              {/* upload image */}
-              {/* <div>
-                <form action="/action_page.php">
-                  <input type="file" id="myFile" name="filename" />
-                </form>
-              </div> */}
             </Transition>
             <Transition show={level3}>
               {/* product colors */}
@@ -430,7 +406,7 @@ const CreateProduct = () => {
                 </button>
               </Transition>
 
-              <Transition show={level2}>
+              {/* <Transition show={level2}>
                 <button
                   className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
@@ -458,7 +434,7 @@ const CreateProduct = () => {
                   }}>
                   Continue
                 </button>
-              </Transition>
+              </Transition> */}
 
               <Transition show={level3}>
                 <button
