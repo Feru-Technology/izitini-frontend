@@ -49,8 +49,8 @@ const CreateProduct = () => {
 
   // set progress level
   const [level1, setLevel1] = useState(false)
-  const [level2, setLevel2] = useState(true)
-  const [level3, setLevel3] = useState(false)
+  const [level2, setLevel2] = useState(false)
+  const [level3, setLevel3] = useState(true)
   const [level4, setLevel4] = useState(false)
 
   // set errors
@@ -59,6 +59,10 @@ const CreateProduct = () => {
   // product sizes
   const [hasSizes, setHasSizes] = useState(false)
   const [sizePrice, setSizePrice] = useState(false)
+
+  // product Colors
+  const [hasColors, setHasColors] = useState(false)
+  const [colorPrice, setColorPrice] = useState(false)
 
   const { currentStore } = useSelector((state: RootState) => state.store)
   const token = localStorage.getItem('token')
@@ -379,13 +383,146 @@ const CreateProduct = () => {
 
             </Transition>
             <Transition show={level3}>
-              {/* product colors */}
+
+              {/* product color */}
               <div>
-                <div className="mb-3">
-                  <span>I have this product in multiple colors</span>
-                </div>
+
+                {/* as if product has multiple color */}
+                <Transition show={!hasColors}>
+                  <div className="mb-3">
+                    <p className='text-center font-normal'>I have this product in multiple colors</p>
+
+                    <div className='flex justify-center mt-5 space-x-5'>
+                      <button
+                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          createProduct()
+                          setLevel4(true)
+                          setLevel1(false)
+                          setLevel2(false)
+                          setLevel3(false)
+                        }}>
+                        No
+                      </button>
+                      <button
+                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg mr-1 ease-linear transition-all duration-150
+                right-0"
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          setHasColors(true)
+                        }}>
+                        yes
+                      </button>
+                    </div>
+                  </div>
+
+                </Transition>
+
+                {/* color inputs */}
+                <Transition show={hasColors}>
+
+                  <div className=" w-full mb-3">
+                    <label
+                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                      htmlFor="color"
+                    >
+                      color
+                    </label>
+                    <input
+                      type="text"
+                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                      placeholder="color"
+                      onChange={e => setPrice(e.target.value)}
+                    />
+                  </div>
+
+                  <div className=" w-full mb-3">
+                    <label
+                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                      htmlFor="text"
+                    >
+                      Quantity
+                    </label>
+                    <input
+                      type="number"
+                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                      placeholder="Quantity"
+                      onChange={e => setQuantity(e.target.value)}
+                    />
+                  </div>
+
+                  {/* add price per color */}
+                  <div className="mb-3">
+                    <input type="checkbox" name="color" value="colors"
+                      className="mr-3 transition-all duration-150"
+                      onChange={e => e.target.checked ? setColorPrice(true) : setColorPrice(false)}
+                    />
+                    <label htmlFor="Product has multiple color"
+                      className='text-gray-700 font-normal' >
+                      This color has deferent price
+                    </label>
+                  </div>
+
+                  <Transition show={colorPrice}>
+                    <div className=" w-full mb-3">
+                      <label
+                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                        htmlFor="price"
+                      >
+                        Price per unit
+                      </label>
+                      <input
+                        type="number"
+                        className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                        placeholder="price per color"
+                        onChange={e => setPrice(e.target.value)}
+                      />
+                    </div>
+                  </Transition>
+
+                  {/* buttons */}
+                  <div>
+                    <button
+                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
+                right-0"
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setLevel2(true)
+                        setLevel1(false)
+                        setLevel3(false)
+                        setLevel4(false)
+                      }}>
+                      Previous
+                    </button>
+                    <button
+                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        setLevel4(true)
+                        setLevel3(false)
+                        setLevel2(false)
+                        setLevel1(false)
+                      }}>
+                      Continue
+                    </button>
+                  </div>
+
+                </Transition>
 
               </div>
+
             </Transition>
             <Transition show={level4}>
               <div className=" w-full mb-3">
@@ -437,48 +574,19 @@ const CreateProduct = () => {
                 </button>
               </Transition>
 
-              {/* <Transition show={level2}>
+              <Transition show={level4}>
                 <button
                   className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
                 right-0"
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    createProduct()
-                    setLevel1(true)
-                    setLevel2(false)
-                    setLevel3(false)
-                  }}>
-                  Previous
-                </button>
-                <button
-                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
                   type="button"
                   onClick={(e) => {
                     e.preventDefault()
                     createProduct()
                     setLevel3(true)
-                    setLevel1(false)
+                    setLevel4(false)
                     setLevel2(false)
-                  }}>
-                  Continue
-                </button>
-              </Transition> */}
-
-              <Transition show={level3}>
-                <button
-                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0"
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    createProduct()
-                    setLevel2(true)
                     setLevel1(false)
-                    setLevel3(false)
                   }}>
                   Previous
                 </button>
