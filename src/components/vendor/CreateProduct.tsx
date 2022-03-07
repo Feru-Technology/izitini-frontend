@@ -311,6 +311,37 @@ const CreateProduct = () => {
                     />
                   </div>
 
+                  {/* add price per size */}
+                  <div className="mb-3">
+                    <input type="checkbox" name="size" value="sizes"
+                      className="mr-3 transition-all duration-150"
+                      onChange={e => e.target.checked ? setSizePrice(true) : setSizePrice(false)}
+                    />
+                    <label htmlFor="Product has multiple sizes"
+                      className='text-gray-700 font-normal' >
+                      This size has deferent price
+                    </label>
+                  </div>
+
+                  <Transition show={sizePrice}>
+                    <div className=" w-full mb-3">
+                      <label
+                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                        htmlFor="price"
+                      >
+                        Price per unit
+                      </label>
+                      <input
+                        type="number"
+                        className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                        placeholder="price per size"
+                        onChange={e => setPrice(e.target.value)}
+                      />
+                    </div>
+                  </Transition>
+
+                  {/* buttons */}
                   <div>
 
                     <button
