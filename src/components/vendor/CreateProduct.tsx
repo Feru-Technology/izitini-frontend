@@ -51,6 +51,7 @@ const CreateProduct = () => {
   const [level1, setLevel1] = useState(false)
   const [level2, setLevel2] = useState(true)
   const [level3, setLevel3] = useState(false)
+  const [level4, setLevel4] = useState(false)
 
   // set errors
   const [isError, setIsError] = useState(false)
@@ -118,17 +119,30 @@ const CreateProduct = () => {
         </Transition>
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full max-w-9xl mx-auto">
           <div className="font-bold text-3xl text-center ">Add a Product</div>
+
+          {/* progess bar */}
           <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
             <ol className='flex list-none w-full text-gray-600'>
-              <li className={`bg-gray-300 h-1 w-1/3 ${(level1 || level2 || level3) && 'bg-light-blue'}`} />
+
+              {/* level 1 */}
+              <li className={`bg-gray-300 h-1 w-1/3 ${(level1 || level2 || level3 || level4) && 'bg-light-blue'}`} />
               <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${(level1 || level2 || level3) && 'border-light-blue bg-light-blue'}`} />
-              <li className={`bg-gray-300 h-1 w-1/3 ${(level2 || level3) && 'bg-light-blue'}`} />
+              ${(level1 || level2 || level3 || level4) && 'border-light-blue bg-light-blue'}`} />
+
+              {/* level 2 */}
+              <li className={`bg-gray-300 h-1 w-1/3 ${(level2 || level3 || level4) && 'bg-light-blue'}`} />
               <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${(level2 || level3) && 'border-light-blue bg-light-blue'}`} />
-              <li className={`bg-gray-300 h-1 w-1/3 ${level3 && 'bg-light-blue'}`} />
+              ${(level2 || level3 || level4) && 'border-light-blue bg-light-blue'}`} />
+
+              {/* level 3 */}
+              <li className={`bg-gray-300 h-1 w-1/3 ${(level3 || level4) && 'bg-light-blue'}`} />
               <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${level3 && 'border-light-blue bg-light-blue'}`} />
+              ${(level3 || level4) && 'border-light-blue bg-light-blue'}`} />
+
+              {/* level 4 */}
+              <li className={`bg-gray-300 h-1 w-1/3 ${level4 && 'bg-light-blue'}`} />
+              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
+              ${level4 && 'border-light-blue bg-light-blue'}`} />
             </ol>
           </div>
           <form className='md:w-4/6 lg:w-3/6 mx-auto'>
