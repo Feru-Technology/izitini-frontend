@@ -55,6 +55,9 @@ const CreateProduct = () => {
   // set errors
   const [isError, setIsError] = useState(false)
 
+  // product sizes
+  const [hasSizes, setHasSizes] = useState(false)
+
   const { currentStore } = useSelector((state: RootState) => state.store)
   const token = localStorage.getItem('token')
 
@@ -225,13 +228,64 @@ const CreateProduct = () => {
                 <div className="mb-3">
                   <input type="checkbox" name="size" value="sizes"
                     className="mr-3 transition-all duration-150"
-                    onChange={e => setPrice(e.target.value)}
+                    onChange={e => e.target.checked ? setHasSizes(true) : setHasSizes(false)}
                   />
                   <label htmlFor="Product has multiple sizes"
                     className='text-gray-700 font-normal' >
                     I have this product in multiple sizes
                   </label>
                 </div>
+
+                <Transition show={hasSizes}>
+
+                  <div className=" w-full mb-3">
+                    <label
+                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                      htmlFor="size"
+                    >
+                      Size
+                    </label>
+                    <input
+                      type="number"
+                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                      placeholder="Price unit"
+                      onChange={e => setPrice(e.target.value)}
+                    />
+                  </div>
+
+                  <div className=" w-full mb-3">
+                    <label
+                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                      htmlFor="price"
+                    >
+                      Price per unit
+                    </label>
+                    <input
+                      type="number"
+                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                      placeholder="Price unit"
+                      onChange={e => setPrice(e.target.value)}
+                    />
+                  </div>
+
+                  <div className=" w-full mb-3">
+                    <label
+                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                      htmlFor="text"
+                    >
+                      Quantity
+                    </label>
+                    <input
+                      type="number"
+                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                      placeholder="Quantity"
+                      onChange={e => setQuantity(e.target.value)}
+                    />
+                  </div>
+                </Transition>
 
               </div>
 
