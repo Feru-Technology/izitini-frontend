@@ -372,6 +372,15 @@ const CreateProduct = () => {
               </div> */}
             </Transition>
             <Transition show={level3}>
+              {/* product colors */}
+              <div>
+                <div className="mb-3">
+                  <span>I have this product in multiple colors</span>
+                </div>
+
+              </div>
+            </Transition>
+            <Transition show={level4}>
               <div className=" w-full mb-3">
                 <label
                   className="block uppercase text-gray-600 text-xs font-bold mb-2"
