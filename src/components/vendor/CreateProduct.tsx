@@ -48,9 +48,9 @@ const CreateProduct = () => {
   const [specification, setSpecification] = useState<string | null>(null)
 
   // set progress level
-  const [level1, setLevel1] = useState(false)
+  const [level1, setLevel1] = useState(true)
   const [level2, setLevel2] = useState(false)
-  const [level3, setLevel3] = useState(true)
+  const [level3, setLevel3] = useState(false)
   const [level4, setLevel4] = useState(false)
 
   // set errors
@@ -64,10 +64,7 @@ const CreateProduct = () => {
   const [hasColors, setHasColors] = useState(false)
   const [colorPrice, setColorPrice] = useState(false)
 
-  const { currentStore } = useSelector((state: RootState) => state.store)
   const token = localStorage.getItem('token')
-
-  const store_id = currentStore?.id
 
 
   // create product product
@@ -78,7 +75,7 @@ const CreateProduct = () => {
       post(
         dispatch,
         product,
-        productFailed, `/product/${store_id}`,
+        productFailed, '/product',
         { name, unit, brand, subCategory },
         token
       )
@@ -386,7 +383,6 @@ const CreateProduct = () => {
 
               {/* product color */}
               <div>
-
                 {/* as if product has multiple color */}
                 <Transition show={!hasColors}>
                   <div className="mb-3">
