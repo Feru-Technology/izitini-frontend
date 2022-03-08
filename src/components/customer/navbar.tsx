@@ -8,10 +8,14 @@ import { loggedIn } from '../../redux/profile.slice'
 import { FaTools, FaBuilding } from 'react-icons/fa'
 import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { MenuIcon, XIcon, } from '@heroicons/react/outline'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
+import {
+    getCart as gettingCart,
+    cart as getCart, cartFailed
+} from '../../redux/order/cart'
+
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -41,6 +45,7 @@ export const Navbar = () => {
     const [showProduct, setShowProduct] = useState(false)
     const [showIdea, setShowIdea] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
+    const [showSignupOptions, setShowSignupOptions] = useState(false)
 
     const logout = () => {
         dispatch(loggedIn(null))
@@ -53,7 +58,7 @@ export const Navbar = () => {
             {({ open }) => (
                 <>
                     <div className="mt-5 mb-5">
-                        <div className="flex w-full relative">
+                        <div className="flex w-full">
 
                             {/* logo */}
                             <div className="flex w-1/4 ml-1
@@ -75,7 +80,8 @@ export const Navbar = () => {
                                         className="block h-8 md:h-10 lg:h-12 w-auto"
                                         src="https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png"
                                         alt="Workflow"
-                                    /></Link>
+                                    />
+                                </Link>
 
                             </div>
 
@@ -117,7 +123,7 @@ export const Navbar = () => {
                                         className='flex mt-3 md:mt-0'
                                     >
                                         <span className="sr-only">View saved items</span>
-                                        <BsSuitHeart className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                        <BsSuitHeart className="h-5 md:h-6 lg:h-7 md:text-sm w-auto" aria-hidden="true" />
                                         <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>
                                             <p>3</p>
                                         </div>
@@ -129,7 +135,7 @@ export const Navbar = () => {
                                             className='flex mt-3 md:mt-0'
                                         >
                                             <span className="sr-only">View notifications</span>
-                                            <BsBell className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            <BsBell className="h-5 md:h-6 lg:h-7 md:text-sm w-auto" aria-hidden="true" />
                                             <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
                                         </button>
                                     }
@@ -140,7 +146,7 @@ export const Navbar = () => {
                                             className='flex mt-3 md:mt-0'
                                         >
                                             <span className="sr-only">View cart</span>
-                                            <BsCart3 className="h-5 md:h-7 md:text-sm w-auto" aria-hidden="true" />
+                                            <BsCart3 className="h-5 md:h-6 lg:h-7 md:text-sm w-auto" aria-hidden="true" />
                                             {cart ?
                                                 <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>{cartItems}</p> : ''}
 
@@ -156,8 +162,10 @@ export const Navbar = () => {
                                                     <Link to='/signin'>Login</Link>
 
                                                 </div>
-                                                <div>
-                                                    <Link to='/signup'>Register</Link></div>
+                                                <div className='cursor-pointer transition duration-150'
+                                                    onClick={() => setShowSignupOptions(true)}>
+                                                    Register
+                                                </div>
                                             </div>
                                             <div>
                                                 <Link to='/signin'>
@@ -177,16 +185,15 @@ export const Navbar = () => {
                                                 <div>
                                                     <Menu.Button className="flex space-x-4">
 
-                                                        <img
-                                                            className="h-7 mt-2 md:mt-0 md:h-9 w-auto rounded-full"
-                                                            src={
-                                                                profile.user.profile_image === null ?
-                                                                    backUpPImage
-                                                                    : profile.user.profile_image
-                                                            }
-                                                            alt="PImage"
-                                                        />
-                                                        <p className="sr-only lg:not-sr-only text-base">{profile.user.full_name}</p>
+                                                        <div className='flex flex-row justify-center items-center space-x-2'>
+                                                            <img
+                                                                src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
+                                                                className='w-6 h-6 mt-2 rounded-full mx-auto md:w-8 md:h-8 md:mt-0'
+                                                                alt='pImg'
+                                                            />
+                                                            <p className='sr-only lg:not-sr-only'>{profile?.user.full_name}</p>
+                                                            <ChevronDownIcon className='sr-only lg:h-5 lg:w-5 lg:not-sr-only' />
+                                                        </div>
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition
@@ -198,7 +205,7 @@ export const Navbar = () => {
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
-                                                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-4/5 rounded-md shadow-lg p-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <Link to='/profile'
@@ -210,7 +217,7 @@ export const Navbar = () => {
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             {({ active }) => (
-                                                                <Link to='/vendor'
+                                                                <Link to='/dashboard'
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
                                                                     Dashboard
@@ -340,6 +347,49 @@ export const Navbar = () => {
                         </div>
                     </div>
 
+                    {/* signup options */}
+                    <Transition show={showSignupOptions}>
+
+                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-full h-screen'
+                            onClick={() => setShowSignupOptions(false)}>
+                        </div>
+                        <div className='absolute z-20 w-full'>
+                            <div className='bg-white shadow-lg mx-auto px-5 pt-3 pb-10 md:pb-12 '
+                                style={{ height: 'fit-content', width: 'fit-content', marginTop: '5%' }}
+                            >
+                                < XIcon className='h-4 cursor-pointer mb-4 md:mb-0'
+                                    style={{ marginLeft: '98%' }}
+                                    onClick={() => setShowSignupOptions(false)} />
+                                <div className='md:flex'>
+                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                        <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
+                                        <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
+                                    </div>
+                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                        <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
+                                        <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
+                                    </div>
+                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                        <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
+                                        <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>
+                                    </div>
+                                </div>
+                                <button disabled={true}
+                                    className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
+                                    px-5 py-2 rounded-lg flex float-right mr-2 md:mr-3.5'
+                                ><span className='text-xs mr-1 md:text-sm md:mr-2
+                                lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
+                                </button>
+                            </div>
+                        </div>
+                        {/* </div> */}
+                    </Transition>
                     {/* menu breakdown */}
                     <Disclosure.Panel className="sm:sr-only absolute z-10  bg-white">
                         <div className="px-2 pt-2 pb-3 space-y-1">
@@ -348,6 +398,7 @@ export const Navbar = () => {
                     </Disclosure.Panel>
                 </>
             )}
-        </Disclosure>
+
+        </Disclosure >
     )
 }

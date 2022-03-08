@@ -9,8 +9,6 @@ const lodash = require('lodash')
 const Cart = () => {
 
     const { isLoading, cart, error } = useSelector((state: RootState) => state.cart)
-    console.log('==========================================')
-    console.log(cart)
 
     let totalPrices: any = []
 

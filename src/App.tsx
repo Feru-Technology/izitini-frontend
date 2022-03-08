@@ -1,39 +1,44 @@
-import { fetch, post } from './api/apiAction';
+import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
-import Home from './components/main/home'
-import Cart from './components/main/Cart'
+import Home from './components/customer/home'
+import Cart from './components/customer/Cart'
 import Store from './components/vendor/Store'
-import Product from './components/main/product'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
 import Coupons from './components/vendor/Coupons'
-import NotFound from './components/main/NotFound'
-import Category from './components/main/category'
 import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
-import Dashboard from './components/vendor/Dashboard'
-import Subcategory from './components/main/subcategory'
-import AllProducts from './components/main/allProducts'
+import Product from './components/customer/product'
+import MyOrders from './components/customer/orders'
+import NotFound from './components/customer/NotFound'
+import Category from './components/customer/category'
 import CreateStore from './components/vendor/CreateStore'
+import VendorDashboard from './components/vendor/Dashboard'
+import Subcategory from './components/customer/subcategory'
+import AllProducts from './components/customer/allProducts'
 import CreateProduct from './components/vendor/CreateProduct'
-import SignInPage from './components/main/accounts/SignInPage'
-import { loggedIn, login, loginFailed } from './redux/profile.slice'
-import CustomerSignUp from './components/main/accounts/CustomerSignUp'
+import CustomerDashboard from './components/customer/Dashboard'
+import SignInPage from './components/customer/accounts/SignInPage'
+import AccountTypes from './components/customer/accounts/accountTypes'
+import VendorSignUp from './components/customer/accounts/VendorSignUp'
+import CustomerSignUp from './components/customer/accounts/CustomerSignUp'
+
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import { loggedIn, login, loginFailed } from './redux/profile.slice'
 
 function App() {
 
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
 
     const profile = () => {
-        dispatch(login());
+        dispatch(login())
         fetch(dispatch, loggedIn, loginFailed, '/users/my/profile', token)
     }
 
-    if (token) profile();
+    if (token) profile()
 
     return (
         <BrowserRouter>
@@ -44,10 +49,14 @@ function App() {
                 <Route path='/products/:id' element={<Product />} />
                 <Route path='/products' element={<AllProducts />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
+                <Route path='/account-types' element={<AccountTypes />} />
+                <Route path='/vendor-signup' element={<VendorSignUp />} />
                 <Route path='/products/c/:categoryName' element={<Category />} />
                 <Route path='/products/s/:id' element={<Subcategory />} />
+                <Route path='/dashboard' element={<CustomerDashboard />} />
+                <Route path='/orders' element={<MyOrders />} />
 
-                <Route path='/vendor' element={<Dashboard />} />
+                <Route path='/vendor' element={<VendorDashboard />} />
                 <Route path='/vendor/stores' element={<Store />} />
                 <Route path='/vendor/orders' element={<Orders />} />
                 <Route path='/vendor/reports' element={<Reports />} />
@@ -63,6 +72,7 @@ function App() {
             </Routes>
 
         </BrowserRouter>
+
     )
 }
 

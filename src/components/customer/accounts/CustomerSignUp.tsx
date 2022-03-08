@@ -15,9 +15,6 @@ const CustomerSignUp = () => {
   const [contact, setContact] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
   const [full_name, setFull_name] = useState<string | null>(null)
-  const [account_type, setAccount_type] = useState<string | null>(null)
-
-  console.log(email, contact, password, full_name, account_type);
 
   const navigate = useNavigate()
 
@@ -27,13 +24,13 @@ const CustomerSignUp = () => {
       email,
       contact,
       password,
-      full_name,
-      account_type
+      full_name
     })
-    if (profile) navigate('/')
   }
 
   const { profile, error } = useSelector((state: RootState) => state.profile)
+
+  if (profile) navigate('/')
 
   return (
     <div>
@@ -101,33 +98,6 @@ const CustomerSignUp = () => {
                 <small>Or sign in with credentials</small>
               </div>
               <form>
-                <div className='relative w-full mb-3'>
-                  <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                    htmlFor='grid-password'
-                  >
-                    Account Type
-                  </label>
-                  <select
-                    className='block appearance-none w-full bg-white border border-gray-700 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-700'
-                    id='grid-state'
-                    onChange={e => setAccount_type(e.target.value)}
-                  >
-                    <option>Select Account type</option>
-                    <option className='hover:bg-dark-blue hover:text-white'>customer</option>
-                    <option className='hover:bg-dark-blue hover:text-white'>business</option>
-                    <option className='hover:bg-dark-blue hover:text-white'>profession</option>
-                  </select>
-                  <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700'>
-                    <svg
-                      className='fill-current h-4 w-4 mx-2 mt-6'
-                      xmlns='http://www.w3.org/2000/svg'
-                      viewBox='0 0 20 20'
-                    >
-                      <path d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z' />
-                    </svg>
-                  </div>
-                </div>
                 <div className='relative w-full mb-3'>
                   <label
                     className='block uppercase text-gray-600 text-xs font-bold mb-2'
@@ -207,7 +177,7 @@ const CustomerSignUp = () => {
                 </div>
                 <div className='text-center mt-6'>
                   <button
-                    className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
+                    className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                     type='button'
                     onClick={() => signup()}
                   >
