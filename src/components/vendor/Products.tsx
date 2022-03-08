@@ -17,9 +17,8 @@ import {
 } from '../../redux/products/storeProducts.slice '
 const Products = () => {
 
-
-    // Get ID from URL
-    const params = useParams();
+    //  get token
+    const token = localStorage.getItem('token')
 
     const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
@@ -31,12 +30,11 @@ const Products = () => {
 
     const { currentStore } = useSelector((state: RootState) => state.store);
 
-    const { id } = params
-
     useEffect(() => {
-        dispatch(fetchingProducts());
-        fetch(dispatch, storeProducts, productFailed, `/product/shop/${id}`)
-    }, [dispatch, id])
+        dispatch(fetchingProducts())
+        fetch(dispatch, storeProducts, productFailed, `/product/s/all`, token)
+
+    }, [dispatch, token])
 
     const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
 
