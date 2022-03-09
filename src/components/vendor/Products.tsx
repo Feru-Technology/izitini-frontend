@@ -73,7 +73,7 @@ const Products = () => {
                 >
                     <div className='fixed inset-0 bg-black opacity-60 z-10' />
                 </Transition>
-                <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
+                <div className='px-2 lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
                         <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{currentStore?.name}</h3>
                         <Link to='/vendor/create-product'>
@@ -84,55 +84,47 @@ const Products = () => {
                         </Link>
                     </div>
                     <div className='flex flex-col'>
-                        <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-                            <div className='py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8'>
-                                <div className='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
-                                    <table className='min-w-full divide-y divide-gray-200'>
+                        <div className='overflow-x-auto'>
+                            <div className='py-2 align-middle inline-block min-w-full'>
+                                <div className='shadow overflow-hidden border-b border-gray-200 rounded-md lg:rounded-lg'>
+                                    <table className='min-w-full divide-y divide-gray-200 text-gray-600 text-sm'>
                                         <thead className='bg-gray-50'>
-                                            <tr>
+                                            <tr className='w-full uppercase tracking-wider font-medium'>
                                                 <th
                                                     scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                    className='pl-3 w-5/12 py-3 text-left'
                                                 >
                                                     Name
                                                 </th>
                                                 <th
                                                     scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                    className='w-1/12 py-3 text-left sr-only md:not-sr-only'
                                                 >
                                                     Brand
                                                 </th>
                                                 <th
                                                     scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                    className='w-2/12 py-3 text-left sr-only md:not-sr-only'
                                                 >
                                                     Quantity
                                                 </th>
                                                 <th
                                                     scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                    className='w-1/12 py-3 text-left sr-only md:not-sr-only'
                                                 >
                                                     Unit
                                                 </th>
                                                 <th
                                                     scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                    className='w-2/12 py-3 text-left sr-only md:not-sr-only'
                                                 >
                                                     Price
                                                 </th>
                                                 <th
                                                     scope='col'
-                                                    className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
+                                                    className='w-1/12 py-3 text-left sr-only md:not-sr-only'
                                                 >
                                                     Status
-                                                </th>
-                                                <th
-                                                    scope='col'
-                                                    className='relative px-6 py-3'
-                                                >
-                                                    <span className='sr-only'>
-                                                        Edit
-                                                    </span>
                                                 </th>
                                             </tr>
                                         </thead>
@@ -142,7 +134,7 @@ const Products = () => {
                                                     ? (<h1>loading ...</h1>)
                                                     : (products.map((product) => (
                                                         <tr onClick={e => activeProduct(product)}>
-                                                            <td className='px-6 py-4'>
+                                                            <td className='pl-3 w-5/12 py-4'>
                                                                 <div className='flex items-center'>
                                                                     <div className='flex-shrink-0 h-10 w-10'>
                                                                         <img
@@ -151,33 +143,25 @@ const Products = () => {
                                                                             alt=''
                                                                         />
                                                                     </div>
-                                                                    <div className='ml-4 text-sm font-medium text-gray-500'>
+                                                                    <div className='ml-4 font-medium w-full md:w-auto'>
                                                                         {product.name}
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                            <td className='w-1/12 py-4 sr-only md:not-sr-only'>
                                                                 {product.brand}
                                                             </td>
-                                                            <td className='px-6 py-4 text-xs text-gray-500'>
+                                                            <td className='w-2/12 py-4 sr-only md:not-sr-only'>
                                                                 {product.quantity}
                                                             </td>
-                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                            <td className='w-1/12 py-4 sr-only md:not-sr-only'>
                                                                 {product.unit}
                                                             </td>
-                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                            <td className='w-2/12 py-4 sr-only md:not-sr-only'>
                                                                 {product.price}
                                                             </td>
-                                                            <td className='px-6 py-4 text-sm text-gray-500'>
+                                                            <td className='w-1/12 py-4 sr-only md:not-sr-only'>
                                                                 {product.status}
-                                                            </td>
-                                                            <td className='px-6 py-4 text-right text-sm font-medium'>
-                                                                <a
-                                                                    href='#'
-                                                                    className='text-indigo-600 hover:text-indigo-900'
-                                                                >
-                                                                    Edit
-                                                                </a>
                                                             </td>
                                                         </tr>
                                                     )))}
