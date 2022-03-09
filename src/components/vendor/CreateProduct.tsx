@@ -119,14 +119,14 @@ const CreateProduct = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div className='px-4 sm:px-6  lg:px-8 py-8 w-full max-w-9xl mx-auto'>
-          <div className='font-normal text-3xl text-center '>Add a Product</div>
+          <div className='font-bold text-lg text-center md:text-xl xl:text-2xl'>Add a Product</div>
 
           {/* progess bar */}
-          <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
+          <div className='my-5 flex list-none md:w-5/6 lg:w-3/6 mx-auto'>
             <div className='flex list-none w-full text-gray-800 space-x-1'>
 
               {/* level 1 */}
-              <button className={`bg-gray-300 p-1 rounded-l-lg w-1/3 ${level1 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 text-xs md:text-sm lg:text-base rounded-l-lg w-1/3 ${level1 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
@@ -137,7 +137,7 @@ const CreateProduct = () => {
                 }}> Create Product </button>
 
               {/* level 2 */}
-              <button className={`bg-gray-300 p-1 w-1/3 ${level2 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 text-xs md:text-sm lg:text-base w-1/3 ${level2 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
@@ -148,7 +148,7 @@ const CreateProduct = () => {
                 }}> Add Sizes </button>
 
               {/* level 3 */}
-              <button className={`bg-gray-300 p-1 w-1/3 ${level3 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 text-xs md:text-sm lg:text-base w-1/3 ${level3 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
@@ -159,7 +159,7 @@ const CreateProduct = () => {
                 }}> Add Colors </button>
 
               {/* level 4 */}
-              <button className={`bg-gray-300 p-1 rounded-r-lg w-1/3 ${level4 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 text-xs md:text-sm lg:text-base rounded-r-lg w-1/3 ${level4 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
