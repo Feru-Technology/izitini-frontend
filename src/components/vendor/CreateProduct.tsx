@@ -576,9 +576,9 @@ const CreateProduct = () => {
 
               <Transition show={level1}>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0'
+                '
                   type='button'
                   onClick={(e) => {
                     createProduct()
