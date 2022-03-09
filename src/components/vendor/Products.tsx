@@ -26,9 +26,9 @@ const Products = () => {
     })
 
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const { currentStore } = useSelector((state: RootState) => state.store);
+    const { currentStore } = useSelector((state: RootState) => state.store)
 
     useEffect(() => {
         dispatch(fetchingProducts())
@@ -36,7 +36,7 @@ const Products = () => {
 
     }, [dispatch, token])
 
-    const { isLoading, products } = useSelector((state: RootState) => state.storeProducts);
+    const { isLoading, products } = useSelector((state: RootState) => state.storeProducts)
 
     const navigate = useNavigate()
 
@@ -75,9 +75,10 @@ const Products = () => {
                 </Transition>
                 <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
-                        <h3 className='text-3xl font-bold'>{currentStore?.name}</h3>
+                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{currentStore?.name}</h3>
                         <Link to='/vendor/create-product'>
-                            <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold py-2 px-4 rounded cursor-pointer'>
+                            <button className='bg-middle-blue hover:bg-dark-blue text-white font-bold
+                            py-2 px-4 rounded cursor-pointer text-sm md:text-base'>
                                 ADD A PRODUCT
                             </button>
                         </Link>
