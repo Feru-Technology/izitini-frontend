@@ -118,19 +118,18 @@ const CreateProduct = () => {
         >
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
-        <div className="px-4 sm:px-6  lg:px-8 py-8 w-full max-w-9xl mx-auto">
-          <div className="font-bold text-3xl text-center ">Add a Product</div>
+        <div className='px-4 sm:px-6  lg:px-8 py-8 w-full max-w-9xl mx-auto'>
+          <div className='font-normal text-3xl text-center '>Add a Product</div>
 
           {/* progess bar */}
           <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
-            <div className='flex list-none w-full text-gray-600 space-x-1'>
+            <div className='flex list-none w-full text-gray-800 space-x-1'>
 
               {/* level 1 */}
-              <button className={`bg-gray-300 p-1 rounded-l-lg text-gray-900 w-1/3 ${level1 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 rounded-l-lg w-1/3 ${level1 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
-                  createProduct()
                   setLevel3(false)
                   setLevel4(false)
                   setLevel2(false)
@@ -138,11 +137,10 @@ const CreateProduct = () => {
                 }}> Create Product </button>
 
               {/* level 2 */}
-              <button className={`bg-gray-300 p-1 text-gray-900 w-1/3 ${level2 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 w-1/3 ${level2 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
-                  createProduct()
                   setLevel3(false)
                   setLevel4(false)
                   setLevel2(true)
@@ -150,11 +148,10 @@ const CreateProduct = () => {
                 }}> Add Sizes </button>
 
               {/* level 3 */}
-              <button className={`bg-gray-300 p-1 text-gray-900 w-1/3 ${level3 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 w-1/3 ${level3 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
-                  createProduct()
                   setLevel3(true)
                   setLevel4(false)
                   setLevel2(false)
@@ -162,11 +159,10 @@ const CreateProduct = () => {
                 }}> Add Colors </button>
 
               {/* level 4 */}
-              <button className={`bg-gray-300 p-1 rounded-r-lg text-gray-900 w-1/3 ${level4 ? 'bg-light-blue text-white' : ''}`}
+              <button className={`bg-gray-300 p-1 rounded-r-lg w-1/3 ${level4 ? 'bg-light-blue text-white' : ''}`}
                 type='button'
                 onClick={(e) => {
                   e.preventDefault()
-                  createProduct()
                   setLevel3(false)
                   setLevel4(true)
                   setLevel2(false)
@@ -187,19 +183,19 @@ const CreateProduct = () => {
             <Transition show={level1}>
               <div className='mb-5'>
                 <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
+                  className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                  htmlFor='text'
                 >
                   sub-category
                 </label>
                 <div className='mb-5'>
                   <select
-                    className="block appearance-none w-full bg-white border border-gray-200 text-gray-700
-                  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    id="grid-state"
+                    className='block appearance-none w-full bg-white border border-gray-200 text-gray-700
+                  py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+                    id='grid-state'
                     onChange={e => setSubCategory(e.target.value)}
                   >
-                    <option>Select Sub-Category</option>
+                    <option> {subCategory ? subCategory : 'Select Sub-Category'}</option>
                     {isLoading ? <h1>loading</h1>
                       : subCategories.map((s) => (<option>{s.name}</option>))}
                   </select>
@@ -209,16 +205,16 @@ const CreateProduct = () => {
               </div>
               <div className='mb-5'>
                 <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
+                  className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                  htmlFor='text'
                 >
                   name
                 </label>
                 <input
-                  type="text"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="name"
+                  type='text'
+                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  placeholder={name ? name : 'name'}
                   onChange={e => setName(e.target.value)}
                 />
                 {name === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
@@ -226,16 +222,16 @@ const CreateProduct = () => {
               </div>
               <div className='mb-5'>
                 <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
+                  className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                  htmlFor='text'
                 >
                   Brand
                 </label>
                 <input
-                  type="text"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="Brand"
+                  type='text'
+                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  placeholder={!brand ? 'Brand' : brand}
                   onChange={e => setBrand(e.target.value)}
                 />
                 {brand === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
@@ -243,16 +239,16 @@ const CreateProduct = () => {
               </div>
               <div className='mb-5'>
                 <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
+                  className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                  htmlFor='text'
                 >
                   Unit/measurements
                 </label>
                 <input
-                  type="text"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="Brand"
+                  type='text'
+                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  placeholder={!unit ? 'measurements' : unit}
                   onChange={e => setUnit(e.target.value)}
                 />
                 {unit === null ? <span className={`sr-only text-xs text-red-600 flex justify-center
@@ -266,14 +262,14 @@ const CreateProduct = () => {
 
                 {/* as if product has multiple sizes */}
                 <Transition show={!hasSizes}>
-                  <div className="mb-3">
+                  <div className='mb-3'>
                     <p className='text-center font-normal'>I have this product in multiple sizes</p>
 
                     <div className='flex justify-center mt-5 space-x-5'>
                       <button
-                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
-                        type="button"
+                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
+                        type='button'
                         onClick={(e) => {
                           e.preventDefault()
                           createProduct()
@@ -284,10 +280,10 @@ const CreateProduct = () => {
                         No
                       </button>
                       <button
-                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg mr-1 ease-linear transition-all duration-150
-                right-0"
-                        type="button"
+                right-0'
+                        type='button'
                         onClick={(e) => {
                           e.preventDefault()
                           setHasSizes(true)
@@ -302,63 +298,63 @@ const CreateProduct = () => {
                 {/* size inputs */}
                 <Transition show={hasSizes}>
 
-                  <div className=" w-full mb-3">
+                  <div className=' w-full mb-3'>
                     <label
-                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                      htmlFor="size"
+                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      htmlFor='size'
                     >
                       Size
                     </label>
                     <input
-                      type="size"
-                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                      placeholder="Size"
+                      type='size'
+                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      placeholder='Size'
                       onChange={e => setPrice(e.target.value)}
                     />
                   </div>
 
-                  <div className=" w-full mb-3">
+                  <div className=' w-full mb-3'>
                     <label
-                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                      htmlFor="text"
+                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      htmlFor='text'
                     >
                       Quantity
                     </label>
                     <input
-                      type="number"
-                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                      placeholder="Quantity"
+                      type='number'
+                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      placeholder='Quantity'
                       onChange={e => setQuantity(e.target.value)}
                     />
                   </div>
 
                   {/* add price per size */}
-                  <div className="mb-3">
-                    <input type="checkbox" name="size" value="sizes"
-                      className="mr-3 transition-all duration-150"
+                  <div className='mb-3'>
+                    <input type='checkbox' name='size' value='sizes'
+                      className='mr-3 transition-all duration-150'
                       onChange={e => e.target.checked ? setSizePrice(true) : setSizePrice(false)}
                     />
-                    <label htmlFor="Product has multiple sizes"
+                    <label htmlFor='Product has multiple sizes'
                       className='text-gray-700 font-normal' >
                       This size has deferent price
                     </label>
                   </div>
 
                   <Transition show={sizePrice}>
-                    <div className=" w-full mb-3">
+                    <div className=' w-full mb-3'>
                       <label
-                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                        htmlFor="price"
+                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                        htmlFor='price'
                       >
                         Price per unit
                       </label>
                       <input
-                        type="number"
-                        className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                        placeholder="price per size"
+                        type='number'
+                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                        placeholder='price per size'
                         onChange={e => setPrice(e.target.value)}
                       />
                     </div>
@@ -368,10 +364,10 @@ const CreateProduct = () => {
                   <div>
 
                     <button
-                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0"
-                      type="button"
+                right-0'
+                      type='button'
                       onClick={(e) => {
                         e.preventDefault()
                         createProduct()
@@ -382,9 +378,9 @@ const CreateProduct = () => {
                       Previous
                     </button>
                     <button
-                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
-                      type="button"
+                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
+                      type='button'
                       onClick={(e) => {
                         e.preventDefault()
                         createProduct()
@@ -407,14 +403,14 @@ const CreateProduct = () => {
               <div>
                 {/* as if product has multiple color */}
                 <Transition show={!hasColors}>
-                  <div className="mb-3">
+                  <div className='mb-3'>
                     <p className='text-center font-normal'>I have this product in multiple colors</p>
 
                     <div className='flex justify-center mt-5 space-x-5'>
                       <button
-                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
-                        type="button"
+                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
+                        type='button'
                         onClick={(e) => {
                           e.preventDefault()
                           createProduct()
@@ -426,10 +422,10 @@ const CreateProduct = () => {
                         No
                       </button>
                       <button
-                        className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg mr-1 ease-linear transition-all duration-150
-                right-0"
-                        type="button"
+                right-0'
+                        type='button'
                         onClick={(e) => {
                           e.preventDefault()
                           setHasColors(true)
@@ -444,63 +440,63 @@ const CreateProduct = () => {
                 {/* color inputs */}
                 <Transition show={hasColors}>
 
-                  <div className=" w-full mb-3">
+                  <div className=' w-full mb-3'>
                     <label
-                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                      htmlFor="color"
+                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      htmlFor='color'
                     >
                       color
                     </label>
                     <input
-                      type="text"
-                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                      placeholder="color"
+                      type='text'
+                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      placeholder='color'
                       onChange={e => setPrice(e.target.value)}
                     />
                   </div>
 
-                  <div className=" w-full mb-3">
+                  <div className=' w-full mb-3'>
                     <label
-                      className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                      htmlFor="text"
+                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      htmlFor='text'
                     >
                       Quantity
                     </label>
                     <input
-                      type="number"
-                      className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                      placeholder="Quantity"
+                      type='number'
+                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      placeholder='Quantity'
                       onChange={e => setQuantity(e.target.value)}
                     />
                   </div>
 
                   {/* add price per color */}
-                  <div className="mb-3">
-                    <input type="checkbox" name="color" value="colors"
-                      className="mr-3 transition-all duration-150"
+                  <div className='mb-3'>
+                    <input type='checkbox' name='color' value='colors'
+                      className='mr-3 transition-all duration-150'
                       onChange={e => e.target.checked ? setColorPrice(true) : setColorPrice(false)}
                     />
-                    <label htmlFor="Product has multiple color"
+                    <label htmlFor='Product has multiple color'
                       className='text-gray-700 font-normal' >
                       This color has deferent price
                     </label>
                   </div>
 
                   <Transition show={colorPrice}>
-                    <div className=" w-full mb-3">
+                    <div className=' w-full mb-3'>
                       <label
-                        className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                        htmlFor="price"
+                        className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                        htmlFor='price'
                       >
                         Price per unit
                       </label>
                       <input
-                        type="number"
-                        className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                        placeholder="price per color"
+                        type='number'
+                        className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                        placeholder='price per color'
                         onChange={e => setPrice(e.target.value)}
                       />
                     </div>
@@ -509,10 +505,10 @@ const CreateProduct = () => {
                   {/* buttons */}
                   <div>
                     <button
-                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0"
-                      type="button"
+                right-0'
+                      type='button'
                       onClick={(e) => {
                         e.preventDefault()
                         setLevel2(true)
@@ -523,9 +519,9 @@ const CreateProduct = () => {
                       Previous
                     </button>
                     <button
-                      className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0"
-                      type="button"
+                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
+                      type='button'
                       onClick={(e) => {
                         e.preventDefault()
                         setLevel4(true)
@@ -543,47 +539,47 @@ const CreateProduct = () => {
 
             </Transition>
             <Transition show={level4}>
-              <div className=" w-full mb-3">
+              <div className=' w-full mb-3'>
                 <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
+                  className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                  htmlFor='text'
                 >
                   Product manual
                 </label>
                 <input
-                  type="text"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="Product manual"
+                  type='text'
+                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  placeholder='Product manual'
                   onChange={e => setManual(e.target.value)}
                 />
               </div>
-              <div className=" w-full mb-3">
+              <div className=' w-full mb-3'>
                 <label
-                  className="block uppercase text-gray-600 text-xs font-bold mb-2"
-                  htmlFor="text"
+                  className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                  htmlFor='text'
                 >
                   Product Specifications
                 </label>
                 <input
-                  type="text"
-                  className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
-                  placeholder="Product Specifications"
+                  type='text'
+                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  placeholder='Product Specifications'
                   onChange={e => setSpecification(e.target.value)}
                 />
               </div>
             </Transition>
 
             {/* buttons */}
-            <div className="text-center mt-3 space-x-4">
+            <div className='text-center mt-3 space-x-4'>
 
               <Transition show={level1}>
                 <button
-                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0"
-                  type="button"
+                right-0'
+                  type='button'
                   onClick={(e) => {
                     createProduct()
                     e.preventDefault()
@@ -594,10 +590,10 @@ const CreateProduct = () => {
 
               <Transition show={level4}>
                 <button
-                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0"
-                  type="button"
+                right-0'
+                  type='button'
                   onClick={(e) => {
                     e.preventDefault()
                     createProduct()
@@ -609,10 +605,10 @@ const CreateProduct = () => {
                   Previous
                 </button>
                 <button
-                  className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150
-                right-0"
-                  type="button"
+                right-0'
+                  type='button'
                   onClick={(e) => {
                     e.preventDefault()
                     createProduct()
