@@ -73,7 +73,7 @@ const Products = () => {
                 >
                     <div className='fixed inset-0 bg-black opacity-60 z-10' />
                 </Transition>
-                <div className='px-2 lg:px-8 py-8 w-full h-full  mx-auto bg-gray-200'>
+                <div className='px-2 lg:px-8 py-8 w-full mx-auto bg-gray-200'>
                     <div className='flex items-center justify-between py-8'>
                         <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{currentStore?.name}</h3>
                         <Link to='/vendor/create-product'>
@@ -133,7 +133,8 @@ const Products = () => {
                                                 isLoading
                                                     ? (<h1>loading ...</h1>)
                                                     : (products.map((product) => (
-                                                        <tr onClick={e => activeProduct(product)}>
+                                                        <tr className='hover:bg-gray-100' key={product.id}
+                                                            onClick={e => activeProduct(product)}>
                                                             <td className='pl-3 w-5/12 py-4'>
                                                                 <div className='flex items-center'>
                                                                     <div className='flex-shrink-0 h-10 w-10'>
