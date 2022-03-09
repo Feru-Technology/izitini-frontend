@@ -123,28 +123,56 @@ const CreateProduct = () => {
 
           {/* progess bar */}
           <div className='my-5 flex list-none md:w-4/6 lg:w-3/6 mx-auto'>
-            <ol className='flex list-none w-full text-gray-600'>
+            <div className='flex list-none w-full text-gray-600 space-x-1'>
 
               {/* level 1 */}
-              <li className={`bg-gray-300 h-1 w-1/3 ${(level1 || level2 || level3 || level4) && 'bg-light-blue'}`} />
-              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${(level1 || level2 || level3 || level4) && 'border-light-blue bg-light-blue'}`} />
+              <button className={`bg-gray-300 p-1 rounded-l-lg text-gray-900 w-1/3 ${level1 ? 'bg-light-blue text-white' : ''}`}
+                type='button'
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                  setLevel3(false)
+                  setLevel4(false)
+                  setLevel2(false)
+                  setLevel1(true)
+                }}> Create Product </button>
 
               {/* level 2 */}
-              <li className={`bg-gray-300 h-1 w-1/3 ${(level2 || level3 || level4) && 'bg-light-blue'}`} />
-              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${(level2 || level3 || level4) && 'border-light-blue bg-light-blue'}`} />
+              <button className={`bg-gray-300 p-1 text-gray-900 w-1/3 ${level2 ? 'bg-light-blue text-white' : ''}`}
+                type='button'
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                  setLevel3(false)
+                  setLevel4(false)
+                  setLevel2(true)
+                  setLevel1(false)
+                }}> Add Sizes </button>
 
               {/* level 3 */}
-              <li className={`bg-gray-300 h-1 w-1/3 ${(level3 || level4) && 'bg-light-blue'}`} />
-              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${(level3 || level4) && 'border-light-blue bg-light-blue'}`} />
+              <button className={`bg-gray-300 p-1 text-gray-900 w-1/3 ${level3 ? 'bg-light-blue text-white' : ''}`}
+                type='button'
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                  setLevel3(true)
+                  setLevel4(false)
+                  setLevel2(false)
+                  setLevel1(false)
+                }}> Add Colors </button>
 
               {/* level 4 */}
-              <li className={`bg-gray-300 h-1 w-1/3 ${level4 && 'bg-light-blue'}`} />
-              <li className={`bg-gray-300 -mt-1 h-3 w-3 text-xs rounded-full border-2 border-gray-300
-              ${level4 && 'border-light-blue bg-light-blue'}`} />
-            </ol>
+              <button className={`bg-gray-300 p-1 rounded-r-lg text-gray-900 w-1/3 ${level4 ? 'bg-light-blue text-white' : ''}`}
+                type='button'
+                onClick={(e) => {
+                  e.preventDefault()
+                  createProduct()
+                  setLevel3(false)
+                  setLevel4(true)
+                  setLevel2(false)
+                  setLevel1(false)
+                }}> Add extras </button>
+            </div>
           </div>
           <form className='md:w-4/6 lg:w-3/6 mx-auto'>
             <div>
@@ -152,12 +180,6 @@ const CreateProduct = () => {
                 show={!!error}
               >
                 <p className='w-full py-1  text-red-600 text-center border-2 border-red-100 bg-red-50 px-2'>{error?.message}</p>
-
-              </Transition>
-              <Transition
-                show={!!currentProduct}
-              >
-                <p className='w-full py-1 text-light-blue text-center'>success</p>
 
               </Transition>
             </div>

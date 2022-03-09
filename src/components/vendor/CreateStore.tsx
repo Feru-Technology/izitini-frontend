@@ -30,14 +30,14 @@ const CreateProduct = () => {
   })
 
   // redux
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchingCategories());
+    dispatch(fetchingCategories())
     fetch(dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
   }, [dispatch])
 
-  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories);
+  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories)
 
   const [category, setCategory] = useState<string | null>(null)
   const [name, setName] = useState<string | null>(null)
@@ -45,7 +45,7 @@ const CreateProduct = () => {
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
 
   const createStore = () => {
     dispatch(getStore())
@@ -65,8 +65,8 @@ const CreateProduct = () => {
   // error !== null ? setShowError(true) : setShowSuccess(true)
 
 
-  console.log('=================');
-  console.log(currentStore, error?.message);
+  console.log('=================')
+  console.log(currentStore, error?.message)
 
   return (
     <div className='flex h-screen overflow-hidden'>
@@ -204,7 +204,7 @@ const CreateProduct = () => {
                 className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={(e) => {
-                  e.preventDefault();
+                  e.preventDefault()
                   createStore()
                 }}
               >
@@ -215,7 +215,7 @@ const CreateProduct = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreateProduct;
+export default CreateProduct
