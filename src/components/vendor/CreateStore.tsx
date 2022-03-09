@@ -1,11 +1,6 @@
-import React,
-{
-  useEffect, useState
-} from 'react'
-
+import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
-import { useNavigate } from 'react-router'
 import { post } from '../../api/apiAction'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
@@ -21,8 +16,6 @@ import {
 import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
 
 const CreateProduct = () => {
-
-  const navigate = useNavigate()
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -178,7 +171,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600
+                bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Store Contact"
                 onChange={e => setShop_contact_no(e.target.value)}
               />
@@ -192,7 +186,8 @@ const CreateProduct = () => {
             </div>
             <div className="text-center mt-6">
               <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4px-6 py-3
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault()

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
 import { fetch } from '../../api/apiAction'
@@ -7,7 +7,7 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { product } from '../../redux/products/product.slice'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { IProduct } from '../../redux/products/product.interface'
 
 import {
