@@ -6,6 +6,9 @@ import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  ArrowLeftIcon, ArrowRightIcon
+} from '@heroicons/react/outline'
 
 import {
   fetchingSubCategories,
@@ -267,7 +270,7 @@ const CreateProduct = () => {
                     <div className='flex justify-center mt-5 space-x-5'>
                       <button
                         className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
+                  rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
                         type='button'
                         onClick={(e) => {
                           e.preventDefault()
@@ -360,10 +363,10 @@ const CreateProduct = () => {
                   </Transition>
 
                   {/* buttons */}
-                  <div>
+                  <div className='flex'>
                     <button
                       className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
                         e.preventDefault()
@@ -376,7 +379,7 @@ const CreateProduct = () => {
                     </button>
                     <button
                       className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                  rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
                         e.preventDefault()
@@ -385,7 +388,9 @@ const CreateProduct = () => {
                         setLevel1(false)
                         setLevel2(false)
                       }}>
+
                       Continue
+                      <ArrowRightIcon className='h-4' />
                     </button>
                   </div>
                 </Transition>
@@ -403,7 +408,7 @@ const CreateProduct = () => {
                     <div className='flex justify-center mt-5 space-x-5'>
                       <button
                         className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
+                  rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
                         type='button'
                         onClick={(e) => {
                           e.preventDefault()
@@ -495,10 +500,10 @@ const CreateProduct = () => {
                   </Transition>
 
                   {/* buttons */}
-                  <div>
+                  <div className='flex'>
                     <button
                       className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
                         e.preventDefault()
@@ -511,7 +516,7 @@ const CreateProduct = () => {
                     </button>
                     <button
                       className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                  rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                  rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
                         e.preventDefault()
@@ -520,7 +525,9 @@ const CreateProduct = () => {
                         setLevel2(false)
                         setLevel1(false)
                       }}>
+
                       Continue
+                      <ArrowRightIcon className='h-4' />
                     </button>
                   </div>
                 </Transition>
@@ -565,20 +572,22 @@ const CreateProduct = () => {
               <Transition show={level1}>
                 <button
                   className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-6 py-2
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
                     createProduct()
                     e.preventDefault()
                   }}>
+
                   Continue
+                  <ArrowRightIcon className='h-4' />
                 </button>
               </Transition>
 
-              <Transition show={level4}>
+              <Transition show={level4} className='flex'>
                 <button
                   className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
                     e.preventDefault()
@@ -592,7 +601,7 @@ const CreateProduct = () => {
                 </button>
                 <button
                   className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 ease-linear transition-all duration-150'
+                rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
                     e.preventDefault()
