@@ -267,7 +267,7 @@ const CreateProduct = () => {
                   <div className='mb-3'>
                     <p className='text-center font-normal'>I have this product in multiple sizes</p>
 
-                    <div className='flex justify-center mt-5 space-x-5'>
+                    <div className='flex justify-center mt-5 space-x-3'>
                       <button
                         className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
@@ -363,9 +363,9 @@ const CreateProduct = () => {
                   </Transition>
 
                   {/* buttons */}
-                  <div className='flex'>
+                  <div className=''>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-left
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -379,7 +379,7 @@ const CreateProduct = () => {
                       Previous
                     </button>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-right
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -406,7 +406,7 @@ const CreateProduct = () => {
                   <div className='mb-3'>
                     <p className='text-center font-normal'>I have this product in multiple colors</p>
 
-                    <div className='flex justify-center mt-5 space-x-5'>
+                    <div className='flex justify-center mt-5 space-x-3'>
                       <button
                         className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
@@ -501,9 +501,9 @@ const CreateProduct = () => {
                   </Transition>
 
                   {/* buttons */}
-                  <div className='flex'>
+                  <div className=''>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-left
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -517,7 +517,7 @@ const CreateProduct = () => {
                       Previous
                     </button>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-right
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -573,7 +573,7 @@ const CreateProduct = () => {
             <div className='text-center mt-3 space-x-4'>
               <Transition show={level1}>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-right
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
@@ -586,9 +586,9 @@ const CreateProduct = () => {
                 </button>
               </Transition>
 
-              <Transition show={level4} className='flex'>
+              <Transition show={level4} className=''>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-left
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
@@ -603,8 +603,8 @@ const CreateProduct = () => {
                   Previous
                 </button>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
-                rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2 float-right
+                rounded shadow hover:shadow-lg outline-none flex focus:outline-none ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
                     e.preventDefault()

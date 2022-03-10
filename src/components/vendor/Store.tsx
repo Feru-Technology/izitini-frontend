@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
+import { useDispatch } from 'react-redux'
 import { fetch } from '../../api/apiAction'
-import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
-import { useDispatch, useSelector } from 'react-redux'
 
 import {
   getStore, store, storeFailed
