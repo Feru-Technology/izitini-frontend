@@ -269,7 +269,7 @@ const CreateProduct = () => {
 
                     <div className='flex justify-center mt-5 space-x-5'>
                       <button
-                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                        className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
                         type='button'
                         onClick={(e) => {
@@ -282,7 +282,7 @@ const CreateProduct = () => {
                         No
                       </button>
                       <button
-                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                        className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg mr-1 ease-linear transition-all duration-150
                 right-0'
                         type='button'
@@ -365,7 +365,7 @@ const CreateProduct = () => {
                   {/* buttons */}
                   <div className='flex'>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -375,10 +375,11 @@ const CreateProduct = () => {
                         setLevel2(false)
                         setLevel3(false)
                       }}>
+                      <ArrowLeftIcon className='h-4 font-bold mr-2' />
                       Previous
                     </button>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -390,7 +391,7 @@ const CreateProduct = () => {
                       }}>
 
                       Continue
-                      <ArrowRightIcon className='h-4' />
+                      <ArrowRightIcon className='h-4 font-bold ml-2' />
                     </button>
                   </div>
                 </Transition>
@@ -407,7 +408,7 @@ const CreateProduct = () => {
 
                     <div className='flex justify-center mt-5 space-x-5'>
                       <button
-                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                        className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150 right-0'
                         type='button'
                         onClick={(e) => {
@@ -421,7 +422,7 @@ const CreateProduct = () => {
                         No
                       </button>
                       <button
-                        className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                        className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg mr-1 ease-linear transition-all duration-150
                 right-0'
                         type='button'
@@ -502,7 +503,7 @@ const CreateProduct = () => {
                   {/* buttons */}
                   <div className='flex'>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -512,10 +513,11 @@ const CreateProduct = () => {
                         setLevel3(false)
                         setLevel4(false)
                       }}>
+                      <ArrowLeftIcon className='h-4 font-bold mr-2' />
                       Previous
                     </button>
                     <button
-                      className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                      className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                   rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {
@@ -527,7 +529,7 @@ const CreateProduct = () => {
                       }}>
 
                       Continue
-                      <ArrowRightIcon className='h-4' />
+                      <ArrowRightIcon className='h-4 font-bold ml-2' />
                     </button>
                   </div>
                 </Transition>
@@ -571,7 +573,7 @@ const CreateProduct = () => {
             <div className='text-center mt-3 space-x-4'>
               <Transition show={level1}>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
@@ -580,13 +582,13 @@ const CreateProduct = () => {
                   }}>
 
                   Continue
-                  <ArrowRightIcon className='h-4' />
+                  <ArrowRightIcon className='h-4 font-bold ml-2' />
                 </button>
               </Transition>
 
               <Transition show={level4} className='flex'>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
@@ -597,10 +599,11 @@ const CreateProduct = () => {
                     setLevel2(false)
                     setLevel1(false)
                   }}>
+                  <ArrowLeftIcon className='h-4 font-bold mr-2' />
                   Previous
                 </button>
                 <button
-                  className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-2
+                  className='bg-light-blue text-white active:bg-gray-600 text-xs font-bold uppercase mb-4 px-4 py-2
                 rounded shadow hover:shadow-lg outline-none flex focus:outline-none mr-1 ease-linear transition-all duration-150'
                   type='button'
                   onClick={(e) => {
