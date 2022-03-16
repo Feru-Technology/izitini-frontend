@@ -47,6 +47,12 @@ export const Navbar = () => {
     const [showProfession, setShowProfession] = useState(false)
     const [showSignupOptions, setShowSignupOptions] = useState(false)
 
+    // sign-up links
+    const [vendor, setVendor] = useState(false)
+    const [customer, setCustomer] = useState(false)
+    const [professional, setProfessional] = useState(false)
+    const [signupLink, setSignupLink] = useState<String | null>(null)
+
     const logout = () => {
         dispatch(loggedIn(null))
         localStorage.clear()
@@ -205,7 +211,7 @@ export const Navbar = () => {
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
-                                                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-4/5 rounded-md shadow-lg p-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Items className="origin-top-right absolute right-0 z-10 mt-2 w-36 rounded-md shadow-lg p-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <Link to='/profile'
@@ -292,11 +298,18 @@ export const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className='w-full z-auto absolute shadow-md px-5 bg-gray-100'>
+                            <div className='sr-only md:not-sr-only w-full'>
                                 <Transition
                                     show={showProduct}
                                 >
-                                    <div className='flex space-x-5 justify-center'>
+                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'
+                                        onPointerOver={() => {
+                                            setShowIdea(false)
+                                            setShowProduct(false)
+                                            setShowProfession(false)
+                                        }}></div>
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                        style={{ minHeight: '30vh' }}>
                                         <ul> product head
                                             <li>product 1</li>
                                         </ul>
@@ -312,7 +325,14 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showIdea}>
-                                    <div className='flex space-x-5 justify-center'>
+                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'
+                                        onPointerOver={() => {
+                                            setShowIdea(false)
+                                            setShowProduct(false)
+                                            setShowProfession(false)
+                                        }}></div>
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                        style={{ minHeight: '30vh' }}>
                                         <ul> idea head
                                             <li>idea 1</li>
                                         </ul>
@@ -328,7 +348,14 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showProfession}>
-                                    <div className='flex space-x-5 justify-center'>
+                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'
+                                        onPointerOver={() => {
+                                            setShowIdea(false)
+                                            setShowProduct(false)
+                                            setShowProfession(false)
+                                        }}></div>
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                        style={{ minHeight: '30vh' }}>
                                         <ul> profession head
                                             <li>profession 1</li>
                                         </ul>
@@ -361,31 +388,52 @@ export const Navbar = () => {
                                     style={{ marginLeft: '98%' }}
                                     onClick={() => setShowSignupOptions(false)} />
                                 <div className='md:flex'>
-                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${customer && 'border-dark-blue'}`}
+                                        onClick={() => {
+                                            setVendor(false)
+                                            setCustomer(true)
+                                            setProfessional(false)
+                                            setSignupLink('/signup')
+                                        }}>
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
                                     </div>
-                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${vendor && ' border-dark-blue'}`}
+                                        onClick={() => {
+                                            setVendor(true)
+                                            setCustomer(false)
+                                            setProfessional(false)
+                                            setSignupLink('/vendor-signup')
+                                        }}>
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
                                     </div>
-                                    <div className='m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
                                 focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600'>
+                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${professional && ' border-dark-blue'}`}
+                                        onClick={() => {
+                                            setVendor(false)
+                                            setCustomer(false)
+                                            setProfessional(true)
+                                            setSignupLink('/professional-signup')
+                                        }}>
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>professional</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I am in construction business</p>
                                     </div>
                                 </div>
-                                <button disabled={true}
-                                    className='text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-dark-blue
-                                    px-5 py-2 rounded-lg flex float-right mr-2 md:mr-3.5'
-                                ><span className='text-xs mr-1 md:text-sm md:mr-2
+                                <Link to={`${signupLink}`} className={`${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
+                                    <button disabled={false}
+                                        className={`flex text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-light-blue
+                                    px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5`}
+                                    >
+                                        <span className='text-xs mr-1 md:text-sm md:mr-2
                                 lg:text-base'>Continue</span><ArrowNarrowRightIcon className='h-4 md:h-5 lg:h-6' />
-                                </button>
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                         {/* </div> */}

@@ -1,11 +1,6 @@
-import React,
-{
-  useEffect, useState
-} from 'react'
-
+import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
-import { useNavigate } from 'react-router'
 import { post } from '../../api/apiAction'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
@@ -22,22 +17,20 @@ import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
 
 const CreateProduct = () => {
 
-  const navigate = useNavigate()
-
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
 
   // redux
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchingCategories());
+    dispatch(fetchingCategories())
     fetch(dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
   }, [dispatch])
 
-  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories);
+  const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories)
 
   const [category, setCategory] = useState<string | null>(null)
   const [name, setName] = useState<string | null>(null)
@@ -45,7 +38,7 @@ const CreateProduct = () => {
   const [shop_email, setShop_email] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('token')
 
   const createStore = () => {
     dispatch(getStore())
@@ -56,17 +49,9 @@ const CreateProduct = () => {
       { category, name, about_shop, shop_email, shop_contact_no },
       token
     )
-    // navigate('/vendor/stores')
   }
 
-
   const { currentStore, error } = useSelector((state: RootState) => state.store)
-
-  // error !== null ? setShowError(true) : setShowSuccess(true)
-
-
-  console.log('=================');
-  console.log(currentStore, error?.message);
 
   return (
     <div className='flex h-screen overflow-hidden'>
@@ -97,7 +82,6 @@ const CreateProduct = () => {
         <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
           <div className="font-bold text-3xl text-center">Create a new Store</div>
           <div className='container'>
-            {/* {error ? setShowError(true) : setShowSuccess(true)} */}
             <Transition
               show={!!error}
             >
@@ -187,7 +171,8 @@ const CreateProduct = () => {
               </label>
               <input
                 type="text"
-                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600
+                bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                 placeholder="Store Contact"
                 onChange={e => setShop_contact_no(e.target.value)}
               />
@@ -201,10 +186,11 @@ const CreateProduct = () => {
             </div>
             <div className="text-center mt-6">
               <button
-                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4px-6 py-3
+                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
                 type="button"
                 onClick={(e) => {
-                  e.preventDefault();
+                  e.preventDefault()
                   createStore()
                 }}
               >
@@ -215,7 +201,7 @@ const CreateProduct = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CreateProduct;
+export default CreateProduct

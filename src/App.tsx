@@ -62,7 +62,7 @@ function App() {
                 <Route path='/vendor/reports' element={<Reports />} />
                 <Route path='/vendor/coupons' element={<Coupons />} />
                 <Route path='/vendor/settings' element={<Settings />} />
-                <Route path='/vendor/store/:id' element={<Products />} />
+                <Route path='/vendor/products' element={<Products />} />
                 <Route path='/vendor/create-store' element={<CreateStore />} />
                 <Route path='/vendor/create-product' element={<CreateProduct />} />
 
