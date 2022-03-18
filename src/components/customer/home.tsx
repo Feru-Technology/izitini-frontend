@@ -36,7 +36,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingCategories())
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
+        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/sub')
     }, [dispatch])
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories)

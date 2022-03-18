@@ -4,13 +4,13 @@ import { ICart, HTTPError } from './order.interface'
 export interface cartState {
     isLoading: boolean
     error: Error | HTTPError | null
-    cart: ICart | null
+    cart: ICart[]
 }
 
 const initialState: cartState = {
     isLoading: false,
     error: null,
-    cart: null,
+    cart: [],
 }
 
 export const cartSlice = createSlice({
@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
         },
         cart: (state, { payload }) => {
             state.isLoading = false
-            state.cart = payload
+            state.cart = [...payload]
         },
         cartFailed: (state, { payload }) => {
             state.isLoading = false

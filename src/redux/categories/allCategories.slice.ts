@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { ICategory, HTTPError } from './category.interfaces';
+import { ICategory, HTTPError } from './category.interfaces'
 
 
 export interface CategoryState {
-    isLoading: boolean;
-    error: Error | HTTPError | null;
-    categories: ICategory[];
+    isLoading: boolean
+    error: Error | HTTPError | null
+    categories: ICategory[]
 }
 
 const initialState: CategoryState = {
@@ -20,18 +20,18 @@ export const AllCategoriesSlice = createSlice({
     initialState,
     reducers: {
         fetchingCategories: (state) => {
-            state.isLoading = true;
+            state.isLoading = true
         },
         retrievedCategories: (state, { payload }) => {
-            state.isLoading = false;
+            state.isLoading = false
             state.categories = [...payload]
         },
         retrievedCategoryFailed: (state, { payload }) => {
-            state.isLoading = false;
-            state.error = payload;
+            state.isLoading = false
+            state.error = payload
         }
     },
-});
+})
 
 // Action creators are generated for each case reducer function
 export const { fetchingCategories, retrievedCategories, retrievedCategoryFailed } = AllCategoriesSlice.actions

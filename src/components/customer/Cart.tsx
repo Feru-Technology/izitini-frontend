@@ -80,7 +80,7 @@ const Cart = () => {
                                 </th>
                             </tr>
                         </thead>
-                        {isLoading ? (<h1>loading ...</h1>)
+                        {/* {isLoading ? (<h1>loading ...</h1>)
                             : cart ? cart.order_items.map((item) => (
                                 <tbody className='bg-white'>
                                     <tr
@@ -132,7 +132,7 @@ const Cart = () => {
 
                                 </tbody>
 
-                            )) : <>{error?.message}</>}
+                            )) : <>{error?.message}</>} */}
                     </table>
 
                 </div>

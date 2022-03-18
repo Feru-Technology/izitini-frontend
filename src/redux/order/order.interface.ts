@@ -11,10 +11,11 @@ export interface IOrderItem {
     id: string
     order_id: string
     product_id: string
-    color_id: string,
-    size_id: string,
-    quantity: string,
-    details: string,
+    shop_id: string
+    color_id: string
+    size_id: string
+    quantity: string
+    details: string
     product: IProduct
 }
 
