@@ -1,11 +1,9 @@
 import React from 'react'
-import { useEffect } from 'react'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
-import { fetch } from '../../api/apiAction'
+import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { MdOutlineCancel } from 'react-icons/md'
-import { useDispatch, useSelector } from 'react-redux'
 
 
 const lodash = require('lodash')
