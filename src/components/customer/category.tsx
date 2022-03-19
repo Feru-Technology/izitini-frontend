@@ -28,28 +28,30 @@ const Subcategory = () => {
 
     useEffect(() => {
         dispatch(getCategory())
-        fetch(dispatch, category, categoryFailed, `/category/${categoryName}`)
+        fetch(dispatch, category, categoryFailed, `/admin/category/${categoryName}`)
     }, [categoryName, dispatch])
 
     const { isLoading, currentCategory } = useSelector((state: RootState) => state.category)
 
     return (<>
-        {isLoading ? (<h1>Loading...</h1>) : (
 
-            <div className='font-nova'>
-                < Navbar />
-                < CategoryBar
-                />
-                <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
+        <div className='font-nova'>
+            < Navbar />
+            < CategoryBar
+            />
+            {/* {isLoading ? (<h1>Loading...</h1>) : currentCategory?.subCategories[0] ? ( */}
+            <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
-                    {/* navigation */}
-                    <div className='flex mt-4'>
-                        <p>
-                            <Link to={'/products'}>All Products</Link>
-                            <span className='text-gray-500'> {categoryName}</span></p>
-                    </div>
+                {/* navigation */}
+                <div className='flex mt-4'>
+                    <p>
+                        <Link to={'/products'}>All Products</Link>
+                        <span className='text-gray-500'> {categoryName}</span></p>
+                </div>
 
-                    {/* categories */}
+                {isLoading ? (<h1>Loading...</h1>) : currentCategory?.subCategories[0] ? (
+
+                    // categories
                     <div className='md:mt-4 lg:mt-8 font-medium
                 grid grid-cols-1 md:grid-cols-2
                 lg:grid-cols-3 xl:gap-4 gap-3'>
@@ -67,13 +69,12 @@ const Subcategory = () => {
                                 </Link>
                             </div>
                         ))}
-                    </div>
+                    </div>) : (<div className='flex justify-center'>No Products found</div>)}
 
-                </div>
-
-                <Footer />
             </div>
-        )}
+
+            <Footer />
+        </div>
     </>)
 }
 

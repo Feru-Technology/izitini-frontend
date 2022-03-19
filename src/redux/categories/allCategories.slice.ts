@@ -24,7 +24,7 @@ export const AllCategoriesSlice = createSlice({
         },
         retrievedCategories: (state, { payload }) => {
             state.isLoading = false
-            state.categories = [...payload]
+            state.categories = [payload]
         },
         retrievedCategoryFailed: (state, { payload }) => {
             state.isLoading = false

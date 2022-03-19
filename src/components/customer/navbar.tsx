@@ -37,8 +37,6 @@ export const Navbar = () => {
 
     const { cart } = useSelector((state: RootState) => state.cart)
 
-    console.log('=============================', cart)
-
     let cartItems: number
     // if (cart) cartItems = cart.order_items.length
 

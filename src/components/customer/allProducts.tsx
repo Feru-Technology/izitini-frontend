@@ -23,18 +23,19 @@ const AllProducts = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchingCategories());
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
+        dispatch(fetchingCategories())
+        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/sub')
     }, [dispatch])
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+    console.log(categories)
 
     return (<>
         <div className='font-nova'>
             < Navbar />
             < CategoryBar
             />
-            {isLoading ? (<h1>Loading ...</h1>) : categories.length === 1 ?
+            {isLoading ? (<h1>Loading ...</h1>) : categories.length !== 0 ?
                 (
 
                     <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
@@ -55,7 +56,7 @@ const AllProducts = () => {
                 xl:gap-4
                 gap-3'>
                             {categories.map((category) => (
-                                <Link to={`/products/${category.name}`}>
+                                <Link to={`/products/c/${category.name}`}>
                                     <div className='relative my-2'>
                                         <p className='absolute ml-2'>{category.name}</p>
                                         <img className='h-36  2xl:h-52 w-full bg-gray-200

@@ -6,6 +6,7 @@ import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { ChevronRightIcon } from '@heroicons/react/solid'
 
 import {
     fetchingSubCategoryProducts,
@@ -24,13 +25,10 @@ const Subcategory = () => {
 
     useEffect(() => {
         dispatch(fetchingSubCategoryProducts())
-        fetch(dispatch, subCategoryProducts, subCategoryProductsFailed, `/subcategory/products/${id}`)
+        fetch(dispatch, subCategoryProducts, subCategoryProductsFailed, `admin/subcategory/products/${id}`)
     }, [id, dispatch])
 
-    const { currentCategory } = useSelector((state: RootState) => state.category)
-
     const { isLoading, Products } = useSelector((state: RootState) => state.subCategoryProducts)
-
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
@@ -41,12 +39,13 @@ const Subcategory = () => {
                 <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
                     {/* navigation */}
-                    <div className='flex mt-4'>
-                        <p>
-                            <Link to={'/products'}>All Products </Link>
-                            <Link to={`/products/c/${currentCategory?.name}`}>{currentCategory?.name}</Link>
-                            <span className='text-gray-500'> {Products[0]?.subCategory_id}</span>
-                        </p>
+                    <div className='flex mt-4 lg:mt-8 font-semibold text-xs md:text-sm'>
+                        <Link to={'/products'}>All Products</Link>
+                        <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
+                        <Link to={`/products/c/${Products[0]?.subCategory.category.name}`}>
+                            {Products[0]?.subCategory.category.name}</Link>
+                        <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
+                        <span className='text-gray-500 font-normal'> {Products[0]?.subCategory.name}</span>
                     </div>
 
                     {/* categories */}
