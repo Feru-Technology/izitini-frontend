@@ -10,13 +10,14 @@ import {
 
 
 export const CategoryBar = () => {
-    // redux
-    // const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(fetchingCategories())
-    //     fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/category/sub')
-    // }, [dispatch])
+    // redux
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchingCategories())
+        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/sub')
+    }, [dispatch])
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories);
     const categoryBar = categories.slice(0, 8)

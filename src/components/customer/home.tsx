@@ -15,12 +15,6 @@ import {
 } from 'react-redux'
 
 import {
-    fetchingCategories,
-    retrievedCategoryFailed,
-    retrievedCategory
-} from '../../redux/categories/categories.slice'
-
-import {
     fetchingProducts,
     retrievedProductFailed,
     retrievedProducts
@@ -31,15 +25,7 @@ const Home = () => {
     // redux
     const dispatch = useDispatch()
 
-
-    // const navigate = useNavigate()
-
-    useEffect(() => {
-        dispatch(fetchingCategories())
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/sub')
-    }, [dispatch])
-
-    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+    const { categories } = useSelector((state: RootState) => state.categories)
 
     const categorySection = categories.slice(0, 9)
 
@@ -48,7 +34,7 @@ const Home = () => {
         fetch(dispatch, retrievedProducts, retrievedProductFailed, '/product')
     }, [dispatch])
 
-    const { products } = useSelector((state: RootState) => state.allProducts)
+    const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
 
     const productSection = products.slice(0, 5)
 
@@ -86,7 +72,8 @@ const Home = () => {
                                     hover:bg-dark-blue hover:text-white press-start
                                     md:px-3 lg:px-4'
                                         >{cat.name}</li>
-                                    </Link>))}
+                                    </Link>
+                                ))}
                             </ul>
 
                         </div>

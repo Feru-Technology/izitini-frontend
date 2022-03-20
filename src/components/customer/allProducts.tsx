@@ -1,34 +1,13 @@
-import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
-import { CategoryBar } from './categoryBar'
-import { fetch } from '../../api/apiAction'
-import { RootState } from '../../redux/store'
-
-import {
-    useSelector,
-    useDispatch
-} from 'react-redux'
-
-import {
-    fetchingCategories,
-    retrievedCategoryFailed,
-    retrievedCategory
-} from '../../redux/categories/categories.slice'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { CategoryBar } from './categoryBar'
+import { RootState } from '../../redux/store'
 
 const AllProducts = () => {
 
-    // redux
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchingCategories())
-        fetch(dispatch, retrievedCategory, retrievedCategoryFailed, 'admin/category/sub')
-    }, [dispatch])
-
     const { isLoading, categories } = useSelector((state: RootState) => state.categories)
-    console.log(categories)
 
     return (<>
         <div className='font-nova'>
@@ -41,10 +20,8 @@ const AllProducts = () => {
                     <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>
 
                         {/* navigation */}
-                        <div className='flex mt-4'>
-                            <p>
-                                <span className='text-gray-500'> All Products</span>
-                            </p>
+                        <div className='flex mt-4 lg:mt-8 font-semibold text-xs md:text-sm'>
+                            <p className='text-gray-500'>All Products</p>
                         </div>
 
                         {/* categories */}
