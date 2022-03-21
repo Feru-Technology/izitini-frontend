@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
-import { fetch, post } from '../../api/apiAction'
-import { RootState } from '../../redux/store'
-import { useDispatch, useSelector } from 'react-redux'
-import { AiFillStar } from "react-icons/all"
+import { Footer } from './footer'
 import { Navbar } from './navbar'
-import { HeartIcon } from '@heroicons/react/outline'
-import { useParams } from 'react-router-dom'
-import { Transition } from '@headlessui/react'
 import NotFound from './NotFound'
+import { useEffect, useState } from 'react'
+import { CategoryBar } from './categoryBar'
+import { useParams } from 'react-router-dom'
+import { AiFillStar } from 'react-icons/all'
+import { RootState } from '../../redux/store'
+import { Transition } from '@headlessui/react'
+import { fetch, post } from '../../api/apiAction'
+import { HeartIcon } from '@heroicons/react/outline'
+import { useDispatch, useSelector } from 'react-redux'
 import {
     getProduct,
     product,
@@ -82,47 +84,48 @@ const Product = () => {
         <>
 
             < Navbar />
+            <CategoryBar />
             {isLoading ? (<h1>loading...</h1>) :
-                currentProduct ? (<div className="container-fluid mt-4">
+                currentProduct ? (<div className='container-fluid my-4 md:my-6 lg:my-8'>
                     {/* picture and product name and details */}
-                    <div className="fluid mx-auto" id="p">
-                        <div className="px-5 container md:px12 lg:px-24 mx-auto">
-                            <div className="md:flex">
-                                <div className="md:w-2/3">
-                                    <div className="md:flex">
+                    <div className='fluid mx-auto' id='p'>
+                        <div className='px-5 container md:px12 lg:px-24 mx-auto'>
+                            <div className='md:flex'>
+                                <div className='md:w-2/3'>
+                                    <div className='md:flex'>
 
-                                        <div className="sr-only md:not-sr-only">
-                                            {data.map((image) => (<div className="my-1 hover:border-black
-                                        "
+                                        <div className='sr-only md:not-sr-only'>
+                                            {data.map((image) => (<div className='my-1 hover:border-black
+                                        '
                                                 onPointerOver={() => setDisplayImage(image.image)}
                                             >
                                                 <img
                                                     src={image.image}
-                                                    className="border mr-2 w-16 lg:w-20"
-                                                    alt="..."
+                                                    className='border mr-2 w-16 lg:w-20'
+                                                    alt='...'
                                                 />
                                             </div>)
                                             )}
 
                                         </div>
 
-                                        <div className="">
+                                        <div className=''>
                                             <img
                                                 src={displayImage}
-                                                object-fit="false"
-                                                className=" max-h-96 justify-right"
-                                                alt="product pic"
+                                                object-fit='false'
+                                                className=' max-h-96 justify-right'
+                                                alt='product pic'
                                             />
                                         </div>
 
-                                        <div className="md:sr-only flex">
-                                            {data.map((image) => (<div className="my-1 hover:border-black"
+                                        <div className='md:sr-only flex'>
+                                            {data.map((image) => (<div className='my-1 hover:border-black'
                                                 onPointerOver={() => setDisplayImage(image.image)}
                                             >
                                                 <img
                                                     src={image.image}
-                                                    className="border mr-2 w-20"
-                                                    alt="..."
+                                                    className='border mr-2 w-20'
+                                                    alt='...'
                                                 />
                                             </div>)
                                             )}
@@ -131,10 +134,10 @@ const Product = () => {
 
                                     <div className='sr-only md:not-sr-only'>
                                         {/* tabs */}
-                                        <div className="container mt-2">
-                                            <ul className="flex space-x-2 lg:space-x-5
+                                        <div className='container mt-2'>
+                                            <ul className='flex space-x-2 lg:space-x-5
                                         md:font-medium md:-text-base
-                                        lg:font-bold lg:text-lg lg:space-x-12">
+                                        lg:font-bold lg:text-lg lg:space-x-12'>
                                                 <li className={`cursor-pointer ${showDescription && 'border-b-4 border-dark-blue'}`}
                                                     onClick={() => {
                                                         setShowReview(false)
@@ -198,13 +201,13 @@ const Product = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="md:w-1/3">
+                                <div className='md:w-1/3'>
                                     <div className='text-sm md:text-base space-y-3'>
-                                        <h2 className="text-xl font-bold dm:text-2xl lg:text-3xl">{currentProduct?.name}</h2>
+                                        <h2 className='text-xl font-bold dm:text-2xl lg:text-3xl'>{currentProduct?.name}</h2>
                                         <p>{currentProduct?.shop?.name}</p>
                                         <p></p>
-                                        <span className="flex text-xl md:text-3xl lg:text-4xl"
-                                            style={{ color: "#ff9900" }}
+                                        <span className='flex text-xl md:text-3xl lg:text-4xl'
+                                            style={{ color: '#ff9900' }}
                                         >
                                             <i>
                                                 <AiFillStar />
@@ -223,43 +226,43 @@ const Product = () => {
                                             </i>
                                             <span className='ml-3 text-black text-base md:text-2xl'> (28)</span>
                                         </span>
-                                        <p className="text-base font-bold md:text-lg">{currentProduct?.shop.name}</p>
+                                        <p className='text-base font-bold md:text-lg'>{currentProduct?.shop.name}</p>
                                         <p>read to ship in Kigali</p>
                                         <p>{currentProduct?.price} in the store</p>
                                         <p>
                                             Lorem Ipsum is simply dummy text of the dummy text ever since
                                             the 1500s, when an unknown
                                         </p>
-                                        <div className="md:flex md:space-x-3 lg:space-x-5">
+                                        <div className='md:flex md:space-x-3 lg:space-x-5'>
                                             <div className='md:w-1/2'>
-                                                <div className="w-full">
+                                                <div className='w-full'>
                                                     <select
                                                         className='w-full h-9 rounded border-2 bg-white px-3'
-                                                        aria-label="multiple select example"
+                                                        aria-label='multiple select example'
                                                         onChange={e => setQuantity(e.target.value)}
                                                     >
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
+                                                        <option value='1'>1</option>
+                                                        <option value='2'>2</option>
+                                                        <option value='3'>3</option>
                                                     </select>
                                                 </div>
                                             </div>
 
                                             <div className='flex mt-3 space-x-3 text-base
                                         md:w-1/2 md:space-x-0 md:mt-0'>
-                                                <div className="w-1/3 md:sr-only">
+                                                <div className='w-1/3 md:sr-only'>
                                                     <button
-                                                        className="flex btn bg-color border-2 border-dark-blue text-dark-blue
-                                                    w-full h-9 rounded bg-dark-white items-center justify-center font-medium"
+                                                        className='flex btn bg-color border-2 border-dark-blue text-dark-blue
+                                                    w-full h-9 rounded bg-dark-white items-center justify-center font-medium'
                                                     >
                                                         <span></span>
-                                                        <HeartIcon className="h-4 w-auto" aria-hidden="true" />
+                                                        <HeartIcon className='h-4 w-auto' aria-hidden='true' />
                                                         save
                                                     </button>
                                                 </div>
-                                                <div className="w-2/3 md:w-full">
+                                                <div className='w-2/3 md:w-full'>
                                                     <button
-                                                        className="btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium"
+                                                        className='btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium'
                                                         onClick={() => addToCart()}
                                                     >
                                                         Add to cart
@@ -272,23 +275,13 @@ const Product = () => {
                                 </div>
 
                                 {/* tabs and details */}
-                                <div className="md:sr-only">
+                                <div className='md:sr-only'>
                                     {/* tabs */}
-                                    <div className="">
-                                        <ul className="flex space-x-5 justify-center font-bold text-lg">
-                                            <li>Description</li>
-                                            <li>Products Specification</li>
-                                            <li>Review</li>
-                                            <li>Shipping & Return</li>
-                                        </ul>
-                                    </div>
-                                    <hr />
-                                    {/* details  */}
-                                    <div className="container">
-                                        <div>
-                                            <p>test 1</p>
-                                            <p>test 2</p>
-                                        </div>
+                                    <div className=''>
+                                        <div className='py-4 px-2 font-semibold border-b-2 border-dark-blue'>Description</div>
+                                        <div className='py-4 px-2 font-semibold border-b-2 border-dark-blue'>Products Specification</div>
+                                        <div className='py-4 px-2 font-semibold border-b-2 border-dark-blue'>Review</div>
+                                        <div className='py-4 px-2 font-semibold border-b-2 border-dark-blue'>Shipping & Return</div>
                                     </div>
                                 </div>
                             </div>
@@ -296,6 +289,7 @@ const Product = () => {
                     </div>
                 </div>
                 ) : <NotFound />}
+            <Footer />
         </>
     )
 }
