@@ -7,7 +7,7 @@ import { Navbar } from './navbar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useParams } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
-
+import NotFound from './NotFound'
 import {
     getProduct,
     product,
@@ -38,7 +38,9 @@ const Product = () => {
         post(dispatch, cart, cartFailed, `/orders/${id}`, { quantity: quantity }, token)
     }
 
-    const { isLoading, currentProduct } = useSelector((state: RootState) => state.product);
+    const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
+
+    console.log(currentProduct)
 
     const data = [
         {
@@ -80,8 +82,8 @@ const Product = () => {
         <>
 
             < Navbar />
-            {isLoading ? (<h1>loading...</h1>)
-                : <div className="container-fluid">
+            {isLoading ? (<h1>loading...</h1>) :
+                currentProduct ? (<div className="container-fluid mt-4">
                     {/* picture and product name and details */}
                     <div className="fluid mx-auto" id="p">
                         <div className="px-5 container md:px12 lg:px-24 mx-auto">
@@ -293,6 +295,8 @@ const Product = () => {
                         </div>
                     </div>
                 </div>
+                ) : <NotFound />
+                // <div className='flex justify-center font-semibold my-24'>product not found</div>
             }
         </>
     )
