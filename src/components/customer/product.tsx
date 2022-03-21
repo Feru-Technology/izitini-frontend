@@ -10,6 +10,7 @@ import { Transition } from '@headlessui/react'
 import { fetch, post } from '../../api/apiAction'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 import {
     getProduct,
     product,
@@ -283,17 +284,50 @@ const Product = () => {
                                 px-5 md:px12 lg:px-24 mx-auto w-full'>
                                     {/* tabs */}
                                     <div className=''>
-                                        <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue'>
-                                            <div>Description</div>
-                                            <div className='font-light'>this div contain product description</div>
+                                        <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
+                                            <div className='right-0 absolute'>
+
+                                                <Transition>
+                                                    <ChevronUpIcon className='h-6' />
+                                                </Transition>
+
+                                            </div>
+                                            Description
+
+                                            <Transition>
+                                                <div className='font-light pt-2'>this div contain product description this
+                                                    div contain product description</div>
+                                            </Transition>
+
                                         </div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>
-                                            <div>Products Specification</div>
-                                            <div className='font-light'>Product specification</div>
+                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
+                                            <div className='right-0 absolute'>
+
+                                                <Transition>
+                                                    <ChevronUpIcon className='h-6' />
+                                                </Transition>
+
+                                            </div>
+                                            Products Specification
+
+                                            <Transition>
+                                                <div className='font-light pt-2'>Product specification Product specification</div>
+                                            </Transition>
+
                                         </div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>
+                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
+                                            <div className='right-0 absolute'>
+
+                                                <Transition>
+                                                    <ChevronUpIcon className='h-6' />
+                                                </Transition>
+
+                                            </div>
                                             <div>Shipping & Return</div>
-                                            <div className='font-light'>Shipping and return policies</div>
+                                            <Transition>
+                                                <div className='font-light pt-2'>Shipping and return policies</div>
+                                            </Transition>
+
                                         </div>
                                     </div>
                                 </div>
