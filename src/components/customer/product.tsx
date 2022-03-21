@@ -7,7 +7,7 @@ import { Navbar } from './navbar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useParams } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
-import NotFound from './NotFound'
+import NotFound from './NotFoundPage'
 import {
     getProduct,
     product,
