@@ -283,10 +283,18 @@ const Product = () => {
                                 px-5 md:px12 lg:px-24 mx-auto w-full'>
                                     {/* tabs */}
                                     <div className=''>
-                                        <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue'>Description</div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>Products Specification</div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>Review</div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>Shipping & Return</div>
+                                        <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue'>
+                                            <div>Description</div>
+                                            <div className='font-light'>this div contain product description</div>
+                                        </div>
+                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>
+                                            <div>Products Specification</div>
+                                            <div className='font-light'>Product specification</div>
+                                        </div>
+                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue'>
+                                            <div>Shipping & Return</div>
+                                            <div className='font-light'>Shipping and return policies</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
