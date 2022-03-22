@@ -38,7 +38,11 @@ const Product = () => {
 
     const addToCart = () => {
         dispatch(getCart())
-        post(dispatch, cart, cartFailed, `/orders/${id}`, { quantity: quantity }, token)
+        post(dispatch, cart, cartFailed, '/orders/add-to-cart', {
+            quantity: quantity,
+            product_id: id,
+            shop_id: currentProduct?.shop_id
+        }, token)
     }
 
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
