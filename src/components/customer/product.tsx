@@ -285,18 +285,20 @@ const Product = () => {
                                     {/* tabs */}
                                     <div className=''>
                                         <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
-                                            <div className='right-0 absolute'>
+                                            <div onClick={() => { setShowDescription(true) }}>
+                                                <div className='right-0 absolute'>
 
-                                                <Transition show={!!showDescription}>
-                                                    <ChevronUpIcon className='h-6' />
-                                                </Transition>
+                                                    <Transition show={!!showDescription}>
+                                                        <ChevronUpIcon className='h-6' />
+                                                    </Transition>
 
-                                                <Transition show={!showDescription}>
-                                                    <ChevronDownIcon className='h-6' />
-                                                </Transition>
+                                                    <Transition show={!showDescription}>
+                                                        <ChevronDownIcon className='h-6' />
+                                                    </Transition>
 
+                                                </div>
+                                                Description
                                             </div>
-                                            Description
 
                                             <Transition show={!!showDescription}>
                                                 <div className='font-light pt-2'>this div contain product description this
@@ -305,18 +307,21 @@ const Product = () => {
 
                                         </div>
                                         <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
-                                            <div className='right-0 absolute'>
+                                            <div onClick={() => { setShowSpecification(true) }}>
+                                                <div className='right-0 absolute'>
 
-                                                <Transition show={!!showSpecification}>
-                                                    <ChevronUpIcon className='h-6' />
-                                                </Transition>
+                                                    <Transition show={!!showSpecification}>
+                                                        <ChevronUpIcon className='h-6' />
+                                                    </Transition>
 
-                                                <Transition show={!showSpecification}>
-                                                    <ChevronDownIcon className='h-6' />
-                                                </Transition>
+                                                    <Transition show={!showSpecification}>
+                                                        <ChevronDownIcon className='h-6' />
+                                                    </Transition>
 
+                                                </div>
+                                                Products Specification
                                             </div>
-                                            Products Specification
+
 
                                             <Transition show={!!showSpecification}>
                                                 <div className='font-light pt-2'>Product specification Product specification</div>
@@ -324,19 +329,24 @@ const Product = () => {
 
                                         </div>
                                         <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
-                                            <div className='right-0 absolute'>
+                                            <div
+                                                onClick={() => { setShowReturnPolicy(true) }}
+                                            >
+                                                <div className='right-0 absolute'>
 
-                                                <Transition show={!!showSpecification}>
-                                                    <ChevronUpIcon className='h-6' />
-                                                </Transition>
+                                                    <Transition show={!!showSpecification}>
+                                                        <ChevronUpIcon className='h-6' />
+                                                    </Transition>
 
-                                                <Transition show={!showSpecification}>
-                                                    <ChevronDownIcon className='h-6' />
-                                                </Transition>
+                                                    <Transition show={!showSpecification}>
+                                                        <ChevronDownIcon className='h-6' />
+                                                    </Transition>
 
+                                                </div>
+                                                Shipping & Return
                                             </div>
-                                            <div>Shipping & Return</div>
-                                            <Transition show={!!showSpecification}>
+
+                                            <Transition show={!!showReturnPolicy}>
                                                 <div className='font-light pt-2'>Shipping and return policies</div>
                                             </Transition>
 
