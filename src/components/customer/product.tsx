@@ -287,14 +287,18 @@ const Product = () => {
                                         <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
                                             <div className='right-0 absolute'>
 
-                                                <Transition>
+                                                <Transition show={!!showDescription}>
                                                     <ChevronUpIcon className='h-6' />
+                                                </Transition>
+
+                                                <Transition show={!showDescription}>
+                                                    <ChevronDownIcon className='h-6' />
                                                 </Transition>
 
                                             </div>
                                             Description
 
-                                            <Transition>
+                                            <Transition show={!!showDescription}>
                                                 <div className='font-light pt-2'>this div contain product description this
                                                     div contain product description</div>
                                             </Transition>
@@ -303,14 +307,18 @@ const Product = () => {
                                         <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
                                             <div className='right-0 absolute'>
 
-                                                <Transition>
+                                                <Transition show={!!showSpecification}>
                                                     <ChevronUpIcon className='h-6' />
+                                                </Transition>
+
+                                                <Transition show={!showSpecification}>
+                                                    <ChevronDownIcon className='h-6' />
                                                 </Transition>
 
                                             </div>
                                             Products Specification
 
-                                            <Transition>
+                                            <Transition show={!!showSpecification}>
                                                 <div className='font-light pt-2'>Product specification Product specification</div>
                                             </Transition>
 
@@ -318,13 +326,17 @@ const Product = () => {
                                         <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
                                             <div className='right-0 absolute'>
 
-                                                <Transition>
+                                                <Transition show={!!showSpecification}>
                                                     <ChevronUpIcon className='h-6' />
+                                                </Transition>
+
+                                                <Transition show={!showSpecification}>
+                                                    <ChevronDownIcon className='h-6' />
                                                 </Transition>
 
                                             </div>
                                             <div>Shipping & Return</div>
-                                            <Transition>
+                                            <Transition show={!!showSpecification}>
                                                 <div className='font-light pt-2'>Shipping and return policies</div>
                                             </Transition>
 
