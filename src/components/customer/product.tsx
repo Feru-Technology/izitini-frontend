@@ -285,7 +285,7 @@ const Product = () => {
                                     {/* tabs */}
                                     <div className=''>
                                         <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
-                                            <div onClick={() => { setShowDescription(true) }}>
+                                            <div onClick={() => { !showDescription ? setShowDescription(true) : setShowDescription(false) }}>
                                                 <div className='right-0 absolute'>
 
                                                     <Transition show={!!showDescription}>
@@ -307,7 +307,7 @@ const Product = () => {
 
                                         </div>
                                         <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
-                                            <div onClick={() => { setShowSpecification(true) }}>
+                                            <div onClick={() => { !showSpecification ? setShowSpecification(true) : setShowSpecification(false) }}>
                                                 <div className='right-0 absolute'>
 
                                                     <Transition show={!!showSpecification}>
@@ -322,7 +322,6 @@ const Product = () => {
                                                 Products Specification
                                             </div>
 
-
                                             <Transition show={!!showSpecification}>
                                                 <div className='font-light pt-2'>Product specification Product specification</div>
                                             </Transition>
@@ -330,7 +329,7 @@ const Product = () => {
                                         </div>
                                         <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
                                             <div
-                                                onClick={() => { setShowReturnPolicy(true) }}
+                                                onClick={() => { !showReturnPolicy ? setShowReturnPolicy(true) : setShowReturnPolicy(false) }}
                                             >
                                                 <div className='right-0 absolute'>
 
