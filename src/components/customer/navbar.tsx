@@ -32,9 +32,19 @@ export const Navbar = () => {
     }, [dispatch, token])
 
     const { cart } = useSelector((state: RootState) => state.cart)
+    console.log(cart)
 
-    let cartItems: number
-    // if (cart) cartItems = cart.order_items.length
+    let cartItems: number = 0
+
+    if (cart.length !== 0) {
+        cart.map((orders: any) => {
+            console.log(orders[0].order_items)
+            orders.map((items: any) => {
+                cartItems += items.order_items.length
+            })
+        })
+    }
+
 
     const { profile } = useSelector((state: RootState) => state.profile)
 

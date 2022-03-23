@@ -47,8 +47,6 @@ const Product = () => {
 
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
-    console.log(currentProduct)
-
     const data = [
         {
             image: 'https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A=',
