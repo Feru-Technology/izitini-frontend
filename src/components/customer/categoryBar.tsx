@@ -26,7 +26,7 @@ export const CategoryBar = () => {
             {isLoading ? (<h1>Loading ...</h1>) :
                 (<div className='
                 sr-only
-                md:not-sr-only border-b-2 border-gray-300
+                md:not-sr-only border-b border-gray-300
                 flex justify-center
                 bg-gray-100 mt-2'>
                     <ul className='flex md:space-x-4 lg:space-x-8'>

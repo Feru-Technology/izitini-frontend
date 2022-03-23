@@ -95,7 +95,7 @@ const Product = () => {
                         <div className='container'>
                             <div className=''>
                                 <div className='md:flex px-5 py-6 md:py-0 md:px12 lg:px-24 mx-auto bg-white w-full
-                                border-b-2 border-gray-200'>
+                                border-b border-gray-200'>
                                     <div className='md:w-2/3'>
                                         <div className='md:flex'>
 
@@ -282,11 +282,11 @@ const Product = () => {
                                 </div>
 
                                 {/* tabs and details */}
-                                <div className='md:sr-only bg-white my-6 border-t-2 border-b-2 py-6 border-gray-200
+                                <div className='md:sr-only bg-white my-6 border-t-2 border-b py-6 border-gray-200
                                 px-5 md:px12 lg:px-24 mx-auto w-full'>
                                     {/* tabs */}
                                     <div className=''>
-                                        <div className='pb-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
+                                        <div className='pb-5 px-2 font-semibold border-b border-dark-blue relative'>
                                             <div onClick={() => { !showDescription ? setShowDescription(true) : setShowDescription(false) }}>
                                                 <div className='right-0 absolute'>
 
@@ -308,7 +308,7 @@ const Product = () => {
                                             </Transition>
 
                                         </div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
+                                        <div className='py-5 px-2 font-semibold border-b border-dark-blue relative'>
                                             <div onClick={() => { !showSpecification ? setShowSpecification(true) : setShowSpecification(false) }}>
                                                 <div className='right-0 absolute'>
 
@@ -329,7 +329,7 @@ const Product = () => {
                                             </Transition>
 
                                         </div>
-                                        <div className='py-5 px-2 font-semibold border-b-2 border-dark-blue relative'>
+                                        <div className='py-5 px-2 font-semibold border-b border-dark-blue relative'>
                                             <div
                                                 onClick={() => { !showReturnPolicy ? setShowReturnPolicy(true) : setShowReturnPolicy(false) }}
                                             >
