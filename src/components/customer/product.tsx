@@ -74,6 +74,7 @@ const Product = () => {
         },
     ]
 
+    console.log(currentProduct)
     // const images = product?.productImages
 
     const [displayImage, setDisplayImage] = useState(data[0].image);

@@ -148,7 +148,7 @@ const Home = () => {
                     '>
                             {productSection.map((p) => (
                                 <div className='mt-2'>
-                                    <Link to={`/products/${p.id}`}>
+                                    <Link to={`/products/p/${p.id}`}>
                                         <img className='bg-gray-200
                                 w-full
                                 h-32
