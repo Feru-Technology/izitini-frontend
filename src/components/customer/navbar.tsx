@@ -10,12 +10,8 @@ import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
 import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
-import {
-    getCart as gettingCart,
-    cart as getCart, cartFailed
-} from '../../redux/order/cart'
-
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -26,9 +22,9 @@ export const Navbar = () => {
     const navigate = useNavigate()
 
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
 
     useEffect(() => {
         dispatch(gettingCart())
@@ -42,8 +38,8 @@ export const Navbar = () => {
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
-    const [showProduct, setShowProduct] = useState(false)
     const [showIdea, setShowIdea] = useState(false)
+    const [showProduct, setShowProduct] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
     const [showSignupOptions, setShowSignupOptions] = useState(false)
 

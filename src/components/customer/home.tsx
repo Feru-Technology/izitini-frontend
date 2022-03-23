@@ -101,8 +101,6 @@ const Home = () => {
                                     <img alt='ads' src='https://images.pexels.com/photos/4792488/pexels-photo-4792488.jpeg' />
                                 </div>
 
-
-
                             </Carousel>
                         </div>
                     </div>
