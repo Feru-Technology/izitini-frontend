@@ -76,8 +76,6 @@ const Product = () => {
         },
     ]
 
-    console.log(currentProduct)
-
     const [displayImage, setDisplayImage] = useState(data[0].image);
 
     const [showReview, setShowReview] = useState(false)

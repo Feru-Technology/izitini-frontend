@@ -68,7 +68,6 @@ const Subcategory = () => {
                                 </div>
                             ))}
                         </div>
-
                     </div>
 
                 ) : (<div className='font-normal flex justify-center'

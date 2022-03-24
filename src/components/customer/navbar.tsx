@@ -32,13 +32,16 @@ export const Navbar = () => {
     }, [dispatch, token])
 
     const { cart } = useSelector((state: RootState) => state.cart)
-    console.log(cart)
 
     let cartItems: number = 0
 
+    console.log('++++++++++++++++', cart)
+
     if (cart.length !== 0) {
         cart.map((orders: any) => {
+            console.log('||||||||||||', orders);
             orders.map((items: any) => {
+                console.log('\\\\\\\\\\\\\\\\\\\\\\', items)
                 cartItems += items.order_items.length
             })
         })
