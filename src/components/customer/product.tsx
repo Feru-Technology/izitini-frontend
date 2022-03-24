@@ -92,19 +92,23 @@ const Product = () => {
             <CategoryBar />
             {isLoading ? (<h1>loading...</h1>) :
                 currentProduct ? (
-                    <div className='container-fluid mb-4 md:my-6 lg:my-8 '>
+                    <div className='container-fluid mb-4 md:my-6 lg:my-8'>
 
                         {/* navigation */}
-                        <div className='flex lg:mt-8 font-semibold text-xs md:text-sm
-                        px-5 py-6 md:px-12 lg:px-24 bg-white'>
-                            <Link to={'/products'}>All Products</Link>
-                            <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
-                            <Link to={`/products/c/${currentProduct.subCategory[0].subCategory.category.name}`}>
-                                {currentProduct.subCategory[0].subCategory.category.name}</Link>
-                            <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
-                            <p className='text-gray-500 font-normal'> {currentProduct.subCategory[0].subCategory.name}</p>
-                            <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
-                            <p className='text-gray-500 font-normal'> {currentProduct.product.name}</p>
+                        <div className='overflow-x-scroll md:overflow-hidden bg-white 
+                        px-5 py-6 md:px-12 lg:px-24'>
+                            <div className='flex lg:mt-8 font-semibold text-xs md:text-sm text-gray-600 w-max'>
+                                <Link to={'/products'} className=' '>All Products</Link>
+                                <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
+                                <Link to={`/products/c/${currentProduct.subCategory[0].subCategory.category.name}`}>
+                                    {currentProduct.subCategory[0].subCategory.category.name}</Link>
+                                <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
+                                <Link to={`/products/s/${currentProduct.subCategory[0].subCategory.id}`} className=' '>
+                                    {currentProduct.subCategory[0].subCategory.name}</Link>
+                                <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500 whi' />
+                                <p> {currentProduct.product.name}</p>
+                            </div>
+
                         </div>
 
                         {/* picture and product name and details */}
