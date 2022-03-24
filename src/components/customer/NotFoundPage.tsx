@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
+import { Navbar } from "./navbar"
 
 const NofFound = () => {
 
     return (
         <div className='m-0'>
+            <Navbar />
             <div className='h-full'
+            // style={{ height: '100vh' }}
             >
                 <div className='flex flex-col items-center justify-center h-full'
 
