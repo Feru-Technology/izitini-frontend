@@ -187,11 +187,11 @@ const Cart = () => {
                                             Checkout
                                         </button>
                                     </div>
-                                </div>)
+                                </div>
                             </div>
-                        )))))) : (<div className='flex flex-col items-center justify-center font-semibold '> your cart is empty </div>)
+                        )))))) :
+                    (<div className='flex flex-col items-center justify-center font-semibold '> your cart is empty </div>)
             }
-
             <Footer />
         </div>
 
