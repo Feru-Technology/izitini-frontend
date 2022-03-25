@@ -83,7 +83,7 @@ const Cart = () => {
                                 </th>
                             </tr>
                         </thead>
-                        {isLoading ? (<h1>loading ...</h1>)
+                        {isLoading ? (<div>loading ...</div>)
                             : cart.length !== 0 ? cart.map((orders: any) => (
                                 orders.map((items: any) =>
                                 (items.order_items.map((item: any) =>
@@ -161,7 +161,7 @@ const Cart = () => {
                     <p className='m-3 text-dark-blue'>Have a Coupon</p>
                     <div className='flex bg-gray-200 font-bold py-2 md:py-3'>
                         <p className='ml-3'>Total</p>
-                        <p className='absolute right-8 md:right-10 lg:right-16'>75000 RWF</p>
+                        <p className='absolute right-8 md:right-10 lg:right-16'>{subTotal(totalPrices) + 0}</p>
                     </div>
                     <button
                         className="bg-dark-blue text-white text-lg font-bold uppercase py-2 md:py-3 rounded mt-3

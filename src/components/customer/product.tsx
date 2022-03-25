@@ -22,19 +22,19 @@ import { addingToCart, cart, cartFailed } from '../../redux/order/cart'
 const Product = () => {
 
     // redux
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     // Get ID from URL
-    const params = useParams();
+    const params = useParams()
 
     const { id } = params
 
     useEffect(() => {
-        dispatch(getProduct());
+        dispatch(getProduct())
         fetch(dispatch, product, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token')
 
     const [quantity, setQuantity] = useState<string>('1')
 
@@ -76,7 +76,7 @@ const Product = () => {
         },
     ]
 
-    const [displayImage, setDisplayImage] = useState(data[0].image);
+    const [displayImage, setDisplayImage] = useState(data[0].image)
 
     const [showReview, setShowReview] = useState(false)
     const [showDescription, setShowDescription] = useState(false)
