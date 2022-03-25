@@ -1,13 +1,19 @@
 import React from 'react'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
-import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
+import { destroy } from '../../api/apiAction'
 import { MdOutlineCancel } from 'react-icons/md'
+import { useDispatch, useSelector } from 'react-redux'
+import { addingToCart, cart as getCart, cartFailed } from '../../redux/order/cart'
 
 
 const lodash = require('lodash')
 const Cart = () => {
+
+    // redux
+    const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
 
     const { isLoading, cart, error } = useSelector((state: RootState) => state.cart)
 
@@ -25,6 +31,11 @@ const Cart = () => {
 
     const subTotal = (totals: []) => {
         return lodash.sum(totals)
+    }
+
+    // remove order item
+    const removeOrderItem = (order_id: string, product_id: string) => {
+        destroy(dispatch, getCart, cartFailed, `/orders/${order_id}/${product_id}`, token)
     }
 
     return (<>
@@ -130,7 +141,8 @@ const Cart = () => {
                                         </td>
                                         <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                             <button type='button'
-                                                className='text-dark-blue'
+                                                className='text-dark-blue hover:text-red-600'
+                                                onClick={() => removeOrderItem(item.order_id, item.product_id)}
                                             >
                                                 <MdOutlineCancel className='w-6 h-auto' />
                                             </button>
