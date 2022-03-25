@@ -5,7 +5,7 @@ import { RootState } from '../../redux/store'
 import { destroy } from '../../api/apiAction'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import { addingToCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+import { cart as getCart, cartFailed } from '../../redux/order/cart'
 
 
 const lodash = require('lodash')
@@ -33,10 +33,12 @@ const Cart = () => {
         return lodash.sum(totals)
     }
 
-    // remove order item
+    // remove order item handler
     const removeOrderItem = (order_id: string, product_id: string) => {
         destroy(dispatch, getCart, cartFailed, `/orders/${order_id}/${product_id}`, token)
     }
+
+    // increase order quantity handler
 
     return (<>
         <Navbar />
