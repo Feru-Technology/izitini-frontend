@@ -23,10 +23,12 @@ export const cartSlice = createSlice({
         cart: (state, { payload }) => {
             state.isLoading = false
             state.cart = [payload]
+            state.error = null
         },
         cartFailed: (state, { payload }) => {
             state.isLoading = false
             state.error = payload
+            state.cart = []
         }
     },
 })
