@@ -114,7 +114,7 @@ const Product = () => {
                             <div className='container'>
                                 <div className=''>
                                     <div className='md:flex px-5 py-6 md:py-0 md:px-12 lg:px-24 mx-auto bg-white w-full
-                                border-b border-gray-200'>
+                                border-b md:border-b-0 border-gray-200'>
                                         <div className='md:w-2/3'>
                                             <div className='md:flex'>
 
@@ -261,7 +261,7 @@ const Product = () => {
                                                     <div className='md:w-1/2'>
                                                         <div className='w-full'>
                                                             <select
-                                                                className='w-full h-9 rounded border-2 bg-white px-3'
+                                                                className='w-full h-9 rounded border bg-white px-3'
                                                                 aria-label='multiple select example'
                                                                 onChange={e => setQuantity(e.target.value)}
                                                             >
@@ -276,7 +276,7 @@ const Product = () => {
                                         md:w-1/2 md:space-x-0 md:mt-0'>
                                                         <div className='w-1/3 md:sr-only'>
                                                             <button
-                                                                className='flex btn bg-color border-2 border-dark-blue text-dark-blue
+                                                                className='flex btn bg-color border border-dark-blue text-dark-blue
                                                     w-full h-9 rounded bg-dark-white items-center justify-center font-medium'
                                                             >
                                                                 <span></span>
@@ -301,7 +301,7 @@ const Product = () => {
                                     </div>
 
                                     {/* tabs and details */}
-                                    <div className='md:sr-only bg-white my-6 border-t-2 border-b py-6 border-gray-200
+                                    <div className='md:sr-only bg-white my-6 border-t border-b py-6 border-gray-200
                                 px-5 md:px12 lg:px-24 mx-auto w-full'>
                                         {/* tabs */}
                                         <div className=''>

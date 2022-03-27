@@ -21,17 +21,6 @@ const Cart = () => {
 
     console.log('[[[[[[]]]]]', cart);
 
-    // let order[] = []
-    cart.map((orders: any) => {
-        orders.map((items: any) => {
-            // console.log('......................', items)
-            items.order_items.map((item: any) => {
-                console.log('......................', item.product.name)
-            })
-
-        })
-    })
-
     console.log(totalPrices)
 
     const subTotal = (totals: []) => {
