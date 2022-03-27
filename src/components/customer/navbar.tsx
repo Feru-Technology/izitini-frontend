@@ -10,7 +10,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { BsCart3, BsSuitHeart, BsBell } from 'react-icons/bs'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { getCart as gettingCart, cart as getCart, cartFailed } from '../../redux/order/cart'
+import { addingToCart, cart as getCart, cartFailed } from '../../redux/order/cart'
 import { MenuIcon, XIcon, ChevronDownIcon, ArrowNarrowRightIcon } from '@heroicons/react/outline'
 
 function classNames(...classes: string[]) {
@@ -27,7 +27,7 @@ export const Navbar = () => {
     const token = localStorage.getItem('token')
 
     useEffect(() => {
-        dispatch(gettingCart())
+        dispatch(addingToCart())
         fetch(dispatch, getCart, cartFailed, '/orders/cart', token)
     }, [dispatch, token])
 

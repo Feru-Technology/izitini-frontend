@@ -18,7 +18,7 @@ import {
     product,
     productFailed
 } from '../../redux/products/product.slice'
-import { getCart, cart, cartFailed } from '../../redux/order/cart'
+import { addingToCart, cart, cartFailed } from '../../redux/order/cart'
 const Product = () => {
 
     // redux
@@ -39,7 +39,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState<string>('1')
 
     const addToCart = () => {
-        dispatch(getCart())
+        dispatch(addingToCart())
         post(dispatch, cart, cartFailed, '/orders/add-to-cart', {
             quantity: quantity,
             product_id: id,
@@ -90,7 +90,7 @@ const Product = () => {
             <CategoryBar />
             {isLoading ? (<h1>loading...</h1>) :
                 currentProduct ? (
-                    <div className='container-fluid mb-4 md:my-6 lg:my-8'>
+                    <div className='container-fluid mb-4'>
 
                         {/* navigation */}
                         <div className='overflow-x-scroll md:overflow-hidden bg-white 
