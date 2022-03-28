@@ -25,8 +25,6 @@ const Cart = () => {
         return total
     }
 
-    console.log(totalPrices)
-
     const subTotal = (totals: []) => {
         return lodash.sum(totals)
     }
