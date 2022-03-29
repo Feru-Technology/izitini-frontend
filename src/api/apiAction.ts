@@ -35,3 +35,33 @@ export const post = (dispatch: any, response: any, failed: any, route: string, b
                         : dispatch(failed(error.message))
         })
 }
+
+export const destroy = (dispatch: any, response: any, failed: any, route: string, token?: any) => {
+    Axios.delete(route, { headers: { 'Authorization': token } })
+        .then(({ data }) => dispatch(response(data.data)))
+        .catch(error => {
+            const ResponseErr = error.response
+            const requestErr = error.request
+            const configErr = error.config
+            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
+            return ResponseErr ? dispatch(failed(ResponseErr.data))
+                : requestErr ? dispatch(failed(requestErr))
+                    : configErr ? dispatch(failed(configErr))
+                        : dispatch(failed(error.message))
+        })
+}
+
+export const update = (dispatch: any, response: any, failed: any, route: string, body: {}, token?: any) => {
+    Axios.patch(route, body, { headers: { 'Authorization': token } })
+        .then(({ data }) => dispatch(response(data.data)))
+        .catch(error => {
+            const ResponseErr = error.response
+            const requestErr = error.request
+            const configErr = error.config
+            console.log({ Response: ResponseErr }, { request: requestErr }, { config: configErr }, error)
+            return ResponseErr ? dispatch(failed(ResponseErr.data))
+                : requestErr ? dispatch(failed(requestErr))
+                    : configErr ? dispatch(failed(configErr))
+                        : dispatch(failed(error.message))
+        })
+}

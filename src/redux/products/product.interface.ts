@@ -1,9 +1,14 @@
 import { IStore } from '../stores/store.interfaces'
 
+export interface HTTPError {
+    status: number
+    message: string
+}
+
 export interface IProduct {
-    id: string;
-    name: string;
-    image_url: string;
+    id: string
+    name: string
+    image_url: string
     brand: string
     unit: string
     shop_id: string
@@ -14,5 +19,4 @@ export interface IProduct {
     price: number
     productImages: []
     shop: IStore
-};
-export interface HTTPError { status: number; message: string }
+}

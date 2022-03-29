@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IProduct, HTTPError } from './product.interface'
+import { ISubCategory } from '../subCategories/subCategory.interface'
 
 
 export interface productState {
     isLoading: boolean
     error: Error | HTTPError | null
-    currentProduct: IProduct | null
+    currentProduct: {
+        product: IProduct,
+        subCategory: [{ subCategory: ISubCategory }]
+    } | null
 }
 
 const initialState: productState = {
