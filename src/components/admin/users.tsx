@@ -11,10 +11,15 @@ const Users = () => {
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile);
 
-    const [isClosed, setIsClosed] = useState(false)
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+
+    const [isClosed, setIsClosed] = useState(false)
+    const [showVendor, setShowVendor] = useState(false)
+    const [showAllUsers, setShowAllUsers] = useState(true)
+    const [showCustomer, setShowCustomer] = useState(false)
+    const [showProfessional, setShowProfessional] = useState(false)
 
     const navigate = useNavigate()
 
@@ -50,13 +55,106 @@ const Users = () => {
                                     <div className='fixed inset-0 bg-black opacity-60 z-10' />
                                 </Transition>
 
-                                {/* customer dashboard */}
-                                <div className='p-5 flex flex-col justify-center'>
-                                    <p>recent activities</p>
-                                    {profile.user.account_type === 'business' ?
-                                        <Link to='/vendor' className='text-light-blue underline'>Go to your Vendor Dashboard</Link> :
-                                        <p>Become a vendor</p>
-                                    }
+                                {/* admin dashboard */}
+
+                                <div className='px-2 md:px-6 lg:px-14 w-full'>
+                                    <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Users</p>
+                                    <div className='  border-gray-200'>
+                                        <ul className='w-full text-xs flex cursor-pointer'>
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
+
+                                                onClick={() => {
+                                                    setShowAllUsers(true)
+                                                    setShowCustomer(false)
+                                                    setShowVendor(false)
+                                                    setShowProfessional(false)
+                                                }}
+                                            >All</li>
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            py-3 ${showCustomer && 'border-b-2 border-dark-blue'}`}
+                                                onClick={() => {
+                                                    setShowCustomer(true)
+                                                    setShowAllUsers(false)
+                                                    setShowVendor(false)
+                                                    setShowProfessional(false)
+                                                }}
+
+                                            >Customer</li>
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            py-3 ${showProfessional && 'border-b-2 border-dark-blue'}`}
+                                                onClick={() => {
+                                                    setShowProfessional(true)
+                                                    setShowAllUsers(false)
+                                                    setShowCustomer(false)
+                                                    setShowVendor(false)
+                                                }}
+                                            >Vendor</li>
+                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
+                                            py-3 ${showVendor && 'border-b-2 border-dark-blue'}`}
+                                                onClick={() => {
+                                                    setShowVendor(true)
+                                                    setShowAllUsers(false)
+                                                    setShowCustomer(false)
+                                                    setShowProfessional(false)
+                                                }}
+
+                                            >Professional</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className='w-full my-4 md:my-5 lg:my-6 '>
+                                        <table className='w-full border-gray-200 text-gray-600 border'>
+                                            <thead className=''>
+                                                <tr className='font-bold text-xs md:text-sm text-center border-b'>
+                                                    <th
+                                                        scope='col'
+                                                        className='
+                                                w-2/5 py-3 lg:text-base
+                                    '
+                                                    >Names</th>
+                                                    <th
+                                                        scope='col'
+                                                        className='
+                                                py-3 lg:text-base
+                                    '
+                                                    >Email</th>
+                                                    <th
+                                                        scope='col'
+                                                        className='
+                                                py-3 lg:text-base
+                                    '
+                                                    >Contacts</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
+                                                    <td className='py-3 '>
+                                                        <div className='md:flex items-center'>
+                                                            <div className='md:w-1/4 mx-3'>
+                                                                <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                            </div>
+                                                            <div className='md:w-2/4'>
+
+                                                                <p className='font-normal text-sm'>
+                                                                    <span className=''>Product Name</span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td className='py-3 '>
+                                                        <p className='font-normal text-sm'>email@gmail.com</p>
+                                                    </td>
+                                                    <td className='py-3 '>
+                                                        <p className='font-normal text-sm'>0786493807</p>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
 
                                 </div>
                             </div>
