@@ -35,6 +35,7 @@ const AdminDashboard = () => {
                                     isClosed={isClosed}
                                     setIsClosed={setIsClosed}
                                     isStatic={isStatic}
+                                    name={'Admin'}
                                 />
                                 <Transition
                                     appear={true}

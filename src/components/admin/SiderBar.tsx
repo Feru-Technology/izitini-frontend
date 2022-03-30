@@ -89,7 +89,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/dashboard'
+                                    to='/admin'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' &&
                                         'hover:text-gray-400'
                                         }`}
@@ -108,7 +108,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/orders'
+                                    to='admin/users'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -116,7 +116,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                     <div className='flex items-center'>
                                         <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Orders
+                                            Users
                                         </p>
                                     </div>
                                 </Link>
@@ -128,7 +128,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/profile'
+                                    to='/Shops'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('coupons') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -136,7 +136,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                     <div className='flex items-center'>
                                         <GiftIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Profile
+                                            Shops
                                         </p>
                                     </div>
                                 </Link>

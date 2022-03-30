@@ -23,6 +23,7 @@ const Settings = () => {
           isClosed={isClosed}
           setIsClosed={setIsClosed}
           isStatic={isStatic}
+          name={'Vendor'}
         />
         <Transition
           appear={true}

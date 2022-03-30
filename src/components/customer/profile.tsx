@@ -35,6 +35,7 @@ const Profile = () => {
                                     isClosed={isClosed}
                                     setIsClosed={setIsClosed}
                                     isStatic={isStatic}
+                                    name={'Customer'}
                                 />
                                 <Transition
                                     appear={true}
