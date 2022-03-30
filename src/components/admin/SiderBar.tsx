@@ -108,7 +108,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='users'
+                                    to='/admin/users'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('users') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -122,14 +122,14 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 </Link>
                             </li>
                             <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('coupons') &&
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('shops') &&
                                     'bg-gray-800'
                                     }`}
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/Shops'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('coupons') &&
+                                    to='/admin/shops'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('shops') &&
                                         'hover:text-gray-400'
                                         }`}
                                 >

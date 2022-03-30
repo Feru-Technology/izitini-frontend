@@ -2,6 +2,7 @@ import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import Home from './components/customer/home'
 import Cart from './components/customer/Cart'
+import Shops from './components/admin/shops'
 import Users from './components/admin/users'
 import Store from './components/vendor/Store'
 import Orders from './components/vendor/Orders'
@@ -72,6 +73,7 @@ function App() {
 
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route path='/admin/users' element={<Users />} />
+                <Route path='/admin/shops' element={<Shops />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>
