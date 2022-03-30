@@ -2,6 +2,7 @@ import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import Home from './components/customer/home'
 import Cart from './components/customer/Cart'
+import Users from './components/admin/users'
 import Store from './components/vendor/Store'
 import Orders from './components/vendor/Orders'
 import Reports from './components/vendor/Reports'
@@ -70,6 +71,7 @@ function App() {
                 <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
 
                 <Route path='/admin' element={<AdminDashboard />} />
+                <Route path='/admin/users' element={<Users />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>

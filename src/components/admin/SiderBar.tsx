@@ -8,7 +8,7 @@ import {
     GiftIcon,
     LogoutIcon,
     TemplateIcon,
-    ClipboardCheckIcon,
+    UserGroupIcon
 } from '@heroicons/react/solid'
 
 interface Isidebar {
@@ -103,18 +103,18 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 </Link>
                             </li>
                             <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('orders') && 'bg-gray-800'
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('users') && 'bg-gray-800'
                                     }`}
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='admin/users'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
+                                    to='users'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('users') &&
                                         'hover:text-gray-400'
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
+                                        <UserGroupIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Users
                                         </p>
