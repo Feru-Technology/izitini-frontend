@@ -10,8 +10,9 @@ import Products from './components/vendor/Products'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyOrders from './components/customer/orders'
-import NotFound from './components/customer/NotFoundPage'
 import Category from './components/customer/category'
+import AdminDashboard from './components/admin/Dashboard'
+import NotFound from './components/customer/NotFoundPage'
 import CreateStore from './components/vendor/CreateStore'
 import VendorDashboard from './components/vendor/Dashboard'
 import Subcategory from './components/customer/subcategory'
@@ -67,6 +68,8 @@ function App() {
                 <Route path='/vendor/create-product' element={<CreateProduct />} />
 
                 <Route path='/profession' element={<h1>Professional page coming soon</h1>} />
+
+                <Route path='/admin' element={<AdminDashboard />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>
