@@ -19,10 +19,11 @@ const MyOrders = () => {
     const { profile } = useSelector((state: RootState) => state.profile)
 
     const [isClosed, setIsClosed] = useState(false)
+    const [showAllOrders, setShowAllOrders] = useState(true)
     const [showSampleOrders, setShowSampleOrders] = useState(false)
     const [showRejectedOrders, setShowRejectedOrders] = useState(false)
     const [showCompletedOrders, setShowCompletedOrders] = useState(false)
-    const [showProcessingOrders, setShowProcessingOrders] = useState(true)
+    const [showProcessingOrders, setShowProcessingOrders] = useState(false)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -65,45 +66,128 @@ const MyOrders = () => {
                     </Transition>
 
                     {/* customer orders */}
-                    <div className=''>
-                        <p className='font-bold my-4'>My Orders</p>
+                    <div className='px-2 md:px-6 lg:px-14 w-full'>
+                        <p className='font-bold my-3 text-sm'>My Orders</p>
                         <div className='bg-white border border-gray-200'>
-                            <div className=' px-1 pt-6 md:p-5 flex justify-center text-xs'>
-                                <div className={`border-2 p-2 mx-1 ${showProcessingOrders && 'border-light-blue bg-light-blue text-white'}`}
+                            <div className=' border-b border-gray-200'>
+                                <ul className='w-full text-xs flex cursor-pointer'>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                            py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
 
-                                    onClick={() => {
-                                        setShowProcessingOrders(true)
-                                        setShowSampleOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowCompletedOrders(false)
-                                    }}
-                                >Processing Orders</div>
-                                <div className={`border-2 p-2 mx-1 ${showCompletedOrders && 'border-light-blue bg-light-blue text-white'}`}
-                                    onClick={() => {
-                                        setShowCompletedOrders(true)
-                                        setShowSampleOrders(false)
-                                        setShowRejectedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
-                                >Completed Orders</div>
-                                <div className={`border-2 p-2 mx-1 ${showSampleOrders && 'border-light-blue bg-light-blue text-white'}`}
-                                    onClick={() => {
-                                        setShowSampleOrders(true)
-                                        setShowRejectedOrders(false)
-                                        setShowCompletedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
+                                        onClick={() => {
+                                            setShowAllOrders(true)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
+                                    >All</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                            py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
-                                >Sample Orders</div>
-                                <div className={`border-2 p-2 mx-1 ${showRejectedOrders && 'border-light-blue bg-light-blue text-white'}`}
-                                    onClick={() => {
-                                        setShowRejectedOrders(true)
-                                        setShowSampleOrders(false)
-                                        setShowCompletedOrders(false)
-                                        setShowProcessingOrders(false)
-                                    }}
+                                        onClick={() => {
+                                            setShowProcessingOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                        }}
+                                    >Processing</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                            py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
+                                        onClick={() => {
+                                            setShowSampleOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
 
-                                >Rejected Orders</div>
+                                    >Sample</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                            py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
+                                        onClick={() => {
+                                            setShowCompletedOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowSampleOrders(false)
+                                            setShowRejectedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
+                                    >Completed</li>
+                                    <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
+                                            py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
+                                        onClick={() => {
+                                            setShowRejectedOrders(true)
+                                            setShowAllOrders(false)
+                                            setShowSampleOrders(false)
+                                            setShowCompletedOrders(false)
+                                            setShowProcessingOrders(false)
+                                        }}
+
+                                    >Rejected</li>
+                                </ul>
+                            </div>
+
+                            <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
+                                <table className='w-full border-gray-200 text-gray-600'>
+                                    <thead className='bg-gray-100'>
+                                        <tr className='font-bold text-xs md:text-sm text-center border'>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                w-2/5 py-3 lg:text-base
+                                    '
+                                            >name</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >Price</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >Status</th>
+                                            <th
+                                                scope='col'
+                                                className='
+                                                py-3 lg:text-base
+                                    '
+                                            >Tracking no</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800'>
+                                            <td className='py-3 border'>
+                                                <div className='md:flex items-center'>
+                                                    <div className='md:w-1/5 mx-3'>
+                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
+                                                    </div>
+                                                    <div className='md:w-4/5'>
+
+                                                        <p className='font-normal text-sm'>
+                                                            <span className=''>Product Name</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className='py-3 border'>
+                                                <p className='font-normal text-sm'>$100</p>
+                                            </td>
+                                            <td className='py-3 border'>
+                                                <p className='font-normal text-sm'>Processing</p>
+                                            </td>
+                                            <td className='py-3 border'>
+                                                <p className='font-normal text-sm'>Tracking no</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
                             </div>
 
                         </div>
