@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { CategoryBar } from './categoryBar'
 import { RootState } from '../../redux/store'
 
-const AllProducts = () => {
+const MyProducts = () => {
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
@@ -64,4 +64,4 @@ const AllProducts = () => {
     </>)
 }
 
-export default AllProducts
+export default MyProducts

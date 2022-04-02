@@ -1,16 +1,17 @@
 import React from 'react'
+import { BsShop } from 'react-icons/bs'
+import { useDispatch } from 'react-redux'
 import { Transition } from '@headlessui/react'
+import { FaProductHunt } from 'react-icons/fa'
+import { MdReportProblem } from 'react-icons/md'
+import { loggedIn } from '../../redux/profile.slice'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
-    TemplateIcon,
-    ShoppingBagIcon,
-    GiftIcon,
-    ChartSquareBarIcon,
     CogIcon,
-    CollectionIcon,
-    ClipboardCheckIcon,
     LogoutIcon,
+    TemplateIcon,
+    UserGroupIcon
 } from '@heroicons/react/solid'
-import { Link, useLocation } from 'react-router-dom'
 
 interface Isidebar {
     isClosed: boolean
@@ -18,12 +19,25 @@ interface Isidebar {
     isStatic: boolean
 }
 const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
+
+    const navigate = useNavigate()
+
+    // redux
+    const dispatch = useDispatch();
+
     const location = useLocation()
     const { pathname } = location
 
     const handleClick = () => {
         setIsClosed(true)
     }
+
+    const logout = () => {
+        dispatch(loggedIn(null))
+        localStorage.clear()
+        navigate('/')
+    }
+
     return (
         <div>
             <Transition
@@ -77,7 +91,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor'
+                                    to='/admin'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' &&
                                         'hover:text-gray-400'
                                         }`}
@@ -91,20 +105,40 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 </Link>
                             </li>
                             <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('store') && 'bg-gray-800'
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('users') && 'bg-gray-800'
                                     }`}
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/stores'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('store') &&
+                                    to='/admin/users'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('users') &&
                                         'hover:text-gray-400'
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <ShoppingBagIcon className='flex-shrink-0 h-5 w-5' />
+                                        <UserGroupIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
-                                            Store
+                                            Users
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('shops') &&
+                                    'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/shops'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('shops') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <BsShop className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Shops
                                         </p>
                                     </div>
                                 </Link>
@@ -116,13 +150,13 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/products'
+                                    to='/admin/products'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('products') &&
                                         'hover:text-gray-400'
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <CollectionIcon className='flex-shrink-0 h-5 w-5' />
+                                        <FaProductHunt className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Products
                                         </p>
@@ -130,58 +164,19 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 </Link>
                             </li>
                             <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('orders') && 'bg-gray-800'
-                                    }`}
-                                onClick={handleClick}
-                            >
-                                <Link
-                                    to='/vendor/orders'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
-                                        'hover:text-gray-400'
-                                        }`}
-                                >
-                                    <div className='flex items-center'>
-                                        <ClipboardCheckIcon className='flex-shrink-0 h-5 w-5' />
-                                        <p className='text-sm font-medium ml-3  duration-200'>
-                                            Orders
-                                        </p>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('coupons') &&
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('Reports') &&
                                     'bg-gray-800'
                                     }`}
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/coupons'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('coupons') &&
+                                    to='/admin/Reports'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('Reports') &&
                                         'hover:text-gray-400'
                                         }`}
                                 >
                                     <div className='flex items-center'>
-                                        <GiftIcon className='flex-shrink-0 h-5 w-5' />
-                                        <p className='text-sm font-medium ml-3  duration-200'>
-                                            Coupons
-                                        </p>
-                                    </div>
-                                </Link>
-                            </li>
-                            <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('reports') &&
-                                    'bg-gray-800'
-                                    }`}
-                                onClick={handleClick}
-                            >
-                                <Link
-                                    to='/vendor/reports'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('reports') &&
-                                        'hover:text-gray-400'
-                                        }`}
-                                >
-                                    <div className='flex items-center'>
-                                        <ChartSquareBarIcon className='flex-shrink-0 h-5 w-5' />
+                                        <MdReportProblem className='flex-shrink-0 h-5 w-5 text-red-500' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Reports
                                         </p>
@@ -195,7 +190,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/vendor/settings'
+                                    to='/admin/settings'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -221,7 +216,8 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 'hover:text-gray-400'
                                 }`}
                         >
-                            <div className='flex items-center space-x-2'>
+                            <div className='flex items-center space-x-2'
+                                onClick={() => logout()}>
                                 <LogoutIcon className='w-5 h-5' />
                                 <p>Logout</p>
                             </div>

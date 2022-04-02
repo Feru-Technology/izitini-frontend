@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
-import Header from './Header'
+import Header from '../vendor/Header'
 import { Transition } from '@headlessui/react'
+import { Link } from 'react-router-dom'
 
-const MyReports = () => {
+const AdminSettings = () => {
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })
-
   return (
     <div className='flex h-screen overflow-hidden'>
       <SiderBar
@@ -23,7 +23,7 @@ const MyReports = () => {
           isClosed={isClosed}
           setIsClosed={setIsClosed}
           isStatic={isStatic}
-          name={'Vendor'}
+          name={'Admin'}
         />
         <Transition
           appear={true}
@@ -38,11 +38,11 @@ const MyReports = () => {
           <div className='fixed inset-0 bg-black opacity-60 z-10' />
         </Transition>
         <div>
-          MyReports page ....
+          Admin settings page
         </div>
       </div>
     </div>
   )
 }
 
-export default MyReports
+export default AdminSettings

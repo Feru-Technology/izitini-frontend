@@ -7,7 +7,7 @@ import { Transition } from '@headlessui/react'
 import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
 
-const Profile = () => {
+const AdminDashboard = () => {
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile);
 
@@ -35,7 +35,7 @@ const Profile = () => {
                                     isClosed={isClosed}
                                     setIsClosed={setIsClosed}
                                     isStatic={isStatic}
-                                    name={'Customer'}
+                                    name={'Admin'}
                                 />
                                 <Transition
                                     appear={true}
@@ -50,8 +50,15 @@ const Profile = () => {
                                     <div className='fixed inset-0 bg-black opacity-60 z-10' />
                                 </Transition>
 
-                                {/* customer profile */}
+                                {/* customer dashboard */}
+                                <div className='p-5 flex flex-col justify-center'>
+                                    <p>recent activities</p>
+                                    {profile.user.account_type === 'business' ?
+                                        <Link to='/vendor' className='text-light-blue underline'>Go to your Vendor Dashboard</Link> :
+                                        <p>Become a vendor</p>
+                                    }
 
+                                </div>
                             </div>
                         </div>
                     )
@@ -62,4 +69,4 @@ const Profile = () => {
     )
 }
 
-export default Profile
+export default AdminDashboard

@@ -12,15 +12,16 @@ interface IHeader {
     isClosed: boolean
     setIsClosed: React.Dispatch<React.SetStateAction<boolean>>
     isStatic: boolean
+    name: string
 }
 
-const Header = ({ isClosed, setIsClosed, isStatic }: IHeader) => {
+const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
 
     const { profile } = useSelector((state: RootState) => state.profile);
 
     return (
         <>
-            <div className='sticky top-0 text-white  bg-header-blue'>
+            <div className='sticky top-0 text-white  bg-dark-blue'>
                 <div className='flex items-center justify-between h-16 -mb-px'>
                     {/* Hamburger button */}
                     <div className='flex  items-center'>
@@ -41,8 +42,8 @@ const Header = ({ isClosed, setIsClosed, isStatic }: IHeader) => {
                                     />
                                 </button>
                             )}
-                        <h2 className='font-bold font-lg mx-2  text-2xl'>
-                            Dashboard
+                        <h2 className='font-medium text-lg lg:font-bold mx-2  lg:text-2xl'>
+                            <span className=''>{name}</span>  Dashboard
                         </h2>
                     </div>
                     <div className='flex items-center justify-evenly space-x-3 mx-4'>
