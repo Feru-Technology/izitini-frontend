@@ -3,7 +3,6 @@ import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
 import Header from '../vendor/Header'
 import { Transition } from '@headlessui/react'
-import { Link } from 'react-router-dom'
 
 const AdminSettings = () => {
   const [isClosed, setIsClosed] = useState(false)

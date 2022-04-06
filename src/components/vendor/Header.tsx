@@ -67,11 +67,11 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
                         </div>
                         <div className='flex flex-row justify-center items-center space-x-2'>
                             <img
-                                src={profile?.user.profile_image === null ? backUpPImage : profile?.user.profile_image}
+                                src={profile?.profile_image === null ? backUpPImage : profile?.profile_image}
                                 className='w-9 h-9 rounded-full mx-auto'
                                 alt='pImg'
                             />
-                            <p className='sr-only lg:not-sr-only'>{profile?.user.full_name}</p>
+                            <p className='sr-only lg:not-sr-only'>{profile?.full_name}</p>
                         </div>
                     </div>
                 </div>

@@ -4,8 +4,8 @@ import Header from '../vendor/Header'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
+import { Link, useNavigate } from 'react-router-dom'
 
 const AdminDashboard = () => {
 
@@ -18,10 +18,15 @@ const AdminDashboard = () => {
 
     const navigate = useNavigate()
 
+    const accountType = profile?.account_type
+    console.log(accountType)
+
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>)
-                : profile ?
+                : !profile ? navigate('/signin') :
+                    // : profile?.user.account_type === 'admin' 
+
                     (
                         <div className='flex h-screen overflow-hidden'>
                             <SiderBar
@@ -53,16 +58,13 @@ const AdminDashboard = () => {
                                 {/* customer dashboard */}
                                 <div className='p-5 flex flex-col justify-center'>
                                     <p>recent activities</p>
-                                    {profile.user.account_type === 'business' ?
-                                        <Link to='/vendor' className='text-light-blue underline'>Go to your Vendor Dashboard</Link> :
-                                        <p>Become a vendor</p>
-                                    }
+                                    <p>Become a vendor</p>
 
                                 </div>
                             </div>
                         </div>
                     )
-                    : navigate('/signin')
+                // : navigate('')
 
             }
         </>
