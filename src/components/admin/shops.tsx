@@ -98,7 +98,7 @@ const Shops = () => {
                                                     className='
                                                 py-3 lg:text-base
                                     '
-                                                >Specialty</th>
+                                                >About Shop</th>
                                             </tr>
                                         </thead>
 
@@ -127,7 +127,7 @@ const Shops = () => {
                                                             <p className='font-normal text-sm'>{store.shop_contact_no}</p>
                                                         </td>
                                                         <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>Electricity && Water</p>
+                                                            <p className='font-normal text-sm'>{store.about_shop}</p>
                                                         </td>
                                                     </tr>
                                                 </tbody>)
