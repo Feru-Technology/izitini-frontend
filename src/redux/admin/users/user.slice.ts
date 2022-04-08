@@ -20,7 +20,7 @@ export const userSlice = createSlice({
     reducers: {
         getUser: (state) => {
             state.isLoading = true
-            state.currentUser = null
+            // state.currentUser = null
             state.error = null
         },
         user: (state, { payload }) => {
@@ -29,7 +29,7 @@ export const userSlice = createSlice({
             state.currentUser = payload
         },
         userFailed: (state, { payload }) => {
-            state.currentUser = null
+            // state.currentUser = null
             state.isLoading = false
             state.error = payload
         }
