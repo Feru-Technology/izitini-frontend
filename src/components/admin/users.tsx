@@ -66,8 +66,6 @@ const Users = () => {
         return navigate(`/admin/user/${id}`)
     }
 
-    console.log(profile);
-
     return (
         <>
             {isLoading ? (<h1>loading ...</h1>)
