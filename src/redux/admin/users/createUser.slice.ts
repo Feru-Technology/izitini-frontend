@@ -1,33 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { IUser, HTTPError } from './users.interface'
+import { ICreateUser, HTTPError } from './users.interface'
 
 
 export interface userState {
     isLoading: boolean
     error: Error | HTTPError | null
-    currentUser: IUser | null
+    createdUser: ICreateUser | null
 }
 
 const initialState: userState = {
     isLoading: false,
     error: null,
-    currentUser: null,
+    createdUser: null,
 }
 
-export const userSlice = createSlice({
+export const createUserSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        getUser: (state) => {
+        postUser: (state) => {
+            state.createdUser = null
             state.isLoading = true
             state.error = null
         },
-        user: (state, { payload }) => {
+        getUser: (state, { payload }) => {
             state.error = null
             state.isLoading = false
-            state.currentUser = payload
+            state.createdUser = payload
         },
         userFailed: (state, { payload }) => {
+            state.createdUser = null
             state.isLoading = false
             state.error = payload
         }
@@ -35,6 +37,6 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getUser, user, userFailed } = userSlice.actions
+export const { postUser, getUser, userFailed } = createUserSlice.actions
 
-export default userSlice.reducer
+export default createUserSlice.reducer

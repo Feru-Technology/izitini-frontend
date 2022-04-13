@@ -18,7 +18,8 @@ const User = () => {
     // redux
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
-    const { id } = useParams()
+    const params = useParams()
+    const { id } = params
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -42,7 +43,6 @@ const User = () => {
 
     const updateUser = () => {
         dispatch(getUser())
-        console.log({ tin_no, contact, full_name, is_verified, account_type })
         update(dispatch, user, userFailed, `/admin/user/${id}`, { tin_no, contact, email, full_name, is_verified, account_type }, token)
     }
 
@@ -184,7 +184,7 @@ const User = () => {
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-first-name' type='text' defaultValue={currentUser.full_name}
+                                                        id='grid-first-name' type='text' defaultValue={full_name || currentUser.full_name}
                                                         onChange={e => setFull_name(e.target.value)} />
                                                 </div>
 
@@ -193,7 +193,7 @@ const User = () => {
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.contact}
+                                                        id='grid-last-name' type='text' defaultValue={contact || currentUser.contact}
                                                         onChange={e => setContact(e.target.value)} />
                                                 </div>
 
@@ -202,7 +202,7 @@ const User = () => {
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.tin_no}
+                                                        id='grid-last-name' type='text' defaultValue={tin_no || currentUser.tin_no}
                                                         onChange={e => setTin_no(e.target.value)} />
                                                 </div>
 
@@ -211,7 +211,7 @@ const User = () => {
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
-                                                        id='grid-last-name' type='text' defaultValue={currentUser.email}
+                                                        id='grid-last-name' type='text' defaultValue={email || currentUser.email}
                                                         onChange={e => setEmail(e.target.value)} />
                                                 </div>
 
@@ -223,7 +223,7 @@ const User = () => {
                                                         className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                         border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
                                                         id='grid-state'
-                                                        defaultValue={currentUser.account_type}
+                                                        defaultValue={account_type || currentUser.account_type}
                                                         onChange={e => setAccount_type(e.target.value)}
                                                     >
                                                         <option>{currentUser.account_type}</option>

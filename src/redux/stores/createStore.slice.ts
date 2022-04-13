@@ -5,29 +5,31 @@ import { IStore, HTTPError } from './store.interfaces'
 export interface storeState {
     isLoading: boolean
     error: Error | HTTPError | null
-    currentStore: IStore | null
+    createdStore: IStore | null
 }
 
 const initialState: storeState = {
     isLoading: false,
     error: null,
-    currentStore: null,
+    createdStore: null,
 }
 
-export const storeSlice = createSlice({
+export const createStoreSlice = createSlice({
     name: 'store',
     initialState,
     reducers: {
-        getStore: (state) => {
+        addStore: (state) => {
+            state.createdStore = null
             state.isLoading = true
             state.error = null
         },
-        store: (state, { payload }) => {
+        getStore: (state, { payload }) => {
             state.isLoading = false
             state.error = null
-            state.currentStore = payload
+            state.createdStore = payload
         },
         storeFailed: (state, { payload }) => {
+            state.createdStore = null
             state.isLoading = false
             state.error = payload
         }
@@ -35,6 +37,6 @@ export const storeSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { getStore, store, storeFailed } = storeSlice.actions
+export const { addStore, getStore, storeFailed } = createStoreSlice.actions
 
-export default storeSlice.reducer
+export default createStoreSlice.reducer

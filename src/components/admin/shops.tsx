@@ -32,8 +32,7 @@ const Shops = () => {
         fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
-    const { isLoading, stores, error } = useSelector((state: RootState) => state.stores)
-    console.log(stores);
+    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
 
     return (
         <>
@@ -69,7 +68,14 @@ const Shops = () => {
                             {/* customer dashboard */}
 
                             <div className='px-2 md:px-6 lg:px-14 w-full'>
-                                <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Shops</p>
+
+                                <div className='flex items-center justify-between py-8'>
+                                    <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Shops</h3>
+                                    <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                                            py-2 px-4 rounded cursor-pointer text-sm md:text-base' >
+                                        <Link to='/admin/create-store'>ADD A Shop</Link>
+                                    </button>
+                                </div>
 
                                 <div className='w-full my-4 md:my-5 lg:my-6 '>
                                     <table className='w-full border-gray-200 text-gray-600 border'>

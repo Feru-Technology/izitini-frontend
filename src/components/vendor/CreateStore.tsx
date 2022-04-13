@@ -15,7 +15,7 @@ import {
 
 import { getStore, store, storeFailed } from '../../redux/stores/store.slice'
 
-const CreateProduct = () => {
+const CreateStore = () => {
 
   const [isClosed, setIsClosed] = useState(false)
   const isStatic = useMediaQuery({
@@ -205,4 +205,4 @@ const CreateProduct = () => {
   )
 }
 
-export default CreateProduct
+export default CreateStore
