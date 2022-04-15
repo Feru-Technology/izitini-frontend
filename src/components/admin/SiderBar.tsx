@@ -5,6 +5,7 @@ import { Transition } from '@headlessui/react'
 import { FaProductHunt } from 'react-icons/fa'
 import { MdReportProblem } from 'react-icons/md'
 import { loggedIn } from '../../redux/profile.slice'
+import { BiCategoryAlt, BiCategory } from 'react-icons/bi'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
     CogIcon,
@@ -159,6 +160,46 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         <FaProductHunt className='flex-shrink-0 h-5 w-5' />
                                         <p className='text-sm font-medium ml-3  duration-200'>
                                             Products
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('categories') &&
+                                    'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/categories'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('categories') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <BiCategoryAlt className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Categories
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('sub-categories') &&
+                                    'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/sub-categories'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('sub-categories') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <BiCategory className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Sub-categories
                                         </p>
                                     </div>
                                 </Link>
