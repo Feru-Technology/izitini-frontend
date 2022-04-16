@@ -15,9 +15,14 @@ import { createUserSlice } from './admin/users/createUser.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
+import { adminCategorySlice } from './admin/categories/category.slice'
 import { AdminCategoriesSlice } from './admin/categories/categories.slice'
 import { crateCategorySlice } from './admin/categories/createCategory.slice'
+import { UpdateCategorySlice } from './admin/categories/updateCategory.slice'
+import { AdminSubCategoriesSlice } from './admin/subCategories/subCategories.slice'
 import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.slice'
+import { createSubCategorySlice } from './admin/subCategories/createSubCategory.slice'
+import { updateSubCategorySlice } from './admin/subCategories/updateSubCategory.slice'
 
 export const store = configureStore({
     reducer: {
@@ -37,9 +42,14 @@ export const store = configureStore({
         createStore: createStoreSlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer,
+        adminCategory: adminCategorySlice.reducer,
         adminCategories: AdminCategoriesSlice.reducer,
         adminCreateCategory: crateCategorySlice.reducer,
-        subCategoryProducts: subCategoryProductsSlice.reducer
+        adminUpdateCategory: UpdateCategorySlice.reducer,
+        adminSubCategories: AdminSubCategoriesSlice.reducer,
+        subCategoryProducts: subCategoryProductsSlice.reducer,
+        adminCreateSubCategory: createSubCategorySlice.reducer,
+        adminUpdateSubCategory: updateSubCategorySlice.reducer
 
     },
 })

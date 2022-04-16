@@ -185,14 +185,14 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 </Link>
                             </li>
                             <li
-                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('sub-categories') &&
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('subCategories') &&
                                     'bg-gray-800'
                                     }`}
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/admin/sub-categories'
-                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('sub-categories') &&
+                                    to='/admin/subCategories'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('subCategories') &&
                                         'hover:text-gray-400'
                                         }`}
                                 >

@@ -27,9 +27,11 @@ import CreateCustomer from './components/admin/createUser'
 import VendorDashboard from './components/vendor/Dashboard'
 import Subcategory from './components/customer/subcategory'
 import AllProducts from './components/customer/allProducts'
+import SubCategories from './components/admin/subCategories'
 import AdminCreateStore from './components/admin/CreateStore'
 import CreateProduct from './components/vendor/CreateProduct'
 import CustomerDashboard from './components/customer/Dashboard'
+import CatSubCategories from './components/admin/catSubCategories'
 import SignInPage from './components/customer/accounts/SignInPage'
 import AccountTypes from './components/customer/accounts/accountTypes'
 import VendorSignUp from './components/customer/accounts/VendorSignUp'
@@ -83,15 +85,17 @@ function App() {
                 <Route path='/admin' element={<AdminDashboard />} />
                 <Route path='/admin/users' element={<Users />} />
                 <Route path='/admin/shops' element={<Shops />} />
-                <Route path='/admin/user/:id' element={<User />} />
-                <Route path='/admin/shop/:id' element={<Shop />} />
+                <Route path='/admin/users/:id' element={<User />} />
+                <Route path='/admin/shops/:id' element={<Shop />} />
                 <Route path='/admin/reports' element={<Reports />} />
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/categories' element={<Categories />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
                 <Route path='/admin/create-vendor' element={<CreateVendor />} />
+                <Route path='/admin/subCategories' element={<SubCategories />} />
                 <Route path='/admin/create-store' element={<AdminCreateStore />} />
                 <Route path='/admin/create-customer' element={<CreateCustomer />} />
+                <Route path='/admin/categories/:id' element={<CatSubCategories />} />
 
                 <Route path='*' element={<NotFound />} />
             </Routes>
