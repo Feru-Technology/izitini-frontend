@@ -10,15 +10,18 @@ import { AllStoresSlice } from './stores/allStores.slice'
 import { categorySlice } from './categories/category.slice'
 import { createStoreSlice } from './stores/createStore.slice'
 import { allProductSlice } from './products/allProduct.slice'
+import { productsSlice } from './admin/products/products.slice'
 import { categoriesSlice } from './categories/categories.slice'
 import { createUserSlice } from './admin/users/createUser.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { adminCategorySlice } from './admin/categories/category.slice'
+import { createProductSlice } from './admin/products/createProduct.slice'
 import { AdminCategoriesSlice } from './admin/categories/categories.slice'
 import { crateCategorySlice } from './admin/categories/createCategory.slice'
 import { UpdateCategorySlice } from './admin/categories/updateCategory.slice'
+import { adminSubCategorySlice } from './admin/subCategories/subCategory.slice'
 import { AdminSubCategoriesSlice } from './admin/subCategories/subCategories.slice'
 import { subCategoryProductsSlice } from './subCategories/subCategoryProducts.slice'
 import { createSubCategorySlice } from './admin/subCategories/createSubCategory.slice'
@@ -38,18 +41,21 @@ export const store = configureStore({
         categories: categoriesSlice.reducer,
         createUser: createUserSlice.reducer,
         allProducts: allProductSlice.reducer,
+        adminProducts: productsSlice.reducer,
         subCategory: subCategorySlice.reducer,
         createStore: createStoreSlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer,
         adminCategory: adminCategorySlice.reducer,
         adminCategories: AdminCategoriesSlice.reducer,
+        adminCreateProduct: createProductSlice.reducer,
         adminCreateCategory: crateCategorySlice.reducer,
+        adminSubCategory: adminSubCategorySlice.reducer,
         adminUpdateCategory: UpdateCategorySlice.reducer,
         adminSubCategories: AdminSubCategoriesSlice.reducer,
         subCategoryProducts: subCategoryProductsSlice.reducer,
         adminCreateSubCategory: createSubCategorySlice.reducer,
-        adminUpdateSubCategory: updateSubCategorySlice.reducer
+        adminUpdateSubCategory: updateSubCategorySlice.reducer,
 
     },
 })

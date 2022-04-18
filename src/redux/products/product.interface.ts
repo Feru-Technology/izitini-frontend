@@ -19,4 +19,6 @@ export interface IProduct {
     price: number
     productImages: []
     shop: IStore
+    createdAt: Date
+    updatedAt: Date
 }

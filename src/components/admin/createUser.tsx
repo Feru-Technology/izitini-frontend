@@ -38,7 +38,7 @@ const CreateCustomer = () => {
     if (createdUser) {
       const { id } = createdUser.user
       dispatch(getUser(null))
-      return navigate(`/admin/user/${id}`
+      return navigate(`/admin/users/${id}`
       )
     }
   }, [createdUser, dispatch, navigate])
@@ -169,7 +169,7 @@ const CreateCustomer = () => {
                     >
                       {isLoading ? 'Loading...' : 'Create'}
                     </button>
-                    <p> <Link to={'/admin/create-vendor'}>Or <span className='text-dark-blue'>Create a Vendor</span></Link> </p>
+                    <p> <Link to={'/admin/users/create-vendor'}>Or <span className='text-dark-blue'>Create a Vendor</span></Link> </p>
                   </div>
                 </form>
               </div>
