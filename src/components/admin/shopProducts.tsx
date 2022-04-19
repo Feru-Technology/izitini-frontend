@@ -2,27 +2,22 @@ import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch, post } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
-import { Link, useNavigate } from 'react-router-dom'
+import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
     fetchingProducts,
     fetchedProducts,
     fetchFailed
-} from '../../redux/admin/products/products.slice'
-import {
-    fetchingStores,
-    retrievedStores,
-    retrievedStoreFailed
-} from '../../redux/stores/allStores.slice'
+} from '../../redux/admin/products/productsInShop.slice'
 import {
     fetchingSubCategories,
     retrievedSubCategories,
-    fetchFailed as fetchError
+    fetchFailed as fetchSError
 } from '../../redux/admin/subCategories/subCategories.slice'
 import {
     creatingProduct,
@@ -30,10 +25,13 @@ import {
     createFailed
 } from '../../redux/admin/products/createProduct.slice'
 
-const Products = () => {
+const ShopProducts = () => {
 
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+
+    const params = useParams()
+    const { id } = params
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
@@ -45,54 +43,23 @@ const Products = () => {
     const [createMode, setCreateMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)
-    const [showWaiting, setShowWaiting] = useState(false)
     const [brand, setBrand] = useState<string | null>(null)
-    const [showApproved, setShowApproved] = useState(false)
-    const [shop_id, setShop_id] = useState<string | null>(null)
-    const [showAllProducts, setShowAllProducts] = useState(true)
-    const [showUnpublished, setShowUnpublished] = useState(false)
     const [subCategory, setSubCategory] = useState<string | null>(null)
 
     const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-    }, [dispatch, token])
+        fetch(dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`, token)
+    }, [dispatch, id, token])
 
-    const all = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
-    }
-
-    const approved = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
-    }
-
-    const waiting = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/waiting', token)
-    }
-
-    const unPublished = () => {
-        dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/drafts', token)
-    }
-
-    const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
-
-    useEffect(() => {
-        dispatch(fetchingStores())
-        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
-    }, [dispatch])
-
-    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
+    const { isFetching, products, fetchError } = useSelector((state: RootState) => state.adminShopProducts)
+    const shopName = products[0]?.shop.name
 
     // get subcategories
     useEffect(() => {
         dispatch(fetchingSubCategories())
-        fetch(dispatch, retrievedSubCategories, fetchError, '/admin/subcategory')
+        fetch(dispatch, retrievedSubCategories, fetchSError, '/admin/subcategory')
     }, [dispatch])
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
@@ -100,7 +67,7 @@ const Products = () => {
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory, name, brand, unit }, token)
+        post(dispatch, createdProduct, createFailed, `/admin/product/${id}`, { subCategory, name, brand, unit }, token)
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
@@ -108,11 +75,12 @@ const Products = () => {
     useEffect(() => {
         if (product) {
             dispatch(fetchingProducts())
-            fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+            fetch(dispatch, fetchedProducts, fetchFailed, `/admin/product/s/${id}`, token)
             dispatch(createdProduct(null))
             setCreateMode(false)
         }
-    }, [dispatch, product, token])
+    }, [dispatch, id, product, token])
+
 
     return (
         <>
@@ -151,60 +119,12 @@ const Products = () => {
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
                                     <div className='flex items-center justify-between py-8'>
-                                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Products</h3>
+                                        <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{shopName}</h3>
                                         <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
                                             onClick={() => setCreateMode(true)} >
                                             ADD A Product
                                         </button>
-                                    </div>
-
-                                    <div className='  border-gray-200'>
-                                        <ul className='w-full text-xs flex cursor-pointer'>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showAllProducts && 'border-b-2 border-dark-blue'}`}
-
-                                                onClick={() => {
-                                                    all()
-                                                    setShowAllProducts(true)
-                                                    setShowApproved(false)
-                                                    setShowWaiting(false)
-                                                    setShowUnpublished(false)
-                                                }}
-                                            >All</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showApproved && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    approved()
-                                                    setShowApproved(true)
-                                                    setShowAllProducts(false)
-                                                    setShowWaiting(false)
-                                                    setShowUnpublished(false)
-                                                }}
-
-                                            >Approved</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showUnpublished && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    waiting()
-                                                    setShowUnpublished(true)
-                                                    setShowAllProducts(false)
-                                                    setShowApproved(false)
-                                                    setShowWaiting(false)
-                                                }}
-                                            >Waiting</li>
-                                            <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
-                                                onClick={() => {
-                                                    unPublished()
-                                                    setShowWaiting(true)
-                                                    setShowAllProducts(false)
-                                                    setShowApproved(false)
-                                                    setShowUnpublished(false)
-                                                }}
-
-                                            >Unpublished</li>
-                                        </ul>
                                     </div>
 
                                     <div className='w-full my-4 md:my-5 lg:my-6 '>
@@ -238,36 +158,37 @@ const Products = () => {
                                                 </tr>
                                             </thead>
 
-                                            {products.map((product) => (
-                                                <tbody>
-                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
-                                                        <td className='py-1 hover:text-dark-blue hover:underline'
-                                                            onClick={e => navigate(`/admin/products/${product.id}`)}>
-                                                            <div className='md:flex items-center'>
-                                                                <div className='md:w-1/4 mx-3'>
-                                                                    <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
-                                                                        className='w-auto h-10' />
-                                                                </div>
-                                                                <div className='md:w-2/4'>
+                                            {products.map((product) => {
+                                                return (
+                                                    <tbody>
+                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
+                                                            <td className='py-1 '>
+                                                                <div className='md:flex items-center'>
+                                                                    <div className='md:w-1/4 mx-3'>
+                                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product'
+                                                                            className='w-auto h-10' />
+                                                                    </div>
+                                                                    <div className='md:w-2/4'>
 
-                                                                    <p className='font-normal text-sm  cursor-pointer'>
-                                                                        <span className=''>{product.name}</span>
-                                                                    </p>
+                                                                        <p className='font-normal text-sm'>
+                                                                            <span className=''>{product.name}</span>
+                                                                        </p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </td>
-                                                        <td className='py-3 '>
-                                                            <Link to={`/admin/products/shop/${product.shop.id}`}
-                                                                className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'>{product.shop.name}</Link>
-                                                        </td>
-                                                        <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{product.status}</p>
-                                                        </td>
-                                                        <td className='py-3 '>
-                                                            <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>)
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm hover:underline hover:text-dark-blue cursor-pointer'
+                                                                    onClick={() => navigate(`/admin/shops/${product.shop.id}`)} >{product.shop.name}</p>
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm'>{product.status}</p>
+                                                            </td>
+                                                            <td className='py-3 '>
+                                                                <p className='font-normal text-sm'>{format(new Date(product.createdAt), 'dd.MM.yyyy')}</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>)
+                                            }
 
                                             )}
 
@@ -301,21 +222,6 @@ const Products = () => {
                                         </div>
                                         <form>
 
-
-                                            <div className=' w-full mb-3'>
-                                                <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shops</h3>
-                                                <div className=' w-full mb-3'>
-                                                    <select
-                                                        className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
-                                                        id='grid-state'
-                                                        onChange={e => setShop_id(e.target.value)}
-                                                    >
-                                                        <option>Choose shop</option>
-                                                        {isLoading ? <h1>loading...</h1>
-                                                            : stores.map((s) => (<option value={s.id}>{s.name}</option>))}
-                                                    </select>
-                                                </div>
-                                            </div>
 
                                             <div className=' w-full mb-3'>
                                                 <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
@@ -395,11 +301,11 @@ const Products = () => {
                             </Transition>
                         </div>
                     )
-                    : navigate('/signin')
+                    : <div className='flex justify-center'>{createError?.message}</div>
 
             }
         </>
     )
 }
 
-export default Products
+export default ShopProducts

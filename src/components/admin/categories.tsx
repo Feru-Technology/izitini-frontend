@@ -184,7 +184,7 @@ const Categories = () => {
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal'>
-                                                                        <span className='hover:underline hover:text-dark-blue'>{category.name}</span>
+                                                                        <span className='hover:underline hover:text-dark-blue  cursor-pointer'>{category.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>

@@ -15,6 +15,7 @@ import MyOrders from './components/customer/orders'
 import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyReports from './components/vendor/Reports'
+import AdminProduct from './components/admin/product'
 import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
 import Categories from './components/admin/categories'
@@ -22,6 +23,7 @@ import AdminSettings from './components/admin/Settings'
 import AdminDashboard from './components/admin/Dashboard'
 import NotFound from './components/customer/NotFoundPage'
 import CreateStore from './components/vendor/CreateStore'
+import ShopProducts from './components/admin/shopProducts'
 import CreateVendor from './components/admin/createVendor'
 import CreateCustomer from './components/admin/createUser'
 import VendorDashboard from './components/vendor/Dashboard'
@@ -92,7 +94,9 @@ function App() {
                 <Route path='/admin/products' element={<Products />} />
                 <Route path='/admin/categories' element={<Categories />} />
                 <Route path='/admin/settings' element={<AdminSettings />} />
+                <Route path='/admin/products/:id' element={<AdminProduct />} />
                 <Route path='/admin/subCategories' element={<SubCategories />} />
+                <Route path='admin/products/shop/:id' element={<ShopProducts />} />
                 <Route path='/admin/shops/create' element={<AdminCreateStore />} />
                 <Route path='/admin/categories/:id' element={<CatSubCategories />} />
                 <Route path='/admin/users/create-vendor' element={<CreateVendor />} />
