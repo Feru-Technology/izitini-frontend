@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch, post } from '../../api/apiAction'
+import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { fetch, post, update } from '../../api/apiAction'
 import {
     product,
     getProduct,
@@ -19,6 +19,11 @@ import {
     retrievedSubCategories,
     fetchFailed
 } from '../../redux/admin/subCategories/subCategories.slice'
+import {
+    updatingProduct,
+    updatedProduct,
+    updateFailed
+} from '../../redux/admin/products/updateProduct.slice'
 
 const AdminProduct = () => {
 
@@ -46,8 +51,6 @@ const AdminProduct = () => {
     const [quantity, setQuantity] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
 
-    const navigate = useNavigate()
-
     useEffect(() => {
         dispatch(getProduct())
         fetch(dispatch, product, productFailed, `/product/${id}`)
@@ -56,8 +59,7 @@ const AdminProduct = () => {
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
-    console.log('===========', currentProduct)
-
+    console.log(currentProduct)
 
     useEffect(() => {
         if (currentProduct) {
@@ -81,6 +83,22 @@ const AdminProduct = () => {
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
+
+    const updateProduct = () => {
+        dispatch(updatingProduct())
+        update(dispatch, updatedProduct, updateFailed, `/admin/product/${id}`, { name, unit, price, brand, status, manual, quantity, specification }, token)
+    }
+
+    const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
+
+    useEffect(() => {
+        if (updated) {
+            dispatch(getProduct())
+            fetch(dispatch, product, productFailed, `/product/${id}`)
+            dispatch(updatedProduct(null))
+            setEditMode(false)
+        }
+    }, [dispatch, id, updated])
 
 
     return (
@@ -120,7 +138,7 @@ const AdminProduct = () => {
                                 <div className='px-2 md:px-6 lg:px-14 w-full'>
 
 
-                                    <div className=' my-5 '>
+                                    <div className='my-5 '>
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
                                         >
@@ -147,9 +165,9 @@ const AdminProduct = () => {
                                     <form action=''>
                                         <div className=''>
                                             <div className='space-y-6 mx-2'>
-                                                <Transition show={!!error}>
+                                                <Transition show={!!updateError}>
                                                     <div className='border border-red-600 bg-red-100'>
-                                                        <span className='px-2 py-4 text-red-600'> {error?.message} </span>
+                                                        <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
                                                 <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
@@ -233,13 +251,6 @@ const AdminProduct = () => {
                                                 border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
                                                         id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                 </div>
-                                                <div className='space-x-2 md:space-x-8 flex w-full space-x-12'>
-                                                    <label className='font-semibold text-sm md:text-base text-gray-500 w-2/12'
-                                                        htmlFor='Updated At'>Updated At:</label>
-                                                    <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
-                                                border-gray-500 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none px-2'
-                                                        id='grid-last-name' type='text' value={format(new Date(currentProduct.product.updatedAt), 'dd.MM.yyyy')} />
-                                                </div>
 
                                             </div>
                                         </div>
@@ -259,13 +270,31 @@ const AdminProduct = () => {
                                             <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    // return updateShop()
+                                                    return updateProduct()
                                                 }} >
-                                                SAVE CHANGES
+                                                {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
                                             </button>
                                         </Transition>
                                     </div>
                                 </div>
+
+                                <div className='px-2 md:px-6 lg:px-14 w-full'>
+                                    {/* product sub-category */}
+                                    <div >
+                                        {currentProduct.subCategory.map((subCat) => (
+                                            <div className='font-semibold text-sm md:text-base text-gray-500 w-2/12'>Sub-Category:
+                                                <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
+                                        ))}
+                                    </div>
+
+                                    {/* product sizes */}
+                                    <div>
+                                        <p>Product sizes</p>
+                                        { }
+                                    </div>
+
+                                </div>
+
                             </div>
 
                             {/* add size to a product */}

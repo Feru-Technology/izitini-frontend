@@ -1,3 +1,4 @@
+import { ICategory } from '../admin/categories/category.interfaces'
 import { IStore } from '../stores/store.interfaces'
 
 export interface HTTPError {
@@ -17,8 +18,11 @@ export interface IProduct {
     quantity: string
     status: string
     price: number
-    productImages: []
     shop: IStore
     createdAt: Date
     updatedAt: Date
+    productImages: []
+    // colors: IColor
+    // size: ISize
+    category: ICategory
 }
