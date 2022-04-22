@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
+import {
+    PlusIcon,
+} from '@heroicons/react/outline'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
-import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch, post, update } from '../../api/apiAction'
@@ -46,6 +48,8 @@ const AdminProduct = () => {
     const [unit, setUnit] = useState<string | null>(null)
     const [price, setPrice] = useState<number | null>(null)
     const [brand, setBrand] = useState<string | null>(null)
+    const [showSizeDesc, setShowSizeDesc] = useState(false)
+    const [showColorDesc, setShowColorDesc] = useState(false)
     const [status, setStatus] = useState<string | null>(null)
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
@@ -169,91 +173,111 @@ const AdminProduct = () => {
                                                         <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='grid grid-cols-2 gap-4'>
-                                                    <div className=''>
+                                                <div className='mb-3 w-full flex justify-end'>
+                                                    <select
+                                                        className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
+                                                        focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
+                                                        ${editMode && 'pointer-events-none'}`}
+                                                        id='grid-state'
+                                                    // onChange={e => setShop_specialty_2(e.target.value)}
+                                                    >
+                                                        <option className='text-center'>{currentProduct.product.status}</option>
+                                                        <option className='text-center'>{currentProduct.product.status === 'draft' ? 'waiting_for_review' : 'draft'}</option>
+                                                    </select>
+                                                </div>
+                                                <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Name:</label>
                                                         <input type='name'
-                                                            className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                            className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-first-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
-
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Unit:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
+                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                            id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.specification} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                                        >Price:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                        >Price Per Unit:</label>
+                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Brand:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                        <input className={`border border-gray-300 px-3 py-3  text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                     </div>
 
-                                                    <div className='w-full'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
-                                                        >Status:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
-                                                            id='grid-last-name' type='text' onChange={e => setStatus(e.target.value)} defaultValue={status || currentProduct.product.status} />
-                                                    </div>
-
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Specs:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Manual:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Quantity:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue  pointer-events-none
-                                                        ${editMode && 'pointer-events-auto border'}`}
+                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                     </div>
 
-                                                    <div className='w-full'>
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >Owner:</label>
                                                         <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
+                                                        focus:outline-none w-full ease-linear transition-all duration-150 pointer-events-none'
                                                             id='grid-last-name' type='text'
                                                             value={currentProduct.product.shop.name}
                                                         />
                                                     </div>
-                                                    <div className='w-full'>
+
+                                                    <div className='my-1'>
+                                                        <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
+                                                        <div className='w-full mb-3'>
+                                                            <select
+                                                                className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
+                                                                focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
+                                                                ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                                id='grid-state'
+                                                            // onChange={e => setSubCategory(e.target.value)}
+                                                            >
+                                                                <option>Choose sub-category</option>
+                                                                {isSubCatLoading ? <h1>loading...</h1>
+                                                                    : subCategories.map((c) => (<option>{c.name}</option>))}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className='my-1'>
                                                         <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                         >created At:</label>
                                                         <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
@@ -265,6 +289,78 @@ const AdminProduct = () => {
                                             </div>
 
                                         </form>
+
+                                        <div className=' mb-8'>
+
+                                            {/* product sizes */}
+                                            <div className=' border-b border-dark-blue pb-8'>
+                                                <div className='flex space-x-2 my-4'>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
+
+                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                        onPointerOver={() => setShowSizeDesc(true)}
+                                                        onPointerLeave={() => setShowSizeDesc(false)}
+                                                    >
+                                                        <PlusIcon className='h-6 mx-auto' />
+                                                    </div>
+
+                                                    <Transition show={!!showSizeDesc}
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
+                                                    </Transition>
+                                                </div>
+                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+
+                                                    {currentProduct.sizes.map((size) => {
+                                                        return (
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
+                                                            </div>
+                                                        )
+                                                    })}
+
+                                                </div>
+
+                                            </div>
+
+                                            {/* product Colors */}
+                                            <div className=' border-b border-dark-blue pb-8'>
+                                                <div className='flex space-x-2 my-4'>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>ProductColors</p>
+
+                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
+                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                        onPointerOver={() => setShowColorDesc(true)}
+                                                        onPointerLeave={() => setShowColorDesc(false)}
+                                                    >
+                                                        <PlusIcon className='h-6 mx-auto' />
+                                                    </div>
+
+                                                    <Transition show={!!showColorDesc}
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
+                                                    </Transition>
+                                                </div>
+                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+
+                                                    {currentProduct.colors.map((color) => {
+                                                        return (
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
+                                                            </div>
+                                                        )
+                                                    })}
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
 
                                     <div className=' my-5 '>
@@ -287,34 +383,6 @@ const AdminProduct = () => {
                                             </button>
                                         </Transition>
                                     </div>
-                                </div>
-
-                                <div className='px-2 md:px-6 lg:px-14 w-full mb-8'>
-                                    {/* product sub-category */}
-                                    <div >
-                                        {currentProduct.subCategory.map((subCat) => (
-                                            <div className='font-semibold text-sm md:text-base text-gray-500 w-ful'>Sub-Category:
-                                                <span className='text-gray-800 ml-1'> {subCat.subCategory.name}</span></div>
-                                        ))}
-                                    </div>
-
-                                    {/* product sizes */}
-                                    <div className='w-full'>
-                                        <p>Product sizes</p>
-                                        <div className='flex'>
-                                            {currentProduct.sizes.map((size) => (
-                                                <div className='w-1/4 mx-1 bg-white border shadow-md p-2'>
-                                                    <p className='font-medium'>Size: <span className='font-normal'>{size.size.size}</span> </p>
-                                                    <p className='font-medium'>Price: <span className='font-normal'>{size.price}</span> </p>
-                                                    <p className='font-medium'>Quantity: <span className='font-normal'>{size.quantity}</span> </p>
-                                                </div>
-                                            ))}
-                                            <div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
                                 </div>
 
                             </div>
