@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react'
+import {
+    useState,
+    useEffect
+} from 'react'
 import {
     PlusIcon,
 } from '@heroicons/react/outline'
@@ -8,9 +11,10 @@ import Header from '../vendor/Header'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetch, post, update } from '../../api/apiAction'
+import { fetch, post, update, destroy } from '../../api/apiAction'
 import {
     product,
     getProduct,
@@ -36,7 +40,16 @@ import {
     createdColor,
     createColorFailed
 } from '../../redux/admin/productColors/createColor.slice'
-import { MdOutlineCancel } from 'react-icons/md'
+import {
+    deletingSize,
+    deletedSize,
+    deleteFailed
+} from '../../redux/admin/productSizes/deleteSize.slice'
+import {
+    deletingColor,
+    deletedColor,
+    deleteColorFailed
+} from '../../redux/admin/productColors/DeleteColor.slice'
 
 const AdminProduct = () => {
 
@@ -117,15 +130,6 @@ const AdminProduct = () => {
 
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
-    useEffect(() => {
-        if (updated) {
-            dispatch(getProduct())
-            fetch(dispatch, product, productFailed, `/product/${id}`)
-            dispatch(updatedProduct(null))
-            setEditMode(false)
-        }
-    }, [dispatch, id, updated])
-
     // create product size
     const createSize = () => {
         dispatch(creatingSize())
@@ -138,16 +142,6 @@ const AdminProduct = () => {
 
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
 
-    // if created successfully clear newSize state and fetch updated product
-    useEffect(() => {
-        if (newSize) {
-            dispatch(createdSize(null))
-            dispatch(getProduct())
-            fetch(dispatch, product, productFailed, `/product/${id}`)
-            setAddSize(false)
-        }
-    }, [dispatch, id, newSize])
-
     const createColor = () => {
         dispatch(creatingColor())
         post(dispatch, createdColor, createColorFailed, `/admin/product/color/${id}`, {
@@ -159,15 +153,43 @@ const AdminProduct = () => {
 
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
 
-    // if created successfully clear newColor state and fetch updated product
+    // remove size from product
+    const deleteSize = (size_id: string) => {
+        dispatch(deletingSize())
+        destroy(dispatch, deletedSize, deleteFailed, `/admin/product/size/${id}/${size_id}`, token)
+    }
+
+    const { deleted } = useSelector((state: RootState) => state.deleteSize)
+
+    // remove color from product
+    const deleteColor = (color_id: string) => {
+        dispatch(deletingColor())
+        destroy(dispatch, deletedColor, deleteColorFailed, `/admin/product/color/${id}/${color_id}`, token)
+    }
+
+    const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
+
+    // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (newColor) {
+        if (updated || newColor || newSize || deleted || deletedColorRes) {
+            dispatch(updatedProduct(null))
             dispatch(createdColor(null))
+            dispatch(deletedColor(null))
+            dispatch(deletedSize(null))
+            dispatch(createdSize(null))
             dispatch(getProduct())
-            fetch(dispatch, product, productFailed, `/product/${id}`)
+
+            fetch(
+                dispatch,
+                product,
+                productFailed,
+                `/product/${id}`)
+
+            setEditMode(false)
             setAddColor(false)
+            setAddSize(false)
         }
-    }, [dispatch, id, newColor])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated])
 
     return (
         <>
@@ -371,18 +393,21 @@ const AdminProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showSizeDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
                                                     </Transition>
                                                 </div>
-                                                <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
+                                                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4'>
 
                                                     {currentProduct.sizes.map((size) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
+                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                    onClick={() => deleteSize(size.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -406,7 +431,7 @@ const AdminProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showColorDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16'>
+                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
                                                     </Transition>
                                                 </div>
@@ -414,10 +439,14 @@ const AdminProduct = () => {
 
                                                     {currentProduct.colors.map((color) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded'>
+                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
                                                                 <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
+                                                                <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
+                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                    onClick={() => deleteColor(color.color.id)} />
+
                                                             </div>
                                                         )
                                                     })}
