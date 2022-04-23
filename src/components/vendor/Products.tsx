@@ -6,8 +6,8 @@ import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
-import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import {
     fetchingProducts,
@@ -60,7 +60,7 @@ const Products = () => {
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, '/admin/product', { subCategory, name, brand, unit }, token)
+        post(dispatch, createdProduct, createFailed, '/product', { subCategory, name, brand, unit }, token)
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
@@ -221,7 +221,7 @@ const Products = () => {
                             <Transition
                                 show={!!createError}
                             >
-                                <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
+                                <p className='py-2 px-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
 
                             </Transition>
                         </div>
