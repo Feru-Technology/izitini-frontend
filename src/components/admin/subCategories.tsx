@@ -361,7 +361,7 @@ const SubCategories = () => {
                                             <input
                                                 type='text'
                                                 className='border-0 border-b border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                                                text-sm focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                text-sm focus:outline-none w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                                                 defaultValue={currentSubCategory?.name}
                                                 onChange={e => setName(e.target.value)}
                                             />

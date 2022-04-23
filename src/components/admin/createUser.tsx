@@ -73,8 +73,8 @@ const CreateCustomer = () => {
             <div className='fixed inset-0 bg-black opacity-60 z-10' />
           </Transition>
 
-          <div className='w-full lg:w-5/12 px-4 mx-auto pt-6 z-0'>
-            <div className='relative flex flex-col min-w-0 break-words w-full mb-6  rounded-lg
+          <div className='px-4 sm:w-5/6 md:w-5/6 lg:w-5/12 flex mx-auto md:mt-44 lg:mt-2'>
+            <div className='flex flex-col min-w-0 break-words w-full mb-6  rounded-lg
             bg-white shadow hover:shadow-md ease-linear transition-all duration-150 z-0'>
               <div className='rounded-t mb-0 px-6 py-6'>
                 <div className='text-center mb-3'>
@@ -98,7 +98,7 @@ const CreateCustomer = () => {
 
                     </Transition>
                   </div>
-                  <div className='relative w-full mb-3'>
+                  <div className='w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
@@ -108,12 +108,12 @@ const CreateCustomer = () => {
                     <input
                       type='text'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='Full Names'
                       onChange={e => setFull_name(e.target.value)}
                     />
                   </div>
-                  <div className='relative w-full mb-3'>
+                  <div className='w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
@@ -123,12 +123,12 @@ const CreateCustomer = () => {
                     <input
                       type='text'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='contact'
                       onChange={e => setContact(e.target.value)}
                     />
                   </div>
-                  <div className='relative w-full mb-3'>
+                  <div className='w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
@@ -138,12 +138,12 @@ const CreateCustomer = () => {
                     <input
                       type='email'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='Email'
                       onChange={e => setEmail(e.target.value)}
                     />
                   </div>
-                  <div className='relative w-full mb-3'>
+                  <div className='w-full mb-3'>
                     <label
                       className='block uppercase text-gray-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
@@ -153,7 +153,7 @@ const CreateCustomer = () => {
                     <input
                       type='TinNo'
                       className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
                       placeholder='TinNo'
                       onChange={e => setTin_no(e.target.value)}
                     />

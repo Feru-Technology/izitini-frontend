@@ -130,7 +130,8 @@ const CreateProduct = () => {
                 <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Assign User to this shop</h3>
                 <div className=' w-full mb-3'>
                   <select
-                    className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                    className='block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded border-gray-300
+                    outline-none focus:ring-1 focus:border-dark-blue'
                     id='grid-state'
                     onChange={e => setOwner(e.target.value)}
                   >
@@ -144,7 +145,8 @@ const CreateProduct = () => {
                 <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shop Specialty 1</h3>
                 <div className=' w-full mb-3'>
                   <select
-                    className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                    className='block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded border-gray-300
+                    outline-none focus:ring-1 focus:border-dark-blue'
                     id='grid-state'
                     onChange={e => setShop_specialty_1(e.target.value)}
                   >
@@ -158,7 +160,8 @@ const CreateProduct = () => {
                 <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shop Specialty 2</h3>
                 <div className=' w-full mb-3'>
                   <select
-                    className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                    className='block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded border-gray-300
+                    outline-none focus:ring-1 focus:border-dark-blue'
                     id='grid-state'
                     onChange={e => setShop_specialty_2(e.target.value)}
                   >
@@ -177,7 +180,8 @@ const CreateProduct = () => {
                 </label>
                 <input
                   type='email'
-                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none
+                  focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
                   placeholder='Name'
                   onChange={e => setName(e.target.value)}
                 />
@@ -191,7 +195,8 @@ const CreateProduct = () => {
                 </label>
                 <input
                   type='text'
-                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none
+                  focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
                   placeholder='About Store'
                   onChange={e => setAbout_shop(e.target.value)}
                 />
@@ -205,7 +210,8 @@ const CreateProduct = () => {
                 </label>
                 <input
                   type='text'
-                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none
+                  focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
                   placeholder='Store Email'
                   onChange={e => setShop_email(e.target.value)}
                 />
@@ -219,8 +225,9 @@ const CreateProduct = () => {
                 </label>
                 <input
                   type='text'
-                  className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600
-                bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                  className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600
+                bg-white rounded text-sm  focus:outline-none
+                focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
                   placeholder='Store Contact'
                   onChange={e => setShop_contact_no(e.target.value)}
                 />
