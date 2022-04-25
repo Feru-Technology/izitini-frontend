@@ -49,6 +49,8 @@ const Product = () => {
 
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
+    console.log(currentProduct)
+
     const data = [
         {
             image: 'https://media.istockphoto.com/photos/cement-bags-pile-picture-id476199756?k=20&m=476199756&s=612x612&w=0&h=AHEdPIf2xyl3amOyAgG9mUwp4WRS3GgO-SzyElhDx4A=',
@@ -116,7 +118,7 @@ const Product = () => {
                                     <div className='md:flex px-5 py-6 md:py-0 md:px-12 lg:px-24 mx-auto bg-white w-full
                                 border-b md:border-b-0 border-gray-200'>
                                         <div className='md:w-2/3'>
-                                            <div className='md:flex'>
+                                            <div className='md:flex md:space-y-3'>
 
                                                 <div className='sr-only md:not-sr-only'>
                                                     {data.map((image) => (<div className='my-1 hover:border-black
@@ -133,11 +135,11 @@ const Product = () => {
 
                                                 </div>
 
-                                                <div className=''>
+                                                <div className='md:ml-2'>
                                                     <img
                                                         src={displayImage}
                                                         object-fit='false'
-                                                        className=' max-h-96 justify-right'
+                                                        className='max-h-96 justify-right'
                                                         alt='product pic'
                                                     />
                                                 </div>
@@ -225,7 +227,7 @@ const Product = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='md:w-1/3'>
+                                        <div className='md:w-1/3 md:ml-4'>
                                             <div className='text-sm md:text-base space-y-3'>
                                                 <h2 className='text-xl font-bold dm:text-2xl lg:text-3xl'>{currentProduct?.product.name}</h2>
                                                 <p>{currentProduct?.product.shop.name}</p>
@@ -322,8 +324,8 @@ const Product = () => {
                                                 </div>
 
                                                 <Transition show={!!showDescription}>
-                                                    <div className='font-light pt-2'>this div contain product description this
-                                                        div contain product description</div>
+                                                    <div className='font-light pt-2'>{currentProduct?.product.description || `this div contain product description this
+                                                        div contain product description`}</div>
                                                 </Transition>
 
                                             </div>
@@ -344,7 +346,7 @@ const Product = () => {
                                                 </div>
 
                                                 <Transition show={!!showSpecification}>
-                                                    <div className='font-light pt-2'>Product specification Product specification</div>
+                                                    <div className='font-light pt-2'>{currentProduct?.product.specification || `Product specification Product specification`}</div>
                                                 </Transition>
 
                                             </div>
@@ -367,7 +369,7 @@ const Product = () => {
                                                 </div>
 
                                                 <Transition show={!!showReturnPolicy}>
-                                                    <div className='font-light pt-2'>Shipping and return policies</div>
+                                                    <div className='font-light pt-2'>{currentProduct?.product.return_policy || `Shipping and return policies`}</div>
                                                 </Transition>
 
                                             </div>

@@ -51,6 +51,12 @@ import {
     deleteColorFailed
 } from '../../redux/admin/productColors/DeleteColor.slice'
 
+import {
+    updatingProductStatus,
+    updatedProductStatus,
+    failedToUpdateStatus
+} from '../../redux/products/updateProductStatus.slice'
+
 const VendorProduct = () => {
 
     const dispatch = useDispatch()
@@ -89,6 +95,22 @@ const VendorProduct = () => {
     const [colorName, setColorName] = useState<string | null>(null)
     const [colorQuantity, setColorQuantity] = useState<string | null>(null)
     const [pricePerColor, setPricePerColor] = useState<string | null>(null)
+
+    // change product status
+    const publishUnPublish = (newStatus: string) => {
+        if (newStatus === 'publish') {
+            //publish
+            dispatch(updatingProductStatus())
+            update(dispatch, updatedProductStatus, failedToUpdateStatus, `/product/publish/${id}`, {}, token)
+            return newStatus
+        }
+        // un-publish
+        dispatch(updatingProductStatus())
+        update(dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, {}, token)
+        return newStatus
+    }
+
+    const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
 
     useEffect(() => {
         dispatch(getProduct())
@@ -166,16 +188,16 @@ const VendorProduct = () => {
 
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
 
-
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
-        if (updated || newColor || newSize || deleted || deletedColorRes) {
+        if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus) {
+            dispatch(updatedProductStatus(null))
             dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
             dispatch(deletedSize(null))
             dispatch(createdSize(null))
-            dispatch(getProduct())
+            // dispatch(getProduct())
 
             fetch(
                 dispatch,
@@ -193,7 +215,7 @@ const VendorProduct = () => {
             setPricePerSize(null)
             setSizeQuantity(null)
         }
-    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated])
+    }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus])
 
     return (
         <>
@@ -269,10 +291,13 @@ const VendorProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
-                                                    // onChange={e => setShop_specialty_2(e.target.value)}
+                                                        onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
                                                     >
-                                                        <option className='text-center'>{currentProduct.product.status}</option>
-                                                        <option className='text-center'>{currentProduct.product.status === 'draft' ? 'waiting_for_review' : 'draft'}</option>
+                                                        <option className='text-center'>
+                                                            {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
+                                                        </option>
+                                                        <option className='text-center'>
+                                                            {currentProduct.product.status === 'draft' ? 'Publish' : 'Un-publish'}</option>
                                                     </select>
                                                 </div>
                                                 <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>

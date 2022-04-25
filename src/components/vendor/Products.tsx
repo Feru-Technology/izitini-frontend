@@ -7,7 +7,7 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import {
     fetchingProducts,
@@ -161,7 +161,7 @@ const Products = () => {
                                                 isLoading
                                                     ? (<h1>loading ...</h1>)
                                                     : (products.map((product) => (
-                                                        <tr className='hover:bg-gray-100' key={product.id}
+                                                        <tr className='hover:bg-gray-100 cursor-default' key={product.id}
                                                             onClick={e => navigate(`/vendor/products/${product.id}`)}>
                                                             <td className='pl-3 w-5/12 py-4'>
                                                                 <div className='flex items-center'>

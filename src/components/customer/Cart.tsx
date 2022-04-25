@@ -41,14 +41,15 @@ const Cart = () => {
 
     const navigate = useNavigate()
 
+
+    let order: {}[] = []
+
     // check out handler
     const checkOut = () => {
         dispatch(getOrders())
-        update(dispatch, orders, ordersFailed, '/orders/checkout', {}, token)
+        update(dispatch, orders, ordersFailed, '/orders/checkout', order, token)
         navigate('/orders')
     }
-
-    let order: [] = []
 
     return (
         <div className='bg-gray-100'>
@@ -57,7 +58,9 @@ const Cart = () => {
             {isLoading ? (<div>loading ...</div>)
                 : cart.length !== 0 ? cart.map((orders: any) => (
 
-                    <div className='h-full'>
+                    <div className='h-full min-h-36'
+                    // style={{'min'}}
+                    >
                         <div className='mx-3 my-3
                                 md:flex md:mx-2 md:my-5  md:space-x-3 md:y-3
                                 lg:mx-8 lg:space-x-5 relative'>
@@ -124,18 +127,7 @@ const Cart = () => {
                                                 </thead>
 
                                                 {items.order_items.map((item: any) => {
-
-                                                    const order: {} = {
-                                                        order_id: item.order_id,
-                                                        subTotal: totalPricesPerOrder,
-                                                        shipping_cost: '1000'
-                                                    }
-                                                    console.log('|||||||||', order);
-                                                    Object.preventExtensions(order)
-                                                    Object.freeze(orders)
-                                                    // orders.push(order)
-                                                    // console.log('+++++++++++', orders)
-
+                                                    order.push(item)
                                                     return (
 
                                                         <tbody className='bg-white'>
@@ -151,19 +143,19 @@ const Cart = () => {
                                                                             />
                                                                         </div>
                                                                         <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
-                                                                            {items.product.name}
+                                                                            {item.product.name}
                                                                         </div>
                                                                     </div>
                                                                 </td>
                                                                 <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            md:px-6 lg:px-6 py-4'>
-                                                                    {items.product.price} RWF</td>
+                                                                md:px-6 lg:px-6 py-4'>
+                                                                    {item.product.price} RWF</td>
                                                                 <td className='py-4 text-xs md:text-sm text-gray-800
-                                            md:px-6 lg:px-6'>
+                                                                md:px-6 lg:px-6'>
                                                                     <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
                                                                         <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
                                                                             <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                                onClick={() => increaseOrderItemQyt(items.order_id, items.product_id)} >+</button>
+                                                                                onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
                                                                             <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
                                                                                 {item.quantity}
                                                                             </span>
@@ -173,12 +165,13 @@ const Cart = () => {
                                                                     </div>
                                                                 </td>
                                                                 <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            md:px-6 lg:px-6 py-4'>
-                                                                    {totalPrice(items.product.price, items.quantity)} RWF</td>
+                                                                md:px-6 lg:px-6 py-4'>
+                                                                    {totalPrice(item.product.price, item.quantity)} RWF
+                                                                </td>
                                                                 <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                                                     <button type='button'
                                                                         className='text-dark-blue hover:text-red-600'
-                                                                        onClick={() => removeOrderItem(items.order_id, items.product_id)}
+                                                                        onClick={() => removeOrderItem(item.order_id, item.product_id)}
                                                                     >
                                                                         <MdOutlineCancel className='w-6 h-auto' />
                                                                     </button>
@@ -236,12 +229,13 @@ const Cart = () => {
                         </div>
                     </div>
                 )) :
-                    (<div className='flex flex-col items-center justify-center font-semibold '> your cart is empty </div>)
+                    (<div className='flex flex-col items-center justify-center font-semibold h-140 md:h-160 lg:h-136'
+                    // style={{ minHeight: '40.3vh' }}
+                    > your cart is empty </div>)
             }
             <Footer />
         </div>
     )
 }
-
 
 export default Cart
