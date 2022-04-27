@@ -21,6 +21,11 @@ import {
   retrievedUsers,
   retrievedUserFailed
 } from '../../redux/admin/users/users.slice'
+import {
+  uploadingImage,
+  uploadedImage,
+  uploadFailed
+} from '../../redux/image/uploadImage.slice'
 
 const CreateProduct = () => {
 
@@ -54,6 +59,7 @@ const CreateProduct = () => {
   const [owner, setOwner] = useState<string | null>(null)
   const [about_shop, setAbout_shop] = useState<string | null>(null)
   const [shop_email, setShop_email] = useState<string | null>(null)
+  const [shop_image_url, setShop_image_url] = useState<string | null>(null)
   const [shop_contact_no, setShop_contact_no] = useState<string | null>(null)
   const [shop_specialty_1, setShop_specialty_1] = useState<string | null>(null)
   const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
@@ -64,23 +70,40 @@ const CreateProduct = () => {
       dispatch,
       getStore,
       storeFailed, '/admin/shop',
-      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner },
+      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner, shop_image_url },
       token
     )
   }
 
   const navigate = useNavigate()
 
-  const { createdStore, error } = useSelector((state: RootState) => state.createStore)
+  const { isCreating, createdStore, error } = useSelector((state: RootState) => state.createStore)
+
+
+  // upload category image
+  const uploadShopImage = (file: File) => {
+    const formData = new FormData()
+    formData.append('image', file)
+    dispatch(uploadingImage())
+    post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+  }
+
+  const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
+  console.log(image?.url)
+  useEffect(() => {
+    if (image) {
+      setShop_image_url(image.url)
+      dispatch(uploadedImage(null))
+    }
+  }, [dispatch, image])
 
   useEffect(() => {
     if (createdStore) {
       const { id } = createdStore
       dispatch(getStore(null))
-      return navigate(`/admin/shop/${id}`)
+      return navigate(`/admin/shops/${id}`)
     }
   }, [createdStore, dispatch, navigate])
-
 
   return (
     <div className='flex h-screen overflow-hidden bg-gray-100 '>
@@ -235,9 +258,11 @@ const CreateProduct = () => {
 
               {/* upload image */}
               <div>
-                <form action='/action_page.php'>
-                  <input type='file' id='myFile' name='filename' />
-                </form>
+                <input type='file' name='filename' className=''
+                  accept='image/x-png,image/gif,image/jpeg, image/png'
+                  onChange={e => {
+                    if (e.target.files) uploadShopImage(e.target.files[0])
+                  }} />
               </div>
               <div className='text-center mt-6'>
                 <button
@@ -249,7 +274,7 @@ const CreateProduct = () => {
                     createStore()
                   }}
                 >
-                  create store
+                  {!!isCreating ? 'creating...' : isUploading ? 'uploading ...' : 'Create'}
                 </button>
               </div>
             </form>

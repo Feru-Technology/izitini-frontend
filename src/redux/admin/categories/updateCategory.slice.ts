@@ -5,7 +5,7 @@ import { ICategory, HTTPError } from './category.interfaces'
 export interface CategoryState {
     isUpdating: boolean
     updateError: Error | HTTPError | null
-    updatedCategories: ICategory[]
+    updatedCategories: ICategory[] | null
 }
 
 const initialState: CategoryState = {
@@ -22,17 +22,17 @@ export const UpdateCategorySlice = createSlice({
         updatingCategory: (state) => {
             state.updateError = null
             state.isUpdating = true
-            state.updatedCategories = []
+            state.updatedCategories = null
         },
         updated: (state, { payload }) => {
             state.updateError = null
             state.isUpdating = false
-            state.updatedCategories = [payload]
+            state.updatedCategories = payload
         },
         updateFailed: (state, { payload }) => {
             state.updateError = payload
             state.isUpdating = false
-            state.updatedCategories = []
+            state.updatedCategories = null
 
         }
     },

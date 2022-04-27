@@ -7,8 +7,8 @@ export interface ICategory {
     id: string
     name: string
     image_url: string
-    subCategories: [{
+    subCategories: {
         id: string
         name: string
-    }]
+    }[]
 }

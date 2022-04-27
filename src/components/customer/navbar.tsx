@@ -44,7 +44,7 @@ export const Navbar = () => {
     console.log(categories)
 
     const [showIdea, setShowIdea] = useState(false)
-    const [showProduct, setShowProduct] = useState(true)
+    const [showProduct, setShowProduct] = useState(false)
     const [showProfession, setShowProfession] = useState(false)
     const [showSignupOptions, setShowSignupOptions] = useState(false)
 

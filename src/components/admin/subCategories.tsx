@@ -30,6 +30,11 @@ import {
     updated,
     updateFailed
 } from '../../redux/admin/subCategories/updateSubCategory.slice'
+import {
+    uploadingImage,
+    uploadedImage,
+    uploadFailed
+} from '../../redux/image/uploadImage.slice'
 
 const SubCategories = () => {
 
@@ -48,6 +53,7 @@ const SubCategories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
+    const [image_url, setImage_url] = useState<string | null>()
     const [category_id, setCategory_id] = useState<string | null>(null)
     const [currentSubCategory, setCurrentSubCategory] = useState<ISubCategory | null>(null)
 
@@ -64,7 +70,7 @@ const SubCategories = () => {
     // create new subCategory 
     const createNewSubCategory = () => {
         dispatch(creatingSubCategory())
-        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${category_id}`, { name }, token)
+        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${category_id}`, { name, image_url }, token)
     }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
@@ -91,7 +97,7 @@ const SubCategories = () => {
     // update subcategory
     const updateCategory = (id: any) => {
         dispatch(updatingSubCategory())
-        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name }, token)
+        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
     }
 
     const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
@@ -105,6 +111,24 @@ const SubCategories = () => {
             return setEditMode(false)
         }
     }, [dispatch, updatedSubCategory])
+
+    // upload category image
+    const uploadSubCatImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
+        dispatch(uploadingImage())
+        post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+    }
+
+    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+
+    useEffect(() => {
+        if (image) {
+            setImage_url(image.url)
+            dispatch(uploadedImage(null))
+        }
+    }, [dispatch, image])
+
 
     return (
         <>
@@ -145,7 +169,11 @@ const SubCategories = () => {
                                     <h3 className='text-md md:text-lg lg:text-xl font-bold'>SubCategories</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
-                                        onClick={() => setCreateMode(true)} >
+                                        onClick={() => {
+                                            setName(null)
+                                            setImage_url(null)
+                                            return setCreateMode(true)
+                                        }} >
                                         ADD A SubCategory
                                     </button>
                                 </div>
@@ -193,7 +221,7 @@ const SubCategories = () => {
                                                             onClick={() => navigate(`/admin/subCategories/p/${subCategory.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={subCategoryImage} alt='product' className='w-full' />
+                                                                    <img src={subCategoryImage} alt='product' className='w-auto h-8 md:h-12 lg:h-16' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
@@ -209,14 +237,16 @@ const SubCategories = () => {
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
-                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
+                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out cursor-pointer'
                                                                 onClick={() => {
                                                                     setCurrentSubCategory(subCategory)
+                                                                    setName(subCategory.name)
+                                                                    setImage_url(subCategory.image_url)
                                                                     return setEditMode(true)
                                                                 }} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
-                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 cursor-pointer
                                                             text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
@@ -300,11 +330,15 @@ const SubCategories = () => {
                                                 placeholder='subCategory name'
                                                 onChange={e => setName(e.target.value)}
                                             />
-                                        </div>{/* upload image */}
+                                        </div>
+
+                                        {/* upload image */}
                                         <div>
-                                            <form action='/action_page.php'>
-                                                <input type='file' id='myFile' name='filename' />
-                                            </form>
+                                            <input type='file' name='filename' className=''
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                }} />
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
@@ -316,7 +350,7 @@ const SubCategories = () => {
                                                     return createNewSubCategory()
                                                 }}
                                             >
-                                                {!!isCreating ? 'Creating...' : 'Create'}
+                                                {!!isCreating ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
                                             </button>
                                         </div>
                                     </form>
@@ -338,7 +372,8 @@ const SubCategories = () => {
 
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600
                                             mx-auto w-2/4 md:w-1/4'>
-                                        <img src={currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
+                                        <img className='max-h-24 w-auto'
+                                            src={currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
                                     </div>
                                     <div className='container'>
                                         <Transition
@@ -366,6 +401,15 @@ const SubCategories = () => {
                                                 onChange={e => setName(e.target.value)}
                                             />
                                         </div>
+
+                                        {/* upload image */}
+                                        <div>
+                                            <input type='file' name='filename' className=''
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                }} />
+                                        </div>
                                         <div className='text-center mt-6'>
                                             <button
                                                 className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
@@ -376,7 +420,7 @@ const SubCategories = () => {
                                                     return updateCategory(currentSubCategory?.id)
                                                 }}
                                             >
-                                                {!!isUpdating ? 'Updating...' : 'Update'}
+                                                {!!isUpdating ? 'Updating...' : isUploading ? 'uploading ...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>

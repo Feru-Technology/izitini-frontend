@@ -24,6 +24,11 @@ import {
     updated,
     updateFailed
 } from '../../redux/admin/subCategories/updateSubCategory.slice'
+import {
+    uploadingImage,
+    uploadedImage,
+    uploadFailed
+} from '../../redux/image/uploadImage.slice'
 
 // all subcategory in a category
 const CatSubCategories = () => {
@@ -46,6 +51,7 @@ const CatSubCategories = () => {
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
+    const [image_url, setImage_url] = useState<string | null>()
     const [currentSubCategory, setCurrentSubCategory] = useState<{ id: string, name: string, image_url: string } | null>(null)
 
     const navigate = useNavigate()
@@ -58,12 +64,14 @@ const CatSubCategories = () => {
 
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
 
+    console.log(category)
+
     const catName = category?.name
 
     // create new subCategory 
     const createNewSubCategory = () => {
         dispatch(creatingSubCategory())
-        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, { name }, token)
+        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
     }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
@@ -81,7 +89,7 @@ const CatSubCategories = () => {
     // update subcategory
     const updateCategory = (id: any) => {
         dispatch(updatingSubCategory())
-        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name }, token)
+        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
     }
 
     const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
@@ -95,6 +103,23 @@ const CatSubCategories = () => {
             return setEditMode(false)
         }
     }, [dispatch, id, updatedSubCategory])
+
+    // upload category image
+    const uploadSubCatImage = (file: File) => {
+        const formData = new FormData()
+        formData.append('image', file)
+        dispatch(uploadingImage())
+        post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+    }
+
+    const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)
+
+    useEffect(() => {
+        if (image) {
+            setImage_url(image.url)
+            dispatch(uploadedImage(null))
+        }
+    }, [dispatch, image])
 
     return (
         <>
@@ -135,7 +160,11 @@ const CatSubCategories = () => {
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{catName}</h3>
                                     <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-xs md:text-base shadow-md hover:shadow-lg'
-                                        onClick={() => setCreateMode(true)} >
+                                        onClick={() => {
+                                            setName(null)
+                                            setImage_url(null)
+                                            return setCreateMode(true)
+                                        }} >
                                         ADD A Sub-Category
                                     </button>
                                 </div>
@@ -183,7 +212,7 @@ const CatSubCategories = () => {
                                                             onClick={() => navigate(`/admin/subCategory/${subCategory.id}`)}>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
-                                                                    <img src={subCategoryImage} alt='product' className='w-full' />
+                                                                    <img src={subCategoryImage} alt='product' className='w-auto h-8 md:h-12 lg:h-16' />
                                                                 </div>
                                                                 <div className='md:w-2/4'>
 
@@ -198,14 +227,16 @@ const CatSubCategories = () => {
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
-                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out'
+                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out cursor-pointer'
                                                                 onClick={() => {
                                                                     setCurrentSubCategory(subCategory)
+                                                                    setName(subCategory.name)
+                                                                    setImage_url(subCategory.image_url)
                                                                     return setEditMode(true)
                                                                 }} >Edit</div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6 pr-2'>
-                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md md:w-5/6 cursor-pointer
                                                             text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
@@ -254,7 +285,7 @@ const CatSubCategories = () => {
                                         <Transition
                                             show={!!createError}
                                         >
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
+                                            <p className='p-2 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{createError?.message}</p>
 
                                         </Transition>
                                     </div>
@@ -274,23 +305,28 @@ const CatSubCategories = () => {
                                                 placeholder='subCategory name'
                                                 onChange={e => setName(e.target.value)}
                                             />
-                                        </div>{/* upload image */}
+                                        </div>
+
+                                        {/* upload image */}
                                         <div>
-                                            <form action='/action_page.php'>
-                                                <input type='file' id='myFile' name='filename' />
-                                            </form>
+                                            <input type='file' name='filename' className=''
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                }} />
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                                className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
+                                            ${isUploading ? 'pointer-events-none cursor-wait' : 'pointer-events-auto'}`}
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
                                                     return createNewSubCategory()
                                                 }}
                                             >
-                                                {!!isCreating ? 'Creating...' : 'Create'}
+                                                {!!isCreating ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
                                             </button>
                                         </div>
                                     </form>
@@ -302,7 +338,7 @@ const CatSubCategories = () => {
                         <Transition show={!!editMode} className='fixed'>
                             <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
                             </div>
-                            <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
+                            <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
                                 <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
@@ -312,20 +348,21 @@ const CatSubCategories = () => {
 
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600
                                             mx-auto w-2/4 md:w-1/4'>
-                                        <img src={currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
+                                        <img className='max-h-24 w-auto'
+                                            src={currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
                                     </div>
                                     <div className='container'>
                                         <Transition
                                             show={!!updateError}
                                         >
 
-                                            <p className='p-4 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{updateError?.message}</p>
+                                            <p className='p-2 mb-4 bg-red-100 border border-red-700 text-red-700 text-center '>{updateError?.message}</p>
 
                                         </Transition>
                                     </div>
                                     <form>
 
-                                        <div className=' w-full mb-3'>
+                                        <div className=' w-full mb-4'>
                                             <label
                                                 className='block uppercase text-gray-600 text-xs font-bold mb-2'
                                                 htmlFor='grid-text'
@@ -340,6 +377,15 @@ const CatSubCategories = () => {
                                                 onChange={e => setName(e.target.value)}
                                             />
                                         </div>
+
+                                        {/* upload image */}
+                                        <div>
+                                            <input type='file' name='filename' className=''
+                                                accept='image/x-png,image/gif,image/jpeg, image/png'
+                                                onChange={e => {
+                                                    if (e.target.files) uploadSubCatImage(e.target.files[0])
+                                                }} />
+                                        </div>
                                         <div className='text-center mt-6'>
                                             <button
                                                 className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
@@ -350,7 +396,7 @@ const CatSubCategories = () => {
                                                     return updateCategory(currentSubCategory?.id)
                                                 }}
                                             >
-                                                {!!isUpdating ? 'Updating...' : 'Update'}
+                                                {!!isUpdating ? 'Updating...' : isUploading ? 'uploading ...' : 'Update'}
                                             </button>
                                         </div>
                                     </form>

@@ -8,17 +8,20 @@ import { usersSlice } from './admin/users/users.slice'
 import { productSlice } from './products/product.slice'
 import { AllStoresSlice } from './stores/allStores.slice'
 import { categorySlice } from './categories/category.slice'
+import { uploadImageSlice } from './image/uploadImage.slice'
 import { createStoreSlice } from './stores/createStore.slice'
 import { allProductSlice } from './products/allProduct.slice'
 import { productsSlice } from './admin/products/products.slice'
 import { categoriesSlice } from './categories/categories.slice'
 import { createUserSlice } from './admin/users/createUser.slice'
+import { removeImgToProdSlice } from './image/removeImgToProd.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
 import { subCategorySlice } from './subCategories/subCategory.slice'
 import { AllCategoriesSlice } from './categories/allCategories.slice'
 import { adminCategorySlice } from './admin/categories/category.slice'
 import { deleteSizeSlice } from './admin/productSizes/deleteSize.slice'
 import { createSizeSlice } from './admin/productSizes/createSize.slice'
+import { addImageToProductSlice } from './image/addImageToProduct.slice'
 import { updateProductSlice } from './admin/products/updateProduct.slice'
 import { shopProductsSlice } from './admin/products/productsInShop.slice'
 import { createProductSlice } from './admin/products/createProduct.slice'
@@ -55,13 +58,16 @@ export const store = configureStore({
         createStore: createStoreSlice.reducer,
         createColor: createColorSlice.reducer,
         deleteColor: deleteColorSlice.reducer,
+        uploadImage: uploadImageSlice.reducer,
         AllCategories: AllCategoriesSlice.reducer,
         storeProducts: storeProductsSlice.reducer,
         adminCategory: adminCategorySlice.reducer,
         adminShopProducts: shopProductsSlice.reducer,
+        removeImgToProd: removeImgToProdSlice.reducer,
         adminCategories: AdminCategoriesSlice.reducer,
-        adminUpdateProduct: updateProductSlice.reducer,
+        productImages: addImageToProductSlice.reducer,
         adminCreateProduct: createProductSlice.reducer,
+        adminUpdateProduct: updateProductSlice.reducer,
         adminSubCategory: adminSubCategorySlice.reducer,
         adminCreateCategory: crateCategorySlice.reducer,
         adminUpdateCategory: UpdateCategorySlice.reducer,
@@ -70,7 +76,6 @@ export const store = configureStore({
         updateProductStatus: updateProductStatusSlice.reducer,
         adminCreateSubCategory: createSubCategorySlice.reducer,
         adminUpdateSubCategory: updateSubCategorySlice.reducer,
-
     },
 })
 
