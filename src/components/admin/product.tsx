@@ -337,24 +337,37 @@ const AdminProduct = () => {
                                         <form className='border-b border-dark-blue pb-8'>
                                             <div>
                                                 <Transition show={!!updateError}>
-                                                    <div className='border border-red-600 bg-red-100'>
+                                                    <div className='border border-red-600 bg-red-100 mb-3'>
                                                         <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='mb-3 w-full flex justify-end'>
-                                                    <select
-                                                        className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
+                                                <div className='mb-3 w-full flex justify-between space-x-3'>
+                                                    <Transition show={currentProduct.product.status !== 'draft'}>
+                                                        <button type='submit'
+                                                            className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
-                                                        id='grid-state'
-                                                        onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
-                                                    >
-                                                        <option className='text-center'>
-                                                            {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
-                                                        </option>
-                                                        <option className='text-center'>
-                                                            {currentProduct.product.status === 'draft' ? 'Publish' : 'Un-publish'}</option>
-                                                    </select>
+                                                            id='grid-state'
+                                                        // onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                        >
+                                                            {currentProduct.product.status === 'waiting_for_review' ? 'Approve' : 'Un-publish'}
+                                                        </button>
+                                                    </Transition>
+                                                    <div>
+                                                        <select
+                                                            className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
+                                                        focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
+                                                        ${editMode && 'pointer-events-none'}`}
+                                                            id='grid-state'
+                                                            onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                        >
+                                                            <option className='text-center'>
+                                                                {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
+                                                            </option>
+                                                            <option className='text-center'>
+                                                                {currentProduct.product.status === 'draft' ? 'Publish' : 'Un-publish'}</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                                 <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
                                                     <div className='my-1'>

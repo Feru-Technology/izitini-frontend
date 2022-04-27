@@ -75,7 +75,7 @@ const Products = () => {
     }, [dispatch, navigate, product])
 
     return (
-        <div className='flex h-screen overflow-hidden'>
+        <div className='flex h-screen overflow-hidden bg-gray-100'>
             <SiderBar
                 isClosed={isClosed}
                 setIsClosed={setIsClosed}
@@ -101,7 +101,7 @@ const Products = () => {
                 >
                     <div className='fixed inset-0 bg-black opacity-60 z-10' />
                 </Transition>
-                <div className='px-2 lg:px-8 py-8 w-full mx-auto bg-gray-200'>
+                <div className='px-2 lg:px-8 py-8 w-full mx-auto'>
                     <div className='flex items-center justify-between py-8'>
                         <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{currentStore?.name}</h3>
 
