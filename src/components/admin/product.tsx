@@ -123,8 +123,6 @@ const AdminProduct = () => {
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
-    console.log(currentProduct)
-
     useEffect(() => {
         if (currentProduct) {
             setEditMode(false)
@@ -195,16 +193,15 @@ const AdminProduct = () => {
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
 
     // change product status
-    const publishUnPublish = (newStatus: string) => {
-        if (newStatus === 'publish') {
-            //publish
-            dispatch(updatingProductStatus())
-            update(dispatch, updatedProductStatus, failedToUpdateStatus, `/admin/product/publish/${id}`, {}, token)
-            return newStatus
-        }
-        // un-publish
+    const updateProdStatus = (newStatus: string) => {
         dispatch(updatingProductStatus())
-        update(dispatch, updatedProductStatus, failedToUpdateStatus, `/admin/product/unpublish/${id}`, {}, token)
+        let url: string
+        newStatus === 'publish' ? url = `/admin/product/publish/${id}` :
+            newStatus === 'Approve' ? url = `/admin/product/approve/${id}` :
+                url = `/admin/product/unpublish/${id}`
+
+        update(dispatch, updatedProductStatus, failedToUpdateStatus, url, {}, token)
+
         return newStatus
     }
 
@@ -343,16 +340,18 @@ const AdminProduct = () => {
                                                         <span className='px-2 py-4 text-red-600'> {updateError?.message} </span>
                                                     </div>
                                                 </Transition>
-                                                <div className='mb-3 w-full flex justify-between space-x-3'>
-                                                    <Transition show={currentProduct.product.status !== 'draft'}>
+                                                <div className={`mb-3 w-full space-x-3 flex
+                                                ${currentProduct.product.status === 'waiting_for_review' ?
+                                                        'justify-between' : 'justify-end'}`}>
+                                                    <Transition show={currentProduct.product.status === 'waiting_for_review'}>
                                                         <button type='submit'
                                                             className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         hover:text-middle-blue hover:border-middle-blue ${editMode && 'pointer-events-none'}`}
                                                             id='grid-state'
-                                                        // onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                            onClick={e => updateProdStatus('Approve')}
                                                         >
-                                                            {currentProduct.product.status === 'waiting_for_review' ? 'Approve' : 'Un-publish'}
+                                                            Approve
                                                         </button>
                                                     </Transition>
                                                     <div>
@@ -361,7 +360,10 @@ const AdminProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                             id='grid-state'
-                                                            onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                            onChange={e => {
+                                                                updateProdStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')
+                                                                return window.location.reload()
+                                                            }}
                                                         >
                                                             <option className='text-center'>
                                                                 {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}

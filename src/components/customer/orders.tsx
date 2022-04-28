@@ -35,7 +35,7 @@ const MyOrders = () => {
     }, [dispatch, token])
 
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
-    console.log(orders)
+    console.log('++++++++++', orders)
 
     return (
         <div className='bg-gray-100'>
@@ -82,7 +82,8 @@ const MyOrders = () => {
                                             setShowCompletedOrders(false)
                                             setShowProcessingOrders(false)
                                         }}
-                                    >All</li>
+                                    >All
+                                    </li>
                                     <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
                                             py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
 
@@ -136,9 +137,9 @@ const MyOrders = () => {
                                             <th
                                                 scope='col'
                                                 className='
-                                                w-2/5 py-3 lg:text-base
+                                                py-3 lg:text-base
                                     '
-                                            >name</th>
+                                            >Order no</th>
                                             <th
                                                 scope='col'
                                                 className='
@@ -161,30 +162,27 @@ const MyOrders = () => {
                                     </thead>
 
                                     <tbody>
-                                        <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800'>
-                                            <td className='py-3 border'>
-                                                <div className='md:flex items-center'>
-                                                    <div className='md:w-1/5 mx-3'>
-                                                        <img src='https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg' alt='product' className='w-full' />
-                                                    </div>
-                                                    <div className='md:w-4/5'>
-
+                                        {orders ?
+                                            orders.map((order) => (
+                                                <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800
+                                                hover:bg-gray-100 cursor-pointer '>
+                                                    <td className='py-3 border'>
                                                         <p className='font-normal text-sm'>
-                                                            <span className=''>Product Name</span>
+                                                            <span className=''>{order.order_no}</span>
                                                         </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>$100</p>
-                                            </td>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>Processing</p>
-                                            </td>
-                                            <td className='py-3 border'>
-                                                <p className='font-normal text-sm'>Tracking no</p>
-                                            </td>
-                                        </tr>
+                                                    </td>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>{order.sub_total}</p>
+                                                    </td>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>{order.status}</p>
+                                                    </td>
+                                                    <td className='py-3 border'>
+                                                        <p className='font-normal text-sm'>{order.id}</p>
+                                                    </td>
+                                                </tr>
+
+                                            )) : <div>no orders yet</div>}
                                     </tbody>
 
                                 </table>
