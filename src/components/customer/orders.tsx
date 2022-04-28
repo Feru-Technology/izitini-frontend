@@ -34,6 +34,11 @@ const MyOrders = () => {
         fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
     }, [dispatch, token])
 
+    const getMyOrders = () => {
+        dispatch(getOrders())
+        fetch(dispatch, myOrders, ordersFailed, '/orders/mine', token)
+    }
+
     const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
     console.log('++++++++++', orders)
 
