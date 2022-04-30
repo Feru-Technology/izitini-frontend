@@ -7,14 +7,16 @@ import Users from './components/admin/users'
 import Cart from './components/customer/Cart'
 import Store from './components/vendor/Store'
 import Home from './components/customer/home'
+import Order from './components/customer/order'
 import Orders from './components/vendor/Orders'
 import Reports from './components/admin/reports'
 import Coupons from './components/vendor/Coupons'
 import Products from './components/admin/products'
 import MyOrders from './components/customer/orders'
-import Settings from './components/vendor/Settings'
 import Product from './components/customer/product'
 import MyReports from './components/vendor/Reports'
+import Profile from './components/customer/profile'
+import Settings from './components/customer/settings'
 import AdminProduct from './components/admin/product'
 import MyProducts from './components/vendor/Products'
 import Category from './components/customer/category'
@@ -62,8 +64,11 @@ function App() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/profile' element={<Profile />} />
                 <Route path='/orders' element={<MyOrders />} />
+                <Route path='orders/:id' element={<Order />} />
                 <Route path='/signin' element={<SignInPage />} />
+                <Route path='/settings' element={<Settings />} />
                 <Route path='/products' element={<AllProducts />} />
                 <Route path='/signup' element={<CustomerSignUp />} />
                 <Route path='/products/p/:id' element={<Product />} />
@@ -78,7 +83,6 @@ function App() {
                 <Route path='/vendor/orders' element={<Orders />} />
                 <Route path='/vendor/coupons' element={<Coupons />} />
                 <Route path='/vendor/reports' element={<MyReports />} />
-                <Route path='/vendor/settings' element={<Settings />} />
                 <Route path='/vendor/products' element={<MyProducts />} />
                 <Route path='/vendor/create-store' element={<CreateStore />} />
                 <Route path='/vendor/products/:id' element={<VendorProduct />} />
