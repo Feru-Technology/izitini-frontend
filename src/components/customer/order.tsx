@@ -3,6 +3,7 @@ import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { fetch } from '../../api/apiAction'
 import { useParams } from 'react-router-dom'
+import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,6 +12,7 @@ import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/orde
 const Order = () => {
 
     // redux
+    const token = localStorage.getItem('token')
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
@@ -19,12 +21,16 @@ const Order = () => {
         query: '(min-width: 640px)',
     })
 
+    const [isClosed, setIsClosed] = useState(false)
+
     useEffect(() => {
         dispatch(fetchingOrder())
-        // fetch(dispatch, fetchedOrder, fetchFailed, )
-    })
+        fetch(dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
+    }, [dispatch, id, token])
 
-    const [isClosed, setIsClosed] = useState(false)
+    const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
+    console.log(fetching, '-----------', order, fetchError)
+    console.log(typeof (order?.order_items))
 
     return (
         <>
@@ -59,46 +65,54 @@ const Order = () => {
 
                     {/* customer orders */}
                     <div className='px-2 md:px-6 lg:px-14 w-full'>
-                        <p className='font-bold my-3 text-sm'>My Orders</p>
+                        <p className='font-bold my-3 text-sm'>My Order</p>
                         <div className='bg-white border border-gray-200 rounded-md'>
 
-                            <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
-                                <table className='w-full border-gray-200 text-gray-600'>
-                                    <thead className='bg-gray-100'>
-                                        <tr className='font-bold text-xs md:text-sm text-center border uppercase'>
-                                            <th
-                                                scope='col'
-                                                className='
+                            {order ?
+                                <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
+                                    <table className='w-full border-gray-200 text-gray-600'>
+                                        <thead className='bg-gray-100'>
+                                            <tr className='font-bold text-xs md:text-sm text-center border uppercase'>
+                                                <th
+                                                    scope='col'
+                                                    className='
                                                 py-3 lg:text-base
                                     '
-                                            >Product</th>
-                                            <th
-                                                scope='col'
-                                                className='
+                                                >Product</th>
+                                                <th
+                                                    scope='col'
+                                                    className='
                                                 py-3 lg:text-base
                                     '
-                                            >Price</th>
-                                            <th
-                                                scope='col'
-                                                className='
+                                                >Price</th>
+                                                <th
+                                                    scope='col'
+                                                    className='
                                                 py-3 lg:text-base
                                     '
-                                            >quantity</th>
-                                            <th
-                                                scope='col'
-                                                className='
+                                                >quantity</th>
+                                                <th
+                                                    scope='col'
+                                                    className='
                                                 py-3 lg:text-base
                                     '
-                                            >Notes</th>
-                                        </tr>
-                                    </thead>
+                                                >Notes</th>
+                                            </tr>
+                                        </thead>
 
-                                    <tbody>
-                                    </tbody>
+                                        <tbody><div>{order.status}</div>
 
-                                </table>
 
-                            </div>
+
+                                            {order.order_items.map((item) =>
+                                            (
+                                                <tr>{item.createdAt}</tr>
+                                            ))}
+                                        </tbody>
+
+                                    </table>
+
+                                </div> : <div></div>}
 
                         </div>
 

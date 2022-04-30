@@ -3,8 +3,8 @@ import { IOrder, HTTPError } from './order.interface'
 
 export interface orderState {
     fetching: boolean
-    fetchError: Error | HTTPError | null
     order: IOrder | null
+    fetchError: Error | HTTPError | null
 }
 
 const initialState: orderState = {
@@ -18,18 +18,18 @@ export const orderSlice = createSlice({
     initialState,
     reducers: {
         fetchingOrder: (state) => {
+            state.order = null
             state.fetching = true
-            state.fetchError = null
             state.fetchError = null
         },
         fetchedOrder: (state, { payload }) => {
+            state.order = payload
             state.fetching = false
             state.fetchError = null
-            state.fetchError = payload
         },
         fetchFailed: (state, { payload }) => {
+            state.order = null
             state.fetching = false
-            state.fetchError = null
             state.fetchError = payload
         }
     },

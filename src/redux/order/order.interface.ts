@@ -1,4 +1,5 @@
 import { IAddress } from '../adress/adress.interface'
+import { IUser } from '../admin/users/users.interface'
 import { IProduct } from '../products/product.interface'
 import { ISize } from '../admin/productSizes/size.interfaces'
 import { IColor } from '../admin/productColors/color.interfaces'
@@ -14,12 +15,13 @@ export interface IOrder {
     status: string
     user_id: string
     is_sample: boolean
-    orderItems: IOrderItem[]
+    order_items: [IOrderItem]
     shipping_address_id: string
 }
 
 export interface IOrderItem {
     id: string
+    user: IUser
     color: IColor
     size_id: ISize
     shop_id: string
@@ -28,6 +30,7 @@ export interface IOrderItem {
     order_id: string
     product: IProduct
     product_id: string
+    createdAt: Date
 }
 
 export interface ICart {
@@ -53,6 +56,6 @@ export interface IOrders {
     shipping_cost: number
     payment_method: string
     shipping_method: number
-    order_items: IOrderItem[]
+    order_items: [IOrderItem]
     shipping_address_id: string
 }
