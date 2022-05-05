@@ -1,5 +1,6 @@
 import { cartSlice } from './order/cart'
 import { profileSlice } from './profile.slice'
+import { orderSlice } from './order/order.slice'
 import { storeSlice } from './stores/store.slice'
 import { configureStore } from '@reduxjs/toolkit'
 import { ordersSlice } from './order/orders.slice'
@@ -43,6 +44,7 @@ export const store = configureStore({
         user: userSlice.reducer,
         store: storeSlice.reducer,
         users: usersSlice.reducer,
+        order: orderSlice.reducer,
         orders: ordersSlice.reducer,
         profile: profileSlice.reducer,
         product: productSlice.reducer,
