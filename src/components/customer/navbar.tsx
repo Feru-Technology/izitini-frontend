@@ -445,9 +445,14 @@ export const Navbar = () => {
                         {/* </div> */}
                     </Transition>
                     {/* menu breakdown */}
-                    <Disclosure.Panel className='sm:sr-only absolute z-10  bg-white'>
-                        <div className='px-2 pt-2 pb-3 space-y-1'>
-                            <p>Home</p>
+                    <Disclosure.Panel className='sm:sr-only fixed z-10 '>
+                        <div className='z-20 bg-gray-300 h-screen opacity-50'></div>
+                        <div className='z-30 px-2 pt-2 space-y-1 bg-yellow-300 w-screen'>
+                            <ul>
+                                <li className='border-b border-gray-300 py-2'>Buy Your Products</li>
+                                <li className='border-b border-gray-300 py-2'>Get Idea</li>
+                                <li className='border-b border-gray-300 py-2'>Find a Profession</li>
+                            </ul>
                         </div>
                     </Disclosure.Panel>
                 </>
