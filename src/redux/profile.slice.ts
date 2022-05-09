@@ -16,14 +16,16 @@ export interface HTTPError {
 }
 export interface ProfileState {
     isLoading: boolean
-    error: Error | HTTPError | null
     profile: IUser | null
+    error: Error | HTTPError | null
+    loginSignupError: Error | HTTPError | null
 }
 
 const initialState: ProfileState = {
-    isLoading: false,
     error: null,
     profile: null,
+    isLoading: false,
+    loginSignupError: null,
 }
 
 export const profileSlice = createSlice({
@@ -34,19 +36,29 @@ export const profileSlice = createSlice({
             state.isLoading = true
             state.profile = null
             state.error = null
+            state.loginSignupError = null
         },
         loggedIn: (state, { payload }) => {
             state.isLoading = false
             state.profile = payload
+            state.loginSignupError = null
         },
         loginFailed: (state, { payload }) => {
             state.isLoading = false
+            state.error = null
+            state.profile = null
+            state.loginSignupError = payload
+        },
+        reLoginFailed: (state, { payload }) => {
+            state.isLoading = false
             state.error = payload
+            state.profile = null
+            state.loginSignupError = null
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { login, loggedIn, loginFailed } = profileSlice.actions
+export const { login, loggedIn, loginFailed, reLoginFailed } = profileSlice.actions
 
 export default profileSlice.reducer

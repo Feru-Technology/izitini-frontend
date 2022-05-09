@@ -1,5 +1,5 @@
 import { fetch } from './api/apiAction'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import User from './components/admin/user'
 import Shop from './components/admin/shop'
 import Shops from './components/admin/shops'
@@ -43,7 +43,7 @@ import VendorSignUp from './components/customer/accounts/VendorSignUp'
 import CustomerSignUp from './components/customer/accounts/CustomerSignUp'
 
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import { loggedIn, login, loginFailed } from './redux/profile.slice'
+import { loggedIn, login, reLoginFailed } from './redux/profile.slice'
 
 function App() {
 
@@ -54,7 +54,7 @@ function App() {
 
     const profile = () => {
         dispatch(login())
-        fetch(dispatch, loggedIn, loginFailed, '/users/my/profile', token)
+        fetch(dispatch, loggedIn, reLoginFailed, '/users/my/profile', token)
     }
 
     if (token) profile()

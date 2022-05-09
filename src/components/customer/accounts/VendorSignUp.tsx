@@ -43,7 +43,7 @@ const VendorSignUp = () => {
     })
   }
 
-  const { profile, error } = useSelector((state: RootState) => state.profile)
+  const { profile, loginSignupError } = useSelector((state: RootState) => state.profile)
 
   if (profile) navigate('/')
 
@@ -202,9 +202,9 @@ const VendorSignUp = () => {
                 <div>
 
                   <Transition
-                    show={!!error}
+                    show={!!loginSignupError}
                   >
-                    <p className='w-full py-1  text-red-700 text-center'>{error?.message}</p>
+                    <p className='w-full py-1  text-red-700 text-center'>{loginSignupError?.message}</p>
 
                   </Transition>
                 </div>
