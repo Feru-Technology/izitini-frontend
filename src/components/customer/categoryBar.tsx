@@ -25,7 +25,7 @@ export const CategoryBar = () => {
     return (
         <>
             {isLoading ? (<h1>Loading ...</h1>) :
-                (<div className='
+                categories.length ? (<div className='
                 sr-only
                 md:not-sr-only border-b border-gray-300
                 flex justify-center
@@ -38,7 +38,7 @@ export const CategoryBar = () => {
                         <button type='submit' className='font-medium text-dark-blue
                         md:text-xs lg:text-sm xl:text-base hover:underline'> <Link to='/products'>More</Link> </button>
                     </ul>
-                </div>)}
+                </div>) : ''}
         </>
     )
 }
