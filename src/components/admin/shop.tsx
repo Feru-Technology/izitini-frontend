@@ -1,12 +1,13 @@
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
-import { useState, useEffect } from 'react'
-import { fetch, update } from '../../api/apiAction'
+import { AiFillCamera } from 'react-icons/ai'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { useState, useEffect, useRef } from 'react'
+import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     store,
@@ -18,6 +19,7 @@ const Shop = () => {
     // redux
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const input = useRef(null)
     const { id } = useParams()
 
     const isStatic = useMediaQuery({
@@ -54,6 +56,9 @@ const Shop = () => {
             setShop_contact_no(currentStore.shop_contact_no)
         }
     }, [currentStore])
+
+    //@ts-ignore
+    const uploadImage = () => input.current.click()
 
     return (
         <>
@@ -94,8 +99,16 @@ const Shop = () => {
                                     <div className='flex flex-col min-w-0 break-words mb-6  rounded-lg w-full md:w-8/12 lg:w-1/2
                                     bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                                         <div className='flex my-5 justify-center'>
-                                            <img className='h-32 rounded-lg'
-                                                src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
+                                            <div className='w-32 h-32 relative'>
+                                                <img className='w-full h-full rounded-lg'
+                                                    src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
+
+                                                <input className='absolute hidden'
+                                                    type="file" name="img" id="" ref={input} onChange={e => e.target.files} />
+
+                                                <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
+                                                absolute bottom-0.5 right-0.5 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
+                                            </div>
                                         </div>
 
                                         <div className='px-2 md:px-7'>

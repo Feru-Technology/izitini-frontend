@@ -21,7 +21,7 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
 
     return (
         <>
-            <div className='sticky top-0 text-white  bg-dark-blue'>
+            <div className='sticky top-0 text-white  bg-dark-blue z-10'>
                 <div className='flex items-center justify-between h-16 -mb-px'>
                     {/* Hamburger button */}
                     <div className='flex  items-center'>
