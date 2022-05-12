@@ -2,6 +2,7 @@ import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { useParams } from 'react-router-dom'
+import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -13,7 +14,12 @@ import {
     getUser,
     userFailed
 } from '../../redux/admin/users/user.slice'
-import { AiFillCamera } from 'react-icons/ai'
+import {
+    updatingUser,
+    updated,
+    updateFailed
+} from '../../redux/admin/users/updateUser.slice'
+
 const User = () => {
 
     const params = useParams()
@@ -59,18 +65,27 @@ const User = () => {
         }
     }, [currentUser])
 
-
     //@ts-ignore
     const uploadImage = () => input.current.click()
 
     const changeProfileImage = (file: File) => {
         const formData = new FormData()
         formData.append('image', file)
-        // dispatch(updatingStore())
-        // update(dispatch, updated, updateFailed, `/admin/shop/image/${id}`, formData, token)
+        dispatch(updatingUser())
+        update(dispatch, updated, updateFailed, `/admin/user/profile-image/${id}`, formData, token)
     }
 
-    const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
+    const { isUpdating, updatedUser, updateError } = useSelector((state: RootState) => state.updateUser)
+
+    useEffect(() => {
+        if (updatedUser) {
+            dispatch(getUser())
+            dispatch(updated(null))
+            fetch(dispatch, user, userFailed, `/users/${id}`)
+        }
+    })
+
+    console.log(user)
 
     return (
         <>
@@ -116,12 +131,11 @@ const User = () => {
                                             <input className='absolute hidden' type="file" name="img" ref={input}
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'
                                                 onChange={e => {
-                                                    console.log(e.target)
                                                     if (e.target.files) changeProfileImage(e.target.files[0])
                                                 }} />
 
                                             <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
-                                            absolute bottom-0.5 right-0.5 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
+                                            absolute bottom-0.5 right-1 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
                                         </div>
                                     </div>
                                     <div className='px-2 md:px-7'>

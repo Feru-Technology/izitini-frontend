@@ -15,6 +15,7 @@ import { createStoreSlice } from './stores/createStore.slice'
 import { allProductSlice } from './products/allProduct.slice'
 import { productsSlice } from './admin/products/products.slice'
 import { categoriesSlice } from './categories/categories.slice'
+import { updateUserSlice } from './admin/users/updateUser.slice'
 import { createUserSlice } from './admin/users/createUser.slice'
 import { removeImgToProdSlice } from './image/removeImgToProd.slice'
 import { storeProductsSlice } from './products/storeProducts.slice '
@@ -51,6 +52,7 @@ export const store = configureStore({
         product: productSlice.reducer,
         stores: AllStoresSlice.reducer,
         category: categorySlice.reducer,
+        updateUser: updateUserSlice.reducer,
         createSize: createSizeSlice.reducer,
         deleteSize: deleteSizeSlice.reducer,
         categories: categoriesSlice.reducer,
