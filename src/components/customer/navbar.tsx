@@ -68,7 +68,7 @@ export const Navbar = () => {
                         <div className='flex w-full'>
 
                             {/* logo */}
-                            <div className='flex w-1/4 ml-1
+                            <div className='flex w-4/12 ml-1
                             md:ml-8 md:w-1/12'>
 
                                 <div className=' inset-y-0 left-0 flex items-center sm:sr-only'>
@@ -76,7 +76,7 @@ export const Navbar = () => {
                                     <Disclosure.Button className='inline-flex items-center justify-center p-2 rounded-md text-black'>
                                         <span className='sr-only'>Open main menu</span>
                                         {open ? (
-                                            <XIcon className='block h-6 w-6 font-bold' aria-hidden='true' />
+                                            <XIcon className='block h-7 w-7 font-bold' aria-hidden='true' />
                                         ) : (
                                             <MenuIcon className='block h-7 w-7 font-bold' aria-hidden='true' />
                                         )}
@@ -191,13 +191,13 @@ export const Navbar = () => {
                                                 <div>
                                                     <Menu.Button className='flex space-x-4'>
 
-                                                        <div className='flex flex-row justify-center items-center space-x-2'>
+                                                        <div className='flex flex-row justify-center items-center space-x-2 bg-gray-50 rounded-full'>
                                                             <img
-                                                                src={profile?.profile_image === null ? backUpPImage : profile?.profile_image}
+                                                                src={profile ? profile.profile_image ? profile.profile_image : backUpPImage : backUpPImage}
                                                                 className='w-6 h-6 mt-2 rounded-full mx-auto md:w-8 md:h-8 md:mt-0'
                                                                 alt='pImg'
                                                             />
-                                                            <p className='sr-only lg:not-sr-only'>{profile?.full_name}</p>
+                                                            <p className='sr-only lg:not-sr-only text-gray-700 font-semibold'>{profile?.full_name}</p>
                                                             <ChevronDownIcon className='sr-only lg:h-5 lg:w-5 lg:not-sr-only' />
                                                         </div>
                                                     </Menu.Button>
@@ -445,13 +445,22 @@ export const Navbar = () => {
                         {/* </div> */}
                     </Transition>
                     {/* menu breakdown */}
-                    <Disclosure.Panel className='sm:sr-only fixed z-10 '>
-                        <div className='z-20 bg-gray-300 h-screen opacity-50'></div>
-                        <div className='z-30 px-2 pt-2 space-y-1 bg-yellow-300 w-screen'>
+                    <Disclosure.Panel className='sm:sr-only absolute z-10 h-screen'>
+                        <div className='bg-gray-300 h-screen opacity-50 top-0 w-screen pointer-events-none'></div>
+                        <div className='bg-gray-50 top-0 absolute w-10/12 font-light uppercase'>
                             <ul>
-                                <li className='border-b border-gray-300 py-2'>Buy Your Products</li>
-                                <li className='border-b border-gray-300 py-2'>Get Idea</li>
-                                <li className='border-b border-gray-300 py-2'>Find a Profession</li>
+                                <li className='border-b border-gray-300 py-3'>
+                                    <div className='flex px-2'>
+                                        <p className='w-7/12'>Buy Your Products</p></div>
+                                </li>
+                                <li className='border-b border-gray-300 py-3'>
+                                    <div className='flex px-2'>
+                                        <p className='w-7/12'>Get Idea</p></div>
+                                </li>
+                                <li className='border-b border-gray-300 py-3'>
+                                    <div className='flex px-2'>
+                                        <p className='w-7/12'>Find a Profession</p></div>
+                                </li>
                             </ul>
                         </div>
                     </Disclosure.Panel>
