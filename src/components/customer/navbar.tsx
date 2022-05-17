@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { fetch } from '../../api/apiAction'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store'
+import { AiOutlineHome } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
 import backUpPImage from '../../images/profile.png'
 import { loggedIn } from '../../redux/profile.slice'
@@ -451,15 +452,24 @@ export const Navbar = () => {
                             <ul>
                                 <li className='border-b border-gray-300 py-3'>
                                     <div className='flex px-2'>
-                                        <p className='w-7/12'>Buy Your Products</p></div>
+                                        <AiOutlineHome className='h-5 w-auto' />
+                                        <p className='w-7/12'>Home</p>
+                                    </div>
                                 </li>
                                 <li className='border-b border-gray-300 py-3'>
                                     <div className='flex px-2'>
-                                        <p className='w-7/12'>Get Idea</p></div>
+                                        <p className='w-7/12'>Products</p>
+                                    </div>
                                 </li>
                                 <li className='border-b border-gray-300 py-3'>
                                     <div className='flex px-2'>
-                                        <p className='w-7/12'>Find a Profession</p></div>
+                                        <p className='w-7/12'>Get Idea</p>
+                                    </div>
+                                </li>
+                                <li className='border-b border-gray-300 py-3'>
+                                    <div className='flex px-2'>
+                                        <p className='w-7/12'>Find Pros</p>
+                                    </div>
                                 </li>
                             </ul>
                         </div>

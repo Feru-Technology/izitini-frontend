@@ -213,7 +213,7 @@ const Products = () => {
                         md:p-6 lg:p-8'>
 
                         <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
-        text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                        text-gray-600 hover:text-dark-blue hover:shadow-lg'
                             onClick={() => setCreateMode(false)} />
 
                         <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Product</div>
@@ -289,7 +289,7 @@ const Products = () => {
                             <div className='text-center mt-6'>
                                 <button
                                     className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
-                rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                                    rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                                     type='button'
                                     onClick={(e) => {
                                         e.preventDefault()

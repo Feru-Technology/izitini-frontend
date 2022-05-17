@@ -192,7 +192,7 @@ const Products = () => {
                                                     setShowApproved(false)
                                                     setShowWaiting(false)
                                                 }}
-                                            >Waiting</li>
+                                            >Pending</li>
                                             <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
                                             py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
                                                 onClick={() => {
