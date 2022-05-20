@@ -61,8 +61,6 @@ const Order = () => {
                         <div className='fixed inset-0 bg-black opacity-60 z-10' />
                     </Transition>
 
-
-
                     {/* customer orders */}
                     <div className='px-2 md:px-6 lg:px-14 w-full'>
                         <div className='flex justify-between text-sm md:text-base my-4 mx-2'>
@@ -110,7 +108,7 @@ const Order = () => {
                                                         <td className='text-center'>
                                                             <div className='flex'>
                                                                 <img className='h-20 p-1  2xl:h-52'
-                                                                    src='https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png' alt='' />
+                                                                    src={item.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                                                 {item.product.name}
                                                             </div>
                                                         </td>

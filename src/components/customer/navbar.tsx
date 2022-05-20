@@ -446,9 +446,9 @@ export const Navbar = () => {
                         {/* </div> */}
                     </Transition>
                     {/* menu breakdown */}
-                    <Disclosure.Panel className='sm:sr-only absolute z-10 h-screen'>
-                        <div className='bg-gray-300 h-screen opacity-50 top-0 w-screen pointer-events-none'></div>
-                        <div className='bg-gray-50 top-0 absolute w-10/12 font-light uppercase'>
+                    <Disclosure.Panel className='sm:sr-only absolute z-10 h-screen overflow-hidden'>
+                        <div className='bg-gray-300 h-screen opacity-50 top-0 w-screen pointer-events-none overflow-hidden'></div>
+                        <div className='bg-gray-50 top-0 absolute w-11/12 font-light uppercase h-screen overflow-y-scroll'>
                             <ul>
                                 <li className='border-b border-gray-300 py-3'>
                                     <div className='flex px-2'>

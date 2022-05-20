@@ -36,7 +36,7 @@ const Home = () => {
 
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
 
-    const productSection = products.slice(0, 5)
+    const productSection = products.slice(0, 10)
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -145,7 +145,7 @@ const Home = () => {
                                         <img className='w-full h-32 2xl:h-52'
                                             src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         <p className='font-mono font-medium tracking-tighter text-md lg:text-lg'>{p.name}</p>
-                                        <p className='font-normal text-xs text-gray-500'>by {p.brand}</p>
+                                        <p className='font-normal text-xs text-gray-500'>by {p.shop.name}</p>
                                         <p className='font-semibold'>RWF {p.price}</p>
                                     </Link>
                                 </div>

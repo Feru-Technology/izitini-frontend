@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import { useParams } from 'react-router-dom'
+import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -12,10 +17,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
   getStore, store, storeFailed
 } from '../../redux/stores/store.slice'
+import {
+  updatingStore, updated, updateFailed
+} from '../../redux/stores/updateStore.slice'
 
 const Store = () => {
 
   // redux
+  const input = useRef(null)
   const dispatch = useDispatch()
   const token = localStorage.getItem('token')
 
@@ -53,6 +62,26 @@ const Store = () => {
       setShop_contact_no(currentStore.shop_contact_no)
     }
   }, [currentStore])
+
+  //@ts-ignore
+  const uploadImage = () => input.current.click()
+
+  const changeShopImage = (file: File) => {
+    const formData = new FormData()
+    formData.append('image', file)
+    dispatch(updatingStore())
+    update(dispatch, updated, updateFailed, `/image/${currentStore?.id}`, formData, token)
+  }
+
+  const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
+
+  useEffect(() => {
+    if (updatedStore) {
+      dispatch(getStore())
+      dispatch(updated(null))
+      fetch(dispatch, store, storeFailed, '/shop/mine/all', token)
+    }
+  })
 
   console.log(currentStore);
 
@@ -93,8 +122,20 @@ const Store = () => {
               <div className='flex flex-col min-w-0 break-words mb-6  rounded-lg w-full md:w-8/12 lg:w-1/2
         bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                 <div className='flex my-5 justify-center'>
-                  <img className='h-32 rounded-lg'
-                    src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
+                  <div className='w-2/5 auto relative'>
+                    <img className='w-full h-full rounded-lg'
+                      src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
+
+                    <input className='absolute hidden' type="file" name="img" ref={input}
+                      accept='image/x-png,image/gif,image/jpeg, image/png'
+                      onChange={e => {
+                        console.log(e.target)
+                        if (e.target.files) changeShopImage(e.target.files[0])
+                      }} />
+
+                    <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
+                absolute bottom-0.5 right-0.5 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
+                  </div>
                 </div>
 
                 <div className='px-2 md:px-7'>
