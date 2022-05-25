@@ -24,7 +24,7 @@ const Products = () => {
     const params = useParams()
     const { id } = params
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [createMode, setCreateMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)

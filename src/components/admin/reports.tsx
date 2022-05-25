@@ -15,7 +15,7 @@ const Reports = () => {
         query: '(min-width: 640px)',
     })
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [showWaiting, setShowWaiting] = useState(false)
     const [showAllProducts, setShowAllProducts] = useState(true)
     const [showUsers, setShowUsers] = useState(false)

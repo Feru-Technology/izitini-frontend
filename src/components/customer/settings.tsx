@@ -33,7 +33,7 @@ const Settings = () => {
                         isClosed={isClosed}
                         setIsClosed={setIsClosed}
                         isStatic={isStatic}
-                        name={'Customer'}
+                        name={''}
                     />
                     <Transition
                         appear={true}

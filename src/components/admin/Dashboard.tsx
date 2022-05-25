@@ -11,7 +11,7 @@ const AdminDashboard = () => {
 
     const { isLoading, profile } = useSelector((state: RootState) => state.profile);
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })

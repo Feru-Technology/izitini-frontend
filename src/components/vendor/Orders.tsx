@@ -26,7 +26,7 @@ const Orders = () => {
         query: '(min-width: 640px)',
     })
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [showAllOrders, setShowAllOrders] = useState(true)
     const [showSampleOrders, setShowSampleOrders] = useState(false)
     const [showRejectedOrders, setShowRejectedOrders] = useState(false)

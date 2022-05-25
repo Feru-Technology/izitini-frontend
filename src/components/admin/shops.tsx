@@ -23,7 +23,7 @@ const Shops = () => {
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
 
     const navigate = useNavigate()
 

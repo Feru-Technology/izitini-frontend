@@ -5,7 +5,7 @@ import Header from './Header'
 import { Transition } from '@headlessui/react'
 
 const MyReports = () => {
-  const [isClosed, setIsClosed] = useState(false)
+  const [isClosed, setIsClosed] = useState(true)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',
   })

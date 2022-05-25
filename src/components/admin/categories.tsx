@@ -42,7 +42,7 @@ const Categories = () => {
         query: '(min-width: 640px)',
     })
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [editMode, setEditMode] = useState(false)
     const [createMode, setCreateMode] = useState(false)
     const [deleteMode, setDeleteMode] = useState(false)

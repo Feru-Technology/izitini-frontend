@@ -86,7 +86,7 @@ const VendorProduct = () => {
     })
 
     // product states
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)

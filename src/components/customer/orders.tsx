@@ -19,7 +19,7 @@ const MyOrders = () => {
 
     const { profile } = useSelector((state: RootState) => state.profile)
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [showAllOrders, setShowAllOrders] = useState(true)
     const [showSampleOrders, setShowSampleOrders] = useState(false)
     const [showRejectedOrders, setShowRejectedOrders] = useState(false)
@@ -63,7 +63,7 @@ const MyOrders = () => {
                         isClosed={isClosed}
                         setIsClosed={setIsClosed}
                         isStatic={isStatic}
-                        name={'Customer'}
+                        name={''}
                     />
                     <Transition
                         appear={true}

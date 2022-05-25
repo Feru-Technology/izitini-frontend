@@ -38,7 +38,7 @@ const Shop = () => {
     const { isLoading, currentStore, error } = useSelector((state: RootState) => state.store)
 
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [about_shop, setAbout_shop] = useState<string>('')

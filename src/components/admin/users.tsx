@@ -45,7 +45,7 @@ const Users = () => {
 
     const { users } = useSelector((state: RootState) => state.users)
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [showVendor, setShowVendor] = useState(false)
     const [showAllUsers, setShowAllUsers] = useState(true)
     const [showCustomer, setShowCustomer] = useState(false)

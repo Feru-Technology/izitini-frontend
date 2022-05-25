@@ -39,7 +39,7 @@ const User = () => {
 
     const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [editMode, setEditMode] = useState(false)
     const [tin_no, setTin_no] = useState<string>('')
     const [email, setEmail] = useState<string | null>(null)

@@ -41,7 +41,7 @@ const Products = () => {
         query: '(min-width: 640px)',
     })
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
     const [createMode, setCreateMode] = useState(false)
     const [name, setName] = useState<string | null>(null)
     const [unit, setUnit] = useState<string | null>(null)

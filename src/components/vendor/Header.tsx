@@ -51,24 +51,24 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
                             <div className='relative'>
                                 <input
                                     type='text'
-                                    className='rounded-full focus:outline-none px-4 py-2'
+                                    className='rounded-full focus:outline-none px-2 py-1 lg:px-4 lg:py-2'
                                     placeholder='Search anything...'
                                 />
-                                <div className='absolute top-3 right-3 text-gray-400'>
+                                <div className='absolute top-2 lg:top-3 right-3 text-gray-400'>
                                     <SearchIcon className='w-5 h-5' />
                                 </div>
                             </div>
                         </div>
                         <div>
-                            <BellIcon className='h-5 w-5 ' />
+                            <BellIcon className='md:w-7 w-6' />
                         </div>
                         <div>
-                            <ChatIcon className='h-5 w-5 ' />
+                            <ChatIcon className='md:w-7 w-6' />
                         </div>
                         <div className='flex flex-row justify-center items-center space-x-2'>
                             <img
                                 src={profile?.profile_image === null ? backUpPImage : profile?.profile_image}
-                                className='w-9 h-9 rounded-full mx-auto'
+                                className='w-6 h-6 md:w-9 md:h-9 rounded-full mx-auto'
                                 alt='pImg'
                             />
                             <p className='sr-only lg:not-sr-only'>{profile?.full_name}</p>

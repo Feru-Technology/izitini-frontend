@@ -21,7 +21,7 @@ const Order = () => {
         query: '(min-width: 640px)',
     })
 
-    const [isClosed, setIsClosed] = useState(false)
+    const [isClosed, setIsClosed] = useState(true)
 
     useEffect(() => {
         dispatch(fetchingOrder())
@@ -46,7 +46,7 @@ const Order = () => {
                         isClosed={isClosed}
                         setIsClosed={setIsClosed}
                         isStatic={isStatic}
-                        name={'Customer'}
+                        name={''}
                     />
                     <Transition
                         appear={true}
@@ -115,11 +115,11 @@ const Order = () => {
                                                                     <ul className='font-normal text:xs md:text-base text-gray-800'>
                                                                         <li className='font-bold text:sm text-lg'>{item.product.name}</li>
                                                                         <li>By <span className='text-sm italic text-gray-500'>product Brand</span> </li>
-                                                                        <li className='md:sr-only'>Price <span className='text-sm italic text-gray-500'>1200 Frw</span></li>
-                                                                        <li>Color <span className='text-sm italic text-gray-500'>Red</span></li>
-                                                                        <li>Size <span className='text-sm italic text-gray-500'>Lg</span></li>
-                                                                        <li className='md:sr-only'>Qty <span className='text-sm italic text-gray-500'>2</span></li>
-                                                                        <li className='lg:sr-only'>Note <span className='text-sm italic text-gray-500'>note</span></li>
+                                                                        <li className='md:sr-only'>Price: <span className='text-sm italic text-gray-500'>{item.product.price} Frw</span></li>
+                                                                        <li>Color: <span className='text-sm italic text-gray-500'>Red</span></li>
+                                                                        <li>Size: <span className='text-sm italic text-gray-500'>Lg</span></li>
+                                                                        <li className='md:sr-only'>Qty: <span className='text-sm italic text-gray-500'>2</span></li>
+                                                                        <li className='lg:sr-only'>Note: <span className='text-sm italic text-gray-500'>note</span></li>
                                                                     </ul>
 
                                                                 </div>
