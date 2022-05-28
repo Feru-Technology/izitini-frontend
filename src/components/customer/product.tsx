@@ -100,17 +100,28 @@ const Product = () => {
                                             <div className='md:flex'>
 
                                                 <div className='sr-only md:not-sr-only'>
-                                                    {currentProduct.images.map((img) => (<div className='my-1 hover:border-black
+                                                    <div className='mb-1 hover:border-black
                                         '
-                                                        onPointerOver={() => setDisplayImage(img.image.image_url)}
+                                                        onPointerOver={() => setDisplayImage(currentProduct.product.display_image)}
                                                     >
                                                         <img
-                                                            src={img.image.image_url}
+                                                            src={currentProduct.product.display_image}
                                                             className='border mr-2 w-16 lg:w-20 h-16 lg:h-20'
                                                             alt='...'
                                                         />
-                                                    </div>)
-                                                    )}
+                                                    </div>
+                                                    {currentProduct.images.map((img) => (
+                                                        <div className='my-1 hover:border-black
+                                        '
+                                                            onPointerOver={() => setDisplayImage(img.image.image_url)}
+                                                        >
+                                                            <img
+                                                                src={img.image.image_url}
+                                                                className='border mr-2 w-16 lg:w-20 h-16 lg:h-20'
+                                                                alt='...'
+                                                            />
+                                                        </div>
+                                                    ))}
 
                                                 </div>
 
@@ -124,7 +135,17 @@ const Product = () => {
                                                     /> : ''}
                                                 </div>
 
-                                                <div className='md:sr-only flex space-x-4'>
+                                                <div className='md:sr-only flex space-x-1'>
+
+                                                    <div className='my-5 hover:border-black'
+                                                        onPointerOver={() => setDisplayImage(currentProduct.product.display_image)}
+                                                    >
+                                                        <img
+                                                            src={currentProduct.product.display_image}
+                                                            className='border h-20'
+                                                            alt='...'
+                                                        />
+                                                    </div>
                                                     {currentProduct.images.map((img) => (
                                                         <div className='my-5 hover:border-black'
                                                             onPointerOver={() => setDisplayImage(img.image.image_url)}
@@ -134,8 +155,8 @@ const Product = () => {
                                                                 className='border w-20 h-20'
                                                                 alt='...'
                                                             />
-                                                        </div>)
-                                                    )}
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             </div>
 
@@ -234,11 +255,8 @@ const Product = () => {
                                                 </span>
                                                 <p className='text-base font-bold md:text-lg'>{currentProduct?.product.shop.name}</p>
                                                 <p>read to ship in Kigali</p>
-                                                <p>{currentProduct?.product.price} in the store</p>
-                                                <p>
-                                                    Lorem Ipsum is simply dummy text of the dummy text ever since
-                                                    the 1500s, when an unknown
-                                                </p>
+                                                <p>{currentProduct?.product.price}</p>
+                                                <p>{currentProduct.product.description}</p>
                                                 <div className='md:flex md:space-x-3 lg:space-x-5'>
                                                     <div className='md:w-1/2'>
                                                         <div className='w-full'>
