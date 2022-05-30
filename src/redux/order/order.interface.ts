@@ -15,6 +15,7 @@ export interface IOrder {
     status: string
     user_id: string
     is_sample: boolean
+    user: IUser
     order_items: [IOrderItem]
     shipping_address_id: string
 }

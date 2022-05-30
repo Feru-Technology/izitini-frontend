@@ -9,7 +9,7 @@ import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
 
-const Order = () => {
+const ShopOrder = () => {
 
     // redux
     const token = localStorage.getItem('token')
@@ -25,7 +25,7 @@ const Order = () => {
 
     useEffect(() => {
         dispatch(fetchingOrder())
-        fetch(dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
+        fetch(dispatch, fetchedOrder, fetchFailed, `/orders/order/${id}`, token)
     }, [dispatch, id, token])
 
     const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
@@ -65,7 +65,7 @@ const Order = () => {
                             <p className='font-bold '>My Order</p>
                             <p> <span className='font-bold'> status:</span> <span className='px-2 py-1 text-white bg-dark-blue rounded-lg'>{order?.status}</span> </p>
                         </div>
-                        <div className='bg-white border border-gray-200 rounded-md'>
+                        <div className='bg-white border border-gray-200 rounded-md my-2 md:my-4'>
 
                             {order ?
                                 <div className='w-full p-0.5 md:my-5 md:px-5 lg:my-6 lg:px-6'>
@@ -136,6 +136,7 @@ const Order = () => {
                                     <div className='mt-5 border'>
                                         <h1 className='border-b'> <span className='px-2 py-3 font-bold text-lg'>More Details</span> </h1>
                                         <ul className='space-y-2 px-2 py-3 font-semibold text-base text-gray-500'>
+                                            <li>Customer <span className='font-normal ml-2 text-gray-900'>{order.user.full_name}</span></li>
                                             <li>Order no: <span className='font-normal ml-2 text-gray-900'>1</span></li>
                                             <li>Type: <span className='font-normal ml-2 text-gray-900'>Sample</span></li>
                                             <li>Is Paid: <span className='font-normal ml-2 text-gray-900'>Yes</span></li>
@@ -149,6 +150,14 @@ const Order = () => {
                                         </ul>
 
                                     </div>
+                                    {order.status === 'under_review' ?
+                                        <div className='flex justify-start space-x-4 mt-4'>
+                                            <button type="submit" className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Accept Order</button>
+                                            <button type="submit" className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-red-500 bg-red-900 '>Reject Order</button>
+                                        </div>
+                                        : order.status === 'approved' ?
+                                            <button type="submit" className='mt-4 px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Start Shipping Process</button>
+                                            : ''}
 
                                 </div> : <div></div>}
 
@@ -162,4 +171,4 @@ const Order = () => {
         </>)
 }
 
-export default Order
+export default ShopOrder

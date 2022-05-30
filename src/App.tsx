@@ -10,6 +10,7 @@ import Home from './components/customer/home'
 import Order from './components/customer/order'
 import Orders from './components/vendor/Orders'
 import Reports from './components/admin/reports'
+import ShopOrder from './components/vendor/order'
 import Coupons from './components/vendor/Coupons'
 import Products from './components/admin/products'
 import MyOrders from './components/customer/orders'
@@ -84,6 +85,7 @@ function App() {
                 <Route path='/vendor/coupons' element={<Coupons />} />
                 <Route path='/vendor/reports' element={<MyReports />} />
                 <Route path='/vendor/products' element={<MyProducts />} />
+                <Route path='/vendor/orders/:id' element={<ShopOrder />} />
                 <Route path='/vendor/create-store' element={<CreateStore />} />
                 <Route path='/vendor/products/:id' element={<VendorProduct />} />
 
