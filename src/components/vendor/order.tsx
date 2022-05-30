@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch } from '../../api/apiAction'
+import { fetch, update } from '../../api/apiAction'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
+import { updatingOrder, updatedOrder, updateFailed } from '../../redux/order/updateOrder.slice'
 
 const ShopOrder = () => {
 
@@ -29,6 +30,17 @@ const ShopOrder = () => {
     }, [dispatch, id, token])
 
     const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
+
+    const updateOrderStatus = (status: string) => {
+        dispatch(updatingOrder())
+        update(dispatch, updatedOrder, updateFailed, `/orders/order/status/${status}/${id}`, {}, token)
+    }
+
+    const { updated } = useSelector((state: RootState) => state.updateOrder)
+
+    useEffect(() => {
+        if (updated) return window.location.reload()
+    }, [updated])
 
     return (
         <>
@@ -152,11 +164,15 @@ const ShopOrder = () => {
                                     </div>
                                     {order.status === 'under_review' ?
                                         <div className='flex justify-start space-x-4 mt-4'>
-                                            <button type="submit" className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Accept Order</button>
-                                            <button type="submit" className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-red-500 bg-red-900 '>Reject Order</button>
+                                            <button type="submit" onClick={() => updateOrderStatus('approved')}
+                                                className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Accept Order</button>
+
+                                            <button type="submit" onClick={() => updateOrderStatus('rejected')}
+                                                className='px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-red-500 bg-red-900 '>Reject Order</button>
                                         </div>
                                         : order.status === 'approved' ?
-                                            <button type="submit" className='mt-4 px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Start Shipping Process</button>
+                                            <button type="submit" onClick={() => updateOrderStatus('shipped')}
+                                                className='mt-4 px-3 py-2 rounded-md text-white shadow-md hover:shadow-lg hover:bg-middle-blue bg-dark-blue '>Start Shipping Process</button>
                                             : ''}
 
                                 </div> : <div></div>}
