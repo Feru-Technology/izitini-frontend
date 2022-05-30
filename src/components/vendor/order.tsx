@@ -114,7 +114,7 @@ const ShopOrder = () => {
                                         <tbody>
                                             {order.order_items.map((item) => {
                                                 return (
-                                                    <tr className='border text-gray-900'>
+                                                    <tr className='border text-gray-900' key={item.id}>
                                                         <td className='md:w-2/4'>
                                                             <div className='md:flex p-3'>
                                                                 <div className='w-8/12 md:w-1/3 md:p-1'>

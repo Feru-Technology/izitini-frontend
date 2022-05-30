@@ -32,7 +32,9 @@ export const CategoryBar = () => {
                 bg-gray-100 mt-2'>
                     <ul className='flex md:space-x-4 lg:space-x-8'>
 
-                        {categoryBar.map((v) => (<Link to={`/products/c/${v.name}`} className='font-bold text-gray-600 py-2
+                        {categoryBar.map((v) => (
+                            <Link to={`/products/c/${v.name}`} key={v.id}
+                                className='font-bold text-gray-600 py-2
                         md:text-xs lg:text-sm xl:text-base 2xl:text-lg hover:text-dark-blue'>{v.name}</Link>))}
 
                         <button type='submit' className='font-medium text-dark-blue

@@ -17,7 +17,7 @@ const MyOrders = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    // const { profile } = useSelector((state: RootState) => state.profile)
 
     const [isClosed, setIsClosed] = useState(true)
     const [showAllOrders, setShowAllOrders] = useState(true)
@@ -47,7 +47,7 @@ const MyOrders = () => {
         return fetch(dispatch, myOrders, ordersFailed, url, token)
     }
 
-    const { isLoading, orders, error } = useSelector((state: RootState) => state.orders)
+    const { orders, error } = useSelector((state: RootState) => state.orders)
 
     return (
         <div className='bg-gray-100'>
@@ -182,7 +182,8 @@ const MyOrders = () => {
 
                                         <tbody>
                                             {orders.map((order) => (
-                                                <tr className='text-center text-xs md:text-sm lg:text-base border text-gray-800
+                                                <tr key={order.id}
+                                                    className='text-center text-xs md:text-sm lg:text-base border text-gray-800
                                                 hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/orders/${order.id}`)}>
                                                     <td className='py-3 border'>
                                                         <p className='font-normal text-sm'>

@@ -36,7 +36,7 @@ const Home = () => {
 
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
 
-    const productSection = products.slice(0, 10)
+    // const productSection = products.slice(0, 10)
 
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
@@ -66,7 +66,7 @@ const Home = () => {
                             <ul className='ml-2
                         md:w-full md:h-52 md:overflow-y-scroll'>
                                 {categories.map((cat) => (
-                                    <Link to={`/products/c/${cat.name}`}>
+                                    <Link to={`/products/c/${cat.name}`} key={cat.id}>
                                         <li
                                             className='w-full text-lg text-gray-700
                                     hover:bg-dark-blue hover:text-white press-start
@@ -111,7 +111,7 @@ const Home = () => {
                         {categorySection.map((category) => {
                             const subCategories = category.subCategories.slice(0, 4)
                             return (
-                                <Link to={`/products/c/${category.name}`}>
+                                <Link to={`/products/c/${category.name}`} key={category.id}>
                                     <div className='relative my-2'>
                                         <div className='hover:underline'>
                                             <p className='absolute ml-2 hover:underline'>{category.name}</p>
@@ -122,7 +122,8 @@ const Home = () => {
                                             <ul>
                                                 {
                                                     subCategories.map((subCat) => (
-                                                        <li className='font-light hover:underline hover:text-dark-blue'>{subCat.name}</li>
+                                                        <li key={subCat.id}
+                                                            className='font-light hover:underline hover:text-dark-blue'>{subCat.name}</li>
                                                     ))
                                                 }
                                                 <p className='text-dark-blue hover:underline'>see all</p>
@@ -139,8 +140,8 @@ const Home = () => {
                     <div className='lg:mb-8 lg:mt-3 font-normal'>
                         <span>Recent Updates</span>
                         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3'>
-                            {productSection.map((p) => (
-                                <div className='mt-2 hover:shadow-md'>
+                            {products.map((p) => (
+                                <div className='mt-2 hover:shadow-md' key={p.id}>
                                     <Link to={`/products/p/${p.id}`}>
                                         <img className='w-full h-32 2xl:h-52'
                                             src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
@@ -156,7 +157,8 @@ const Home = () => {
 
                 <Footer />
             </div>
-        )}
+        )
+        }
     </>)
 }
 

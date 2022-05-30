@@ -315,8 +315,9 @@ export const Navbar = () => {
                                             {categories?.map((category) => {
                                                 const sub_categories = category.subCategories.slice(0, 4)
                                                 return (
-                                                    <ul className='space-y-1 my-2 font-sans'><Link to={`/products/c/${category.name}`}
-                                                        className='font-semibold text-dark-blue text-sm lg:text-base hover:underline'>{category.name}</Link>
+                                                    <ul className='space-y-1 my-2 font-sans' key={category.id}>
+                                                        <Link to={`/products/c/${category.name}`}
+                                                            className='font-semibold text-dark-blue text-sm lg:text-base hover:underline'>{category.name}</Link>
                                                         {sub_categories.map((subCategory) => {
                                                             return (
                                                                 <li className='font-light hover:underline hover:text-dark-blue text-sm lg:text-base'>
