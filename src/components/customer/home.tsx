@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
 import { CategoryBar } from './categoryBar'
 import { fetch } from '../../api/apiAction'

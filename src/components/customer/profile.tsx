@@ -23,6 +23,11 @@ const Profile = () => {
     const input = useRef(null)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!token) navigate('/signin')
+    })
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

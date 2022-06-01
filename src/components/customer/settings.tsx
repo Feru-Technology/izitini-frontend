@@ -1,15 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const Settings = () => {
 
     // redux
     const dispatch = useDispatch()
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!token) navigate('/signin')
+    })
+
     const params = useParams()
     const { id } = params
 

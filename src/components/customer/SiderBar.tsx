@@ -89,7 +89,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/dashboard'
+                                    to='/user'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname === '/' &&
                                         'hover:text-gray-400'
                                         }`}
@@ -108,7 +108,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/orders'
+                                    to='/user/orders'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('orders') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -128,7 +128,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/profile'
+                                    to='/user/profile'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('profile') &&
                                         'hover:text-gray-400'
                                         }`}
@@ -148,7 +148,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                 onClick={handleClick}
                             >
                                 <Link
-                                    to='/settings'
+                                    to='/user/settings'
                                     className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('settings') &&
                                         'hover:text-gray-400'
                                         }`}

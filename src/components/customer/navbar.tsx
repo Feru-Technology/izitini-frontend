@@ -215,7 +215,7 @@ export const Navbar = () => {
                                                     <Menu.Items className='origin-top-right absolute right-0 z-10 mt-2 w-36 rounded-md shadow-lg p-2 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
                                                         <Menu.Item>
                                                             {({ active }) => (
-                                                                <Link to='/profile'
+                                                                <Link to='/user/profile'
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
                                                                     Your Profile
@@ -224,7 +224,7 @@ export const Navbar = () => {
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             {({ active }) => (
-                                                                <Link to='/dashboard'
+                                                                <Link to='/user'
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
                                                                     Dashboard

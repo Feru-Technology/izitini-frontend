@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { fetch } from '../../api/apiAction'
-import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
 
 const Order = () => {
@@ -16,6 +16,12 @@ const Order = () => {
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (!token) navigate('/signin')
+    })
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

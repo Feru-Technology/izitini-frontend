@@ -17,6 +17,10 @@ const MyOrders = () => {
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
 
+    useEffect(() => {
+        if (!token) navigate('/signin')
+    })
+
     // const { profile } = useSelector((state: RootState) => state.profile)
 
     const [isClosed, setIsClosed] = useState(true)
@@ -184,7 +188,7 @@ const MyOrders = () => {
                                             {orders.map((order) => (
                                                 <tr key={order.id}
                                                     className='text-center text-xs md:text-sm lg:text-base border text-gray-800
-                                                hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/orders/${order.id}`)}>
+                                                hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/user/orders/${order.id}`)}>
                                                     <td className='py-3 border'>
                                                         <p className='font-normal text-sm'>
                                                             <span className=''>{order.order_no}</span>
