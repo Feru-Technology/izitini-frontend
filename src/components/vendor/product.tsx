@@ -2,18 +2,17 @@ import {
     useState,
     useEffect
 } from 'react'
-import {
-    PlusIcon,
-} from '@heroicons/react/outline'
+import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
-import Header from './Header'
-import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
+import { useVendor } from '../../utils/hooks/auth'
+import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetch, post, update, destroy } from '../../api/apiAction'
 import {
     product,
@@ -74,8 +73,12 @@ import {
 
 const VendorProduct = () => {
 
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const token = localStorage.getItem('token')
+
+    useVendor(navigate, token)
+
+    const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
 

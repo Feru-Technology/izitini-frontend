@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
-import { Link, useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 
 const CustomerDashboard = () => {
 
-    const token = localStorage.getItem('token')
-
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!token) navigate('/signin')
-    })
+    useAuth()
 
     const [isClosed, setIsClosed] = useState(true)
     const isStatic = useMediaQuery({

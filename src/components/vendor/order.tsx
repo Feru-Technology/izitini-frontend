@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch, update } from '../../api/apiAction'
-import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { useVendor } from '../../utils/hooks/auth'
+import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
 import { updatingOrder, updatedOrder, updateFailed } from '../../redux/order/updateOrder.slice'
 
 const ShopOrder = () => {
 
-    // redux
+    const navigate = useNavigate()
     const token = localStorage.getItem('token')
+
+    useVendor(navigate, token)
+
+    // redux
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params

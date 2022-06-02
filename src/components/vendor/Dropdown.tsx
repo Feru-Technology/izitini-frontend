@@ -9,7 +9,7 @@ const people = [
     { name: 'Josiane Murekatete' },
 ]
 
-export default function Example() {
+const Example = () => {
     const [selected, setSelected] = useState(people[0])
 
     return (
@@ -36,10 +36,9 @@ export default function Example() {
                                 <Listbox.Option
                                     key={personIdx}
                                     className={({ active }) =>
-                                        `${
-                                            active
-                                                ? 'text-amber-900 bg-amber-100'
-                                                : 'text-gray-900'
+                                        `${active
+                                            ? 'text-amber-900 bg-amber-100'
+                                            : 'text-gray-900'
                                         }
                           cursor-default select-none relative py-2 pl-10 pr-4`
                                     }
@@ -48,21 +47,19 @@ export default function Example() {
                                     {({ selected, active }) => (
                                         <>
                                             <span
-                                                className={`${
-                                                    selected
+                                                className={`${selected
                                                         ? 'font-medium'
                                                         : 'font-normal'
-                                                } block truncate`}
+                                                    } block truncate`}
                                             >
                                                 {person.name}
                                             </span>
                                             {selected ? (
                                                 <span
-                                                    className={`${
-                                                        active
+                                                    className={`${active
                                                             ? 'text-amber-600'
                                                             : 'text-amber-600'
-                                                    }
+                                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                                 >
                                                     <CheckIcon
@@ -82,3 +79,5 @@ export default function Example() {
         </div>
     )
 }
+
+export default Example

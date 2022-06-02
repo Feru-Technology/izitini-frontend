@@ -6,11 +6,12 @@ import {
 import Header from './Header'
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { useVendor } from '../../utils/hooks/auth'
 import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -23,10 +24,14 @@ import {
 
 const Store = () => {
 
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+
+  useVendor(navigate, token)
+
   // redux
   const input = useRef(null)
   const dispatch = useDispatch()
-  const token = localStorage.getItem('token')
 
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',

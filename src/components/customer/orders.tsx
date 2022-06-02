@@ -7,21 +7,18 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/orders.slice'
 
 const MyOrders = () => {
 
+    useAuth()
+
     // redux
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!token) navigate('/signin')
-    })
-
-    // const { profile } = useSelector((state: RootState) => state.profile)
 
     const [isClosed, setIsClosed] = useState(true)
     const [showAllOrders, setShowAllOrders] = useState(true)

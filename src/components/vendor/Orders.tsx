@@ -7,17 +7,19 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
+import { useVendor } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/orders.slice'
 
 const Orders = () => {
 
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+
+    useVendor(navigate, token)
+
     // redux
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-
-    // const { profile } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

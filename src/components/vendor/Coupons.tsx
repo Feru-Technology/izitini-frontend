@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
+import Header from './Header'
 import SiderBar from './SiderBar'
 import { useMediaQuery } from 'react-responsive'
-import Header from './Header'
 import { Transition } from '@headlessui/react'
+import { useNavigate } from 'react-router-dom'
+import { useVendor } from '../../utils/hooks/auth'
 
 const Coupons = () => {
+
+  const navigate = useNavigate()
+  const token = localStorage.getItem('token')
+
+  useVendor(navigate, token)
+
   const [isClosed, setIsClosed] = useState(true)
   const isStatic = useMediaQuery({
     query: '(min-width: 640px)',

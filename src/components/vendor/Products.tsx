@@ -6,6 +6,7 @@ import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { fetch, post } from '../../api/apiAction'
+import { useVendor } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
@@ -18,8 +19,10 @@ import { createdProduct, createFailed, creatingProduct } from '../../redux/admin
 import { fetchingSubCategories, retrievedSubCategories, fetchFailed } from '../../redux/admin/subCategories/subCategories.slice'
 const Products = () => {
 
-    //  get token
+    const navigate = useNavigate()
     const token = localStorage.getItem('token')
+
+    useVendor(navigate, token)
 
     const params = useParams()
     const { id } = params
@@ -46,8 +49,6 @@ const Products = () => {
     }, [dispatch, token])
 
     const { isLoading, products } = useSelector((state: RootState) => state.storeProducts)
-
-    const navigate = useNavigate()
 
     // get subcategories
     useEffect(() => {

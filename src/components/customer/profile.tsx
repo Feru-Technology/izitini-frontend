@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import SiderBar from './SiderBar'
-import { format } from 'date-fns'
 import Header from '../vendor/Header'
+import { useParams } from 'react-router-dom'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 import { update, fetch } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getUser, user, userFailed } from '../../redux/admin/users/user.slice'
 import {
     updatingUser,
@@ -18,16 +18,13 @@ import {
 
 const Profile = () => {
 
+    useAuth()
+
     const params = useParams()
     const { id } = params
     const input = useRef(null)
     const dispatch = useDispatch()
     const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!token) navigate('/signin')
-    })
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -38,7 +35,7 @@ const Profile = () => {
         fetch(dispatch, user, userFailed, '/users/my/profile', token)
     }, [dispatch, id, token])
 
-    const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
+    const { currentUser, error } = useSelector((state: RootState) => state.user)
 
     const [isClosed, setIsClosed] = useState(true)
     const [editMode, setEditMode] = useState(false)
@@ -76,7 +73,7 @@ const Profile = () => {
         update(dispatch, updated, updateFailed, `/users/profile-image`, formData, token)
     }
 
-    const { isUpdating, updatedUser, updateError } = useSelector((state: RootState) => state.updateUser)
+    const { updatedUser } = useSelector((state: RootState) => state.updateUser)
 
     useEffect(() => {
         if (updatedUser) {
