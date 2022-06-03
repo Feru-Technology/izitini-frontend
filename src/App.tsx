@@ -12,11 +12,13 @@ import Orders from './components/vendor/Orders'
 import Reports from './components/admin/reports'
 import ShopOrder from './components/vendor/order'
 import Coupons from './components/vendor/Coupons'
+import AllOrders from './components/admin/Orders'
 import Products from './components/admin/products'
 import MyOrders from './components/customer/orders'
 import Product from './components/customer/product'
 import MyReports from './components/vendor/Reports'
 import Profile from './components/customer/profile'
+import SingleOrders from './components/admin/order'
 import Settings from './components/customer/settings'
 import AdminProduct from './components/admin/product'
 import MyProducts from './components/vendor/Products'
@@ -104,9 +106,11 @@ const App = () => {
                     <Route path='users/:id' element={<User />} />
                     <Route path='shops/:id' element={<Shop />} />
                     <Route path='reports' element={<Reports />} />
+                    <Route path='orders' element={<AllOrders />} />
                     <Route path='products' element={<Products />} />
                     <Route path='categories' element={<Categories />} />
                     <Route path='settings' element={<AdminSettings />} />
+                    <Route path='orders/:id' element={<SingleOrders />} />
                     <Route path='products/:id' element={<AdminProduct />} />
                     <Route path='subCategories' element={<SubCategories />} />
                     <Route path='shops/create' element={<AdminCreateStore />} />
