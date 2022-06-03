@@ -3,6 +3,7 @@ import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useAuth } from '../../utils/hooks/auth'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
@@ -32,11 +33,14 @@ import {
 
 const Categories = () => {
 
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
     // redux
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -49,8 +53,6 @@ const Categories = () => {
     const [name, setName] = useState<string | null>(null)
     const [image_url, setImage_url] = useState<string | null>(null)
     const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
-
-    const navigate = useNavigate()
 
     // get categories
     useEffect(() => {
@@ -115,7 +117,7 @@ const Categories = () => {
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
+            {isLoggingIn || isLoading ? (<h1>loading ...</h1>)
                 : categories ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
@@ -198,7 +200,8 @@ const Categories = () => {
                                                 const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
 
                                                 return (
-                                                    <tr className='text-center text-xs md:text-base lg:text-base border-b
+                                                    <tr key={category.id}
+                                                        className='text-center text-xs md:text-base lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'

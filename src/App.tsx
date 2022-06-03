@@ -47,7 +47,7 @@ import CustomerSignUp from './components/customer/accounts/CustomerSignUp'
 import { loggedIn, login, reLoginFailed } from './redux/profile.slice'
 
 
-function App() {
+const App = () => {
 
     // redux
     const dispatch = useDispatch()

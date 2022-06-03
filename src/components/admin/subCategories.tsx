@@ -5,6 +5,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
+import { useAuth } from '../../utils/hooks/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch, post, update } from '../../api/apiAction'
@@ -38,11 +39,14 @@ import {
 
 const SubCategories = () => {
 
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
     // redux
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -56,8 +60,6 @@ const SubCategories = () => {
     const [image_url, setImage_url] = useState<string | null>()
     const [category_id, setCategory_id] = useState<string | null>(null)
     const [currentSubCategory, setCurrentSubCategory] = useState<ISubCategory | null>(null)
-
-    const navigate = useNavigate()
 
     // get subcategories
     useEffect(() => {
@@ -132,7 +134,7 @@ const SubCategories = () => {
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
+            {isLoggingIn || isLoading ? (<h1>loading ...</h1>)
                 : subCategories ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
@@ -209,12 +211,14 @@ const SubCategories = () => {
                                             </tr>
                                         </thead>
 
-                                        {subCategories.map((subCategory) => {
-                                            const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
-                                            return (
-                                                <tbody>
+                                        <tbody>
 
-                                                    <tr className='text-center text-xs md:text-base lg:text-base border-b
+                                            {subCategories.map((subCategory) => {
+                                                const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                return (
+
+                                                    <tr key={subCategory.id}
+                                                        className='text-center text-xs md:text-base lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
@@ -250,10 +254,10 @@ const SubCategories = () => {
                                                             text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
-                                                    </tr>
-                                                </tbody>)
-                                        })
-                                        }
+                                                    </tr>)
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
 
                                 </div>
@@ -311,8 +315,8 @@ const SubCategories = () => {
                                                     onChange={e => setCategory_id(e.target.value)}
                                                 >
                                                     <option>Choose category</option>
-                                                    {isLoading ? <h1>loading...</h1>
-                                                        : categories.map((c) => (<option value={c.id}>{c.name}</option>))}
+                                                    {isLoading ? 'loading...'
+                                                        : categories.map((c) => (<option key={c.id} value={c.id}>{c.name}</option>))}
                                                 </select>
                                             </div>
                                         </div>

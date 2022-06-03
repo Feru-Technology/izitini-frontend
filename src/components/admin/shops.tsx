@@ -4,6 +4,7 @@ import Header from '../vendor/Header'
 import { fetch } from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useAuth } from '../../utils/hooks/auth'
 import { useMediaQuery } from 'react-responsive'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,17 +16,19 @@ import {
 
 const Shops = () => {
 
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
     // redux
     const dispatch = useDispatch()
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
     const [isClosed, setIsClosed] = useState(true)
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingStores())
@@ -36,7 +39,7 @@ const Shops = () => {
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
+            {isLoggingIn || isLoading ? (<h1>loading ...</h1>)
                 : stores ? (
                     <div className='flex h-screen overflow-hidden'>
                         <SiderBar
@@ -108,12 +111,14 @@ const Shops = () => {
                                             </tr>
                                         </thead>
 
-                                        {stores.map((store) => {
-                                            const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
-                                            return (
-                                                <tbody>
+                                        <tbody>
 
-                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b
+                                            {stores.map((store) => {
+                                                const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                return (
+
+                                                    <tr key={store.id}
+                                                        className='text-center text-xs md:text-sm lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                         onClick={() => navigate(`/admin/shops/${store.id}`)} >
                                                         <td className='py-3 '>
@@ -138,10 +143,10 @@ const Shops = () => {
                                                         <td className='py-3 '>
                                                             <p className='font-normal text-sm'>{store.about_shop}</p>
                                                         </td>
-                                                    </tr>
-                                                </tbody>)
-                                        })
-                                        }
+                                                    </tr>)
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
 
                                 </div>

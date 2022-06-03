@@ -6,6 +6,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetch, post, prodImg } from '../../api/apiAction'
@@ -32,10 +33,13 @@ import {
 
 const Products = () => {
 
-    const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const dispatch = useDispatch()
+
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -52,8 +56,6 @@ const Products = () => {
     const [showAllProducts, setShowAllProducts] = useState(true)
     const [showUnpublished, setShowUnpublished] = useState(false)
     const [subCategory, setSubCategory] = useState<string | null>(null)
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingProducts())
@@ -116,7 +118,7 @@ const Products = () => {
 
     return (
         <>
-            {isFetching ? (<h1>loading ...</h1>)
+            {isLoggingIn || isFetching ? (<h1>loading ...</h1>)
                 : products ?
                     (
                         <div className='flex h-screen overflow-hidden'>
@@ -240,9 +242,9 @@ const Products = () => {
 
                                             <tbody>
                                                 {products.map((product) => {
-                                                    // console.log(prodImg(product.id))
                                                     return (
-                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
+                                                        <tr key={product.id}
+                                                            className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
                                                             <td className='py-1 hover:text-dark-blue hover:underline'
                                                                 onClick={e => navigate(`/admin/products/${product.id}`)}>
                                                                 <div className='md:flex items-center'>
@@ -316,8 +318,8 @@ const Products = () => {
                                                         onChange={e => setShop_id(e.target.value)}
                                                     >
                                                         <option>Choose shop</option>
-                                                        {isLoading ? <h1>loading...</h1>
-                                                            : stores.map((s) => (<option value={s.id}>{s.name}</option>))}
+                                                        {isLoading ? 'Loading...'
+                                                            : stores.map((s) => (<option key={s.id} value={s.id}>{s.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>
@@ -331,8 +333,8 @@ const Products = () => {
                                                         onChange={e => setSubCategory(e.target.value)}
                                                     >
                                                         <option>Choose sub-category</option>
-                                                        {isSubCatLoading ? <h1>loading...</h1>
-                                                            : subCategories.map((c) => (<option>{c.name}</option>))}
+                                                        {isSubCatLoading ? 'Loading...'
+                                                            : subCategories.map((c) => (<option key={c.id}>{c.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>

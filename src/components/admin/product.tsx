@@ -8,12 +8,13 @@ import {
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { fetch, post, update, destroy } from '../../api/apiAction'
 import {
     product,
@@ -73,12 +74,15 @@ import {
 
 const AdminProduct = () => {
 
-    const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
+    const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -125,7 +129,6 @@ const AdminProduct = () => {
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
-    console.log(currentProduct);
 
     useEffect(() => {
         if (currentProduct) {
@@ -284,7 +287,7 @@ const AdminProduct = () => {
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
+            {isLoggingIn || isLoading ? (<h1>loading ...</h1>)
                 : currentProduct ?
                     (
                         <div className='flex h-screen overflow-hidden bg-gray-100'>
@@ -468,8 +471,8 @@ const AdminProduct = () => {
                                                             // onChange={e => setSubCategory(e.target.value)}
                                                             >
                                                                 <option>Choose sub-category</option>
-                                                                {isSubCatLoading ? <h1>loading...</h1>
-                                                                    : subCategories.map((c) => (<option>{c.name}</option>))}
+                                                                {isSubCatLoading ? 'loading...'
+                                                                    : subCategories.map((c) => (<option key={c.id}>{c.name}</option>))}
                                                             </select>
                                                         </div>
                                                     </div>
@@ -510,15 +513,16 @@ const AdminProduct = () => {
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4'>
 
-                                                    {currentProduct.sizes.map((size) => {
+                                                    {currentProduct.sizes.map((s) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
-                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
-                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
-                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
+                                                            <div key={s.size.id}
+                                                                className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{s.size.size}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{s.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteSize(size.size.id)} />
+                                                                    onClick={() => deleteSize(s.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -548,15 +552,16 @@ const AdminProduct = () => {
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
 
-                                                    {currentProduct.colors.map((color) => {
+                                                    {currentProduct.colors.map((c) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
-                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
-                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
-                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
+                                                            <div key={c.color.id}
+                                                                className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{c.color.name}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{c.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteColor(color.color.id)} />
+                                                                    onClick={() => deleteColor(c.color.id)} />
 
                                                             </div>
                                                         )
@@ -597,16 +602,17 @@ const AdminProduct = () => {
                                                             <img src={currentProduct.product.display_image} alt='product_image' className='h-32 rounded w-full' />
                                                         </div> : ''}
 
-                                                    {currentProduct.images.map((image) => {
+                                                    {currentProduct.images.map((i) => {
                                                         return (
-                                                            <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                            <div key={i.image.id}
+                                                                className='bg-white font-medium text-xs md:text-sm lg:text-base
                                                             rounded relative hover:shadow-sm group'>
                                                                 <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
-                                                                    onClick={() => removeImage(image.image.id)}
+                                                                    onClick={() => removeImage(i.image.id)}
                                                                 />
 
-                                                                <img src={image.image.image_url} alt='product_image' className='h-32 rounded w-full' />
+                                                                <img src={i.image.image_url} alt='product_image' className='h-32 rounded w-full' />
                                                             </div>
                                                         )
                                                     })}

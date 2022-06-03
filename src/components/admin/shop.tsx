@@ -2,13 +2,14 @@ import SiderBar from './SiderBar'
 import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { AiFillCamera } from 'react-icons/ai'
-import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 import { useState, useEffect, useRef } from 'react'
 import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import {
     store,
     getStore,
@@ -21,14 +22,19 @@ import {
 } from '../../redux/stores/updateStore.slice'
 const Shop = () => {
 
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
     const input = useRef(null)
     const { id } = useParams()
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     useEffect(() => {
         dispatch(getStore())
@@ -82,7 +88,7 @@ const Shop = () => {
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>) :
+            {isLoggingIn || isLoading ? (<h1>loading ...</h1>) :
                 (
                     <div className='flex h-screen overflow-hidden bg-gray-100'>
                         <SiderBar

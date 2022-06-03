@@ -1,14 +1,17 @@
 import { useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { Link } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
+import { Link, useNavigate } from 'react-router-dom'
 
 const CustomerDashboard = () => {
 
-    useAuth()
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+
+    useAuth(navigate, token)
 
     const [isClosed, setIsClosed] = useState(true)
     const isStatic = useMediaQuery({

@@ -9,7 +9,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
-import { useVendor } from '../../utils/hooks/auth'
+import { useAuth } from '../../utils/hooks/auth'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -76,17 +76,17 @@ const VendorProduct = () => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
 
-    useVendor(navigate, token)
+    useAuth(navigate, token, 'business')
 
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
 
-    const { profile } = useSelector((state: RootState) => state.profile)
-
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
     })
+
+    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     // product states
     const [isClosed, setIsClosed] = useState(true)
@@ -277,8 +277,8 @@ const VendorProduct = () => {
 
     return (
         <>
-            {isLoading ? (<h1>loading ...</h1>)
-                : currentProduct ?
+            {isLoggingIn || isLoading ? 'loading' :
+                currentProduct ?
                     (
                         <div className='flex h-screen overflow-hidden bg-gray-100'>
                             <SiderBar
@@ -844,6 +844,7 @@ const VendorProduct = () => {
                     : ''
 
             }
+
         </>
     )
 }

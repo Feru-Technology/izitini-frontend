@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { useParams } from 'react-router-dom'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
@@ -9,6 +8,7 @@ import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { update, fetch } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getUser, user, userFailed } from '../../redux/admin/users/user.slice'
 import {
     updatingUser,
@@ -18,13 +18,15 @@ import {
 
 const Profile = () => {
 
-    useAuth()
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+
+    useAuth(navigate, token)
 
     const params = useParams()
     const { id } = params
     const input = useRef(null)
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',

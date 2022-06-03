@@ -6,6 +6,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
+import { useAuth } from '../../utils/hooks/auth'
 import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -27,13 +28,16 @@ import {
 
 const SubCatProducts = () => {
 
-    const dispatch = useDispatch()
     const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
+    const dispatch = useDispatch()
 
     const params = useParams()
     const { id } = params
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const { isLoading } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -45,8 +49,6 @@ const SubCatProducts = () => {
     const [unit, setUnit] = useState<string | null>(null)
     const [brand, setBrand] = useState<string | null>(null)
     const [shop_id, setShop_id] = useState<string | null>(null)
-
-    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingSubCategory())
@@ -61,7 +63,7 @@ const SubCatProducts = () => {
         fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
-    const { isLoading, stores } = useSelector((state: RootState) => state.stores)
+    const { stores } = useSelector((state: RootState) => state.stores)
 
     const createProduct = () => {
         dispatch(creatingProduct())
@@ -81,7 +83,7 @@ const SubCatProducts = () => {
 
     return (
         <>
-            {isFetching ? (<h1>loading ...</h1>)
+            {isLoading || isFetching ? (<h1>loading ...</h1>)
                 : subCategory ?
                     (
                         <div className='flex h-screen overflow-hidden'>
@@ -155,10 +157,12 @@ const SubCatProducts = () => {
                                                 </tr>
                                             </thead>
 
-                                            {subCategory.map((subCat) => {
-                                                return (
-                                                    <tbody>
-                                                        <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
+                                            <tbody>
+
+                                                {subCategory.map((subCat) => {
+                                                    return (
+                                                        <tr key={subCat.product.id}
+                                                            className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100'>
                                                             <td className='py-1 '>
                                                                 <div className='md:flex items-center'>
                                                                     <div className='md:w-1/4 mx-3'>
@@ -183,11 +187,11 @@ const SubCatProducts = () => {
                                                             <td className='py-3 '>
                                                                 <p className='font-normal text-sm'>{format(new Date(subCat.product.createdAt), 'dd.MM.yyyy')}</p>
                                                             </td>
-                                                        </tr>
-                                                    </tbody>)
-                                            }
+                                                        </tr>)
+                                                }
 
-                                            )}
+                                                )}
+                                            </tbody>
 
                                         </table>
 
@@ -228,8 +232,8 @@ const SubCatProducts = () => {
                                                         onChange={e => setShop_id(e.target.value)}
                                                     >
                                                         <option>Choose shop</option>
-                                                        {isLoading ? <h1>loading...</h1>
-                                                            : stores.map((s) => (<option value={s.id}>{s.name}</option>))}
+                                                        {isLoading ? 'loading...'
+                                                            : stores.map((s) => (<option key={s.id} value={s.id}>{s.name}</option>))}
                                                     </select>
                                                 </div>
                                             </div>

@@ -5,6 +5,7 @@ import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
+import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetch, post, update } from '../../api/apiAction'
@@ -33,14 +34,17 @@ import {
 // all subcategory in a category
 const CatSubCategories = () => {
 
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    useAuth(navigate, token, 'admin')
+
     // redux
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
 
     const params = useParams()
     const { id } = params
 
-    const { profile } = useSelector((state: RootState) => state.profile)
+    const { isLoading } = useSelector((state: RootState) => state.profile)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -54,8 +58,6 @@ const CatSubCategories = () => {
     const [image_url, setImage_url] = useState<string | null>()
     const [currentSubCategory, setCurrentSubCategory] = useState<{ id: string, name: string, image_url: string } | null>(null)
 
-    const navigate = useNavigate()
-
     // get subcategories
     useEffect(() => {
         dispatch(fetchingCategory())
@@ -63,8 +65,6 @@ const CatSubCategories = () => {
     }, [dispatch, id])
 
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
-
-    console.log(category)
 
     const catName = category?.name
 
@@ -200,12 +200,14 @@ const CatSubCategories = () => {
                                             </tr>
                                         </thead>
 
-                                        {category.subCategories.map((subCategory) => {
-                                            const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
-                                            return (
-                                                <tbody>
+                                        <tbody>
 
-                                                    <tr className='text-center text-xs md:text-base lg:text-base border-b
+                                            {category.subCategories.map((subCategory) => {
+                                                const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                return (
+
+                                                    <tr key={subCategory.id}
+                                                        className='text-center text-xs md:text-base lg:text-base border-b
                                                     text-gray-800 hover:bg-gray-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
@@ -240,10 +242,10 @@ const CatSubCategories = () => {
                                                             text-white bg-red-800 hover:bg-red-700 hover:shadow-md transition duration-150 ease-in-out'
                                                                 onClick={() => setDeleteMode(true)} >Delete</div>
                                                         </td>
-                                                    </tr>
-                                                </tbody>)
-                                        })
-                                        }
+                                                    </tr>)
+                                            })
+                                            }
+                                        </tbody>
                                     </table>
 
                                 </div>

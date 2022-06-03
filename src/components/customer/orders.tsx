@@ -13,12 +13,13 @@ import { getOrders, orders as myOrders, ordersFailed } from '../../redux/order/o
 
 const MyOrders = () => {
 
-    useAuth()
+    const navigate = useNavigate()
+    const token = localStorage.getItem('token')
+
+    useAuth(navigate, token)
 
     // redux
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
 
     const [isClosed, setIsClosed] = useState(true)
     const [showAllOrders, setShowAllOrders] = useState(true)
