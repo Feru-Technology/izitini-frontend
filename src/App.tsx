@@ -1,5 +1,6 @@
 import { fetch } from './api/apiAction'
 import { useDispatch } from 'react-redux'
+import Ad from './components/admin/Ads'
 import User from './components/admin/user'
 import Shop from './components/admin/shop'
 import Shops from './components/admin/shops'
@@ -101,6 +102,7 @@ const App = () => {
 
                 <Route path='/admin' >
                     <Route index element={<AdminDashboard />} />
+                    <Route path='ads' element={<Ad />} />
                     <Route path='users' element={<Users />} />
                     <Route path='shops' element={<Shops />} />
                     <Route path='users/:id' element={<User />} />

@@ -2,7 +2,7 @@ import React from 'react'
 import { BsShop } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 import { Transition } from '@headlessui/react'
-import { FaProductHunt } from 'react-icons/fa'
+import { FaProductHunt, FaBuysellads } from 'react-icons/fa'
 import { MdReportProblem } from 'react-icons/md'
 import { loggedIn } from '../../redux/profile.slice'
 import { BiCategoryAlt, BiCategory } from 'react-icons/bi'
@@ -102,6 +102,25 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                                         <TemplateIcon className='flex-shrink-0 h-5 w-5' />
                                         <p className=' text-sm font-medium ml-3 text-white   duration-200'>
                                             Dashboard
+                                        </p>
+                                    </div>
+                                </Link>
+                            </li>
+                            <li
+                                className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname.includes('ads') && 'bg-gray-800'
+                                    }`}
+                                onClick={handleClick}
+                            >
+                                <Link
+                                    to='/admin/ads'
+                                    className={`block text-gray-200 hover:text-white truncate transition duration-150 ${pathname.includes('ads') &&
+                                        'hover:text-gray-400'
+                                        }`}
+                                >
+                                    <div className='flex items-center'>
+                                        <FaBuysellads className='flex-shrink-0 h-5 w-5' />
+                                        <p className='text-sm font-medium ml-3  duration-200'>
+                                            Ads
                                         </p>
                                     </div>
                                 </Link>
