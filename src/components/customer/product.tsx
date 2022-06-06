@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { CategoryBar } from './categoryBar'
 import { useParams } from 'react-router-dom'
-import { AiFillStar } from 'react-icons/all'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { fetch, post } from '../../api/apiAction'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChevronRightIcon } from '@heroicons/react/solid'
+import { AiFillStar, AiOutlineStar } from 'react-icons/all'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
 import {
     getProduct,
@@ -63,6 +63,8 @@ const Product = () => {
             setDisplayImage(currentProduct.product.display_image)
         }
     }, [currentProduct])
+
+    // const qty = (n: any) => n === 1 ? '1' : qty(n - 1) + ', ' + n
 
     return (
         <div className='bg-gray-100 md:bg-white'>
@@ -229,55 +231,78 @@ const Product = () => {
                                             </div>
                                         </div>
                                         <div className='md:w-1/3 md:ml-4'>
-                                            <div className='text-sm md:text-base space-y-3'>
-                                                <h2 className='text-xl font-bold dm:text-2xl lg:text-3xl'>{currentProduct?.product.name}</h2>
-                                                <p>{currentProduct?.product.shop.name}</p>
+                                            <div className='text-sm md:text-base'>
+                                                <h2 className='font-medium text-lg lg:text-xl'>{currentProduct?.product.name}</h2>
+                                                <p className='text-xs lg:text-sm'>{currentProduct?.product.shop.name}</p>
                                                 <p></p>
-                                                <span className='flex text-xl md:text-3xl lg:text-4xl'
-                                                    style={{ color: '#ff9900' }}
-                                                >
-                                                    <i>
-                                                        <AiFillStar />
-                                                    </i>
-                                                    <i>
-                                                        <AiFillStar />
-                                                    </i>
-                                                    <i>
-                                                        <AiFillStar />
-                                                    </i>
-                                                    <i>
-                                                        <AiFillStar />
-                                                    </i>
-                                                    <i>
-                                                        <AiFillStar />
-                                                    </i>
-                                                    <span className='ml-3 text-black text-base md:text-2xl'> (28)</span>
-                                                </span>
-                                                <p className='text-base font-bold md:text-lg'>{currentProduct?.product.shop.name}</p>
+
+                                                {/* Rate */}
+                                                <div className='flex mt-2'>
+                                                    <div className='flex text-lg lg:text-2xl'
+                                                        style={{ color: '#ff9900' }}
+                                                    >
+                                                        <i>
+                                                            <AiOutlineStar />
+                                                        </i>
+                                                        <i>
+                                                            <AiOutlineStar />
+                                                        </i>
+                                                        <i>
+                                                            <AiOutlineStar />
+                                                        </i>
+                                                        <i>
+                                                            <AiOutlineStar />
+                                                        </i>
+                                                        <i>
+                                                            <AiOutlineStar />
+                                                        </i>
+                                                    </div>
+                                                    <span className='ml-1 -mt-1 text-black text-base lg:text-lg'> (0)</span>
+                                                </div>
+                                                <p className='text-base font-bold md:text-lg'>{currentProduct?.product.brand}</p>
                                                 <p>read to ship in Kigali</p>
                                                 <p>{currentProduct?.product.price}</p>
                                                 <p>{currentProduct.product.description}</p>
-                                                <div className='md:flex md:space-x-3 lg:space-x-5'>
+
+                                                <div>
+
+                                                    {currentProduct.colors ?
+                                                        (<select name='choose color' className='w-full border rounded px-3 bg-white text-gray-600 py-2 mt-4 appearance-none border-gray-300
+                                                        outline-none focus:ring-1 focus:border-dark-blue'>
+                                                            <option value=''>Choose Color</option>
+                                                            {currentProduct.colors.map((c) => (<option key={c.color.id}>{c.color.name}</option>))}
+                                                        </select>)
+                                                        : ''}
+
+                                                    {currentProduct.sizes ?
+                                                        (<select name='choose size' className='w-full border rounded px-3 bg-white text-gray-600 py-2 mt-4 appearance-none border-gray-300
+                                                        outline-none focus:ring-1 focus:border-dark-blue'>
+                                                            <option value=''>Choose Size</option>
+                                                            {currentProduct.sizes.map((s) => (<option key={s.size.id}>{s.size.size}</option>))}
+                                                        </select>)
+                                                        : ''}
+                                                </div>
+
+                                                <div className='md:flex md:space-x-3 lg:space-x-5 mt-4'>
                                                     <div className='md:w-1/2'>
                                                         <div className='w-full'>
-                                                            <select
-                                                                className='w-full h-9 rounded border bg-white px-3'
-                                                                aria-label='multiple select example'
-                                                                onChange={e => setQuantity(e.target.value)}
-                                                            >
-                                                                <option value='1'>1</option>
-                                                                <option value='2'>2</option>
-                                                                <option value='3'>3</option>
-                                                            </select>
+
+                                                            <input
+                                                                type='number' min='1' defaultValue='1'
+                                                                className='w-full border rounded px-3 bg-white text-gray-600 py-2 appearance-none border-gray-300
+                                                                outline-none focus:ring-1 focus:border-dark-blue'
+
+                                                            // onChange={e => setName(e.target.value)}
+                                                            />
                                                         </div>
                                                     </div>
 
                                                     <div className='flex mt-3 space-x-3 text-base
-                                        md:w-1/2 md:space-x-0 md:mt-0'>
+                                                        md:w-1/2 md:space-x-0 md:mt-0'>
                                                         <div className='w-1/3 md:sr-only'>
                                                             <button
                                                                 className='flex btn bg-color border border-dark-blue text-dark-blue
-                                                    w-full h-9 rounded bg-dark-white items-center justify-center font-medium'
+                                                                w-full h-9 rounded bg-dark-white items-center justify-center font-medium'
                                                             >
                                                                 <span></span>
                                                                 <HeartIcon className='h-4 w-auto' aria-hidden='true' />
@@ -286,7 +311,7 @@ const Product = () => {
                                                         </div>
                                                         <div className='w-2/3 md:w-full'>
                                                             <button
-                                                                className='btn bg-color text-white w-full h-9 rounded bg-dark-blue font-medium'
+                                                                className='btn bg-color text-white w-full py-2 rounded bg-dark-blue font-medium'
                                                                 onClick={() => addToCart()}
                                                             >
                                                                 Add to cart

@@ -16,6 +16,7 @@ export interface productState {
             quantity: string
         }[]
         colors: {
+            id: string
             color: IColor
             price: number
             quantity: string
