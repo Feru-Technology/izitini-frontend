@@ -1,7 +1,8 @@
-FROM node:latest
-WORKDIR /usr/src/izitini
+FROM node:14.18.1-alpine
+WORKDIR /usr/src/izitini_front-end
 COPY . .
-RUN yarn install
+RUN npm install yarn
+RUN yarn
 RUN yarn run build
-EXPOSE 4000
+EXPOSE 4001
 CMD ["yarn", "start"]

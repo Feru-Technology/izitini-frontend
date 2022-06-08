@@ -13,12 +13,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { AiFillStar, AiOutlineStar } from 'react-icons/all'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
+import { addingToCart, cart, cartFailed } from '../../redux/order/cart'
 import {
     getProduct,
     product,
     productFailed
 } from '../../redux/products/product.slice'
-import { addingToCart, cart, cartFailed } from '../../redux/order/cart'
+
 const Product = () => {
 
     // redux
