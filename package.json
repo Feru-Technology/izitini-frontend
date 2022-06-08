@@ -44,7 +44,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "node --max-old-space-size=800 node_modules/@craco/craco/bin/craco.js build",
+    "build": "node --max-old-space-size=3000 node_modules/@craco/craco/bin/craco.js build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
