@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { auth } from '../../../api/auth'
 import { Transition } from '@headlessui/react'
 import { RootState } from '../../../redux/store'
-import { post, fetch } from '../../../api/apiAction'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
-import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../../../redux/categories/categories.slice'
+import { useCategories } from '../../../api/categories'
 
 const VendorSignUp = () => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(fetchingCategories())
-    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
-  }, [dispatch])
+  useCategories()
 
   const { isLoading, categories } = useSelector((state: RootState) => state.categories)
 
@@ -28,20 +24,6 @@ const VendorSignUp = () => {
   const [shop_specialty_2, setShop_specialty_2] = useState<string | null>(null)
 
   const navigate = useNavigate()
-
-  const signup = () => {
-    dispatch(login())
-    post(dispatch, loggedIn, loginFailed, '/auth/register-vendor', {
-      name,
-      email,
-      contact,
-      password,
-      full_name,
-      about_shop,
-      category1: shop_specialty_1,
-      category2: shop_specialty_2
-    })
-  }
 
   const { profile, loginSignupError } = useSelector((state: RootState) => state.profile)
 
@@ -212,7 +194,16 @@ const VendorSignUp = () => {
                   <button
                     className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                     type='button'
-                    onClick={() => signup()}
+                    onClick={() => auth(dispatch, 'register-vendor', {
+                      name,
+                      email,
+                      contact,
+                      password,
+                      full_name,
+                      about_shop,
+                      category1: shop_specialty_1,
+                      category2: shop_specialty_2
+                    })}
                   >
                     Sign Up
                   </button>

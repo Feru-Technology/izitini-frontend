@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { post } from '../../../api/apiAction'
+import { auth } from '../../../api/auth'
 import { Transition } from '@headlessui/react'
 import { RootState } from '../../../redux/store'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { login, loggedIn, loginFailed } from '../../../redux/profile.slice'
 
 const CustomerSignUp = () => {
 
@@ -17,16 +16,6 @@ const CustomerSignUp = () => {
   const [full_name, setFull_name] = useState<string | null>(null)
 
   const navigate = useNavigate()
-
-  const signup = () => {
-    dispatch(login())
-    post(dispatch, loggedIn, loginFailed, '/auth/register', {
-      email,
-      contact,
-      password,
-      full_name
-    })
-  }
 
   const { profile, loginSignupError } = useSelector((state: RootState) => state.profile)
 
@@ -179,7 +168,12 @@ const CustomerSignUp = () => {
                   <button
                     className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                     type='button'
-                    onClick={() => signup()}
+                    onClick={() => auth(dispatch, 'register', {
+                      email,
+                      contact,
+                      password,
+                      full_name
+                    })}
                   >
                     Sign Up
                   </button>

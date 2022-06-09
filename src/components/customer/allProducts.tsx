@@ -7,14 +7,14 @@ import { RootState } from '../../redux/store'
 
 const MyProducts = () => {
 
-    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+    const { categories } = useSelector((state: RootState) => state.categories)
 
     return (<>
         <div className='font-nova'>
             < Navbar />
             < CategoryBar
             />
-            {isLoading ? (<h1>Loading ...</h1>) : categories.length !== 0 ?
+            {categories.length !== 0 ?
                 (
 
                     <div className='mx-5 md:mx-10 lg:mx-12 xl:mx-24'>

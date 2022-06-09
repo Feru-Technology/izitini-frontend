@@ -1,19 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { post } from '../../../api/apiAction'
+import { auth } from '../../../api/auth'
 import { useNavigate } from 'react-router-dom'
 import { RootState } from '../../../redux/store'
 import { Transition } from '@headlessui/react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import {
-  useDispatch, useSelector
-} from 'react-redux'
-
-import {
-  login,
-  loggedIn,
-  loginFailed
-} from '../../../redux/profile.slice'
 const SignInPage = () => {
 
   // redux
@@ -21,12 +13,6 @@ const SignInPage = () => {
 
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
-
-  const loginF = () => {
-    dispatch(login())
-    post(dispatch, loggedIn, loginFailed, '/auth/login', { email, password })
-
-  }
 
   const { profile, loginSignupError } = useSelector((state: RootState) => state.profile)
 
@@ -204,7 +190,7 @@ const SignInPage = () => {
                     focus:outline-none'
                       onClick={(e) => {
                         e.preventDefault()
-                        loginF()
+                        return auth(dispatch, 'login', { email, password })
                       }}
                     >
                       sign in
