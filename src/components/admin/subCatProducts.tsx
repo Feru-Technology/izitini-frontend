@@ -3,11 +3,11 @@ import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { fetch, post } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
@@ -52,7 +52,7 @@ const SubCatProducts = () => {
 
     useEffect(() => {
         dispatch(fetchingSubCategory())
-        fetch(dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
+        axiosAction('get', dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
     }, [dispatch, id])
 
     const { isFetching, subCategory, fetchError } = useSelector((state: RootState) => state.adminSubCategory)
@@ -60,14 +60,14 @@ const SubCatProducts = () => {
 
     useEffect(() => {
         dispatch(fetchingStores())
-        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
     const { stores } = useSelector((state: RootState) => state.stores)
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory: categoryName, name, brand, unit }, token)
+        axiosAction('post', dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, token, { subCategory: categoryName, name, brand, unit })
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
@@ -75,7 +75,7 @@ const SubCatProducts = () => {
     useEffect(() => {
         if (product) {
             dispatch(fetchingSubCategory())
-            fetch(dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
+            axiosAction('get', dispatch, fetchedSubCategory, fetchFailed, `/admin/subcategory/products/${id}`)
             dispatch(createdProduct(null))
             setCreateMode(false)
         }

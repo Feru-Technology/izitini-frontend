@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { fetchingOrder, fetchedOrder, fetchFailed } from '../../redux/order/order.slice'
@@ -34,14 +34,14 @@ const ShopOrder = () => {
 
     useEffect(() => {
         dispatch(fetchingOrder())
-        fetch(dispatch, fetchedOrder, fetchFailed, `/orders/order/${id}`, token)
+        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/order/${id}`, token)
     }, [dispatch, id, token])
 
     const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)
 
     const updateOrderStatus = (status: string) => {
         dispatch(updatingOrder())
-        update(dispatch, updatedOrder, updateFailed, `/orders/order/status/${status}/${id}`, {}, token)
+        axiosAction('patch', dispatch, updatedOrder, updateFailed, `/orders/order/status/${status}/${id}`, token)
     }
 
     const { updated } = useSelector((state: RootState) => state.updateOrder)

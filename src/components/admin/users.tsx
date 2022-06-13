@@ -1,7 +1,7 @@
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { useState, useEffect } from 'react'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -33,17 +33,17 @@ const Users = () => {
 
     useEffect(() => {
         dispatch(fetchingUsers())
-        fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
+        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
     }, [dispatch, token])
 
     const fetchByAccountType = (accountType: string) => {
         dispatch(fetchingUsers())
-        fetch(dispatch, retrievedUsers, retrievedUserFailed, `/users/account-type/${accountType}`, token)
+        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, `/users/account-type/${accountType}`, token)
     }
 
     const all = () => {
         dispatch(fetchingUsers())
-        fetch(dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
+        axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/users', token)
     }
 
     const { users } = useSelector((state: RootState) => state.users)

@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FaTools } from 'react-icons/fa'
 import { CategoryBar } from './categoryBar'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Carousel } from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css" // requires a loader
@@ -32,7 +32,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingProducts())
-        fetch(dispatch, retrievedProducts, retrievedProductFailed, '/product')
+        axiosAction('get', dispatch, retrievedProducts, retrievedProductFailed, '/product')
     }, [dispatch])
 
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
@@ -40,7 +40,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(fetchingAds())
-        fetch(dispatch, retrievedAds, adsFailed, '/admin/ad')
+        axiosAction('get', dispatch, retrievedAds, adsFailed, '/admin/ad')
     }, [dispatch])
 
     const { isFetching, ads } = useSelector((state: RootState) => state.ad)

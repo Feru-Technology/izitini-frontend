@@ -2,9 +2,9 @@ import React from 'react'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { useNavigate } from 'react-router-dom'
 import { MdOutlineCancel } from 'react-icons/md'
-import { destroy, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { cart as getCart, cartFailed } from '../../redux/order/cart'
 import { getOrders, orders, ordersFailed } from '../../redux/order/orders.slice'
@@ -26,17 +26,17 @@ const Cart = () => {
 
     // remove order item handler
     const removeOrderItem = (order_id: string, product_id: string) => {
-        destroy(dispatch, getCart, cartFailed, `/orders/${order_id}/${product_id}`, token)
+        axiosAction('delete', dispatch, getCart, cartFailed, `/orders/${order_id}/${product_id}`, token)
     }
 
     // increase order quantity handler
     const increaseOrderItemQyt = (order_id: string, product_id: string) => {
-        update(dispatch, getCart, cartFailed, `/orders/increase-quantity/${order_id}/${product_id}`, {}, token)
+        axiosAction('patch', dispatch, getCart, cartFailed, `/orders/increase-quantity/${order_id}/${product_id}`, token)
     }
 
     // increase order quantity handler
     const reduceOrderItemQyt = (order_id: string, product_id: string) => {
-        update(dispatch, getCart, cartFailed, `/orders/reduce-quantity/${order_id}/${product_id}`, {}, token)
+        axiosAction('patch', dispatch, getCart, cartFailed, `/orders/reduce-quantity/${order_id}/${product_id}`, token)
     }
 
     const navigate = useNavigate()
@@ -47,7 +47,7 @@ const Cart = () => {
     // check out handler
     const checkOut = () => {
         dispatch(getOrders())
-        update(dispatch, orders, ordersFailed, '/orders/checkout', order, token)
+        axiosAction('patch', dispatch, orders, ordersFailed, '/orders/checkout', token, order)
         navigate('/orders')
     }
 

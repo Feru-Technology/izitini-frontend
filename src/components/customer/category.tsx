@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
 import { CategoryBar } from './categoryBar'
-import { fetch } from '../../api/apiAction'
-import { Link, useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
+import { Link, useParams } from 'react-router-dom'
 
 import {
     useSelector,
@@ -29,7 +29,7 @@ const Subcategory = () => {
 
     useEffect(() => {
         dispatch(getCategory())
-        fetch(dispatch, category, categoryFailed, `/admin/category/${categoryName}`)
+        axiosAction('get', dispatch, category, categoryFailed, `/admin/category/${categoryName}`)
     }, [categoryName, dispatch])
 
     const { isLoading, currentCategory } = useSelector((state: RootState) => state.category)

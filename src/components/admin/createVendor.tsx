@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { post } from '../../api/apiAction'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -27,7 +26,7 @@ const CreateVendor = () => {
 
   useEffect(() => {
     dispatch(fetchingCategories())
-    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
+    axiosAction('get', dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
   }, [dispatch])
 
   const { categories } = useSelector((state: RootState) => state.categories)
@@ -44,9 +43,9 @@ const CreateVendor = () => {
 
   const createVendor = () => {
     dispatch(postUser())
-    post(dispatch, getUser, userFailed, '/admin/user/vendor', {
+    axiosAction('post', dispatch, getUser, userFailed, '/admin/user/vendor', token, {
       email, tin_no, contact, full_name, name, about_shop, shop_specialty_1, shop_specialty_2
-    }, token)
+    })
   }
 
   const { isLoading, createdUser, error } = useSelector((state: RootState) => state.createUser)

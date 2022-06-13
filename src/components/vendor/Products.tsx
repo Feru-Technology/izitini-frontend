@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
-import { fetch, post } from '../../api/apiAction'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -47,7 +47,7 @@ const Products = () => {
 
     useEffect(() => {
         dispatch(fetchingProducts())
-        fetch(dispatch, storeProducts, productFailed, `/product/s/all`, token)
+        axiosAction('get', dispatch, storeProducts, productFailed, `/product/s/all`, token)
 
     }, [dispatch, token])
 
@@ -56,7 +56,7 @@ const Products = () => {
     // get subcategories
     useEffect(() => {
         dispatch(fetchingSubCategories())
-        fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
     }, [dispatch])
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
@@ -64,7 +64,7 @@ const Products = () => {
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, '/product', { subCategory, name, brand, unit }, token)
+        axiosAction('post', dispatch, createdProduct, createFailed, '/product', token, { subCategory, name, brand, unit })
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)

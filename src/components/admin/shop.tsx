@@ -3,11 +3,11 @@ import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useState, useEffect, useRef } from 'react'
-import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -38,7 +38,7 @@ const Shop = () => {
 
     useEffect(() => {
         dispatch(getStore())
-        fetch(dispatch, store, storeFailed, `/shop/${id}`)
+        axiosAction('get', dispatch, store, storeFailed, `/shop/${id}`)
     }, [dispatch, id])
 
     const { isLoading, currentStore, error } = useSelector((state: RootState) => state.store)
@@ -53,14 +53,14 @@ const Shop = () => {
 
     const updateShop = () => {
         dispatch(getStore())
-        update(dispatch, store, storeFailed, `/admin/shop/${id}`, { about_shop, shop_contact_no, shop_email, name }, token)
+        axiosAction('patch', dispatch, store, storeFailed, `/admin/shop/${id}`, token, { about_shop, shop_contact_no, shop_email, name })
     }
 
     const changeShopImage = (file: File) => {
         const formData = new FormData()
         formData.append('image', file)
         dispatch(updatingStore())
-        update(dispatch, updated, updateFailed, `/admin/shop/image/${id}`, formData, token)
+        axiosAction('patch', dispatch, updated, updateFailed, `/admin/shop/image/${id}`, token, formData)
     }
 
     const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
@@ -69,7 +69,7 @@ const Shop = () => {
         if (updatedStore) {
             dispatch(getStore())
             dispatch(updated(null))
-            fetch(dispatch, store, storeFailed, `/shop/${id}`)
+            axiosAction('get', dispatch, store, storeFailed, `/shop/${id}`)
         }
     })
 

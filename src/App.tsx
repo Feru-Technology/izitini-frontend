@@ -1,4 +1,4 @@
-import { fetch } from './api/apiAction'
+import axiosAction from './api/apiAction'
 import { useDispatch } from 'react-redux'
 import Ad from './components/admin/Ads'
 import User from './components/admin/user'
@@ -59,7 +59,7 @@ const App = () => {
 
     const profile = () => {
         dispatch(login())
-        fetch(dispatch, loggedIn, reLoginFailed, '/users/my/profile', token)
+        axiosAction('get', dispatch, loggedIn, reLoginFailed, '/users/my/profile', token)
     }
 
     if (token) profile()

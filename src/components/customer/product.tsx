@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
 import { CategoryBar } from './categoryBar'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
-import { fetch, post } from '../../api/apiAction'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChevronRightIcon } from '@heroicons/react/solid'
@@ -32,7 +32,7 @@ const Product = () => {
 
     useEffect(() => {
         dispatch(getProduct())
-        fetch(dispatch, product, productFailed, `/product/${id}`)
+        axiosAction('get', dispatch, product, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
     const token = localStorage.getItem('token')
@@ -41,11 +41,11 @@ const Product = () => {
 
     const addToCart = () => {
         dispatch(addingToCart())
-        post(dispatch, cart, cartFailed, '/orders/add-to-cart', {
+        axiosAction('post', dispatch, cart, cartFailed, '/orders/add-to-cart', token, {
             quantity: quantity,
             product_id: id,
             shop_id: currentProduct?.product.shop_id
-        }, token)
+        })
     }
 
     const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)

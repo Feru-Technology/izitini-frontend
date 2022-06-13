@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useAuth } from '../../utils/hooks/auth'
@@ -32,7 +32,7 @@ const Shops = () => {
 
     useEffect(() => {
         dispatch(fetchingStores())
-        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
     const { isLoading, stores } = useSelector((state: RootState) => state.stores)

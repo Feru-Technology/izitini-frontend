@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +10,6 @@ import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetch, post, destroy } from '../../api/apiAction'
 import { fetchingAds, retrievedAds, adsFailed } from '../../redux/admin/ads/ads.slice'
 import { creatingAd, createdAd, createFailed } from '../../redux/admin/ads/createAd.slice'
 import { deletingAd, deletedAd, deleteFailed } from '../../redux/admin/ads/deleteAd.slice'
@@ -36,7 +36,7 @@ const Ads = () => {
 
     useEffect(() => {
         dispatch(fetchingAds())
-        fetch(dispatch, retrievedAds, adsFailed, '/admin/ad')
+        axiosAction('get', dispatch, retrievedAds, adsFailed, '/admin/ad')
     }, [dispatch])
 
     const { isFetching, ads } = useSelector((state: RootState) => state.ad)
@@ -45,7 +45,7 @@ const Ads = () => {
         const formData = new FormData()
         formData.append('ad', file)
         dispatch(creatingAd())
-        post(dispatch, retrievedAds, createFailed, '/admin/ad', formData, token)
+        axiosAction('post', dispatch, retrievedAds, createFailed, '/admin/ad', token, formData)
         dispatch(createdAd(null))
     }
 
@@ -56,7 +56,7 @@ const Ads = () => {
 
     const deleteAd = (id: string) => {
         dispatch(deletingAd())
-        destroy(dispatch, retrievedAds, deleteFailed, `/admin/ad/${id}`, token)
+        axiosAction('delete', dispatch, retrievedAds, deleteFailed, `/admin/ad/${id}`, token)
         dispatch(deletedAd(null))
     }
 

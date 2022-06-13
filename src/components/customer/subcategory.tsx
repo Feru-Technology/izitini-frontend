@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
 import { CategoryBar } from './categoryBar'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Link, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -25,7 +25,7 @@ const Subcategory = () => {
 
     useEffect(() => {
         dispatch(fetchingSubCategoryProducts())
-        fetch(dispatch, subCategoryProducts, subCategoryProductsFailed, `admin/subcategory/products/${id}`)
+        axiosAction('get', dispatch, subCategoryProducts, subCategoryProductsFailed, `admin/subcategory/products/${id}`)
     }, [id, dispatch])
 
     const { isLoading, Products } = useSelector((state: RootState) => state.subCategoryProducts)

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -30,7 +30,7 @@ const Order = () => {
 
     useEffect(() => {
         dispatch(fetchingOrder())
-        fetch(dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
+        axiosAction('get', dispatch, fetchedOrder, fetchFailed, `/orders/mine/${id}`, token)
     }, [dispatch, id, token])
 
     const { fetching, order, fetchError } = useSelector((state: RootState) => state.order)

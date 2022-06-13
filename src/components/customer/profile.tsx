@@ -3,10 +3,10 @@ import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { update, fetch } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getUser, user, userFailed } from '../../redux/admin/users/user.slice'
@@ -34,7 +34,7 @@ const Profile = () => {
 
     useEffect(() => {
         dispatch(getUser())
-        fetch(dispatch, user, userFailed, '/users/my/profile', token)
+        axiosAction('get', dispatch, user, userFailed, '/users/my/profile', token)
     }, [dispatch, id, token])
 
     const { currentUser, error } = useSelector((state: RootState) => state.user)
@@ -50,7 +50,7 @@ const Profile = () => {
 
     const updateUser = () => {
         dispatch(getUser())
-        update(dispatch, user, userFailed, '/users/profile', { tin_no, contact, email, full_name, is_verified, account_type }, token)
+        axiosAction('patch', dispatch, user, userFailed, '/users/profile', token, { tin_no, contact, email, full_name, is_verified, account_type })
     }
 
     useEffect(() => {
@@ -72,7 +72,7 @@ const Profile = () => {
         const formData = new FormData()
         formData.append('image', file)
         dispatch(updatingUser())
-        update(dispatch, updated, updateFailed, `/users/profile-image`, formData, token)
+        axiosAction('patch', dispatch, updated, updateFailed, `/users/profile-image`, token, formData)
     }
 
     const { updatedUser } = useSelector((state: RootState) => state.updateUser)
@@ -81,7 +81,7 @@ const Profile = () => {
         if (updatedUser) {
             dispatch(getUser())
             dispatch(updated(null))
-            fetch(dispatch, user, userFailed, '/users/my/profile', token)
+            axiosAction('get', dispatch, user, userFailed, '/users/my/profile', token)
         }
     })
 

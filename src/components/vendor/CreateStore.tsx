@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import Header from './Header'
 import SiderBar from './SiderBar'
-import { post } from '../../api/apiAction'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
@@ -34,7 +33,7 @@ const CreateStore = () => {
 
   useEffect(() => {
     dispatch(fetchingCategories())
-    fetch(dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
+    axiosAction('get', dispatch, retrievedCategories, retrievedCategoryFailed, '/category')
   }, [dispatch])
 
   const { isLoading, categories } = useSelector((state: RootState) => state.AllCategories)
@@ -47,12 +46,13 @@ const CreateStore = () => {
 
   const createStore = () => {
     dispatch(getStore())
-    post(
+    axiosAction(
+      'get',
       dispatch,
       store,
       storeFailed, '/shop',
-      { category, name, about_shop, shop_email, shop_contact_no },
-      token
+      token,
+      { category, name, about_shop, shop_email, shop_contact_no }
     )
   }
 

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { post } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -31,7 +31,7 @@ const CreateCustomer = () => {
 
   const createCustomer = () => {
     dispatch(postUser())
-    post(dispatch, getUser, userFailed, '/admin/user', { email, tin_no, contact, full_name }, token)
+    axiosAction('post', dispatch, getUser, userFailed, '/admin/user', token, { email, tin_no, contact, full_name })
   }
 
   const { isLoading, createdUser, error } = useSelector((state: RootState) => state.createUser)

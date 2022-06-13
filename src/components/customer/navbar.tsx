@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RiSearchLine } from 'react-icons/ri'
 import { RootState } from '../../redux/store'
 import { AiOutlineHome } from 'react-icons/ai'
@@ -29,7 +29,7 @@ export const Navbar = () => {
 
     useEffect(() => {
         dispatch(addingToCart())
-        fetch(dispatch, getCart, cartFailed, '/orders/cart', token)
+        axiosAction('get', dispatch, getCart, cartFailed, '/orders/cart', token)
     }, [dispatch, token])
 
     const { cart } = useSelector((state: RootState) => state.cart)

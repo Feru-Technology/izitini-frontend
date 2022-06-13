@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import { post } from '../../api/apiAction'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
@@ -47,13 +46,13 @@ const CreateProduct = () => {
   // get all vendors without shops
   useEffect(() => {
     dispatch(fetchingUsers())
-    fetch(dispatch, retrievedUsers, retrievedUserFailed, '/admin/user/vendor-without-shop', token)
+    axiosAction('get', dispatch, retrievedUsers, retrievedUserFailed, '/admin/user/vendor-without-shop', token)
   }, [dispatch, token])
 
   // get all categories
   useEffect(() => {
     dispatch(fetchingCategories())
-    fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
+    axiosAction('get', dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
   }, [dispatch])
 
 
@@ -72,12 +71,13 @@ const CreateProduct = () => {
 
   const createStore = () => {
     dispatch(addStore())
-    post(
+    axiosAction(
+      'post',
       dispatch,
       getStore,
       storeFailed, '/admin/shop',
-      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner, shop_image_url },
-      token
+      token,
+      { shop_specialty_1, shop_specialty_2, name, about_shop, shop_email, shop_contact_no, owner, shop_image_url }
     )
   }
 
@@ -89,7 +89,7 @@ const CreateProduct = () => {
     const formData = new FormData()
     formData.append('image', file)
     dispatch(uploadingImage())
-    post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+    axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
   }
 
   const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)

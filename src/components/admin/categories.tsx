@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useAuth } from '../../utils/hooks/auth'
 import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetch, post, update } from '../../api/apiAction'
 import {
     fetchingCategories,
     retrievedCategories,
@@ -57,7 +57,7 @@ const Categories = () => {
     // get categories
     useEffect(() => {
         dispatch(fetchingCategories())
-        fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+        axiosAction('get', dispatch, retrievedCategories, categoriesFailed, '/admin/category')
     }, [dispatch])
 
     const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
@@ -65,7 +65,7 @@ const Categories = () => {
     // create category 
     const createNewCategory = () => {
         dispatch(createCategory())
-        post(dispatch, createdCategory, createFailed, '/admin/category', { name, image_url }, token)
+        axiosAction('post', dispatch, createdCategory, createFailed, '/admin/category', token, { name, image_url })
     }
 
     const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
@@ -73,7 +73,7 @@ const Categories = () => {
     // update category
     const updateCategory = (id: any) => {
         dispatch(updatingCategory())
-        update(dispatch, updated, updateFailed, `/admin/category/${id}`, { name, image_url }, token)
+        axiosAction('patch', dispatch, updated, updateFailed, `/admin/category/${id}`, token, { name, image_url })
     }
 
     const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
@@ -82,7 +82,7 @@ const Categories = () => {
     useEffect(() => {
         if (updatedCategories) {
             dispatch(fetchingCategories())
-            fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+            axiosAction('get', dispatch, retrievedCategories, categoriesFailed, '/admin/category')
             dispatch(updated(null))
             return setEditMode(false)
         }
@@ -92,7 +92,7 @@ const Categories = () => {
     useEffect(() => {
         if (category) {
             dispatch(fetchingCategories())
-            fetch(dispatch, retrievedCategories, categoriesFailed, '/admin/category')
+            axiosAction('get', dispatch, retrievedCategories, categoriesFailed, '/admin/category')
             dispatch(createdCategory(null))
             return setCreateMode(false)
         }
@@ -103,7 +103,7 @@ const Categories = () => {
         const formData = new FormData()
         formData.append('image', file)
         dispatch(uploadingImage())
-        post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
     }
 
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)

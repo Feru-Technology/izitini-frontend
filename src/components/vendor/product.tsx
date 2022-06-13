@@ -6,6 +6,7 @@ import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
@@ -13,7 +14,6 @@ import { useAuth } from '../../utils/hooks/auth'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetch, post, update, destroy } from '../../api/apiAction'
 import {
     product,
     getProduct,
@@ -124,12 +124,12 @@ const VendorProduct = () => {
         if (newStatus === 'publish') {
             //publish
             dispatch(updatingProductStatus())
-            update(dispatch, updatedProductStatus, failedToUpdateStatus, `/product/publish/${id}`, {}, token)
+            axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/publish/${id}`, token)
             return newStatus
         }
         // un-publish
         dispatch(updatingProductStatus())
-        update(dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, {}, token)
+        axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, token)
         return newStatus
     }
 
@@ -137,7 +137,7 @@ const VendorProduct = () => {
 
     useEffect(() => {
         dispatch(getProduct())
-        fetch(dispatch, product, productFailed, `/product/${id}`)
+        axiosAction('get', dispatch, product, productFailed, `/product/${id}`)
     }, [dispatch, id])
 
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
@@ -159,7 +159,7 @@ const VendorProduct = () => {
     // get subcategories
     useEffect(() => {
         dispatch(fetchingSubCategories())
-        fetch(dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
     }, [dispatch])
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
@@ -167,7 +167,7 @@ const VendorProduct = () => {
 
     const updateProduct = () => {
         dispatch(updatingProduct())
-        update(dispatch, updatedProduct, updateFailed, `/product/${id}`, { name, unit, price, brand, status, manual, quantity, specification }, token)
+        axiosAction('patch', dispatch, updatedProduct, updateFailed, `/product/${id}`, token, { name, unit, price, brand, status, manual, quantity, specification })
     }
 
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
@@ -175,22 +175,22 @@ const VendorProduct = () => {
     // create product size
     const createSize = () => {
         dispatch(creatingSize())
-        post(dispatch, createdSize, createFailed, `/product/size/${id}`, {
+        axiosAction('post', dispatch, createdSize, createFailed, `/product/size/${id}`, token, {
             size,
             price: pricePerSize,
             quantity: sizeQuantity
-        }, token)
+        })
     }
 
     const { isCreatingSize, newSize, sizeError } = useSelector((state: RootState) => state.createSize)
 
     const createColor = () => {
         dispatch(creatingColor())
-        post(dispatch, createdColor, createColorFailed, `/product/color/${id}`, {
+        axiosAction('post', dispatch, createdColor, createColorFailed, `/product/color/${id}`, token, {
             name: colorName,
             price: pricePerColor,
             quantity: colorQuantity,
-        }, token)
+        })
     }
 
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
@@ -198,7 +198,7 @@ const VendorProduct = () => {
     // remove size from product
     const deleteSize = (size_id: string) => {
         dispatch(deletingSize())
-        destroy(dispatch, deletedSize, deleteFailed, `/product/size/${id}/${size_id}`, token)
+        axiosAction('delete', dispatch, deletedSize, deleteFailed, `/product/size/${id}/${size_id}`, token)
     }
 
     const { deleted } = useSelector((state: RootState) => state.deleteSize)
@@ -206,7 +206,7 @@ const VendorProduct = () => {
     // remove color from product
     const deleteColor = (color_id: string) => {
         dispatch(deletingColor())
-        destroy(dispatch, deletedColor, deleteColorFailed, `/product/color/${id}/${color_id}`, token)
+        axiosAction('delete', dispatch, deletedColor, deleteColorFailed, `/product/color/${id}/${color_id}`, token)
     }
 
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
@@ -216,7 +216,7 @@ const VendorProduct = () => {
         const formData = new FormData()
         formData.append('image', file)
         dispatch(uploadingImage())
-        post(dispatch, uploadedImage, uploadFailed, '/images', formData, token)
+        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images', token, formData)
     }
 
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
@@ -231,14 +231,14 @@ const VendorProduct = () => {
 
     const addProductImage = () => {
         dispatch(addingImage())
-        post(dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, {}, token)
+        axiosAction('post', dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, token)
     }
 
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
 
     const removeImage = (img_id: string) => {
         dispatch(removingImg())
-        destroy(dispatch, removedImg, removeImgFailed, `/product/image/${id}/${img_id}`, token)
+        axiosAction('delete', dispatch, removedImg, removeImgFailed, `/product/image/${id}/${img_id}`, token)
     }
 
     const { removedImgRes } = useSelector((state: RootState) => state.removeImgToProd)
@@ -256,7 +256,8 @@ const VendorProduct = () => {
             dispatch(removedImg(null))
             // dispatch(getProduct())
 
-            fetch(
+            axiosAction(
+                'get',
                 dispatch,
                 product,
                 productFailed,

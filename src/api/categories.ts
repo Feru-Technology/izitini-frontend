@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react'
-import { post, fetch } from './apiAction'
+import axiosAction from './apiAction'
 import { RootState } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../redux/categories/categories.slice'
@@ -13,7 +13,7 @@ export const useCategories = () => {
     useEffect(() => {
         if (!categories.length) {
             dispatch(fetchingCategories())
-            fetch(dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
+            axiosAction('get', dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
         }
     }, [categories, dispatch])
 

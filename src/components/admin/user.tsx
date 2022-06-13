@@ -3,11 +3,11 @@ import { format } from 'date-fns'
 import Header from '../vendor/Header'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { useState, useEffect, useRef } from 'react'
-import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -40,7 +40,7 @@ const User = () => {
 
     useEffect(() => {
         dispatch(getUser())
-        fetch(dispatch, user, userFailed, `/users/${id}`)
+        axiosAction('get', dispatch, user, userFailed, `/users/${id}`)
     }, [dispatch, id])
 
     const { isLoading, currentUser, error } = useSelector((state: RootState) => state.user)
@@ -56,7 +56,7 @@ const User = () => {
 
     const updateUser = () => {
         dispatch(getUser())
-        update(dispatch, user, userFailed, `/admin/user/${id}`, { tin_no, contact, email, full_name, is_verified, account_type }, token)
+        axiosAction('patch', dispatch, user, userFailed, `/admin/user/${id}`, token, { tin_no, contact, email, full_name, is_verified, account_type })
     }
 
     useEffect(() => {
@@ -78,7 +78,7 @@ const User = () => {
         const formData = new FormData()
         formData.append('image', file)
         dispatch(updatingUser())
-        update(dispatch, updated, updateFailed, `/admin/user/profile-image/${id}`, formData, token)
+        axiosAction('patch', dispatch, updated, updateFailed, `/admin/user/profile-image/${id}`, token, formData)
     }
 
     const { isUpdating, updatedUser, updateError } = useSelector((state: RootState) => state.updateUser)
@@ -87,7 +87,7 @@ const User = () => {
         if (updatedUser) {
             dispatch(getUser())
             dispatch(updated(null))
-            fetch(dispatch, user, userFailed, `/users/${id}`)
+            axiosAction('get', dispatch, user, userFailed, `/users/${id}`)
         }
     })
 

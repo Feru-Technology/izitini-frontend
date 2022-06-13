@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Header from './Header'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
-import { fetch } from '../../api/apiAction'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
@@ -36,7 +36,7 @@ const Orders = () => {
 
     useEffect(() => {
         dispatch(getOrders())
-        fetch(dispatch, myOrders, ordersFailed, '/orders/store', token)
+        axiosAction('get', dispatch, myOrders, ordersFailed, '/orders/store', token)
     }, [dispatch, token])
 
     const MyOrders = (type: string, status?: string) => {
@@ -47,7 +47,7 @@ const Orders = () => {
                 type === 'sample' ? url = '/orders/sample' :
                     url = `/orders/my/${status}`
 
-        return fetch(dispatch, myOrders, ordersFailed, url, token)
+        return axiosAction('get', dispatch, myOrders, ordersFailed, url, token)
     }
 
     const { orders, error } = useSelector((state: RootState) => state.orders)

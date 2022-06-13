@@ -3,13 +3,13 @@ import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
 import { Transition } from '@headlessui/react'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetch, post, prodImg } from '../../api/apiAction'
 import {
     fetchingProducts,
     fetchedProducts,
@@ -59,34 +59,34 @@ const Products = () => {
 
     useEffect(() => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
     }, [dispatch, token])
 
     const all = () => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
     }
 
     const approved = () => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
+        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/approved', token)
     }
 
     const waiting = () => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/waiting', token)
+        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/waiting', token)
     }
 
     const unPublished = () => {
         dispatch(fetchingProducts())
-        fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/drafts', token)
+        axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/drafts', token)
     }
 
     const { isFetching, products, error } = useSelector((state: RootState) => state.adminProducts)
 
     useEffect(() => {
         dispatch(fetchingStores())
-        fetch(dispatch, retrievedStores, retrievedStoreFailed, '/shop')
+        axiosAction('get', dispatch, retrievedStores, retrievedStoreFailed, '/shop')
     }, [dispatch])
 
     const { isLoading, stores } = useSelector((state: RootState) => state.stores)
@@ -94,7 +94,7 @@ const Products = () => {
     // get subcategories
     useEffect(() => {
         dispatch(fetchingSubCategories())
-        fetch(dispatch, retrievedSubCategories, fetchError, '/admin/subcategory')
+        axiosAction('get', dispatch, retrievedSubCategories, fetchError, '/admin/subcategory')
     }, [dispatch])
 
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
@@ -102,7 +102,7 @@ const Products = () => {
 
     const createProduct = () => {
         dispatch(creatingProduct())
-        post(dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, { subCategory, name, brand, unit }, token)
+        axiosAction('post', dispatch, createdProduct, createFailed, `/admin/product/${shop_id}`, token, { subCategory, name, brand, unit })
     }
 
     const { isCreating, product, createError } = useSelector((state: RootState) => state.adminCreateProduct)
@@ -110,7 +110,7 @@ const Products = () => {
     useEffect(() => {
         if (product) {
             dispatch(fetchingProducts())
-            fetch(dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
+            axiosAction('get', dispatch, fetchedProducts, fetchFailed, '/admin/product/all', token)
             dispatch(createdProduct(null))
             setCreateMode(false)
         }

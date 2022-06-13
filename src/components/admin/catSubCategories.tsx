@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
@@ -8,7 +9,6 @@ import { MdOutlineCancel } from 'react-icons/md'
 import { useAuth } from '../../utils/hooks/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { fetch, post, update } from '../../api/apiAction'
 import {
     fetchingCategory,
     fetchedCategory,
@@ -61,7 +61,7 @@ const CatSubCategories = () => {
     // get subcategories
     useEffect(() => {
         dispatch(fetchingCategory())
-        fetch(dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
+        axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
     }, [dispatch, id])
 
     const { isFetching, category } = useSelector((state: RootState) => state.adminCategory)
@@ -71,7 +71,7 @@ const CatSubCategories = () => {
     // create new subCategory 
     const createNewSubCategory = () => {
         dispatch(creatingSubCategory())
-        post(dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
+        axiosAction('post', dispatch, createdSubCategory, createFailed, `/admin/subcategory/${id}`, token, { name, image_url })
     }
 
     const { isCreating, subCategory, createError } = useSelector((state: RootState) => state.adminCreateSubCategory)
@@ -80,7 +80,7 @@ const CatSubCategories = () => {
     useEffect(() => {
         if (subCategory) {
             dispatch(fetchingCategory())
-            fetch(dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
+            axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
             dispatch(createdSubCategory(null))
             return setCreateMode(false)
         }
@@ -89,7 +89,7 @@ const CatSubCategories = () => {
     // update subcategory
     const updateCategory = (id: any) => {
         dispatch(updatingSubCategory())
-        update(dispatch, updated, updateFailed, `/admin/subcategory/${id}`, { name, image_url }, token)
+        axiosAction('patch', dispatch, updated, updateFailed, `/admin/subcategory/${id}`, token, { name, image_url })
     }
 
     const { isUpdating, updatedSubCategory, updateError } = useSelector((state: RootState) => state.adminUpdateSubCategory)
@@ -98,7 +98,7 @@ const CatSubCategories = () => {
     useEffect(() => {
         if (updatedSubCategory.length !== 0) {
             dispatch(fetchingCategory())
-            fetch(dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
+            axiosAction('get', dispatch, fetchedCategory, fetchFailed, `/admin/category/id/${id}`)
             dispatch(updated(''))
             return setEditMode(false)
         }
@@ -109,7 +109,7 @@ const CatSubCategories = () => {
         const formData = new FormData()
         formData.append('image', file)
         dispatch(uploadingImage())
-        post(dispatch, uploadedImage, uploadFailed, '/images/upload', formData, token)
+        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images/upload', token, formData)
     }
 
     const { isUploading, image, uploadError } = useSelector((state: RootState) => state.uploadImage)

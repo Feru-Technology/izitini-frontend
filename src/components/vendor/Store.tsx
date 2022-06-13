@@ -6,13 +6,13 @@ import {
 import Header from './Header'
 import SiderBar from './SiderBar'
 import { format } from 'date-fns'
-import { useNavigate, useParams } from 'react-router-dom'
 import { AiFillCamera } from 'react-icons/ai'
 import { RootState } from '../../redux/store'
+import axiosAction from '../../api/apiAction'
+import { useNavigate } from 'react-router-dom'
 import { Transition } from '@headlessui/react'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { fetch, update } from '../../api/apiAction'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -42,7 +42,7 @@ const Store = () => {
 
   useEffect(() => {
     dispatch(getStore())
-    fetch(dispatch, store, storeFailed, '/shop/mine/all', token)
+    axiosAction('get', dispatch, store, storeFailed, '/shop/mine/all', token)
   }, [dispatch, token])
 
   const { isLoading, currentStore, error } = useSelector((state: RootState) => state.store)
@@ -57,7 +57,7 @@ const Store = () => {
 
   const updateShop = () => {
     dispatch(getStore())
-    update(dispatch, store, storeFailed, `/shop/${currentStore?.id}`, { about_shop, shop_contact_no, shop_email, name }, token)
+    axiosAction('patch', dispatch, store, storeFailed, `/shop/${currentStore?.id}`, token, { about_shop, shop_contact_no, shop_email, name })
   }
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const Store = () => {
     const formData = new FormData()
     formData.append('image', file)
     dispatch(updatingStore())
-    update(dispatch, updated, updateFailed, `/image/${currentStore?.id}`, formData, token)
+    axiosAction('patch', dispatch, updated, updateFailed, `/image/${currentStore?.id}`, token, formData)
   }
 
   const { isUpdating, updatedStore, updateError } = useSelector((state: RootState) => state.updateStore)
@@ -86,7 +86,7 @@ const Store = () => {
     if (updatedStore) {
       dispatch(getStore())
       dispatch(updated(null))
-      fetch(dispatch, store, storeFailed, '/shop/mine/all', token)
+      axiosAction('get', dispatch, store, storeFailed, '/shop/mine/all', token)
     }
   })
 
