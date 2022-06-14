@@ -1,21 +1,10 @@
-import { useEffect } from 'react'
 import { Footer } from './footer'
 import { Navbar } from './navbar'
+import { useSelector } from 'react-redux'
 import { CategoryBar } from './categoryBar'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
+import { useCategory } from '../../api/categories'
 import { Link, useParams } from 'react-router-dom'
-
-import {
-    useSelector,
-    useDispatch
-} from 'react-redux'
-
-import {
-    getCategory,
-    category,
-    categoryFailed
-} from '../../redux/categories/category.slice'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 
 const Subcategory = () => {
@@ -24,13 +13,7 @@ const Subcategory = () => {
     const params = useParams()
     const { categoryName } = params
 
-    // redux
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getCategory())
-        axiosAction('get', dispatch, category, categoryFailed, `/admin/category/${categoryName}`)
-    }, [categoryName, dispatch])
+    useCategory(categoryName)
 
     const { isLoading, currentCategory } = useSelector((state: RootState) => state.category)
 

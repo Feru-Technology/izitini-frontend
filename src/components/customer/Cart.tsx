@@ -1,20 +1,16 @@
-import React from 'react'
 import { Navbar } from './navbar'
 import { Footer } from './footer'
 import { RootState } from '../../redux/store'
-import axiosAction from '../../api/apiAction'
 import { useNavigate } from 'react-router-dom'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import { cart as getCart, cartFailed } from '../../redux/order/cart'
-import { getOrders, orders, ordersFailed } from '../../redux/order/orders.slice'
+import { remove, increaseQty, reduceQty, checkOut } from '../../api/orders'
 
 const lodash = require('lodash')
 const Cart = () => {
 
     // redux
     const dispatch = useDispatch()
-    const token = localStorage.getItem('token')
 
     const { isLoading, cart } = useSelector((state: RootState) => state.cart)
 
@@ -24,32 +20,9 @@ const Cart = () => {
         return lodash.sum(totals)
     }
 
-    // remove order item handler
-    const removeOrderItem = (order_id: string, product_id: string) => {
-        axiosAction('delete', dispatch, getCart, cartFailed, `/orders/${order_id}/${product_id}`, token)
-    }
-
-    // increase order quantity handler
-    const increaseOrderItemQyt = (order_id: string, product_id: string) => {
-        axiosAction('patch', dispatch, getCart, cartFailed, `/orders/increase-quantity/${order_id}/${product_id}`, token)
-    }
-
-    // increase order quantity handler
-    const reduceOrderItemQyt = (order_id: string, product_id: string) => {
-        axiosAction('patch', dispatch, getCart, cartFailed, `/orders/reduce-quantity/${order_id}/${product_id}`, token)
-    }
-
     const navigate = useNavigate()
 
-
     let order: {}[] = []
-
-    // check out handler
-    const checkOut = () => {
-        dispatch(getOrders())
-        axiosAction('patch', dispatch, orders, ordersFailed, '/orders/checkout', token, order)
-        navigate('/orders')
-    }
 
     return (
         <div className='bg-gray-100'>
@@ -135,14 +108,14 @@ const Cart = () => {
                                                             >
                                                                 <td className='px-3 md:px-6 py-4'>
                                                                     <div className='flex items-center'>
-                                                                        <div className='flex-shrink-0'>
+                                                                        <div className='flex-shrink-0 w-1/3'>
                                                                             <img
-                                                                                className='h-8 w-auto md:h-10 lg:h-16'
-                                                                                src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60'
+                                                                                className='h-8 w-full md:h-10 lg:h-16'
+                                                                                src={item.product.display_image}
                                                                                 alt=''
                                                                             />
                                                                         </div>
-                                                                        <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800'>
+                                                                        <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800 p-2'>
                                                                             {item.product.name}
                                                                         </div>
                                                                     </div>
@@ -155,12 +128,12 @@ const Cart = () => {
                                                                     <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
                                                                         <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
                                                                             <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                                onClick={() => increaseOrderItemQyt(item.order_id, item.product_id)} >+</button>
+                                                                                onClick={() => increaseQty(dispatch, item.order_id, item.product_id)} >+</button>
                                                                             <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
                                                                                 {item.quantity}
                                                                             </span>
                                                                             <button className='font-medium text-gray-400 hover:text-dark-blue'
-                                                                                onClick={() => reduceOrderItemQyt(item.order_id, item.product_id)} >-</button>
+                                                                                onClick={() => reduceQty(dispatch, item.order_id, item.product_id)} >-</button>
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -171,7 +144,7 @@ const Cart = () => {
                                                                 <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                                                     <button type='button'
                                                                         className='text-dark-blue hover:text-red-600'
-                                                                        onClick={() => removeOrderItem(item.order_id, item.product_id)}
+                                                                        onClick={() => remove(dispatch, item.order_id, item.product_id)}
                                                                     >
                                                                         <MdOutlineCancel className='w-6 h-auto' />
                                                                     </button>
@@ -221,7 +194,7 @@ const Cart = () => {
                                     className='bg-dark-blue text-white text-lg font-bold uppercase py-2 md:py-3 rounded mt-3
                                     shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
                                     type='button'
-                                    onClick={() => checkOut()}
+                                    onClick={() => checkOut(dispatch, navigate, order)}
                                 >
                                     Checkout
                                 </button>

@@ -1,24 +1,12 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import axiosAction from '../../api/apiAction'
+import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-    fetchingCategories,
-    retrievedCategoryFailed,
-    retrievedCategory
-} from '../../redux/categories/categories.slice'
+import { useCategories } from '../../api/categories'
 
 
 export const CategoryBar = () => {
 
-    // redux
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(fetchingCategories())
-        axiosAction('get', dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category/sub')
-    }, [dispatch])
+    useCategories()
 
     const { isLoading, categories } = useSelector((state: RootState) => state.categories)
     const categoryBar = categories.slice(0, 8)
