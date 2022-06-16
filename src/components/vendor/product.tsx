@@ -14,21 +14,12 @@ import { useAuth } from '../../utils/hooks/auth'
 import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import { publishUnPublish, updateProduct, useProduct } from '../../api/products'
 import {
     product,
     getProduct,
     productFailed
 } from '../../redux/products/product.slice'
-import {
-    fetchingSubCategories,
-    retrievedSubCategories,
-    fetchFailed
-} from '../../redux/admin/subCategories/subCategories.slice'
-import {
-    updatingProduct,
-    updatedProduct,
-    updateFailed
-} from '../../redux/admin/products/updateProduct.slice'
 import {
     creatingSize,
     createdSize,
@@ -51,11 +42,6 @@ import {
 } from '../../redux/admin/productColors/DeleteColor.slice'
 
 import {
-    updatingProductStatus,
-    updatedProductStatus,
-    failedToUpdateStatus
-} from '../../redux/products/updateProductStatus.slice'
-import {
     uploadingImage,
     uploadedImage,
     uploadFailed
@@ -70,6 +56,7 @@ import {
     removedImg,
     removeImgFailed
 } from '../../redux/image/removeImgToProd.slice'
+import { useSubCategories } from '../../api/subCategories'
 
 const VendorProduct = () => {
 
@@ -118,28 +105,11 @@ const VendorProduct = () => {
     const [addImage, setAddImage] = useState(false)
     const [showImageDesc, setShowImageDesc] = useState(false)
     const [image_id, setImage_id] = useState<string | null>(null)
-
-    // change product status
-    const publishUnPublish = (newStatus: string) => {
-        if (newStatus === 'publish') {
-            //publish
-            dispatch(updatingProductStatus())
-            axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/publish/${id}`, token)
-            return newStatus
-        }
-        // un-publish
-        dispatch(updatingProductStatus())
-        axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, token)
-        return newStatus
-    }
+    const [image_url, setImage_url] = useState<string | null>(null)
 
     const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
 
-    useEffect(() => {
-        dispatch(getProduct())
-        axiosAction('get', dispatch, product, productFailed, `/product/${id}`)
-    }, [dispatch, id])
-
+    useProduct(id)
     const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
 
     useEffect(() => {
@@ -156,19 +126,9 @@ const VendorProduct = () => {
         }
     }, [currentProduct])
 
-    // get subcategories
-    useEffect(() => {
-        dispatch(fetchingSubCategories())
-        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
-    }, [dispatch])
-
+    useSubCategories()
     const { subCategories } = useSelector((state: RootState) => state.adminSubCategories)
     const isSubCatLoading = useSelector((state: RootState) => state.adminSubCategories.isLoading)
-
-    const updateProduct = () => {
-        dispatch(updatingProduct())
-        axiosAction('patch', dispatch, updatedProduct, updateFailed, `/product/${id}`, token, { name, unit, price, brand, status, manual, quantity, specification })
-    }
 
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
@@ -224,14 +184,14 @@ const VendorProduct = () => {
     useEffect(() => {
         if (image) {
             setImage_id(image.id)
+            setImage_url(image.image_url)
             dispatch(uploadedImage(null))
         }
     }, [dispatch, image])
 
-
     const addProductImage = () => {
         dispatch(addingImage())
-        axiosAction('post', dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, token)
+        axiosAction('post', dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, token, { image_url })
     }
 
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
@@ -246,8 +206,8 @@ const VendorProduct = () => {
     // if created successfully clear the state and fetch updated product data
     useEffect(() => {
         if (updated || newColor || newSize || deleted || deletedColorRes || newProductStatus || newImage || removedImgRes) {
-            dispatch(updatedProductStatus(null))
-            dispatch(updatedProduct(null))
+            // dispatch(updatedProductStatus(null))
+            // dispatch(updatedProduct(null))
             dispatch(createdColor(null))
             dispatch(deletedColor(null))
             dispatch(deletedSize(null))
@@ -350,7 +310,7 @@ const VendorProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
-                                                        onChange={e => publishUnPublish(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                        onChange={() => publishUnPublish(dispatch, currentProduct.product.id, currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
                                                     >
                                                         <option className='text-center'>
                                                             {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
@@ -446,7 +406,7 @@ const VendorProduct = () => {
                                                             >
                                                                 <option>Choose sub-category</option>
                                                                 {isSubCatLoading ? <h1>loading...</h1>
-                                                                    : subCategories.map((c) => (<option>{c.name}</option>))}
+                                                                    : subCategories.map((c) => (<option key={c.id}>{c.name}</option>))}
                                                             </select>
                                                         </div>
                                                     </div>
@@ -487,15 +447,16 @@ const VendorProduct = () => {
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-4'>
 
-                                                    {currentProduct.sizes.map((size) => {
+                                                    {currentProduct.sizes.map((s) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
-                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{size.size.size}</span> </p>
-                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{size.price}</span> </p>
-                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{size.quantity}</span> </p>
+                                                            <div key={s.size.id}
+                                                                className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{s.size.size}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{s.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteSize(size.size.id)} />
+                                                                    onClick={() => deleteSize(s.size.id)} />
                                                             </div>
                                                         )
                                                     })}
@@ -507,7 +468,7 @@ const VendorProduct = () => {
                                             {/* product Colors */}
                                             <div className=' border-b border-dark-blue pb-8'>
                                                 <div className='flex space-x-2 my-4'>
-                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>ProductColors</p>
+                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product Colors</p>
 
                                                     <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
                                                     hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
@@ -525,15 +486,16 @@ const VendorProduct = () => {
                                                 </div>
                                                 <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2 md:gap-4'>
 
-                                                    {currentProduct.colors.map((color) => {
+                                                    {currentProduct.colors.map((c) => {
                                                         return (
-                                                            <div className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
-                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{color.color.name}</span> </p>
-                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{color.price}</span> </p>
-                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{color.quantity}</span> </p>
+                                                            <div key={c.color.id}
+                                                                className='bg-white border shadow-md py-2 px-2 lg:px-4 font-medium text-xs md:text-sm lg:text-base rounded relative'>
+                                                                <p className=''>Size: <span className='font-light ml-1 lg:ml-2'>{c.color.name}</span> </p>
+                                                                <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{c.price}</span> </p>
+                                                                <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
-                                                                    onClick={() => deleteColor(color.color.id)} />
+                                                                    onClick={() => deleteColor(c.color.id)} />
 
                                                             </div>
                                                         )
@@ -574,16 +536,17 @@ const VendorProduct = () => {
                                                             <img src={currentProduct.product.display_image} alt='product_image' className='h-32 rounded w-full' />
                                                         </div> : ''}
 
-                                                    {currentProduct.images.map((image) => {
+                                                    {currentProduct.images.map((i) => {
                                                         return (
-                                                            <div className='bg-white font-medium text-xs md:text-sm lg:text-base
+                                                            <div key={i.image.id}
+                                                                className='bg-white font-medium text-xs md:text-sm lg:text-base
                                                             rounded relative hover:shadow-sm group'>
                                                                 <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
-                                                                    onClick={() => removeImage(image.image.id)}
+                                                                    onClick={() => removeImage(i.image.id)}
                                                                 />
 
-                                                                <img src={image.image.image_url} alt='product_image' className='h-32 rounded w-full' />
+                                                                <img src={i.image.image_url} alt='product_image' className='h-32 rounded w-full' />
                                                             </div>
                                                         )
                                                     })}
@@ -609,7 +572,9 @@ const VendorProduct = () => {
                                             <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
-                                                    return updateProduct()
+                                                    return updateProduct(dispatch, currentProduct.product.id, {
+                                                        name, unit, price, brand, status, manual, quantity, specification
+                                                    })
                                                 }} >
                                                 {isUpdating ? 'updating ...' : 'SAVE CHANGES'}
                                             </button>

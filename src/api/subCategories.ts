@@ -6,8 +6,23 @@ import {
     subCategoryProducts,
     subCategoryProductsFailed
 } from '../redux/subCategories/subCategoryProducts.slice'
+import {
+    fetchingSubCategories,
+    retrievedSubCategories,
+    fetchFailed
+} from '../redux/admin/subCategories/subCategories.slice'
 
-export const useSubCategories = (id: any) => {
+export const useSubCategories = () => {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchingSubCategories())
+        axiosAction('get', dispatch, retrievedSubCategories, fetchFailed, '/admin/subcategory')
+    }, [dispatch])
+
+}
+
+export const useSubCategoriesInCat = (id: any) => {
     const dispatch = useDispatch()
 
     useEffect(() => {

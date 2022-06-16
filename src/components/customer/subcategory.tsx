@@ -5,7 +5,7 @@ import { CategoryBar } from './categoryBar'
 import { RootState } from '../../redux/store'
 import { Link, useParams } from 'react-router-dom'
 import { ChevronRightIcon } from '@heroicons/react/solid'
-import { useSubCategories } from '../../api/subCategories'
+import { useSubCategoriesInCat } from '../../api/subCategories'
 
 const Subcategory = () => {
 
@@ -13,7 +13,7 @@ const Subcategory = () => {
     const params = useParams()
     const { id } = params
 
-    useSubCategories(id)
+    useSubCategoriesInCat(id)
     const { isLoading, Products } = useSelector((state: RootState) => state.subCategoryProducts)
 
     return (<>
