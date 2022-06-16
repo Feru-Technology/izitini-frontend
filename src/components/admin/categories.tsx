@@ -9,28 +9,13 @@ import { useMediaQuery } from 'react-responsive'
 import { MdOutlineCancel } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-    fetchingCategories,
-    retrievedCategories,
-    categoriesFailed
-} from '../../redux/admin/categories/categories.slice'
-import {
-    createCategory,
-    createdCategory,
-    createFailed
-} from '../../redux/admin/categories/createCategory.slice'
 import { ICategory } from '../../redux/admin/categories/category.interfaces'
-import {
-    updatingCategory,
-    updated,
-    updateFailed
-} from '../../redux/admin/categories/updateCategory.slice'
 import {
     uploadingImage,
     uploadedImage,
     uploadFailed
 } from '../../redux/image/uploadImage.slice'
-import { useCategories, createNewCategory, updateCategory } from '../../api/categories'
+import { useCategories, createNewCategory, updateCategory, useRefreshCategories } from '../../api/categories'
 
 const Categories = () => {
 
@@ -56,30 +41,10 @@ const Categories = () => {
     const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
 
     useCategories()
-    const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
-    const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
-
-    const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
-
-    // on success update, update categories state
-    useEffect(() => {
-        if (updatedCategories) {
-            dispatch(fetchingCategories())
-            axiosAction('get', dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-            dispatch(updated(null))
-            return setEditMode(false)
-        }
-    }, [dispatch, updatedCategories])
-
-    // on create success, fetch updated categories
-    useEffect(() => {
-        if (category) {
-            dispatch(fetchingCategories())
-            axiosAction('get', dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-            dispatch(createdCategory(null))
-            return setCreateMode(false)
-        }
-    }, [categories, category, dispatch])
+    useRefreshCategories(setCreateMode, setEditMode)
+    const { isLoading, categories } = useSelector((state: RootState) => state.categories)
+    const { isCatLoading, error } = useSelector((state: RootState) => state.adminCreateCategory)
+    const { isUpdating, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
 
     // upload category image
     const uploadCatImage = (file: File) => {

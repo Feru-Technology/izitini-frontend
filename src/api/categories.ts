@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { SetStateAction, useEffect } from 'react'
 import axiosAction from './apiAction'
 import { RootState } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,6 +9,22 @@ import { createCategory, createdCategory, createFailed } from '../redux/admin/ca
 import { updatingCategory, updated, updateFailed } from '../redux/admin/categories/updateCategory.slice'
 
 const token = localStorage.getItem('token')
+
+export const useRefreshCategories = (setCreateMode: SetStateAction<any>, setEditMode: SetStateAction<any>) => {
+
+    const dispatch = useDispatch()
+    const { updatedCategories } = useSelector((state: RootState) => state.adminUpdateCategory)
+    const { category } = useSelector((state: RootState) => state.adminCreateCategory)
+    useEffect(() => {
+        if (category || updatedCategories) {
+            dispatch(fetchingCategories())
+            axiosAction('get', dispatch, retrievedCategory, retrievedCategoryFailed, '/admin/category')
+            dispatch(createdCategory(null))
+            setCreateMode(false)
+            return setEditMode(false)
+        }
+    }, [category, dispatch, setCreateMode, setEditMode, updatedCategories])
+}
 
 export const useCategories = () => {
 
