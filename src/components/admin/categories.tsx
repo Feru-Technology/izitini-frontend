@@ -30,6 +30,7 @@ import {
     uploadedImage,
     uploadFailed
 } from '../../redux/image/uploadImage.slice'
+import { useCategories, createNewCategory, updateCategory } from '../../api/categories'
 
 const Categories = () => {
 
@@ -54,27 +55,9 @@ const Categories = () => {
     const [image_url, setImage_url] = useState<string | null>(null)
     const [currentCategory, setCurrentCategory] = useState<ICategory | null>(null)
 
-    // get categories
-    useEffect(() => {
-        dispatch(fetchingCategories())
-        axiosAction('get', dispatch, retrievedCategories, categoriesFailed, '/admin/category')
-    }, [dispatch])
-
+    useCategories()
     const { isLoading, categories } = useSelector((state: RootState) => state.adminCategories)
-
-    // create category 
-    const createNewCategory = () => {
-        dispatch(createCategory())
-        axiosAction('post', dispatch, createdCategory, createFailed, '/admin/category', token, { name, image_url })
-    }
-
     const { isCatLoading, category, error } = useSelector((state: RootState) => state.adminCreateCategory)
-
-    // update category
-    const updateCategory = (id: any) => {
-        dispatch(updatingCategory())
-        axiosAction('patch', dispatch, updated, updateFailed, `/admin/category/${id}`, token, { name, image_url })
-    }
 
     const { isUpdating, updatedCategories, updateError } = useSelector((state: RootState) => state.adminUpdateCategory)
 
@@ -322,7 +305,7 @@ const Categories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return createNewCategory()
+                                                    return createNewCategory(dispatch, { name, image_url })
                                                 }}
                                             >
                                                 {!!isCatLoading ? 'Loading...' : isUploading ? 'uploading ...' : 'Create'}
@@ -393,7 +376,7 @@ const Categories = () => {
                                                 type='button'
                                                 onClick={(e) => {
                                                     e.preventDefault()
-                                                    return updateCategory(currentCategory?.id)
+                                                    return updateCategory(dispatch, currentCategory?.id, { name, image_url })
                                                 }}
                                             >
                                                 {!!isUpdating ? 'Updating...' : isUploading ? 'uploading ...' : 'Update'}

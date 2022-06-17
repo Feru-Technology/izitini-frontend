@@ -4,6 +4,11 @@ import { RootState } from '../redux/store'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategory, category, categoryFailed } from '../redux/categories/category.slice'
 import { fetchingCategories, retrievedCategory, retrievedCategoryFailed } from '../redux/categories/categories.slice'
+import { Dispatch } from '@reduxjs/toolkit'
+import { createCategory, createdCategory, createFailed } from '../redux/admin/categories/createCategory.slice'
+import { updatingCategory, updated, updateFailed } from '../redux/admin/categories/updateCategory.slice'
+
+const token = localStorage.getItem('token')
 
 export const useCategories = () => {
 
@@ -26,4 +31,14 @@ export const useCategory = (name?: string) => {
         dispatch(getCategory())
         axiosAction('get', dispatch, category, categoryFailed, `/admin/category/${name}`)
     }, [dispatch, name])
+}
+
+export const createNewCategory = (dispatch: Dispatch, data: {}) => {
+    dispatch(createCategory())
+    axiosAction('post', dispatch, createdCategory, createFailed, '/admin/category', token, data)
+}
+
+export const updateCategory = (dispatch: Dispatch, id: any, data: {}) => {
+    dispatch(updatingCategory())
+    axiosAction('patch', dispatch, updated, updateFailed, `/admin/category/${id}`, token, data)
 }

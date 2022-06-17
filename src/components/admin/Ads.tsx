@@ -1,20 +1,16 @@
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
-import axiosAction from '../../api/apiAction'
+import { useRef, useState } from 'react'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
-import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchingAds, retrievedAds, adsFailed } from '../../redux/admin/ads/ads.slice'
-import { deletingAd, deletedAd, deleteFailed } from '../../redux/admin/ads/deleteAd.slice'
-import { useAds, addImage } from '../../api/ad'
+import { useAds, addImage, deleteAd } from '../../api/ad'
 
 const Ads = () => {
 
-    const token = localStorage.getItem('token')
     useAuth('admin')
 
     // redux
@@ -31,17 +27,10 @@ const Ads = () => {
 
     useAds()
     const { isFetching, ads } = useSelector((state: RootState) => state.ad)
-
     const { isCreating } = useSelector((state: RootState) => state.createAd)
 
     //@ts-ignore
     const handleInputClick = () => input.current.click()
-
-    const deleteAd = (id: string) => {
-        dispatch(deletingAd())
-        axiosAction('delete', dispatch, retrievedAds, deleteFailed, `/admin/ad/${id}`, token)
-        dispatch(deletedAd(null))
-    }
 
     return (
         <>
@@ -109,7 +98,7 @@ const Ads = () => {
 
                                                             <div className='bg-red-700 hover:bg-red-500 shadow-md hover:shadow-lg text-white
                                                     py-1.5 md:py-2 w-7/12 text-xs md:text-sm lg:text-base rounded cursor-pointer text-center mx-auto'
-                                                                onClick={() => deleteAd(ad.id)} >delete</div>
+                                                                onClick={() => deleteAd(dispatch, ad.id)} >delete</div>
                                                         </div>
                                                     </div>
 
