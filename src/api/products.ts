@@ -54,15 +54,10 @@ export const useProduct = (id: any) => {
 }
 
 // change product status
-export const publishUnPublish = (dispatch: Dispatch, id: string, newStatus: string) => {
-    if (newStatus === 'publish') {
-        //publish
-        dispatch(updatingProductStatus())
-        return axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/publish/${id}`, token)
-    }
-    // un-publish
+export const publishUnPublish = (dispatch: Dispatch, route: string, id: string, newStatus: string) => {
+    //publish
     dispatch(updatingProductStatus())
-    return axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `/product/unpublish/${id}`, token)
+    return axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, `${route}/${newStatus}/${id}`, token)
 }
 
 export const updateProduct = (dispatch: Dispatch, route: string, id: string, data: {}) => {
@@ -70,14 +65,14 @@ export const updateProduct = (dispatch: Dispatch, route: string, id: string, dat
     return axiosAction('patch', dispatch, updatedProduct, updateFailed, `${route}/${id}`, token, data)
 }
 
-export const addProdImage = (dispatch: Dispatch, id: string, image_id: string, image_url: string) => {
+export const addProdImage = (dispatch: Dispatch, route: string, id: string, image_id: string, image_url: string) => {
     dispatch(addingImage())
-    axiosAction('post', dispatch, addedImage, addFailed, `/product/image/${id}/${image_id}`, token, { image_url })
+    axiosAction('post', dispatch, addedImage, addFailed, `${route}/${id}/${image_id}`, token, { image_url })
 }
 
-export const removeImage = (dispatch: Dispatch, id: string, img_id: string) => {
+export const removeImage = (dispatch: Dispatch, route: string, id: string, img_id: string) => {
     dispatch(removingImg())
-    axiosAction('delete', dispatch, removedImg, removeImgFailed, `/product/image/${id}/${img_id}`, token)
+    axiosAction('delete', dispatch, removedImg, removeImgFailed, `${route}/${id}/${img_id}`, token)
 }
 
 export const createProduct = (dispatch: Dispatch, data: {}) => {

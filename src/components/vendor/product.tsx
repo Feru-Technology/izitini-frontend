@@ -233,7 +233,7 @@ const VendorProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
-                                                        onChange={() => publishUnPublish(dispatch, currentProduct.product.id, currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                        onChange={() => publishUnPublish(dispatch, '/product', currentProduct.product.id, currentProduct.product.status === 'draft' ? 'publish' : 'unpublish')}
                                                     >
                                                         <option className='text-center'>
                                                             {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
@@ -466,7 +466,7 @@ const VendorProduct = () => {
                                                             rounded relative hover:shadow-sm group'>
                                                                 <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
-                                                                    onClick={() => removeImage(dispatch, currentProduct.product.id, i.image.id)}
+                                                                    onClick={() => removeImage(dispatch, '/product/image', currentProduct.product.id, i.image.id)}
                                                                 />
 
                                                                 <img src={i.image.image_url} alt='product_image' className='h-32 rounded w-full' />
@@ -725,7 +725,7 @@ const VendorProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return addProdImage(dispatch, currentProduct.product.id, image_id, image_url)
+                                                        return addProdImage(dispatch, '/product/image', currentProduct.product.id, image_id, image_url)
                                                     }}
                                                 >
                                                     {!!isUploading ? 'uploading...' : isAdding ? 'Creating...' : 'Create'}

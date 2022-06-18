@@ -22,11 +22,6 @@ import {
     productFailed
 } from '../../redux/products/product.slice'
 import {
-    fetchingSubCategories,
-    retrievedSubCategories,
-    fetchFailed
-} from '../../redux/admin/subCategories/subCategories.slice'
-import {
     updatingProduct,
     updatedProduct,
     updateFailed
@@ -71,21 +66,20 @@ import {
     removedImg,
     removeImgFailed
 } from '../../redux/image/removeImgToProd.slice'
-import { updateProduct, useProduct } from '../../api/products'
+import { addProdImage, publishUnPublish, removeImage, updateProduct, useProduct, useReloadPage } from '../../api/products'
 import { useSubCategories } from '../../api/subCategories'
 import { createSize, deleteSize } from '../../api/sizes'
 import { createColor, deleteColor } from '../../api/colors'
+import { uploadImage } from '../../api/images'
 
 const AdminProduct = () => {
 
-    const token = localStorage.getItem('token')
     useAuth('admin')
+    const token = localStorage.getItem('token')
 
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
-
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -124,7 +118,7 @@ const AdminProduct = () => {
     const [image_url, setImage_url] = useState<string | null>(null)
 
     useProduct(id!)
-    const { isLoading, currentProduct, error } = useSelector((state: RootState) => state.product)
+    const { isLoading, currentProduct } = useSelector((state: RootState) => state.product)
 
     useEffect(() => {
         if (currentProduct) {
@@ -150,7 +144,7 @@ const AdminProduct = () => {
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
     // change product status
-    const updateProdStatus = (newStatus: string) => {
+    const s = (newStatus: string) => {
         dispatch(updatingProductStatus())
         let url: string
         newStatus === 'publish' ? url = `/admin/product/publish/${id}` :
@@ -162,23 +156,9 @@ const AdminProduct = () => {
         return newStatus
     }
 
-    const { newProductStatus, statusUpdateError } = useSelector((state: RootState) => state.updateProductStatus)
+    const { statusUpdateError } = useSelector((state: RootState) => state.updateProductStatus)
 
-    // refresh the page after status update
-    useEffect(() => {
-        if (newProductStatus) {
-            dispatch(updatedProductStatus(null))
-            return window.location.reload()
-        }
-    }, [dispatch, newProductStatus])
-
-    // upload product image
-    const uploadProductImage = (file: File) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        dispatch(uploadingImage())
-        axiosAction('post', dispatch, uploadedImage, uploadFailed, '/images', token, formData)
-    }
+    useReloadPage()
 
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
@@ -190,17 +170,7 @@ const AdminProduct = () => {
         }
     }, [dispatch, image])
 
-    const addProductImage = () => {
-        dispatch(addingImage())
-        axiosAction('post', dispatch, addedImage, addFailed, `/admin/product/image/${id}/${image_id}`, token, { image_url })
-    }
-
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
-
-    const removeImage = (img_id: string) => {
-        dispatch(removingImg())
-        axiosAction('patch', dispatch, removedImg, removeImgFailed, `/admin/product/image/${id}/${img_id}`, token)
-    }
 
     const { removedImgRes } = useSelector((state: RootState) => state.removeImgToProd)
 
@@ -310,7 +280,7 @@ const AdminProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         hover:text-middle-blue hover:border-middle-blue ${editMode && 'pointer-events-none'}`}
                                                             id='grid-state'
-                                                            onClick={e => updateProdStatus('Approve')}
+                                                            onClick={() => publishUnPublish(dispatch, '/admin/product', currentProduct.product.id, 'Approve',)}
                                                         >
                                                             Approve
                                                         </button>
@@ -321,7 +291,7 @@ const AdminProduct = () => {
                                                         focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                             id='grid-state'
-                                                            onChange={() => updateProdStatus(currentProduct.product.status === 'draft' ? 'publish' : 'un_publish')}
+                                                            onChange={() => publishUnPublish(dispatch, '/admin/product', currentProduct.product.id, currentProduct.product.status === 'draft' ? 'publish' : 'unpublish')}
                                                         >
                                                             <option className='text-center'>
                                                                 {currentProduct.product.status === 'draft' ? 'Draft' : 'Published'}
@@ -560,7 +530,7 @@ const AdminProduct = () => {
                                                             rounded relative hover:shadow-sm group'>
                                                                 <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
                                                                 text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
-                                                                    onClick={() => removeImage(i.image.id)}
+                                                                    onClick={() => removeImage(dispatch, '/admin/product/image', currentProduct.product.id, i.image.id)}
                                                                 />
 
                                                                 <img src={i.image.image_url} alt='product_image' className='h-32 rounded w-full' />
@@ -807,7 +777,7 @@ const AdminProduct = () => {
                                                 <input type='file' name='filename' className=''
                                                     accept='image/x-png,image/gif,image/jpeg, image/png'
                                                     onChange={e => {
-                                                        if (e.target.files) uploadProductImage(e.target.files[0])
+                                                        if (e.target.files) uploadImage(dispatch, e.target.files[0])
                                                     }} />
                                             </div>
                                             <div className='text-center mt-6'>
@@ -818,7 +788,7 @@ const AdminProduct = () => {
                                                     type='button'
                                                     onClick={(e) => {
                                                         e.preventDefault()
-                                                        return addProductImage()
+                                                        return addProdImage(dispatch, '/admin/product/image', currentProduct.product.id, image_id!, image_url!)
                                                     }}
                                                 >
                                                     {!!isUploading ? <span className='flex space-x-3 justify-center'>
