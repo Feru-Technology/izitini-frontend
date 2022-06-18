@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import axiosAction from './apiAction'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from '@reduxjs/toolkit'
 import { getProduct, product, productFailed } from '../redux/products/product.slice'
 import { addingImage, addedImage, addFailed } from '../redux/image/addImageToProduct.slice'
@@ -10,8 +10,22 @@ import { createdProduct, createFailed, creatingProduct } from '../redux/admin/pr
 import { fetchingProducts, retrievedProductFailed, retrievedProducts } from '../redux/products/allProduct.slice'
 import { fetchingProducts as fetch, storeProducts, productFailed as fail } from '../redux/products/storeProducts.slice '
 import { updatingProductStatus, updatedProductStatus, failedToUpdateStatus } from '../redux/products/updateProductStatus.slice'
+import { RootState } from '../redux/store'
 
 const token = localStorage.getItem('token')
+
+export const useReloadPage = () => {
+    const dispatch = useDispatch()
+    const { newProductStatus } = useSelector((state: RootState) => state.updateProductStatus)
+
+    // refresh the page after status update
+    useEffect(() => {
+        if (newProductStatus) {
+            dispatch(updatedProductStatus(null))
+            return window.location.reload()
+        }
+    }, [dispatch, newProductStatus])
+}
 
 export const useProducts = () => {
     const dispatch = useDispatch()
