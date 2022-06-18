@@ -110,9 +110,7 @@ const VendorProduct = () => {
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
 
     const { deleted } = useSelector((state: RootState) => state.deleteSize)
-
     const { deletedColorRes } = useSelector((state: RootState) => state.deleteColor)
-
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
     useEffect(() => {

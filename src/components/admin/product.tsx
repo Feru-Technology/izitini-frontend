@@ -1,82 +1,34 @@
-import {
-    useState,
-    useEffect
-} from 'react'
-import {
-    PlusIcon,
-} from '@heroicons/react/outline'
 import { format } from 'date-fns'
 import SiderBar from './SiderBar'
 import Header from '../vendor/Header'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import axiosAction from '../../api/apiAction'
 import { RootState } from '../../redux/store'
 import { Transition } from '@headlessui/react'
+import { uploadImage } from '../../api/images'
 import { MdOutlineCancel } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
 import { useAuth } from '../../utils/hooks/auth'
+import { PlusIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import {
-    product,
-    getProduct,
-    productFailed
-} from '../../redux/products/product.slice'
-import {
-    updatingProduct,
-    updatedProduct,
-    updateFailed
-} from '../../redux/admin/products/updateProduct.slice'
-import {
-    creatingSize,
-    createdSize,
-    createFailed
-} from '../../redux/admin/productSizes/createSize.slice'
-import {
-    creatingColor,
-    createdColor,
-    createColorFailed
-} from '../../redux/admin/productColors/createColor.slice'
-import {
-    deletingSize,
-    deletedSize,
-    deleteFailed
-} from '../../redux/admin/productSizes/deleteSize.slice'
-import {
-    deletingColor,
-    deletedColor,
-    deleteColorFailed
-} from '../../redux/admin/productColors/DeleteColor.slice'
-import {
-    updatingProductStatus,
-    updatedProductStatus,
-    failedToUpdateStatus
-} from '../../redux/products/updateProductStatus.slice'
-import {
-    uploadingImage,
-    uploadedImage,
-    uploadFailed
-} from '../../redux/image/uploadImage.slice'
-import {
-    addingImage,
-    addedImage,
-    addFailed
-} from '../../redux/image/addImageToProduct.slice'
-import {
-    removingImg,
-    removedImg,
-    removeImgFailed
-} from '../../redux/image/removeImgToProd.slice'
-import { addProdImage, publishUnPublish, removeImage, updateProduct, useProduct, useReloadPage } from '../../api/products'
-import { useSubCategories } from '../../api/subCategories'
 import { createSize, deleteSize } from '../../api/sizes'
+import { useSubCategories } from '../../api/subCategories'
 import { createColor, deleteColor } from '../../api/colors'
-import { uploadImage } from '../../api/images'
+import { uploadedImage } from '../../redux/image/uploadImage.slice'
+import { removedImg } from '../../redux/image/removeImgToProd.slice'
+import { addedImage } from '../../redux/image/addImageToProduct.slice'
+import { product, productFailed } from '../../redux/products/product.slice'
+import { createdSize } from '../../redux/admin/productSizes/createSize.slice'
+import { deletedSize } from '../../redux/admin/productSizes/deleteSize.slice'
+import { updatedProduct } from '../../redux/admin/products/updateProduct.slice'
+import { createdColor } from '../../redux/admin/productColors/createColor.slice'
+import { deletedColor } from '../../redux/admin/productColors/DeleteColor.slice'
+import { addProdImage, publishUnPublish, removeImage, updateProduct, useProduct, useReloadPage } from '../../api/products'
 
 const AdminProduct = () => {
 
     useAuth('admin')
-    const token = localStorage.getItem('token')
-
     const dispatch = useDispatch()
     const params = useParams()
     const { id } = params
@@ -94,7 +46,6 @@ const AdminProduct = () => {
     const [brand, setBrand] = useState<string | null>(null)
     const [showSizeDesc, setShowSizeDesc] = useState(false)
     const [showColorDesc, setShowColorDesc] = useState(false)
-    // const [status, setStatus] = useState<string | null>(null)
     const [manual, setManual] = useState<string | null>(null)
     const [quantity, setQuantity] = useState<string | null>(null)
     const [specification, setSpecification] = useState<string | null>(null)
@@ -143,23 +94,8 @@ const AdminProduct = () => {
     const { isCreatingColor, newColor, colorError } = useSelector((state: RootState) => state.createColor)
     const { isUpdating, updated, updateError } = useSelector((state: RootState) => state.adminUpdateProduct)
 
-    // change product status
-    const s = (newStatus: string) => {
-        dispatch(updatingProductStatus())
-        let url: string
-        newStatus === 'publish' ? url = `/admin/product/publish/${id}` :
-            newStatus === 'Approve' ? url = `/admin/product/approve/${id}` :
-                url = `/admin/product/unpublish/${id}`
-
-        axiosAction('patch', dispatch, updatedProductStatus, failedToUpdateStatus, url, token)
-
-        return newStatus
-    }
-
-    const { statusUpdateError } = useSelector((state: RootState) => state.updateProductStatus)
-
     useReloadPage()
-
+    const { statusUpdateError } = useSelector((state: RootState) => state.updateProductStatus)
     const { isUploading, image } = useSelector((state: RootState) => state.uploadImage)
 
     useEffect(() => {
@@ -171,7 +107,6 @@ const AdminProduct = () => {
     }, [dispatch, image])
 
     const { isAdding, newImage, addError } = useSelector((state: RootState) => state.productImages)
-
     const { removedImgRes } = useSelector((state: RootState) => state.removeImgToProd)
 
     // if successfully clear the state and fetch updated product data

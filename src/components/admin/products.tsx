@@ -33,13 +33,11 @@ import {
 
 const Products = () => {
 
+    useAuth('admin')
     const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    useAuth('admin')
 
     const dispatch = useDispatch()
-
-    const isLoggingIn = useSelector((state: RootState) => state.profile.isLoading)
 
     const isStatic = useMediaQuery({
         query: '(min-width: 640px)',
@@ -118,7 +116,7 @@ const Products = () => {
 
     return (
         <>
-            {isLoggingIn || isFetching ? (<h1>loading ...</h1>)
+            {isFetching ? (<h1>loading ...</h1>)
                 : products ?
                     (
                         <div className='flex h-screen overflow-hidden'>
