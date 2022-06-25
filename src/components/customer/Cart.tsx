@@ -25,7 +25,7 @@ const Cart = () => {
     let order: {}[] = []
 
     return (
-        <div className='bg-gray-100'>
+        <div className='bg-slate-100'>
             <Navbar />
 
             {isLoading ? (<div>loading ...</div>)
@@ -52,12 +52,12 @@ const Cart = () => {
                                     }
                                     return (
                                         <div>
-                                            <table className='min-w-full divide-y divide-gray-200'>
+                                            <table className='min-w-full divide-y divide-slate-200'>
                                                 <thead className='bg-white'>
                                                     <tr className=''>
                                                         <th
                                                             scope='col'
-                                                            className='px-3 font-semibold text-gray-700
+                                                            className='px-3 font-semibold text-slate-700
                                                 md:px-6 text-xs md:text-sm
                                                 lg:px-6 py-3 text-left lg:text-base'
                                                         >
@@ -65,7 +65,7 @@ const Cart = () => {
                                                         </th>
                                                         <th
                                                             scope='col'
-                                                            className='font-semibold text-gray-700
+                                                            className='font-semibold text-slate-700
                                                 md:px-6 text-xs md:text-sm
                                                 lg:px-6 py-3 text-left lg:text-base
                                     '
@@ -74,7 +74,7 @@ const Cart = () => {
                                                         </th>
                                                         <th
                                                             scope='col'
-                                                            className='font-semibold text-gray-700
+                                                            className='font-semibold text-slate-700
                                                 md:px-6 text-xs md:text-sm
                                                 lg:px-6 py-3 text-left lg:text-base'
                                                         >
@@ -82,7 +82,7 @@ const Cart = () => {
                                                         </th>
                                                         <th
                                                             scope='col'
-                                                            className='font-semibold text-gray-700
+                                                            className='font-semibold text-slate-700
                                                 md:px-6 text-xs md:text-sm
                                                 lg:px-6 py-3 text-left lg:text-base'
                                                         >
@@ -115,35 +115,35 @@ const Cart = () => {
                                                                                 alt=''
                                                                             />
                                                                         </div>
-                                                                        <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-gray-800 p-2'>
+                                                                        <div className='ml-4 text-xs md:text-sm lg:text-base font-medium text-slate-800 p-2'>
                                                                             {item.product.name}
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-slate-800
                                                                 md:px-6 lg:px-6 py-4'>
                                                                     {item.product.price} RWF</td>
-                                                                <td className='py-4 text-xs md:text-sm text-gray-800
+                                                                <td className='py-4 text-xs md:text-sm text-slate-800
                                                                 md:px-6 lg:px-6'>
-                                                                    <div className='rounded-full border-2 border-gray-400 w-16 md:w-20 lg:w-28'>
+                                                                    <div className='rounded-full border-2 border-slate-400 w-16 md:w-20 lg:w-28'>
                                                                         <div className='flex justify-center md:py-1 text-xs md:text-sm lg:text-base'>
-                                                                            <button className='font-medium text-gray-400 hover:text-dark-blue'
+                                                                            <button className='font-medium text-slate-400 hover:text-[#004896]'
                                                                                 onClick={() => increaseQty(dispatch, item.order_id, item.product_id)} >+</button>
                                                                             <span className='mx-3 md:mx-3 lg:mx-6 font-medium'>
                                                                                 {item.quantity}
                                                                             </span>
-                                                                            <button className='font-medium text-gray-400 hover:text-dark-blue'
+                                                                            <button className='font-medium text-slate-400 hover:text-[#004896]'
                                                                                 onClick={() => reduceQty(dispatch, item.order_id, item.product_id)} >-</button>
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-gray-800
+                                                                <td className='text-xs md:text-sm lg:text-base font-medium text-slate-800
                                                                 md:px-6 lg:px-6 py-4'>
                                                                     {totalPrice(item.product.price, item.quantity)} RWF
                                                                 </td>
                                                                 <td className='px-2 md:px-3 lg:px-6 py-4 text-right text-base font-medium'>
                                                                     <button type='button'
-                                                                        className='text-dark-blue hover:text-red-600'
+                                                                        className='text-[#004896] hover:text-red-600'
                                                                         onClick={() => remove(dispatch, item.order_id, item.product_id)}
                                                                     >
                                                                         <MdOutlineCancel className='w-6 h-auto' />
@@ -159,13 +159,13 @@ const Cart = () => {
 
                                             </table>
 
-                                            <div className='flex border border-gray-200 bg-white mb-4 p-3 font-light text-xs space-x-3
+                                            <div className='flex border border-slate-200 bg-white mb-4 p-3 font-light text-xs space-x-3
                                             md:text-sm lg:text-base'>
-                                                <p className='w-2/6 flex'>Vendor: <span className='ml-1 text-gray-500'>{items.shop.name}</span></p>
+                                                <p className='w-2/6 flex'>Vendor: <span className='ml-1 text-slate-500'>{items.shop.name}</span></p>
                                                 <p className='w-2/6 flex'>Total <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
-                                                    <span className='ml-1 text-dark-blue'>{subTotal(totalPricesPerOrder)} RWF</span> </p>
+                                                    <span className='ml-1 text-[#004896]'>{subTotal(totalPricesPerOrder)} RWF</span> </p>
                                                 <p className='w-2/6 flex'>Shipping <span className='sr-only md:not-sr-only md:ml-1'>price</span> :
-                                                    <span className='ml-1 text-dark-blue'>1000 RWF</span> </p>
+                                                    <span className='ml-1 text-[#004896]'>1000 RWF</span> </p>
                                             </div>
                                         </div>
                                     )
@@ -174,24 +174,24 @@ const Cart = () => {
                             </div>
 
                             <div className='bg-white text-base font-bold md:w-1/3 absolute bottom-3 -right-3'>
-                                <p className='py-3 border-b border-dark-blue text-center
+                                <p className='py-3 border-b border-[#004896] text-center
                                 text-base lg:text-lg'>Order Summary</p>
-                                <div className='flex m-3 text-gray-500'>
+                                <div className='flex m-3 text-slate-500'>
                                     <p>Subtotal</p>
-                                    <p className='absolute right-8 md:right-10 lg:right-16 text-dark-blue'>
+                                    <p className='absolute right-8 md:right-10 lg:right-16 text-[#004896]'>
                                         {subTotal(totalPrices)} RWF</p>
                                 </div>
-                                <div className='flex m-3 text-gray-500'>
+                                <div className='flex m-3 text-slate-500'>
                                     <p>Shipping</p>
-                                    <p className='absolute right-8 md:right-10 lg:right-16 text-dark-blue'> - RWF </p>
+                                    <p className='absolute right-8 md:right-10 lg:right-16 text-[#004896]'> - RWF </p>
                                 </div>
-                                <p className='m-3 text-dark-blue'>Have a Coupon</p>
-                                <div className='flex bg-gray-200 font-bold py-2 md:py-3'>
+                                <p className='m-3 text-[#004896]'>Have a Coupon</p>
+                                <div className='flex bg-slate-200 font-bold py-2 md:py-3'>
                                     <p className='ml-3'>Total</p>
                                     <p className='absolute right-8 md:right-10 lg:right-16'>{subTotal(totalPrices) + 0}</p>
                                 </div>
                                 <button
-                                    className='bg-dark-blue text-white text-lg font-bold uppercase py-2 md:py-3 rounded mt-3
+                                    className='bg-[#004896] text-white text-lg font-bold uppercase py-2 md:py-3 rounded mt-3
                                     shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
                                     type='button'
                                     onClick={() => checkOut(dispatch, navigate, order)}

@@ -25,7 +25,7 @@ const SignInPage = () => {
       <body>
         <section className='min-h-screen flex items-stretch text-white '>
           <div
-            className='lg:flex w-1/2 hidden bg-gray-100 bg-no-repeat bg-cover relative items-center'
+            className='lg:flex w-1/2 hidden bg-slate-100 bg-no-repeat bg-cover relative items-center'
             style={{
               backgroundImage: `url(https://media.istockphoto.com/photos/making-paper-blueprints-a-thing-of-the-past-picture-id1297780275?b=1&k=20&m=1297780275&s=170667a&w=0&h=tMhMWqPqWRJzj8AtIN3uag7FWoo6gyOqCuv5KagPmKI=)`,
             }}
@@ -41,7 +41,7 @@ const SignInPage = () => {
               </p>
             </div>
           </div>
-          <div className='lg:w-1/2 w-full flex items-center justify-center text-center bg-gray-100 md:px-16 px-4 z-0'>
+          <div className='lg:w-1/2 w-full flex items-center justify-center text-center bg-slate-100 md:px-16 px-4 z-0'>
             <div className='py-6 px-1 z-20 mx-auto'>
               <h1 className='my-6 inline-flex justify-center'>
                 <Link to='/'>
@@ -57,7 +57,7 @@ const SignInPage = () => {
               <div className=''>
                 <div className='flex py-4 justify-center items-center gap-3'>
                   <Link to=''
-                    className='bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center justify-center font-bold text-xs ease-linear transition-all duration-150'
+                    className='bg-white hover:bg-slate-100 text-slate-700 px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center justify-center font-bold text-xs ease-linear transition-all duration-150'
                     type='button'
                   >
                     <svg
@@ -80,7 +80,7 @@ const SignInPage = () => {
                     </svg>
                   </Link>
                   <Link to=''
-                    className='bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center justify-center font-bold text-xs ease-linear transition-all duration-150'
+                    className='bg-white hover:bg-slate-100 text-slate-700 px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center justify-center font-bold text-xs ease-linear transition-all duration-150'
                     type='button'
                   >
                     <svg
@@ -111,7 +111,7 @@ const SignInPage = () => {
                     </svg>
                   </Link>
                   <Link to=''
-                    className='bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center justify-center font-bold text-xs ease-linear transition-all duration-150'
+                    className='bg-white hover:bg-slate-100 text-slate-700 px-4 py-2 rounded-full outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center justify-center font-bold text-xs ease-linear transition-all duration-150'
                     type='button'
                   >
                     <svg
@@ -138,14 +138,14 @@ const SignInPage = () => {
                 </div>
                 <div className='flex justify-center'>
                   <hr />
-                  <p className='text-gray-900 mb-2'>
+                  <p className='text-slate-900 mb-2'>
                     Login
                   </p>
                   <hr />
                 </div>
                 <form
                   action=''
-                  className=' w-full px-4 space-y-3 mx-auto text-gray-900 '
+                  className=' w-full px-4 space-y-3 mx-auto text-slate-900 '
                 >
                   <div className='pb-2 pt-4'>
                     <input
@@ -153,8 +153,8 @@ const SignInPage = () => {
                       name='email'
                       id='email'
                       placeholder='Email'
-                      className='border border-gray-700 px-3 py-3
-                      placeholder-gray-500 text-gray-600 bg-white
+                      className='border border-slate-700 px-3 py-3
+                      placeholder-slate-500 text-slate-600 bg-white
                       rounded text-sm  focus:outline-none w-full ease-linear
                       transition-all duration-150'
                       onChange={e => setEmail(e.target.value)}
@@ -162,7 +162,7 @@ const SignInPage = () => {
                   </div>
                   <div className='pb-2 pt-4'>
                     <input
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                       type='password'
                       name='password'
                       id='password'
@@ -179,14 +179,14 @@ const SignInPage = () => {
 
                     </Transition>
                   </div>
-                  <div className='text-right text-light-blue hover:underline hover:text-middle-blue'>
+                  <div className='text-right text-[#00adef] hover:underline hover:text-[#0e87d2]'>
                     <span>Forgot your password?</span>
                   </div>
 
                   <div className=''>
                     <button className='uppercase  w-full p-2
                     text-white  text-lg rounded-lg
-                    bg-light-blue hover:bg-middle-blue
+                    bg-[#00adef] hover:bg-[#0e87d2]
                     focus:outline-none'
                       onClick={(e) => {
                         e.preventDefault()
@@ -200,8 +200,8 @@ const SignInPage = () => {
                   <div className='text-right'>
                     <p className='font-medium'>
                       <p>By sign in,I agree to izitini's Terms of use and Privacy Policy</p>
-                      <span className='text-gray-800'>New to Izitini ? </span>
-                      <Link to='/account-types' className='text-light-blue hover:underline hover:text-middle-blue'>Sign up</Link> </p>
+                      <span className='text-slate-800'>New to Izitini ? </span>
+                      <Link to='/account-types' className='text-[#00adef] hover:underline hover:text-[#0e87d2]'>Sign up</Link> </p>
 
                   </div>
                 </form>

@@ -60,10 +60,10 @@ const Reports = () => {
 
                             <div className='px-2 md:px-6 lg:px-14 w-full'>
                                 <p className='font-bold my-3 text-sm md:mt-6 md:text-xl text-center underline'>Products</p>
-                                <div className='  border-gray-200'>
+                                <div className='  border-slate-200'>
                                     <ul className='w-full text-xs flex cursor-pointer'>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showAllProducts && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/4 text-center
+                                            py-3 ${showAllProducts && 'border-b-2 border-[#004896]'}`}
 
                                             onClick={() => {
                                                 setShowAllProducts(true)
@@ -72,8 +72,8 @@ const Reports = () => {
                                                 setShowShops(false)
                                             }}
                                         >All</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showUsers && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/4 text-center
+                                            py-3 ${showUsers && 'border-b-2 border-[#004896]'}`}
                                             onClick={() => {
                                                 setShowUsers(true)
                                                 setShowAllProducts(false)
@@ -82,8 +82,8 @@ const Reports = () => {
                                             }}
 
                                         >Users</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showShops && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/4 text-center
+                                            py-3 ${showShops && 'border-b-2 border-[#004896]'}`}
                                             onClick={() => {
                                                 setShowShops(true)
                                                 setShowAllProducts(false)
@@ -91,8 +91,8 @@ const Reports = () => {
                                                 setShowWaiting(false)
                                             }}
                                         >Shops</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/4 text-center
-                                            py-3 ${showWaiting && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/4 text-center
+                                            py-3 ${showWaiting && 'border-b-2 border-[#004896]'}`}
                                             onClick={() => {
                                                 setShowWaiting(true)
                                                 setShowAllProducts(false)

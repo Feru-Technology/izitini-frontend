@@ -36,7 +36,7 @@ const CreateVendor = () => {
 
   return (
     <>
-      <div className='flex h-screen overflow-hidden bg-gray-200'>
+      <div className='flex h-screen overflow-hidden bg-slate-200'>
         <SiderBar
           isClosed={isClosed}
           setIsClosed={setIsClosed}
@@ -68,7 +68,7 @@ const CreateVendor = () => {
             bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
               <div className='rounded-t mb-0 px-6 py-6'>
                 <div className='text-center mb-3'>
-                  <h6 className='text-gray-500 text-sm font-bold md:text-base lg:text-lg'>
+                  <h6 className='text-slate-500 text-sm font-bold md:text-base lg:text-lg'>
                     Create a vendor account
                   </h6>
                 </div>
@@ -90,119 +90,119 @@ const CreateVendor = () => {
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Full Names
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='Full Names'
                       onChange={e => setFull_name(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Contact
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='contacts'
                       onChange={e => setContact(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Email
                     </label>
                     <input
                       type='email'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='Email'
                       onChange={e => setEmail(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Tin no
                     </label>
                     <input
                       type='TinNo'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='TinNo'
                       onChange={e => setTin_no(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Shop Name
                     </label>
                     <input
                       type='Shop_name'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='Shop Name'
                       onChange={e => setName(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       About Shop
                     </label>
                     <input
                       type='About Shop'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                        rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='About Shop'
                       onChange={e => setAbout_shop(e.target.value)}
                     />
                   </div>
                   <div>
-                    <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>shop specialty 1</h3>
+                    <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>shop specialty 1</h3>
                     <div className=''>
                       <select
-                        className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight
-                        border-gray-700 focus:outline-none focus:border-dark-blue'
+                        className='block appearance-none w-full bg-white border text-slate-700 py-3 px-4 pr-8 rounded leading-tight
+                        border-slate-700 focus:outline-none focus:border-[#004896]'
                         id='grid-state'
                         onChange={e => setShop_specialty_1(e.target.value)}
                       >
-                        <option className='text-gray-600'>choose shop specialty</option>
+                        <option className='text-slate-600'>choose shop specialty</option>
                         {isLoading ? 'Loading...'
                           : categories.map((c) => (<option key={c.id}>{c.name}</option>))}
                       </select>
                     </div>
                   </div>
                   <div>
-                    <h3 className='block uppercase text-gray-600 text-xs font-bold my-2'>shop specialty 2</h3>
+                    <h3 className='block uppercase text-slate-600 text-xs font-bold my-2'>shop specialty 2</h3>
                     <div className=''>
                       <select
-                        className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight
-                        border-gray-700 focus:outline-none focus:border-dark-blue'
+                        className='block appearance-none w-full bg-white border text-slate-700 py-3 px-4 pr-8 rounded leading-tight
+                        border-slate-700 focus:outline-none focus:border-[#004896]'
                         id='grid-state'
                         onChange={e => setShop_specialty_2(e.target.value)}
                       >
-                        <option className='text-gray-600'>choose shop specialty</option>
+                        <option className='text-slate-600'>choose shop specialty</option>
                         {isLoading ? 'Loading...'
                           : categories.map((c) => (<option key={c.id}>{c.name}</option>))}
                       </select>
@@ -210,7 +210,7 @@ const CreateVendor = () => {
                   </div>
                   <div className='text-center mt-6'>
                     <button
-                      className='bg-dark-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg
+                      className='bg-[#004896] text-white active:bg-slate-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg
                       outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                       type='button'
                       onClick={e => {
@@ -222,7 +222,7 @@ const CreateVendor = () => {
                     >
                       {isLoading ? 'Loading...' : 'Create'}
                     </button>
-                    <p> <Link to={'/admin/users/create-customer'}> Or <span className='text-dark-blue'>Create a Customer</span></Link></p>
+                    <p> <Link to={'/admin/users/create-customer'}> Or <span className='text-[#004896]'>Create a Customer</span></Link></p>
                   </div>
                 </form>
               </div>

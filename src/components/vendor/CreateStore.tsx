@@ -66,7 +66,7 @@ const CreateStore = () => {
             >
               <div className='fixed inset-0 bg-black opacity-60 z-10' />
             </Transition>
-            <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-gray-200">
+            <div className="px-4 sm:px-6  lg:px-8 py-8 w-full h-screen  max-w-9xl mx-auto bg-slate-200">
               <div className="font-bold text-3xl text-center">Create a new Store</div>
               <div className='container'>
                 <Transition
@@ -79,7 +79,7 @@ const CreateStore = () => {
                 <Transition
                   show={!!currentStore}
                 >
-                  <p className='w-full py-1 text-light-blue text-center'>Store created successfully</p>
+                  <p className='w-full py-1 text-[#00adef] text-center'>Store created successfully</p>
 
                 </Transition>
               </div>
@@ -88,7 +88,7 @@ const CreateStore = () => {
                   <h3>Select Category</h3>
                   <div className="">
                     <select
-                      className="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      className="block appearance-none w-full bg-white border border-slate-200 text-slate-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-slate-500"
                       id="grid-state"
                       onChange={e => setCategory(e.target.value)}
                     >
@@ -96,7 +96,7 @@ const CreateStore = () => {
                       {isLoading ? <h1>loading...</h1>
                         : categories.map((v) => (<option>{v.name}</option>))}
                     </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-700">
                       <svg
                         className="fill-current h-4 w-4"
                         xmlns="http://www.w3.org/2000/svg"
@@ -109,56 +109,56 @@ const CreateStore = () => {
                 </div>
                 <div className=" w-full mb-3">
                   <label
-                    className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-text"
                   >
                     Name
                   </label>
                   <input
                     type="email"
-                    className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                    className="border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                     placeholder="Name"
                     onChange={e => setName(e.target.value)}
                   />
                 </div>
                 <div className=" w-full mb-3">
                   <label
-                    className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-text"
                   >
                     About Store
                   </label>
                   <input
                     type="text"
-                    className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                    className="border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                     placeholder="About Store"
                     onChange={e => setAbout_shop(e.target.value)}
                   />
                 </div>
                 <div className=" w-full mb-3">
                   <label
-                    className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-text"
                   >
                     Store Email
                   </label>
                   <input
                     type="text"
-                    className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
+                    className="border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                     placeholder="Store Email"
                     onChange={e => setShop_email(e.target.value)}
                   />
                 </div>
                 <div className=" w-full mb-3">
                   <label
-                    className="block uppercase text-gray-600 text-xs font-bold mb-2"
+                    className="block uppercase text-slate-600 text-xs font-bold mb-2"
                     htmlFor="grid-number"
                   >
                     Store Contact
                   </label>
                   <input
                     type="text"
-                    className="border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600
+                    className="border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600
                 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150"
                     placeholder="Store Contact"
                     onChange={e => setShop_contact_no(e.target.value)}
@@ -173,7 +173,7 @@ const CreateStore = () => {
                 </div>
                 <div className="text-center mt-6">
                   <button
-                    className="bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4px-6 py-3
+                    className="bg-[#00adef] text-white active:bg-slate-600 text-sm font-bold uppercase mb-4px-6 py-3
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150"
                     type="button"
                     onClick={(e) => {

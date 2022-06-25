@@ -56,7 +56,7 @@ const VendorDashboard = () => {
                         >
                             <div className='fixed inset-0 bg-black opacity-60 z-10' />
                         </Transition>
-                        <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full max-w-9xl mx-auto bg-gray-200'>
+                        <div className='px-4 sm:px-6  lg:px-8 py-8 w-full h-full max-w-9xl mx-auto bg-slate-200'>
                             {/* Welcome */}
                             <div className='grid gap-4 grid-cols-1 md:grid-cols-3 mt-5'>
                                 <div className='flex flex-col bg-white p-4 rounded-lg'>
@@ -77,7 +77,7 @@ const VendorDashboard = () => {
 
                                 <div className='grid gap-4 grid-rows-2'>
                                     <div className='bg-white p-4 rounded-lg'>
-                                        <h2 className='font-bold text-3xl px-4 text-light-blue'>
+                                        <h2 className='font-bold text-3xl px-4 text-[#00adef]'>
                                             876,000 Rwf
                                         </h2>
                                         <h2 className='font-bold text-3xl px-4'>
@@ -85,7 +85,7 @@ const VendorDashboard = () => {
                                         </h2>
                                     </div>
                                     <div className='bg-white p-4 rounded-lg'>
-                                        <h2 className='font-bold text-3xl px-4 text-light-blue'>
+                                        <h2 className='font-bold text-3xl px-4 text-[#00adef]'>
                                             150
                                         </h2>
                                         <h2 className='font-bold text-3xl px-4'>
@@ -107,7 +107,7 @@ const VendorDashboard = () => {
                                         </div>
                                     </div>
                                     <div className='flex flex-col'>
-                                        <h2 className='font-bold text-3xl mb-2  text-light-blue'>
+                                        <h2 className='font-bold text-3xl mb-2  text-[#00adef]'>
                                             876,000 Rwf
                                         </h2>
 

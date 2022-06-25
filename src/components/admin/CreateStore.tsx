@@ -43,7 +43,7 @@ const CreateProduct = () => {
   return (
     <>
       {isLoading ? 'Loading ...' :
-        <div className='flex h-screen overflow-hidden bg-gray-100 '>
+        <div className='flex h-screen overflow-hidden bg-slate-100 '>
           <SiderBar
             isClosed={isClosed}
             setIsClosed={setIsClosed}
@@ -87,11 +87,11 @@ const CreateProduct = () => {
                 </div>
                 <form>
                   <div className=' w-full mb-3'>
-                    <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Assign User to this shop</h3>
+                    <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>Assign User to this shop</h3>
                     <div className=' w-full mb-3'>
                       <select
-                        className='block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded border-gray-300
-                    outline-none focus:ring-1 focus:border-dark-blue'
+                        className='block appearance-none w-full bg-white border text-slate-600 py-3 px-4 pr-8 rounded border-slate-300
+                    outline-none focus:ring-1 focus:border-[#004896]'
                         id='grid-state'
                         onChange={e => setOwner(e.target.value)}
                       >
@@ -102,11 +102,11 @@ const CreateProduct = () => {
                     </div>
                   </div>
                   <div className=' w-full mb-3'>
-                    <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shop Specialty 1</h3>
+                    <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>Shop Specialty 1</h3>
                     <div className=' w-full mb-3'>
                       <select
-                        className='block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded border-gray-300
-                    outline-none focus:ring-1 focus:border-dark-blue'
+                        className='block appearance-none w-full bg-white border text-slate-600 py-3 px-4 pr-8 rounded border-slate-300
+                    outline-none focus:ring-1 focus:border-[#004896]'
                         id='grid-state'
                         onChange={e => setShop_specialty_1(e.target.value)}
                       >
@@ -117,11 +117,11 @@ const CreateProduct = () => {
                     </div>
                   </div>
                   <div className=' w-full mb-3'>
-                    <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Shop Specialty 2</h3>
+                    <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>Shop Specialty 2</h3>
                     <div className=' w-full mb-3'>
                       <select
-                        className='block appearance-none w-full bg-white border text-gray-600 py-3 px-4 pr-8 rounded border-gray-300
-                    outline-none focus:ring-1 focus:border-dark-blue'
+                        className='block appearance-none w-full bg-white border text-slate-600 py-3 px-4 pr-8 rounded border-slate-300
+                    outline-none focus:ring-1 focus:border-[#004896]'
                         id='grid-state'
                         onChange={e => setShop_specialty_2(e.target.value)}
                       >
@@ -133,61 +133,61 @@ const CreateProduct = () => {
                   </div>
                   <div className=' w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-text'
                     >
                       Name
                     </label>
                     <input
                       type='email'
-                      className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none
-                  focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
+                      className='border border-slate-300 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none
+                  focus:ring-1 focus:border-[#004896]  w-full ease-linear transition-all duration-150'
                       placeholder='Name'
                       onChange={e => setName(e.target.value)}
                     />
                   </div>
                   <div className=' w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-text'
                     >
                       About Store
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none
-                  focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
+                      className='border border-slate-300 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none
+                  focus:ring-1 focus:border-[#004896]  w-full ease-linear transition-all duration-150'
                       placeholder='About Store'
                       onChange={e => setAbout_shop(e.target.value)}
                     />
                   </div>
                   <div className=' w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-text'
                     >
                       Store Email
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none
-                  focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
+                      className='border border-slate-300 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none
+                  focus:ring-1 focus:border-[#004896]  w-full ease-linear transition-all duration-150'
                       placeholder='Store Email'
                       onChange={e => setShop_email(e.target.value)}
                     />
                   </div>
                   <div className=' w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-number'
                     >
                       Store Contact
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-300 px-3 py-3 placeholder-gray-500 text-gray-600
+                      className='border border-slate-300 px-3 py-3 placeholder-slate-500 text-slate-600
                 bg-white rounded text-sm  focus:outline-none
-                focus:ring-1 focus:border-dark-blue  w-full ease-linear transition-all duration-150'
+                focus:ring-1 focus:border-[#004896]  w-full ease-linear transition-all duration-150'
                       placeholder='Store Contact'
                       onChange={e => setShop_contact_no(e.target.value)}
                     />
@@ -203,7 +203,7 @@ const CreateProduct = () => {
                   </div>
                   <div className='text-center mt-6'>
                     <button
-                      className='bg-dark-blue text-white active:bg-gray-600 text-sm font-bold uppercase px-6 p-3
+                      className='bg-[#004896] text-white active:bg-slate-600 text-sm font-bold uppercase px-6 p-3
                 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                       type='button'
                       onClick={(e) => {

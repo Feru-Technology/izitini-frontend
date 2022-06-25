@@ -59,14 +59,14 @@ const Shops = () => {
 
                                 <div className='flex items-center justify-between py-8'>
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Shops</h3>
-                                    <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                                    <button className='bg-[#004896] hover:bg-[#0e87d2] text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base' >
                                         <Link to='/admin/shops/create'>ADD A Shop</Link>
                                     </button>
                                 </div>
 
                                 <div className='w-full my-4 md:my-5 lg:my-6 '>
-                                    <table className='w-full border-gray-200 text-gray-600 border'>
+                                    <table className='w-full border-slate-200 text-slate-600 border'>
                                         <thead className=''>
                                             <tr className='font-bold text-xs md:text-sm text-center border-b'>
                                                 <th
@@ -104,7 +104,7 @@ const Shops = () => {
 
                                                     <tr key={store.id}
                                                         className='text-center text-xs md:text-sm lg:text-base border-b
-                                                    text-gray-800 hover:bg-gray-100'
+                                                    text-slate-800 hover:bg-slate-100'
                                                         onClick={() => navigate(`/admin/shops/${store.id}`)} >
                                                         <td className='py-3 '>
                                                             <div className='md:flex items-center'>

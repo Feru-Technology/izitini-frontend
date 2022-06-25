@@ -35,8 +35,8 @@ const Home = () => {
                         <div className='
                     sr-only md:not-sr-only
                     md:w-3/12 lg:w-1/5 md:h-full'>
-                            <div className='flex flex-row justify-center text-dark-blue
-                            border-b-2 border-dark-blue mr-3 ml-2'>
+                            <div className='flex flex-row justify-center text-[#004896]
+                            border-b-2 border-[#004896] mr-3 ml-2'>
                                 <FaTools className='
                             md:h-3 md:w-3
                             lg:h-4 lg:w-4
@@ -51,8 +51,8 @@ const Home = () => {
                                 {categories.map((cat) => (
                                     <Link to={`/products/c/${cat.name}`} key={cat.id}>
                                         <li
-                                            className='w-full text-lg text-gray-700
-                                    hover:bg-dark-blue hover:text-white press-start
+                                            className='w-full text-lg text-slate-700
+                                    hover:bg-[#004896] hover:text-white press-start
                                     md:px-3 lg:px-4'
                                         >{cat.name}</li>
                                     </Link>
@@ -60,7 +60,7 @@ const Home = () => {
                             </ul>
 
                         </div>
-                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-gray-50 flex flex-row h-full'>
+                        <div className='w-full md:w-9/12 lg:w-4/5 lg:ml-5 bg-slate-50 flex flex-row h-full'>
                             <Carousel
                                 autoPlay={true}
                                 interval={3000}
@@ -90,7 +90,7 @@ const Home = () => {
                                     <div className='relative my-2'>
                                         <div className='hover:underline'>
                                             <p className='absolute ml-2 hover:underline'>{category.name}</p>
-                                            <img className='h-36  2xl:h-52 w-full bg-gray-200 lg:h-40 xl:h-48 hover:shadow-sm'
+                                            <img className='h-36  2xl:h-52 w-full bg-slate-200 lg:h-40 xl:h-48 hover:shadow-sm'
                                                 src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         </div>
                                         <div className=''>
@@ -98,10 +98,10 @@ const Home = () => {
                                                 {
                                                     subCategories.map((subCat) => (
                                                         <li key={subCat.id}
-                                                            className='font-light hover:underline hover:text-dark-blue'>{subCat.name}</li>
+                                                            className='font-light hover:underline hover:text-[#004896]'>{subCat.name}</li>
                                                     ))
                                                 }
-                                                <p className='text-dark-blue hover:underline'>see all</p>
+                                                <p className='text-[#004896] hover:underline'>see all</p>
                                             </ul>
 
                                         </div>
@@ -121,7 +121,7 @@ const Home = () => {
                                         <img className='w-full h-32 2xl:h-52'
                                             src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         <p className='font-mono font-medium tracking-tighter text-md lg:text-lg'>{p.name}</p>
-                                        <p className='font-normal text-xs text-gray-500'>by {p.shop.name}</p>
+                                        <p className='font-normal text-xs text-slate-500'>by {p.shop.name}</p>
                                         <p className='font-semibold'>RWF {p.price}</p>
                                     </Link>
                                 </div>

@@ -47,7 +47,7 @@ function DashboardCard10() {
 
     return (
         <>
-            <h2 className='font-bold text-xl text-gray-800 '>Top Deals</h2>
+            <h2 className='font-bold text-xl text-slate-800 '>Top Deals</h2>
             {/* Table */}
             <div>
                 {customers.map((customer) => {
@@ -64,15 +64,15 @@ function DashboardCard10() {
                                     height='40'
                                     alt={customer.name}
                                 />
-                                <div className='font-bold	 text-gray-800'>
+                                <div className='font-bold	 text-slate-800'>
                                     <div>{customer.name}</div>
-                                    <div className='text-sm text-gray-600'>
+                                    <div className='text-sm text-slate-600'>
                                         {customer.email}
                                     </div>
                                 </div>
                             </div>
 
-                            <div className='text-lg text-light-blue font-semibold'>
+                            <div className='text-lg text-[#00adef] font-semibold'>
                                 {customer.spent}
                             </div>
                         </div>

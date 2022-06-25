@@ -29,8 +29,8 @@ const Subcategory = () => {
                     {/* navigation */}
                     <div className='flex mt-4 lg:mt-8 font-semibold text-xs md:text-sm'>
                         <Link to={'/products'}>All Products</Link>
-                        <ChevronRightIcon className='h-4 md:h-5 mx-1 text-gray-500' />
-                        <p className='text-gray-500'>{categoryName}</p>
+                        <ChevronRightIcon className='h-4 md:h-5 mx-1 text-slate-500' />
+                        <p className='text-slate-500'>{categoryName}</p>
                     </div>
 
                     {isLoading ? (<h1>Loading...</h1>) : currentCategory?.subCategories[0] ? (
@@ -43,7 +43,7 @@ const Subcategory = () => {
                                 >
                                     <Link to={`/products/s/${subCat.id}`}>
                                         <p className='absolute ml-2'>{subCat.name}</p>
-                                        <img className='h-44  2xl:h-52 w-full bg-gray-200
+                                        <img className='h-44  2xl:h-52 w-full bg-slate-200
                                         lg:h-40 xl:h-48'
                                             src={subCat.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
 

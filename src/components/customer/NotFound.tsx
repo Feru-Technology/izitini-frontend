@@ -15,7 +15,7 @@ const NofFound = () => {
                     <p className='text-sm text-center px-3
                     md:text-lg 2xl:text-4xl
                     '>Sorry!!!, we couldn't find what you are looking for.</p>
-                    <Link to={'/'} className='text-light-blue
+                    <Link to={'/'} className='text-[#00adef]
                     text-sm text-center px-3
                     md:text-lg 2xl:text-4xl
                     '> back to homepage</Link>

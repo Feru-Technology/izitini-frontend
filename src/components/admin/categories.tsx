@@ -83,7 +83,7 @@ const Categories = () => {
 
                                 <div className='flex items-center justify-between py-8'>
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Categories</h3>
-                                    <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                                    <button className='bg-[#004896] hover:bg-[#0e87d2] text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md hover:shadow-lg'
                                         onClick={() => {
                                             setName(null)
@@ -95,7 +95,7 @@ const Categories = () => {
                                 </div>
 
                                 <div className='w-full my-4 md:my-5 lg:my-6 '>
-                                    <table className='w-full border-gray-200 text-gray-600 border'>
+                                    <table className='w-full border-slate-200 text-slate-600 border'>
                                         <thead className=''>
                                             <tr className='font-bold text-xs md:text-sm text-center border-b'>
                                                 <th
@@ -133,7 +133,7 @@ const Categories = () => {
                                                 return (
                                                     <tr key={category.id}
                                                         className='text-center text-xs md:text-base lg:text-base border-b
-                                                    text-gray-800 hover:bg-gray-100'
+                                                    text-slate-800 hover:bg-slate-100'
                                                     >
                                                         <td className='py-3 w-3/12 md:w-3/6'
                                                             onClick={() => navigate(`/admin/categories/${category.id}`)}>
@@ -144,18 +144,18 @@ const Categories = () => {
                                                                 <div className='md:w-2/4'>
 
                                                                     <p className='font-normal'>
-                                                                        <span className='hover:underline hover:text-dark-blue cursor-pointer'>{category.name}</span>
+                                                                        <span className='hover:underline hover:text-[#004896] cursor-pointer'>{category.name}</span>
                                                                     </p>
                                                                 </div>
                                                             </div>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
                                                             <Link to={`/admin/categories/${category.id}`}
-                                                                className='font-normal hover:underline hover:text-dark-blue'>{subcategories}</Link>
+                                                                className='font-normal hover:underline hover:text-[#004896]'>{subcategories}</Link>
                                                         </td>
                                                         <td className='py-3 w-3/12 md:w-1/6'>
-                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-dark-blue w-2/3 md:w-5/6
-                                                            text-white hover:bg-middle-blue hover:shadow-md transition duration-150 ease-in-out cursor-pointer'
+                                                            <div className='mx-auto px-1 py-1 md:px-auto border rounded-md bg-[#004896] w-2/3 md:w-5/6
+                                                            text-white hover:bg-[#0e87d2] hover:shadow-md transition duration-150 ease-in-out cursor-pointer'
                                                                 onClick={() => {
                                                                     setCurrentCategory(category)
                                                                     setName(category.name)
@@ -181,13 +181,13 @@ const Categories = () => {
 
                         {/* delete category */}
                         <Transition show={!!deleteMode} className='fixed'>
-                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-2/4 w-full z-20 text-xs md:text-base  transition duration-150 ease-in-out'>
                                 <div className='p-2 bg-white w-ful mx-6 md:w-2/4 lg:w-2/6 md:mx-auto rounded-md shadow-md'>
                                     <p className='mb-2 '>Are you sure you want to delete this category?</p>
                                     <div className='flex justify-between text-white'>
-                                        <button className='px-5 py-1 rounded-lg bg-dark-blue hover:bg-middle-blue hover:shadow-md
+                                        <button className='px-5 py-1 rounded-lg bg-[#004896] hover:bg-[#0e87d2] hover:shadow-md
                                         transition duration-150 ease-in-out'
                                             onClick={() => setDeleteMode(false)} >Cancel</button>
                                         <button className='px-5 py-1 rounded-lg bg-red-800 hover:bg-red-700 hover:shadow-md
@@ -199,17 +199,17 @@ const Categories = () => {
 
                         {/* create category */}
                         <Transition show={!!createMode} className='fixed'>
-                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-1/3 w-full z-30 text-xs md:text-base'>
                                 <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
                                     <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
-                                    text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                                    text-slate-600 hover:text-[#004896] hover:shadow-lg'
                                         onClick={() => setCreateMode(false)} />
 
-                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Category</div>
+                                    <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-slate-600'>Create Category</div>
                                     <div className='container'>
                                         <Transition
                                             show={!!error}
@@ -223,15 +223,15 @@ const Categories = () => {
 
                                         <div className=' w-full mb-3'>
                                             <label
-                                                className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                 htmlFor='grid-text'
                                             >
                                                 Name
                                             </label>
                                             <input
                                                 type='text'
-                                                className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm
-                                                focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                                                className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm
+                                                focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                                                 placeholder='category name'
                                                 onChange={e => setName(e.target.value)}
                                             />
@@ -247,7 +247,7 @@ const Categories = () => {
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                                className={`bg-[#004896] hover:bg-[#0e87d2] text-white  text-sm font-bold uppercase px-6 p-3
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
                                             ${isUploading ? 'pointer-events-none' : 'pointer-events-auto'}`}
                                                 type='button'
@@ -266,14 +266,14 @@ const Categories = () => {
 
                         {/* Edit category */}
                         <Transition show={!!editMode} className='fixed'>
-                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen h-screen'>
+                            <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen h-screen'>
                             </div>
                             <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
                                 <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8'>
 
                                     <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
-                                    text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                                    text-slate-600 hover:text-[#004896] hover:shadow-lg'
                                         onClick={() => setEditMode(false)} />
 
                                     <div className='mb-3 mx-auto relative flex justify-center'>
@@ -294,14 +294,14 @@ const Categories = () => {
 
                                         <div className=' w-full mb-3'>
                                             <label
-                                                className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                 htmlFor='grid-text'
                                             >
                                                 Name
                                             </label>
                                             <input
                                                 type='text'
-                                                className='border-0 border-b border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
+                                                className='border-0 border-b border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
                                                 text-sm focus:outline-none  w-full ease-linear transition-all duration-150'
                                                 defaultValue={currentCategory?.name}
                                                 onChange={e => setName(e.target.value)}
@@ -318,7 +318,7 @@ const Categories = () => {
                                         </div>
                                         <div className='text-center mt-6'>
                                             <button
-                                                className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                                className={`bg-[#004896] hover:bg-[#0e87d2] text-white  text-sm font-bold uppercase px-6 p-3
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
                                             ${isUploading ? 'pointer-events-none' : 'pointer-events-auto'}`}
                                                 type='button'

@@ -82,7 +82,7 @@ const User = () => {
 
                             {/* admin dashboard */}
 
-                            <div className='w-full flex justify-center bg-gray-100 p-5'>
+                            <div className='w-full flex justify-center bg-slate-100 p-5'>
                                 <div className='flex flex-col min-w-0 break-words mb-6  rounded-lg w-full md:w-8/12 lg:w-1/2
                                     bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
                                     <div className='flex my-5 justify-center'>
@@ -97,7 +97,7 @@ const User = () => {
                                                     if (e.target.files) changeProfileImage(dispatch, `/admin/user/profile-image/${id!}`, e.target.files[0])
                                                 }} />
 
-                                            <AiFillCamera className='h-7 w-7  text-dark-blue hover:text-light-blue bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
+                                            <AiFillCamera className='h-7 w-7  text-[#004896] hover:text-[#00adef] bg-white rounded-full p-0.5 opacity-60 hover:opacity-100
                                             absolute bottom-0.5 right-1 mr-auto cursor-pointer duration-300' onClick={() => uploadImage()} />
                                         </div>
                                     </div>
@@ -106,73 +106,73 @@ const User = () => {
                                             <div className=''>
                                                 <Transition show={!editMode} className='space-y-6 mx-2'>
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='names'>Names:</label>
-                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border 
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
+                                                        <input className={`w-full bg-slate-100 text-sm md:text-base font-medium border 
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800`}
                                                             id='grid-first-name' type='text' value={currentUser.full_name} />
 
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='contact'>Contact:</label>
-                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
+                                                        <input className={`w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800`}
                                                             id='grid-last-name' type='text' value={currentUser.contact} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Tin no'>Tin no:</label>
-                                                        <input className={`w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800`}
+                                                        <input className={`w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800`}
                                                             id='grid-last-name' type='text' value={currentUser.tin_no || 'N/A'} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Account type'>Account:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800'
                                                             id='grid-last-name' type='text' value={currentUser.account_type} />
 
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='email'>Email:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800'
                                                             id='grid-last-name' type='text' value={currentUser.email} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Provider'>Provider:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800'
                                                             id='grid-last-name' type='text' value={currentUser.provider} />
                                                     </div>
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Verified'>Verified:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800'
                                                             id='grid-last-name' type='text' value={`${currentUser.is_verified}`} />
                                                     </div>
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='created At'>created At:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800'
                                                             id='grid-last-name' type='text' value={format(new Date(currentUser.createdAt), 'dd.MM.yyyy')} />
                                                     </div>
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Updated At'>Updated At:</label>
-                                                        <input className='w-full bg-gray-100 text-sm md:text-base font-medium border
-                                                border-gray-300 pointer-events-none px-3 py-2 rounded text-gray-800'
+                                                        <input className='w-full bg-slate-100 text-sm md:text-base font-medium border
+                                                border-slate-300 pointer-events-none px-3 py-2 rounded text-slate-800'
                                                             id='grid-last-name' type='text' value={format(new Date(currentUser.updatedAt), 'dd.MM.yyyy')} />
                                                     </div>
 
@@ -185,48 +185,48 @@ const User = () => {
                                                         {error?.message}</Transition>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='names'>Names:</label>
                                                         <input className={`w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded`}
+                                                border-slate-400 focus:border-[#004896] px-4 py-3 rounded`}
                                                             id='grid-first-name' type='text' defaultValue={full_name || currentUser.full_name}
                                                             onChange={e => setFull_name(e.target.value)} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='contact'>Contact:</label>
                                                         <input className={`w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded`}
+                                                border-slate-400 focus:border-[#004896] px-4 py-3 rounded`}
                                                             id='grid-last-name' type='text' defaultValue={contact || currentUser.contact}
                                                             onChange={e => setContact(e.target.value)} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Tin no'>Tin no:</label>
                                                         <input className={`w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded`}
+                                                border-slate-400 focus:border-[#004896] px-4 py-3 rounded`}
                                                             id='grid-last-name' type='text' defaultValue={tin_no || currentUser.tin_no}
                                                             onChange={e => setTin_no(e.target.value)} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='email'>Email:</label>
                                                         <input className='w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                border-gray-400 focus:border-dark-blue px-4 py-3 rounded'
+                                                border-slate-400 focus:border-[#004896] px-4 py-3 rounded'
                                                             id='grid-last-name' type='text' defaultValue={email || currentUser.email}
                                                             onChange={e => setEmail(e.target.value)} />
                                                     </div>
 
                                                     <div className=''>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Account type'>Account:</label>
 
                                                         <select
                                                             className='w-full bg-white text-sm md:text-base font-medium outline-none border
-                                                        border-gray-400 focus:border-dark-blue px-4 py-3 rounded'
+                                                        border-slate-400 focus:border-[#004896] px-4 py-3 rounded'
                                                             id='grid-state'
                                                             defaultValue={account_type || currentUser.account_type}
                                                             onChange={e => setAccount_type(e.target.value)}
@@ -237,7 +237,7 @@ const User = () => {
                                                     </div>
 
                                                     <div className='flex space-x-4'>
-                                                        <label className='block font-semibold text-sm md:text-base text-gray-500'
+                                                        <label className='block font-semibold text-sm md:text-base text-slate-500'
                                                             htmlFor='Verified'>Verified:</label>
 
                                                         <div className='flex justify-center space-x-5 '>
@@ -264,7 +264,7 @@ const User = () => {
                                                 <Transition
                                                     show={!!editMode}
                                                 >
-                                                    <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                    <button className='py-3 px-6 bg-[#004896] rounded-md text-white text-sm md:text-base font-semibold'
                                                         onClick={e => {
                                                             e.preventDefault()
                                                             return updateUser(dispatch, id!, { tin_no, contact, email, full_name, is_verified, account_type })
@@ -274,7 +274,7 @@ const User = () => {
                                                 </Transition>
                                                 <Transition
                                                     show={!editMode}>
-                                                    <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                                    <button className='py-3 px-6 bg-[#004896] rounded-md text-white text-sm md:text-base font-semibold'
                                                         onClick={e => {
                                                             e.preventDefault()
                                                             return setEditMode(true)

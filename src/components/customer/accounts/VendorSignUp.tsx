@@ -31,7 +31,7 @@ const VendorSignUp = () => {
 
   return (
     <div>
-      <section className='min-h-screen bg-gray-100'>
+      <section className='min-h-screen bg-slate-100'>
 
         <div className='w-full lg:w-5/12 px-4 mx-auto pt-6'>
           <div>
@@ -50,76 +50,76 @@ const VendorSignUp = () => {
           <div className='relative flex flex-col min-w-0 break-words w-full mb-6  rounded-lg bg-white shadow hover:shadow-md ease-linear transition-all duration-150'>
 
             <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
-              <div className='text-gray-700 border-bottom border-gray-600 text-center mb-3 font-bold'>
+              <div className='text-slate-700 border-bottom border-slate-600 text-center mb-3 font-bold'>
                 <p className='my-5'>Join as vendor</p>
               </div>
               <form>
                 <div className='relative w-full mb-3'>
                   <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                     htmlFor='grid-password'
                   >
                     Full Names
                   </label>
                   <input
                     type='text'
-                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Full Name'
                     onChange={e => setFull_name(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
                   <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                     htmlFor='grid-password'
                   >
                     Shop Name
                   </label>
                   <input
                     type='text'
-                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Shop Name'
                     onChange={e => setName(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
                   <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                     htmlFor='grid-password'
                   >
                     About Shop
                   </label>
                   <input
                     type='text'
-                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='About Shop'
                     onChange={e => setAbout_shop(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
                   <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                     htmlFor='grid-password'
                   >
                     Contact
                   </label>
                   <input
                     type='text'
-                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='contact number'
                     onChange={e => setContact(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
-                  <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>shop specialty 1</h3>
+                  <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>shop specialty 1</h3>
                   <div className=''>
                     <select
-                      className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight
-                        border-gray-700 focus:outline-none focus:border-dark-blue'
+                      className='block appearance-none w-full bg-white border text-slate-700 py-3 px-4 pr-8 rounded leading-tight
+                        border-slate-700 focus:outline-none focus:border-[#004896]'
                       id='grid-state'
                       onChange={e => setShop_specialty_1(e.target.value)}
                     >
-                      <option className='text-gray-600'>choose shop specialty</option>
+                      <option className='text-slate-600'>choose shop specialty</option>
                       {isLoading ? <h1>loading...</h1>
                         : categories.map((v) => (<option>{v.name}</option>))}
                     </select>
@@ -127,15 +127,15 @@ const VendorSignUp = () => {
                 </div>
 
                 <div className='relative w-full mb-3'>
-                  <h3 className='block uppercase text-gray-600 text-xs font-bold my-2'>shop specialty 2</h3>
+                  <h3 className='block uppercase text-slate-600 text-xs font-bold my-2'>shop specialty 2</h3>
                   <div className=''>
                     <select
-                      className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded leading-tight
-                        border-gray-700 focus:outline-none focus:border-dark-blue'
+                      className='block appearance-none w-full bg-white border text-slate-700 py-3 px-4 pr-8 rounded leading-tight
+                        border-slate-700 focus:outline-none focus:border-[#004896]'
                       id='grid-state'
                       onChange={e => setShop_specialty_2(e.target.value)}
                     >
-                      <option className='text-gray-600'>choose shop specialty</option>
+                      <option className='text-slate-600'>choose shop specialty</option>
                       {isLoading ? <h1>loading...</h1>
                         : categories.map((v) => (<option>{v.name}</option>))}
                     </select>
@@ -143,28 +143,28 @@ const VendorSignUp = () => {
                 </div>
                 <div className='relative w-full mb-3'>
                   <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                     htmlFor='grid-password'
                   >
                     Email
                   </label>
                   <input
                     type='email'
-                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Email'
                     onChange={e => setEmail(e.target.value)}
                   />
                 </div>
                 <div className='relative w-full mb-3'>
                   <label
-                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                     htmlFor='grid-password'
                   >
                     Password
                   </label>
                   <input
                     type='password'
-                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                     placeholder='Password'
                     onChange={e => setPassword(e.target.value)}
                   />
@@ -174,9 +174,9 @@ const VendorSignUp = () => {
                     <input
                       id='customCheckLogin'
                       type='checkbox'
-                      className='form-checkbox border-0 rounded text-gray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150'
+                      className='form-checkbox border-0 rounded text-slate-700 ml-1 w-5 h-5 ease-linear transition-all duration-150'
                     />
-                    <span className='ml-2 text-sm font-semibold text-gray-600'>
+                    <span className='ml-2 text-sm font-semibold text-slate-600'>
                       Remember me
                     </span>
                   </label>
@@ -192,7 +192,7 @@ const VendorSignUp = () => {
                 </div>
                 <div className='text-center mt-6'>
                   <button
-                    className='bg-light-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                    className='bg-[#00adef] text-white active:bg-slate-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                     type='button'
                     onClick={() => auth(dispatch, 'register-vendor', {
                       name,
@@ -208,11 +208,11 @@ const VendorSignUp = () => {
                     Sign Up
                   </button>
                 </div>
-                <hr className='text-gray-600 mb-4' />
+                <hr className='text-slate-600 mb-4' />
                 <div className='text-right'>
                   <p className='font-normal'>
-                    <span className='text-gray-800'> Already have an account ? </span>
-                    <Link to='/signin' className='text-light-blue hover:underline hover:text-middle-blue'>Sign in</Link> </p>
+                    <span className='text-slate-800'> Already have an account ? </span>
+                    <Link to='/signin' className='text-[#00adef] hover:underline hover:text-[#0e87d2]'>Sign in</Link> </p>
 
                   <p className='font-light'>By sign in,I agree to izitini's Terms of use and  Privacy Policy</p>
                 </div>

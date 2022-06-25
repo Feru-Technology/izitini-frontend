@@ -49,7 +49,7 @@ const Products = () => {
     return (
         <>
             {isLoading ? 'Loading ...' :
-                <div className='flex h-screen overflow-hidden bg-gray-100'>
+                <div className='flex h-screen overflow-hidden bg-slate-100'>
                     <SiderBar
                         isClosed={isClosed}
                         setIsClosed={setIsClosed}
@@ -79,7 +79,7 @@ const Products = () => {
                             <div className='flex items-center justify-between py-8'>
                                 <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{currentStore?.name}</h3>
 
-                                <button className='hover:bg-middle-blue bg-dark-blue text-white font-bold
+                                <button className='hover:bg-[#0e87d2] bg-[#004896] text-white font-bold
                             py-2 px-4 rounded cursor-pointer text-sm md:text-base shadow-md'
                                     onClick={() => setCreateMode(true)}>
                                     ADD A PRODUCT
@@ -88,9 +88,9 @@ const Products = () => {
                             <div className='flex flex-col'>
                                 <div className='overflow-x-auto'>
                                     <div className='py-2 align-middle inline-block min-w-full'>
-                                        <div className='shadow overflow-hidden border-b border-gray-200 rounded-md lg:rounded-lg'>
-                                            <table className='min-w-full divide-y divide-gray-200 text-gray-600 text-sm'>
-                                                <thead className='bg-gray-50'>
+                                        <div className='shadow overflow-hidden border-b border-slate-200 rounded-md lg:rounded-lg'>
+                                            <table className='min-w-full divide-y divide-slate-200 text-slate-600 text-sm'>
+                                                <thead className='bg-slate-50'>
                                                     <tr className='w-full uppercase tracking-wider font-medium'>
                                                         <th
                                                             scope='col'
@@ -130,12 +130,12 @@ const Products = () => {
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody className='bg-white divide-y divide-gray-200'>
+                                                <tbody className='bg-white divide-y divide-slate-200'>
                                                     {
                                                         isLoading
                                                             ? (<h1>loading ...</h1>)
                                                             : (products.map((product) => (
-                                                                <tr className='hover:bg-gray-100 cursor-default' key={product.id}
+                                                                <tr className='hover:bg-slate-100 cursor-default' key={product.id}
                                                                     onClick={e => navigate(`/vendor/products/${product.id}`)}>
                                                                     <td className='pl-3 w-5/12 py-4'>
                                                                         <div className='flex items-center'>
@@ -180,17 +180,17 @@ const Products = () => {
                     </div>
                     {/* create product */}
                     <Transition show={!!createMode} className='absolute'>
-                        <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                        <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen min-h-screen'>
                         </div>
                         <div className='absolute top-16 w-full z-30 text-xs md:text-base'>
                             <div className='p-3 bg-white w-ful mx-6 md:w-2/4 md:mx-auto rounded-md shadow-md
                         md:p-6 lg:p-8'>
 
                                 <MdOutlineCancel className='h-6 w-auto absolute top-0 right-6 md:right-1/4
-                        text-gray-600 hover:text-dark-blue hover:shadow-lg'
+                        text-slate-600 hover:text-[#004896] hover:shadow-lg'
                                     onClick={() => setCreateMode(false)} />
 
-                                <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>Create Product</div>
+                                <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-slate-600'>Create Product</div>
                                 <div className='container'>
                                     <Transition
                                         show={!!createError}
@@ -202,10 +202,10 @@ const Products = () => {
                                 <form>
 
                                     <div className=' w-full mb-3'>
-                                        <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
+                                        <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>Sub-Categories</h3>
                                         <div className=' w-full mb-3'>
                                             <select
-                                                className='block appearance-none w-full bg-white border text-gray-700 py-3 px-4 pr-8 rounded border-gray-500'
+                                                className='block appearance-none w-full bg-white border text-slate-700 py-3 px-4 pr-8 rounded border-slate-500'
                                                 id='grid-state'
                                                 onChange={e => setSubCategory(e.target.value)}
                                             >
@@ -218,14 +218,14 @@ const Products = () => {
 
                                     <div className=' w-full mb-3'>
                                         <label
-                                            className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                            className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                             htmlFor='grid-text'
                                         >
                                             Name
                                         </label>
                                         <input
                                             type='text'
-                                            className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                            className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                             placeholder='name'
                                             onChange={e => setName(e.target.value)}
                                         />
@@ -233,14 +233,14 @@ const Products = () => {
 
                                     <div className=' w-full mb-3'>
                                         <label
-                                            className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                            className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                             htmlFor='grid-text'
                                         >
                                             Brand
                                         </label>
                                         <input
                                             type='text'
-                                            className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                            className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                             placeholder='Brand'
                                             onChange={e => setBrand(e.target.value)}
                                         />
@@ -248,21 +248,21 @@ const Products = () => {
 
                                     <div className=' w-full mb-3'>
                                         <label
-                                            className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                            className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                             htmlFor='grid-text'
                                         >
                                             Unit
                                         </label>
                                         <input
                                             type='text'
-                                            className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                            className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                             placeholder='unit'
                                             onChange={e => setUnit(e.target.value)}
                                         />
                                     </div>
                                     <div className='text-center mt-6'>
                                         <button
-                                            className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                            className='bg-[#004896] hover:bg-[#0e87d2] text-white  text-sm font-bold uppercase px-6 p-3
                                     rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                                             type='button'
                                             onClick={(e) => {

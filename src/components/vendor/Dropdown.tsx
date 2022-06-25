@@ -16,11 +16,11 @@ const Example = () => {
         <div className='w-auto z'>
             <Listbox value={selected} onChange={setSelected}>
                 <div className='relative mt-1'>
-                    <Listbox.Button className='relative w-full py-2 pl-3 pr-10 text-left bg-gray-200 rounded-lg  cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm'>
+                    <Listbox.Button className='relative w-full py-2 pl-3 pr-10 text-left bg-slate-200 rounded-lg  cursor-default focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-orange-300 focus-visible:ring-offset-2 focus-visible:border-indigo-500 sm:text-sm'>
                         <span className='block truncate'>{selected.name}</span>
                         <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
                             <SelectorIcon
-                                className='w-5 h-5 text-gray-400'
+                                className='w-5 h-5 text-slate-400'
                                 aria-hidden='true'
                             />
                         </span>
@@ -38,7 +38,7 @@ const Example = () => {
                                     className={({ active }) =>
                                         `${active
                                             ? 'text-amber-900 bg-amber-100'
-                                            : 'text-gray-900'
+                                            : 'text-slate-900'
                                         }
                           cursor-default select-none relative py-2 pl-10 pr-4`
                                     }
@@ -48,8 +48,8 @@ const Example = () => {
                                         <>
                                             <span
                                                 className={`${selected
-                                                        ? 'font-medium'
-                                                        : 'font-normal'
+                                                    ? 'font-medium'
+                                                    : 'font-normal'
                                                     } block truncate`}
                                             >
                                                 {person.name}
@@ -57,8 +57,8 @@ const Example = () => {
                                             {selected ? (
                                                 <span
                                                     className={`${active
-                                                            ? 'text-amber-600'
-                                                            : 'text-amber-600'
+                                                        ? 'text-amber-600'
+                                                        : 'text-amber-600'
                                                         }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                                 >

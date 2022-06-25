@@ -65,11 +65,11 @@ const Orders = () => {
                         {/* vendor orders */}
                         <div className='px-2 md:px-6 lg:px-14 w-full'>
                             <p className='font-bold my-3 text-sm'>My Orders</p>
-                            <div className='bg-white border border-gray-200'>
-                                <div className=' border-b border-gray-200'>
+                            <div className='bg-white border border-slate-200'>
+                                <div className=' border-b border-slate-200'>
                                     <ul className='w-full text-xs flex cursor-pointer uppercase'>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            py-3 ${showAllOrders && 'border-b-2 border-light-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/5 text-center
+                                            py-3 ${showAllOrders && 'border-b-2 border-[#00adef]'}`}
 
                                             onClick={() => {
                                                 storeOrders(dispatch)
@@ -81,8 +81,8 @@ const Orders = () => {
                                             }}
                                         >All
                                         </li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            py-3 ${showProcessingOrders && 'border-b-2 border-light-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/5 text-center
+                                            py-3 ${showProcessingOrders && 'border-b-2 border-[#00adef]'}`}
 
                                             onClick={() => {
                                                 setShowAllOrders(false)
@@ -93,8 +93,8 @@ const Orders = () => {
                                                 storeOrders(dispatch, 'processing')
                                             }}
                                         >Processing</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            py-3 ${showSampleOrders && 'border-b-2 border-light-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/5 text-center
+                                            py-3 ${showSampleOrders && 'border-b-2 border-[#00adef]'}`}
                                             onClick={() => {
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(true)
@@ -105,8 +105,8 @@ const Orders = () => {
                                             }}
 
                                         >Sample</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            py-3 ${showCompletedOrders && 'border-b-2 border-light-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/5 text-center
+                                            py-3 ${showCompletedOrders && 'border-b-2 border-[#00adef]'}`}
                                             onClick={() => {
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(false)
@@ -116,8 +116,8 @@ const Orders = () => {
                                                 storeOrders(dispatch, 's/delivered')
                                             }}
                                         >Completed</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800 px-1 w-1/5 text-center
-                                            py-3 ${showRejectedOrders && 'border-b-2 border-light-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800 px-1 w-1/5 text-center
+                                            py-3 ${showRejectedOrders && 'border-b-2 border-[#00adef]'}`}
                                             onClick={() => {
                                                 setShowAllOrders(false)
                                                 setShowSampleOrders(false)
@@ -134,8 +134,8 @@ const Orders = () => {
                                 <div className='w-full my-4 px-4 md:my-5 md:px-5 lg:my-6 lg:px-6'>
 
                                     {orders ?
-                                        <table className='w-full border-gray-200 text-gray-600'>
-                                            <thead className='bg-gray-100'>
+                                        <table className='w-full border-slate-200 text-slate-600'>
+                                            <thead className='bg-slate-100'>
                                                 <tr className='font-bold text-xs md:text-sm text-center border uppercase'>
                                                     <th
                                                         scope='col'
@@ -167,8 +167,8 @@ const Orders = () => {
                                             <tbody>
                                                 {orders.map((order) => (
                                                     <tr key={order.id}
-                                                        className='text-center text-xs md:text-sm lg:text-base border text-gray-800
-                                                hover:bg-gray-100 cursor-pointer' onClick={() => navigate(`/vendor/orders/${order.id}`)}>
+                                                        className='text-center text-xs md:text-sm lg:text-base border text-slate-800
+                                                hover:bg-slate-100 cursor-pointer' onClick={() => navigate(`/vendor/orders/${order.id}`)}>
                                                         <td className='py-3 border'>
                                                             <p className='font-normal text-sm'>
                                                                 <span className=''>{order.order_no}</span>
@@ -188,7 +188,7 @@ const Orders = () => {
                                                 ))}
                                             </tbody>
 
-                                        </table> : <div className='text-center font-semibold py-10 text-gray-800'>{error?.message}</div>}
+                                        </table> : <div className='text-center font-semibold py-10 text-slate-800'>{error?.message}</div>}
 
                                 </div>
 

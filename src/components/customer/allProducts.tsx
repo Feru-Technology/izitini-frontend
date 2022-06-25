@@ -21,7 +21,7 @@ const MyProducts = () => {
 
                         {/* navigation */}
                         <div className='flex mt-4 lg:mt-8 font-semibold text-xs md:text-sm'>
-                            <p className='text-gray-500'>All Products</p>
+                            <p className='text-slate-500'>All Products</p>
                         </div>
 
                         {/* categories */}
@@ -33,7 +33,7 @@ const MyProducts = () => {
                                     <Link to={`/products/c/${category.name}`} key={category.id}>
                                         <div className='relative my-2'>
                                             <p className='absolute ml-2'>{category.name}</p>
-                                            <img className='h-36  2xl:h-52 w-full bg-gray-200 lg:h-40 xl:h-48'
+                                            <img className='h-36  2xl:h-52 w-full bg-slate-200 lg:h-40 xl:h-48'
                                                 src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                             <div className=''>
                                                 <ul>
@@ -42,7 +42,7 @@ const MyProducts = () => {
                                                             <li className='mt-1 font-normal' key={subCat.id}>{subCat.name}</li>
                                                         ))
                                                     }
-                                                    <p className='text-dark-blue'>see all</p>
+                                                    <p className='text-[#004896]'>see all</p>
                                                 </ul>
 
                                             </div>

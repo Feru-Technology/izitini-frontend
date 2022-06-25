@@ -21,7 +21,7 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
 
     return (
         <>
-            <div className='sticky top-0 text-white  bg-dark-blue z-10'>
+            <div className='sticky top-0 text-white  bg-[#004896] z-10'>
                 <div className='flex items-center justify-between h-16 -mb-px'>
                     {/* Hamburger button */}
                     <div className='flex  items-center'>
@@ -29,7 +29,7 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
                             (
                                 <button
                                     tabIndex={1}
-                                    className='text-gray-500 hover:text-gray-600 lg:hidden'
+                                    className='text-slate-500 hover:text-slate-600 lg:hidden'
                                     title='open sidebar'
                                     aria-label='Open Sidebar'
                                     aria-hidden={isClosed}
@@ -54,7 +54,7 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
                                     className='rounded-full focus:outline-none px-2 py-1 lg:px-4 lg:py-2'
                                     placeholder='Search anything...'
                                 />
-                                <div className='absolute top-2 lg:top-3 right-3 text-gray-400'>
+                                <div className='absolute top-2 lg:top-3 right-3 text-slate-400'>
                                     <SearchIcon className='w-5 h-5' />
                                 </div>
                             </div>

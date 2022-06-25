@@ -162,7 +162,7 @@ const VendorProduct = () => {
             {isLoading ? 'loading' :
                 currentProduct ?
                     (
-                        <div className='flex h-screen overflow-hidden bg-gray-100'>
+                        <div className='flex h-screen overflow-hidden bg-slate-100'>
                             <SiderBar
                                 isClosed={isClosed}
                                 setIsClosed={setIsClosed}
@@ -197,7 +197,7 @@ const VendorProduct = () => {
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
                                         >
-                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 border border-[#004896] text-[#004896] rounded-md text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return setEditMode(false)
@@ -207,7 +207,7 @@ const VendorProduct = () => {
                                         </Transition>
                                         <Transition
                                             show={!editMode}>
-                                            <button className='py-3 px-6 border border-dark-blue text-dark-blue rounded-md text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 border border-[#004896] text-[#004896] rounded-md text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return setEditMode(true)
@@ -217,8 +217,8 @@ const VendorProduct = () => {
                                         </Transition>
                                     </div>
 
-                                    <div className='border border-gray-200 p-8 bg-white shadow-md rounded-md'>
-                                        <form className='border-b border-dark-blue pb-8'>
+                                    <div className='border border-slate-200 p-8 bg-white shadow-md rounded-md'>
+                                        <form className='border-b border-[#004896] pb-8'>
                                             <div>
                                                 <Transition show={!!updateError}>
                                                     <div className='border border-red-600 bg-red-100'>
@@ -227,8 +227,8 @@ const VendorProduct = () => {
                                                 </Transition>
                                                 <div className='mb-3 w-full flex justify-end'>
                                                     <select
-                                                        className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-dark-blue
-                                                        focus:outline-none text-dark-blue rounded border-dark-blue px-4 py-2 shadow-md
+                                                        className={`appearance-none w-fit bg-blue-50 border focus:ring-1 focus:ring-[#004896]
+                                                        focus:outline-none text-[#004896] rounded border-[#004896] px-4 py-2 shadow-md
                                                         ${editMode && 'pointer-events-none'}`}
                                                         id='grid-state'
                                                         onChange={() => publishUnPublish(dispatch, '/product', currentProduct.product.id, currentProduct.product.status === 'draft' ? 'publish' : 'unpublish')}
@@ -242,73 +242,73 @@ const VendorProduct = () => {
                                                 </div>
                                                 <div className='grid grid-cols-1 md:grid-cols-2 md:gap-4'>
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Name:</label>
                                                         <input type='name'
-                                                            className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                            className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-first-name' onChange={e => setName(e.target.value)} defaultValue={name || currentProduct.product.name} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Unit:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setUnit(e.target.value)} defaultValue={unit || currentProduct.product.specification} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Price Per Unit:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='number' onChange={e => setPrice(e.target.valueAsNumber)} defaultValue={price || currentProduct.product.price || 'N/A'} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Brand:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3  text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                        <input className={`border border-slate-300 px-3 py-3  text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setBrand(e.target.value)} defaultValue={brand || currentProduct.product.brand} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Specs:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setSpecification(e.target.value)} defaultValue={specification || currentProduct.product.specification} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Manual:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setManual(e.target.value)} defaultValue={manual || currentProduct.product.manual || 'N/A'} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Quantity:</label>
-                                                        <input className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                        <input className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                        focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                        ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                             id='grid-last-name' type='text' onChange={e => setQuantity(e.target.value)} defaultValue={quantity || currentProduct.product.quantity} />
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >Owner:</label>
-                                                        <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        <input className='border border-slate-300 px-3 py-3 bg-slate-100 text-slate-600 rounded text-sm
                                                         focus:outline-none w-full ease-linear transition-all duration-150 pointer-events-none'
                                                             id='grid-last-name' type='text'
                                                             value={currentProduct.product.shop.name}
@@ -316,12 +316,12 @@ const VendorProduct = () => {
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <h3 className='block uppercase text-gray-600 text-xs font-bold mb-2'>Sub-Categories</h3>
+                                                        <h3 className='block uppercase text-slate-600 text-xs font-bold mb-2'>Sub-Categories</h3>
                                                         <div className='w-full mb-3'>
                                                             <select
-                                                                className={`border border-gray-300 px-3 py-3 text-gray-600 rounded text-sm
-                                                                focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-dark-blue
-                                                                ${editMode ? 'pointer-events-auto border bg-white' : 'bg-gray-100  pointer-events-none'}`}
+                                                                className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
+                                                                focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
+                                                                ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
                                                                 id='grid-state'
                                                             // onChange={e => setSubCategory(e.target.value)}
                                                             >
@@ -333,9 +333,9 @@ const VendorProduct = () => {
                                                     </div>
 
                                                     <div className='my-1'>
-                                                        <label className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                        <label className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                         >created At:</label>
-                                                        <input className='border border-gray-300 px-3 py-3 bg-gray-100 text-gray-600 rounded text-sm
+                                                        <input className='border border-slate-300 px-3 py-3 bg-slate-100 text-slate-600 rounded text-sm
                                                         focus:outline-none  w-full ease-linear transition-all duration-150 pointer-events-none'
                                                             id='grid-last-name' type='text' value={format(new Date(currentProduct.product.createdAt), 'dd.MM.yyyy')} />
                                                     </div>
@@ -348,12 +348,12 @@ const VendorProduct = () => {
                                         <div className=' mb-8'>
 
                                             {/* product sizes */}
-                                            <div className=' border-b border-dark-blue pb-8'>
+                                            <div className=' border-b border-[#004896] pb-8'>
                                                 <div className='flex space-x-2 my-4'>
-                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
+                                                    <p className='text-slate-600 text-xs font-bold md:text-sm lg:text-base'>Product sizes</p>
 
-                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
-                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50 cursor-pointer'
+                                                    <div className='rounded-full bg-slate-100 border border-slate-500 text-slate-500
+                                                    hover:border-[#004896] hover:text-[#004896] hover:bg-blue-50 cursor-pointer'
                                                         onPointerOver={() => setShowSizeDesc(true)}
                                                         onPointerLeave={() => setShowSizeDesc(false)}
                                                         onClick={() => setAddSize(true)}
@@ -362,7 +362,7 @@ const VendorProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showSizeDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
+                                                        className='text-xs border text-[#004896] border-[#004896] bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.sizes.length === 0 ? <p>Add First Product Size</p> : <p>Add Product Size</p>}
                                                     </Transition>
                                                 </div>
@@ -376,7 +376,7 @@ const VendorProduct = () => {
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{s.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{s.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
-                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                text-slate-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
                                                                     onClick={() => deleteSize(dispatch, '/product/size', currentProduct.product.id, s.size.id)} />
                                                             </div>
                                                         )
@@ -387,12 +387,12 @@ const VendorProduct = () => {
                                             </div>
 
                                             {/* product Colors */}
-                                            <div className=' border-b border-dark-blue pb-8'>
+                                            <div className=' border-b border-[#004896] pb-8'>
                                                 <div className='flex space-x-2 my-4'>
-                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product Colors</p>
+                                                    <p className='text-slate-600 text-xs font-bold md:text-sm lg:text-base'>Product Colors</p>
 
-                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
-                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                    <div className='rounded-full bg-slate-100 border border-slate-500 text-slate-500
+                                                    hover:border-[#004896] hover:text-[#004896] hover:bg-blue-50'
                                                         onPointerOver={() => setShowColorDesc(true)}
                                                         onPointerLeave={() => setShowColorDesc(false)}
                                                         onClick={() => setAddColor(true)}
@@ -401,7 +401,7 @@ const VendorProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showColorDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
+                                                        className='text-xs border text-[#004896] border-[#004896] bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.colors.length === 0 ? <p>Add First Product Color</p> : <p>Add Product Color</p>}
                                                     </Transition>
                                                 </div>
@@ -415,7 +415,7 @@ const VendorProduct = () => {
                                                                 <p className=''>Price: <span className='font-light ml-1 lg:ml-2'>{c.price}</span> </p>
                                                                 <p className=''>Quantity: <span className='font-light ml-1 lg:ml-2'>{c.quantity}</span> </p>
                                                                 <MdOutlineCancel className='h-4 w-auto absolute top-0.5 right-0.5
-                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
+                                                                text-slate-600 hover:text-red-700 hover:shadow-lg cursor-pointer'
                                                                     onClick={() => deleteColor(dispatch, '/product/color', currentProduct.product.id, c.color.id)} />
 
                                                             </div>
@@ -427,12 +427,12 @@ const VendorProduct = () => {
                                             </div>
 
                                             {/* product Images */}
-                                            <div className=' border-b border-dark-blue pb-8'>
+                                            <div className=' border-b border-[#004896] pb-8'>
                                                 <div className='flex space-x-2 my-4'>
-                                                    <p className='text-gray-600 text-xs font-bold md:text-sm lg:text-base'>Product Images</p>
+                                                    <p className='text-slate-600 text-xs font-bold md:text-sm lg:text-base'>Product Images</p>
 
-                                                    <div className='rounded-full bg-gray-100 border border-gray-500 text-gray-500
-                                                    hover:border-dark-blue hover:text-dark-blue hover:bg-blue-50'
+                                                    <div className='rounded-full bg-slate-100 border border-slate-500 text-slate-500
+                                                    hover:border-[#004896] hover:text-[#004896] hover:bg-blue-50'
                                                         onPointerOver={() => setShowImageDesc(true)}
                                                         onPointerLeave={() => setShowImageDesc(false)}
                                                         onClick={() => setAddImage(true)}
@@ -441,7 +441,7 @@ const VendorProduct = () => {
                                                     </div>
 
                                                     <Transition show={!!showImageDesc}
-                                                        className='text-xs border text-dark-blue border-dark-blue bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
+                                                        className='text-xs border text-[#004896] border-[#004896] bg-blue-50 mt-1 px-1 relative right-20 top-7 lg:right-16 z-10'>
                                                         {currentProduct.images.length === 0 ? <p>Add First Product image</p> : <p>Add Product image</p>}
                                                     </Transition>
                                                 </div>
@@ -450,7 +450,7 @@ const VendorProduct = () => {
                                                         <div className='bg-white font-medium text-xs md:text-sm lg:text-base
                                                             rounded relative hover:shadow-sm grope'>
                                                             <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
-                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
+                                                                text-slate-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
                                                             // onClick={() => removeImage(image.image.id)}
                                                             />
 
@@ -463,7 +463,7 @@ const VendorProduct = () => {
                                                                 className='bg-white font-medium text-xs md:text-sm lg:text-base
                                                             rounded relative hover:shadow-sm group'>
                                                                 <MdOutlineCancel className={`h-5 w-auto absolute top-0.5 right-0.5 bg-white p-0.5 rounded-full
-                                                                text-gray-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
+                                                                text-slate-600 hover:text-red-700 hover:shadow-lg cursor-pointer opacity-0 group-hover:opacity-100`}
                                                                     onClick={() => removeImage(dispatch, '/product/image', currentProduct.product.id, i.image.id)}
                                                                 />
 
@@ -483,14 +483,14 @@ const VendorProduct = () => {
                                         <Transition className='flex space-x-6'
                                             show={!!editMode}
                                         >
-                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 bg-[#004896] rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return setEditMode(false)
                                                 }} >
                                                 CANCEL
                                             </button>
-                                            <button className='py-3 px-6 bg-dark-blue rounded-md text-white text-sm md:text-base font-semibold'
+                                            <button className='py-3 px-6 bg-[#004896] rounded-md text-white text-sm md:text-base font-semibold'
                                                 onClick={e => {
                                                     e.preventDefault()
                                                     return updateProduct(dispatch, '/product', currentProduct.product.id, {
@@ -507,17 +507,17 @@ const VendorProduct = () => {
 
                             {/* add size to a product */}
                             <Transition show={!!addSize} className='absolute'>
-                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                                <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen min-h-screen'>
                                 </div>
                                 <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 lg:w-1/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8 relative'>
 
                                         <MdOutlineCancel className='h-6 w-auto absolute top-1 right-1
-                                    text-gray-600 hover:text-dark-blue hover:shadow-lg cursor-pointer'
+                                    text-slate-600 hover:text-[#004896] hover:shadow-lg cursor-pointer'
                                             onClick={() => setAddSize(false)} />
 
-                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Size</div>
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-slate-600'>New Product Size</div>
                                         <div className='container'>
                                             <Transition
                                                 show={!!sizeError}
@@ -530,14 +530,14 @@ const VendorProduct = () => {
 
                                             <div className=' w-full mb-3'>
                                                 <label
-                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                     htmlFor='grid-text'
                                                 >
                                                     Size
                                                 </label>
                                                 <input
                                                     type='text'
-                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Size'
                                                     onChange={e => setSize(e.target.value)}
                                                 />
@@ -545,14 +545,14 @@ const VendorProduct = () => {
 
                                             <div className=' w-full mb-3'>
                                                 <label
-                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                     htmlFor='grid-text'
                                                 >
                                                     Price
                                                 </label>
                                                 <input
                                                     type='number'
-                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Price'
                                                     onChange={e => setPricePerSize(e.target.value)}
                                                 />
@@ -560,21 +560,21 @@ const VendorProduct = () => {
 
                                             <div className=' w-full mb-3'>
                                                 <label
-                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                     htmlFor='grid-text'
                                                 >
                                                     Quantity
                                                 </label>
                                                 <input
                                                     type='number'
-                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Quantity'
                                                     onChange={e => setSizeQuantity(e.target.value)}
                                                 />
                                             </div>
                                             <div className='text-center mt-6'>
                                                 <button
-                                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                                    className='bg-[#004896] hover:bg-[#0e87d2] text-white  text-sm font-bold uppercase px-6 p-3
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                                                     type='button'
                                                     onClick={(e) => {
@@ -596,17 +596,17 @@ const VendorProduct = () => {
 
                             {/* add color to a product */}
                             <Transition show={!!addColor} className='absolute'>
-                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                                <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen min-h-screen'>
                                 </div>
                                 <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 lg:w-1/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8 relative'>
 
                                         <MdOutlineCancel className='h-6 w-auto absolute top-1 right-1
-                                    text-gray-600 hover:text-dark-blue hover:shadow-lg cursor-pointer'
+                                    text-slate-600 hover:text-[#004896] hover:shadow-lg cursor-pointer'
                                             onClick={() => setAddColor(false)} />
 
-                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Color</div>
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-slate-600'>New Product Color</div>
                                         <div className='container'>
                                             <Transition
                                                 show={!!colorError}
@@ -619,14 +619,14 @@ const VendorProduct = () => {
 
                                             <div className=' w-full mb-3'>
                                                 <label
-                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                     htmlFor='grid-text'
                                                 >
                                                     Color
                                                 </label>
                                                 <input
                                                     type='text'
-                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Color'
                                                     onChange={e => setColorName(e.target.value)}
                                                 />
@@ -634,14 +634,14 @@ const VendorProduct = () => {
 
                                             <div className=' w-full mb-3'>
                                                 <label
-                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                     htmlFor='grid-text'
                                                 >
                                                     Price
                                                 </label>
                                                 <input
                                                     type='number'
-                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Price'
                                                     onChange={e => setPricePerColor(e.target.value)}
                                                 />
@@ -649,21 +649,21 @@ const VendorProduct = () => {
 
                                             <div className=' w-full mb-3'>
                                                 <label
-                                                    className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                                                    className='block uppercase text-slate-600 text-xs font-bold mb-2'
                                                     htmlFor='grid-text'
                                                 >
                                                     Quantity
                                                 </label>
                                                 <input
                                                     type='number'
-                                                    className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
+                                                    className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150'
                                                     placeholder='Quantity'
                                                     onChange={e => setColorQuantity(e.target.value)}
                                                 />
                                             </div>
                                             <div className='text-center mt-6'>
                                                 <button
-                                                    className='bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                                    className='bg-[#004896] hover:bg-[#0e87d2] text-white  text-sm font-bold uppercase px-6 p-3
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                                                     type='button'
                                                     onClick={(e) => {
@@ -686,17 +686,17 @@ const VendorProduct = () => {
 
                             {/* add image to a product */}
                             <Transition show={!!addImage} className='absolute'>
-                                <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-screen min-h-screen'>
+                                <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-screen min-h-screen'>
                                 </div>
                                 <div className='absolute top-1/4 w-full z-30 text-xs md:text-base'>
                                     <div className='p-3 bg-white w-ful mx-6 md:w-2/4 lg:w-1/4 md:mx-auto rounded-md shadow-md
                                 md:p-6 lg:p-8 relative'>
 
                                         <MdOutlineCancel className='h-6 w-auto absolute top-1 right-1
-                                    text-gray-600 hover:text-dark-blue hover:shadow-lg cursor-pointer'
+                                    text-slate-600 hover:text-[#004896] hover:shadow-lg cursor-pointer'
                                             onClick={() => setAddImage(false)} />
 
-                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-gray-600'>New Product Image</div>
+                                        <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-slate-600'>New Product Image</div>
                                         <div className='container'>
                                             <Transition
                                                 show={!!addError}
@@ -717,7 +717,7 @@ const VendorProduct = () => {
                                             </div>
                                             <div className='text-center mt-6'>
                                                 <button
-                                                    className={`bg-dark-blue hover:bg-middle-blue text-white  text-sm font-bold uppercase px-6 p-3
+                                                    className={`bg-[#004896] hover:bg-[#0e87d2] text-white  text-sm font-bold uppercase px-6 p-3
                                             rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150
                                             ${isUploading ? 'cursor-not-allowed pointer-events-none' : 'cursor-pointer pointer-events-auto'}`}
                                                     type='button'

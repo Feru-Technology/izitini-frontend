@@ -66,7 +66,7 @@ const Ads = () => {
                             <div className='mt-2 md:mt-4 lg:mt-8 bg-white px-2 md:px-5 lg:px-8'>
 
                                 <div className='mb-2 md:mb-4'>
-                                    <button className='bg-dark-blue hover:bg-middle-blue shadow-md hover:shadow-lg text-white
+                                    <button className='bg-[#004896] hover:bg-[#0e87d2] shadow-md hover:shadow-lg text-white
                                     py-2 px-4 rounded cursor-pointer'
                                         type='submit' onClick={() => handleInputClick()}>{isCreating ? 'adding ...' : 'add image'}
                                     </button>
@@ -82,17 +82,17 @@ const Ads = () => {
                                     <div className='grid grid-cols-2 md:grid-cols-4 xl:gap-5 gap-3'>
                                         {ads ?
                                             ads.map((ad) => (
-                                                <div className='w-full bg-gray-100 h-32 lg:h-48 relative' key={ad.id}
+                                                <div className='w-full bg-slate-100 h-32 lg:h-48 relative' key={ad.id}
                                                     onMouseOver={() => setActive_image(ad.id)} onMouseLeave={() => setActive_image(null)}>
-                                                    <p className='text-gray-300 text-center text-xl md:text-2xl lg:text-3xl font-black mt-12 lg:mt-20 '>IZITINI</p>
+                                                    <p className='text-slate-300 text-center text-xl md:text-2xl lg:text-3xl font-black mt-12 lg:mt-20 '>IZITINI</p>
                                                     <img className='h-32 lg:h-48 w-full absolute top-0 rounded bg-white'
                                                         src={ad.big_screen_image} alt='' />
 
                                                     <div className={active_image === ad.id ? 'not-sr-only' : 'sr-only'}>
-                                                        <div className='bg-gray-700 absolute h-32 lg:h-48 w-full top-0 rounded opacity-20'></div>
+                                                        <div className='bg-slate-700 absolute h-32 lg:h-48 w-full top-0 rounded opacity-20'></div>
                                                         <div className='top-8 md:top-7 lg:top-12 space-y-2 w-full absolute'>
 
-                                                            <div className='bg-dark-blue hover:bg-middle-blue shadow-md hover:shadow-lg text-white
+                                                            <div className='bg-[#004896] hover:bg-[#0e87d2] shadow-md hover:shadow-lg text-white
                                                     py-1.5 md:py-2 w-7/12 text-xs md:text-sm lg:text-base rounded cursor-pointer text-center mx-auto lg:mt-1'
                                                                 onClick={() => setOpen_image(ad.big_screen_image)} >open</div>
 
@@ -111,12 +111,12 @@ const Ads = () => {
                         </div>
                     </div>
                     <div className={open_image ? 'absolute top-0 z-20' : 'hidden'}>
-                        <div className='w-screen h-screen overflow-hidden bg-gray-900 opacity-20'></div>
+                        <div className='w-screen h-screen overflow-hidden bg-slate-900 opacity-20'></div>
                         <div className='absolute top-0 h-screen w-full'>
                             <div className='h-screen'>
                                 <img className='max-h-screen max-w-screen mx-auto p-16' src={`${open_image}`} alt="" />
                                 <AiOutlineClose className='absolute w-10 h-10 top-6 right-1/4 text-white hover:text-black border
-                                border-gray-200 bg-gray-300'  onClick={() => setOpen_image(null)} />
+                                border-slate-200 bg-slate-300'  onClick={() => setOpen_image(null)} />
                             </div>
 
                         </div>

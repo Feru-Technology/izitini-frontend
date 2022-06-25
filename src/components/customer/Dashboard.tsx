@@ -48,7 +48,7 @@ const CustomerDashboard = () => {
                     {/* customer dashboard */}
                     <div className='p-5 flex flex-col justify-center'>
                         <p>recent activities</p>
-                        <Link to='/vendor' className='text-light-blue underline'>Go to your Vendor Dashboard</Link> :
+                        <Link to='/vendor' className='text-[#00adef] underline'>Go to your Vendor Dashboard</Link> :
                         <p>Become a vendor</p>
 
                     </div>

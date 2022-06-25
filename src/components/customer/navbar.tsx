@@ -54,10 +54,10 @@ export const Navbar = () => {
         <>
             {/* menu breakdown */}
             <div className={open ? 'sm:sr-only absolute z-10 overflow-hidden top-0 h-screen w-screen' : 'sr-only'}>
-                <div className='bg-gray-900 h-screen opacity-50 w-screen pointer-events-none overflow-hidden'></div>
+                <div className='bg-slate-900 h-screen opacity-50 w-screen pointer-events-none overflow-hidden'></div>
                 <div className='bg-white top-0 absolute w-10/12 font-light h-screen overflow-y-scroll'>
                     <ul className='mt-20 text-base'>
-                        <li className=' border-b border-gray-400 py-3 hover:text-dark-blue'>
+                        <li className=' border-b border-slate-400 py-3 hover:text-[#004896]'>
                             <div className='flex px-1 mt-2 w-full' onClick={() => {
                                 setOpen(false)
                                 return navigate('/')
@@ -66,11 +66,11 @@ export const Navbar = () => {
                                 <p className='w-7/12 hover:underline'>HOME</p>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3'>
+                        <li className='border-b border-slate-400 py-3'>
 
-                            <div className='flex px-1 w-full hover:text-dark-blue'
+                            <div className='flex px-1 w-full hover:text-[#004896]'
                                 onClick={() => collapse === 'products' ? setCollapse('null') : setCollapse('products')}>
-                                <div className={`flex w-11/12 ${collapse === 'products' && 'border-b border-dark-blue'}`}>
+                                <div className={`flex w-11/12 ${collapse === 'products' && 'border-b border-[#004896]'}`}>
                                     <FaTools className='h-5 w-1/6' />
                                     <p className='w-7/12'>PRODUCTS</p>
                                 </div>
@@ -82,10 +82,10 @@ export const Navbar = () => {
                                 </div>
                             </div>
 
-                            <div className={collapse === 'products' ? 'text-gray-900' : 'sr-only'}>
+                            <div className={collapse === 'products' ? 'text-slate-900' : 'sr-only'}>
                                 <ul className='justify-end'>
                                     {categories.map((category) => (
-                                        <li key={category.id} className='flex hover:underline hover:text-light-blue'>
+                                        <li key={category.id} className='flex hover:underline hover:text-[#00adef]'>
                                             <div className='h-1 w-1/6 rounded-full'></div>
                                             <p onClick={() => {
                                                 setOpen(false)
@@ -96,7 +96,7 @@ export const Navbar = () => {
                             </div>
 
                         </li>
-                        <li className='border-b border-gray-400 py-3 hover:text-dark-blue'
+                        <li className='border-b border-slate-400 py-3 hover:text-[#004896]'
                             onClick={() => collapse === 'ideas' ? setCollapse('null') : setCollapse('ideas')}>
                             <div className='flex px-1 w-full'>
                                 <div className='flex w-11/12'>
@@ -111,7 +111,7 @@ export const Navbar = () => {
                                 </div>
                             </div>
                         </li>
-                        <li className='border-b border-gray-400 py-3 hover:text-dark-blue'
+                        <li className='border-b border-slate-400 py-3 hover:text-[#004896]'
                             onClick={() => collapse === 'pros' ? setCollapse('null') : setCollapse('pros')}>
                             <div className='flex px-1 w-full'>
                                 <div className='flex w-11/12'>
@@ -163,13 +163,13 @@ export const Navbar = () => {
 
                             {/* search */}
                             <div className='sr-only md:not-sr-only flex md:w-8/12'>
-                                <div className='pt-2 relative mx-auto text-gray-600 w-full px-5'>
-                                    <input className='border-2 border-gray-300 w-full
+                                <div className='pt-2 relative mx-auto text-slate-600 w-full px-5'>
+                                    <input className='border-2 border-slate-300 w-full
                                             bg-white h-9 lg:h-11 px-3 rounded-lg text-sm focus:outline-none'
                                         type='search' name='search' placeholder='Search' />
                                     <button type='submit' className='absolute right-10  top-0 mt-5'>
 
-                                        <svg className='sr-only md:not-sr-only text-gray-600 md:h-3 lg:h-5 w-auto fill-current' xmlns='http://www.w3.org/2000/svg'
+                                        <svg className='sr-only md:not-sr-only text-slate-600 md:h-3 lg:h-5 w-auto fill-current' xmlns='http://www.w3.org/2000/svg'
                                             xmlnsXlink='http://www.w3.org/1999/xlink' version='1.1' id='Capa_1' x='0px' y='0px'
                                             viewBox='0 0 56.966 56.966'
                                             xmlSpace='preserve'
@@ -199,7 +199,7 @@ export const Navbar = () => {
                                     >
                                         <span className='sr-only'>View saved items</span>
                                         <BsSuitHeart className='h-5 md:h-6 lg:h-7 md:text-sm w-auto' aria-hidden='true' />
-                                        <div className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>
+                                        <div className='z-auto absolute text-white text-xs bg-[#004896] rounded-full ml-4 w-3'>
                                             <p>3</p>
                                         </div>
                                     </button>
@@ -211,7 +211,7 @@ export const Navbar = () => {
                                         >
                                             <span className='sr-only'>View notifications</span>
                                             <BsBell className='h-5 md:h-6 lg:h-7 md:text-sm w-auto' aria-hidden='true' />
-                                            <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>3</p>
+                                            <p className='z-auto absolute text-white text-xs bg-[#004896] rounded-full ml-4 w-3'>3</p>
                                         </button>
                                     }
 
@@ -223,7 +223,7 @@ export const Navbar = () => {
                                             <span className='sr-only'>View cart</span>
                                             <BsCart3 className='h-5 md:h-6 lg:h-7 md:text-sm w-auto' aria-hidden='true' />
                                             {cart ?
-                                                <p className='z-auto absolute text-white text-xs bg-dark-blue rounded-full ml-4 w-3'>{cartItems}</p> : ''}
+                                                <p className='z-auto absolute text-white text-xs bg-[#004896] rounded-full ml-4 w-3'>{cartItems}</p> : ''}
 
                                         </button>
                                     </Link>
@@ -260,13 +260,13 @@ export const Navbar = () => {
                                                 <div>
                                                     <Menu.Button className='flex space-x-4'>
 
-                                                        <div className='flex flex-row justify-center items-center space-x-2 bg-gray-50 rounded-full'>
+                                                        <div className='flex flex-row justify-center items-center space-x-2 bg-slate-50 rounded-full'>
                                                             <img
                                                                 src={profile ? profile.profile_image ? profile.profile_image : backUpPImage : backUpPImage}
                                                                 className='w-6 h-6 mt-2 rounded-full mx-auto md:w-8 md:h-8 md:mt-0'
                                                                 alt='pImg'
                                                             />
-                                                            <p className='sr-only lg:not-sr-only text-gray-700 font-semibold'>{(profile?.full_name || profile.user.full_name).split(/[ ]+/)[0]}</p>
+                                                            <p className='sr-only lg:not-sr-only text-slate-700 font-semibold'>{(profile?.full_name || profile.user.full_name).split(/[ ]+/)[0]}</p>
                                                             <ChevronDownIcon className='sr-only lg:h-5 lg:w-5 lg:not-sr-only' />
                                                         </div>
                                                     </Menu.Button>
@@ -284,7 +284,7 @@ export const Navbar = () => {
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <Link to='/user/profile'
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                    className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
                                                                 >
                                                                     Your Profile
                                                                 </Link>
@@ -293,7 +293,7 @@ export const Navbar = () => {
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <Link to='/user'
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                    className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
                                                                 >
                                                                     Dashboard
                                                                 </Link>
@@ -302,7 +302,7 @@ export const Navbar = () => {
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <p
-                                                                    className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                                                    className={classNames(active ? 'bg-slate-100' : '', 'block px-4 py-2 text-sm text-slate-700')}
                                                                     onClick={() => logout(dispatch, navigate)}
                                                                 >
                                                                     Sign out
@@ -327,7 +327,7 @@ export const Navbar = () => {
                             }}
                         >
 
-                            <div className='sr-only md:not-sr-only space-x-6 flex justify-center mt-5 text-gray-800'>
+                            <div className='sr-only md:not-sr-only space-x-6 flex justify-center mt-5 text-slate-800'>
 
                                 <div onPointerOver={() => {
                                     // setShowIdea(false)
@@ -336,7 +336,7 @@ export const Navbar = () => {
                                 }}
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showProduct && ' border-dark-blue bg-gray-100'}`
+                                ${showProduct && ' border-[#004896] bg-slate-100'}`
                                     }
                                     >
                                         <FaTools className='h-6 w-3 mr-2' />Buy your products</span>
@@ -350,7 +350,7 @@ export const Navbar = () => {
                                 }
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showIdea && ' border-dark-blue bg-gray-100'}`
+                                ${showIdea && ' border-[#004896] bg-slate-100'}`
                                     }>
                                         <FaBuilding className='h-6 w-3 mr-2' />Get idea</span>
                                 </div>
@@ -362,7 +362,7 @@ export const Navbar = () => {
                                 }}
                                 >
                                     <span className={`flex items-center px-4 font-bold border-t-4 border-white
-                                ${showProfession && 'border-dark-blue bg-gray-100'}`}>
+                                ${showProfession && 'border-[#004896] bg-slate-100'}`}>
                                         <FaBuilding className='h-6 w-3 mr-2' />Find a profession</span>
                                 </div>
                             </div>
@@ -371,13 +371,13 @@ export const Navbar = () => {
                                 <Transition
                                     show={showProduct}
                                 >
-                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'
+                                    <div className='bg-slate-700 opacity-30 absolute min-h-screen w-full z-10'
                                         onPointerOver={() => {
                                             // setShowIdea(false)
                                             setShowProduct(false)
                                             // setShowProfession(false)
                                         }}></div>
-                                    <div className=' w-full space-x-5 absolute p-5 z-20 bg-gray-100 shadow-lg min-h-130 flex justify-center'>
+                                    <div className=' w-full space-x-5 absolute p-5 z-20 bg-slate-100 shadow-lg min-h-130 flex justify-center'>
 
                                         <div className='grid md:grid-cols-3 lg:grid-cols-5 gap-auto md:w-9/12 lg:w-9/12 content-center'>
                                             {categories?.map((category) => {
@@ -385,11 +385,11 @@ export const Navbar = () => {
                                                 return (
                                                     <ul className='space-y-1 my-2 font-sans' key={category.id}>
                                                         <Link to={`/products/c/${category.name}`}
-                                                            className='font-semibold text-dark-blue text-sm lg:text-base hover:underline'>{category.name}</Link>
+                                                            className='font-semibold text-[#004896] text-sm lg:text-base hover:underline'>{category.name}</Link>
                                                         {sub_categories.map((subCategory) => {
                                                             return (
                                                                 <li key={subCategory.id}
-                                                                    className='font-light hover:underline hover:text-dark-blue text-sm lg:text-base'>
+                                                                    className='font-light hover:underline hover:text-[#004896] text-sm lg:text-base'>
                                                                     <Link to={`/products/s/${subCategory.id}`}>{subCategory.name}</Link> </li>
 
                                                             )
@@ -402,13 +402,13 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showIdea}>
-                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'
+                                    <div className='bg-slate-700 opacity-30 absolute min-h-screen w-full z-10'
                                         onPointerOver={() => {
                                             // setShowIdea(false)
                                             setShowProduct(false)
                                             // setShowProfession(false)
                                         }}></div>
-                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-slate-100 shadow-lg'
                                         style={{ minHeight: '30vh' }}>
                                         <ul> idea head
                                             <li>idea 1</li>
@@ -425,13 +425,13 @@ export const Navbar = () => {
                                     </div>
                                 </Transition>
                                 <Transition show={showProfession}>
-                                    <div className='bg-gray-700 opacity-30 absolute min-h-screen w-full z-10'
+                                    <div className='bg-slate-700 opacity-30 absolute min-h-screen w-full z-10'
                                         onPointerOver={() => {
                                             // setShowIdea(false)
                                             setShowProduct(false)
                                             // setShowProfession(false)
                                         }}></div>
-                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-gray-100 shadow-lg'
+                                    <div className='flex w-full space-x-5 absolute p-5 justify-center z-20 bg-slate-100 shadow-lg'
                                         style={{ minHeight: '30vh' }}>
                                         <ul> profession head
                                             <li>profession 1</li>
@@ -454,7 +454,7 @@ export const Navbar = () => {
                     {/* signup options pop-up*/}
                     <Transition show={showSignupOptions}>
 
-                        <div className='absolute top-0 z-10 text-gray-500 bg-gray-700 opacity-50 w-full h-screen'
+                        <div className='absolute top-0 z-10 text-slate-500 bg-slate-700 opacity-50 w-full h-screen'
                             onClick={() => setShowSignupOptions(false)}>
                         </div>
                         <div className='absolute z-20 w-full'>
@@ -465,9 +465,9 @@ export const Navbar = () => {
                                     style={{ marginLeft: '98%' }}
                                     onClick={() => setShowSignupOptions(false)} />
                                 <div className='md:flex'>
-                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
-                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${customer && 'border-dark-blue'}`}
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-slate-100 focus:ring-4
+                                focus:ring-slate-300 rounded-lg border border-slate-200 hover:text-slate-900 focus:z-10 dark:bg-slate-700
+                                dark:text-slate-300 dark:border-slate-500 dark:hover:text-white dark:hover:bg-slate-600 ${customer && 'border-[#004896]'}`}
                                         onClick={() => {
                                             setVendor(false)
                                             setCustomer(true)
@@ -477,9 +477,9 @@ export const Navbar = () => {
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
                                     </div>
-                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
-                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${vendor && ' border-dark-blue'}`}
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-slate-100 focus:ring-4
+                                focus:ring-slate-300 rounded-lg border border-slate-200 hover:text-slate-900 focus:z-10 dark:bg-slate-700
+                                dark:text-slate-300 dark:border-slate-500 dark:hover:text-white dark:hover:bg-slate-600 ${vendor && ' border-[#004896]'}`}
                                         onClick={() => {
                                             setVendor(true)
                                             setCustomer(false)
@@ -489,9 +489,9 @@ export const Navbar = () => {
                                         <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                         <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
                                     </div>
-                                    <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4
-                                focus:ring-gray-300 rounded-lg border border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700
-                                dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 ${professional && ' border-dark-blue'}`}
+                                    <div className={`m-2 md:m-4 p-4 hover:bg-slate-100 focus:ring-4
+                                focus:ring-slate-300 rounded-lg border border-slate-200 hover:text-slate-900 focus:z-10 dark:bg-slate-700
+                                dark:text-slate-300 dark:border-slate-500 dark:hover:text-white dark:hover:bg-slate-600 ${professional && ' border-[#004896]'}`}
                                         onClick={() => {
                                             setVendor(false)
                                             setCustomer(false)
@@ -504,7 +504,7 @@ export const Navbar = () => {
                                 </div>
                                 <Link to={`${signupLink}`} className={`${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
                                     <button disabled={false}
-                                        className={`flex text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-light-blue
+                                        className={`flex text-white bg-[#004896] hover:bg-[#00adef] focus:ring-4 focus:ring-[#00adef]
                                     px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5`}
                                     >
                                         <span className='text-xs mr-1 md:text-sm md:mr-2

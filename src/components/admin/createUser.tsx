@@ -30,7 +30,7 @@ const CreateCustomer = () => {
 
   return (
     <>
-      <div className='flex h-screen overflow-hidden bg-gray-200'>
+      <div className='flex h-screen overflow-hidden bg-slate-200'>
         <SiderBar
           isClosed={isClosed}
           setIsClosed={setIsClosed}
@@ -62,7 +62,7 @@ const CreateCustomer = () => {
             bg-white shadow hover:shadow-md ease-linear transition-all duration-150 z-0'>
               <div className='rounded-t mb-0 px-6 py-6'>
                 <div className='text-center mb-3'>
-                  <h6 className='text-gray-500 text-sm font-bold md:text-base lg:text-lg'>
+                  <h6 className='text-slate-500 text-sm font-bold md:text-base lg:text-lg'>
                     Create a customer account
                   </h6>
                 </div>
@@ -84,67 +84,67 @@ const CreateCustomer = () => {
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Full Names
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='Full Names'
                       onChange={e => setFull_name(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Contact
                     </label>
                     <input
                       type='text'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='contact'
                       onChange={e => setContact(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Email
                     </label>
                     <input
                       type='email'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='Email'
                       onChange={e => setEmail(e.target.value)}
                     />
                   </div>
                   <div className='w-full mb-3'>
                     <label
-                      className='block uppercase text-gray-600 text-xs font-bold mb-2'
+                      className='block uppercase text-slate-600 text-xs font-bold mb-2'
                       htmlFor='grid-password'
                     >
                       Tin no
                     </label>
                     <input
                       type='TinNo'
-                      className='border border-gray-700 px-3 py-3 placeholder-gray-500 text-gray-600 bg-white
-                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-dark-blue'
+                      className='border border-slate-700 px-3 py-3 placeholder-slate-500 text-slate-600 bg-white
+                      rounded text-sm  focus:outline-none  w-full ease-linear transition-all duration-150 focus:border-[#004896]'
                       placeholder='TinNo'
                       onChange={e => setTin_no(e.target.value)}
                     />
                   </div>
                   <div className='text-center mt-6'>
                     <button
-                      className='bg-dark-blue text-white active:bg-gray-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
+                      className='bg-[#004896] text-white active:bg-slate-600 text-sm font-bold uppercase mb-4 px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 w-full ease-linear transition-all duration-150'
                       type='button'
                       onClick={e => {
                         e.preventDefault()
@@ -153,7 +153,7 @@ const CreateCustomer = () => {
                     >
                       {isLoading ? 'Loading...' : 'Create'}
                     </button>
-                    <p> <Link to={'/admin/users/create-vendor'}>Or <span className='text-dark-blue'>Create a Vendor</span></Link> </p>
+                    <p> <Link to={'/admin/users/create-vendor'}>Or <span className='text-[#004896]'>Create a Vendor</span></Link> </p>
                   </div>
                 </form>
               </div>

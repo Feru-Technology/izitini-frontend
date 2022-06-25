@@ -81,17 +81,17 @@ const Users = () => {
 
                                 <div className='flex items-center justify-between py-8'>
                                     <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>Users</h3>
-                                    <button className='bg-dark-blue hover:bg-middle-blue text-white font-bold
+                                    <button className='bg-[#004896] hover:bg-[#0e87d2] text-white font-bold
                                             py-2 px-4 rounded cursor-pointer text-sm md:text-base'
                                         onClick={e => setShowCreateUserOptions(true)} >
                                         ADD A User
                                     </button>
                                 </div>
-                                <div className='  border-gray-200'>
+                                <div className='  border-slate-200'>
                                     <ul className='w-full text-xs flex cursor-pointer'>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            hover:text-gray-500 px-1 w-1/4 text-center
-                                            py-3 ${showAllUsers && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800
+                                            hover:text-slate-500 px-1 w-1/4 text-center
+                                            py-3 ${showAllUsers && 'border-b-2 border-[#004896]'}`}
 
                                             onClick={() => {
                                                 allUsers(dispatch)
@@ -101,9 +101,9 @@ const Users = () => {
                                                 setShowProfessional(false)
                                             }}
                                         >All</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            hover:text-gray-500 px-1 w-1/4 text-center
-                                            py-3 ${showCustomer && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800
+                                            hover:text-slate-500 px-1 w-1/4 text-center
+                                            py-3 ${showCustomer && 'border-b-2 border-[#004896]'}`}
                                             onClick={e => {
                                                 setShowCustomer(true)
                                                 setShowAllUsers(false)
@@ -113,9 +113,9 @@ const Users = () => {
                                             }}
 
                                         >Customer</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            hover:text-gray-500 px-1 w-1/4 text-center
-                                            py-3 ${showProfessional && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800
+                                            hover:text-slate-500 px-1 w-1/4 text-center
+                                            py-3 ${showProfessional && 'border-b-2 border-[#004896]'}`}
                                             onClick={e => {
                                                 setShowProfessional(true)
                                                 setShowAllUsers(false)
@@ -124,9 +124,9 @@ const Users = () => {
                                                 fetchByAccountType(dispatch, 'business')
                                             }}
                                         >Vendor</li>
-                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-gray-800
-                                            hover:text-gray-500 px-1 w-1/4 text-center
-                                            py-3 ${showVendor && 'border-b-2 border-dark-blue'}`}
+                                        <li className={`text-xs md:text-sm lg:text-base font-medium text-slate-800
+                                            hover:text-slate-500 px-1 w-1/4 text-center
+                                            py-3 ${showVendor && 'border-b-2 border-[#004896]'}`}
                                             onClick={e => {
                                                 setShowVendor(true)
                                                 setShowAllUsers(false)
@@ -140,7 +140,7 @@ const Users = () => {
                                 </div>
 
                                 <div className='w-full my-4 md:my-5 lg:my-6 '>
-                                    <table className='w-full border-gray-200 text-gray-600 border'>
+                                    <table className='w-full border-slate-200 text-slate-600 border'>
                                         <thead className=''>
                                             <tr className='font-bold text-xs md:text-sm text-center border-b'>
                                                 <th
@@ -169,7 +169,7 @@ const Users = () => {
                                                 const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
                                                 return (
                                                     <tr key={user.id}
-                                                        className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800 hover:bg-gray-100 cursor-default'
+                                                        className='text-center text-xs md:text-sm lg:text-base border-b text-slate-800 hover:bg-slate-100 cursor-default'
                                                         onClick={e => activeUser(user)} >
 
                                                         <td className='py-3 '>
@@ -206,7 +206,7 @@ const Users = () => {
                         {/* signup options pop-up*/}
                         <Transition show={showCreateUserOptions} className='fixed'>
 
-                            <div className='top-0 z-10 text-gray-500 bg-gray-700 opacity-50 h-screen w-screen'
+                            <div className='top-0 z-10 text-slate-500 bg-slate-700 opacity-50 h-screen w-screen'
                                 onClick={() => setShowCreateUserOptions(false)}>
                             </div>
                             <div className='absolute z-2 top-1/4 left-16 md:left-9 lg:left-28 md:top-1/3 xl:left-1/4'>
@@ -217,9 +217,9 @@ const Users = () => {
                                         style={{ marginLeft: '98%' }}
                                         onClick={() => setShowCreateUserOptions(false)} />
                                     <div className='md:flex'>
-                                        <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border
-                                                border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
-                                                dark:hover:text-white dark:hover:bg-gray-600 ${customer && 'border-dark-blue'}`}
+                                        <div className={`m-2 md:m-4 p-4 hover:bg-slate-100 focus:ring-4 focus:ring-slate-300 rounded-lg border
+                                                border-slate-200 hover:text-slate-900 focus:z-10 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-500
+                                                dark:hover:text-white dark:hover:bg-slate-600 ${customer && 'border-[#004896]'}`}
                                             onClick={() => {
                                                 setVendor(false)
                                                 setCustomer(true)
@@ -229,9 +229,9 @@ const Users = () => {
                                             <p className='flex  justify-center font-normal text-lg lg:text-xl'>customer</p>
                                             <p className='flex  justify-center font-extralight text-xs lg:text-sm'>buy construction tools for my self</p>
                                         </div>
-                                        <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border
-                                                border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
-                                                dark:hover:text-white dark:hover:bg-gray-600 ${vendor && ' border-dark-blue'}`}
+                                        <div className={`m-2 md:m-4 p-4 hover:bg-slate-100 focus:ring-4 focus:ring-slate-300 rounded-lg border
+                                                border-slate-200 hover:text-slate-900 focus:z-10 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-500
+                                                dark:hover:text-white dark:hover:bg-slate-600 ${vendor && ' border-[#004896]'}`}
                                             onClick={() => {
                                                 setVendor(true)
                                                 setCustomer(false)
@@ -241,9 +241,9 @@ const Users = () => {
                                             <p className='flex  justify-center font-normal text-lg lg:text-xl'>vendor</p>
                                             <p className='flex  justify-center font-extralight text-xs lg:text-sm'>I own a construction store</p>
                                         </div>
-                                        <div className={`m-2 md:m-4 p-4 hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border pointer-events-none
-                                                border-gray-200 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500
-                                                dark:hover:text-white dark:hover:bg-gray-600 ${professional && ' border-dark-blue'}`}
+                                        <div className={`m-2 md:m-4 p-4 hover:bg-slate-100 focus:ring-4 focus:ring-slate-300 rounded-lg border pointer-events-none
+                                                border-slate-200 hover:text-slate-900 focus:z-10 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-500
+                                                dark:hover:text-white dark:hover:bg-slate-600 ${professional && ' border-[#004896]'}`}
                                             onClick={() => {
                                                 setVendor(false)
                                                 setCustomer(false)
@@ -256,7 +256,7 @@ const Users = () => {
                                     </div>
                                     <Link to={`${signupLink}`} className={`${signupLink === null ? 'cursor-not-allowed pointer-events-none' : ''}`}>
                                         <button disabled={false}
-                                            className={`flex text-white bg-dark-blue hover:bg-light-blue focus:ring-4 focus:ring-light-blue
+                                            className={`flex text-white bg-[#004896] hover:bg-[#00adef] focus:ring-4 focus:ring-[#00adef]
                                                     px-5 py-2 rounded-lg float-right mr-2 md:mr-3.5`}
                                         >
                                             <span className='text-xs mr-1 md:text-sm md:mr-2
