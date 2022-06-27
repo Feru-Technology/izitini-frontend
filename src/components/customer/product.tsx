@@ -31,13 +31,65 @@ const Product = () => {
     const [showDescription, setShowDescription] = useState(false)
     const [showReturnPolicy, setShowReturnPolicy] = useState(false)
     const [showSpecification, setShowSpecification] = useState(false)
-    const [displayImage, setDisplayImage] = useState<string | null>(null)
+    const [displayImage, setDisplayImage] = useState<any>(null)
+    const [zoom_image, setZoom_image] = useState<any>(null)
 
     useEffect(() => {
         if (currentProduct) {
             setDisplayImage(currentProduct.product.display_image)
         }
     }, [currentProduct])
+
+    const getCursor = () => {
+
+        const lens = document.getElementById('lens')
+        const image = document.getElementById('image')
+
+        let ratio = 2
+        // @ts-ignore
+        lens.style.backgroundImage = `url(${image.src})`
+        // @ts-ignore
+        lens.style.backgroundSize = (image.width * ratio) + 'px ' + (image.height * ratio) + 'px'
+
+        // track the cursor movements
+        const moveLens = () => {
+
+            const p = getCursor()
+            let x = p.x - (lens!.offsetWidth / 2)
+            let y = p.y - (lens!.offsetHeight / 2)
+
+            // @ts-ignore
+            if (x > image.width - lens.offsetWidth) { x = image.width - lens.offsetWidth; }
+            // @ts-ignore
+            if (x < 0) { x = 0; }
+            // @ts-ignore
+            if (y > image.height - lens.offsetHeight) { y = image.height - lens.offsetHeight; }
+            if (y < 0) { y = 0; }
+
+            // @ts-ignore
+            lens.style.left = x + 'px'
+            // @ts-ignore
+            lens.style.top = y + 'px'
+
+            // @ts-ignore
+            return lens.style.backgroundPosition = '-' + (p.x * ratio) + 'px -' + (p.y * ratio) + 'px'
+        }
+
+        // get the cursor position
+        const getCursor = () => {
+
+            const e = window.event
+            const b = image!.getBoundingClientRect()
+            // @ts-ignore
+            let x = e.pageX - b.left
+            // @ts-ignore
+            let y = e.pageY - b.top
+            console.log(y, x)
+            return { 'x': x, 'y': y }
+        }
+
+        return moveLens()
+    }
 
     // const qty = (n: any) => n === 1 ? '1' : qty(n - 1) + ', ' + n
 
@@ -88,8 +140,7 @@ const Product = () => {
                                                         />
                                                     </div>
                                                     {currentProduct.images.map((img) => (
-                                                        <div className='my-1 hover:border-black
-                                        '
+                                                        <div className='my-1 hover:border-black' key={img.image.id}
                                                             onPointerOver={() => setDisplayImage(img.image.image_url)}
                                                         >
                                                             <img
@@ -109,6 +160,8 @@ const Product = () => {
                                                         object-fit='false'
                                                         className='max-h-96 mx-auto'
                                                         alt='product pic'
+                                                        id='image'
+                                                        onMouseMove={() => getCursor()}
                                                     /> : ''}
                                                 </div>
 
@@ -124,7 +177,7 @@ const Product = () => {
                                                         />
                                                     </div>
                                                     {currentProduct.images.map((img) => (
-                                                        <div className='my-5 hover:border-black'
+                                                        <div className='my-5 hover:border-black' key={img.image.id}
                                                             onPointerOver={() => setDisplayImage(img.image.image_url)}
                                                         >
                                                             <img
@@ -205,7 +258,9 @@ const Product = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className='md:w-1/3 md:ml-4'>
+
+                                        {/* product details */}
+                                        <div className='md:w-1/3 md:ml-4 relative'>
                                             <div className='text-sm md:text-base'>
                                                 <h2 className='font-medium text-lg lg:text-xl'>{currentProduct?.product.name}</h2>
                                                 <p className='text-xs lg:text-sm'>{currentProduct?.product.shop.name}</p>
@@ -300,13 +355,20 @@ const Product = () => {
 
                                                 </div>
                                             </div>
+
+                                            {/* zoom image */}
+                                            <div className='sr-only lg:not-sr-only'>
+                                                <div className='w-full h-2/4 bg-white rounded shadow-lg absolute top-2' id='lens'>
+                                                    {/* <img src={zoom_image} alt="" className='w-96' /> */}
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
 
                                     {/* tabs and details */}
                                     <div className='md:sr-only bg-white my-6 border-t border-b py-6 border-slate-200
-                                px-5 md:px12 lg:px-24 mx-auto w-full'>
+                                    px-5 md:px12 lg:px-24 mx-auto w-full'>
                                         {/* tabs */}
                                         <div className=''>
                                             <div className='pb-5 px-2 font-semibold border-b border-[#004896] relative'>
