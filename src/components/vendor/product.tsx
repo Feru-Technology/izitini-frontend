@@ -157,6 +157,8 @@ const VendorProduct = () => {
         }
     }, [deleted, deletedColorRes, dispatch, id, newColor, newSize, updated, newProductStatus, newImage, removedImgRes])
 
+    console.log(currentProduct)
+
     return (
         <>
             {isLoading ? 'loading' :
@@ -321,11 +323,12 @@ const VendorProduct = () => {
                                                             <select
                                                                 className={`border border-slate-300 px-3 py-3 text-slate-600 rounded text-sm
                                                                 focus:outline-none  w-full ease-linear transition-all duration-150 focus:ring-1 focus:ring-[#004896]
-                                                                ${editMode ? 'pointer-events-auto border bg-white' : 'bg-slate-100  pointer-events-none'}`}
+                                                                bg-slate-100  pointer-events-none`}
                                                                 id='grid-state'
                                                             // onChange={e => setSubCategory(e.target.value)}
                                                             >
-                                                                <option>Choose sub-category</option>
+                                                                {currentProduct.subCategory.map((subCat) => <option key={subCat.subCategory.id}>{subCat.subCategory.name}</option>)}
+
                                                                 {isSubCatLoading ? <h1>loading...</h1>
                                                                     : subCategories.map((c) => (<option key={c.id}>{c.name}</option>))}
                                                             </select>

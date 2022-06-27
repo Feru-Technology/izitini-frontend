@@ -11,6 +11,7 @@ import { Transition } from '@headlessui/react'
 import { useProduct } from '../../api/products'
 import { HeartIcon } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
+import { imageZoom } from '../../utils/common/imageZoom'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { AiFillStar, AiOutlineStar } from 'react-icons/all'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/solid'
@@ -32,7 +33,7 @@ const Product = () => {
     const [showReturnPolicy, setShowReturnPolicy] = useState(false)
     const [showSpecification, setShowSpecification] = useState(false)
     const [displayImage, setDisplayImage] = useState<any>(null)
-    const [zoom_image, setZoom_image] = useState<any>(null)
+    const [zoom, setZoom] = useState(false)
 
     useEffect(() => {
         if (currentProduct) {
@@ -40,58 +41,6 @@ const Product = () => {
         }
     }, [currentProduct])
 
-    const getCursor = () => {
-
-        const lens = document.getElementById('lens')
-        const image = document.getElementById('image')
-
-        let ratio = 2
-        // @ts-ignore
-        lens.style.backgroundImage = `url(${image.src})`
-        // @ts-ignore
-        lens.style.backgroundSize = (image.width * ratio) + 'px ' + (image.height * ratio) + 'px'
-
-        // track the cursor movements
-        const moveLens = () => {
-
-            const p = getCursor()
-            let x = p.x - (lens!.offsetWidth / 2)
-            let y = p.y - (lens!.offsetHeight / 2)
-
-            // @ts-ignore
-            if (x > image.width - lens.offsetWidth) { x = image.width - lens.offsetWidth; }
-            // @ts-ignore
-            if (x < 0) { x = 0; }
-            // @ts-ignore
-            if (y > image.height - lens.offsetHeight) { y = image.height - lens.offsetHeight; }
-            if (y < 0) { y = 0; }
-
-            // @ts-ignore
-            lens.style.left = x + 'px'
-            // @ts-ignore
-            lens.style.top = y + 'px'
-
-            // @ts-ignore
-            return lens.style.backgroundPosition = '-' + (p.x * ratio) + 'px -' + (p.y * ratio) + 'px'
-        }
-
-        // get the cursor position
-        const getCursor = () => {
-
-            const e = window.event
-            const b = image!.getBoundingClientRect()
-            // @ts-ignore
-            let x = e.pageX - b.left
-            // @ts-ignore
-            let y = e.pageY - b.top
-            console.log(y, x)
-            return { 'x': x, 'y': y }
-        }
-
-        return moveLens()
-    }
-
-    // const qty = (n: any) => n === 1 ? '1' : qty(n - 1) + ', ' + n
 
     return (
         <div className='bg-slate-100 md:bg-white'>
@@ -153,16 +102,26 @@ const Product = () => {
 
                                                 </div>
 
-                                                <div className='md:ml-2 min-h-72 w-full'>
-
-                                                    {displayImage ? <img
-                                                        src={displayImage}
-                                                        object-fit='false'
-                                                        className='max-h-96 mx-auto'
-                                                        alt='product pic'
-                                                        id='image'
-                                                        onMouseMove={() => getCursor()}
-                                                    /> : ''}
+                                                <div className='md:ml-2 min-h-72 w-full relative'>
+                                                    {displayImage ?
+                                                        <div className='flex justify-center'>
+                                                            <div>
+                                                                <img
+                                                                    src={displayImage}
+                                                                    object-fit='false'
+                                                                    alt='product pic'
+                                                                    className='max-h-96'
+                                                                    id='image'
+                                                                    onPointerOver={() => setZoom(true)}
+                                                                    onPointerLeave={() => setZoom(false)}
+                                                                    onMouseMoveCapture={() => imageZoom()}
+                                                                // onMouseMove={() => imageZoom()}
+                                                                />
+                                                                <div className='sr-only md:not-sr-only'>
+                                                                    <Transition show={!!zoom} className='absolute w-20 h-28 top-0' id='lens'></Transition>
+                                                                </div>
+                                                            </div>
+                                                        </div> : ''}
                                                 </div>
 
                                                 <div className='md:sr-only flex space-x-1'>
@@ -357,10 +316,9 @@ const Product = () => {
                                             </div>
 
                                             {/* zoom image */}
-                                            <div className='sr-only lg:not-sr-only'>
-                                                <div className='w-full h-2/4 bg-white rounded shadow-lg absolute top-2' id='lens'>
-                                                    {/* <img src={zoom_image} alt="" className='w-96' /> */}
-                                                </div>
+                                            <div className='sr-only md:not-sr-only'>
+                                                <Transition show={zoom} className='w-full h-5/6 bg-white rounded shadow-lg absolute top-2' id='zoom'>
+                                                </Transition>
                                             </div>
                                         </div>
 
