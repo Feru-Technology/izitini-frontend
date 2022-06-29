@@ -28,24 +28,25 @@ const MyProducts = () => {
                         <div className='md:my-4 lg:my-8 font-medium grid grid-cols-1
                         md:grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
                             {categories.map((category) => {
-                                const subCategories = category.subCategories.slice(0, 4)
+                                const subCategories = category.subCategories.slice(0, 3)
                                 return (
                                     <Link to={`/products/c/${category.name}`} key={category.id}>
-                                        <div className='relative my-2'>
-                                            <p className='absolute ml-2'>{category.name}</p>
+                                        <div className='relative my-2 group'>
+                                            <p className='absolute ml-2 px-2 rounded group-hover:underline group-hover:bg-white/50'>{category.name}</p>
                                             <img className='h-36  2xl:h-52 w-full bg-slate-200 lg:h-40 xl:h-48'
                                                 src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
-                                            <div className=''>
-                                                <ul>
-                                                    {
-                                                        subCategories.map((subCat) => (
-                                                            <li className='mt-1 font-normal' key={subCat.id}>{subCat.name}</li>
-                                                        ))
-                                                    }
-                                                    <p className='text-[#004896]'>see all</p>
-                                                </ul>
 
-                                            </div>
+
+                                            <ul>
+                                                {
+                                                    subCategories.map((subCat) => (
+                                                        <li className='mt-1 font-normal hover:text-[#004896] hover:underline' key={subCat.id}>{subCat.name}</li>
+                                                    ))
+                                                }
+                                                {category.subCategories.length > 3 ?
+                                                    <p className='text-[#004896] hover:underline'>see all</p> : ''}
+                                            </ul>
+
                                         </div>
                                     </Link>
                                 )

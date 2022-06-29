@@ -84,26 +84,26 @@ const Home = () => {
                     <div className='md:mt-4 lg:mt-8 font-medium grid grid-cols-1
                     md:grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
                         {categorySection.map((category) => {
-                            const subCategories = category.subCategories.slice(0, 4)
+                            const subCategories = category.subCategories.slice(0, 3)
                             return (
                                 <Link to={`/products/c/${category.name}`} key={category.id}>
                                     <div className='relative my-2 group'>
                                         <div className='hover:underline'>
-                                            <p className='absolute px-2 ml-2 group-hover:underline group-hover:bg-white/40 rounded'>{category.name}</p>
+                                            <p className='absolute px-2 ml-2 group-hover:underline group-hover:bg-white/50 rounded'>{category.name}</p>
                                             <img className='h-40  2xl:h-52 w-full bg-slate-200 lg:h-44 xl:h-52 hover:shadow-sm'
                                                 src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
                                         </div>
 
-                                        {subCategories.length ?
-                                            <ul>
-                                                {
-                                                    subCategories.map((subCat) => (
-                                                        <li key={subCat.id}
-                                                            className='font-light hover:underline hover:text-[#004896]'>{subCat.name}</li>
-                                                    ))
-                                                }
-                                                <p className='text-[#004896] hover:underline'>see all</p>
-                                            </ul> : ''}
+                                        <ul>
+                                            {
+                                                subCategories.map((subCat) => (
+                                                    <li key={subCat.id}
+                                                        className='font-light hover:underline hover:text-[#004896]'>{subCat.name}</li>
+                                                ))
+                                            }
+                                            {category.subCategories.length > 3 ?
+                                                <p className='text-[#004896] hover:underline'>see all</p> : ''}
+                                        </ul>
 
                                     </div>
                                 </Link>
@@ -121,7 +121,7 @@ const Home = () => {
                                         <img className='w-ful max-h-32 2xl:max-h-52 mx-auto'
                                             src={p.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
 
-                                        <button className='text-black bg-slate-100 hover:bg-slate-300 w-full rounded my-2'>More</button>
+                                        <button className='text-black bg-slate-100 group-hover:bg-slate-300 w-full rounded my-2'>More</button>
                                         <p className='text-slate-800 text-md group-hover:text-[#004896]'>{shorten(p.name, 55)}</p>
                                         <p className='font-normal text-xs text-slate-500'>by {p.shop.name}</p>
                                         <p className='font-semibold mt-2'>RWF {p.price}</p>

@@ -6,6 +6,7 @@ import { RootState } from '../../redux/store'
 import { Link, useParams } from 'react-router-dom'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { useSubCategoriesInCat } from '../../api/subCategories'
+import shorten from '../../utils/common/shotenString'
 
 const Subcategory = () => {
 
@@ -28,28 +29,29 @@ const Subcategory = () => {
 
                         {/* navigation */}
                         <div className='flex mt-4 lg:mt-8 font-semibold text-xs md:text-sm'>
-                            <Link to={'/products'}>All Products</Link>
+                            <Link to={'/products'} className='hover:underline hover:text-[#004896]'>All Products</Link>
                             <ChevronRightIcon className='h-4 md:h-5 mx-1 text-slate-500' />
-                            <Link to={`/products/c/${Products[0]?.subCategory.category.name}`}>
+                            <Link to={`/products/c/${Products[0]?.subCategory.category.name}`}
+                                className='hover:underline hover:text-[#004896]'>
                                 {Products[0]?.subCategory.category.name}</Link>
                             <ChevronRightIcon className='h-4 md:h-5 mx-1 text-slate-500' />
                             <p className='text-slate-500 font-normal'> {Products[0]?.subCategory.name}</p>
                         </div>
 
                         {/* categories */}
-                        <div className='md:mt-4 lg:mt-8 font-medium
+                        <div className='my-4 lg:my-8 font-medium
                         grid grid-cols-2 lg:grid-cols-3 xl:gap-4 gap-3'>
-                            {Products?.map((prod) => (
-                                <div className='my-2' key={prod.product.id}>
-                                    <Link to={`/products/p/${prod.product.id}`}>
-                                        <img className='h-36  2xl:h-52 w-full bg-slate-200
-                                            lg:h-40 xl:h-48'
-                                            src={prod.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
-                                        <div className='mt-5'>
-                                            <p className='text-base md:text-lg lg:text-xl'>{prod.product.name}</p>
-                                            <p className='text-xs md:text-sm text-slate-400'>{prod.product.brand}</p>
-                                            <p className='text-sm md:text-lg lg:text-xl'>{prod.product.price}</p>
-                                        </div>
+                            {Products?.map((p) => (
+                                <div className='mt-2 w-full group' key={p.product.id}>
+                                    <Link to={`/products/p/${p.product.id}`} className='w-full'>
+                                        <img className='w-ful max-h-32 2xl:max-h-52 mx-auto'
+                                            src={p.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
+
+                                        <button className='text-black bg-slate-100 group-hover:bg-slate-300 w-full rounded my-2'>More</button>
+                                        <p className='text-slate-800 text-md group-hover:text-[#004896]'>{shorten(p.product.name, 55)}</p>
+                                        <p className='font-normal text-xs text-slate-500'>by {p.product.brand}</p>
+                                        <p className='font-semibold mt-2'>RWF {p.product.price}</p>
+
                                     </Link>
                                 </div>
                             ))}
