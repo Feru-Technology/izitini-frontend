@@ -33,28 +33,28 @@ const Shop = () => {
 
     const [isClosed, setIsClosed] = useState(false)
     const [editMode, setEditMode] = useState(false)
-    const [tin_no, setTin_no] = useState<string>('')
+    const [about_shop, setAbout_shop] = useState<string>('')
+    const [name, setName] = useState<string | null>(null)
     const [email, setEmail] = useState<string | null>(null)
     const [contact, setContact] = useState<string | null>(null)
-    const [is_verified, setIs_verified] = useState<boolean>(false)
-    const [full_name, setFull_name] = useState<string | null>(null)
-    const [account_type, setAccount_type] = useState<string | null>(null)
+    const [is_approved, setIs_approved] = useState<boolean>(false)
+    const [is_blocked, setIs_blocked] = useState<boolean>(false)
 
     const updateShop = () => {
-        dispatch(getShop())
-        console.log({ tin_no, contact, full_name, is_verified, account_type })
-        update(dispatch, shop, shopFailed, `/admin/shop/${id}`, { tin_no, contact, email, full_name, is_verified, account_type }, token)
+        // dispatch(getShop())
+        // console.log({ about_shop, contact, name, is_approved, is_blocked })
+        // update(dispatch, shop, shopFailed, `/admin/shop/${id}`, { about_shop, contact, email, name, is_approved, is_blocked }, token)
     }
 
     useEffect(() => {
         if (currentStore) {
             setEditMode(false)
-            setEmail(currentStore.email)
-            setTin_no(currentStore.tin_no)
-            setContact(currentStore.contact)
-            setFull_name(currentStore.full_name)
-            setIs_verified(currentStore.is_verified)
-            setAccount_type(currentStore.account_type)
+            setName(currentStore.name)
+            setEmail(currentStore.shop_email)
+            setAbout_shop(currentStore.about_shop)
+            setContact(currentStore.shop_contact_no)
+            setIs_approved(currentStore.is_approved)
+            setIs_blocked(currentStore.is_blocked)
         }
     }, [currentStore])
 
@@ -105,7 +105,7 @@ const Shop = () => {
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
-                                                        id='grid-first-name' type='text' value={currentStore.full_name} />
+                                                        id='grid-first-name' type='text' value={currentStore.name} />
 
                                                 </div>
 
@@ -114,7 +114,7 @@ const Shop = () => {
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
-                                                        id='grid-last-name' type='text' value={currentStore.contact} />
+                                                        id='grid-last-name' type='text' value={currentStore.shop_contact_no} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -122,7 +122,7 @@ const Shop = () => {
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none`}
-                                                        id='grid-last-name' type='text' value={currentStore.tin_no || 'N/A'} />
+                                                        id='grid-last-name' type='text' value={currentStore.about_shop || 'N/A'} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -130,7 +130,9 @@ const Shop = () => {
                                                         htmlFor='Account type'>Account:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={currentStore.account_type} />
+                                                        id='grid-last-name' type='text'
+                                                    // value={currentStore.is_blocked} 
+                                                    />
 
                                                 </div>
 
@@ -139,7 +141,7 @@ const Shop = () => {
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={currentStore.email} />
+                                                        id='grid-last-name' type='text' value={currentStore.shop_email} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -147,14 +149,16 @@ const Shop = () => {
                                                         htmlFor='Provider'>Provider:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={currentStore.provider} />
+                                                        id='grid-last-name' type='text'
+                                                    // value={currentStore.owner} 
+                                                    />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Verified'>Verified:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto pointer-events-none'
-                                                        id='grid-last-name' type='text' value={`${currentStore.is_verified}`} />
+                                                        id='grid-last-name' type='text' value={`${currentStore.is_approved}`} />
                                                 </div>
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
@@ -184,8 +188,8 @@ const Shop = () => {
                                                         htmlFor='names'>Names:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-first-name' type='text' defaultValue={currentStore.full_name}
-                                                        onChange={e => setFull_name(e.target.value)} />
+                                                        id='grid-first-name' type='text' defaultValue={currentStore.name}
+                                                        onChange={e => setName(e.target.value)} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -193,7 +197,7 @@ const Shop = () => {
                                                         htmlFor='contact'>Contact:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-last-name' type='text' defaultValue={currentStore.contact}
+                                                        id='grid-last-name' type='text' defaultValue={currentStore.shop_contact_no}
                                                         onChange={e => setContact(e.target.value)} />
                                                 </div>
 
@@ -202,8 +206,8 @@ const Shop = () => {
                                                         htmlFor='Tin no'>Tin no:</label>
                                                     <input className={`mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto`}
-                                                        id='grid-last-name' type='text' defaultValue={currentStore.tin_no}
-                                                        onChange={e => setTin_no(e.target.value)} />
+                                                        id='grid-last-name' type='text' defaultValue={currentStore.about_shop}
+                                                        onChange={e => setAbout_shop(e.target.value)} />
                                                 </div>
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
@@ -211,11 +215,11 @@ const Shop = () => {
                                                         htmlFor='email'>Email:</label>
                                                     <input className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                 border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
-                                                        id='grid-last-name' type='text' defaultValue={currentStore.email}
+                                                        id='grid-last-name' type='text' defaultValue={currentStore.shop_email}
                                                         onChange={e => setEmail(e.target.value)} />
                                                 </div>
 
-                                                <div className='space-x-2 md:space-x-4 flex w-full'>
+                                                {/* <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
                                                         htmlFor='Account type'>Account:</label>
 
@@ -223,13 +227,13 @@ const Shop = () => {
                                                         className='mx-4 md:mx-0 bg-white text-sm md:text-base font-medium outline-none border-0 border-b
                                                         border-gray-400 focus:border-gray-800 w-8/12 md:w-auto'
                                                         id='grid-state'
-                                                        defaultValue={currentStore.account_type}
-                                                        onChange={e => setAccount_type(e.target.value)}
+                                                        defaultValue={currentStore.is_blocked}
+                                                        onChange={e => setIs_blocked(e.target.value)}
                                                     >
-                                                        <option>{currentStore.account_type}</option>
-                                                        <option>{currentStore.account_type === 'business' ? 'customer' : 'business'}</option>
+                                                        <option>{currentStore.is_blocked}</option>
+                                                        <option>{currentStore.is_blocked === 'business' ? 'customer' : 'business'}</option>
                                                     </select>
-                                                </div>
+                                                </div> */}
 
                                                 <div className='space-x-2 md:space-x-4 flex w-full'>
                                                     <label className='font-semibold text-sm md:text-base text-gray-500 w-3/12 flex justify-end'
@@ -238,15 +242,15 @@ const Shop = () => {
                                                     <div className='w-8/12 flex justify-center space-x-5 '>
                                                         <div className='space-x-1'>
                                                             <input type="checkbox" id="true" name="true"
-                                                                checked={!!is_verified || false}
-                                                                onClick={e => setIs_verified(true)} />
+                                                                checked={!!is_approved || false}
+                                                                onClick={e => setIs_approved(true)} />
                                                             <label htmlFor="True">True</label>
                                                         </div>
 
                                                         <div className='space-x-1'>
                                                             <input type="checkbox" id="false" name="false"
-                                                                checked={!is_verified ? true : false}
-                                                                onClick={e => setIs_verified(false)} />
+                                                                checked={!is_approved ? true : false}
+                                                                onClick={e => setIs_approved(false)} />
                                                             <label htmlFor="False">False</label>
                                                         </div>
                                                     </div>
