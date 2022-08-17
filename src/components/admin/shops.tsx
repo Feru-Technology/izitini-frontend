@@ -106,7 +106,10 @@ const Shops = () => {
                                             const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
                                             return (
                                                 <tbody>
-                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b text-gray-800'>
+
+                                                    <tr className='text-center text-xs md:text-sm lg:text-base border-b
+                                                    text-gray-800 hover:bg-gray-100'
+                                                        onClick={() => navigate(`/admin/shop/${store.id}`)} >
                                                         <td className='py-3 '>
                                                             <div className='md:flex items-center'>
                                                                 <div className='md:w-1/4 mx-3'>
