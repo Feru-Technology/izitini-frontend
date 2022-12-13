@@ -11,7 +11,8 @@ const axiosAction = (
 
 
     // const baseURL = 'https://backend.izitini.com'
-    const baseURL = 'http://localhost:3002'
+    // const baseURL = 'http://localhost:3002'
+    const baseURL = 'https://izitini-backend-production.up.railway.app'
     axios({ method, url: `${baseURL}${route}`, headers: { 'Authorization': token }, data })
         .then(({ data }) => {
             if (data.data.token) localStorage.setItem('token', data.data.token)
