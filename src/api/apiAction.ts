@@ -10,8 +10,8 @@ const axiosAction = (
     route: string, token?: any, data?: object) => {
 
 
-    const baseURL = 'https://backend.izitini.com'
-    // const baseURL = 'http://localhost:3002'
+    // const baseURL = 'https://backend.izitini.com'
+    const baseURL = 'http://localhost:3002'
     axios({ method, url: `${baseURL}${route}`, headers: { 'Authorization': token }, data })
         .then(({ data }) => {
             if (data.data.token) localStorage.setItem('token', data.data.token)
