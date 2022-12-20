@@ -128,7 +128,8 @@ const Categories = () => {
                                         <tbody>
                                             {categories.map((category) => {
                                                 const subcategories = category.subCategories.length
-                                                const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                // const categoryImage = category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                const categoryImage = 'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-pixabay-534220.jpg?t=2022-12-20T17%3A52%3A59.482Z'
 
                                                 return (
                                                     <tr key={category.id}
@@ -277,7 +278,10 @@ const Categories = () => {
                                         onClick={() => setEditMode(false)} />
 
                                     <div className='mb-3 mx-auto relative flex justify-center'>
-                                        <img src={currentCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'}
+                                        <img src={
+                                            // currentCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                            'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-pixabay-534220.jpg?t=2022-12-20T17%3A52%3A59.482Z'
+                                        }
                                             className='max-h-24 w-auto' alt="" />
 
                                     </div>

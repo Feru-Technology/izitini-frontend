@@ -88,7 +88,10 @@ const User = () => {
                                     <div className='flex my-5 justify-center'>
                                         <div className='w-28 relative'>
                                             <img className='w-full h-28 rounded-full'
-                                                src={currentUser.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='profile' />
+                                                src={
+                                                    // currentUser.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
+                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-edgar-okioga-730353.jpg'
+                                                } alt='profile' />
 
                                             <input className='absolute hidden' type="file" name="img" ref={input}
                                                 accept='image/x-png,image/gif,image/jpeg, image/png'

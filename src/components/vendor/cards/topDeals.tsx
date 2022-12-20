@@ -59,7 +59,10 @@ function DashboardCard10() {
                             <div className='flex gap-5 flex-shrink-0 mr-2 sm:mr-3'>
                                 <img
                                     className='rounded-full'
-                                    src={customer.image}
+                                    src={
+                                        // customer.image
+                                        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-edgar-okioga-730353.jpg'
+                                    }
                                     width='40'
                                     height='40'
                                     alt={customer.name}

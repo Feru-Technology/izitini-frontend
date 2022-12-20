@@ -102,7 +102,10 @@ const SingleOrder = () => {
                                                                 <div className='md:flex p-3'>
                                                                     <div className='w-8/12 md:w-1/3 md:p-1'>
                                                                         <img className=' 2xl:h-52 w-full'
-                                                                            src={item.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='img' />
+                                                                            src={
+                                                                                'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-bidvine-1249611.jpg'
+                                                                                // item.product.display_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'
+                                                                            } alt='img' />
                                                                     </div>
                                                                     <div className='md:w-2/3 md:px-3'>
                                                                         <ul className='font-normal text:xs md:text-base text-slate-800'>

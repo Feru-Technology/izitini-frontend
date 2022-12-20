@@ -67,7 +67,10 @@ const Header = ({ isClosed, setIsClosed, isStatic, name }: IHeader) => {
                         </div>
                         <div className='flex flex-row justify-center items-center space-x-2'>
                             <img
-                                src={profile?.profile_image === null ? backUpPImage : profile?.profile_image}
+                                src={
+                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-edgar-okioga-730353.jpg'
+                                    // profile?.profile_image === null ? backUpPImage : profile?.profile_image
+                                }
                                 className='w-6 h-6 md:w-9 md:h-9 rounded-full mx-auto'
                                 alt='pImg'
                             />

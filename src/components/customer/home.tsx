@@ -23,6 +23,18 @@ const Home = () => {
     const { isLoading, products } = useSelector((state: RootState) => state.allProducts)
     const newProducts = products.slice(0, 10)
 
+    const testAds = [
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/istockphoto-1202957913-1024x1024.jpg?t=2022-12-20T20%3A00%3A10.062Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-anete-lusina-4792488.jpg?t=2022-12-20T20%3A00%3A42.017Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-anete-lusina-4792494.jpg?t=2022-12-20T20%3A00%3A55.936Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-atul-maurya-1042152.jpg?t=2022-12-20T20%3A01%3A11.110Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-jorge-urosa-9131069.jpg?t=2022-12-20T20%3A01%3A23.590Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-pixabay-162534.jpg?t=2022-12-20T20%3A01%3A47.221Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-pixabay-209235.jpg?t=2022-12-20T20%3A01%3A59.159Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-suntorn-somtong-1029243.jpg?t=2022-12-20T20%3A02%3A09.973Z',
+        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/slide/pexels-valeria-boltneva-1123262.jpg?t=2022-12-20T20%3A02%3A23.550Z'
+    ]
+
     return (<>
         {isLoading ? (<h1>Loading ...</h1>) : (
 
@@ -71,9 +83,14 @@ const Home = () => {
                                 swipeable={true}
                                 showStatus={false}
                             >
-                                {ads.map((ad) => (
+                                {/* {ads.map((ad) => (
                                     <div className='h-60 md:h-72' key={ad.id}>
                                         <img alt='ads' src={ad.big_screen_image} />
+                                    </div>))} */}
+
+                                {testAds.map((testAd, index) => (
+                                    <div className='h-60 md:h-72' key={index}>
+                                        <img alt='testAds' src={testAd} />
                                     </div>))}
 
                             </Carousel>
@@ -91,7 +108,10 @@ const Home = () => {
                                         <div className='hover:underline'>
                                             <p className='absolute px-2 ml-2 group-hover:underline group-hover:bg-white/50 rounded'>{category.name}</p>
                                             <img className='h-40  2xl:h-52 w-full bg-slate-200 lg:h-44 xl:h-52 hover:shadow-sm'
-                                                src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
+                                                src={
+                                                    // category.image_url 
+                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-pixabay-534220.jpg?t=2022-12-20T17%3A52%3A59.482Z'
+                                                } alt='' />
                                         </div>
 
                                         <ul>

@@ -96,7 +96,10 @@ const Product = () => {
                                                             onPointerOver={() => setDisplayImage(img.image.image_url)}
                                                         >
                                                             <img
-                                                                src={img.image.image_url}
+                                                                src={
+                                                                    // img.image.image_url
+                                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-bidvine-1249611.jpg'
+                                                                }
                                                                 className='border mr-2 w-16 lg:w-20 h-16 lg:h-20'
                                                                 alt='...'
                                                             />
@@ -143,7 +146,10 @@ const Product = () => {
                                                             onPointerOver={() => setDisplayImage(img.image.image_url)}
                                                         >
                                                             <img
-                                                                src={img.image.image_url}
+                                                                src={
+                                                                    // img.image.image_url
+                                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-bidvine-1249611.jpg'
+                                                                }
                                                                 className='border w-20 h-20'
                                                                 alt='...'
                                                             />

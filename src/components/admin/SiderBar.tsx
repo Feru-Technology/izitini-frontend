@@ -44,7 +44,7 @@ const SideBar = ({ isClosed, setIsClosed, isStatic }: Isidebar) => {
                         {/* Logo */}
                         <Link to='/'>
                             <img
-                                src='https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo.png'
+                                src='https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/Logo.png'
                                 className='mt-0'
                                 width='90px'
                                 height='40px'
