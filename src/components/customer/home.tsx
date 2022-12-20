@@ -91,7 +91,10 @@ const Home = () => {
                                         <div className='hover:underline'>
                                             <p className='absolute px-2 ml-2 group-hover:underline group-hover:bg-white/50 rounded'>{category.name}</p>
                                             <img className='h-40  2xl:h-52 w-full bg-slate-200 lg:h-44 xl:h-52 hover:shadow-sm'
-                                                src={category.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
+                                                src={
+                                                    // category.image_url 
+                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-pixabay-534220.jpg?t=2022-12-20T17%3A52%3A59.482Z'
+                                                } alt='' />
                                         </div>
 
                                         <ul>

@@ -87,7 +87,10 @@ const Shop = () => {
                                         <div className='flex my-5 justify-center'>
                                             <div className='w-3/5 auto relative'>
                                                 <img className='w-full h-full rounded-lg'
-                                                    src={currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'} alt='img' />
+                                                    src={
+                                                        'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/istockphoto-1202957913-1024x1024.jpg'
+                                                        // currentStore.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
+                                                    } alt='img' />
 
                                                 <input className='absolute hidden' type="file" name="img" ref={input}
                                                     accept='image/x-png,image/gif,image/jpeg, image/png'

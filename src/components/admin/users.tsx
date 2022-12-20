@@ -166,7 +166,8 @@ const Users = () => {
 
                                         <tbody>
                                             {users ? (users.map((user) => {
-                                                const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
+                                                // const profileImage = user.profile_image || 'https://izitini-spaces.fra1.digitaloceanspaces.com/profile-pics/profile.png'
+                                                const profileImage = 'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-edgar-okioga-730353.jpg'
                                                 return (
                                                     <tr key={user.id}
                                                         className='text-center text-xs md:text-sm lg:text-base border-b text-slate-800 hover:bg-slate-100 cursor-default'
