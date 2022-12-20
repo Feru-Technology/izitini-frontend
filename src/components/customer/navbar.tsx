@@ -154,7 +154,7 @@ export const Navbar = () => {
                                 <Link to='/'>
                                     <img
                                         className='block h-8 md:h-10 lg:h-12 w-auto'
-                                        src='https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                        src='https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/LogoWhite.png'
                                         alt='Workflow'
                                     />
                                 </Link>
@@ -262,7 +262,10 @@ export const Navbar = () => {
 
                                                         <div className='flex flex-row justify-center items-center space-x-2 bg-slate-50 rounded-full'>
                                                             <img
-                                                                src={profile ? profile.profile_image ? profile.profile_image : backUpPImage : backUpPImage}
+                                                                src={
+                                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-edgar-okioga-730353.jpg'
+                                                                    // profile ? profile.profile_image ? profile.profile_image : backUpPImage : backUpPImage
+                                                                }
                                                                 className='w-6 h-6 mt-2 rounded-full mx-auto md:w-8 md:h-8 md:mt-0'
                                                                 alt='pImg'
                                                             />

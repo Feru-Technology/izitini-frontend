@@ -43,7 +43,10 @@ const Subcategory = () => {
                                     <p className='absolute ml-2 px-2 rounded group-hover:underline group-hover:bg-white/50'>{subCat.name}</p>
                                     <img className='h-44  2xl:h-52 w-full bg-slate-200
                                         lg:h-40 xl:h-48'
-                                        src={subCat.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'} alt='' />
+                                        src={
+                                            // subCat.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/Screenshot%20from%202021-11-30%2010-21-50.png'
+                                            'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-quang-nguyen-vinh-2138126.jpg'
+                                        } alt='' />
 
                                 </Link>
                             </div>

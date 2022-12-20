@@ -505,7 +505,10 @@ const VendorProduct = () => {
                                                                     onClick={() => removeImage(dispatch, '/product/image', currentProduct.product.id, i.image.id)}
                                                                 />
 
-                                                                <img src={i.image.image_url} alt='product_image' className='h-32 rounded w-full' />
+                                                                <img src={
+                                                                    // i.image.image_url
+                                                                    'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-bidvine-1249611.jpg'
+                                                                } alt='product_image' className='h-32 rounded w-full' />
                                                             </div>
                                                         )
                                                     })}

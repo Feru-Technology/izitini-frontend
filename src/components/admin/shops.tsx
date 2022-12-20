@@ -99,7 +99,8 @@ const Shops = () => {
                                         <tbody>
 
                                             {stores.map((store) => {
-                                                const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                // const storeImage = store.shop_image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                const storeImage = 'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/istockphoto-1202957913-1024x1024.jpg'
                                                 return (
 
                                                     <tr key={store.id}

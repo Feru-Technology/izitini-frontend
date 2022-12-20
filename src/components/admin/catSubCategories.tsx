@@ -131,7 +131,8 @@ const CatSubCategories = () => {
                                         <tbody>
 
                                             {category.subCategories.map((subCategory) => {
-                                                const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                // const subCategoryImage = subCategory.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                const subCategoryImage = 'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-quang-nguyen-vinh-2138126.jpg'
                                                 return (
 
                                                     <tr key={subCategory.id}
@@ -279,7 +280,10 @@ const CatSubCategories = () => {
                                     <div className='mb-3 font-semibold text-lg md:text-xl lg:text-2xl text-center text-slate-600
                                             mx-auto w-2/4 md:w-1/4'>
                                         <img className='max-h-24 w-auto'
-                                            src={currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'} alt="" />
+                                            src={
+                                                // currentSubCategory?.image_url || 'https://izitini-spaces.fra1.digitaloceanspaces.com/system-images/Logo1.png'
+                                                'https://udkpcrmwxnpihksygpgd.supabase.co/storage/v1/object/public/izitini/pexels-quang-nguyen-vinh-2138126.jpg'
+                                            } alt="" />
                                     </div>
                                     <div className='container'>
                                         <Transition
